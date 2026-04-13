@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 from collections.abc import MutableMapping
+from textwrap import shorten
 from typing import Any, cast
 
+import altair as alt
 import streamlit as st
 
 from ..app.corpus import (
@@ -35,33 +37,43 @@ from .navigation import (
     EDGE_ID_KEY,
     HOME_VIEW,
     MAP_MODE_KEY,
+    MAP_RANGE_KEY,
+    MAP_SELECTED_NODE_KEY,
     MAP_VIEW,
     PASSAGE_ID_KEY,
     PASSAGE_VIEW,
     PRIMARY_VIEWS,
     STATS_TAB_KEY,
     STATS_VIEW,
+    consume_pending_map_action,
+    consume_widget_updates,
     ensure_session_state,
+    normalize_map_range,
     open_concept,
     open_map,
     open_passage,
     open_stats,
+    queue_map_action,
+    queue_widget_updates,
+    select_map_node,
     set_active_view,
 )
 from .registry import (
     adapter_for_preset,
     preset_label,
+    preset_range,
     sorted_preset_names,
 )
 from .render import (
-    card,
     configure_viewer_page,
     empty_state,
     hero,
     info_note,
     key_value_card,
     layer_badges,
+    meta_line,
     metric_cards,
+    pager_chip,
     pill_row,
     reading_panel,
     section_heading,
@@ -96,9 +108,27 @@ def _route_button(
     body: str,
     button_label: str,
     key: str,
+    badge: str,
+    disabled: bool = False,
 ) -> bool:
-    card(title, body)
-    return st.button(button_label, key=key, use_container_width=True)
+    st.markdown(
+        (
+            "<div class='smgv-route-block'>"
+            f"<div class='smgv-route-badge'>{badge}</div>"
+            "<div class='smgv-route-text'>"
+            f"<div class='smgv-route-title'>{title}</div>"
+            f"<div class='smgv-route-copy'>{body}</div>"
+            "</div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+    return st.button(
+        button_label,
+        key=key,
+        use_container_width=True,
+        disabled=disabled,
+    )
 
 
 def _scope_pills(data: ViewerAppData) -> list[str]:
@@ -120,6 +150,89 @@ def _relation_counterparty(edge: dict[str, Any], concept_id: str) -> tuple[str, 
     return str(edge["subject_id"]), str(edge["subject_label"])
 
 
+def _question_for_article(bundle: Any, article_id: str) -> str | None:
+    for passage in bundle.passages.values():
+        if passage.article_id == article_id:
+            return str(passage.question_id)
+    return None
+
+
+def _current_tract_rows(
+    tract_rows: list[dict[str, Any]],
+    *,
+    preset_name: str | None,
+) -> list[dict[str, Any]]:
+    if not preset_name:
+        return tract_rows
+    start_question, end_question = preset_range(preset_name)
+    return [
+        row
+        for row in tract_rows
+        if int(row["start_question"]) <= start_question <= end_question <= int(row["end_question"])
+    ]
+
+
+def _scope_aware_reviewed_edges(
+    data: ViewerAppData,
+    *,
+    preset_name: str | None,
+) -> list[dict[str, Any]]:
+    if not preset_name:
+        return list(data.bundle.reviewed_doctrinal_edges)
+    adapter = adapter_for_preset(preset_name)
+    if adapter is None:
+        return list(data.bundle.reviewed_doctrinal_edges)
+    return adapter.filter_edges_by_preset(
+        data.bundle,
+        preset_name.split(":", 1)[1],
+        include_editorial=False,
+        include_candidate=False,
+        relation_types=None,
+        node_types=None,
+        center_concept=None,
+        focus_tags=None,
+    )
+
+
+def _download_config_for_scope(
+    data: ViewerAppData,
+    *,
+    preset_name: str | None,
+    export_target: str,
+) -> tuple[bytes, str, str, str]:
+    tract_rows = _current_tract_rows(list(data.dashboard["tract_rows"]), preset_name=preset_name)
+    reviewed_edges = _scope_aware_reviewed_edges(data, preset_name=preset_name)
+    scope_note = (
+        f"Current tract preset: {preset_label(preset_name)}"
+        if preset_name
+        else "Scope: full corpus"
+    )
+
+    if export_target == "Corpus summary (JSON)":
+        return (
+            payload_to_json_bytes(data.dashboard),
+            "summa_moral_graph_dashboard_payload.json",
+            "application/json",
+            "Full corpus snapshot · not limited by tract preset",
+        )
+    if export_target == "Tract coverage (CSV)":
+        return (
+            dataframe_to_csv_bytes(records_frame(tract_rows)),
+            "summa_moral_graph_tract_coverage.csv",
+            "text/csv",
+            scope_note,
+        )
+    return (
+        dataframe_to_csv_bytes(records_frame(reviewed_edges)),
+        "summa_moral_graph_reviewed_edges.csv",
+        "text/csv",
+        (
+            f"{scope_note} · "
+            f"{compact_number(len(reviewed_edges))} reviewed doctrinal edges"
+        ),
+    )
+
+
 def _graph_html_for_edges(edges: list[dict[str, Any]], *, height: int) -> str:
     graph = build_graph_for_edges(edges)
     return with_graph_click_bridge(graph_html(graph, height=height))
@@ -130,6 +243,154 @@ def _support_types_label(edge: dict[str, Any]) -> str:
     if isinstance(support_types, list) and support_types:
         return ", ".join(str(value) for value in support_types)
     return "structural"
+
+
+def _home_bar_chart(
+    rows: list[dict[str, Any]],
+    *,
+    x_field: str,
+    y_field: str,
+    color: str,
+) -> alt.Chart:
+    frame = records_frame(rows)
+    return (
+        alt.Chart(frame)
+        .mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, color=color)
+        .encode(
+            x=alt.X(f"{x_field}:N", sort="-y", axis=alt.Axis(labelAngle=-28, title=None)),
+            y=alt.Y(f"{y_field}:Q", axis=alt.Axis(title=None, grid=True, tickCount=4)),
+            tooltip=[x_field, y_field],
+        )
+        .properties(height=238)
+        .configure_view(strokeOpacity=0)
+        .configure_axis(
+            labelColor="#5f6f82",
+            domainColor="rgba(20,34,53,0.12)",
+            gridColor="rgba(20,34,53,0.08)",
+            tickColor="rgba(20,34,53,0.08)",
+        )
+        .configure(background="transparent")
+    )
+
+
+def _open_overall_map_route(
+    session_state: MutableMapping[str, object],
+    *,
+    concept_id: str | None = None,
+    preset_name: str | None = None,
+    edge_id: str | None = None,
+) -> None:
+    open_map(
+        session_state,
+        concept_id=concept_id,
+        edge_id=edge_id,
+        preset_name=preset_name,
+        mode="Overall map",
+    )
+
+
+def _map_filter_pills(
+    *,
+    map_mode: str,
+    map_range: tuple[int, int],
+    map_question: str | None,
+    relation_groups: set[str],
+    relation_types: set[str],
+    node_types: set[str],
+    focus_tags: set[str],
+    segment_types: set[str],
+    include_structural: bool,
+    include_editorial: bool,
+    include_candidate: bool,
+) -> list[str]:
+    pills = [f"Mode: {map_mode}", f"Range: {map_range[0]}–{map_range[1]}"]
+    if map_question:
+        pills.append(f"Question spotlight: {map_question}")
+    if relation_groups:
+        pills.append(f"Relation groups: {len(relation_groups)}")
+    if relation_types:
+        pills.append(f"Exact relations: {len(relation_types)}")
+    if node_types:
+        pills.append(f"Node types: {len(node_types)}")
+    if focus_tags:
+        pills.append("Focus tags active")
+    if segment_types:
+        pills.append(f"Segment types: {', '.join(sorted(segment_types))}")
+    if include_editorial:
+        pills.append("Editorial on")
+    if include_structural:
+        pills.append("Structural on")
+    if include_candidate:
+        pills.append("Candidate on")
+    return pills
+
+
+def _map_empty_state_body(
+    *,
+    base_message: str,
+    focus_tags: set[str],
+    relation_groups: set[str],
+    relation_types: set[str],
+    node_types: set[str],
+    segment_types: set[str],
+    map_question: str | None,
+) -> str:
+    active_filters: list[str] = []
+    if focus_tags:
+        active_filters.append(
+            "focus tags " + ", ".join(pretty_tag(tag) for tag in sorted(focus_tags))
+        )
+    if relation_groups:
+        active_filters.append(
+            "relation groups " + ", ".join(sorted(relation_groups))
+        )
+    if relation_types:
+        active_filters.append(f"{len(relation_types)} exact relation filters")
+    if node_types:
+        active_filters.append(f"{len(node_types)} node-type filters")
+    if segment_types:
+        active_filters.append("segment types " + ", ".join(sorted(segment_types)))
+    if map_question:
+        active_filters.append(f"question spotlight {map_question}")
+    if not active_filters:
+        return base_message
+    return f"{base_message} Active filters: {'; '.join(active_filters)}."
+
+
+def _render_map_reset_actions(session_state: MutableMapping[str, object]) -> None:
+    has_focus_tags = bool(session_state.get("smg_map_focus_tags"))
+    has_other_filters = any(
+        [
+            bool(session_state.get("smg_map_relation_groups")),
+            bool(session_state.get("smg_map_relation_types")),
+            bool(session_state.get("smg_map_node_types")),
+            bool(session_state.get("smg_map_segment_types")),
+            bool(session_state.get("smg_map_question_spotlight")),
+            bool(session_state.get("smg_map_include_structural")),
+            bool(session_state.get("smg_map_include_editorial")),
+            bool(session_state.get("smg_map_include_candidate")),
+            normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46))) != (1, 46),
+        ]
+    )
+    if not has_focus_tags and not has_other_filters:
+        return
+    action_left, action_right = st.columns(2, gap="small")
+    with action_left:
+        if has_focus_tags and st.button(
+            "Clear focus",
+            key="smg-map-clear-focus-tags",
+            use_container_width=True,
+        ):
+            queue_map_action(session_state, "clear_focus_tags")
+            st.rerun()
+    with action_right:
+        if has_other_filters and st.button(
+            "Reset all filters",
+            key="smg-map-reset-filters",
+            use_container_width=True,
+        ):
+            queue_map_action(session_state, "reset_filters")
+            st.rerun()
 
 
 def render_dashboard(
@@ -148,10 +409,11 @@ def render_dashboard(
         default_stats_tab=default_stats_tab,
         entrypoint_id=entrypoint_id,
     )
+    consume_widget_updates(session_state)
 
     with st.sidebar:
-        st.markdown("## Summa Moral Graph")
-        st.caption("Aquinas moral corpus")
+        st.markdown("## Summa Virtutum")
+        st.caption("An interactive map of Thomas Aquinas's moral corpus")
         current_view = str(session_state[ACTIVE_VIEW_KEY])
         next_view = st.radio(
             "Navigate",
@@ -160,7 +422,16 @@ def render_dashboard(
             label_visibility="collapsed",
         )
         if next_view != current_view:
-            set_active_view(session_state, next_view)
+            if next_view == MAP_VIEW:
+                _open_overall_map_route(
+                    session_state,
+                    concept_id=str(session_state.get(CONCEPT_ID_KEY, "") or "") or None,
+                    preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
+                )
+            elif next_view == STATS_VIEW:
+                open_stats(session_state)
+            else:
+                set_active_view(session_state, next_view)
             st.rerun()
 
         st.selectbox(
@@ -171,38 +442,55 @@ def render_dashboard(
             help="Shared tract scope used by the concept, passage, and map views.",
         )
         st.caption("Current focus")
-        pill_row(_scope_pills(data), tone="accent")
+        meta_line(_scope_pills(data))
+        sidebar_export_target = st.selectbox(
+            "Download type",
+            options=[
+                "Reviewed graph edges (CSV)",
+                "Tract coverage (CSV)",
+                "Corpus summary (JSON)",
+            ],
+            key="smg_sidebar_export_target",
+        )
+        export_data, export_name, export_mime, export_scope_note = _download_config_for_scope(
+            data,
+            preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
+            export_target=sidebar_export_target,
+        )
+        st.caption(export_scope_note)
         st.download_button(
-            "Download Data",
-            data=payload_to_json_bytes(data.dashboard),
-            file_name="summa_moral_graph_dashboard_snapshot.json",
-            mime="application/json",
+            "Download selected data",
+            data=export_data,
+            file_name=export_name,
+            mime=export_mime,
             use_container_width=True,
             type="primary",
             key="smg-sidebar-download-data",
         )
-        with st.expander("Review and exports", expanded=False):
-            st.write(
-                "Reviewed tracts: "
-                f"{compact_number(int(data.dashboard['summary']['reviewed_tract_blocks']))}"
-            )
-            st.write(
-                "Synthesis exports: "
-                f"{compact_number(int(data.dashboard['summary']['synthesis_exports']))}"
-            )
-            if st.button("Open validation and review", use_container_width=True):
-                open_stats(session_state, tab_name="Validation & review")
-                st.rerun()
+        if st.button(
+            "Open Stats",
+            key="smg-sidebar-open-stats",
+            use_container_width=True,
+        ):
+            open_stats(session_state, tab_name="Reader stats")
+            st.rerun()
 
     chosen_view = top_nav(str(session_state[ACTIVE_VIEW_KEY]), PRIMARY_VIEWS)
-    if chosen_view != session_state[ACTIVE_VIEW_KEY]:
+    if chosen_view == MAP_VIEW:
+        _open_overall_map_route(
+            session_state,
+            concept_id=str(session_state.get(CONCEPT_ID_KEY, "") or "") or None,
+            preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
+        )
+        st.rerun()
+    elif chosen_view == STATS_VIEW:
+        open_stats(session_state)
+        st.rerun()
+    elif chosen_view and chosen_view != session_state[ACTIVE_VIEW_KEY]:
         set_active_view(session_state, chosen_view)
         st.rerun()
 
-    pill_row(_scope_pills(data), tone="accent")
-    info_note(
-        "Layers stay separate: doctrine, editorial, structural, candidate."
-    )
+    meta_line(_scope_pills(data))
 
     active_view = str(session_state[ACTIVE_VIEW_KEY])
     if active_view == HOME_VIEW:
@@ -221,218 +509,251 @@ def _render_home(data: ViewerAppData) -> None:
     bundle = data.bundle
     summary = data.dashboard["summary"]
     session_state = _session_state()
+    preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
     reviewed_concept_count = len(data.reviewed_concept_ids)
     tract_rows = list(data.dashboard["tract_rows"])
+    hero_byline = (
+        "<div class='smgv-hero-byline'>"
+        "<a href='https://www.linkedin.com/in/hanzhen-zhu/' target='_blank' "
+        "rel='noopener noreferrer' aria-label='Jenny Zhu on LinkedIn'>"
+        "<svg viewBox='0 0 16 16' fill='currentColor' aria-hidden='true'>"
+        "<path d='M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708"
+        "C16 15.487 15.474 16 14.825 16H1.175C.526 16 0 15.487 0 14.854zM4.943 13.5V6.169H2.542"
+        "V13.5zm-1.2-8.333c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.341-1.248S2.4"
+        " 3.21 2.4 3.919c0 .694.521 1.248 1.327 1.248zm9.757 8.333v-4.086c0-2.19-1.168-3.208-"
+        "2.725-3.208-1.255 0-1.815.69-2.129 1.176V6.169H6.244c.03.803 0 7.331 0 7.331h2.401v-"
+        "4.094c0-.219.016-.438.08-.594.173-.438.568-.891 1.232-.891.869 0 1.216.672 1.216 1.65"
+        "V13.5z'/>"
+        "</svg>"
+        "<span>Jenny Zhu</span>"
+        "</a>"
+        "</div>"
+    )
 
-    hero_left, hero_right = st.columns((1.3, 0.7), gap="large")
-    with hero_left:
-        hero(
-            "Summa Moral Graph",
+    hero(
+        "Summa Virtutum",
+        "An interactive map of Thomas Aquinas's moral corpus",
+        eyebrow="Thomas Aquinas",
+        byline_html=hero_byline,
+    )
+
+    main_left, main_right = st.columns((1.18, 0.82), gap="large")
+    with main_left:
+        st.markdown(
             (
-                "Browse concepts, passages, tract scopes, and reviewed edges "
-                "with evidence traceability."
+                "<div class='smgv-shell-note'>"
+                "Corpus scope: Summa Theologiae I-II qq. 1-114 and II-II qq. 1-182, "
+                "with II-II qq. 183-189 excluded."
+                "</div>"
             ),
-            eyebrow="Aquinas moral corpus",
+            unsafe_allow_html=True,
         )
-    with hero_right:
-        card(
-            "Start fast",
-            "Concept, passage, tract, or map.",
+        section_heading(
+            "Start",
+            None,
         )
+        start_grid_top = st.columns((1, 0.045, 1), gap="small")
+        start_grid_bottom = st.columns((1, 0.045, 1), gap="small")
+
+        concept_options = list(data.home_start_concepts)
+        tract_options = sorted_preset_names()
+        selected_start_concept = ""
+        selected_start_passage = ""
+        selected_start_preset = ""
+
+        with start_grid_top[0]:
+            selected_start_concept = st.selectbox(
+                "High-value concept",
+                options=concept_options,
+                format_func=lambda value: bundle.registry[value].canonical_label,
+                key="smg_home_start_concept",
+                label_visibility="collapsed",
+            )
+            if _route_button(
+                title="Concept",
+                body="Doctrine, passages, and related concepts.",
+                button_label="Open concept page",
+                key="smg-home-open-concept",
+                badge="I",
+            ):
+                open_concept(session_state, selected_start_concept)
+                st.rerun()
+
+        with start_grid_top[1]:
+            st.markdown("<div class='smgv-start-v-divider'></div>", unsafe_allow_html=True)
+
+        with start_grid_top[2]:
+            selected_start_passage = st.selectbox(
+                "Starting passage",
+                options=list(data.home_start_passages),
+                format_func=lambda value: bundle.passages[value].citation_label,
+                key="smg_home_start_passage",
+                label_visibility="collapsed",
+            )
+            if _route_button(
+                title="Passage",
+                body="Read the text first, then inspect evidence.",
+                button_label="Read passage text",
+                key="smg-home-open-passage",
+                badge="II",
+            ):
+                open_passage(session_state, selected_start_passage)
+                st.rerun()
+
+        st.markdown("<div class='smgv-start-divider'></div>", unsafe_allow_html=True)
+
+        with start_grid_bottom[0]:
+            current_home_preset = str(session_state.get("smg_home_start_preset", "") or "")
+            if current_home_preset not in tract_options and tract_options:
+                session_state["smg_home_start_preset"] = (
+                    preset_name if preset_name in tract_options else tract_options[0]
+                )
+            selected_start_preset = st.selectbox(
+                "Tract route",
+                options=tract_options,
+                format_func=preset_label,
+                key="smg_home_start_preset",
+                label_visibility="collapsed",
+            )
+            if _route_button(
+                title="Tract",
+                body="Enter one reviewed tract overlay directly.",
+                button_label="Open tract scope",
+                key="smg-home-open-tract",
+                badge="III",
+            ):
+                queue_widget_updates(
+                    session_state,
+                    **{ACTIVE_PRESET_KEY: selected_start_preset},
+                )
+                set_active_view(session_state, CONCEPT_VIEW)
+                st.rerun()
+
+        with start_grid_bottom[1]:
+            st.markdown("<div class='smgv-start-v-divider'></div>", unsafe_allow_html=True)
+
+        with start_grid_bottom[2]:
+            if _route_button(
+                title="Map",
+                body="Open the reviewed graph and move back to text.",
+                button_label="Open reviewed map",
+                key="smg-home-open-map",
+                badge="IV",
+            ):
+                chosen_preset = str(session_state.get("smg_home_start_preset") or "")
+                _open_overall_map_route(
+                    session_state,
+                    concept_id=selected_start_concept,
+                    preset_name=chosen_preset or None,
+                )
+                st.rerun()
+
+    with main_right:
+        section_heading("Download", None)
+        home_export_target = st.selectbox(
+            "Download type",
+            options=[
+                "Reviewed graph edges (CSV)",
+                "Tract coverage (CSV)",
+                "Corpus summary (JSON)",
+            ],
+            key="smg_home_export_target",
+        )
+        export_data, export_name, export_mime, export_scope_note = _download_config_for_scope(
+            data,
+            preset_name=preset_name,
+            export_target=home_export_target,
+        )
+        st.caption(export_scope_note)
         st.download_button(
-            "Download Data",
-            data=payload_to_json_bytes(data.dashboard),
-            file_name="summa_moral_graph_dashboard_payload.json",
-            mime="application/json",
+            "Download selected data",
+            data=export_data,
+            file_name=export_name,
+            mime=export_mime,
             use_container_width=True,
             type="primary",
             key="smg-home-download-data",
         )
-        if st.button("Open Audit", use_container_width=True):
+        if st.button(
+            "Open Audit",
+            key="smg-home-open-audit",
+            use_container_width=True,
+        ):
             open_stats(session_state, tab_name="Reader stats")
             st.rerun()
-
-    metric_cards(
-        [
-            MetricCard(
-                "Parsed passages",
-                compact_number(int(summary["passages_parsed"])),
-            ),
-            MetricCard(
-                "Reviewed concepts",
-                compact_number(reviewed_concept_count),
-            ),
-            MetricCard(
-                "Reviewed doctrinal edges",
-                compact_number(len(bundle.reviewed_doctrinal_edges)),
-            ),
-            MetricCard(
-                "Tract overlays",
-                compact_number(int(summary["reviewed_tract_blocks"])),
-            ),
-        ],
-        columns=4,
-    )
-    pill_row(
-        [
-            "Evidence traceability is preserved",
-            "Candidate layer present in "
-            f"{compact_number(len(data.candidate_active_passage_ids))} passages",
-            "Default graph view excludes editorial and candidate layers",
-        ],
-        tone="ok",
-    )
-
-    section_heading(
-        "Start",
-        "Pick a route.",
-    )
-    route_columns = st.columns(4, gap="large")
-    with route_columns[0]:
-        concept_options = list(data.home_start_concepts)
-        selected_start_concept = st.selectbox(
-            "High-value concept",
-            options=concept_options,
-            format_func=lambda value: bundle.registry[value].canonical_label,
-            key="smg_home_start_concept",
-            label_visibility="collapsed",
+        section_heading("At a glance", None)
+        metric_cards(
+            [
+                MetricCard(
+                    "Parsed passages",
+                    compact_number(int(summary["passages_parsed"])),
+                ),
+                MetricCard(
+                    "Reviewed concepts",
+                    compact_number(reviewed_concept_count),
+                ),
+                MetricCard(
+                    "Reviewed doctrinal edges",
+                    compact_number(len(bundle.reviewed_doctrinal_edges)),
+                ),
+                MetricCard(
+                    "Tract overlays",
+                    compact_number(int(summary["reviewed_tract_blocks"])),
+                ),
+            ],
+            columns=2,
+            row_gap=0.78,
         )
-        if _route_button(
-            title="Concept",
-            body="Read definition, edges, and passages.",
-            button_label="Open concept",
-            key="smg-home-open-concept",
-        ):
-            open_concept(session_state, selected_start_concept)
-            st.rerun()
-    with route_columns[1]:
-        selected_start_passage = st.selectbox(
-            "Starting passage",
-            options=list(data.home_start_passages),
-            format_func=lambda value: bundle.passages[value].citation_label,
-            key="smg_home_start_passage",
-            label_visibility="collapsed",
-        )
-        if _route_button(
-            title="Passage",
-            body="Read the text first.",
-            button_label="Read passage",
-            key="smg-home-open-passage",
-        ):
-            open_passage(session_state, selected_start_passage)
-            st.rerun()
-    with route_columns[2]:
-        tract_options = sorted_preset_names()
-        selected_start_preset = st.selectbox(
-            "Tract route",
-            options=tract_options,
-            format_func=preset_label,
-            key="smg_home_start_preset",
-            label_visibility="collapsed",
-        )
-        if _route_button(
-            title="Tract",
-            body="Open a reviewed doctrinal block.",
-            button_label="Open tract in concepts",
-            key="smg-home-open-tract",
-        ):
-            session_state[ACTIVE_PRESET_KEY] = selected_start_preset
-            set_active_view(session_state, CONCEPT_VIEW)
-            st.rerun()
-    with route_columns[3]:
-        if _route_button(
-            title="Map",
-            body="Use local first. Open overall after narrowing.",
-            button_label="Open overall map",
-            key="smg-home-open-map",
-        ):
-            chosen_preset = str(session_state.get("smg_home_start_preset") or "")
-            if chosen_preset:
-                session_state[ACTIVE_PRESET_KEY] = chosen_preset
-            open_map(
-                session_state,
-                concept_id=str(session_state[CONCEPT_ID_KEY]) or None,
-            )
-            st.rerun()
 
-    lower_left, lower_right = st.columns((1.35, 0.65), gap="large")
-    with lower_left:
-        section_heading("Snapshot", None)
-        chart_left, chart_right = st.columns(2, gap="large")
-        with chart_left:
-            st.caption("Reviewed edges by tract")
-            tract_chart = records_frame(
-                sorted(
-                    tract_rows,
-                    key=lambda row: int(row["reviewed_doctrinal_edges"]),
-                    reverse=True,
-                )[:8],
-                columns=["label", "reviewed_doctrinal_edges"],
-                rename={
-                    "label": "tract",
-                    "reviewed_doctrinal_edges": "reviewed_edges",
-                },
-            ).set_index("tract")
-            st.bar_chart(tract_chart, height=240)
-        with chart_right:
-            st.caption("Layer mix")
-            layer_chart = records_frame(
+    st.markdown("<div class='smgv-home-snapshot-lift'></div>", unsafe_allow_html=True)
+    section_heading("Snapshot", None)
+    chart_left, chart_right = st.columns(2, gap="large")
+    with chart_left:
+        st.caption("Reviewed edges by tract")
+        st.altair_chart(
+            _home_bar_chart(
                 [
                     {
-                        "layer": "reviewed_doctrine",
+                        "tract": str(row["label"]),
+                        "reviewed_edges": int(row["reviewed_doctrinal_edges"]),
+                    }
+                    for row in sorted(
+                        tract_rows,
+                        key=lambda row: int(row["reviewed_doctrinal_edges"]),
+                        reverse=True,
+                    )[:8]
+                ],
+                x_field="tract",
+                y_field="reviewed_edges",
+                color="#214b66",
+            ),
+            use_container_width=True,
+        )
+    with chart_right:
+        st.caption("Graph layers")
+        st.caption("Public reviewed edges versus optional overlays.")
+        st.altair_chart(
+            _home_bar_chart(
+                [
+                    {
+                        "layer": "Public reviewed graph",
                         "count": len(bundle.reviewed_doctrinal_edges),
                     },
                     {
-                        "layer": "editorial",
+                        "layer": "Editorial overlay",
                         "count": len(bundle.reviewed_structural_edges),
                     },
                     {
-                        "layer": "candidate_relations",
+                        "layer": "Candidate proposals",
                         "count": len(bundle.candidate_relations),
                     },
-                ]
-            ).set_index("layer")
-            st.bar_chart(layer_chart, height=240)
-    with lower_right:
-        section_heading("Use", None)
-        st.markdown(
-            """
-            <div class="smgv-card">
-              <ul class="smgv-side-list">
-                <li>Read concepts before opening large maps.</li>
-                <li>Open passages from evidence cards, not from memory.</li>
-                <li>Editorial and candidate layers stay secondary.</li>
-              </ul>
-            </div>
-            """,
-            unsafe_allow_html=True,
-        )
-        with st.expander("Review workflow", expanded=False):
-            summary_rows = data.dashboard["review_priority_rows"][:5]
-            st.dataframe(
-                records_frame(
-                    summary_rows,
-                    rename={
-                        "tract": "Tract",
-                        "packet_target_question": "Packet target",
-                        "under_annotated_questions": "Under-annotated",
-                        "normalization_risk_count": "Normalization risks",
-                    },
-                ),
-                hide_index=True,
-                use_container_width=True,
-            )
-
-    with st.expander("Exports", expanded=False):
-        st.download_button(
-            "Download dashboard payload JSON",
-            data=payload_to_json_bytes(data.dashboard),
-            file_name="summa_moral_graph_dashboard_payload.json",
-            mime="application/json",
+                ],
+                x_field="layer",
+                y_field="count",
+                color="#8b442e",
+            ),
             use_container_width=True,
-            key="smg-home-export-json",
         )
-
 
 def _render_concept_explorer(data: ViewerAppData) -> None:
     bundle = data.bundle
@@ -481,14 +802,23 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
         selected_concept_id = available_concept_ids[0]
         session_state[CONCEPT_ID_KEY] = selected_concept_id
 
-    nav_column, detail_column = st.columns((0.7, 1.45), gap="large")
+    nav_column, detail_column = st.columns((0.54, 1.66), gap="large")
     with nav_column:
-        section_heading("Browse concepts", "Search stays narrow; the detail panel stays wide.")
+        section_heading("Browse concepts", "Pick one concept and keep the reading panel open.")
+        pending_concept_widget = str(
+            session_state.pop("smg_pending_concept_selectbox", "") or ""
+        )
+        if pending_concept_widget in available_concept_ids:
+            session_state["smg_concept_selectbox"] = pending_concept_widget
+        elif session_state.get("smg_concept_selectbox") not in available_concept_ids:
+            session_state["smg_concept_selectbox"] = selected_concept_id
         selected_concept_id = st.selectbox(
             "Concept",
             options=available_concept_ids,
             format_func=lambda value: data.concept_label_by_id[value],
-            index=available_concept_ids.index(selected_concept_id),
+            index=available_concept_ids.index(
+                str(session_state.get("smg_concept_selectbox") or selected_concept_id)
+            ),
             key="smg_concept_selectbox",
         )
         session_state[CONCEPT_ID_KEY] = selected_concept_id
@@ -515,22 +845,18 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
     ambiguity_notes = list(
         payload.get("ambiguity_notes", payload.get("unresolved_disambiguation_notes", []))
     )
+    scope_label = str(payload.get("scope_label") or active_scope_summary(session_state).label)
+    scope_mode = str(payload.get("scope_mode") or "full_corpus")
+    fallback_note = str(payload.get("scope_fallback_note") or "")
 
     with detail_column:
+        st.markdown("<div style='height:0.05rem'></div>", unsafe_allow_html=True)
         section_heading(
             str(concept["canonical_label"]),
             str(concept.get("description", "No description available.")),
         )
-        pill_row(
-            [
-                str(concept["node_type"]),
-                f"Scope: {active_scope_summary(session_state).label}",
-                f"Registry: {concept.get('registry_status', 'reviewed')}",
-            ],
-            tone="accent",
-        )
-        if concept.get("aliases"):
-            pill_row([f"Alias: {alias}" for alias in concept["aliases"]], tone="candidate")
+        if fallback_note:
+            st.warning(fallback_note, icon="⚠️")
         if ambiguity_notes:
             key_value_card(
                 "Distinctions to keep in view",
@@ -565,24 +891,26 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
             ]
         )
 
-        map_column, summary_column = st.columns((1.05, 0.95), gap="large")
+        map_column, summary_column = st.columns((1.62, 0.48), gap="medium")
         with map_column:
-            section_heading("Local map", "Use the local graph before opening the wider map.")
+            section_heading("Local map", "Read the nearby concept network before going wide.")
             include_editorial_map = st.checkbox(
                 "Include editorial correspondences in local map",
                 key="smg_concept_show_editorial_map",
             )
             local_edges = reviewed_edges + (editorial_edges if include_editorial_map else [])
             if local_edges:
-                clicked_concept = render_clickable_graph(
-                    graph_html=_graph_html_for_edges(local_edges, height=540),
-                    height="560px",
+                graph_result = render_clickable_graph(
+                    graph_html=_graph_html_for_edges(local_edges, height=690),
+                    height="710px",
                     key=f"smg-local-map-{selected_concept_id}",
                 )
-                if clicked_concept:
+                if graph_result.warning:
+                    st.warning(graph_result.warning, icon="⚠️")
+                if graph_result.clicked_concept_id:
                     open_concept(
                         session_state,
-                        clicked_concept,
+                        graph_result.clicked_concept_id,
                         preset_name=preset_name,
                     )
                     st.rerun()
@@ -591,36 +919,57 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                     "No local reviewed map",
                     (
                         "This concept has no reviewed edges in the current scope. "
-                        "Check supporting passages or candidate mentions below."
+                        f"{scope_label} is still active. Check supporting passages "
+                        "or candidate mentions below."
                     ),
                 )
         with summary_column:
+            st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
             relation_groups = relation_groups_for_concept(
                 reviewed_edges,
                 concept_id=selected_concept_id,
             )
+            st.caption(
+                f"Scope: {scope_label} · {compact_number(len(relation_groups))} relation groups · "
+                f"Questions {format_question_list(list(payload.get('related_questions', [])))}"
+            )
             key_value_card(
-                "Current scope",
+                "Counts",
                 [
-                    ("Reviewed groups", compact_number(len(relation_groups))),
-                    (
-                        "Related questions",
-                        format_question_list(list(payload.get("related_questions", []))),
-                    ),
-                    (
-                        "Open in map",
-                        "Use the button below to inspect the wider neighborhood.",
-                    ),
+                    ("Reviewed", compact_number(len(reviewed_edges))),
+                    ("Editorial", compact_number(len(editorial_edges))),
+                    ("Candidates", compact_number(len(candidate_mentions))),
                 ],
             )
-            if st.button("Open overall map around this concept", use_container_width=True):
-                open_map(
+            if st.button(
+                "← Return to overall map",
+                key="smg-concept-open-overall-map",
+                use_container_width=True,
+            ):
+                _open_overall_map_route(
                     session_state,
                     concept_id=selected_concept_id,
                     preset_name=preset_name,
-                    mode="Local map",
                 )
                 st.rerun()
+            if concept.get("aliases"):
+                with st.expander("Registry notes", expanded=False):
+                    st.caption(
+                        "Type: "
+                        f"{concept['node_type']} · Registry: "
+                        f"{concept.get('registry_status', 'reviewed')} · "
+                        "Mode: "
+                        + (
+                            "tract-scoped"
+                            if scope_mode == "tract"
+                            else "broader corpus fallback"
+                            if scope_mode == "broader_corpus_fallback"
+                            else "full corpus"
+                        )
+                    )
+                    st.caption(
+                        "Aliases: " + ", ".join(str(alias) for alias in concept["aliases"][:8])
+                    )
 
         section_heading("Reviewed doctrinal edges", "Grouped by relation family for close reading.")
         if reviewed_edges:
@@ -674,20 +1023,19 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                                 key=f"smg-edge-map-{edge['edge_id']}",
                                 use_container_width=True,
                             ):
-                                open_map(
+                                _open_overall_map_route(
                                     session_state,
                                     concept_id=selected_concept_id,
                                     edge_id=str(edge["edge_id"]),
                                     preset_name=preset_name,
-                                    mode="Overall map",
                                 )
                                 st.rerun()
         else:
             empty_state(
                 "No reviewed doctrinal edges in this scope",
                 (
-                    "The concept may only have editorial correspondences or "
-                    "candidate mentions under the current preset."
+                    f"{scope_label} is still active. This concept may only have "
+                    "editorial correspondences or candidate mentions here."
                 ),
             )
 
@@ -786,7 +1134,7 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
 
     section_heading(
-        "Passage Explorer",
+        "¶ Passage Explorer",
         (
             "Read the passage first. Filters stay simple up front; detailed "
             "constraints are tucked under advanced controls."
@@ -846,13 +1194,41 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
         segment_type=str(st.session_state.get("smg_passage_segment_type", "") or "") or None,
         preset_name=preset_name,
     )
-    limit = int(cast(int, session_state.get("smg_passage_limit", 18)))
-    visible_results = results[:limit]
+    result_signature = (
+        query,
+        str(st.session_state.get("smg_passage_part", "") or ""),
+        str(st.session_state.get("smg_passage_question", "") or ""),
+        str(st.session_state.get("smg_passage_article", "") or ""),
+        str(st.session_state.get("smg_passage_segment_type", "") or ""),
+        str(st.session_state.get("smg_passage_page_size", 4) or 4),
+        str(preset_name or ""),
+    )
+    if session_state.get("smg_passage_result_signature") != result_signature:
+        session_state["smg_passage_result_signature"] = result_signature
+        session_state["smg_passage_page"] = 1
+    page_size = int(cast(int, session_state.get("smg_passage_page_size", 4)))
+    total_pages = max(1, (len(results) + page_size - 1) // page_size)
+    current_page = int(cast(int, session_state.get("smg_passage_page", 1)))
+    if current_page < 1 or current_page > total_pages:
+        current_page = 1
+        session_state["smg_passage_page"] = current_page
+    page_start = (current_page - 1) * page_size
+    page_end = page_start + page_size
+    visible_results = results[page_start:page_end]
+    previous_selected_passage_id = str(session_state.get(PASSAGE_ID_KEY, "") or "")
     selected_passage = selected_passage_for_results(
         session_state,
         visible_results,
         bundle,
     )
+    selected_visible_ids = {passage.segment_id for passage in visible_results}
+    selection_shifted = bool(previous_selected_passage_id) and (
+        previous_selected_passage_id not in selected_visible_ids
+    )
+    if selected_passage is None:
+        session_state[PASSAGE_ID_KEY] = ""
+    else:
+        session_state[PASSAGE_ID_KEY] = selected_passage.segment_id
 
     metric_cards(
         [
@@ -864,7 +1240,7 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
             MetricCard(
                 "Visible results",
                 compact_number(len(visible_results)),
-                "Cards currently shown in the results column.",
+                f"Cards on page {current_page} of {total_pages}.",
             ),
             MetricCard(
                 "Reviewed-active",
@@ -908,16 +1284,48 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
         ]
     )
 
-    results_column, reader_column = st.columns((0.82, 1.28), gap="large")
+    results_column, reader_column = st.columns((0.76, 1.34), gap="large")
     with results_column:
         section_heading("Result list", "Open one result and keep reading on the right.")
-        st.slider(
-            "Visible result cards",
-            min_value=8,
-            max_value=40,
-            step=2,
-            key="smg_passage_limit",
+        pager_left, pager_mid, pager_right, pager_far = st.columns(
+            (0.74, 0.92, 0.92, 0.88),
+            gap="small",
         )
+        with pager_left:
+            st.selectbox(
+                "Per page",
+                options=[4, 6, 8, 12],
+                key="smg_passage_page_size",
+            )
+        with pager_mid:
+            if st.button(
+                "← Previous",
+                key="smg_passage_previous_page",
+                use_container_width=True,
+                disabled=current_page <= 1,
+                type="secondary",
+            ):
+                session_state["smg_passage_page"] = max(1, current_page - 1)
+                st.rerun()
+        with pager_right:
+            if st.button(
+                "Next →",
+                key="smg_passage_next_page",
+                use_container_width=True,
+                disabled=current_page >= total_pages,
+                type="primary",
+            ):
+                session_state["smg_passage_page"] = min(total_pages, current_page + 1)
+                st.rerun()
+        with pager_far:
+            pager_chip(
+                "Page",
+                f"{current_page} / {total_pages}",
+                (
+                    f"{page_start + 1 if visible_results else 0}–"
+                    f"{page_start + len(visible_results)} of {len(results)}"
+                ),
+            )
         if not visible_results:
             empty_state(
                 "No passages matched",
@@ -927,7 +1335,7 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
             counts = passage_activity_summary(bundle, passage.segment_id)
             support_card(
                 passage.citation_label,
-                body=passage.text,
+                body=shorten(passage.text, width=260, placeholder="…"),
                 meta=(
                     f"{passage.segment_id} · reviewed {counts['reviewed_annotations']} · "
                     f"candidate {counts['candidate_mentions'] + counts['candidate_relations']}"
@@ -953,6 +1361,16 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
                 "beneath it."
             ),
         )
+        if selection_shifted and selected_passage is not None:
+            info_note(
+                "The previous passage fell outside the active results, so the reader moved "
+                "to the first visible passage."
+            )
+        elif selection_shifted and selected_passage is None:
+            info_note(
+                "The previous passage is outside the active filters and there are no "
+                "visible results right now."
+            )
         if selected_passage is None:
             empty_state(
                 "No passage selected",
@@ -962,7 +1380,6 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
                 ),
             )
             return
-        session_state[PASSAGE_ID_KEY] = selected_passage.segment_id
         reviewed_rows = reviewed_annotations_for_passage(bundle, selected_passage.segment_id)
         candidate_items = candidate_items_for_passage(bundle, selected_passage.segment_id)
         highlighted_html = highlight_passage_text(
@@ -989,11 +1406,19 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
             next_id = all_result_ids[index + 1] if index < len(all_result_ids) - 1 else None
         nav_left, nav_right = st.columns(2, gap="small")
         with nav_left:
-            if previous_id and st.button("Previous passage", use_container_width=True):
+            if previous_id and st.button(
+                "Previous passage",
+                key="smg-pass-prev",
+                use_container_width=True,
+            ):
                 open_passage(session_state, previous_id, preset_name=preset_name)
                 st.rerun()
         with nav_right:
-            if next_id and st.button("Next passage", use_container_width=True):
+            if next_id and st.button(
+                "Next passage",
+                key="smg-pass-next",
+                use_container_width=True,
+            ):
                 open_passage(session_state, next_id, preset_name=preset_name)
                 st.rerun()
 
@@ -1091,11 +1516,10 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
                         key=f"smg-pass-map-{row['annotation_id']}",
                         use_container_width=True,
                     ):
-                        open_map(
+                        _open_overall_map_route(
                             session_state,
                             concept_id=str(row["subject_id"]),
                             preset_name=preset_name,
-                            mode="Overall map",
                         )
                         st.rerun()
         else:
@@ -1127,16 +1551,20 @@ def _render_map_view(data: ViewerAppData) -> None:
     bundle = data.bundle
     session_state = _session_state()
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
+    consume_pending_map_action(session_state)
+    normalized_initial_range = normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46)))
+    if session_state.get(MAP_RANGE_KEY) != normalized_initial_range:
+        session_state[MAP_RANGE_KEY] = normalized_initial_range
     current_center = str(session_state.get("smg_map_center_concept", "") or "")
     if not current_center:
         current_center = str(session_state.get(CONCEPT_ID_KEY, "") or "")
         session_state["smg_map_center_concept"] = current_center
 
     section_heading(
-        "Overall Map",
+        "✣ Overall Map",
         (
-            "Use the local map for a concept-centered read. Use the overall map "
-            "only after narrowing the tract or relation family."
+            "Start with a tract span or question spotlight, then inspect one node "
+            "or one edge at a time."
         ),
     )
     with st.expander("Map controls", expanded=False):
@@ -1181,11 +1609,36 @@ def _render_map_view(data: ViewerAppData) -> None:
                 key="smg_map_relation_groups",
             )
         with control_right:
+            st.caption("Quick spans")
+            quick_ranges = [
+                ("1–46", (1, 46)),
+                ("47–56", (47, 56)),
+                ("57–122", (57, 122)),
+                ("123–140", (123, 140)),
+                ("141–170", (141, 170)),
+                ("All", (1, 182)),
+            ]
+            quick_rows = [quick_ranges[:3], quick_ranges[3:]]
+            for row_index, quick_row in enumerate(quick_rows):
+                quick_columns = st.columns(len(quick_row), gap="small")
+                for column, (label, range_value) in zip(quick_columns, quick_row, strict=False):
+                    with column:
+                        if st.button(
+                            label,
+                            key=f"smg-map-quick-range-{row_index}-{label}",
+                            use_container_width=True,
+                        ):
+                            queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
+                            st.rerun()
             st.slider(
-                "Custom II-II range",
+                "Question span",
                 min_value=1,
                 max_value=182,
                 key="smg_map_range",
+                help=(
+                    "Numeric question span. Pair it with a tract preset or question "
+                    "spotlight when you want a tighter overall map."
+                ),
             )
             st.multiselect(
                 "Exact relation types",
@@ -1204,8 +1657,7 @@ def _render_map_view(data: ViewerAppData) -> None:
     include_structural = bool(session_state.get("smg_map_include_structural"))
     include_editorial = bool(session_state.get("smg_map_include_editorial"))
     include_candidate = bool(session_state.get("smg_map_include_candidate"))
-    raw_map_range = session_state.get("smg_map_range", (1, 46))
-    map_range = cast(tuple[int, int], raw_map_range)
+    map_range = normalize_map_range(session_state.get("smg_map_range", (1, 46)))
     map_question = str(session_state.get("smg_map_question_spotlight", "") or "") or None
     center_concept = str(session_state.get("smg_map_center_concept", "") or "") or None
     relation_types = set(
@@ -1221,6 +1673,38 @@ def _render_map_view(data: ViewerAppData) -> None:
     )
     map_mode = str(session_state.get(MAP_MODE_KEY, "Overall map"))
 
+    local_edges_unfocused, _ = graph_edges_for_view(
+        data,
+        preset_name=preset_name,
+        map_range=map_range,
+        include_structural=False,
+        include_editorial=include_editorial,
+        include_candidate=False,
+        relation_types=relation_types or None,
+        relation_groups=relation_groups or None,
+        node_types=node_types or None,
+        focus_tags=None,
+        question_id=map_question,
+        center_concept=center_concept,
+        segment_types=segment_types or None,
+        local_only=True,
+    )
+    overall_edges_unfocused, _ = graph_edges_for_view(
+        data,
+        preset_name=preset_name,
+        map_range=map_range,
+        include_structural=include_structural,
+        include_editorial=include_editorial,
+        include_candidate=include_candidate,
+        relation_types=relation_types or None,
+        relation_groups=relation_groups or None,
+        node_types=node_types or None,
+        focus_tags=None,
+        question_id=map_question,
+        center_concept=None if map_mode == "Overall map" else center_concept,
+        segment_types=segment_types or None,
+        local_only=False,
+    )
     local_edges, local_reason = graph_edges_for_view(
         data,
         preset_name=preset_name,
@@ -1256,14 +1740,19 @@ def _render_map_view(data: ViewerAppData) -> None:
     visible_edges = local_edges if map_mode == "Local map" else overall_edges
     visible_reason = local_reason if map_mode == "Local map" else overall_reason
 
-    available_focus_tags = graph_focus_tag_options(overall_edges or local_edges)
-    if available_focus_tags:
-        st.multiselect(
-            "Focus tags",
-            options=available_focus_tags,
-            format_func=pretty_tag,
-            key="smg_map_focus_tags",
-        )
+    st.multiselect(
+        "Focus tags",
+        options=sorted(
+            set(graph_focus_tag_options([*overall_edges_unfocused, *local_edges_unfocused]))
+            | focus_tags
+        ),
+        format_func=pretty_tag,
+        key="smg_map_focus_tags",
+        help=(
+            "Focus tags stay visible even when they filter the graph down to zero. "
+            "Clear them here if you need to recover the map."
+        ),
+    )
     st.multiselect(
         "Evidence segment types",
         options=["obj", "sc", "resp", "ad"],
@@ -1312,42 +1801,98 @@ def _render_map_view(data: ViewerAppData) -> None:
             ),
         ]
     )
+    pill_row(
+        _map_filter_pills(
+            map_mode=map_mode,
+            map_range=map_range,
+            map_question=map_question,
+            relation_groups=relation_groups,
+            relation_types=relation_types,
+            node_types=node_types,
+            focus_tags=focus_tags,
+            segment_types=segment_types,
+            include_structural=include_structural,
+            include_editorial=include_editorial,
+            include_candidate=include_candidate,
+        ),
+        tone="accent",
+    )
+    _render_map_reset_actions(session_state)
 
+    map_notice_title: str | None = None
+    map_notice_body: str | None = None
     if visible_reason:
-        empty_state("Map needs one more step", visible_reason)
-        return
-
-    if not visible_edges:
-        empty_state(
-            "No edges in this slice",
-            (
+        map_notice_title = "Map needs one more step"
+        map_notice_body = _map_empty_state_body(
+            base_message=visible_reason,
+            focus_tags=focus_tags,
+            relation_groups=relation_groups,
+            relation_types=relation_types,
+            node_types=node_types,
+            segment_types=segment_types,
+            map_question=map_question,
+        )
+    elif not visible_edges:
+        map_notice_title = "No edges in this slice"
+        map_notice_body = _map_empty_state_body(
+            base_message=(
                 "Broaden the preset or range, clear a relation filter, or "
                 "switch off one of the stricter toggles."
             ),
+            focus_tags=focus_tags,
+            relation_groups=relation_groups,
+            relation_types=relation_types,
+            node_types=node_types,
+            segment_types=segment_types,
+            map_question=map_question,
         )
-        return
-
-    if len(visible_edges) > 280 and map_mode == "Overall map":
-        empty_state(
-            "Overall map paused",
-            (
+    elif len(visible_edges) > 280 and map_mode == "Overall map":
+        map_notice_title = "Overall map paused"
+        map_notice_body = _map_empty_state_body(
+            base_message=(
                 "This slice is too large to read responsibly. Narrow it with a "
                 "tract preset, a question spotlight, or a center concept."
             ),
+            focus_tags=focus_tags,
+            relation_groups=relation_groups,
+            relation_types=relation_types,
+            node_types=node_types,
+            segment_types=segment_types,
+            map_question=map_question,
         )
-    else:
-        graph_column, evidence_column = st.columns((1.35, 0.88), gap="large")
-        with graph_column:
-            section_heading(map_mode, "Click a node to jump back into the concept page.")
-            clicked_concept = render_clickable_graph(
+
+    graph_column, evidence_column = st.columns((1.35, 0.88), gap="large")
+    node_rows, edge_rows = graph_rows(visible_edges)
+    node_catalog = {str(row["node_id"]): row for row in node_rows}
+    with graph_column:
+        if map_mode == "Local map":
+            if st.button(
+                "← Back to overall map",
+                key="smg-map-back-to-overall",
+                use_container_width=False,
+            ):
+                queue_widget_updates(session_state, **{MAP_MODE_KEY: "Overall map"})
+                st.rerun()
+        section_heading(
+            map_mode,
+            (
+                "Click a node to inspect it here first, then decide whether "
+                "to open concept or passage views."
+            ),
+        )
+        if map_notice_title and map_notice_body:
+            empty_state(map_notice_title, map_notice_body)
+        else:
+            graph_result = render_clickable_graph(
                 graph_html=_graph_html_for_edges(visible_edges, height=720),
                 height="740px",
                 key=f"smg-map-{map_mode}",
             )
-            if clicked_concept:
-                open_concept(session_state, clicked_concept, preset_name=preset_name)
+            if graph_result.warning:
+                st.warning(graph_result.warning, icon="⚠️")
+            if graph_result.clicked_concept_id:
+                select_map_node(session_state, graph_result.clicked_concept_id)
                 st.rerun()
-            node_rows, edge_rows = graph_rows(visible_edges)
             export_left, export_mid, export_right = st.columns(3, gap="small")
             with export_left:
                 st.download_button(
@@ -1356,6 +1901,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                     file_name="summa_moral_graph_current_edges.csv",
                     mime="text/csv",
                     use_container_width=True,
+                    key="smg-map-download-edges",
                 )
             with export_mid:
                 st.download_button(
@@ -1364,6 +1910,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                     file_name="summa_moral_graph_current_nodes.csv",
                     mime="text/csv",
                     use_container_width=True,
+                    key="smg-map-download-nodes",
                 )
             with export_right:
                 st.download_button(
@@ -1381,139 +1928,274 @@ def _render_map_view(data: ViewerAppData) -> None:
                     file_name="summa_moral_graph_map_snapshot.json",
                     mime="application/json",
                     use_container_width=True,
+                    key="smg-map-download-snapshot",
                 )
-        with evidence_column:
-            section_heading(
-                "Legend and evidence",
-                "Graph colors indicate layer and node type, not certainty alone.",
+    with evidence_column:
+        section_heading(
+            "Legend and evidence",
+            (
+                "Use the selected node and selected edge panels as the "
+                "reading bridge back to text."
+            ),
+        )
+        layer_badges(["reviewed_doctrinal", "reviewed_structural", "structural", "candidate"])
+        focus_counts = graph_focus_counts(visible_edges)
+        if focus_counts:
+            pill_row(
+                [f"{pretty_tag(tag)} ({count})" for tag, count in focus_counts.most_common(5)],
+                tone="candidate",
             )
-            layer_badges(["reviewed_doctrinal", "reviewed_structural", "structural", "candidate"])
-            focus_counts = graph_focus_counts(visible_edges)
-            if focus_counts:
-                pill_row(
-                    [f"{pretty_tag(tag)} ({count})" for tag, count in focus_counts.most_common(5)],
-                    tone="candidate",
-                )
-            edge_by_id = {str(edge["edge_id"]): edge for edge in visible_edges}
-            current_edge_id = str(session_state.get(EDGE_ID_KEY, "") or "")
-            if current_edge_id not in edge_by_id:
-                current_edge_id = next(iter(edge_by_id))
-                session_state[EDGE_ID_KEY] = current_edge_id
-            selected_edge_id = st.selectbox(
-                "Evidence spotlight",
-                options=list(edge_by_id),
-                format_func=lambda value: format_edge_option(edge_by_id[value]),
-                index=list(edge_by_id).index(current_edge_id),
-                key="smg-map-edge-select",
-            )
-            session_state[EDGE_ID_KEY] = selected_edge_id
-            selected_edge = edge_by_id[selected_edge_id]
-            adapter = adapter_for_preset(preset_name)
-            if selected_edge["layer"] == "structural":
-                panel = {
-                    "source_concept": selected_edge["subject_label"],
-                    "relation_type": selected_edge["relation_type"],
-                    "target_concept": selected_edge["object_label"],
-                    "support_type": ["structural"],
-                    "supporting_annotation_ids": [],
-                    "supporting_passage_ids": [],
-                    "evidence_snippets": [],
-                    "layer": "structural",
-                    "passages": [],
-                }
-            elif adapter is not None:
-                panel = adapter.edge_evidence_panel(
-                    bundle,
-                    selected_edge_id,
-                    edge_row=selected_edge,
-                )
-            else:
-                panel = {
-                    "source_concept": selected_edge["subject_label"],
-                    "relation_type": selected_edge["relation_type"],
-                    "target_concept": selected_edge["object_label"],
-                    "support_type": selected_edge.get("support_types", []),
-                    "supporting_annotation_ids": selected_edge.get("support_annotation_ids", []),
-                    "supporting_passage_ids": selected_edge.get("source_passage_ids", []),
-                    "evidence_snippets": selected_edge.get("evidence_snippets", []),
-                    "layer": selected_edge["layer"],
-                    "passages": [
-                        {
-                            "passage_id": passage_id,
-                            "citation_label": bundle.passages[passage_id].citation_label,
-                            "text": bundle.passages[passage_id].text,
-                        }
-                        for passage_id in selected_edge.get("source_passage_ids", [])
-                        if passage_id in bundle.passages
-                    ],
-                }
+        if map_notice_title and map_notice_body:
             key_value_card(
-                "Selected relation",
+                "Current slice",
                 [
-                    ("Source", str(panel["source_concept"])),
-                    ("Relation", pretty_tag(str(panel["relation_type"]))),
-                    ("Target", str(panel["target_concept"])),
-                    (
-                        "Support type",
-                        ", ".join(str(value) for value in panel.get("support_type", [])) or "None",
-                    ),
-                    (
-                        "Annotation ids",
-                        ", ".join(
-                            str(value)
-                            for value in panel.get("supporting_annotation_ids", [])
-                        )
-                        or "None",
-                    ),
-                    (
-                        "Passage ids",
-                        ", ".join(str(value) for value in panel.get("supporting_passage_ids", []))
-                        or "None",
-                    ),
+                    ("Mode", map_mode),
+                    ("Range", f"{map_range[0]}–{map_range[1]}"),
+                    ("Preset", preset_label(preset_name) if preset_name else "None"),
+                    ("Question", map_question or "None"),
                 ],
             )
-            snippets = list(panel.get("evidence_snippets", []))
-            if snippets:
-                section_heading("Evidence snippets", None)
-                for snippet in snippets[:5]:
-                    support_card("Snippet", str(snippet))
-            passages = list(panel.get("passages", []))
-            if passages:
-                section_heading("Supporting passages", None)
-                for passage in passages[:3]:
-                    support_card(
-                        str(passage["citation_label"]),
-                        str(passage["text"]),
-                        meta=str(passage["passage_id"]),
-                    )
+            if center_concept and center_concept in bundle.registry:
+                support_card(
+                    "Center concept",
+                    bundle.registry[center_concept].canonical_label,
+                    meta=str(center_concept),
+                )
+            return
+
+        selected_node_id = str(session_state.get(MAP_SELECTED_NODE_KEY, "") or "")
+        if selected_node_id not in node_catalog:
+            selected_node_id = (
+                current_center
+                if current_center in node_catalog
+                else next(iter(node_catalog), "")
+            )
+            session_state[MAP_SELECTED_NODE_KEY] = selected_node_id
+        selected_node = node_catalog.get(selected_node_id)
+        if selected_node is not None:
+            key_value_card(
+                "Selected node",
+                [
+                    ("Label", str(selected_node["label"])),
+                    ("Type", str(selected_node["node_type"])),
+                    ("Id", str(selected_node["node_id"])),
+                ],
+            )
+            node_left, node_mid = st.columns(2, gap="small")
+            if selected_node_id in bundle.registry:
+                with node_left:
                     if st.button(
-                        f"Read {passage['citation_label']}",
-                        key=f"smg-map-passage-{passage['passage_id']}",
+                        "Open concept page",
+                        key="smg-map-open-selected-concept",
                         use_container_width=True,
                     ):
-                        open_passage(
+                        open_concept(
                             session_state,
-                            str(passage["passage_id"]),
+                            selected_node_id,
                             preset_name=preset_name,
                         )
                         st.rerun()
-            action_left, action_right = st.columns(2, gap="small")
-            with action_left:
-                if st.button("Open source concept", use_container_width=True):
-                    open_concept(
+                with node_mid:
+                    if st.button(
+                        "Use as local center",
+                        key="smg-map-center-selected-concept",
+                        use_container_width=True,
+                    ):
+                        queue_widget_updates(
+                            session_state,
+                            smg_map_center_concept=selected_node_id,
+                            **{MAP_MODE_KEY: "Local map"},
+                        )
+                        st.rerun()
+            elif selected_node_id in bundle.questions:
+                with node_left:
+                    if st.button(
+                        "Open question passages",
+                        key="smg-map-open-selected-question",
+                        use_container_width=True,
+                    ):
+                        question_record = bundle.questions[selected_node_id]
+                        session_state["smg_passage_query"] = ""
+                        session_state["smg_passage_part"] = str(question_record.part_id)
+                        session_state["smg_passage_question"] = selected_node_id
+                        session_state["smg_passage_article"] = ""
+                        session_state["smg_passage_segment_type"] = ""
+                        session_state["smg_passage_page"] = 1
+                        set_active_view(session_state, PASSAGE_VIEW)
+                        st.rerun()
+                with node_mid:
+                    if st.button(
+                        "Use as question spotlight",
+                        key="smg-map-spotlight-selected-question",
+                        use_container_width=True,
+                    ):
+                        queue_widget_updates(
+                            session_state,
+                            smg_map_question_spotlight=selected_node_id,
+                        )
+                        st.rerun()
+            elif str(selected_node.get("node_type")) == "article":
+                article_question_id = _question_for_article(bundle, selected_node_id)
+                with node_left:
+                    if st.button(
+                        "Open article passages",
+                        key="smg-map-open-selected-article",
+                        use_container_width=True,
+                    ):
+                        session_state["smg_passage_query"] = ""
+                        session_state["smg_passage_article"] = selected_node_id
+                        session_state["smg_passage_question"] = article_question_id or ""
+                        session_state["smg_passage_part"] = (
+                            str(bundle.questions[article_question_id].part_id)
+                            if article_question_id and article_question_id in bundle.questions
+                            else ""
+                        )
+                        session_state["smg_passage_segment_type"] = ""
+                        session_state["smg_passage_page"] = 1
+                        set_active_view(session_state, PASSAGE_VIEW)
+                        st.rerun()
+
+        edge_by_id = {str(edge["edge_id"]): edge for edge in visible_edges}
+        current_edge_id = str(session_state.get(EDGE_ID_KEY, "") or "")
+        if current_edge_id not in edge_by_id:
+            current_edge_id = next(iter(edge_by_id))
+            session_state[EDGE_ID_KEY] = current_edge_id
+        selected_edge_id = st.selectbox(
+            "Evidence spotlight",
+            options=list(edge_by_id),
+            format_func=lambda value: format_edge_option(edge_by_id[value]),
+            index=list(edge_by_id).index(current_edge_id),
+            key="smg-map-edge-select",
+        )
+        session_state[EDGE_ID_KEY] = selected_edge_id
+        selected_edge = edge_by_id[selected_edge_id]
+        adapter = adapter_for_preset(preset_name)
+        if selected_edge["layer"] == "structural":
+            panel = {
+                "source_concept": selected_edge["subject_label"],
+                "relation_type": selected_edge["relation_type"],
+                "target_concept": selected_edge["object_label"],
+                "support_type": ["structural"],
+                "supporting_annotation_ids": [],
+                "supporting_passage_ids": [],
+                "evidence_snippets": [],
+                "layer": "structural",
+                "passages": [],
+            }
+        elif adapter is not None:
+            panel = adapter.edge_evidence_panel(
+                bundle,
+                selected_edge_id,
+                edge_row=selected_edge,
+            )
+        else:
+            panel = {
+                "source_concept": selected_edge["subject_label"],
+                "relation_type": selected_edge["relation_type"],
+                "target_concept": selected_edge["object_label"],
+                "support_type": selected_edge.get("support_types", []),
+                "supporting_annotation_ids": selected_edge.get("support_annotation_ids", []),
+                "supporting_passage_ids": selected_edge.get("source_passage_ids", []),
+                "evidence_snippets": selected_edge.get("evidence_snippets", []),
+                "layer": selected_edge["layer"],
+                "passages": [
+                    {
+                        "passage_id": passage_id,
+                        "citation_label": bundle.passages[passage_id].citation_label,
+                        "text": bundle.passages[passage_id].text,
+                    }
+                    for passage_id in selected_edge.get("source_passage_ids", [])
+                    if passage_id in bundle.passages
+                ],
+            }
+        key_value_card(
+            "Selected relation",
+            [
+                ("Source", str(panel["source_concept"])),
+                ("Relation", pretty_tag(str(panel["relation_type"]))),
+                ("Target", str(panel["target_concept"])),
+                (
+                    "Support type",
+                    ", ".join(str(value) for value in panel.get("support_type", [])) or "None",
+                ),
+                (
+                    "Annotation ids",
+                    ", ".join(
+                        str(value)
+                        for value in panel.get("supporting_annotation_ids", [])
+                    )
+                    or "None",
+                ),
+                (
+                    "Passage ids",
+                    ", ".join(str(value) for value in panel.get("supporting_passage_ids", []))
+                    or "None",
+                ),
+            ],
+        )
+        relation_focus_tags = sorted(
+            {
+                str(tag)
+                for key, value in panel.items()
+                if key.endswith("_focus_tags") and isinstance(value, list)
+                for tag in value
+            }
+        )
+        if relation_focus_tags:
+            pill_row(
+                [f"Focus: {pretty_tag(tag)}" for tag in relation_focus_tags],
+                tone="candidate",
+            )
+        snippets = list(panel.get("evidence_snippets", []))
+        if snippets:
+            section_heading("Evidence snippets", None)
+            for snippet in snippets[:5]:
+                support_card("Snippet", str(snippet))
+        passages = list(panel.get("passages", []))
+        if passages:
+            section_heading("Supporting passages", None)
+            for passage in passages[:3]:
+                support_card(
+                    str(passage["citation_label"]),
+                    str(passage["text"]),
+                    meta=str(passage["passage_id"]),
+                )
+                if st.button(
+                    f"Read {passage['citation_label']}",
+                    key=f"smg-map-passage-{passage['passage_id']}",
+                    use_container_width=True,
+                ):
+                    open_passage(
                         session_state,
-                        str(selected_edge["subject_id"]),
+                        str(passage["passage_id"]),
                         preset_name=preset_name,
                     )
                     st.rerun()
-            with action_right:
-                if st.button("Open target concept", use_container_width=True):
-                    open_concept(
-                        session_state,
-                        str(selected_edge["object_id"]),
-                        preset_name=preset_name,
-                    )
-                    st.rerun()
+        action_left, action_right = st.columns(2, gap="small")
+        with action_left:
+            if st.button(
+                "Open source concept",
+                key="smg-map-open-source",
+                use_container_width=True,
+            ):
+                open_concept(
+                    session_state,
+                    str(selected_edge["subject_id"]),
+                    preset_name=preset_name,
+                )
+                st.rerun()
+        with action_right:
+            if st.button(
+                "Open target concept",
+                key="smg-map-open-target",
+                use_container_width=True,
+            ):
+                open_concept(
+                    session_state,
+                    str(selected_edge["object_id"]),
+                    preset_name=preset_name,
+                )
+                st.rerun()
 
 
 def _render_stats_audit(data: ViewerAppData) -> None:
@@ -1683,13 +2365,59 @@ def _render_stats_audit(data: ViewerAppData) -> None:
         )
         section_heading("Review pressure", None)
         st.dataframe(
-            records_frame(review_rows),
+            records_frame(
+                review_rows,
+                columns=[
+                    "tract",
+                    "range",
+                    "validation_status",
+                    "packet_target_question",
+                    "under_annotated_questions",
+                    "normalization_risk_count",
+                ],
+                rename={
+                    "tract": "Tract",
+                    "range": "Range",
+                    "validation_status": "Validation",
+                    "packet_target_question": "Packet target",
+                    "under_annotated_questions": "Under-annotated",
+                    "normalization_risk_count": "Normalization risks",
+                },
+            ),
             use_container_width=True,
             hide_index=True,
         )
         section_heading("Reviewed tract overlays", None)
         st.dataframe(
-            records_frame(tract_rows),
+            records_frame(
+                tract_rows,
+                columns=[
+                    "label",
+                    "range_label",
+                    "validation_status",
+                    "question_count",
+                    "passage_count",
+                    "reviewed_annotations",
+                    "reviewed_doctrinal_edges",
+                    "reviewed_structural_editorial",
+                    "candidate_mentions",
+                    "candidate_relation_proposals",
+                    "normalization_risk_count",
+                ],
+                rename={
+                    "label": "Tract",
+                    "range_label": "Range",
+                    "validation_status": "Validation",
+                    "question_count": "Questions",
+                    "passage_count": "Passages",
+                    "reviewed_annotations": "Reviewed annotations",
+                    "reviewed_doctrinal_edges": "Reviewed edges",
+                    "reviewed_structural_editorial": "Editorial",
+                    "candidate_mentions": "Candidate mentions",
+                    "candidate_relation_proposals": "Candidate relations",
+                    "normalization_risk_count": "Normalization risks",
+                },
+            ),
             use_container_width=True,
             hide_index=True,
         )

@@ -2,6 +2,23 @@
 
 ## Progress
 
+- The repository front page has now been rewritten as a finalized, user-facing README:
+  - the most important links now appear at the top
+  - the dashboard launch path is explicit and easy to find
+  - reviewed scope, corpus scope, evidence discipline, and key docs are explained in plain language
+- The dashboard visual shell now carries a more deliberate Summa-facing presentation layer:
+  - top navigation no longer uses emoji-like labels and instead renders as a more classical small-caps navigator
+  - home route badges now use Roman numerals instead of pictographic icons
+  - hero, cards, and metric panels now share lighter inset borders and more bookish serif handling
+- The home view now defaults the tract route to a real reviewed tract instead of a blank placeholder, so `Open tract scope` behaves like a usable entry path rather than a disabled card.
+- The viewer typography now uses a more classical heading treatment for the public-facing shell:
+  - `Summa Virtutum` and other primary headings now render with a more bookish serif face
+  - small-caps route labels and kicker text now carry more of the intended Latin / scholastic character without changing the evidence-first structure
+- The unified dashboard map now handles cross-tract question spans more honestly:
+  - overall-map quick-span buttons now update the range through the same widget-safe state path used elsewhere in the shell
+  - `graph_edges_for_view()` now aggregates reviewed edges across every tract adapter overlapping the selected range instead of assuming one tract family per span
+  - cross-tract spans such as `57–122`, `141–170`, and `1–182` now render reviewed graph slices instead of collapsing to an empty prompt
+  - interaction coverage now includes map quick-span and question-span regression tests
 - The dashboard is now being reworked from a multi-page research operations surface into a
   unified reader-first Streamlit shell:
   - new root entrypoint: `streamlit_app.py`
@@ -285,6 +302,9 @@
 
 ## Surprises & Discoveries
 
+- The site feels much more “AI dashboard” than “finished scholarly object” when icons are emoji-forward. Classical typography and restrained ornament do more work here than adding more decorative graphics.
+- On the landing page, a disabled route button reads to users as a broken button, not as a helpful guardrail. The tract card works better when it always starts from a real reviewed tract.
+- The recent overall-map bug was not mainly a widget problem; the deeper failure was that range rendering still assumed a single tract family even after the UI had grown cross-tract quick spans and free-form question sliders.
 - New Advent part landing pages are structurally usable for scope discovery.
 - Question pages expose article structure through `h2#articleN` anchors and labeled paragraphs.
 - Some explicit *Summa* cross-references appear inside malformed anchor markup, so visible-text extraction is safer than relying only on `href` attributes.
@@ -405,6 +425,7 @@
 
 ## Decision Log
 
+- For the overall map, question ranges should aggregate every overlapping reviewed tract adapter rather than forcing users into one-family spans. When a selected range has no reviewed tract coverage, the UI should say that directly instead of asking for a preset as though the user had made no scope choice.
 - Use New Advent as the primary parser target for the first sprint.
 - Keep raw HTML cached locally and out of version control.
 - Treat the full run of paragraphs belonging to each objection, sed contra, respondeo, or reply as the authoritative segment unit.
@@ -531,6 +552,18 @@
 
 ## Outcomes & Retrospective
 
+- The shell now feels closer to a polished artifact than a generic analytics app:
+  - navigation reads as a designed navigator rather than five default buttons
+  - Roman-numeral route markers fit the tone better than emoji badges
+  - inset borders and serif hierarchy give the public pages a more deliberate Summa-like visual finish
+- The landing page now reads more intentionally as a formal work rather than a prototype utility:
+  - the tract route behaves like a real first-click path
+  - the home heading system feels more classical and less generic
+  - the right-side summary block now uses `At a glance`, which reads more naturally than `Key numbers`
+- The overall map is now materially more stable for real browsing:
+  - later quick-span buttons no longer look broken simply because they cross tract boundaries
+  - the question-range slider now keeps working when users choose broader reviewed spans
+  - regression protection now covers both the cross-tract edge-selection logic and the live Streamlit controls that drive it
 - The sprint finished with a clean editable install on Python `3.12`, deterministic interim artifacts, explicit source/data-model documentation, and wired validation/test/type-check/lint entry points.
 - Offline fixture tests pass, and optional live smoke tests against New Advent pass.
 - The parser now defends against several real-world source irregularities without weakening the canonical article model.

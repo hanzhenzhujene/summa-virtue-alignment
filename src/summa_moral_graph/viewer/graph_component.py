@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib
+from dataclasses import dataclass
 from functools import cache
 from hashlib import sha1
 from typing import Any
@@ -102,6 +103,13 @@ if (typeof network !== "undefined") {
 """
 
 
+@dataclass(frozen=True)
+class GraphRenderResult:
+    clicked_concept_id: str | None
+    interactive: bool
+    warning: str | None = None
+
+
 def with_graph_click_bridge(graph_html: str) -> str:
     if "smg-node-click" in graph_html:
         return graph_html
@@ -128,12 +136,19 @@ def render_clickable_graph(
     graph_html: str,
     height: str,
     key: str,
-) -> str | None:
+) -> GraphRenderResult:
     component = _graph_component()
     if component is None:
         height_value = int(height.removesuffix("px")) if height.endswith("px") else 760
         legacy_components.html(graph_html, height=height_value + 44, scrolling=True)
-        return None
+        return GraphRenderResult(
+            clicked_concept_id=None,
+            interactive=False,
+            warning=(
+                "Interactive graph clicks are unavailable in this Streamlit environment. "
+                "Showing a static fallback; use the concept, edge, and passage controls below."
+            ),
+        )
 
     graph_hash = sha1(graph_html.encode("utf-8")).hexdigest()
     try:
@@ -150,10 +165,17 @@ def render_clickable_graph(
     except Exception:
         height_value = int(height.removesuffix("px")) if height.endswith("px") else 760
         legacy_components.html(graph_html, height=height_value + 44, scrolling=True)
-        return None
+        return GraphRenderResult(
+            clicked_concept_id=None,
+            interactive=False,
+            warning=(
+                "Interactive graph clicks failed to load, so this graph is currently static. "
+                "Use the evidence panel, concept buttons, or passage links to keep navigating."
+            ),
+        )
     clicked = getattr(result, "clicked", None)
     if isinstance(clicked, dict):
         concept_id = clicked.get("conceptId")
         if isinstance(concept_id, str) and concept_id:
-            return concept_id
-    return None
+            return GraphRenderResult(clicked_concept_id=concept_id, interactive=True)
+    return GraphRenderResult(clicked_concept_id=None, interactive=True)

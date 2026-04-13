@@ -418,7 +418,7 @@ def render_sidebar(*, page_title: str, description: str) -> None:
         st.markdown(
             f"""
             <div class="smg-sidebar-brand">
-              <div class="smg-eyebrow">Summa Moral Graph</div>
+              <div class="smg-eyebrow">Summa Virtutum</div>
               <h2>{escape(page_title)}</h2>
               <p>{escape(description)}</p>
             </div>

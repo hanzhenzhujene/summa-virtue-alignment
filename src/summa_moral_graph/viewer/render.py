@@ -22,8 +22,16 @@ LAYER_TONES = {
     "candidate": "candidate",
 }
 
+NAV_LABELS = {
+    "Home": "Home",
+    "Concept Explorer": "Concepts",
+    "Passage Explorer": "Passages",
+    "Overall Map": "Map",
+    "Stats / Audit": "Stats",
+}
 
-def configure_viewer_page(*, page_title: str = "Summa Moral Graph") -> None:
+
+def configure_viewer_page(*, page_title: str = "Summa Virtutum") -> None:
     st.set_page_config(
         page_title=page_title,
         page_icon="§",
@@ -37,7 +45,7 @@ def inject_viewer_css() -> None:
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&family=JetBrains+Mono:wght@500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:wght@500;600;700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
         :root {
           --smg-bg: #f4efe7;
@@ -76,15 +84,16 @@ def inject_viewer_css() -> None:
         }
 
         .block-container {
-          max-width: 1320px;
-          padding-top: 2.1rem;
+          max-width: 1460px;
+          padding-top: 3rem;
           padding-bottom: 3rem;
         }
 
         h1, h2, h3, h4 {
-          font-family: "Newsreader", Georgia, serif;
+          font-family: "Cormorant Garamond", Georgia, serif;
           color: var(--smg-ink);
           letter-spacing: -0.02em;
+          font-weight: 600;
         }
 
         p, li, label, [data-testid="stMarkdownContainer"] {
@@ -97,53 +106,110 @@ def inject_viewer_css() -> None:
 
         .smgv-shell-note {
           color: var(--smg-muted);
-          font-size: 0.76rem;
+          font-size: 0.72rem;
           line-height: 1.35;
           margin-bottom: 0.25rem;
           opacity: 0.9;
         }
 
         .smgv-hero {
-          padding: 1.15rem 1.2rem 1rem 1.2rem;
+          padding: 0.92rem 1.12rem 0.82rem 1.12rem;
           border: 1px solid var(--smg-line);
           border-radius: var(--smg-radius-xl);
           background:
             linear-gradient(135deg, rgba(255, 252, 248, 0.99), rgba(249, 242, 234, 0.9));
           box-shadow: var(--smg-shadow);
-          margin-bottom: 0.8rem;
+          margin-bottom: 0.52rem;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .smgv-hero::before {
+          content: "";
+          position: absolute;
+          inset: 10px;
+          border: 1px solid rgba(20, 34, 53, 0.08);
+          border-radius: calc(var(--smg-radius-xl) - 10px);
+          pointer-events: none;
+        }
+
+        .smgv-hero::after {
+          content: "✦";
+          position: absolute;
+          right: 1.15rem;
+          top: 0.8rem;
+          color: rgba(139, 68, 46, 0.28);
+          font-size: 0.92rem;
+          font-family: "Cinzel", Georgia, serif;
         }
 
         .smgv-kicker {
           color: var(--smg-accent);
           font-size: 0.68rem;
-          font-weight: 800;
-          letter-spacing: 0.16em;
+          font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+          font-weight: 600;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          margin-bottom: 0.3rem;
+          margin-bottom: 0.18rem;
         }
 
         .smgv-hero h1 {
           margin: 0;
-          font-size: clamp(1.8rem, 3vw, 2.6rem);
-          line-height: 1.02;
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: clamp(2.45rem, 4vw, 3.8rem);
+          line-height: 0.96;
+          letter-spacing: -0.035em;
+          font-weight: 600;
         }
 
         .smgv-hero p {
-          margin: 0.45rem 0 0 0;
+          margin: 0.26rem 0 0 0;
           max-width: 42rem;
           color: var(--smg-muted);
-          font-size: 0.86rem;
-          line-height: 1.55;
+          font-size: 0.82rem;
+          line-height: 1.46;
+        }
+
+        .smgv-hero-byline {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.38rem;
+          margin-top: 0.42rem;
+          color: var(--smg-muted);
+          font-size: 0.66rem;
+          line-height: 1;
+          letter-spacing: 0.02em;
+        }
+
+        .smgv-hero-byline a {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.32rem;
+          color: var(--smg-muted);
+          text-decoration: none;
+          transition: color 120ms ease;
+        }
+
+        .smgv-hero-byline a:hover {
+          color: var(--smg-accent);
+        }
+
+        .smgv-hero-byline svg {
+          width: 0.82rem;
+          height: 0.82rem;
+          display: block;
+          opacity: 0.88;
         }
 
         .smgv-section {
-          margin: 0.8rem 0 0.4rem 0;
+          margin: 1.12rem 0 0.58rem 0;
         }
 
         .smgv-section h2,
         .smgv-section h3 {
           margin: 0 0 0.2rem 0;
-          font-size: 1.15rem;
+          font-size: 1.26rem;
+          line-height: 1.02;
         }
 
         .smgv-section p {
@@ -158,9 +224,20 @@ def inject_viewer_css() -> None:
           border: 1px solid var(--smg-line);
           border-radius: var(--smg-radius-lg);
           background: var(--smg-panel);
-          padding: 0.8rem 0.9rem;
+          padding: 1rem 1.05rem;
           box-shadow: 0 10px 26px rgba(29, 39, 49, 0.05);
           height: 100%;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .smgv-card::before {
+          content: "";
+          position: absolute;
+          inset: 8px;
+          border: 1px solid rgba(20, 34, 53, 0.05);
+          border-radius: calc(var(--smg-radius-lg) - 8px);
+          pointer-events: none;
         }
 
         .smgv-card h3, .smgv-card h4 {
@@ -176,19 +253,176 @@ def inject_viewer_css() -> None:
           font-size: 0.84rem;
         }
 
+        .smgv-route-block {
+          display: flex;
+          align-items: flex-start;
+          gap: 0.7rem;
+          margin: 0.1rem 0 0.32rem 0;
+          padding: 0.02rem 0 0 0;
+        }
+
+        .smgv-route-badge {
+          width: 2.1rem;
+          height: 2.1rem;
+          border-radius: 999px;
+          border: 1px solid rgba(139, 68, 46, 0.22);
+          background:
+            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.96), rgba(246, 237, 225, 0.96));
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--smg-accent);
+          font-size: 0.74rem;
+          font-family: "Cinzel", Georgia, serif;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          flex: 0 0 auto;
+          box-shadow: inset 0 0 0 1px rgba(20, 34, 53, 0.05);
+        }
+
+        .smgv-route-text {
+          min-width: 0;
+        }
+
+        .smgv-route-title {
+          color: var(--smg-ink);
+          font-size: 0.82rem;
+          font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
+          font-weight: 600;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          margin-bottom: 0.14rem;
+        }
+
+        .smgv-route-copy {
+          color: var(--smg-muted);
+          font-size: 0.74rem;
+          line-height: 1.34;
+          min-height: 1.18rem;
+        }
+
+        .smgv-start-divider {
+          position: relative;
+          height: 1.02rem;
+          margin: 0.14rem 0 0.24rem 0;
+        }
+
+        .smgv-start-divider::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(20, 34, 53, 0),
+            rgba(20, 34, 53, 0.12) 18%,
+            rgba(139, 68, 46, 0.18) 50%,
+            rgba(20, 34, 53, 0.12) 82%,
+            rgba(20, 34, 53, 0)
+          );
+          transform: translateY(-50%);
+        }
+
+        .smgv-home-snapshot-lift {
+          height: 0.04rem;
+          margin-top: -0.62rem;
+        }
+
+        .smgv-start-v-divider {
+          position: relative;
+          min-height: 100%;
+          height: 8.3rem;
+          margin: 0.18rem 0 0.28rem 0;
+        }
+
+        .smgv-start-v-divider::before {
+          content: "";
+          position: absolute;
+          top: 0.1rem;
+          bottom: 0.1rem;
+          left: 50%;
+          width: 1px;
+          transform: translateX(-50%);
+          background: linear-gradient(
+            180deg,
+            rgba(20, 34, 53, 0),
+            rgba(20, 34, 53, 0.12) 16%,
+            rgba(139, 68, 46, 0.18) 50%,
+            rgba(20, 34, 53, 0.12) 84%,
+            rgba(20, 34, 53, 0)
+          );
+        }
+
         .smgv-small {
           color: var(--smg-muted);
           font-size: 0.76rem;
           line-height: 1.38;
         }
 
+        .smgv-meta-line {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem 0.75rem;
+          margin: 0.4rem 0 0.35rem 0;
+          color: var(--smg-muted);
+          font-size: 0.77rem;
+          line-height: 1.4;
+        }
+
+        .smgv-meta-item {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 0.3rem;
+        }
+
+        .smgv-meta-label {
+          color: var(--smg-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          font-size: 0.66rem;
+          font-weight: 800;
+        }
+
+        .smgv-meta-value {
+          color: var(--smg-ink);
+          font-weight: 600;
+        }
+
+        .smgv-inline-meta {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.38rem 0.62rem;
+          margin: 0.3rem 0 0.2rem 0;
+          color: var(--smg-muted);
+          font-size: 0.74rem;
+          line-height: 1.35;
+        }
+
+        .smgv-inline-meta span {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.2rem;
+        }
+
         .smgv-metric-card {
           border: 1px solid var(--smg-line);
           border-radius: 18px;
           background: rgba(255, 252, 248, 0.96);
-          padding: 0.7rem 0.85rem;
+          padding: 0.62rem 0.82rem;
           box-shadow: 0 8px 20px rgba(29, 39, 49, 0.04);
-          min-height: 88px;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .smgv-metric-card::before {
+          content: "";
+          position: absolute;
+          inset: 7px;
+          border: 1px solid rgba(20, 34, 53, 0.045);
+          border-radius: 12px;
+          pointer-events: none;
         }
 
         .smgv-metric-label {
@@ -200,18 +434,109 @@ def inject_viewer_css() -> None:
         }
 
         .smgv-metric-value {
-          font-family: "Newsreader", Georgia, serif;
-          font-size: 1.45rem;
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 1.28rem;
           line-height: 1;
-          margin-top: 0.28rem;
+          margin-top: 0.2rem;
           color: var(--smg-ink);
+        }
+
+        .smgv-top-nav-band {
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+          margin: 0.02rem 0 0.26rem 0;
+          color: var(--smg-muted);
+        }
+
+        .smgv-top-nav-rule {
+          flex: 1 1 auto;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(20, 34, 53, 0),
+            rgba(20, 34, 53, 0.14) 20%,
+            rgba(139, 68, 46, 0.18) 50%,
+            rgba(20, 34, 53, 0.14) 80%,
+            rgba(20, 34, 53, 0)
+          );
+        }
+
+        .smgv-top-nav-title {
+          font-family: "Cinzel", Georgia, serif;
+          font-size: 0.64rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--smg-accent);
+          white-space: nowrap;
+        }
+
+        .smgv-top-nav-tail {
+          height: 0.38rem;
+          margin-top: -0.02rem;
+          margin-bottom: 0.34rem;
+          position: relative;
+        }
+
+        .smgv-top-nav-tail::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 50%;
+          height: 1px;
+          transform: translateY(-50%);
+          background: linear-gradient(
+            90deg,
+            rgba(20, 34, 53, 0),
+            rgba(20, 34, 53, 0.10) 18%,
+            rgba(139, 68, 46, 0.15) 50%,
+            rgba(20, 34, 53, 0.10) 82%,
+            rgba(20, 34, 53, 0)
+          );
         }
 
         .smgv-metric-caption {
           color: var(--smg-muted);
-          font-size: 0.7rem;
+          font-size: 0.66rem;
           line-height: 1.28;
-          margin-top: 0.24rem;
+          margin-top: 0.18rem;
+        }
+
+        .smgv-pager-chip {
+          border: 1px solid rgba(20, 34, 53, 0.1);
+          border-radius: 18px;
+          background: rgba(255, 252, 248, 0.96);
+          box-shadow: 0 8px 18px rgba(29, 39, 49, 0.05);
+          padding: 0.5rem 0.78rem;
+          min-height: 2.72rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .smgv-pager-label {
+          color: var(--smg-muted);
+          font-size: 0.62rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          line-height: 1.1;
+        }
+
+        .smgv-pager-value {
+          color: var(--smg-ink);
+          font-size: 0.94rem;
+          font-weight: 800;
+          line-height: 1.2;
+          margin-top: 0.12rem;
+        }
+
+        .smgv-pager-sub {
+          color: var(--smg-muted);
+          font-size: 0.67rem;
+          line-height: 1.18;
+          margin-top: 0.08rem;
         }
 
         .smgv-side-list {
@@ -303,25 +628,165 @@ def inject_viewer_css() -> None:
           background: var(--smg-line);
           margin: 0.9rem 0;
         }
+
+        div.stButton > button,
+        div.stDownloadButton > button {
+          width: 100%;
+          min-height: 2.65rem;
+          border-radius: 16px;
+          border: 1px solid rgba(20, 34, 53, 0.18);
+          background: linear-gradient(180deg, rgba(255, 253, 250, 0.98), rgba(246, 239, 230, 0.98));
+          color: var(--smg-ink);
+          font-family: "Manrope", sans-serif;
+          font-weight: 700;
+          letter-spacing: 0.01em;
+          box-shadow: 0 10px 22px rgba(29, 39, 49, 0.07);
+          transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+        }
+
+        [class*="st-key-smgv-nav-"] button {
+          min-height: 2.46rem !important;
+          border-radius: 18px !important;
+          border: 1px solid rgba(139, 68, 46, 0.18) !important;
+          background:
+            linear-gradient(
+              180deg,
+              rgba(255, 251, 246, 0.98),
+              rgba(246, 238, 228, 0.94)
+            ) !important;
+          box-shadow:
+            0 8px 16px rgba(29, 39, 49, 0.04),
+            inset 0 0 0 1px rgba(20, 34, 53, 0.03) !important;
+          font-family: "Cinzel", Georgia, serif !important;
+          font-size: 0.74rem !important;
+          font-weight: 600 !important;
+          letter-spacing: 0.12em !important;
+          text-transform: uppercase !important;
+          position: relative;
+          padding-left: 1.28rem !important;
+          padding-right: 1.28rem !important;
+        }
+
+        [class*="st-key-smgv-nav-"] button[kind="primary"] {
+          background:
+            linear-gradient(
+              135deg,
+              rgba(30, 64, 90, 0.98),
+              rgba(20, 44, 65, 0.98)
+            ) !important;
+          color: #fdf8f2 !important;
+          border-color: rgba(20, 44, 65, 0.92) !important;
+          box-shadow: 0 10px 18px rgba(20, 44, 65, 0.16) !important;
+        }
+
+        [class*="st-key-smgv-nav-"] button::before {
+          content: "";
+          position: absolute;
+          left: 0.8rem;
+          right: 0.8rem;
+          top: 0.36rem;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(139, 68, 46, 0),
+            rgba(139, 68, 46, 0.24) 20%,
+            rgba(139, 68, 46, 0.35) 50%,
+            rgba(139, 68, 46, 0.24) 80%,
+            rgba(139, 68, 46, 0)
+          );
+        }
+
+        [class*="st-key-smgv-nav-"] button[kind="primary"]::before {
+          background: linear-gradient(
+            90deg,
+            rgba(253, 248, 242, 0),
+            rgba(253, 248, 242, 0.32) 20%,
+            rgba(253, 248, 242, 0.54) 50%,
+            rgba(253, 248, 242, 0.32) 80%,
+            rgba(253, 248, 242, 0)
+          );
+        }
+
+        div.stButton,
+        div.stDownloadButton {
+          margin-top: 0.22rem;
+          margin-bottom: 0.56rem;
+        }
+
+        div.stButton > button:hover,
+        div.stDownloadButton > button:hover {
+          border-color: rgba(139, 68, 46, 0.4);
+          box-shadow: 0 12px 24px rgba(29, 39, 49, 0.08);
+          transform: translateY(-1px);
+        }
+
+        div.stButton > button[kind="primary"],
+        div.stDownloadButton > button[kind="primary"] {
+          background: linear-gradient(135deg, #234d68, #18344d);
+          color: #fdf8f2;
+          border-color: rgba(24, 52, 77, 0.84);
+        }
+
+        div.stButton > button[kind="secondary"] {
+          background: rgba(255, 252, 248, 0.94);
+        }
+
+        div[data-baseweb="select"] > div,
+        div[data-baseweb="base-input"] > div,
+        [data-testid="stMultiSelect"] div[data-baseweb="select"] > div {
+          border-radius: 16px;
+          border-color: rgba(20, 34, 53, 0.12);
+          background: rgba(255, 252, 248, 0.9);
+          box-shadow: 0 6px 16px rgba(29, 39, 49, 0.03);
+        }
+
+        [data-testid="stExpander"] {
+          border: 1px solid var(--smg-line);
+          border-radius: 18px;
+          background: rgba(255, 252, 248, 0.82);
+          overflow: hidden;
+        }
+
+        [data-testid="stExpander"] details summary p {
+          font-weight: 700;
+          color: var(--smg-ink);
+        }
         </style>
         """,
         unsafe_allow_html=True,
     )
 
 
-def top_nav(active_view: str, view_names: Iterable[str]) -> str:
-    columns = st.columns(len(tuple(view_names)), gap="small")
+def top_nav(active_view: str, view_names: Iterable[str]) -> str | None:
     ordered = list(view_names)
+    st.markdown(
+        (
+            "<div class='smgv-top-nav-band'>"
+            "<div class='smgv-top-nav-rule'></div>"
+            "<div class='smgv-top-nav-title'>Guide</div>"
+            "<div class='smgv-top-nav-rule'></div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+    columns = st.columns(len(ordered), gap="small")
     for column, view_name in zip(columns, ordered, strict=False):
+        view_slug = (
+            view_name.lower()
+            .replace(" / ", "-")
+            .replace("/", "-")
+            .replace(" ", "-")
+        )
         with column:
             if st.button(
-                view_name,
+                NAV_LABELS.get(view_name, view_name),
                 use_container_width=True,
                 type="primary" if view_name == active_view else "secondary",
-                key=f"smgv-nav-{view_name}",
+                key=f"smgv-nav-{view_slug}",
             ):
                 return view_name
-    return active_view
+    st.markdown("<div class='smgv-top-nav-tail'></div>", unsafe_allow_html=True)
+    return None
 
 
 def section_heading(title: str, description: str | None = None) -> None:
@@ -337,13 +802,21 @@ def section_heading(title: str, description: str | None = None) -> None:
     )
 
 
-def hero(title: str, description: str, *, eyebrow: str) -> None:
+def hero(
+    title: str,
+    description: str,
+    *,
+    eyebrow: str,
+    byline_html: str | None = None,
+) -> None:
+    byline_block = byline_html or ""
     st.markdown(
         (
             "<div class='smgv-hero'>"
             f"<div class='smgv-kicker'>{escape(eyebrow)}</div>"
             f"<h1>{escape(title)}</h1>"
             f"<p>{escape(description)}</p>"
+            f"{byline_block}"
             "</div>"
         ),
         unsafe_allow_html=True,
@@ -379,11 +852,29 @@ def key_value_card(title: str, rows: list[tuple[str, str]]) -> None:
     )
 
 
-def metric_cards(cards: list[MetricCard], *, columns: int = 4) -> None:
+def pager_chip(label: str, value: str, subtitle: str) -> None:
+    st.markdown(
+        (
+            "<div class='smgv-pager-chip'>"
+            f"<div class='smgv-pager-label'>{escape(label)}</div>"
+            f"<div class='smgv-pager-value'>{escape(value)}</div>"
+            f"<div class='smgv-pager-sub'>{escape(subtitle)}</div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+
+
+def metric_cards(
+    cards: list[MetricCard],
+    *,
+    columns: int = 4,
+    row_gap: float = 0.46,
+) -> None:
     if not cards:
         return
     rows = [cards[index : index + columns] for index in range(0, len(cards), columns)]
-    for row in rows:
+    for row_index, row in enumerate(rows):
         cols = st.columns(len(row), gap="small")
         for column, metric in zip(cols, row, strict=False):
             with column:
@@ -406,6 +897,11 @@ def metric_cards(cards: list[MetricCard], *, columns: int = 4) -> None:
                     ),
                     unsafe_allow_html=True,
                 )
+        if row_index < len(rows) - 1 and row_gap > 0:
+            st.markdown(
+                f"<div style='height:{row_gap:.2f}rem'></div>",
+                unsafe_allow_html=True,
+            )
 
 
 def pill_row(values: Iterable[str], *, tone: str = "accent") -> None:
@@ -434,16 +930,32 @@ def layer_badges(layers: Iterable[str]) -> None:
     st.markdown(f"<div class='smgv-pills'>{pills}</div>", unsafe_allow_html=True)
 
 
+def meta_line(values: Iterable[str]) -> None:
+    items = "".join(
+        f"<span>{escape(str(value))}</span>"
+        for value in values
+        if str(value).strip()
+    )
+    if not items:
+        return
+    st.markdown(f"<div class='smgv-inline-meta'>{items}</div>", unsafe_allow_html=True)
+
+
 def empty_state(title: str, body: str) -> None:
     card(title, body)
 
 
 def reading_panel(title: str, metadata: list[str], html_body: str) -> None:
     pill_row(metadata, tone="accent")
+    title_style = (
+        "font-family:Cormorant Garamond,serif;"
+        "font-size:1.35rem;"
+        "margin-bottom:0.9rem"
+    )
     st.markdown(
         (
             "<div class='smgv-reading'>"
-            f"<div style='font-family:Newsreader,serif;font-size:1.35rem;margin-bottom:0.9rem'>"
+            f"<div style='{title_style}'>"
             f"{escape(title)}</div>"
             f"{html_body}"
             "</div>"

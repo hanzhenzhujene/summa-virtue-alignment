@@ -5,6 +5,7 @@ import json
 from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
+from textwrap import wrap
 from typing import Any
 
 import networkx as nx
@@ -471,6 +472,17 @@ def build_graph_for_edges(edges: list[dict[str, Any]]) -> nx.MultiDiGraph:
     return graph
 
 
+def _graph_node_label(label: str, *, width: int = 18, max_lines: int = 3) -> str:
+    wrapped = wrap(label, width=width, break_long_words=False, break_on_hyphens=False)
+    if not wrapped:
+        return label
+    if len(wrapped) <= max_lines:
+        return "\n".join(wrapped)
+    trimmed = wrapped[:max_lines]
+    trimmed[-1] = trimmed[-1].rstrip(". ") + "…"
+    return "\n".join(trimmed)
+
+
 def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
     """Render a readable graph with explicit layer coloring."""
 
@@ -488,7 +500,7 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
         node_type = str(attrs.get("node_type", ""))
         network.add_node(
             node_id,
-            label=node_label,
+            label=_graph_node_label(node_label),
             color=NODE_COLORS.get(node_type, "#6c757d"),
             title=(
                 f"<b>{html_lib.escape(node_label)}</b><br>"
@@ -508,7 +520,6 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
         network.add_edge(
             source,
             target,
-            label=str(attrs.get("relation_type", "")),
             title=(
                 f"<b>{html_lib.escape(str(attrs.get('subject_label', source)))}</b> → "
                 f"<b>{html_lib.escape(str(attrs.get('object_label', target)))}</b><br>"
@@ -538,11 +549,13 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
           },
           "nodes": {
             "shape": "dot",
-            "size": 18,
+            "size": 16,
+            "margin": 12,
             "font": {
               "face": "Public Sans",
-              "size": 16,
-              "color": "#13273f"
+              "size": 13,
+              "color": "#13273f",
+              "multi": true
             },
             "borderWidth": 1.5,
             "shadow": {
@@ -555,11 +568,12 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
           },
           "edges": {
             "smooth": {
-              "type": "dynamic"
+              "type": "continuous",
+              "roundness": 0.12
             },
             "font": {
               "face": "Public Sans",
-              "size": 12,
+              "size": 10,
               "color": "#46566b",
               "strokeWidth": 5,
               "strokeColor": "#faf5ec"
@@ -571,14 +585,15 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
           "physics": {
             "solver": "forceAtlas2Based",
             "forceAtlas2Based": {
-              "gravitationalConstant": -38,
+              "gravitationalConstant": -54,
               "centralGravity": 0.02,
-              "springLength": 185,
-              "springConstant": 0.08
+              "springLength": 238,
+              "springConstant": 0.06,
+              "avoidOverlap": 1.05
             },
             "stabilization": {
               "enabled": true,
-              "iterations": 140
+              "iterations": 160
             }
           }
         }

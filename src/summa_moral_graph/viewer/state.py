@@ -19,9 +19,8 @@ from ..ontology import search_registry
 from .load import ViewerAppData
 from .navigation import ACTIVE_PRESET_KEY, CONCEPT_ID_KEY, PASSAGE_ID_KEY
 from .registry import (
-    adapter_for_family,
     adapter_for_preset,
-    family_for_range,
+    adapters_for_range,
     preset_family,
     preset_label,
     preset_range,
@@ -271,11 +270,11 @@ def selected_passage_for_results(
     bundle: CorpusAppBundle,
 ) -> Any | None:
     selected_id = str(session_state.get(PASSAGE_ID_KEY, "") or "")
-    if selected_id in bundle.passages:
-        if any(result.segment_id == selected_id for result in results):
-            return bundle.passages[selected_id]
-        return bundle.passages[selected_id]
     if results:
+        if selected_id in bundle.passages and any(
+            result.segment_id == selected_id for result in results
+        ):
+            return bundle.passages[selected_id]
         return results[0]
     return None
 
@@ -301,9 +300,65 @@ def concept_payload_for_selection(
                 start_question=start_question,
                 end_question=end_question,
             )
-            if payload.get("reviewed_doctrinal_edges") or payload.get("candidate_mentions"):
-                return payload
-    return concept_page_data(bundle, concept_id)
+            return _normalize_concept_payload(
+                bundle,
+                concept_id,
+                payload,
+                scope_mode="tract",
+                scope_label=preset_label(preset_name),
+                preset_name=preset_name,
+            )
+    fallback_note = None
+    scope_mode = "full_corpus"
+    scope_label = "Full corpus"
+    if preset_name:
+        scope_mode = "broader_corpus_fallback"
+        scope_label = preset_label(preset_name)
+        fallback_note = (
+            f"{scope_label} concept rendering is unavailable here, so the page is showing a "
+            "broader corpus fallback."
+        )
+    return _normalize_concept_payload(
+        bundle,
+        concept_id,
+        concept_page_data(bundle, concept_id),
+        scope_mode=scope_mode,
+        scope_label=scope_label,
+        preset_name=preset_name,
+        fallback_note=fallback_note,
+    )
+
+
+def _normalize_concept_payload(
+    bundle: CorpusAppBundle,
+    concept_id: str,
+    payload: dict[str, Any],
+    *,
+    scope_mode: str,
+    scope_label: str,
+    preset_name: str | None,
+    fallback_note: str | None = None,
+) -> dict[str, Any]:
+    normalized = dict(payload)
+    normalized.setdefault("concept", bundle.registry[concept_id].model_dump(mode="json"))
+    for key in (
+        "reviewed_doctrinal_edges",
+        "reviewed_structural_edges",
+        "candidate_mentions",
+        "candidate_relations",
+        "supporting_passages",
+        "top_supporting_passages",
+        "related_questions",
+        "ambiguity_notes",
+        "unresolved_disambiguation_notes",
+    ):
+        normalized.setdefault(key, [])
+    normalized["scope_mode"] = scope_mode
+    normalized["scope_label"] = scope_label
+    normalized["preset_name"] = preset_name
+    normalized["scope_fallback_note"] = fallback_note
+    normalized["broader_corpus_fallback"] = bool(fallback_note)
+    return normalized
 
 
 def relation_groups_for_concept(
@@ -400,9 +455,7 @@ def graph_edges_for_view(
         effective_relation_types = None
 
     adapter = adapter_for_preset(preset_name) if preset_name else None
-    if adapter is None and preset_name is None:
-        family = family_for_range(*map_range)
-        adapter = adapter_for_family(family)
+    range_adapters = adapters_for_range(*map_range) if preset_name is None else []
 
     if local_only and not center_concept:
         return ([], "Pick a center concept to build a local map.")
@@ -418,26 +471,40 @@ def graph_edges_for_view(
             center_concept=center_concept,
             focus_tags=focus_tags,
         )
-    elif adapter is not None:
+    elif range_adapters:
         start_question, end_question = map_range
-        edges = adapter.filter_edges_by_question_range(
-            bundle,
-            start_question=start_question,
-            end_question=end_question,
-            include_editorial=include_editorial,
-            include_candidate=include_candidate,
-            relation_types=effective_relation_types,
-            node_types=node_types,
-            center_concept=center_concept,
-            focus_tags=focus_tags,
-        )
+        edges = []
+        seen_edge_keys: set[tuple[str, str]] = set()
+        for range_adapter in range_adapters:
+            overlap_start = max(start_question, range_adapter.range_start)
+            overlap_end = min(end_question, range_adapter.range_end)
+            if overlap_start > overlap_end:
+                continue
+            adapter_edges = range_adapter.filter_edges_by_question_range(
+                bundle,
+                start_question=overlap_start,
+                end_question=overlap_end,
+                include_editorial=include_editorial,
+                include_candidate=include_candidate,
+                relation_types=effective_relation_types,
+                node_types=node_types,
+                center_concept=center_concept,
+                focus_tags=focus_tags,
+            )
+            for edge in adapter_edges:
+                edge_key = (str(edge.get("edge_id", "")), str(edge.get("layer", "")))
+                if edge_key in seen_edge_keys:
+                    continue
+                seen_edge_keys.add(edge_key)
+                edges.append(edge)
     else:
         if not center_concept and not question_id:
             return (
                 [],
                 (
-                    "Choose a tract preset, a question spotlight, or a center concept "
-                    "before opening the map."
+                    "No reviewed doctrinal graph coverage is available in this question "
+                    "span yet. Try a reviewed tract span, enable structural edges, or "
+                    "narrow to a reviewed block."
                 ),
             )
         edges = filter_graph_edges(
@@ -503,8 +570,11 @@ def generate_structural_edges_for_range(
     rows = [
         edge
         for edge in generate_structural_edges(bundle, question_id=question_id)
-        if edge["subject_id"].startswith("st.ii-ii.q")
-        and start_question <= int(str(edge["subject_id"]).split(".q")[1][:3]) <= end_question
+        if str(edge["subject_id"]) in bundle.questions
+        and bundle.questions[str(edge["subject_id"])].part_id in {"i-ii", "ii-ii"}
+        and start_question
+        <= bundle.questions[str(edge["subject_id"])].question_number
+        <= end_question
     ]
     if center_concept:
         rows = [

@@ -1,62 +1,155 @@
-# summa-moral-graph
+# Summa Virtutum
 
-`summa-moral-graph` is an evidence-first research workspace for the moral corpus of Thomas Aquinas's *Summa Theologiae*. The stable base layer is the full interim textual corpus for:
+An interactive map of Thomas Aquinas's moral corpus.
+
+## Quick Links
+
+- Repository: [github.com/hanzhenzhujene/summa-moral-graph](https://github.com/hanzhenzhujene/summa-moral-graph)
+- Launch the dashboard: [`streamlit_app.py`](./streamlit_app.py)
+- Local app URL after launch: [http://localhost:8501](http://localhost:8501)
+- Dashboard interaction audit: [docs/dashboard_interaction_audit.md](./docs/dashboard_interaction_audit.md)
+- Full-corpus workflow guide: [docs/full_corpus_workflow.md](./docs/full_corpus_workflow.md)
+- Author: [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+
+## What This Project Is
+
+`summa-moral-graph` is an evidence-first research workspace and Streamlit dashboard for the
+moral-philosophical corpus of Thomas Aquinas's *Summa Theologiae*.
+
+It is built to help a reader move through four connected layers without losing textual grounding:
+
+1. concept
+2. relation
+3. passage
+4. graph
+
+The project is not a vague summary graph. It preserves segment-level evidence, stable ids, and
+clear separation between reviewed doctrine, editorial correspondences, structural links, and
+candidate review material.
+
+## What You Can Do In The Dashboard
+
+The unified Streamlit app lets you:
+
+- start from a concept, passage, tract scope, or graph view
+- move from concept pages to supporting passages and back again
+- inspect reviewed doctrinal edges first, with editorial and candidate layers kept visibly separate
+- open local concept maps and broader overall maps
+- browse tract overlays without losing evidence traceability
+- export the current graph slice or dashboard data directly from the UI
+
+Primary views in the app:
+
+- `Home`
+- `Concept Explorer`
+- `Passage Explorer`
+- `Overall Map`
+- `Stats / Audit`
+
+## Corpus Scope
+
+The textual spine currently covers:
 
 - `I-II, qq. 1–114`
 - `II-II, qq. 1–182`
 
-On top of that textual spine, the repo currently maintains three reviewed research overlays:
+Explicit exclusions:
 
-- a broader pilot vertical slice across `12` questions in `I-II` and `II-II`
-- a tighter prudence tract block for `II-II, QQ. 47–56`
-- a theological virtues block for `II-II, QQ. 1–46`
-- a full-corpus candidate workflow for structural coverage, candidate mentions, candidate relations, and review packets
+- `II-II, qq. 183–189`
+- `Part I`
+- `Part III`
+- `Supplement`
 
-The repo does not claim that the reviewed graph is complete. It keeps structural, doctrinal, structural-editorial, and candidate layers separate so every exported edge stays inspectable.
+Current structural corpus size:
 
-## Pipeline Stages
+- `296` questions
+- `1482` articles
+- `12,337` segment-level passages
 
-1. raw source acquisition
-2. structural parsing
-3. canonical passage segmentation
-4. reviewed and candidate annotation layers
-5. graph export
-6. Streamlit visualization
+## Current Reviewed Coverage
 
-## Current Pilot Slice
+The repo does **not** claim the whole corpus is doctrinally reviewed.
 
-The pilot slice currently covers:
+It currently includes reviewed overlays for:
 
-- `I-II q.1`
-- `I-II q.6`
-- `I-II q.22`
-- `I-II q.55`
-- `I-II q.71`
-- `I-II q.90`
-- `I-II q.109`
-- `II-II q.1`
-- `II-II q.23`
-- `II-II q.47`
-- `II-II q.58`
-- `II-II q.171`
+- pilot vertical slice across selected `I-II` and `II-II` questions
+- theological virtues: `II-II, qq. 1–46`
+- prudence: `II-II, qq. 47–56`
+- justice core: `II-II, qq. 57–79`
+- religion tract: `II-II, qq. 80–100`
+- owed-relation tract: `II-II, qq. 101–108`
+- connected virtues: `II-II, qq. 109–120`
+- fortitude parts and closure: `II-II, qq. 129–140`
+- temperance: `II-II, qq. 141–170`
 
-Current pilot counts:
+The repo also keeps a full-corpus candidate workflow for:
 
-- `792` passages
-- `66` registered concepts
-- `187` reviewed annotations
-- `29` doctrinal edges
-- `253` structural edges
+- structural coverage audit
+- candidate concept mentions
+- candidate relation proposals
+- review packets and review queues
+
+Questions `II-II, qq. 121–128` remain structurally available in the corpus but do not yet have
+their own dedicated reviewed doctrinal block.
+
+## Evidence Discipline
+
+This repository is designed around a few non-negotiable rules:
+
+- the canonical evidence unit is the segment, not the whole article
+- stable ids remain the anchor for every exported record
+- reviewed doctrine, editorial correspondences, structural links, and candidate material stay
+  separate in data, validation, and UI
+- candidate material is never auto-promoted into reviewed doctrine
+- alias handling is conservative, especially where one English label could hide multiple Thomistic
+  concepts
+
+In practice, that means the app defaults to reviewed doctrinal graph material, and users opt into
+editorial, structural, or candidate overlays only when they want them.
 
 ## Quickstart
 
-Use Python `3.11+`.
+Use Python `3.12` if possible.
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
+```
 
+## Run The Dashboard
+
+Preferred:
+
+```bash
+PYTHONPATH=src ./.venv/bin/streamlit run streamlit_app.py
+```
+
+Or:
+
+```bash
+make app
+```
+
+Then open:
+
+- [http://localhost:8501](http://localhost:8501)
+
+## Build And Validate
+
+If you want the full structural and candidate workflow:
+
+```bash
+make build-interim
+make validate-interim
+make build-corpus
+make validate-candidates
+make review-corpus
+```
+
+If you want the dashboard and reviewed overlays in a ready-to-use local state:
+
+```bash
 make build-interim
 make build-corpus
 make validate-candidates
@@ -67,33 +160,7 @@ make build-theological-virtues
 make test
 ```
 
-If you want the full corpus workflow from textual spine through candidate review prep:
-
-```bash
-make build-interim
-make validate-interim
-make build-corpus
-make validate-candidates
-make review-corpus
-```
-
-Run the app:
-
-```bash
-make app
-```
-
-Primary dashboard entry:
-
-```bash
-streamlit run streamlit_app.py
-```
-
-The unified app keeps `Home`, `Concept Explorer`, `Passage Explorer`, `Overall Map`, and
-`Stats / Audit` in one shared shell so concept, passage, preset, and graph selections carry
-across views. The older `app/Home.py` and `app/pages/*` files remain as compatibility wrappers.
-
-## Main Commands
+Useful direct commands:
 
 ```bash
 summa-moral-graph build-interim
@@ -108,93 +175,63 @@ summa-moral-graph build-theological-virtues
 summa-moral-graph validate-theological-virtues
 python scripts/build_corpus_workflow.py
 python scripts/build_corpus_review_queue.py
-python scripts/pilot_review_tools.py
-python scripts/build_prudence_review_queue.py
-python scripts/build_theological_virtues_review_queue.py
 ```
 
-## Full-Corpus Workflow Artifacts
+## Most Useful Docs
 
-Structural coverage and audit:
+- Schema: [docs/schema.md](./docs/schema.md)
+- Annotation guide: [docs/annotation_guide.md](./docs/annotation_guide.md)
+- Normalization guide: [docs/normalization.md](./docs/normalization.md)
+- Full-corpus workflow: [docs/full_corpus_workflow.md](./docs/full_corpus_workflow.md)
+- Review queue guide: [docs/review_queue_guide.md](./docs/review_queue_guide.md)
+- Coverage summary: [docs/coverage_summary.md](./docs/coverage_summary.md)
+- Dashboard interaction audit: [docs/dashboard_interaction_audit.md](./docs/dashboard_interaction_audit.md)
+
+## Important Outputs
+
+The most important generated material lives under:
+
+- `data/interim/` for parsed textual structure
+- `data/gold/` for reviewed concepts and annotations
+- `data/candidate/` for unreviewed concept and relation proposals
+- `data/processed/` for coverage, validation, graph exports, and synthesis artifacts
+
+Examples:
 
 - `data/processed/corpus_manifest.json`
-- `data/processed/question_index.csv`
-- `data/processed/article_index.csv`
-- `data/processed/ingestion_log.jsonl`
 - `data/processed/coverage_report.json`
-- `docs/coverage_summary.md`
-
-Corpus-scale candidate layer:
-
-- `data/gold/corpus_concept_registry.jsonl`
-- `data/gold/corpus_alias_overrides.yml`
-- `data/candidate/corpus_candidate_mentions.jsonl`
-- `data/candidate/corpus_candidate_relation_proposals.jsonl`
 - `data/processed/candidate_validation_report.json`
-- `docs/candidate_validation_summary.md`
+- `data/processed/fortitude_tract_synthesis.graphml`
+- `data/processed/temperance_full_synthesis.graphml`
 
-Human review workflow:
+## Dashboard Architecture
 
-- `data/processed/corpus_review_queue.json`
-- `data/processed/review_packets/st_i-ii_q100_corpus_review_packet.md`
-- `docs/full_corpus_workflow.md`
-- `docs/review_queue_guide.md`
+The current app is a unified Streamlit shell rooted at [`streamlit_app.py`](./streamlit_app.py).
 
-## Key Pilot Artifacts
+The newer viewer layer lives under:
 
-Reviewed registry and annotations:
+- `src/summa_moral_graph/viewer/`
 
-- `data/gold/pilot_concept_registry.jsonl`
-- `data/gold/pilot_reviewed_structural_annotations.jsonl`
-- `data/gold/pilot_reviewed_doctrinal_annotations.jsonl`
-- `data/gold/pilot_alias_overrides.yml`
+That shared layer now drives:
 
-Processed exports:
+- shared session state
+- cross-view navigation
+- concept, passage, and map transitions
+- tract adapter registration
+- reusable UI rendering helpers
 
-- `data/processed/pilot_nodes.csv`
-- `data/processed/pilot_structural_edges.jsonl`
-- `data/processed/pilot_doctrinal_edges.jsonl`
-- `data/processed/pilot_doctrinal.graphml`
-- `data/processed/pilot_combined.graphml`
-- `data/processed/validation_report.json`
-- `data/processed/pilot_review_queue.json`
-- `data/processed/review_packets/`
+Legacy files in `app/Home.py` and `app/pages/*` remain as compatibility wrappers rather than the
+main dashboard architecture.
 
-## Key Prudence Artifacts
+## Status
 
-The prudence tract remains separate and intact:
+This repository is in active research use, but the dashboard and evidence model are now organized
+as a polished, reader-facing product rather than a loose prototype.
 
-- `data/gold/prudence_reviewed_concepts.jsonl`
-- `data/gold/prudence_reviewed_doctrinal_annotations.jsonl`
-- `data/gold/prudence_reviewed_structural_editorial_annotations.jsonl`
-- `data/candidate/prudence_candidate_mentions.jsonl`
-- `data/candidate/prudence_candidate_relation_proposals.jsonl`
-- `data/processed/prudence_reviewed_doctrinal_edges.jsonl`
-- `data/processed/prudence_reviewed_structural_editorial_edges.jsonl`
-- `data/processed/prudence_structural_edges.jsonl`
-- `data/processed/prudence_coverage.json`
-- `data/processed/prudence_validation_report.json`
+The right way to read the current state is:
 
-## Key Theological Virtues Artifacts
+- the structural corpus is broad
+- the reviewed doctrinal layer is substantial but partial
+- the candidate layer is there to support human review, not to pretend to be finished doctrine
 
-The theological virtues tract is reviewed separately for `II-II, QQ. 1–46`:
-
-- `data/gold/theological_virtues_reviewed_concepts.jsonl`
-- `data/gold/theological_virtues_reviewed_doctrinal_annotations.jsonl`
-- `data/gold/theological_virtues_reviewed_structural_editorial_annotations.jsonl`
-- `data/processed/theological_virtues_reviewed_doctrinal_edges.jsonl`
-- `data/processed/theological_virtues_reviewed_structural_editorial_edges.jsonl`
-- `data/processed/theological_virtues_structural_edges.jsonl`
-- `data/processed/theological_virtues_coverage.json`
-- `data/processed/theological_virtues_validation_report.json`
-- `data/processed/theological_virtues_review_queue.json`
-
-## Notes
-
-- Stable segment ids remain the canonical evidence anchors.
-- The pilot graph distinguishes structural edges from doctrinal edges in code, exports, validation, and app filters.
-- Alias matching is conservative and hand-auditable; ambiguous labels are declared explicitly instead of auto-collapsed.
-- Default concept and graph views emphasize evidence-backed doctrinal edges first.
-- Prudence part-taxonomy relations remain explicitly typed as `integral_part_of`, `subjective_part_of`, and `potential_part_of`.
-- Candidate data stays separate and is never promoted automatically.
-- The full-corpus candidate layer is for review support, not for doctrinal completeness claims.
+That separation is deliberate, and it is one of the main guarantees of the project.

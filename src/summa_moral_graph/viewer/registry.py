@@ -585,6 +585,16 @@ def adapter_for_preset(preset_name: str | None) -> TractAdapter | None:
     return adapter_for_family(preset_family(preset_name))
 
 
+def adapters_for_range(start_question: int, end_question: int) -> list[TractAdapter]:
+    adapters = [
+        adapter
+        for adapter in TRACT_ADAPTERS.values()
+        if adapter.range_start <= end_question and start_question <= adapter.range_end
+    ]
+    adapters.sort(key=lambda adapter: (adapter.range_start, adapter.range_end, adapter.label))
+    return adapters
+
+
 def family_for_range(start_question: int, end_question: int) -> str | None:
     matching = [
         adapter
