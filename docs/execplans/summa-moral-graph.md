@@ -2,6 +2,10 @@
 
 ## Progress
 
+- The repo front page is being tightened again toward a more deployment-friendly, Aristotle-style reader README:
+  - the top of `README.md` now leads with open/run/deploy routes instead of maintainer detail first
+  - the Streamlit Community Cloud path is now documented explicitly as the GitHub-hosted deployment route
+  - a minimal `requirements.txt` now exists so the repo is easier to wire into Streamlit Community Cloud from GitHub
 - Relation labels are now on by default across the viewer's map surfaces:
   - the overall map `Show relation labels` control now defaults to enabled
   - the Concept Explorer local map now has the same relation-label control, also defaulting to enabled

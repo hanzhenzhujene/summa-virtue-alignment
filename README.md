@@ -2,14 +2,17 @@
 
 An interactive map of Thomas Aquinas's moral corpus.
 
-## Quick Links
+This repository turns Aquinas's moral corpus into something you can read, inspect, and navigate:
+open a concept, move into its supporting passages, and then step outward into the graph without
+losing evidence.
 
-- Repository: [github.com/hanzhenzhujene/summa-moral-graph](https://github.com/hanzhenzhujene/summa-moral-graph)
-- Launch the dashboard: [`streamlit_app.py`](./streamlit_app.py)
-- Local app URL after launch: [http://localhost:8501](http://localhost:8501)
-- Dashboard interaction audit: [docs/dashboard_interaction_audit.md](./docs/dashboard_interaction_audit.md)
-- Full-corpus workflow guide: [docs/full_corpus_workflow.md](./docs/full_corpus_workflow.md)
-- Author: [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+## Open The Dashboard
+
+| GitHub | Run locally | Deploy from GitHub | Docs |
+| --- | --- | --- | --- |
+| **[github.com/hanzhenzhujene/summa-moral-graph](https://github.com/hanzhenzhujene/summa-moral-graph)** | [`make app`](#run-the-dashboard) | [Streamlit Community Cloud](#deploy-from-github-with-streamlit) | [Dashboard audit](./docs/dashboard_interaction_audit.md) |
+
+Author: [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
 ## What This Project Is
 
@@ -45,6 +48,71 @@ Primary views in the app:
 - `Passage Explorer`
 - `Overall Map`
 - `Stats / Audit`
+
+## Run The Dashboard
+
+Use Python `3.12` if possible.
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+PYTHONPATH=src ./.venv/bin/streamlit run streamlit_app.py
+```
+
+Or:
+
+```bash
+make app
+```
+
+Then open:
+
+- [http://localhost:8501](http://localhost:8501)
+
+The Streamlit entrypoint is:
+
+- [`streamlit_app.py`](./streamlit_app.py)
+
+If you just want the app and not the full maintainer workflow, this is the only command path you
+need.
+
+## Deploy From GitHub With Streamlit
+
+If you want the app hosted publicly from GitHub, the right target is **Streamlit Community Cloud**,
+not GitHub Pages.
+
+Why:
+
+- GitHub Pages is for static sites
+- this dashboard is a Python Streamlit app
+- it needs a live Python runtime, package install, and server-side execution
+
+Recommended deployment path:
+
+1. Push this repository to GitHub.
+2. Go to [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Click **New app**.
+4. Choose:
+   - repository: `hanzhenzhujene/summa-moral-graph`
+   - branch: `main`
+   - main file path: `streamlit_app.py`
+5. Deploy.
+
+Once deployed, Streamlit gives you a fixed app URL like:
+
+- `https://<your-app-name>.streamlit.app`
+
+Streamlit's sharing docs:
+
+- [Run your Streamlit app](https://docs.streamlit.io/develop/concepts/architecture/run-your-app)
+- [Share your app](https://docs.streamlit.io/deploy/streamlit-community-cloud/share-your-app)
+
+After it is live, add the Streamlit badge to the top of this README:
+
+```md
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://<your-app-name>.streamlit.app)
+```
 
 ## Corpus Scope
 
@@ -109,31 +177,13 @@ editorial, structural, or candidate overlays only when they want them.
 
 ## Quickstart
 
-Use Python `3.12` if possible.
+If you want the full repo in editable local mode first:
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 ```
-
-## Run The Dashboard
-
-Preferred:
-
-```bash
-PYTHONPATH=src ./.venv/bin/streamlit run streamlit_app.py
-```
-
-Or:
-
-```bash
-make app
-```
-
-Then open:
-
-- [http://localhost:8501](http://localhost:8501)
 
 ## Build And Validate
 
