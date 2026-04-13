@@ -33,6 +33,9 @@
 - The home launch buttons are now being steered away from flat ribbons toward a more tactile treatment:
   - all four start buttons now use a diagonal highlight-to-shadow gradient with stronger lower-edge shadowing
   - the map CTA now places its darker weight toward the lower-right, so it reads more like a raised button than a striped band
+- The button finish is being refined toward a more polished public-facing look:
+  - lower-edge shadowing has been reduced so the buttons feel elevated but not chunky
+  - both the neutral and map CTAs now use softer contrast and lighter depth cues for a more refined, high-end appearance
 - The lower `Start` row is being nudged upward for cleaner baseline alignment:
   - the tract spacer is now smaller
   - the map preview band is shorter again

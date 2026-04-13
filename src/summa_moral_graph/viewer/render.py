@@ -866,19 +866,19 @@ def inject_viewer_css() -> None:
         [class*="st-key-smg-home-open-"] button {
           min-height: 2.92rem !important;
           border-radius: 18px !important;
-          border: 1px solid rgba(139, 68, 46, 0.24) !important;
+          border: 1px solid rgba(139, 68, 46, 0.18) !important;
           background:
             linear-gradient(
               145deg,
               rgba(255, 254, 251, 0.99) 0%,
-              rgba(249, 241, 231, 0.99) 42%,
-              rgba(232, 219, 202, 0.98) 100%
+              rgba(248, 241, 232, 0.99) 46%,
+              rgba(236, 224, 208, 0.98) 100%
             ) !important;
           box-shadow:
-            0 16px 28px rgba(29, 39, 49, 0.09),
-            0 3px 0 rgba(125, 91, 62, 0.16),
+            0 10px 20px rgba(29, 39, 49, 0.06),
+            0 1px 0 rgba(125, 91, 62, 0.10),
             inset 0 1px 0 rgba(255,255,255,0.82),
-            inset -1px -4px 8px rgba(139, 68, 46, 0.08) !important;
+            inset -1px -3px 6px rgba(139, 68, 46, 0.05) !important;
           font-family: "Cinzel", Georgia, serif !important;
           font-size: 0.8rem !important;
           font-weight: 700 !important;
@@ -892,19 +892,19 @@ def inject_viewer_css() -> None:
         }
 
         [class*="st-key-smg-home-open-"] button:hover {
-          border-color: rgba(139, 68, 46, 0.42) !important;
+          border-color: rgba(139, 68, 46, 0.32) !important;
           background:
             linear-gradient(
               145deg,
               rgba(255, 254, 251, 1) 0%,
-              rgba(250, 243, 234, 0.99) 42%,
-              rgba(236, 224, 209, 0.99) 100%
+              rgba(250, 243, 234, 0.99) 46%,
+              rgba(239, 228, 214, 0.99) 100%
             ) !important;
           box-shadow:
-            0 20px 36px rgba(29, 39, 49, 0.11),
-            0 3px 0 rgba(125, 91, 62, 0.19),
+            0 12px 24px rgba(29, 39, 49, 0.08),
+            0 1px 0 rgba(125, 91, 62, 0.12),
             inset 0 1px 0 rgba(255,255,255,0.9),
-            inset -1px -5px 9px rgba(139, 68, 46, 0.1) !important;
+            inset -1px -3px 7px rgba(139, 68, 46, 0.06) !important;
           transform: translateY(-1px);
         }
 
@@ -912,35 +912,35 @@ def inject_viewer_css() -> None:
           background:
             linear-gradient(
               145deg,
-              #6f97b5 0%,
-              #4d7899 42%,
-              #2d5874 100%
+              #789eba 0%,
+              #5e85a2 48%,
+              #42647d 100%
             ) !important;
           color: #fdf8f2 !important;
-          border-color: rgba(32, 68, 93, 0.94) !important;
+          border-color: rgba(46, 82, 107, 0.78) !important;
           box-shadow:
-            0 18px 34px rgba(20, 44, 65, 0.24),
-            0 4px 0 rgba(18, 40, 57, 0.42),
-            inset 0 1px 0 rgba(255,255,255,0.24),
-            inset -1px -6px 10px rgba(13, 30, 43, 0.2),
+            0 12px 24px rgba(20, 44, 65, 0.16),
+            0 1px 0 rgba(18, 40, 57, 0.18),
+            inset 0 1px 0 rgba(255,255,255,0.20),
+            inset -1px -4px 8px rgba(13, 30, 43, 0.11),
             inset 0 0 0 1px rgba(255,255,255,0.08) !important;
-          text-shadow: 0 1px 0 rgba(8, 16, 24, 0.28);
+          text-shadow: 0 1px 0 rgba(8, 16, 24, 0.18);
         }
 
         [class*="st-key-smg-home-open-map"] button:hover {
-          border-color: rgba(33, 78, 112, 0.98) !important;
+          border-color: rgba(49, 91, 121, 0.88) !important;
           background:
             linear-gradient(
               145deg,
-              #7aa3c1 0%,
-              #5683a5 42%,
-              #376785 100%
+              #82aac6 0%,
+              #678eab 48%,
+              #49708a 100%
             ) !important;
           box-shadow:
-            0 22px 40px rgba(20, 44, 65, 0.28),
-            0 4px 0 rgba(18, 40, 57, 0.46),
-            inset 0 1px 0 rgba(255,255,255,0.3),
-            inset -1px -6px 10px rgba(13, 30, 43, 0.18),
+            0 14px 28px rgba(20, 44, 65, 0.20),
+            0 1px 0 rgba(18, 40, 57, 0.20),
+            inset 0 1px 0 rgba(255,255,255,0.26),
+            inset -1px -4px 8px rgba(13, 30, 43, 0.10),
             inset 0 0 0 1px rgba(255,255,255,0.12) !important;
         }
 
