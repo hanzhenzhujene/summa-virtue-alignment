@@ -2,6 +2,10 @@
 
 ## Progress
 
+- Streamlit Community Cloud dependency installation is now unblocked for Python 3.14:
+  - `lxml` is no longer a hard dependency on Python 3.14 environments
+  - ingest HTML parsing now falls back to Python's built-in `html.parser` when `lxml` is unavailable
+  - this preserves parser behavior for local environments with `lxml` while avoiding Cloud build failures tied to missing system `libxml2/libxslt` headers
 - The README front page is now being pushed closer to a real public product surface:
   - the top section now includes badge-style metadata, stronger run/deploy calls to action, and a compact three-column viewer summary
   - freshly generated dashboard screenshots now appear near the top of the README for both the landing view and the overall map
@@ -343,6 +347,8 @@
 
 ## Surprises & Discoveries
 
+- Streamlit Community Cloud currently provisions Python `3.14.x`, and `lxml==5.4.0` may not install there without system `libxml2/libxslt` development headers.
+- The current repository only needs BeautifulSoup parsing behavior for app runtime; a hard `lxml` dependency is not required to run the dashboard.
 - The site feels much more “AI dashboard” than “finished scholarly object” when icons are emoji-forward. Classical typography and restrained ornament do more work here than adding more decorative graphics.
 - On the landing page, a disabled route button reads to users as a broken button, not as a helpful guardrail. The tract card works better when it always starts from a real reviewed tract.
 - The recent overall-map bug was not mainly a widget problem; the deeper failure was that range rendering still assumed a single tract family even after the UI had grown cross-tract quick spans and free-form question sliders.
@@ -466,6 +472,7 @@
 
 ## Decision Log
 
+- Keep `lxml` optional for Python `3.14+` installs and use BeautifulSoup parser fallback (`lxml` first, then `html.parser`) in ingest parsing paths.
 - For the overall map, question ranges should aggregate every overlapping reviewed tract adapter rather than forcing users into one-family spans. When a selected range has no reviewed tract coverage, the UI should say that directly instead of asking for a preset as though the user had made no scope choice.
 - Use New Advent as the primary parser target for the first sprint.
 - Keep raw HTML cached locally and out of version control.
@@ -593,6 +600,9 @@
 
 ## Outcomes & Retrospective
 
+- The deployment path is now more robust across hosted environments:
+  - Streamlit Cloud no longer needs to compile `lxml` to install the package
+  - parser behavior remains stable by preferring `lxml` when present and falling back gracefully when it is not
 - The shell now feels closer to a polished artifact than a generic analytics app:
   - navigation reads as a designed navigator rather than five default buttons
   - Roman-numeral route markers fit the tone better than emoji badges

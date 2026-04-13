@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from urllib.parse import urljoin
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, FeatureNotFound
 
 from ..models.records import PartId
 from ..utils.ids import question_number_from_summa_url
@@ -39,7 +39,10 @@ def parse_part_index_html(
     source_part_url: str,
     html_text: str,
 ) -> list[ScopeEntry]:
-    soup = BeautifulSoup(html_text, "lxml")
+    try:
+        soup = BeautifulSoup(html_text, "lxml")
+    except FeatureNotFound:
+        soup = BeautifulSoup(html_text, "html.parser")
     seen: set[int] = set()
     entries: list[ScopeEntry] = []
     for anchor in soup.find_all("a", href=True):

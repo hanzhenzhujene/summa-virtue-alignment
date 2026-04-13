@@ -4,7 +4,7 @@ import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, FeatureNotFound, Tag
 
 from ..utils.text import clean_article_title, clean_question_title, normalize_text, visible_text
 
@@ -46,7 +46,10 @@ class ParsedQuestion:
 
 
 def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
-    soup = BeautifulSoup(html_text, "lxml")
+    try:
+        soup = BeautifulSoup(html_text, "lxml")
+    except FeatureNotFound:
+        soup = BeautifulSoup(html_text, "html.parser")
     heading = soup.find("h1")
     if not isinstance(heading, Tag):
         raise ValueError("Question page is missing an <h1> heading")
