@@ -123,7 +123,7 @@ review-temperance-closure-161-170:
 	$(BIN)/python scripts/build_temperance_closure_161_170_review_queue.py
 
 app:
-	$(BIN)/streamlit run app/Home.py
+	$(BIN)/streamlit run streamlit_app.py
 
 test:
 	$(BIN)/pytest

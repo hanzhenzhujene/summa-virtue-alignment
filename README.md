@@ -83,6 +83,16 @@ Run the app:
 make app
 ```
 
+Primary dashboard entry:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+The unified app keeps `Home`, `Concept Explorer`, `Passage Explorer`, `Overall Map`, and
+`Stats / Audit` in one shared shell so concept, passage, preset, and graph selections carry
+across views. The older `app/Home.py` and `app/pages/*` files remain as compatibility wrappers.
+
 ## Main Commands
 
 ```bash
