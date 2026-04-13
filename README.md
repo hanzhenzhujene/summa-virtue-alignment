@@ -2,17 +2,54 @@
 
 An interactive map of Thomas Aquinas's moral corpus.
 
-This repository turns Aquinas's moral corpus into something you can read, inspect, and navigate:
-open a concept, move into its supporting passages, and then step outward into the graph without
-losing evidence.
+![Python](https://img.shields.io/badge/Python-3.11%2B-2f5d8a?style=flat-square)
+![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-b04a2f?style=flat-square)
+![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
+![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
-## Open The Dashboard
+> Passage-grounded concept, relation, and graph navigation across Aquinas's moral corpus.
+>
+> **[Open on GitHub](https://github.com/hanzhenzhujene/summa-moral-graph)** · **[Run now](#run-the-dashboard)** · **[Deploy now](#deploy-from-github-with-streamlit)**
+>
+> by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
-| GitHub | Run locally | Deploy from GitHub | Docs |
+This dashboard is built to be read, not merely queried. Start from a concept, a passage, a tract
+scope, or the overall map, and move between concept, relation, passage, and graph without losing
+the segment-level evidence underneath.
+
+Reviewed doctrine, editorial correspondences, structural links, and candidate proposals stay
+visibly separate throughout the app.
+
+## Open The Viewer
+
+| GitHub | Run now | Deploy now | Docs |
 | --- | --- | --- | --- |
-| **[github.com/hanzhenzhujene/summa-moral-graph](https://github.com/hanzhenzhujene/summa-moral-graph)** | [`make app`](#run-the-dashboard) | [Streamlit Community Cloud](#deploy-from-github-with-streamlit) | [Dashboard audit](./docs/dashboard_interaction_audit.md) |
+| **[Repository](https://github.com/hanzhenzhujene/summa-moral-graph)** | **[`make app`](#run-the-dashboard)** | **[Streamlit Community Cloud](#deploy-from-github-with-streamlit)** | [Viewer audit](./docs/dashboard_interaction_audit.md) |
 
-Author: [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+The Streamlit entrypoint is [`streamlit_app.py`](./streamlit_app.py).
+
+| Run now | Deploy now |
+| --- | --- |
+| Create a local environment, install dependencies, and launch the Streamlit shell immediately.<br><br>`python3.12 -m venv .venv`<br>`source .venv/bin/activate`<br>`pip install -e ".[dev]"`<br>`make app` | Publish the repo directly from GitHub with Streamlit Community Cloud.<br><br>1. Open [Streamlit Community Cloud](https://share.streamlit.io/).<br>2. Choose `hanzhenzhujene/summa-moral-graph`.<br>3. Set branch `main`.<br>4. Set main file `streamlit_app.py`. |
+
+| Dashboard home | Overall map |
+| --- | --- |
+| ![Dashboard home](docs/assets/dashboard-home.png) | ![Overall map](docs/assets/dashboard-overall-map.png) |
+| _Landing view with concept, passage, tract, and map entry routes._ | _Graph view with doctrinal edges, evidence panel, and current-slice controls._ |
+
+## What This Viewer Does
+
+| Read one concept closely | Start from the text | Move through the graph |
+| --- | --- | --- |
+| Open a concept page, read distinction notes, inspect reviewed doctrinal edges, and open the supporting passages. | Search passages directly, read segment text first, then inspect reviewed and candidate material attached to that passage. | Switch between local concept maps and the overall doctrinal map without losing relation labels, evidence, or layer distinctions. |
+
+## Try This First
+
+1. Launch the dashboard locally.
+2. Open `Concept Explorer` and start from a tract-centered concept such as `prudence`, `justice`, `religion`, or `temperance`.
+3. Read the supporting passage cards before opening the wider map.
+4. Use the local concept map to move to a neighboring concept.
+5. Open `Overall Map` when you want the wider doctrinal slice.
 
 ## What This Project Is
 
@@ -30,7 +67,7 @@ The project is not a vague summary graph. It preserves segment-level evidence, s
 clear separation between reviewed doctrine, editorial correspondences, structural links, and
 candidate review material.
 
-## What You Can Do In The Dashboard
+## What You Can Do Here
 
 The unified Streamlit app lets you:
 

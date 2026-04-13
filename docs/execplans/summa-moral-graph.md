@@ -2,6 +2,14 @@
 
 ## Progress
 
+- The README front page is now being pushed closer to a real public product surface:
+  - the top section now includes badge-style metadata, stronger run/deploy calls to action, and a compact three-column viewer summary
+  - freshly generated dashboard screenshots now appear near the top of the README for both the landing view and the overall map
+  - the entry experience now reads more like a live viewer homepage than a plain repository preface
+- The README top section now reads more like a live product landing path:
+  - the first screen now leads with open/run/deploy routes and a stronger reader-facing summary
+  - a short `Try this first` section now gives a concrete first-use path through concept, passage, and map navigation
+  - the front page is now closer to the Aristotle repo's entry rhythm without copying its wording or branding
 - The repo front page is being tightened again toward a more deployment-friendly, Aristotle-style reader README:
   - the top of `README.md` now leads with open/run/deploy routes instead of maintainer detail first
   - the Streamlit Community Cloud path is now documented explicitly as the GitHub-hosted deployment route
