@@ -592,6 +592,26 @@ def inject_viewer_css() -> None:
           margin-top: -0.08rem;
         }
 
+        .smgv-map-intro {
+          margin: 0.34rem 0 0.14rem 0;
+        }
+
+        .smgv-map-intro h2 {
+          margin: 0 0 0.08rem 0;
+          font-size: 1.18rem;
+          line-height: 1.02;
+          font-family: "Cormorant Garamond", Georgia, serif;
+          color: var(--smg-ink);
+        }
+
+        .smgv-map-intro p {
+          margin: 0;
+          color: var(--smg-muted);
+          line-height: 1.3;
+          font-size: 0.77rem;
+          max-width: 44rem;
+        }
+
         .smgv-map-controls-lift {
           height: 0.01rem;
           margin-top: -0.1rem;

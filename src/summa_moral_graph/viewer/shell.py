@@ -1587,13 +1587,18 @@ def _render_map_view(data: ViewerAppData) -> None:
         current_center = str(session_state.get(CONCEPT_ID_KEY, "") or "")
         session_state["smg_map_center_concept"] = current_center
 
-    section_heading(
-        "Overall Map",
-        "Reviewed doctrine first. Narrow the range only when the graph gets too large to read.",
+    st.markdown(
+        (
+            "<div class='smgv-map-intro'>"
+            "<h2>Overall Map</h2>"
+            "<p>Reviewed doctrine first. Narrow the range only when the graph gets too large to read.</p>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
     )
     st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
     st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
-    top_control_left, top_control_mid, top_control_right = st.columns((0.42, 1.22, 1.16), gap="medium")
+    top_control_left, top_control_mid, top_control_right = st.columns((0.34, 1.42, 1.04), gap="medium")
     with top_control_left:
         st.radio(
             "Map mode",
@@ -1609,27 +1614,25 @@ def _render_map_view(data: ViewerAppData) -> None:
             ("57–122", (57, 122)),
             ("123–140", (123, 140)),
             ("141–170", (141, 170)),
-            ("All", (1, 182)),
         ]
-        quick_rows = [quick_ranges[:3], quick_ranges[3:]]
-        for row_index, quick_row in enumerate(quick_rows):
-            quick_columns = st.columns(len(quick_row), gap="small")
-            for column, (label, range_value) in zip(quick_columns, quick_row, strict=False):
-                with column:
-                    if st.button(
-                        label,
-                        key=f"smg-map-quick-range-{row_index}-{label}",
-                        use_container_width=True,
-                    ):
-                        queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
-                        st.rerun()
+        quick_columns = st.columns(len(quick_ranges), gap="small")
+        for column, (label, range_value) in zip(quick_columns, quick_ranges, strict=False):
+            with column:
+                if st.button(
+                    label,
+                    key=f"smg-map-quick-range-{label}",
+                    use_container_width=True,
+                ):
+                    queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
+                    st.rerun()
     with top_control_right:
-        st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
+        st.markdown("<div class='smgv-map-controls-note'>Question span</div>", unsafe_allow_html=True)
         st.slider(
             "Question span",
             min_value=1,
             max_value=182,
             key="smg_map_range",
+            label_visibility="collapsed",
             help=(
                 "Numeric question span. Pair it with a tract preset or question "
                 "spotlight when you want a tighter overall map."
