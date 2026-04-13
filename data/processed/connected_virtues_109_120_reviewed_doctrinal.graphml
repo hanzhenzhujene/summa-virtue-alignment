@@ -1,0 +1,1334 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d19" for="edge" attr.name="connected_virtues_cluster" attr.type="string"/>
+<key id="d18" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d17" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d16" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d15" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d14" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d12" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d10" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d9" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d8" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d7" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.boasting">
+  <data key="d0">concept.boasting</data>
+  <data key="d1">Boasting</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">False self-exaltation by speaking above what one truly is.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.common_good">
+  <data key="d0">concept.common_good</data>
+  <data key="d1">Common Good</data>
+  <data key="d2">end</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Good of the whole community rather than of a private individual alone.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.covetousness">
+  <data key="d0">concept.covetousness</data>
+  <data key="d1">Covetousness</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Immoderate love of having possessions or riches.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.dissimulation">
+  <data key="d0">concept.dissimulation</data>
+  <data key="d1">Dissimulation</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A lie told by outward deeds or signs through showing oneself otherwise than one is.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.epikeia">
+  <data key="d0">concept.epikeia</data>
+  <data key="d1">Epikeia / Equity</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue correcting merely literal legal application in order to preserve justice and the common good in singular cases.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.external_goods">
+  <data key="d0">concept.external_goods</data>
+  <data key="d1">External Goods</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The domain of money and possessions that can be used, given, acquired, or retained.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.flattery">
+  <data key="d0">concept.flattery</data>
+  <data key="d1">Flattery</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Excessive pleasing of others in ordinary interaction beyond the mode of virtue.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.friendliness_affability">
+  <data key="d0">concept.friendliness_affability</data>
+  <data key="d1">Friendliness / Affability</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue maintaining becoming conduct in ordinary relations by pleasing others appropriately.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.giving">
+  <data key="d0">concept.giving</data>
+  <data key="d1">Giving</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The act of parting with money or possessions to another.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.hypocrisy">
+  <data key="d0">concept.hypocrisy</data>
+  <data key="d1">Hypocrisy</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A species of dissimulation in which a person simulates the character of a just man without being such in reality.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.intent_of_law">
+  <data key="d0">concept.intent_of_law</data>
+  <data key="d1">Intent of Law</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">What the law seeks in view in ordering cases toward justice and the common good.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.irony">
+  <data key="d0">concept.irony</data>
+  <data key="d1">Irony</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">False self-belittling by denying or diminishing goods one truly has.</data>
+  <data key="d5">This is the tract's vice of understatement, not modern rhetorical irony.</data>
+</node>
+<node id="concept.justice">
+  <data key="d0">concept.justice</data>
+  <data key="d1">Justice</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Moral virtue rendering acts and agents right in relation to another.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.law">
+  <data key="d0">concept.law</data>
+  <data key="d1">Law</data>
+  <data key="d2">law</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Law as ordinance of reason for the common good.</data>
+  <data key="d5">Generic law is kept distinct from named law-types unless the text is explicit.</data>
+</node>
+<node id="concept.legal_letter">
+  <data key="d0">concept.legal_letter</data>
+  <data key="d1">Letter of the Law</data>
+  <data key="d2">law</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The merely literal application of a law in a case where following the words alone would frustrate justice.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.liberality">
+  <data key="d0">concept.liberality</data>
+  <data key="d1">Liberality</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue moderating the use of money or external goods, especially in giving.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.lying">
+  <data key="d0">concept.lying</data>
+  <data key="d1">Lying</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The sinful false signification of what is in one's mind.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.prodigality">
+  <data key="d0">concept.prodigality</data>
+  <data key="d1">Prodigality</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Excessive giving and deficient retaining or acquiring with respect to riches.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.quarreling">
+  <data key="d0">concept.quarreling</data>
+  <data key="d1">Quarreling</data>
+  <data key="d2">wrong_act</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Contradictory disagreeableness in ordinary social interaction, opposed to affability.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.retaining">
+  <data key="d0">concept.retaining</data>
+  <data key="d1">Retaining</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The act of keeping or holding possessions instead of parting with them.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.self_presentation">
+  <data key="d0">concept.self_presentation</data>
+  <data key="d1">Self-Presentation</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The domain of manifesting oneself truthfully or falsely by words or deeds.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.social_interaction">
+  <data key="d0">concept.social_interaction</data>
+  <data key="d1">Social Interaction</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The domain of ordinary human dealings in words and deeds among those with whom one dwells.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.truth_self_presentation">
+  <data key="d0">concept.truth_self_presentation</data>
+  <data key="d1">Truth</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The annexed virtue by which a person manifests himself as he is in words and deeds.</data>
+  <data key="d5">This tract-local truth is truthful self-manifestation, not First Truth or theological truth in the faith tract.</data>
+</node>
+<node id="st.ii-ii.q109">
+  <data key="d0">st.ii-ii.q109</data>
+  <data key="d1">II-II q.109</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Truth</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q109.a001">
+  <data key="d0">st.ii-ii.q109.a001</data>
+  <data key="d1">II-II q.109 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q109.a002">
+  <data key="d0">st.ii-ii.q109.a002</data>
+  <data key="d1">II-II q.109 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q109.a003">
+  <data key="d0">st.ii-ii.q109.a003</data>
+  <data key="d1">II-II q.109 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q109.a004">
+  <data key="d0">st.ii-ii.q109.a004</data>
+  <data key="d1">II-II q.109 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q110">
+  <data key="d0">st.ii-ii.q110</data>
+  <data key="d1">II-II q.110</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">The vices opposed to truth, and first of lying</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q110.a001">
+  <data key="d0">st.ii-ii.q110.a001</data>
+  <data key="d1">II-II q.110 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q110.a002">
+  <data key="d0">st.ii-ii.q110.a002</data>
+  <data key="d1">II-II q.110 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q110.a003">
+  <data key="d0">st.ii-ii.q110.a003</data>
+  <data key="d1">II-II q.110 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q110.a004">
+  <data key="d0">st.ii-ii.q110.a004</data>
+  <data key="d1">II-II q.110 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q111">
+  <data key="d0">st.ii-ii.q111</data>
+  <data key="d1">II-II q.111</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Dissimulation and hypocrisy</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q111.a001">
+  <data key="d0">st.ii-ii.q111.a001</data>
+  <data key="d1">II-II q.111 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q111.a002">
+  <data key="d0">st.ii-ii.q111.a002</data>
+  <data key="d1">II-II q.111 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q111.a003">
+  <data key="d0">st.ii-ii.q111.a003</data>
+  <data key="d1">II-II q.111 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q111.a004">
+  <data key="d0">st.ii-ii.q111.a004</data>
+  <data key="d1">II-II q.111 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q112">
+  <data key="d0">st.ii-ii.q112</data>
+  <data key="d1">II-II q.112</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Boasting</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q112.a001">
+  <data key="d0">st.ii-ii.q112.a001</data>
+  <data key="d1">II-II q.112 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q112.a002">
+  <data key="d0">st.ii-ii.q112.a002</data>
+  <data key="d1">II-II q.112 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q113">
+  <data key="d0">st.ii-ii.q113</data>
+  <data key="d1">II-II q.113</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Irony</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q113.a001">
+  <data key="d0">st.ii-ii.q113.a001</data>
+  <data key="d1">II-II q.113 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q113.a002">
+  <data key="d0">st.ii-ii.q113.a002</data>
+  <data key="d1">II-II q.113 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q114">
+  <data key="d0">st.ii-ii.q114</data>
+  <data key="d1">II-II q.114</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">The friendliness which is called affability</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q114.a001">
+  <data key="d0">st.ii-ii.q114.a001</data>
+  <data key="d1">II-II q.114 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q114.a002">
+  <data key="d0">st.ii-ii.q114.a002</data>
+  <data key="d1">II-II q.114 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q115">
+  <data key="d0">st.ii-ii.q115</data>
+  <data key="d1">II-II q.115</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Flattery</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q115.a001">
+  <data key="d0">st.ii-ii.q115.a001</data>
+  <data key="d1">II-II q.115 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q115.a002">
+  <data key="d0">st.ii-ii.q115.a002</data>
+  <data key="d1">II-II q.115 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q116">
+  <data key="d0">st.ii-ii.q116</data>
+  <data key="d1">II-II q.116</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Quarreling</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q116.a001">
+  <data key="d0">st.ii-ii.q116.a001</data>
+  <data key="d1">II-II q.116 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q116.a002">
+  <data key="d0">st.ii-ii.q116.a002</data>
+  <data key="d1">II-II q.116 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117">
+  <data key="d0">st.ii-ii.q117</data>
+  <data key="d1">II-II q.117</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Liberality</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a001">
+  <data key="d0">st.ii-ii.q117.a001</data>
+  <data key="d1">II-II q.117 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a002">
+  <data key="d0">st.ii-ii.q117.a002</data>
+  <data key="d1">II-II q.117 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a003">
+  <data key="d0">st.ii-ii.q117.a003</data>
+  <data key="d1">II-II q.117 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a004">
+  <data key="d0">st.ii-ii.q117.a004</data>
+  <data key="d1">II-II q.117 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a005">
+  <data key="d0">st.ii-ii.q117.a005</data>
+  <data key="d1">II-II q.117 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q117.a006">
+  <data key="d0">st.ii-ii.q117.a006</data>
+  <data key="d1">II-II q.117 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118">
+  <data key="d0">st.ii-ii.q118</data>
+  <data key="d1">II-II q.118</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">The vices opposed to liberality, and in the first place, of covetousness</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a001">
+  <data key="d0">st.ii-ii.q118.a001</data>
+  <data key="d1">II-II q.118 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a002">
+  <data key="d0">st.ii-ii.q118.a002</data>
+  <data key="d1">II-II q.118 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a003">
+  <data key="d0">st.ii-ii.q118.a003</data>
+  <data key="d1">II-II q.118 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a004">
+  <data key="d0">st.ii-ii.q118.a004</data>
+  <data key="d1">II-II q.118 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a005">
+  <data key="d0">st.ii-ii.q118.a005</data>
+  <data key="d1">II-II q.118 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a006">
+  <data key="d0">st.ii-ii.q118.a006</data>
+  <data key="d1">II-II q.118 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a007">
+  <data key="d0">st.ii-ii.q118.a007</data>
+  <data key="d1">II-II q.118 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q118.a008">
+  <data key="d0">st.ii-ii.q118.a008</data>
+  <data key="d1">II-II q.118 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q119">
+  <data key="d0">st.ii-ii.q119</data>
+  <data key="d1">II-II q.119</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Prodigality</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q119.a001">
+  <data key="d0">st.ii-ii.q119.a001</data>
+  <data key="d1">II-II q.119 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q119.a002">
+  <data key="d0">st.ii-ii.q119.a002</data>
+  <data key="d1">II-II q.119 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q119.a003">
+  <data key="d0">st.ii-ii.q119.a003</data>
+  <data key="d1">II-II q.119 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q120">
+  <data key="d0">st.ii-ii.q120</data>
+  <data key="d1">II-II q.120</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">"Epikeia" or equity</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q120.a001">
+  <data key="d0">st.ii-ii.q120.a001</data>
+  <data key="d1">II-II q.120 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q120.a002">
+  <data key="d0">st.ii-ii.q120.a002</data>
+  <data key="d1">II-II q.120 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the connected virtues 109-120 tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.boasting" target="concept.self_presentation" id="edge.concept.boasting.concerns_self_presentation.concept.self_presentation">
+  <data key="d6">edge.concept.boasting.concerns_self_presentation.concept.self_presentation</data>
+  <data key="d7">concept.boasting</data>
+  <data key="d8">Boasting</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_self_presentation</data>
+  <data key="d11">concept.self_presentation</data>
+  <data key="d12">Self-Presentation</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-boasting-concerns-self-presentation-concept-self-presentation-st-ii-ii-q112-a001-resp</data>
+  <data key="d15">st.ii-ii.q112.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">a man wishes to throw [jactare] a thing far away, he lifts it up high. And to uplift oneself, properly speaking, is to talk of oneself above oneself [Or 'tall-talking' as we should say in English]. This happens in two ways. For sometimes a man speaks of himself, not above what he is in himself, but above th</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.boasting" target="concept.truth_self_presentation" id="edge.concept.boasting.contrary_to.concept.truth_self_presentation">
+  <data key="d6">edge.concept.boasting.contrary_to.concept.truth_self_presentation</data>
+  <data key="d7">concept.boasting</data>
+  <data key="d8">Boasting</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.truth_self_presentation</data>
+  <data key="d12">Truth</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-boasting-contrary-to-concept-truth-self-presentation-st-ii-ii-q112-a001-resp</data>
+  <data key="d15">st.ii-ii.q112.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">above what others think of one: although in either case it may be called boasting. Hence boasting properly so called is opposed to truth by way of excess.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.boasting" target="concept.lying" id="edge.concept.boasting.species_of.concept.lying">
+  <data key="d6">edge.concept.boasting.species_of.concept.lying</data>
+  <data key="d7">concept.boasting</data>
+  <data key="d8">Boasting</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.lying</data>
+  <data key="d12">Lying</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-boasting-species-of-concept-lying-st-ii-ii-q110-a002-resp</data>
+  <data key="d15">st.ii-ii.q110.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e Philosopher (Ethic. iv, 7), lies are of two kinds, namely, the lie which goes beyond the truth , and this belongs to "boasting," and the lie which stops short of the truth , and this belongs to "irony." This division is an essential division of lying itself, because lying as such is op</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.covetousness" target="concept.external_goods" id="edge.concept.covetousness.concerns_external_goods.concept.external_goods">
+  <data key="d6">edge.concept.covetousness.concerns_external_goods.concept.external_goods</data>
+  <data key="d7">concept.covetousness</data>
+  <data key="d8">Covetousness</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_external_goods</data>
+  <data key="d11">concept.external_goods</data>
+  <data key="d12">External Goods</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-covetousness-concerns-external-goods-concept-external-goods-st-ii-ii-q118-a002-resp</data>
+  <data key="d15">st.ii-ii.q118.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">dinately desired, there is a special kind of sin . Now the useful good differs in aspect from the delightful good . And riches , as such, come under the head of useful good , since they are desired under the aspect of being useful to man . Consequently covetousness is a special sin , forasmuch as it is an immoderate love of having</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.covetousness" target="concept.liberality" id="edge.concept.covetousness.contrary_to.concept.liberality">
+  <data key="d6">edge.concept.covetousness.contrary_to.concept.liberality</data>
+  <data key="d7">concept.covetousness</data>
+  <data key="d8">Covetousness</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.liberality</data>
+  <data key="d12">Liberality</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-covetousness-contrary-to-concept-liberality-st-ii-ii-q118-a003-resp</data>
+  <data key="d15">st.ii-ii.q118.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">man loves or desires riches too much, or takes too much pleasure in them, even if he be unwilling to steal. On this way covetousness is opposed to liberality, which moderates these affections, as stated above ( 117, 2, ad 3, 3, ad 3, 6 ). On this sense covetousness is spoken of ( 2 Corinthians 9:5 ): "That they woul</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.covetousness" target="concept.retaining" id="edge.concept.covetousness.has_act.concept.retaining">
+  <data key="d6">edge.concept.covetousness.has_act.concept.retaining</data>
+  <data key="d7">concept.covetousness</data>
+  <data key="d8">Covetousness</data>
+  <data key="d9">vice</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.retaining</data>
+  <data key="d12">Retaining</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-covetousness-has-act-concept-retaining-st-ii-ii-q118-a003-resp</data>
+  <data key="d15">st.ii-ii.q118.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ly in respect of the acquisition and keeping of riches . On this way a man obtains money beyond his due, by stealing or retaining another's property. This is opposed to justice , and in this sense covetousness is mentioned ( Ezekiel 22:27 ): "Her princes in the midst of her are like wolves ravening the prey</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.dissimulation" target="concept.self_presentation" id="edge.concept.dissimulation.concerns_self_presentation.concept.self_presentation">
+  <data key="d6">edge.concept.dissimulation.concerns_self_presentation.concept.self_presentation</data>
+  <data key="d7">concept.dissimulation</data>
+  <data key="d8">Dissimulation</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_self_presentation</data>
+  <data key="d11">concept.self_presentation</data>
+  <data key="d12">Self-Presentation</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-dissimulation-concerns-self-presentation-concept-self-presentation-st-ii-ii-q111-a001-resp</data>
+  <data key="d15">st.ii-ii.q111.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:109:3 ; II-II:110:1 ), it belongs to the virtue of truth to show oneself outwardly by outward signs to be such as one is. Now outward signs are not only words, but also deeds . Accordingly just as it is contrary to truth to signify by words s</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.dissimulation" target="concept.truth_self_presentation" id="edge.concept.dissimulation.contrary_to.concept.truth_self_presentation">
+  <data key="d6">edge.concept.dissimulation.contrary_to.concept.truth_self_presentation</data>
+  <data key="d7">concept.dissimulation</data>
+  <data key="d8">Dissimulation</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.truth_self_presentation</data>
+  <data key="d12">Truth</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-dissimulation-contrary-to-concept-truth-self-presentation-st-ii-ii-q111-a001-resp</data>
+  <data key="d15">st.ii-ii.q111.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ardly by outward signs to be such as one is. Now outward signs are not only words, but also deeds . Accordingly just as it is contrary to truth to signify by words something different from that which is in one's mind, so also is it contrary to truth to employ signs of deeds or things to signify the con</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.dissimulation" target="concept.lying" id="edge.concept.dissimulation.species_of.concept.lying">
+  <data key="d6">edge.concept.dissimulation.species_of.concept.lying</data>
+  <data key="d7">concept.dissimulation</data>
+  <data key="d8">Dissimulation</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.lying</data>
+  <data key="d12">Lying</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-dissimulation-species-of-concept-lying-st-ii-ii-q111-a001-resp</data>
+  <data key="d15">st.ii-ii.q111.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ings to signify the contrary of what is in oneself, and this is what is properly denoted by dissimulation. Consequently dissimulation is properly a lie told by the signs of outward deeds . Now it matters not whether one lie in word or in any other way, as stated above ( II-II:110:1 Objection 2 ). Wherefore, si</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.epikeia" target="concept.legal_letter" id="edge.concept.epikeia.corrects_legal_letter.concept.legal_letter">
+  <data key="d6">edge.concept.epikeia.corrects_legal_letter.concept.legal_letter</data>
+  <data key="d7">concept.epikeia</data>
+  <data key="d8">Epikeia / Equity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">corrects_legal_letter</data>
+  <data key="d11">concept.legal_letter</data>
+  <data key="d12">Letter of the Law</data>
+  <data key="d13">law</data>
+  <data key="d14">ann.concept-epikeia-corrects-legal-letter-concept-legal-letter-st-ii-ii-q120-a001-resp</data>
+  <data key="d15">st.ii-ii.q120.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">deposit in order to fight against his country. On these and like cases it is bad to follow the law , and it is good to set aside the letter of the law and to follow the dictates of justice and the common good . This is the object of "epikeia" which we call equity. Therefore it is evident that "epikeia" is a v</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">legal_equity</data>
+</edge>
+<edge source="concept.epikeia" target="concept.common_good" id="edge.concept.epikeia.directed_to.concept.common_good">
+  <data key="d6">edge.concept.epikeia.directed_to.concept.common_good</data>
+  <data key="d7">concept.epikeia</data>
+  <data key="d8">Epikeia / Equity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.common_good</data>
+  <data key="d12">Common Good</data>
+  <data key="d13">end</data>
+  <data key="d14">ann.concept-epikeia-directed-to-concept-common-good-st-ii-ii-q120-a001-resp</data>
+  <data key="d15">st.ii-ii.q120.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">happens: although if the law be applied to certain cases it will frustrate the equality of justice and be injurious to the common good , which the law has in view. Thus the law requires deposits to be restored, because in the majority of cases this is just. Yet it happens sometimes to be injur</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">legal_equity</data>
+</edge>
+<edge source="concept.epikeia" target="concept.intent_of_law" id="edge.concept.epikeia.preserves_intent_of_law.concept.intent_of_law">
+  <data key="d6">edge.concept.epikeia.preserves_intent_of_law.concept.intent_of_law</data>
+  <data key="d7">concept.epikeia</data>
+  <data key="d8">Epikeia / Equity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">preserves_intent_of_law</data>
+  <data key="d11">concept.intent_of_law</data>
+  <data key="d12">Intent of Law</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-epikeia-preserves-intent-of-law-concept-intent-of-law-st-ii-ii-q120-a001-resp</data>
+  <data key="d15">st.ii-ii.q120.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">if the law be applied to certain cases it will frustrate the equality of justice and be injurious to the common good , which the law has in view. Thus the law requires deposits to be restored, because in the majority of cases this is just. Yet it happens sometimes to be injurious—for instance, if a madm</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">legal_equity</data>
+</edge>
+<edge source="concept.epikeia" target="concept.justice" id="edge.concept.epikeia.species_of.concept.justice">
+  <data key="d6">edge.concept.epikeia.species_of.concept.justice</data>
+  <data key="d7">concept.epikeia</data>
+  <data key="d8">Epikeia / Equity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.justice</data>
+  <data key="d12">Justice</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-epikeia-species-of-concept-justice-st-ii-ii-q120-a002-resp</data>
+  <data key="d15">st.ii-ii.q120.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">as "being" of substance and accident . Accordingly, "epikeia" is a part of justice taken in a general sense, for it is a kind of justice , as the Philosopher states (Ethic. v, 10). Wherefore it is evident that "epikeia" is a subjective part of justice ; and justice is predicated of it with prior</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">legal_equity</data>
+</edge>
+<edge source="concept.flattery" target="concept.social_interaction" id="edge.concept.flattery.concerns_social_interaction.concept.social_interaction">
+  <data key="d6">edge.concept.flattery.concerns_social_interaction.concept.social_interaction</data>
+  <data key="d7">concept.flattery</data>
+  <data key="d8">Flattery</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_social_interaction</data>
+  <data key="d11">concept.social_interaction</data>
+  <data key="d12">Social Interaction</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-flattery-concerns-social-interaction-concept-social-interaction-st-ii-ii-q115-a001-resp</data>
+  <data key="d15">st.ii-ii.q115.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ttery" is wont to be applied to all who wish to exceed the mode of virtue in pleasing others by words or deeds in their ordinary behavior towards their fellows.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.flattery" target="concept.friendliness_affability" id="edge.concept.flattery.contrary_to.concept.friendliness_affability">
+  <data key="d6">edge.concept.flattery.contrary_to.concept.friendliness_affability</data>
+  <data key="d7">concept.flattery</data>
+  <data key="d8">Flattery</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.friendliness_affability</data>
+  <data key="d12">Friendliness / Affability</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-flattery-contrary-to-concept-friendliness-affability-st-ii-ii-q115-a001-resp</data>
+  <data key="d15">st.ii-ii.q115.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">tain good , or of avoiding a certain evil . Accordingly, if a man were to wish always to speak pleasantly to others, he would exceed the mode of pleasing, and would therefore sin by excess. If he do this with the mere intention of pleasing he is said to be "complaisant," according to the Philosopher (Ethic. iv,</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.friendliness_affability" target="concept.justice" id="edge.concept.friendliness_affability.annexed_to.concept.justice">
+  <data key="d6">edge.concept.friendliness_affability.annexed_to.concept.justice</data>
+  <data key="d7">concept.friendliness_affability</data>
+  <data key="d8">Friendliness / Affability</data>
+  <data key="d9">virtue</data>
+  <data key="d10">annexed_to</data>
+  <data key="d11">concept.justice</data>
+  <data key="d12">Justice</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-friendliness-affability-annexed-to-concept-justice-st-ii-ii-q114-a002-resp</data>
+  <data key="d15">st.ii-ii.q114.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">This virtue is a part of justice , being annexed to it as to a principal virtue . Because in common with justice it is directed to another person , even as justice is: yet it falls short of th</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.friendliness_affability" target="concept.social_interaction" id="edge.concept.friendliness_affability.concerns_social_interaction.concept.social_interaction">
+  <data key="d6">edge.concept.friendliness_affability.concerns_social_interaction.concept.social_interaction</data>
+  <data key="d7">concept.friendliness_affability</data>
+  <data key="d8">Friendliness / Affability</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_social_interaction</data>
+  <data key="d11">concept.social_interaction</data>
+  <data key="d12">Social Interaction</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-friendliness-affability-concerns-social-interaction-concept-social-interaction-st-ii-ii-q114-a001-resp</data>
+  <data key="d15">st.ii-ii.q114.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ated above ( II-II:109:2 ). And it behooves man to be maintained in a becoming order towards other men as regards their mutual relations with one another, in point of both deeds and words, so that they behave towards one another in a becoming manner. Hence the need of a special virtue that maintains the becoming</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.friendliness_affability" target="concept.flattery" id="edge.concept.friendliness_affability.opposed_by.concept.flattery">
+  <data key="d6">edge.concept.friendliness_affability.opposed_by.concept.flattery</data>
+  <data key="d7">concept.friendliness_affability</data>
+  <data key="d8">Friendliness / Affability</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.flattery</data>
+  <data key="d12">Flattery</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-friendliness-affability-opposed-by-concept-flattery-st-ii-ii-q115-a001-resp</data>
+  <data key="d15">st.ii-ii.q115.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">tain good , or of avoiding a certain evil . Accordingly, if a man were to wish always to speak pleasantly to others, he would exceed the mode of pleasing, and would therefore sin by excess. If he do this with the mere intention of pleasing he is said to be "complaisant," according to the Philosopher (Ethic. iv,</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.friendliness_affability" target="concept.quarreling" id="edge.concept.friendliness_affability.opposed_by.concept.quarreling">
+  <data key="d6">edge.concept.friendliness_affability.opposed_by.concept.quarreling</data>
+  <data key="d7">concept.friendliness_affability</data>
+  <data key="d8">Friendliness / Affability</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.quarreling</data>
+  <data key="d12">Quarreling</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-friendliness-affability-opposed-by-concept-quarreling-st-ii-ii-q116-a001-resp</data>
+  <data key="d15">st.ii-ii.q116.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">adiction arises by reason of the speaker being a person to whom someone does not fear to be disagreeable: whence arises quarreling, which is opposed to the aforesaid friendship or affability, to which it belongs to behave agreeably towards those among whom we dwell. Hence the Philosopher says (Ethic. iv, 6) that "those who are opposed to everything</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.hypocrisy" target="concept.self_presentation" id="edge.concept.hypocrisy.concerns_self_presentation.concept.self_presentation">
+  <data key="d6">edge.concept.hypocrisy.concerns_self_presentation.concept.self_presentation</data>
+  <data key="d7">concept.hypocrisy</data>
+  <data key="d8">Hypocrisy</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_self_presentation</data>
+  <data key="d11">concept.self_presentation</data>
+  <data key="d12">Self-Presentation</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-hypocrisy-concerns-self-presentation-concept-self-presentation-st-ii-ii-q111-a003-resp</data>
+  <data key="d15">st.ii-ii.q111.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">d this species depends on that act's proper object. Wherefore since hypocrisy is a kind of dissimulation, whereby a man simulates a character which is not his, as stated in the preceding article, it follows that it is directly opposed to truth whereby a man shows himself in life and speech to be what he is, as stated</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.hypocrisy" target="concept.truth_self_presentation" id="edge.concept.hypocrisy.contrary_to.concept.truth_self_presentation">
+  <data key="d6">edge.concept.hypocrisy.contrary_to.concept.truth_self_presentation</data>
+  <data key="d7">concept.hypocrisy</data>
+  <data key="d8">Hypocrisy</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.truth_self_presentation</data>
+  <data key="d12">Truth</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-hypocrisy-contrary-to-concept-truth-self-presentation-st-ii-ii-q111-a003-resp</data>
+  <data key="d15">st.ii-ii.q111.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">issimulation, whereby a man simulates a character which is not his, as stated in the preceding article, it follows that it is directly opposed to truth whereby a man shows himself in life and speech to be what he is, as stated in Ethic. iv, 7. The indirect opposition or contrariety of hypocrisy may be consider</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.hypocrisy" target="concept.dissimulation" id="edge.concept.hypocrisy.species_of.concept.dissimulation">
+  <data key="d6">edge.concept.hypocrisy.species_of.concept.dissimulation</data>
+  <data key="d7">concept.hypocrisy</data>
+  <data key="d8">Hypocrisy</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.dissimulation</data>
+  <data key="d12">Dissimulation</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-hypocrisy-species-of-concept-dissimulation-st-ii-ii-q111-a002-resp</data>
+  <data key="d15">st.ii-ii.q111.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">em what he is not is a hypocrite: for he pretends to be just without being so in reality." We must conclude, therefore, that hypocrisy is dissimulation, not, however, any form of dissimulation, but only when one person simulates another, as when a sinner simulates the person of a just man .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.irony" target="concept.self_presentation" id="edge.concept.irony.concerns_self_presentation.concept.self_presentation">
+  <data key="d6">edge.concept.irony.concerns_self_presentation.concept.self_presentation</data>
+  <data key="d7">concept.irony</data>
+  <data key="d8">Irony</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_self_presentation</data>
+  <data key="d11">concept.self_presentation</data>
+  <data key="d12">Self-Presentation</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-irony-concerns-self-presentation-concept-self-presentation-st-ii-ii-q113-a001-resp</data>
+  <data key="d15">st.ii-ii.q113.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">To speak so as to belittle oneself may occur in two ways. First so as to safeguard truth , as when a man conceals the greater things in himself, but discovers and asserts lesser things of himsel</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.irony" target="concept.boasting" id="edge.concept.irony.contrary_to.concept.boasting">
+  <data key="d6">edge.concept.irony.contrary_to.concept.boasting</data>
+  <data key="d7">concept.irony</data>
+  <data key="d8">Irony</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.boasting</data>
+  <data key="d12">Boasting</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-irony-contrary-to-concept-boasting-st-ii-ii-q113-a002-resp</data>
+  <data key="d15">st.ii-ii.q113.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">mes on account of the motive for sinning ; thus a mischievous lie is more grievous than an officious or jocose lie. Now irony and boasting lie about the same matter , either by words, or by any other outward signs, namely, about matters affecting the person : so that in this respect they are equal. But for the most part bo</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.irony" target="concept.truth_self_presentation" id="edge.concept.irony.contrary_to.concept.truth_self_presentation">
+  <data key="d6">edge.concept.irony.contrary_to.concept.truth_self_presentation</data>
+  <data key="d7">concept.irony</data>
+  <data key="d8">Irony</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.truth_self_presentation</data>
+  <data key="d12">Truth</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-irony-contrary-to-concept-truth-self-presentation-st-ii-ii-q113-a001-resp</data>
+  <data key="d15">st.ii-ii.q113.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">elf he does not perceive, or by denying something great of himself, which nevertheless he perceives himself to possess: this pertains to irony, and is always a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.irony" target="concept.lying" id="edge.concept.irony.species_of.concept.lying">
+  <data key="d6">edge.concept.irony.species_of.concept.lying</data>
+  <data key="d7">concept.irony</data>
+  <data key="d8">Irony</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.lying</data>
+  <data key="d12">Lying</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-irony-species-of-concept-lying-st-ii-ii-q110-a002-resp</data>
+  <data key="d15">st.ii-ii.q110.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">es beyond the truth , and this belongs to "boasting," and the lie which stops short of the truth , and this belongs to "irony." This division is an essential division of lying itself, because lying as such is opposed to truth , as stated in the preceding Article: and truth is a kind o</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.liberality" target="concept.justice" id="edge.concept.liberality.annexed_to.concept.justice">
+  <data key="d6">edge.concept.liberality.annexed_to.concept.justice</data>
+  <data key="d7">concept.liberality</data>
+  <data key="d8">Liberality</data>
+  <data key="d9">virtue</data>
+  <data key="d10">annexed_to</data>
+  <data key="d11">concept.justice</data>
+  <data key="d12">Justice</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-liberality-annexed-to-concept-justice-st-ii-ii-q117-a005-resp</data>
+  <data key="d15">st.ii-ii.q117.a005.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">nd above ( Article 2, Reply to Objection 3 ). Hence it is that liberality is reckoned by some to be a part of justice , being annexed thereto as to a principal virtue .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.liberality" target="concept.external_goods" id="edge.concept.liberality.concerns_external_goods.concept.external_goods">
+  <data key="d6">edge.concept.liberality.concerns_external_goods.concept.external_goods</data>
+  <data key="d7">concept.liberality</data>
+  <data key="d8">Liberality</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_external_goods</data>
+  <data key="d11">concept.external_goods</data>
+  <data key="d12">External Goods</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-liberality-concerns-external-goods-concept-external-goods-st-ii-ii-q117-a002-resp</data>
+  <data key="d15">st.ii-ii.q117.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">of a man's free-handedness towards others are the goods he possesses, which are denoted by the term "money." Therefore the proper matter of liberality is money.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.liberality" target="concept.giving" id="edge.concept.liberality.has_act.concept.giving">
+  <data key="d6">edge.concept.liberality.has_act.concept.giving</data>
+  <data key="d7">concept.liberality</data>
+  <data key="d8">Liberality</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.giving</data>
+  <data key="d12">Giving</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-liberality-has-act-concept-giving-st-ii-ii-q117-a004-resp</data>
+  <data key="d15">st.ii-ii.q117.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ue as such to tend to what is more perfect, since " virtue is a kind of perfection" (Phys. vii, text. 17,18). Therefore a liberal man is praised chiefly for giving.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.liberality" target="concept.covetousness" id="edge.concept.liberality.opposed_by.concept.covetousness">
+  <data key="d6">edge.concept.liberality.opposed_by.concept.covetousness</data>
+  <data key="d7">concept.liberality</data>
+  <data key="d8">Liberality</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.covetousness</data>
+  <data key="d12">Covetousness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-liberality-opposed-by-concept-covetousness-st-ii-ii-q118-a003-resp</data>
+  <data key="d15">st.ii-ii.q118.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">man loves or desires riches too much, or takes too much pleasure in them, even if he be unwilling to steal. On this way covetousness is opposed to liberality, which moderates these affections, as stated above ( 117, 2, ad 3, 3, ad 3, 6 ). On this sense covetousness is spoken of ( 2 Corinthians 9:5 ): "That they woul</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.liberality" target="concept.prodigality" id="edge.concept.liberality.opposed_by.concept.prodigality">
+  <data key="d6">edge.concept.liberality.opposed_by.concept.prodigality</data>
+  <data key="d7">concept.liberality</data>
+  <data key="d8">Liberality</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.prodigality</data>
+  <data key="d12">Prodigality</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-liberality-opposed-by-concept-prodigality-st-ii-ii-q119-a002-resp</data>
+  <data key="d15">st.ii-ii.q119.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ove ( Article 1 ), the opposition between prodigality and covetousness is one of excess and deficiency; either of which destroys the mean of virtue . Now a thing is vicious and sinful through corrupting the good of virtue . Hence it follows that prodigality is a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.lying" target="concept.truth_self_presentation" id="edge.concept.lying.contrary_to.concept.truth_self_presentation">
+  <data key="d6">edge.concept.lying.contrary_to.concept.truth_self_presentation</data>
+  <data key="d7">concept.lying</data>
+  <data key="d8">Lying</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.truth_self_presentation</data>
+  <data key="d12">Truth</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-lying-contrary-to-concept-truth-self-presentation-st-ii-ii-q110-a002-resp</data>
+  <data key="d15">st.ii-ii.q110.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">stops short of the truth , and this belongs to "irony." This division is an essential division of lying itself, because lying as such is opposed to truth , as stated in the preceding Article: and truth is a kind of equality, to which more and less are in essential opposition. Secondly, lies may be divided with r</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.prodigality" target="concept.external_goods" id="edge.concept.prodigality.concerns_external_goods.concept.external_goods">
+  <data key="d6">edge.concept.prodigality.concerns_external_goods.concept.external_goods</data>
+  <data key="d7">concept.prodigality</data>
+  <data key="d8">Prodigality</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_external_goods</data>
+  <data key="d11">concept.external_goods</data>
+  <data key="d12">External Goods</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-prodigality-concerns-external-goods-concept-external-goods-st-ii-ii-q119-a001-resp</data>
+  <data key="d15">st.ii-ii.q119.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">and deficiency. Now covetousness and prodigality differ variously in respect of excess and deficiency. Thus, as regards affection for riches , the covetous man exceeds by loving them more than he ought, while the prodigal is deficient, by being less careful of them than he ought: and as regards exte</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.prodigality" target="concept.covetousness" id="edge.concept.prodigality.contrary_to.concept.covetousness">
+  <data key="d6">edge.concept.prodigality.contrary_to.concept.covetousness</data>
+  <data key="d7">concept.prodigality</data>
+  <data key="d8">Prodigality</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.covetousness</data>
+  <data key="d12">Covetousness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-prodigality-contrary-to-concept-covetousness-st-ii-ii-q119-a001-resp</data>
+  <data key="d15">st.ii-ii.q119.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">usness , on the contrary, denotes deficiency in giving, but excess in acquiring and retaining. Hence it is evident that prodigality is opposed to covetousness .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.prodigality" target="concept.liberality" id="edge.concept.prodigality.contrary_to.concept.liberality">
+  <data key="d6">edge.concept.prodigality.contrary_to.concept.liberality</data>
+  <data key="d7">concept.prodigality</data>
+  <data key="d8">Prodigality</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.liberality</data>
+  <data key="d12">Liberality</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-prodigality-contrary-to-concept-liberality-st-ii-ii-q119-a002-resp</data>
+  <data key="d15">st.ii-ii.q119.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ove ( Article 1 ), the opposition between prodigality and covetousness is one of excess and deficiency; either of which destroys the mean of virtue . Now a thing is vicious and sinful through corrupting the good of virtue . Hence it follows that prodigality is a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_goods</data>
+</edge>
+<edge source="concept.quarreling" target="concept.social_interaction" id="edge.concept.quarreling.concerns_social_interaction.concept.social_interaction">
+  <data key="d6">edge.concept.quarreling.concerns_social_interaction.concept.social_interaction</data>
+  <data key="d7">concept.quarreling</data>
+  <data key="d8">Quarreling</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">concerns_social_interaction</data>
+  <data key="d11">concept.social_interaction</data>
+  <data key="d12">Social Interaction</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-quarreling-concerns-social-interaction-concept-social-interaction-st-ii-ii-q116-a001-resp</data>
+  <data key="d15">st.ii-ii.q116.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">quarreling, which is opposed to the aforesaid friendship or affability, to which it belongs to behave agreeably towards those among whom we dwell. Hence the Philosopher says (Ethic. iv, 6) that "those who are opposed to everything with the intent of being disagreeable, and care for nobody, are said to be</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.quarreling" target="concept.friendliness_affability" id="edge.concept.quarreling.contrary_to.concept.friendliness_affability">
+  <data key="d6">edge.concept.quarreling.contrary_to.concept.friendliness_affability</data>
+  <data key="d7">concept.quarreling</data>
+  <data key="d8">Quarreling</data>
+  <data key="d9">wrong_act</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.friendliness_affability</data>
+  <data key="d12">Friendliness / Affability</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-quarreling-contrary-to-concept-friendliness-affability-st-ii-ii-q116-a001-resp</data>
+  <data key="d15">st.ii-ii.q116.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">adiction arises by reason of the speaker being a person to whom someone does not fear to be disagreeable: whence arises quarreling, which is opposed to the aforesaid friendship or affability, to which it belongs to behave agreeably towards those among whom we dwell. Hence the Philosopher says (Ethic. iv, 6) that "those who are opposed to everything</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">social_interaction</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.justice" id="edge.concept.truth_self_presentation.annexed_to.concept.justice">
+  <data key="d6">edge.concept.truth_self_presentation.annexed_to.concept.justice</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">annexed_to</data>
+  <data key="d11">concept.justice</data>
+  <data key="d12">Justice</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-truth-self-presentation-annexed-to-concept-justice-st-ii-ii-q109-a003-resp</data>
+  <data key="d15">st.ii-ii.q109.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, but rather the moral debt, in so far as, out of equity, one man owes another a manifestation of the truth . Therefore truth is a part of justice , being annexed thereto as a secondary virtue to its principal.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.self_presentation" id="edge.concept.truth_self_presentation.concerns_self_presentation.concept.self_presentation">
+  <data key="d6">edge.concept.truth_self_presentation.concerns_self_presentation.concept.self_presentation</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_self_presentation</data>
+  <data key="d11">concept.self_presentation</data>
+  <data key="d12">Self-Presentation</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-truth-self-presentation-concerns-self-presentation-concept-self-presentation-st-ii-ii-q109-a002-resp</data>
+  <data key="d15">st.ii-ii.q109.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">spect of good will be found where there is a special order. Now there is a special order whereby our externals, whether words or deeds , are duly ordered in relation to some thing, as sign to thing signified: and thereto man is perfected by the virtue of truth . Wherefore it is evident that tr</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.boasting" id="edge.concept.truth_self_presentation.opposed_by.concept.boasting">
+  <data key="d6">edge.concept.truth_self_presentation.opposed_by.concept.boasting</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.boasting</data>
+  <data key="d12">Boasting</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-truth-self-presentation-opposed-by-concept-boasting-st-ii-ii-q112-a001-resp</data>
+  <data key="d15">st.ii-ii.q112.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">above what others think of one: although in either case it may be called boasting. Hence boasting properly so called is opposed to truth by way of excess.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.dissimulation" id="edge.concept.truth_self_presentation.opposed_by.concept.dissimulation">
+  <data key="d6">edge.concept.truth_self_presentation.opposed_by.concept.dissimulation</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.dissimulation</data>
+  <data key="d12">Dissimulation</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-truth-self-presentation-opposed-by-concept-dissimulation-st-ii-ii-q111-a003-resp</data>
+  <data key="d15">st.ii-ii.q111.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">lation, whereby a man simulates a character which is not his, as stated in the preceding article, it follows that it is directly opposed to truth whereby a man shows himself in life and speech to be what he is, as stated in Ethic. iv, 7. The indirect opposition or contrariety of hypocrisy may be consider</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.hypocrisy" id="edge.concept.truth_self_presentation.opposed_by.concept.hypocrisy">
+  <data key="d6">edge.concept.truth_self_presentation.opposed_by.concept.hypocrisy</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.hypocrisy</data>
+  <data key="d12">Hypocrisy</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-truth-self-presentation-opposed-by-concept-hypocrisy-st-ii-ii-q111-a003-resp</data>
+  <data key="d15">st.ii-ii.q111.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">issimulation, whereby a man simulates a character which is not his, as stated in the preceding article, it follows that it is directly opposed to truth whereby a man shows himself in life and speech to be what he is, as stated in Ethic. iv, 7. The indirect opposition or contrariety of hypocrisy may be consider</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.irony" id="edge.concept.truth_self_presentation.opposed_by.concept.irony">
+  <data key="d6">edge.concept.truth_self_presentation.opposed_by.concept.irony</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.irony</data>
+  <data key="d12">Irony</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-truth-self-presentation-opposed-by-concept-irony-st-ii-ii-q113-a001-resp</data>
+  <data key="d15">st.ii-ii.q113.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">elf he does not perceive, or by denying something great of himself, which nevertheless he perceives himself to possess: this pertains to irony, and is always a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+<edge source="concept.truth_self_presentation" target="concept.lying" id="edge.concept.truth_self_presentation.opposed_by.concept.lying">
+  <data key="d6">edge.concept.truth_self_presentation.opposed_by.concept.lying</data>
+  <data key="d7">concept.truth_self_presentation</data>
+  <data key="d8">Truth</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.lying</data>
+  <data key="d12">Lying</data>
+  <data key="d13">wrong_act</data>
+  <data key="d14">ann.concept-truth-self-presentation-opposed-by-concept-lying-st-ii-ii-q110-a002-resp</data>
+  <data key="d15">st.ii-ii.q110.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">stops short of the truth , and this belongs to "irony." This division is an essential division of lying itself, because lying as such is opposed to truth , as stated in the preceding Article: and truth is a kind of equality, to which more and less are in essential opposition. Secondly, lies may be divided with r</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">self_presentation</data>
+</edge>
+</graph></graphml>

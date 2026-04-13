@@ -1,0 +1,1759 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d20" for="edge" attr.name="fortitude_closure_focus" attr.type="string"/>
+<key id="d19" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d18" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d17" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d16" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d15" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d14" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d12" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d10" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d9" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d8" for="edge" attr.name="fortitude_parts_cluster" attr.type="string"/>
+<key id="d7" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.ambition">
+  <data key="d0">concept.ambition</data>
+  <data key="d1">Ambition</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Inordinate desire of honor opposed to well-ordered magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.arduous_work">
+  <data key="d0">concept.arduous_work</data>
+  <data key="d1">Arduous / Difficult Work</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The difficult good work whose completion and endurance are explicitly attached to fortitude and the gift of fortitude.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beatitude_hunger_for_justice">
+  <data key="d0">concept.beatitude_hunger_for_justice</data>
+  <data key="d1">Beatitude of Hunger and Thirst for Justice</data>
+  <data key="d2">beatitude</data>
+  <data key="d3">seed</data>
+  <data key="d4">Beatitude pronounced on those hungering and thirsting for justice.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.charity">
+  <data key="d0">concept.charity</data>
+  <data key="d1">Charity</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Theological virtue of friendship with God.</data>
+  <data key="d5">Do not auto-normalize bare 'love' to charity outside clearly theological context.</data>
+</node>
+<node id="concept.confidence">
+  <data key="d0">concept.confidence</data>
+  <data key="d1">Confidence</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A strength of hope that the magnanimous person has in difficult good.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.constancy_fortitude">
+  <data key="d0">concept.constancy_fortitude</data>
+  <data key="d1">Constancy</data>
+  <data key="d2">habit</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The fortitude-related habit of persisting in good against external hindrances rather than the mere duration of the act.</data>
+  <data key="d5">Kept distinct from perseverance even though q.137 closely compares the two.</data>
+</node>
+<node id="concept.continuance_in_good">
+  <data key="d0">concept.continuance_in_good</data>
+  <data key="d1">Continuance in Good</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The continued accomplishment of a good work over time that is distinctive of perseverance.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.counsel_gift">
+  <data key="d0">concept.counsel_gift</data>
+  <data key="d1">Gift of Counsel</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit perfecting right counsel in action.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.effeminacy_perseverance">
+  <data key="d0">concept.effeminacy_perseverance</data>
+  <data key="d1">Effeminacy</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice by which one forsakes a good on account of difficulties that cannot be endured, especially through softness regarding pleasure.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fortitude">
+  <data key="d0">concept.fortitude</data>
+  <data key="d1">Fortitude</data>
+  <data key="d2">virtue</data>
+  <data key="d3">seed</data>
+  <data key="d4">The cardinal virtue governing firmness in difficulties and dangers.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fortitude_gift">
+  <data key="d0">concept.fortitude_gift</data>
+  <data key="d1">Gift of Fortitude</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit strengthening endurance in arduous good.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.glory">
+  <data key="d0">concept.glory</data>
+  <data key="d1">Glory</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The manifest approval or public clarity of someone's good in the sight of others.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.god">
+  <data key="d0">concept.god</data>
+  <data key="d1">God</data>
+  <data key="d2">object</data>
+  <data key="d3">seed</data>
+  <data key="d4">God as the object or term of theological virtue and charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.goods_of_fortune">
+  <data key="d0">concept.goods_of_fortune</data>
+  <data key="d1">Goods of Fortune</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">External goods such as riches, power, and friends that can instrumentally conduce to magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.grace">
+  <data key="d0">concept.grace</data>
+  <data key="d1">Grace</data>
+  <data key="d2">grace</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Grace as the supernatural help needed beyond fallen nature.</data>
+  <data key="d5">Generic grace remains distinct from operating and cooperating grace unless the text names the subtype.</data>
+</node>
+<node id="concept.great_expenditure">
+  <data key="d0">concept.great_expenditure</data>
+  <data key="d1">Great Expenditure</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The scale of spending proportionate to a great work in the magnificence tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.great_work">
+  <data key="d0">concept.great_work</data>
+  <data key="d1">Great Work</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The kind of work whose becoming execution and proportionate expense belong to magnificence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.grievous_evil">
+  <data key="d0">concept.grievous_evil</data>
+  <data key="d1">Grievous Evil / Hardship</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The difficult evil or sorrow endured by patience and, analogously, by fortitude.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.honor_recognition">
+  <data key="d0">concept.honor_recognition</data>
+  <data key="d1">Honor as Recognition</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Honor considered as public recognition or attestation of excellence, especially as the matter of magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.longanimity_fortitude">
+  <data key="d0">concept.longanimity_fortitude</data>
+  <data key="d1">Longanimity</data>
+  <data key="d2">habit</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The habit of tending toward a good that lies far off, compared with patience without being simply identical to it.</data>
+  <data key="d5">Kept tract-local because q.136 explicitly resists collapsing longanimity into patience.</data>
+</node>
+<node id="concept.magnanimity">
+  <data key="d0">concept.magnanimity</data>
+  <data key="d1">Magnanimity</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The fortitude-related virtue by which a person deems himself worthy of great honors and great things in due proportion.</data>
+  <data key="d5">Keep distinct from magnificence: magnanimity is honor- and worthiness-related rather than expenditure-related.</data>
+</node>
+<node id="concept.magnificence">
+  <data key="d0">concept.magnificence</data>
+  <data key="d1">Magnificence</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The fortitude-related virtue of producing great works with proportionate expenditure.</data>
+  <data key="d5">Keep distinct from magnanimity: magnificence concerns great works and expenditure, not honor as such.</data>
+</node>
+<node id="concept.meanness_magnificence">
+  <data key="d0">concept.meanness_magnificence</data>
+  <data key="d1">Meanness</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of spending less than a great work requires, thereby failing proportion.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.patience">
+  <data key="d0">concept.patience</data>
+  <data key="d1">Patience</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The annexed virtue by which one bears grievous evils with an equal mind for the sake of good.</data>
+  <data key="d5">Keep distinct from fruit-level patience in later correspondence work.</data>
+</node>
+<node id="concept.perseverance_virtue">
+  <data key="d0">concept.perseverance_virtue</data>
+  <data key="d1">Perseverance (Fortitude Part)</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue by which one persists long in a good work despite the difficulty arising from its continuance.</data>
+  <data key="d5">This tract-local concept is kept distinct from the broader act-level `concept.perseverance` already present from the I-II grace pilot.</data>
+</node>
+<node id="concept.pertinacity_perseverance">
+  <data key="d0">concept.pertinacity_perseverance</data>
+  <data key="d1">Pertinacity</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice by which one persists more than one ought, exceeding the mean of perseverance.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_fortitude">
+  <data key="d0">concept.precepts_of_fortitude</data>
+  <data key="d1">Precepts of Fortitude</data>
+  <data key="d2">precept</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The precept-complex by which Divine Law directs fortitude itself toward adherence to God and brave endurance.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_fortitude_parts">
+  <data key="d0">concept.precepts_of_fortitude_parts</data>
+  <data key="d1">Precepts of Patience and Perseverance</data>
+  <data key="d2">precept</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The precept-complex by which Divine Law gives directions concerning patience and perseverance as annexed virtues.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.presumption_magnanimity">
+  <data key="d0">concept.presumption_magnanimity</data>
+  <data key="d1">Presumption (Against Magnanimity)</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of exceeding one's own ability by attempting what is above one's power in the magnanimity tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.pusillanimity">
+  <data key="d0">concept.pusillanimity</data>
+  <data key="d1">Pusillanimity</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of shrinking from great things proportionate to one's worth.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.security_assurance">
+  <data key="d0">concept.security_assurance</data>
+  <data key="d1">Security / Assurance</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Freedom from fear considered in relation to magnanimity and fortitude.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sin">
+  <data key="d0">concept.sin</data>
+  <data key="d1">Sin</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Bad human act contrary to due rule and measure.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vainglory">
+  <data key="d0">concept.vainglory</data>
+  <data key="d1">Vainglory</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Inordinate desire for empty glory, opposed in this tract to magnanimity's right use of honor and glory.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vice">
+  <data key="d0">concept.vice</data>
+  <data key="d1">Vice</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Vice considered as privative disorder contrary to virtue.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.virtue">
+  <data key="d0">concept.virtue</data>
+  <data key="d1">Virtue</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Generic virtue as good operative perfection.</data>
+  <data key="d5">Do not collapse generic virtue into a specific virtue without explicit passage support.</data>
+</node>
+<node id="concept.waste_magnificence">
+  <data key="d0">concept.waste_magnificence</data>
+  <data key="d1">Waste (Banausia / Consumptio)</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of spending more than a work requires, thereby exceeding due proportion in the magnificence tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.worthiness">
+  <data key="d0">concept.worthiness</data>
+  <data key="d1">Worthiness</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Proportionate worth or desert in relation to great things and great honors.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129">
+  <data key="d0">st.ii-ii.q129</data>
+  <data key="d1">II-II q.129</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Magnanimity</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a001">
+  <data key="d0">st.ii-ii.q129.a001</data>
+  <data key="d1">II-II q.129 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a002">
+  <data key="d0">st.ii-ii.q129.a002</data>
+  <data key="d1">II-II q.129 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a003">
+  <data key="d0">st.ii-ii.q129.a003</data>
+  <data key="d1">II-II q.129 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a004">
+  <data key="d0">st.ii-ii.q129.a004</data>
+  <data key="d1">II-II q.129 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a005">
+  <data key="d0">st.ii-ii.q129.a005</data>
+  <data key="d1">II-II q.129 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a006">
+  <data key="d0">st.ii-ii.q129.a006</data>
+  <data key="d1">II-II q.129 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a007">
+  <data key="d0">st.ii-ii.q129.a007</data>
+  <data key="d1">II-II q.129 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a008">
+  <data key="d0">st.ii-ii.q129.a008</data>
+  <data key="d1">II-II q.129 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130">
+  <data key="d0">st.ii-ii.q130</data>
+  <data key="d1">II-II q.130</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Presumption</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130.a001">
+  <data key="d0">st.ii-ii.q130.a001</data>
+  <data key="d1">II-II q.130 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130.a002">
+  <data key="d0">st.ii-ii.q130.a002</data>
+  <data key="d1">II-II q.130 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131">
+  <data key="d0">st.ii-ii.q131</data>
+  <data key="d1">II-II q.131</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Ambition</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131.a001">
+  <data key="d0">st.ii-ii.q131.a001</data>
+  <data key="d1">II-II q.131 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131.a002">
+  <data key="d0">st.ii-ii.q131.a002</data>
+  <data key="d1">II-II q.131 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132">
+  <data key="d0">st.ii-ii.q132</data>
+  <data key="d1">II-II q.132</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Vainglory</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a001">
+  <data key="d0">st.ii-ii.q132.a001</data>
+  <data key="d1">II-II q.132 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a002">
+  <data key="d0">st.ii-ii.q132.a002</data>
+  <data key="d1">II-II q.132 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a003">
+  <data key="d0">st.ii-ii.q132.a003</data>
+  <data key="d1">II-II q.132 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a004">
+  <data key="d0">st.ii-ii.q132.a004</data>
+  <data key="d1">II-II q.132 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a005">
+  <data key="d0">st.ii-ii.q132.a005</data>
+  <data key="d1">II-II q.132 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133">
+  <data key="d0">st.ii-ii.q133</data>
+  <data key="d1">II-II q.133</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Pusillanimity</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133.a001">
+  <data key="d0">st.ii-ii.q133.a001</data>
+  <data key="d1">II-II q.133 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133.a002">
+  <data key="d0">st.ii-ii.q133.a002</data>
+  <data key="d1">II-II q.133 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134">
+  <data key="d0">st.ii-ii.q134</data>
+  <data key="d1">II-II q.134</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Magnificence</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a001">
+  <data key="d0">st.ii-ii.q134.a001</data>
+  <data key="d1">II-II q.134 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a002">
+  <data key="d0">st.ii-ii.q134.a002</data>
+  <data key="d1">II-II q.134 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a003">
+  <data key="d0">st.ii-ii.q134.a003</data>
+  <data key="d1">II-II q.134 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a004">
+  <data key="d0">st.ii-ii.q134.a004</data>
+  <data key="d1">II-II q.134 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135">
+  <data key="d0">st.ii-ii.q135</data>
+  <data key="d1">II-II q.135</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Meanness</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135.a001">
+  <data key="d0">st.ii-ii.q135.a001</data>
+  <data key="d1">II-II q.135 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135.a002">
+  <data key="d0">st.ii-ii.q135.a002</data>
+  <data key="d1">II-II q.135 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136">
+  <data key="d0">st.ii-ii.q136</data>
+  <data key="d1">II-II q.136 — Patience</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136.a001">
+  <data key="d0">st.ii-ii.q136.a001</data>
+  <data key="d1">II-II q.136 a.1 — Is patience a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136.a002">
+  <data key="d0">st.ii-ii.q136.a002</data>
+  <data key="d1">II-II q.136 a.2 — Is it the greatest of the virtues?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136.a003">
+  <data key="d0">st.ii-ii.q136.a003</data>
+  <data key="d1">II-II q.136 a.3 — Can it be had without grace?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136.a004">
+  <data key="d0">st.ii-ii.q136.a004</data>
+  <data key="d1">II-II q.136 a.4 — Is it a part of fortitude?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q136.a005">
+  <data key="d0">st.ii-ii.q136.a005</data>
+  <data key="d1">II-II q.136 a.5 — Is it the same as longanimity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q137">
+  <data key="d0">st.ii-ii.q137</data>
+  <data key="d1">II-II q.137 — Perseverance</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q137.a001">
+  <data key="d0">st.ii-ii.q137.a001</data>
+  <data key="d1">II-II q.137 a.1 — Is perseverance a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q137.a002">
+  <data key="d0">st.ii-ii.q137.a002</data>
+  <data key="d1">II-II q.137 a.2 — Is it a part of fortitude?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q137.a003">
+  <data key="d0">st.ii-ii.q137.a003</data>
+  <data key="d1">II-II q.137 a.3 — Its relation to constancy</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q137.a004">
+  <data key="d0">st.ii-ii.q137.a004</data>
+  <data key="d1">II-II q.137 a.4 — Does it need the help of grace?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q138">
+  <data key="d0">st.ii-ii.q138</data>
+  <data key="d1">II-II q.138 — The vices opposed to perseverance</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q138.a001">
+  <data key="d0">st.ii-ii.q138.a001</data>
+  <data key="d1">II-II q.138 a.1 — Effeminacy</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q138.a002">
+  <data key="d0">st.ii-ii.q138.a002</data>
+  <data key="d1">II-II q.138 a.2 — Pertinacity</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q139">
+  <data key="d0">st.ii-ii.q139</data>
+  <data key="d1">II-II q.139 — The gift of fortitude</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q139.a001">
+  <data key="d0">st.ii-ii.q139.a001</data>
+  <data key="d1">II-II q.139 a.1 — Is fortitude a gift?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q139.a002">
+  <data key="d0">st.ii-ii.q139.a002</data>
+  <data key="d1">II-II q.139 a.2 — Which among the beatitudes and fruits correspond to it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q140">
+  <data key="d0">st.ii-ii.q140</data>
+  <data key="d1">II-II q.140 — The precepts of fortitude</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q140.a001">
+  <data key="d0">st.ii-ii.q140.a001</data>
+  <data key="d1">II-II q.140 a.1 — The precepts of fortitude itself</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q140.a002">
+  <data key="d0">st.ii-ii.q140.a002</data>
+  <data key="d1">II-II q.140 a.2 — The precepts of its parts</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude closure tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.ambition" target="concept.honor_recognition" id="edge.concept.ambition.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.ambition.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">an ought so far to be pleased that others bear witness to his excellence, as this enables him to profit others. Now the desire of honor may be inordinate in three ways. First, when a man desires recognition of an excellence which he has not: this is to desire more than his share of honor . Seco | As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.honor_recognition</data>
+  <data key="d10">Honor as Recognition</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_honor</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q131.a001.resp | st.ii-ii.q131.a002.resp</data>
+  <data key="d15">concept.ambition</data>
+  <data key="d16">Ambition</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-ambition-concerns-honor-concept-honor-recognition-st-ii-ii-q131-a001-resp | ann.concept-ambition-concerns-honor-concept-honor-recognition-st-ii-ii-q131-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.ambition" target="concept.honor_recognition" id="edge.concept.ambition.directed_to.concept.honor_recognition">
+  <data key="d6">edge.concept.ambition.directed_to.concept.honor_recognition</data>
+  <data key="d7">an ought so far to be pleased that others bear witness to his excellence, as this enables him to profit others. Now the desire of honor may be inordinate in three ways. First, when a man desires recognition of an excellence which he has not: this is to desire more than his share of honor . Seco | As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.honor_recognition</data>
+  <data key="d10">Honor as Recognition</data>
+  <data key="d11">domain</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q131.a001.resp | st.ii-ii.q131.a002.resp</data>
+  <data key="d15">concept.ambition</data>
+  <data key="d16">Ambition</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-ambition-directed-to-concept-honor-recognition-st-ii-ii-q131-a001-resp | ann.concept-ambition-directed-to-concept-honor-recognition-st-ii-ii-q131-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.ambition" target="concept.magnanimity" id="edge.concept.ambition.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.ambition.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">ove of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate to that which is well ordered.</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.magnanimity</data>
+  <data key="d10">Magnanimity</data>
+  <data key="d11">virtue</data>
+  <data key="d12">excess_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q131.a002.resp</data>
+  <data key="d15">concept.ambition</data>
+  <data key="d16">Ambition</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-ambition-excess-opposed-to-concept-magnanimity-st-ii-ii-q131-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.ambition" target="concept.sin" id="edge.concept.ambition.species_of.concept.sin">
+  <data key="d6">edge.concept.ambition.species_of.concept.sin</data>
+  <data key="d7">to God . Thirdly, when a man's appetite rests in honor itself, without referring it to the profit of others. Since then ambition denotes inordinate desire of honor , it is evident that it is always a sin .</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.sin</data>
+  <data key="d10">Sin</data>
+  <data key="d11">sin_type</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q131.a001.resp</data>
+  <data key="d15">concept.ambition</data>
+  <data key="d16">Ambition</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-ambition-species-of-concept-sin-st-ii-ii-q131-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.constancy_fortitude" target="concept.patience" id="edge.concept.constancy_fortitude.part_of.concept.patience">
+  <data key="d6">edge.concept.constancy_fortitude.part_of.concept.patience</data>
+  <data key="d7">afflicteth the soul ." Hence there may be patience in bearing this trial, as in enduring any other sorrows. Accordingly longanimity and constancy are both comprised under patience, in so far as both the delay of the hoped for good (which regards longanimity) and the toil which man endures in persistently accomplishing a good work (which regards constancy) m</data>
+  <data key="d20">patience | perseverance</data>
+  <data key="d9">concept.patience</data>
+  <data key="d10">Patience</data>
+  <data key="d11">virtue</data>
+  <data key="d12">part_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a005.resp</data>
+  <data key="d15">concept.constancy_fortitude</data>
+  <data key="d16">Constancy</data>
+  <data key="d17">habit</data>
+  <data key="d18">ann.concept-constancy-fortitude-part-of-concept-patience-st-ii-ii-q136-a005-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.constancy_fortitude" target="concept.fortitude" id="edge.concept.constancy_fortitude.part_of_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.constancy_fortitude.part_of_fortitude.concept.fortitude</data>
+  <data key="d7">ereas constancy makes him persist firmly in good against difficulties arising from any other external hindrances. Hence perseverance takes precedence of constancy as a part of fortitude , because the difficulty arising from continuance of action is more intrinsic to the act of virtue than that which arises from external obstacles.</data>
+  <data key="d20">perseverance</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">part_of_fortitude</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q137.a003.resp</data>
+  <data key="d15">concept.constancy_fortitude</data>
+  <data key="d16">Constancy</data>
+  <data key="d17">habit</data>
+  <data key="d18">ann.concept-constancy-fortitude-part-of-fortitude-concept-fortitude-st-ii-ii-q137-a003-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.effeminacy_perseverance" target="concept.perseverance_virtue" id="edge.concept.effeminacy_perseverance.deficiency_opposed_to.concept.perseverance_virtue">
+  <data key="d6">edge.concept.effeminacy_perseverance.deficiency_opposed_to.concept.perseverance_virtue</data>
+  <data key="d7">praise because thereby a man does not forsake a good on account of long endurance of difficulties and toils: and it is directly opposed to this, seemingly, for a man to be ready to forsake a good on account of difficulties which he cannot endure. This is what we understand by effeminacy, because a thing is said to | The Philosopher says (Ethic. vii, 7) that "the persevering man is opposed to the effeminate."</data>
+  <data key="d20">opposed_vice | perseverance</data>
+  <data key="d9">concept.perseverance_virtue</data>
+  <data key="d10">Perseverance (Fortitude Part)</data>
+  <data key="d11">virtue</data>
+  <data key="d12">deficiency_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q138.a001.resp | st.ii-ii.q138.a001.sc</data>
+  <data key="d15">concept.effeminacy_perseverance</data>
+  <data key="d16">Effeminacy</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-effeminacy-perseverance-deficiency-opposed-to-concept-perseverance-virtue-st-ii-ii-q138-a001-resp | ann.concept-effeminacy-perseverance-deficiency-opposed-to-concept-perseverance-virtue-st-ii-ii-q138-a001-sc</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.fortitude" target="concept.security_assurance" id="edge.concept.fortitude.has_act.concept.security_assurance">
+  <data key="d6">edge.concept.fortitude.has_act.concept.security_assurance</data>
+  <data key="d7">ngs to magnanimity, so fear directly regards fortitude . Wherefore as confidence belongs immediately to magnanimity, so security belongs immediately to fortitude . It must be observed, however, that as hope is the cause of daring, so is fear the cause of despair , as stated above when we were treating of the passion ( I</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.security_assurance</data>
+  <data key="d10">Security / Assurance</data>
+  <data key="d11">act_type</data>
+  <data key="d12">has_act</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q129.a007.resp</data>
+  <data key="d15">concept.fortitude</data>
+  <data key="d16">Fortitude</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-fortitude-has-act-concept-security-assurance-st-ii-ii-q129-a007-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.fortitude" target="concept.fortitude_gift" id="edge.concept.fortitude.perfected_by.concept.fortitude_gift">
+  <data key="d6">edge.concept.fortitude.perfected_by.concept.fortitude_gift</data>
+  <data key="d7">ind in the endurance of all perils whatever; but it does not go so far as to give confidence of overcoming all dangers: this belongs to the fortitude that is a gift of the Holy Ghost .</data>
+  <data key="d20">gift</data>
+  <data key="d9">concept.fortitude_gift</data>
+  <data key="d10">Gift of Fortitude</data>
+  <data key="d11">gift_holy_spirit</data>
+  <data key="d12">perfected_by</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a001.ad1</data>
+  <data key="d15">concept.fortitude</data>
+  <data key="d16">Fortitude</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-fortitude-perfected-by-concept-fortitude-gift-st-ii-ii-q139-a001-ad1</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.fortitude_gift" target="concept.fortitude" id="edge.concept.fortitude_gift.corresponding_gift_of.concept.fortitude">
+  <data key="d6">edge.concept.fortitude_gift.corresponding_gift_of.concept.fortitude</data>
+  <data key="d7">idence of this is infused into the mind by the Holy Ghost Who expels any fear of the contrary. It is in this sense that fortitude is reckoned a gift of the Holy Ghost . For it has been stated above ( I-II:68:1-2 ) that the gifts regard the motion of the mind by the Holy Ghost .</data>
+  <data key="d20">gift</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">corresponding_gift_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a001.resp</data>
+  <data key="d15">concept.fortitude_gift</data>
+  <data key="d16">Gift of Fortitude</data>
+  <data key="d17">gift_holy_spirit</data>
+  <data key="d18">ann.concept-fortitude-gift-corresponding-gift-of-concept-fortitude-st-ii-ii-q139-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.fortitude_gift" target="concept.beatitude_hunger_for_justice" id="edge.concept.fortitude_gift.corresponds_to.concept.beatitude_hunger_for_justice">
+  <data key="d6">edge.concept.fortitude_gift.corresponds_to.concept.beatitude_hunger_for_justice</data>
+  <data key="d7">order in which they are set forth, observing at the same time a certain fittingness between them. Wherefore he ascribes the fourth beatitude, concerning the hunger and thirst for justice , to the fourth gift , namely fortitude . Yet there is a certain congruity between them, because, as stated ( Article 1 ), fortitude</data>
+  <data key="d20">gift</data>
+  <data key="d9">concept.beatitude_hunger_for_justice</data>
+  <data key="d10">Beatitude of Hunger and Thirst for Justice</data>
+  <data key="d11">beatitude</data>
+  <data key="d12">corresponds_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a002.resp</data>
+  <data key="d15">concept.fortitude_gift</data>
+  <data key="d16">Gift of Fortitude</data>
+  <data key="d17">gift_holy_spirit</data>
+  <data key="d18">ann.concept-fortitude-gift-corresponds-to-concept-beatitude-hunger-for-justice-st-ii-ii-q139-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.fortitude_gift" target="concept.arduous_work" id="edge.concept.fortitude_gift.directed_to.concept.arduous_work">
+  <data key="d6">edge.concept.fortitude_gift.directed_to.concept.arduous_work</data>
+  <data key="d7">e regards the virtue of fortitude not only because it consists in enduring dangers, but also inasmuch as it consists in accomplishing any difficult work. Wherefore the gift of fortitude is directed by the gift of counsel, which seems to be concerned chiefly with the greater goods.</data>
+  <data key="d20">gift</data>
+  <data key="d9">concept.arduous_work</data>
+  <data key="d10">Arduous / Difficult Work</data>
+  <data key="d11">act_type</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a001.ad3</data>
+  <data key="d15">concept.fortitude_gift</data>
+  <data key="d16">Gift of Fortitude</data>
+  <data key="d17">gift_holy_spirit</data>
+  <data key="d18">ann.concept-fortitude-gift-directed-to-concept-arduous-work-st-ii-ii-q139-a001-ad3</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.fortitude_gift" target="concept.grievous_evil" id="edge.concept.fortitude_gift.has_object.concept.grievous_evil">
+  <data key="d6">edge.concept.fortitude_gift.has_object.concept.grievous_evil</data>
+  <data key="d7">ese respects, so as not to forsake the good on account of difficulties, whether in accomplishing an arduous work, or in enduring grievous evil . In this sense fortitude denotes a special or general virtue , as stated above ( II-II:123:2 ). Yet furthermore man's mind is moved by the Holy Ghost , in order that he may attai</data>
+  <data key="d20">gift | patience</data>
+  <data key="d9">concept.grievous_evil</data>
+  <data key="d10">Grievous Evil / Hardship</data>
+  <data key="d11">domain</data>
+  <data key="d12">has_object</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a001.resp</data>
+  <data key="d15">concept.fortitude_gift</data>
+  <data key="d16">Gift of Fortitude</data>
+  <data key="d17">gift_holy_spirit</data>
+  <data key="d18">ann.concept-fortitude-gift-has-object-concept-grievous-evil-st-ii-ii-q139-a001-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.fortitude_gift" target="concept.counsel_gift" id="edge.concept.fortitude_gift.regulated_by.concept.counsel_gift">
+  <data key="d6">edge.concept.fortitude_gift.regulated_by.concept.counsel_gift</data>
+  <data key="d7">se it consists in enduring dangers, but also inasmuch as it consists in accomplishing any difficult work. Wherefore the gift of fortitude is directed by the gift of counsel, which seems to be concerned chiefly with the greater goods.</data>
+  <data key="d20">gift</data>
+  <data key="d9">concept.counsel_gift</data>
+  <data key="d10">Gift of Counsel</data>
+  <data key="d11">gift_holy_spirit</data>
+  <data key="d12">regulated_by</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q139.a001.ad3</data>
+  <data key="d15">concept.fortitude_gift</data>
+  <data key="d16">Gift of Fortitude</data>
+  <data key="d17">gift_holy_spirit</data>
+  <data key="d18">ann.concept-fortitude-gift-regulated-by-concept-counsel-gift-st-ii-ii-q139-a001-ad3</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.glory" target="concept.honor_recognition" id="edge.concept.glory.caused_by.concept.honor_recognition">
+  <data key="d6">edge.concept.glory.caused_by.concept.honor_recognition</data>
+  <data key="d7">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.honor_recognition</data>
+  <data key="d10">Honor as Recognition</data>
+  <data key="d11">domain</data>
+  <data key="d12">caused_by</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q132.a002.resp</data>
+  <data key="d15">concept.glory</data>
+  <data key="d16">Glory</data>
+  <data key="d17">domain</data>
+  <data key="d18">ann.concept-glory-caused-by-concept-honor-recognition-st-ii-ii-q132-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.longanimity_fortitude" target="concept.patience" id="edge.concept.longanimity_fortitude.part_of.concept.patience">
+  <data key="d6">edge.concept.longanimity_fortitude.part_of.concept.patience</data>
+  <data key="d7">afflicteth the soul ." Hence there may be patience in bearing this trial, as in enduring any other sorrows. Accordingly longanimity and constancy are both comprised under patience, in so far as both the delay of the hoped for good (which regards longanimity) and the toil which man endures in persistently accomplishing a good work (which regards constancy) m</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.patience</data>
+  <data key="d10">Patience</data>
+  <data key="d11">virtue</data>
+  <data key="d12">part_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a005.resp</data>
+  <data key="d15">concept.longanimity_fortitude</data>
+  <data key="d16">Longanimity</data>
+  <data key="d17">habit</data>
+  <data key="d18">ann.concept-longanimity-fortitude-part-of-concept-patience-st-ii-ii-q136-a005-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.honor_recognition" id="edge.concept.magnanimity.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.magnanimity.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">and simply, just as a man is said to be brave in respect of things that are difficult simply. It follows therefore that magnanimity is about honors. | ometimes for not caring about it, in so far, to wit, as both these things may be done in moderation. But with regard to great honors there is "magnanimity." Wherefore we must conclude that the proper matter of magnanimity is great honor , and that a magnanimous man tends to such things as ar | ode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated above ( 1 and 2 ): and honor , considered in itself, is a special good , and accordingly magnanimity considered in itself is a special virtue . Sinc | As stated above ( Article 1 ), magnanimity regards two things: honor as its matter , and the accomplishment of something great as its end. Now goods of fortune conduce to both these things. For since honor is conferred on the virtuous , not o</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.honor_recognition</data>
+  <data key="d10">Honor as Recognition</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_honor</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q129.a001.resp | st.ii-ii.q129.a002.resp | st.ii-ii.q129.a004.resp | st.ii-ii.q129.a008.resp</data>
+  <data key="d15">concept.magnanimity</data>
+  <data key="d16">Magnanimity</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a001-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a002-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a004-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a008-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.worthiness" id="edge.concept.magnanimity.concerns_worthiness.concept.worthiness">
+  <data key="d6">edge.concept.magnanimity.concerns_worthiness.concept.worthiness</data>
+  <data key="d7">ly deems to exceed one's ability. Thirdly, it may be considered in reference to its effect, which is to shrink from the great things of which one is worthy. But, as stated above ( II-II:132:2 ad 3 ), opposition between vice and virtue depends rather on their respective species than on their cause or effect. Hence</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.worthiness</data>
+  <data key="d10">Worthiness</data>
+  <data key="d11">doctrine</data>
+  <data key="d12">concerns_worthiness</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q133.a002.resp</data>
+  <data key="d15">concept.magnanimity</data>
+  <data key="d16">Magnanimity</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnanimity-concerns-worthiness-concept-worthiness-st-ii-ii-q133-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.confidence" id="edge.concept.magnanimity.has_act.concept.confidence">
+  <data key="d6">edge.concept.magnanimity.has_act.concept.confidence</data>
+  <data key="d7">pe arising from some observation which gives one a strong opinion that one will obtain a certain good , it follows that confidence belongs to magnanimity.</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.confidence</data>
+  <data key="d10">Confidence</data>
+  <data key="d11">act_type</data>
+  <data key="d12">has_act</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q129.a006.resp</data>
+  <data key="d15">concept.magnanimity</data>
+  <data key="d16">Magnanimity</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnanimity-has-act-concept-confidence-st-ii-ii-q129-a006-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.fortitude" id="edge.concept.magnanimity.related_to_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.magnanimity.related_to_fortitude.concept.fortitude</data>
+  <data key="d7">ter ; but it falls short thereof, in that it confirms the mind about a matter wherein it is easier to stand firm. Hence magnanimity is reckoned a part of fortitude , because it is annexed thereto as secondary to principal.</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">related_to_fortitude</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q129.a005.resp</data>
+  <data key="d15">concept.magnanimity</data>
+  <data key="d16">Magnanimity</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnanimity-related-to-fortitude-concept-fortitude-st-ii-ii-q129-a005-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.virtue" id="edge.concept.magnanimity.species_of.concept.virtue">
+  <data key="d6">edge.concept.magnanimity.species_of.concept.virtue</data>
+  <data key="d7">al human things honors take precedence of all others, as stated above ( Article 1 ; I-II:11:2, Objection 3 ). Therefore magnanimity, which observes the mode of reason in great honors, is a virtue . | As stated above ( II-II:123:2 ), it belongs to a special virtue to establish the mode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated abo</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.virtue</data>
+  <data key="d10">Virtue</data>
+  <data key="d11">virtue</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q129.a003.resp | st.ii-ii.q129.a004.resp</data>
+  <data key="d15">concept.magnanimity</data>
+  <data key="d16">Magnanimity</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnanimity-species-of-concept-virtue-st-ii-ii-q129-a003-resp | ann.concept-magnanimity-species-of-concept-virtue-st-ii-ii-q129-a004-resp</data>
+  <data key="d19">explicit_textual | strong_textual_inference</data>
+</edge>
+<edge source="concept.magnificence" target="concept.great_expenditure" id="edge.concept.magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to magnificence to spend much in order that some great work may be accomplished in becoming manner. Wherefore the Philosopher says (Ethic. iv | expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. iv, 4) that "the magnificent man with equal expenditure w | diture may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fai</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_expenditure</data>
+  <data key="d10">Great Expenditure</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_great_expenditure</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q134.a003.resp | st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.magnificence</data>
+  <data key="d16">Magnificence</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q134-a003-resp | ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a001-resp | ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnificence" target="concept.great_work" id="edge.concept.magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">as to burn or cut, or remain in the agent, as to understand or will. Accordingly if magnificence be taken to denote the doing of something great, the doing [factio] being understood in the strict sense, it is then a special virtue . For the work done is produced by act: in the use of which it is possibl | As stated above ( Article 2 ), it belongs to magnificence to intend doing some great work. Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to | the arduous thing to which fortitude tends derives its difficulty from a danger that threatens the person , whereas the arduous thing to which magnificence tends, derives its difficulty from the dispossession of one's property, which is of much less account than danger to one's person . Wherefore magnificence is account | great in two ways: in one way as regards the work itself to be done, in another as regards the expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. | ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_work</data>
+  <data key="d10">Great Work</data>
+  <data key="d11">object</data>
+  <data key="d12">concerns_great_work</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q134.a002.resp | st.ii-ii.q134.a003.resp | st.ii-ii.q134.a004.resp | st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.magnificence</data>
+  <data key="d16">Magnificence</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a002-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a003-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a004-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a001-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual | strong_textual_inference</data>
+</edge>
+<edge source="concept.magnificence" target="concept.fortitude" id="edge.concept.magnificence.related_to_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.magnificence.related_to_fortitude.concept.fortitude</data>
+  <data key="d7">ficulty from the dispossession of one's property, which is of much less account than danger to one's person . Wherefore magnificence is accounted a part of fortitude .</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">related_to_fortitude</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q134.a004.resp</data>
+  <data key="d15">concept.magnificence</data>
+  <data key="d16">Magnificence</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnificence-related-to-fortitude-concept-fortitude-st-ii-ii-q134-a004-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.magnificence" target="concept.virtue" id="edge.concept.magnificence.species_of.concept.virtue">
+  <data key="d6">edge.concept.magnificence.species_of.concept.virtue</data>
+  <data key="d7">refore to do something great, whence magnificence takes its name, belongs properly to the very notion of virtue . Hence magnificence denotes a virtue . | be taken to denote the doing of something great, the doing [factio] being understood in the strict sense, it is then a special virtue . For the work done is produced by act: in the use of which it is possible to consider a special aspect of goodness , namely that the work produced [factum] by</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.virtue</data>
+  <data key="d10">Virtue</data>
+  <data key="d11">virtue</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q134.a001.resp | st.ii-ii.q134.a002.resp</data>
+  <data key="d15">concept.magnificence</data>
+  <data key="d16">Magnificence</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-magnificence-species-of-concept-virtue-st-ii-ii-q134-a001-resp | ann.concept-magnificence-species-of-concept-virtue-st-ii-ii-q134-a002-resp</data>
+  <data key="d19">explicit_textual | strong_textual_inference</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.great_expenditure" id="edge.concept.meanness_magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.meanness_magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">e mean man intends principally to spend little, wherefore the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the | equires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spendi</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_expenditure</data>
+  <data key="d10">Great Expenditure</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_great_expenditure</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.meanness_magnificence</data>
+  <data key="d16">Meanness</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-meanness-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.great_work" id="edge.concept.meanness_magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.meanness_magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the Philosopher says that "the mean man after going to great | ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_work</data>
+  <data key="d10">Great Work</data>
+  <data key="d11">object</data>
+  <data key="d12">concerns_great_work</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.meanness_magnificence</data>
+  <data key="d16">Meanness</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-meanness-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.magnificence" id="edge.concept.meanness_magnificence.deficiency_opposed_to.concept.magnificence">
+  <data key="d6">edge.concept.meanness_magnificence.deficiency_opposed_to.concept.magnificence</data>
+  <data key="d7">e mean man intends principally to spend little, wherefore the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the | equires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spendi</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.magnificence</data>
+  <data key="d10">Magnificence</data>
+  <data key="d11">virtue</data>
+  <data key="d12">deficiency_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.meanness_magnificence</data>
+  <data key="d16">Meanness</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-meanness-magnificence-deficiency-opposed-to-concept-magnificence-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-deficiency-opposed-to-concept-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.vice" id="edge.concept.meanness_magnificence.species_of.concept.vice">
+  <data key="d6">edge.concept.meanness_magnificence.species_of.concept.vice</data>
+  <data key="d7">w the essence of vice is that it consists in failing to do what is in accordance with reason. Hence it is manifest that meanness is a vice .</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.vice</data>
+  <data key="d10">Vice</data>
+  <data key="d11">vice</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a001.resp</data>
+  <data key="d15">concept.meanness_magnificence</data>
+  <data key="d16">Meanness</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-meanness-magnificence-species-of-concept-vice-st-ii-ii-q135-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.patience" target="concept.charity" id="edge.concept.patience.caused_by.concept.charity">
+  <data key="d6">edge.concept.patience.caused_by.concept.charity</data>
+  <data key="d7">ss of which may cause sorrow, is to be referred to charity , which loves God above all things. Hence it is evident that patience, as a virtue , is caused by charity , according to 1 Corinthians 13:4 , " Charity is patient." But it is manifest that it is impossible to have charity save through grace , according to Romans 5:5 , "The charity of</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.charity</data>
+  <data key="d10">Charity</data>
+  <data key="d11">virtue</data>
+  <data key="d12">caused_by</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a003.resp</data>
+  <data key="d15">concept.patience</data>
+  <data key="d16">Patience</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-patience-caused-by-concept-charity-st-ii-ii-q136-a003-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.patience" target="concept.grievous_evil" id="edge.concept.patience.has_object.concept.grievous_evil">
+  <data key="d6">edge.concept.patience.has_object.concept.grievous_evil</data>
+  <data key="d7">eath," and Sirach 30:25 , "Sadness hath killed many, and there is no profit in it." Hence the necessity for a virtue to safeguard the good of reason against sorrow, lest reason give way to sorrow: and this patience does. Wherefore Augustine says (De Patientia ii): "A man's patience it is whereby he bears evil with an equal mind," i.e. withou</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.grievous_evil</data>
+  <data key="d10">Grievous Evil / Hardship</data>
+  <data key="d11">domain</data>
+  <data key="d12">has_object</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a001.resp</data>
+  <data key="d15">concept.patience</data>
+  <data key="d16">Patience</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-patience-has-object-concept-grievous-evil-st-ii-ii-q136-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.patience" target="concept.fortitude" id="edge.concept.patience.part_of_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.patience.part_of_fortitude.concept.fortitude</data>
+  <data key="d7">Patience is a quasi-potential part of fortitude , because it is annexed thereto as secondary to principal virtue . For it belongs to patience "to suffer with an equal mind the evils inflicted by others," as Gregory says in a ho</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">part_of_fortitude</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a004.resp</data>
+  <data key="d15">concept.patience</data>
+  <data key="d16">Patience</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-patience-part-of-fortitude-concept-fortitude-st-ii-ii-q136-a004-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.patience" target="concept.grace" id="edge.concept.patience.requires.concept.grace">
+  <data key="d6">edge.concept.patience.requires.concept.grace</data>
+  <data key="d7">5:5 , "The charity of God is poured forth in our hearts by the Holy Ghost Who is given to us." Therefore it is clearly impossible to have patience without the help of grace .</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.grace</data>
+  <data key="d10">Grace</data>
+  <data key="d11">grace</data>
+  <data key="d12">requires</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a003.resp</data>
+  <data key="d15">concept.patience</data>
+  <data key="d16">Patience</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-patience-requires-concept-grace-st-ii-ii-q136-a003-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.patience" target="concept.virtue" id="edge.concept.patience.species_of.concept.virtue">
+  <data key="d6">edge.concept.patience.species_of.concept.virtue</data>
+  <data key="d7">"lest he abandon with an unequal mind the goods whereby he may advance to better things." It is therefore evident that patience is a virtue .</data>
+  <data key="d20">patience</data>
+  <data key="d9">concept.virtue</data>
+  <data key="d10">Virtue</data>
+  <data key="d11">virtue</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q136.a001.resp</data>
+  <data key="d15">concept.patience</data>
+  <data key="d16">Patience</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-patience-species-of-concept-virtue-st-ii-ii-q136-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.perseverance_virtue" target="concept.continuance_in_good" id="edge.concept.perseverance_virtue.directed_to.concept.continuance_in_good">
+  <data key="d6">edge.concept.perseverance_virtue.directed_to.concept.continuance_in_good</data>
+  <data key="d7">secondly, from the length of time, since to persist long in something difficult involves a special difficulty. Hence to persist long in something good until it is accomplished belongs to a special virtue . Accordingly just as temperance and fortitude are special virtues , for the reason that the one moderates pleasures of touch (which is of itself a dif</data>
+  <data key="d20">perseverance</data>
+  <data key="d9">concept.continuance_in_good</data>
+  <data key="d10">Continuance in Good</data>
+  <data key="d11">act_type</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q137.a001.resp</data>
+  <data key="d15">concept.perseverance_virtue</data>
+  <data key="d16">Perseverance (Fortitude Part)</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-perseverance-virtue-directed-to-concept-continuance-in-good-st-ii-ii-q137-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.perseverance_virtue" target="concept.fortitude" id="edge.concept.perseverance_virtue.part_of_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.perseverance_virtue.part_of_fortitude.concept.fortitude</data>
+  <data key="d7">g a good work gives perseverance its claim to praise: nor is this so difficult as to endure dangers of death. Therefore perseverance is annexed to fortitude , as secondary to principal virtue .</data>
+  <data key="d20">perseverance</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">part_of_fortitude</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q137.a002.resp</data>
+  <data key="d15">concept.perseverance_virtue</data>
+  <data key="d16">Perseverance (Fortitude Part)</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-perseverance-virtue-part-of-fortitude-concept-fortitude-st-ii-ii-q137-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.perseverance_virtue" target="concept.grace" id="edge.concept.perseverance_virtue.requires.concept.grace">
+  <data key="d6">edge.concept.perseverance_virtue.requires.concept.grace</data>
+  <data key="d7">everance has a twofold signification. First, it denotes the habit of perseverance, considered as a virtue . On this way it needs the gift of habitual grace , even as the other infused virtues . Secondly, it may be taken to denote the act of perseverance enduring until death: and in this sense it needs not only habitual grace , but al</data>
+  <data key="d20">perseverance</data>
+  <data key="d9">concept.grace</data>
+  <data key="d10">Grace</data>
+  <data key="d11">grace</data>
+  <data key="d12">requires</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q137.a004.resp</data>
+  <data key="d15">concept.perseverance_virtue</data>
+  <data key="d16">Perseverance (Fortitude Part)</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-perseverance-virtue-requires-concept-grace-st-ii-ii-q137-a004-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.perseverance_virtue" target="concept.virtue" id="edge.concept.perseverance_virtue.species_of.concept.virtue">
+  <data key="d6">edge.concept.perseverance_virtue.species_of.concept.virtue</data>
+  <data key="d7">e other moderates fear and daring in connection with dangers of death (which also is something difficult in itself), so perseverance is a special virtue , since it consists in enduring delays in the above or other virtuous deeds , so far as necessity requires.</data>
+  <data key="d20">perseverance</data>
+  <data key="d9">concept.virtue</data>
+  <data key="d10">Virtue</data>
+  <data key="d11">virtue</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q137.a001.resp</data>
+  <data key="d15">concept.perseverance_virtue</data>
+  <data key="d16">Perseverance (Fortitude Part)</data>
+  <data key="d17">virtue</data>
+  <data key="d18">ann.concept-perseverance-virtue-species-of-concept-virtue-st-ii-ii-q137-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.pertinacity_perseverance" target="concept.vainglory" id="edge.concept.pertinacity_perseverance.caused_by.concept.vainglory">
+  <data key="d6">edge.concept.pertinacity_perseverance.caused_by.concept.vainglory</data>
+  <data key="d7">sistent in his own opinion, is that he wishes by this means to make a show of his own excellence: wherefore this is the result of vainglory as its cause . Now it has been stated above ( II-II:127:2 ad 1 ; II-II:133:2 ), that opposition of vices to virtues depends, not on their cause , but on their species .</data>
+  <data key="d20">opposed_vice</data>
+  <data key="d9">concept.vainglory</data>
+  <data key="d10">Vainglory</data>
+  <data key="d11">vice</data>
+  <data key="d12">caused_by</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q138.a002.ad1</data>
+  <data key="d15">concept.pertinacity_perseverance</data>
+  <data key="d16">Pertinacity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pertinacity-perseverance-caused-by-concept-vainglory-st-ii-ii-q138-a002-ad1</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.pertinacity_perseverance" target="concept.effeminacy_perseverance" id="edge.concept.pertinacity_perseverance.contrary_to.concept.effeminacy_perseverance">
+  <data key="d6">edge.concept.pertinacity_perseverance.contrary_to.concept.effeminacy_perseverance</data>
+  <data key="d7">, and the persevering man , as he ought. Hence it is clear that perseverance is commended for observing the mean, while pertinacity is reproved for exceeding the mean, and effeminacy for falling short of it.</data>
+  <data key="d20">opposed_vice</data>
+  <data key="d9">concept.effeminacy_perseverance</data>
+  <data key="d10">Effeminacy</data>
+  <data key="d11">vice</data>
+  <data key="d12">contrary_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q138.a002.resp</data>
+  <data key="d15">concept.pertinacity_perseverance</data>
+  <data key="d16">Pertinacity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pertinacity-perseverance-contrary-to-concept-effeminacy-perseverance-st-ii-ii-q138-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.pertinacity_perseverance" target="concept.perseverance_virtue" id="edge.concept.pertinacity_perseverance.excess_opposed_to.concept.perseverance_virtue">
+  <data key="d6">edge.concept.pertinacity_perseverance.excess_opposed_to.concept.perseverance_virtue</data>
+  <data key="d7">, and the persevering man , as he ought. Hence it is clear that perseverance is commended for observing the mean, while pertinacity is reproved for exceeding the mean, and effeminacy for falling short of it. | ance as superstition is to religion. But superstition is opposed to religion, as stated above ( II-II:92:1 ). Therefore pertinacity is opposed to perseverance.</data>
+  <data key="d20">opposed_vice | perseverance</data>
+  <data key="d9">concept.perseverance_virtue</data>
+  <data key="d10">Perseverance (Fortitude Part)</data>
+  <data key="d11">virtue</data>
+  <data key="d12">excess_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q138.a002.resp | st.ii-ii.q138.a002.sc</data>
+  <data key="d15">concept.pertinacity_perseverance</data>
+  <data key="d16">Pertinacity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pertinacity-perseverance-excess-opposed-to-concept-perseverance-virtue-st-ii-ii-q138-a002-resp | ann.concept-pertinacity-perseverance-excess-opposed-to-concept-perseverance-virtue-st-ii-ii-q138-a002-sc</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.precepts_of_fortitude" target="concept.god" id="edge.concept.precepts_of_fortitude.directed_to.concept.god">
+  <data key="d6">edge.concept.precepts_of_fortitude.directed_to.concept.god</data>
+  <data key="d7">ocracies, others of kingdoms, and others again of tyrannical governments. Now the end of the Divine Law is that man may adhere to God : wherefore the Divine Law contains precepts both of fortitude and of the other virtues , with a view to directing the mind to God . For this reason it is written ( Deuteronomy 20</data>
+  <data key="d20">precept</data>
+  <data key="d9">concept.god</data>
+  <data key="d10">God</data>
+  <data key="d11">object</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a001.resp</data>
+  <data key="d15">concept.precepts_of_fortitude</data>
+  <data key="d16">Precepts of Fortitude</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-directed-to-concept-god-st-ii-ii-q140-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.precepts_of_fortitude" target="concept.fortitude" id="edge.concept.precepts_of_fortitude.forbids_opposed_vice_of.concept.fortitude">
+  <data key="d6">edge.concept.precepts_of_fortitude.forbids_opposed_vice_of.concept.fortitude</data>
+  <data key="d7">at have to be done in cases of danger are not, like the things to be avoided, reducible to some common thing. Hence the precepts of fortitude are negative rather than affirmative.</data>
+  <data key="d20">precept</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">forbids_opposed_vice_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a001.ad2</data>
+  <data key="d15">concept.precepts_of_fortitude</data>
+  <data key="d16">Precepts of Fortitude</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-forbids-opposed-vice-of-concept-fortitude-st-ii-ii-q140-a001-ad2</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.precepts_of_fortitude" target="concept.fortitude" id="edge.concept.precepts_of_fortitude.precept_of.concept.fortitude">
+  <data key="d6">edge.concept.precepts_of_fortitude.precept_of.concept.fortitude</data>
+  <data key="d7">again of tyrannical governments. Now the end of the Divine Law is that man may adhere to God : wherefore the Divine Law contains precepts both of fortitude and of the other virtues , with a view to directing the mind to God . For this reason it is written ( Deuteronomy 20:3-4 ): "Fear ye them not: because the Lord your God is in the</data>
+  <data key="d20">precept</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">precept_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a001.resp</data>
+  <data key="d15">concept.precepts_of_fortitude</data>
+  <data key="d16">Precepts of Fortitude</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-precept-of-concept-fortitude-st-ii-ii-q140-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.patience" id="edge.concept.precepts_of_fortitude_parts.commands_act_of.concept.patience">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.commands_act_of.concept.patience</data>
+  <data key="d7">ance, not by reason of any greatness observable in them, but on account of the very nature of those virtues . Hence the need of precepts of patience and perseverance.</data>
+  <data key="d20">patience | precept</data>
+  <data key="d9">concept.patience</data>
+  <data key="d10">Patience</data>
+  <data key="d11">virtue</data>
+  <data key="d12">commands_act_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.ad1</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-commands-act-of-concept-patience-st-ii-ii-q140-a002-ad1</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.patience" id="edge.concept.precepts_of_fortitude_parts.precept_of.concept.patience">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.precept_of.concept.patience</data>
+  <data key="d7">ance, not by reason of any greatness observable in them, but on account of the very nature of those virtues . Hence the need of precepts of patience and perseverance.</data>
+  <data key="d20">patience | precept</data>
+  <data key="d9">concept.patience</data>
+  <data key="d10">Patience</data>
+  <data key="d11">virtue</data>
+  <data key="d12">precept_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.ad1</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-precept-of-concept-patience-st-ii-ii-q140-a002-ad1</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.perseverance_virtue" id="edge.concept.precepts_of_fortitude_parts.commands_act_of.concept.perseverance_virtue">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.commands_act_of.concept.perseverance_virtue</data>
+  <data key="d7">t by reason of any greatness observable in them, but on account of the very nature of those virtues . Hence the need of precepts of patience and perseverance.</data>
+  <data key="d20">perseverance | precept</data>
+  <data key="d9">concept.perseverance_virtue</data>
+  <data key="d10">Perseverance (Fortitude Part)</data>
+  <data key="d11">virtue</data>
+  <data key="d12">commands_act_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.ad1</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-commands-act-of-concept-perseverance-virtue-st-ii-ii-q140-a002-ad1</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.perseverance_virtue" id="edge.concept.precepts_of_fortitude_parts.precept_of.concept.perseverance_virtue">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.precept_of.concept.perseverance_virtue</data>
+  <data key="d7">t by reason of any greatness observable in them, but on account of the very nature of those virtues . Hence the need of precepts of patience and perseverance.</data>
+  <data key="d20">perseverance | precept</data>
+  <data key="d9">concept.perseverance_virtue</data>
+  <data key="d10">Perseverance (Fortitude Part)</data>
+  <data key="d11">virtue</data>
+  <data key="d12">precept_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.ad1</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-precept-of-concept-perseverance-virtue-st-ii-ii-q140-a002-ad1</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.god" id="edge.concept.precepts_of_fortitude_parts.directed_to.concept.god">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.directed_to.concept.god</data>
+  <data key="d7">As stated above ( II-II:3:2 ), although affirmative precepts are always binding, they are not binding for always, but according to place and time. Wherefore just as the affirmative precepts about the other virtues are to be understood as to</data>
+  <data key="d20">precept</data>
+  <data key="d9">concept.god</data>
+  <data key="d10">God</data>
+  <data key="d11">object</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.ad2</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-directed-to-concept-god-st-ii-ii-q140-a002-ad2</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.precepts_of_fortitude_parts" target="concept.fortitude" id="edge.concept.precepts_of_fortitude_parts.precept_of.concept.fortitude">
+  <data key="d6">edge.concept.precepts_of_fortitude_parts.precept_of.concept.fortitude</data>
+  <data key="d7">as are necessary for right living. Now in order to live aright man needs not only the principal virtues , but also the secondary and annexed virtues . Wherefore the Divine Law contains precepts not only about the acts of the principal virtues , but also about the acts of the secondary and annexed virtues .</data>
+  <data key="d20">precept</data>
+  <data key="d9">concept.fortitude</data>
+  <data key="d10">Fortitude</data>
+  <data key="d11">virtue</data>
+  <data key="d12">precept_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q140.a002.resp</data>
+  <data key="d15">concept.precepts_of_fortitude_parts</data>
+  <data key="d16">Precepts of Patience and Perseverance</data>
+  <data key="d17">precept</data>
+  <data key="d18">ann.concept-precepts-of-fortitude-parts-precept-of-concept-fortitude-st-ii-ii-q140-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.presumption_magnanimity" target="concept.magnanimity" id="edge.concept.presumption_magnanimity.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.presumption_magnanimity.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">e does exceed in proportion to his own ability, whereas the magnanimous man does not exceed his. It is in this way that presumption is opposed to magnanimity by excess.</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.magnanimity</data>
+  <data key="d10">Magnanimity</data>
+  <data key="d11">virtue</data>
+  <data key="d12">excess_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q130.a002.resp</data>
+  <data key="d15">concept.presumption_magnanimity</data>
+  <data key="d16">Presumption (Against Magnanimity)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-presumption-magnanimity-excess-opposed-to-concept-magnanimity-st-ii-ii-q130-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.presumption_magnanimity" target="concept.sin" id="edge.concept.presumption_magnanimity.species_of.concept.sin">
+  <data key="d6">edge.concept.presumption_magnanimity.species_of.concept.sin</data>
+  <data key="d7">what is above his power: and this is what is meant by presumption, as its very name shows. Wherefore it is evident that presumption is a sin .</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.sin</data>
+  <data key="d10">Sin</data>
+  <data key="d11">sin_type</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q130.a001.resp</data>
+  <data key="d15">concept.presumption_magnanimity</data>
+  <data key="d16">Presumption (Against Magnanimity)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-presumption-magnanimity-species-of-concept-sin-st-ii-ii-q130-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.worthiness" id="edge.concept.pusillanimity.concerns_worthiness.concept.worthiness">
+  <data key="d6">edge.concept.pusillanimity.concerns_worthiness.concept.worthiness</data>
+  <data key="d7">ly deems to exceed one's ability. Thirdly, it may be considered in reference to its effect, which is to shrink from the great things of which one is worthy. But, as stated above ( II-II:132:2 ad 3 ), opposition between vice and virtue depends rather on their respective species than on their cause or effect. Hence</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.worthiness</data>
+  <data key="d10">Worthiness</data>
+  <data key="d11">doctrine</data>
+  <data key="d12">concerns_worthiness</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q133.a002.resp</data>
+  <data key="d15">concept.pusillanimity</data>
+  <data key="d16">Pusillanimity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pusillanimity-concerns-worthiness-concept-worthiness-st-ii-ii-q133-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.magnanimity" id="edge.concept.pusillanimity.deficiency_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.pusillanimity.deficiency_opposed_to.concept.magnanimity</data>
+  <data key="d7">makes a man exceed what is proportionate to his power, by striving to do more than he can, so pusillanimity makes a man fall short of what is proportionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so is pusillanimity. Hence it is that the servant who buried in | Pusillanimity may be considered in three ways. First, in itself; and thus it is evident that by its very nature it is opposed to magnanimity, from which it differs as great</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.magnanimity</data>
+  <data key="d10">Magnanimity</data>
+  <data key="d11">virtue</data>
+  <data key="d12">deficiency_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q133.a001.resp | st.ii-ii.q133.a002.resp</data>
+  <data key="d15">concept.pusillanimity</data>
+  <data key="d16">Pusillanimity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pusillanimity-deficiency-opposed-to-concept-magnanimity-st-ii-ii-q133-a001-resp | ann.concept-pusillanimity-deficiency-opposed-to-concept-magnanimity-st-ii-ii-q133-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.sin" id="edge.concept.pusillanimity.species_of.concept.sin">
+  <data key="d6">edge.concept.pusillanimity.species_of.concept.sin</data>
+  <data key="d7">portionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so is pusillanimity. Hence it is that the servant who buried in the earth the money he had received from his master, and did not trade with it through fainthearted fear, was punis</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.sin</data>
+  <data key="d10">Sin</data>
+  <data key="d11">sin_type</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q133.a001.resp</data>
+  <data key="d15">concept.pusillanimity</data>
+  <data key="d16">Pusillanimity</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-pusillanimity-species-of-concept-sin-st-ii-ii-q133-a001-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.vainglory" target="concept.honor_recognition" id="edge.concept.vainglory.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.vainglory.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.honor_recognition</data>
+  <data key="d10">Honor as Recognition</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_honor</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q132.a002.resp</data>
+  <data key="d15">concept.vainglory</data>
+  <data key="d16">Vainglory</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-vainglory-concerns-honor-concept-honor-recognition-st-ii-ii-q132-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.vainglory" target="concept.glory" id="edge.concept.vainglory.directed_to.concept.glory">
+  <data key="d6">edge.concept.vainglory.directed_to.concept.glory</data>
+  <data key="d7">our light shine before men." Hence the desire for glory does not, of itself, denote a sin : but the desire for empty or vain glory denotes a sin : for it is sinful to desire anything vain, according to Psalm 4:3 , "Why do you love vanity, and seek after lying?" Now glory may be called vain | it also is about glory : seeing that as a man uses honor moderately, so too does he use glory in moderation. Wherefore inordinate desire of glory is directly opposed to magnanimity. | cial sources of vice , known as the capital vices . Now among the goods that are the means whereby man acquires honor , glory seems to be the most conducive to that effect, inasmuch as it denotes the manifestation of a man's goodness : since good is naturally loved and honored by all. Wherefore, just as by the glor | y their very nature are such as to be directed to the end of a certain capital vice , are called its daughters. Now the end of vainglory is the manifestation of one's own excellence, as stated above ( A1 , Article 4 ): and to this end a man may tend in two ways. On one way directly, either by wo</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.glory</data>
+  <data key="d10">Glory</data>
+  <data key="d11">domain</data>
+  <data key="d12">directed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q132.a001.resp | st.ii-ii.q132.a002.resp | st.ii-ii.q132.a004.resp | st.ii-ii.q132.a005.resp</data>
+  <data key="d15">concept.vainglory</data>
+  <data key="d16">Vainglory</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a001-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a002-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a004-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a005-resp</data>
+  <data key="d19">explicit_textual | strong_textual_inference</data>
+</edge>
+<edge source="concept.vainglory" target="concept.magnanimity" id="edge.concept.vainglory.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.vainglory.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">ng that as a man uses honor moderately, so too does he use glory in moderation. Wherefore inordinate desire of glory is directly opposed to magnanimity.</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.magnanimity</data>
+  <data key="d10">Magnanimity</data>
+  <data key="d11">virtue</data>
+  <data key="d12">excess_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q132.a002.resp</data>
+  <data key="d15">concept.vainglory</data>
+  <data key="d16">Vainglory</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-vainglory-excess-opposed-to-concept-magnanimity-st-ii-ii-q132-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.vainglory" target="concept.vice" id="edge.concept.vainglory.species_of.concept.vice">
+  <data key="d6">edge.concept.vainglory.species_of.concept.vice</data>
+  <data key="d7">The capital vices are enumerated in two ways. For some reckon pride as one of their number: and these do not place vainglory among the capital vices . Gregory , however (Moral. xxxi), reckons pride to be the queen of all the vices , and vainglory, which is the immediate offspring of</data>
+  <data key="d8">honor_worthiness</data>
+  <data key="d9">concept.vice</data>
+  <data key="d10">Vice</data>
+  <data key="d11">vice</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q132.a004.resp</data>
+  <data key="d15">concept.vainglory</data>
+  <data key="d16">Vainglory</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-vainglory-species-of-concept-vice-st-ii-ii-q132-a004-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.great_expenditure" id="edge.concept.waste_magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.waste_magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">oportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is als</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_expenditure</data>
+  <data key="d10">Great Expenditure</data>
+  <data key="d11">domain</data>
+  <data key="d12">concerns_great_expenditure</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.waste_magnificence</data>
+  <data key="d16">Waste (Banausia / Consumptio)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-waste-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.great_work" id="edge.concept.waste_magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.waste_magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.great_work</data>
+  <data key="d10">Great Work</data>
+  <data key="d11">object</data>
+  <data key="d12">concerns_great_work</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.waste_magnificence</data>
+  <data key="d16">Waste (Banausia / Consumptio)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-waste-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.meanness_magnificence" id="edge.concept.waste_magnificence.contrary_to.concept.meanness_magnificence">
+  <data key="d6">edge.concept.waste_magnificence.contrary_to.concept.meanness_magnificence</data>
+  <data key="d7">at it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.meanness_magnificence</data>
+  <data key="d10">Meanness</data>
+  <data key="d11">vice</data>
+  <data key="d12">contrary_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.waste_magnificence</data>
+  <data key="d16">Waste (Banausia / Consumptio)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-waste-magnificence-contrary-to-concept-meanness-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.magnificence" id="edge.concept.waste_magnificence.excess_opposed_to.concept.magnificence">
+  <data key="d6">edge.concept.waste_magnificence.excess_opposed_to.concept.magnificence</data>
+  <data key="d7">oportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is als</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.magnificence</data>
+  <data key="d10">Magnificence</data>
+  <data key="d11">virtue</data>
+  <data key="d12">excess_opposed_to</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.waste_magnificence</data>
+  <data key="d16">Waste (Banausia / Consumptio)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-waste-magnificence-excess-opposed-to-concept-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">strong_textual_inference</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.vice" id="edge.concept.waste_magnificence.species_of.concept.vice">
+  <data key="d6">edge.concept.waste_magnificence.species_of.concept.vice</data>
+  <data key="d7">s a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is also called apyrokalia , i.e. lackin</data>
+  <data key="d8">expenditure_work</data>
+  <data key="d9">concept.vice</data>
+  <data key="d10">Vice</data>
+  <data key="d11">vice</data>
+  <data key="d12">species_of</data>
+  <data key="d13">reviewed_doctrinal</data>
+  <data key="d14">st.ii-ii.q135.a002.resp</data>
+  <data key="d15">concept.waste_magnificence</data>
+  <data key="d16">Waste (Banausia / Consumptio)</data>
+  <data key="d17">vice</data>
+  <data key="d18">ann.concept-waste-magnificence-species-of-concept-vice-st-ii-ii-q135-a002-resp</data>
+  <data key="d19">explicit_textual</data>
+</edge>
+</graph></graphml>

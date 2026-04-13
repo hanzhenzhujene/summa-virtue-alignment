@@ -1,0 +1,2350 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d18" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d17" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d16" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d15" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d14" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d12" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d10" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d9" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d8" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d7" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.adjuration">
+  <data key="d0">concept.adjuration</data>
+  <data key="d1">Adjuration</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A reverential calling on the divine name or a holy thing in order to obtain or command something.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.adoration">
+  <data key="d0">concept.adoration</data>
+  <data key="d1">Adoration</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">An act of reverence offered to God, inwardly and outwardly.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.astrological_divination">
+  <data key="d0">concept.astrological_divination</data>
+  <data key="d1">Astrological Divination</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Unlawful foreknowledge sought from the stars beyond what they can naturally signify.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.augury">
+  <data key="d0">concept.augury</data>
+  <data key="d1">Augury</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Divination that reads birds, signs, or omens beyond the lawful order of nature or providence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.devotion">
+  <data key="d0">concept.devotion</data>
+  <data key="d1">Devotion</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The ready will to do what pertains to the worship and service of God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divination">
+  <data key="d0">concept.divination</data>
+  <data key="d1">Divination</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Superstitious foretelling or seeking knowledge of the future from unlawful sources.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divination_by_demons">
+  <data key="d0">concept.divination_by_demons</data>
+  <data key="d1">Divination by Demons</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Divination that invokes demons explicitly for knowledge of the future.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divination_by_dreams">
+  <data key="d0">concept.divination_by_dreams</data>
+  <data key="d1">Divination by Dreams</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Superstitious use of dreams for unlawful foreknowledge when it exceeds natural or divine causes.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divine_name">
+  <data key="d0">concept.divine_name</data>
+  <data key="d1">Divine Name</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The holy name invoked in oath, adjuration, praise, and perjury.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divine_worship">
+  <data key="d0">concept.divine_worship</data>
+  <data key="d1">Divine Worship</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The domain of honor, reverence, and worship that is due to God alone.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.first_fruits">
+  <data key="d0">concept.first_fruits</data>
+  <data key="d1">First-Fruits</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A special oblation offered to God in acknowledgment of divine favor.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fortune_telling_observance">
+  <data key="d0">concept.fortune_telling_observance</data>
+  <data key="d1">Fortune-Telling Observance</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A vain observance that treats arbitrary signs as indicators of future good or evil fortune.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.healing_observance">
+  <data key="d0">concept.healing_observance</data>
+  <data key="d1">Superstitious Healing Observance</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">An unlawful observance that seeks bodily effects through signs rather than natural causes.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.idolatry">
+  <data key="d0">concept.idolatry</data>
+  <data key="d1">Idolatry</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The superstitious giving of divine worship to a creature.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.justice">
+  <data key="d0">concept.justice</data>
+  <data key="d1">Justice</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Moral virtue rendering acts and agents right in relation to another.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.magical_observance">
+  <data key="d0">concept.magical_observance</data>
+  <data key="d1">Magical Observance</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A vain and unlawful observance that seeks knowledge through magical signs and words.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.oath">
+  <data key="d0">concept.oath</data>
+  <data key="d1">Oath</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The calling of God to witness in confirmation of what one says.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.oblation">
+  <data key="d0">concept.oblation</data>
+  <data key="d1">Oblation</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A thing offered for divine worship, whether or not it is destroyed as sacrifice.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.perjury">
+  <data key="d0">concept.perjury</data>
+  <data key="d1">Perjury</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The perversity of swearing falsely and so irreverently calling God to witness.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.praise_of_god">
+  <data key="d0">concept.praise_of_god</data>
+  <data key="d1">Praise of God</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Vocal praise directed to God in order to stir devotion and reverence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.prayer">
+  <data key="d0">concept.prayer</data>
+  <data key="d1">Prayer</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The act whereby a rational creature asks or petitions God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.promise_to_god">
+  <data key="d0">concept.promise_to_god</data>
+  <data key="d1">Promise to God</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The promised matter and divine addressee that complete the nature of a vow.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.religion">
+  <data key="d0">concept.religion</data>
+  <data key="d1">Religion</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue annexed to justice that renders due worship to God.</data>
+  <data key="d5">Treat religion as the positive virtue of divine worship, not as generic creed or confession.</data>
+</node>
+<node id="concept.sacrament">
+  <data key="d0">concept.sacrament</data>
+  <data key="d1">Sacrament</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A most spiritual thing of the New Law that causes spiritual grace.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sacred_person">
+  <data key="d0">concept.sacred_person</data>
+  <data key="d1">Sacred Person</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A person consecrated to divine worship and therefore protected against sacrilege.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sacred_place">
+  <data key="d0">concept.sacred_place</data>
+  <data key="d1">Sacred Place</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A place consecrated for divine worship and therefore a possible object of sacrilege.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sacred_thing">
+  <data key="d0">concept.sacred_thing</data>
+  <data key="d1">Sacred Thing</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A thing deputed to divine worship and therefore owed reverence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sacrifice">
+  <data key="d0">concept.sacrifice</data>
+  <data key="d1">Sacrifice</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">An offering made to God in sign of man's subjection and honor.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sacrilege">
+  <data key="d0">concept.sacrilege</data>
+  <data key="d1">Sacrilege</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The irreverent treatment of a sacred thing, person, place, or sacrament.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.simony">
+  <data key="d0">concept.simony</data>
+  <data key="d1">Simony</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The buying or selling of spiritual things or their sacred annexes.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sortilege">
+  <data key="d0">concept.sortilege</data>
+  <data key="d1">Sortilege</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Divination that seeks hidden knowledge by lots or similar acts beyond lawful necessity and reverence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.spiritual_action">
+  <data key="d0">concept.spiritual_action</data>
+  <data key="d1">Spiritual Action</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A spiritual action flowing from grace or disposing to grace and not lawfully saleable.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.spiritual_office">
+  <data key="d0">concept.spiritual_office</data>
+  <data key="d1">Spiritual Office</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A sacred office dependent on spiritual things and therefore not lawfully sold.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.spiritual_thing">
+  <data key="d0">concept.spiritual_thing</data>
+  <data key="d1">Spiritual Thing</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A spiritual good that cannot be appraised by earthly price and so cannot be lawfully sold.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.superstition">
+  <data key="d0">concept.superstition</data>
+  <data key="d1">Superstition</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice opposed to religion by excess in divine worship.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.superstitious_observance">
+  <data key="d0">concept.superstitious_observance</data>
+  <data key="d1">Superstitious Observance</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Superstitious observances that direct human acts by vain signs rather than divine authority.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sworn_assertion">
+  <data key="d0">concept.sworn_assertion</data>
+  <data key="d1">Sworn Assertion</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The human assertion or promise confirmed by calling God to witness.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.temptation_of_god">
+  <data key="d0">concept.temptation_of_god</data>
+  <data key="d1">Temptation of God</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The sin of testing God and thereby showing irreverence toward Him.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.tithes">
+  <data key="d0">concept.tithes</data>
+  <data key="d1">Tithes</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The giving of a fixed proportion for the support of ministers of divine worship.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.undue_worship_of_true_god">
+  <data key="d0">concept.undue_worship_of_true_god</data>
+  <data key="d1">Undue Worship of the True God</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Superstition that offers worship to the true God in an undue mode.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vow">
+  <data key="d0">concept.vow</data>
+  <data key="d1">Vow</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A promise made to God about something acceptable to Him.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.written_charm_observance">
+  <data key="d0">concept.written_charm_observance</data>
+  <data key="d1">Written-Charm Observance</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A superstitious observance that relies on written words or charms apart from due reverence to God.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q080">
+  <data key="d0">st.ii-ii.q080</data>
+  <data key="d1">II-II q.80</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q080.a001">
+  <data key="d0">st.ii-ii.q080.a001</data>
+  <data key="d1">II-II q.80 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081">
+  <data key="d0">st.ii-ii.q081</data>
+  <data key="d1">II-II q.81</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a001">
+  <data key="d0">st.ii-ii.q081.a001</data>
+  <data key="d1">II-II q.81 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a002">
+  <data key="d0">st.ii-ii.q081.a002</data>
+  <data key="d1">II-II q.81 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a003">
+  <data key="d0">st.ii-ii.q081.a003</data>
+  <data key="d1">II-II q.81 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a004">
+  <data key="d0">st.ii-ii.q081.a004</data>
+  <data key="d1">II-II q.81 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a005">
+  <data key="d0">st.ii-ii.q081.a005</data>
+  <data key="d1">II-II q.81 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a006">
+  <data key="d0">st.ii-ii.q081.a006</data>
+  <data key="d1">II-II q.81 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a007">
+  <data key="d0">st.ii-ii.q081.a007</data>
+  <data key="d1">II-II q.81 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q081.a008">
+  <data key="d0">st.ii-ii.q081.a008</data>
+  <data key="d1">II-II q.81 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q082">
+  <data key="d0">st.ii-ii.q082</data>
+  <data key="d1">II-II q.82</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q082.a001">
+  <data key="d0">st.ii-ii.q082.a001</data>
+  <data key="d1">II-II q.82 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q082.a002">
+  <data key="d0">st.ii-ii.q082.a002</data>
+  <data key="d1">II-II q.82 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q082.a003">
+  <data key="d0">st.ii-ii.q082.a003</data>
+  <data key="d1">II-II q.82 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q082.a004">
+  <data key="d0">st.ii-ii.q082.a004</data>
+  <data key="d1">II-II q.82 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083">
+  <data key="d0">st.ii-ii.q083</data>
+  <data key="d1">II-II q.83</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a001">
+  <data key="d0">st.ii-ii.q083.a001</data>
+  <data key="d1">II-II q.83 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a002">
+  <data key="d0">st.ii-ii.q083.a002</data>
+  <data key="d1">II-II q.83 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a003">
+  <data key="d0">st.ii-ii.q083.a003</data>
+  <data key="d1">II-II q.83 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a004">
+  <data key="d0">st.ii-ii.q083.a004</data>
+  <data key="d1">II-II q.83 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a005">
+  <data key="d0">st.ii-ii.q083.a005</data>
+  <data key="d1">II-II q.83 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a006">
+  <data key="d0">st.ii-ii.q083.a006</data>
+  <data key="d1">II-II q.83 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a007">
+  <data key="d0">st.ii-ii.q083.a007</data>
+  <data key="d1">II-II q.83 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a008">
+  <data key="d0">st.ii-ii.q083.a008</data>
+  <data key="d1">II-II q.83 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a009">
+  <data key="d0">st.ii-ii.q083.a009</data>
+  <data key="d1">II-II q.83 a.9</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a010">
+  <data key="d0">st.ii-ii.q083.a010</data>
+  <data key="d1">II-II q.83 a.10</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a011">
+  <data key="d0">st.ii-ii.q083.a011</data>
+  <data key="d1">II-II q.83 a.11</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a012">
+  <data key="d0">st.ii-ii.q083.a012</data>
+  <data key="d1">II-II q.83 a.12</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a013">
+  <data key="d0">st.ii-ii.q083.a013</data>
+  <data key="d1">II-II q.83 a.13</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a014">
+  <data key="d0">st.ii-ii.q083.a014</data>
+  <data key="d1">II-II q.83 a.14</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a015">
+  <data key="d0">st.ii-ii.q083.a015</data>
+  <data key="d1">II-II q.83 a.15</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a016">
+  <data key="d0">st.ii-ii.q083.a016</data>
+  <data key="d1">II-II q.83 a.16</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q083.a017">
+  <data key="d0">st.ii-ii.q083.a017</data>
+  <data key="d1">II-II q.83 a.17</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q084">
+  <data key="d0">st.ii-ii.q084</data>
+  <data key="d1">II-II q.84</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q084.a001">
+  <data key="d0">st.ii-ii.q084.a001</data>
+  <data key="d1">II-II q.84 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q084.a002">
+  <data key="d0">st.ii-ii.q084.a002</data>
+  <data key="d1">II-II q.84 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q084.a003">
+  <data key="d0">st.ii-ii.q084.a003</data>
+  <data key="d1">II-II q.84 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q085">
+  <data key="d0">st.ii-ii.q085</data>
+  <data key="d1">II-II q.85</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q085.a001">
+  <data key="d0">st.ii-ii.q085.a001</data>
+  <data key="d1">II-II q.85 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q085.a002">
+  <data key="d0">st.ii-ii.q085.a002</data>
+  <data key="d1">II-II q.85 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q085.a003">
+  <data key="d0">st.ii-ii.q085.a003</data>
+  <data key="d1">II-II q.85 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q085.a004">
+  <data key="d0">st.ii-ii.q085.a004</data>
+  <data key="d1">II-II q.85 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q086">
+  <data key="d0">st.ii-ii.q086</data>
+  <data key="d1">II-II q.86</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q086.a001">
+  <data key="d0">st.ii-ii.q086.a001</data>
+  <data key="d1">II-II q.86 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q086.a002">
+  <data key="d0">st.ii-ii.q086.a002</data>
+  <data key="d1">II-II q.86 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q086.a003">
+  <data key="d0">st.ii-ii.q086.a003</data>
+  <data key="d1">II-II q.86 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q086.a004">
+  <data key="d0">st.ii-ii.q086.a004</data>
+  <data key="d1">II-II q.86 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q087">
+  <data key="d0">st.ii-ii.q087</data>
+  <data key="d1">II-II q.87</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q087.a001">
+  <data key="d0">st.ii-ii.q087.a001</data>
+  <data key="d1">II-II q.87 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q087.a002">
+  <data key="d0">st.ii-ii.q087.a002</data>
+  <data key="d1">II-II q.87 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q087.a003">
+  <data key="d0">st.ii-ii.q087.a003</data>
+  <data key="d1">II-II q.87 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q087.a004">
+  <data key="d0">st.ii-ii.q087.a004</data>
+  <data key="d1">II-II q.87 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088">
+  <data key="d0">st.ii-ii.q088</data>
+  <data key="d1">II-II q.88</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a001">
+  <data key="d0">st.ii-ii.q088.a001</data>
+  <data key="d1">II-II q.88 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a002">
+  <data key="d0">st.ii-ii.q088.a002</data>
+  <data key="d1">II-II q.88 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a003">
+  <data key="d0">st.ii-ii.q088.a003</data>
+  <data key="d1">II-II q.88 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a004">
+  <data key="d0">st.ii-ii.q088.a004</data>
+  <data key="d1">II-II q.88 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a005">
+  <data key="d0">st.ii-ii.q088.a005</data>
+  <data key="d1">II-II q.88 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a006">
+  <data key="d0">st.ii-ii.q088.a006</data>
+  <data key="d1">II-II q.88 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a007">
+  <data key="d0">st.ii-ii.q088.a007</data>
+  <data key="d1">II-II q.88 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a008">
+  <data key="d0">st.ii-ii.q088.a008</data>
+  <data key="d1">II-II q.88 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a009">
+  <data key="d0">st.ii-ii.q088.a009</data>
+  <data key="d1">II-II q.88 a.9</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a010">
+  <data key="d0">st.ii-ii.q088.a010</data>
+  <data key="d1">II-II q.88 a.10</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a011">
+  <data key="d0">st.ii-ii.q088.a011</data>
+  <data key="d1">II-II q.88 a.11</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q088.a012">
+  <data key="d0">st.ii-ii.q088.a012</data>
+  <data key="d1">II-II q.88 a.12</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089">
+  <data key="d0">st.ii-ii.q089</data>
+  <data key="d1">II-II q.89</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a001">
+  <data key="d0">st.ii-ii.q089.a001</data>
+  <data key="d1">II-II q.89 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a002">
+  <data key="d0">st.ii-ii.q089.a002</data>
+  <data key="d1">II-II q.89 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a003">
+  <data key="d0">st.ii-ii.q089.a003</data>
+  <data key="d1">II-II q.89 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a004">
+  <data key="d0">st.ii-ii.q089.a004</data>
+  <data key="d1">II-II q.89 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a005">
+  <data key="d0">st.ii-ii.q089.a005</data>
+  <data key="d1">II-II q.89 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a006">
+  <data key="d0">st.ii-ii.q089.a006</data>
+  <data key="d1">II-II q.89 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a007">
+  <data key="d0">st.ii-ii.q089.a007</data>
+  <data key="d1">II-II q.89 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a008">
+  <data key="d0">st.ii-ii.q089.a008</data>
+  <data key="d1">II-II q.89 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a009">
+  <data key="d0">st.ii-ii.q089.a009</data>
+  <data key="d1">II-II q.89 a.9</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q089.a010">
+  <data key="d0">st.ii-ii.q089.a010</data>
+  <data key="d1">II-II q.89 a.10</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q090">
+  <data key="d0">st.ii-ii.q090</data>
+  <data key="d1">II-II q.90</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q090.a001">
+  <data key="d0">st.ii-ii.q090.a001</data>
+  <data key="d1">II-II q.90 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q090.a002">
+  <data key="d0">st.ii-ii.q090.a002</data>
+  <data key="d1">II-II q.90 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q090.a003">
+  <data key="d0">st.ii-ii.q090.a003</data>
+  <data key="d1">II-II q.90 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q091">
+  <data key="d0">st.ii-ii.q091</data>
+  <data key="d1">II-II q.91</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q091.a001">
+  <data key="d0">st.ii-ii.q091.a001</data>
+  <data key="d1">II-II q.91 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q091.a002">
+  <data key="d0">st.ii-ii.q091.a002</data>
+  <data key="d1">II-II q.91 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q092">
+  <data key="d0">st.ii-ii.q092</data>
+  <data key="d1">II-II q.92</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q092.a001">
+  <data key="d0">st.ii-ii.q092.a001</data>
+  <data key="d1">II-II q.92 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q092.a002">
+  <data key="d0">st.ii-ii.q092.a002</data>
+  <data key="d1">II-II q.92 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q093">
+  <data key="d0">st.ii-ii.q093</data>
+  <data key="d1">II-II q.93</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q093.a001">
+  <data key="d0">st.ii-ii.q093.a001</data>
+  <data key="d1">II-II q.93 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q093.a002">
+  <data key="d0">st.ii-ii.q093.a002</data>
+  <data key="d1">II-II q.93 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q094">
+  <data key="d0">st.ii-ii.q094</data>
+  <data key="d1">II-II q.94</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q094.a001">
+  <data key="d0">st.ii-ii.q094.a001</data>
+  <data key="d1">II-II q.94 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q094.a002">
+  <data key="d0">st.ii-ii.q094.a002</data>
+  <data key="d1">II-II q.94 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q094.a003">
+  <data key="d0">st.ii-ii.q094.a003</data>
+  <data key="d1">II-II q.94 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q094.a004">
+  <data key="d0">st.ii-ii.q094.a004</data>
+  <data key="d1">II-II q.94 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095">
+  <data key="d0">st.ii-ii.q095</data>
+  <data key="d1">II-II q.95</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a001">
+  <data key="d0">st.ii-ii.q095.a001</data>
+  <data key="d1">II-II q.95 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a002">
+  <data key="d0">st.ii-ii.q095.a002</data>
+  <data key="d1">II-II q.95 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a003">
+  <data key="d0">st.ii-ii.q095.a003</data>
+  <data key="d1">II-II q.95 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a004">
+  <data key="d0">st.ii-ii.q095.a004</data>
+  <data key="d1">II-II q.95 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a005">
+  <data key="d0">st.ii-ii.q095.a005</data>
+  <data key="d1">II-II q.95 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a006">
+  <data key="d0">st.ii-ii.q095.a006</data>
+  <data key="d1">II-II q.95 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a007">
+  <data key="d0">st.ii-ii.q095.a007</data>
+  <data key="d1">II-II q.95 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q095.a008">
+  <data key="d0">st.ii-ii.q095.a008</data>
+  <data key="d1">II-II q.95 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q096">
+  <data key="d0">st.ii-ii.q096</data>
+  <data key="d1">II-II q.96</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q096.a001">
+  <data key="d0">st.ii-ii.q096.a001</data>
+  <data key="d1">II-II q.96 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q096.a002">
+  <data key="d0">st.ii-ii.q096.a002</data>
+  <data key="d1">II-II q.96 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q096.a003">
+  <data key="d0">st.ii-ii.q096.a003</data>
+  <data key="d1">II-II q.96 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q096.a004">
+  <data key="d0">st.ii-ii.q096.a004</data>
+  <data key="d1">II-II q.96 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q097">
+  <data key="d0">st.ii-ii.q097</data>
+  <data key="d1">II-II q.97</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q097.a001">
+  <data key="d0">st.ii-ii.q097.a001</data>
+  <data key="d1">II-II q.97 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q097.a002">
+  <data key="d0">st.ii-ii.q097.a002</data>
+  <data key="d1">II-II q.97 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q097.a003">
+  <data key="d0">st.ii-ii.q097.a003</data>
+  <data key="d1">II-II q.97 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q097.a004">
+  <data key="d0">st.ii-ii.q097.a004</data>
+  <data key="d1">II-II q.97 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q098">
+  <data key="d0">st.ii-ii.q098</data>
+  <data key="d1">II-II q.98</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q098.a001">
+  <data key="d0">st.ii-ii.q098.a001</data>
+  <data key="d1">II-II q.98 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q098.a002">
+  <data key="d0">st.ii-ii.q098.a002</data>
+  <data key="d1">II-II q.98 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q098.a003">
+  <data key="d0">st.ii-ii.q098.a003</data>
+  <data key="d1">II-II q.98 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q098.a004">
+  <data key="d0">st.ii-ii.q098.a004</data>
+  <data key="d1">II-II q.98 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q099">
+  <data key="d0">st.ii-ii.q099</data>
+  <data key="d1">II-II q.99</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q099.a001">
+  <data key="d0">st.ii-ii.q099.a001</data>
+  <data key="d1">II-II q.99 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q099.a002">
+  <data key="d0">st.ii-ii.q099.a002</data>
+  <data key="d1">II-II q.99 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q099.a003">
+  <data key="d0">st.ii-ii.q099.a003</data>
+  <data key="d1">II-II q.99 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q099.a004">
+  <data key="d0">st.ii-ii.q099.a004</data>
+  <data key="d1">II-II q.99 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100">
+  <data key="d0">st.ii-ii.q100</data>
+  <data key="d1">II-II q.100</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a001">
+  <data key="d0">st.ii-ii.q100.a001</data>
+  <data key="d1">II-II q.100 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a002">
+  <data key="d0">st.ii-ii.q100.a002</data>
+  <data key="d1">II-II q.100 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a003">
+  <data key="d0">st.ii-ii.q100.a003</data>
+  <data key="d1">II-II q.100 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a004">
+  <data key="d0">st.ii-ii.q100.a004</data>
+  <data key="d1">II-II q.100 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a005">
+  <data key="d0">st.ii-ii.q100.a005</data>
+  <data key="d1">II-II q.100 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q100.a006">
+  <data key="d0">st.ii-ii.q100.a006</data>
+  <data key="d1">II-II q.100 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the religion tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.adjuration" target="concept.divine_name" id="edge.concept.adjuration.concerns_sacred_object.concept.divine_name">
+  <data key="d6">edge.concept.adjuration.concerns_sacred_object.concept.divine_name</data>
+  <data key="d7">concept.adjuration</data>
+  <data key="d8">Adjuration</data>
+  <data key="d9">act_type</data>
+  <data key="d10">concerns_sacred_object</data>
+  <data key="d11">concept.divine_name</data>
+  <data key="d12">Divine Name</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-adjuration-concerns-sacred-object-concept-divine-name-st-ii-ii-q090-a001-resp</data>
+  <data key="d15">st.ii-ii.q090.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">A man who utters a promissory oath , swearing by his reverence for the Divine name, which he invokes in confirmation of his promise, binds himself to do what he has undertaken, and so orders himself unchangeably to do a certain thing. Now jus</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.adjuration" target="concept.sacred_thing" id="edge.concept.adjuration.concerns_sacred_object.concept.sacred_thing">
+  <data key="d6">edge.concept.adjuration.concerns_sacred_object.concept.sacred_thing</data>
+  <data key="d7">concept.adjuration</data>
+  <data key="d8">Adjuration</data>
+  <data key="d9">act_type</data>
+  <data key="d10">concerns_sacred_object</data>
+  <data key="d11">concept.sacred_thing</data>
+  <data key="d12">Sacred Thing</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-adjuration-concerns-sacred-object-concept-sacred-thing-st-ii-ii-q090-a001-resp</data>
+  <data key="d15">st.ii-ii.q090.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">hom he can compel on the strength of the oath they have taken. Therefore, if a man by invoking the name of God , or any holy thing, intends by this adjuration to put one who is not his subject under an obligation to do a certain thing, in the same way as he would bind himself by oath , suc</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.adoration" target="concept.divine_worship" id="edge.concept.adoration.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.adoration.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.adoration</data>
+  <data key="d8">Adoration</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-adoration-directed-to-concept-divine-worship-st-ii-ii-q084-a002-resp</data>
+  <data key="d15">st.ii-ii.q084.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As Damascene says (De Fide Orth. iv, 12), since we are composed of a twofold nature , intellectual and sensible, we offer God a twofold adoration; namely, a spiritual adoration, consisting in the internal devotion of the mind ; and a bodily adoration, which consists in an exterior humbling of the body. A</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.astrological_divination" target="concept.divination" id="edge.concept.astrological_divination.species_of.concept.divination">
+  <data key="d6">edge.concept.astrological_divination.species_of.concept.divination</data>
+  <data key="d7">concept.astrological_divination</data>
+  <data key="d8">Astrological Divination</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.divination</data>
+  <data key="d12">Divination</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-astrological-divination-species-of-concept-divination-st-ii-ii-q095-a003-resp</data>
+  <data key="d15">st.ii-ii.q095.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rtain things. If one endeavor to know the future by observing the position and movements of the stars, this belongs to "astrologers," who are also called "genethliacs," because they take note of the days on which people are born. If one observe the movements and cries of birds or of any ani</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.augury" target="concept.divination" id="edge.concept.augury.species_of.concept.divination">
+  <data key="d6">edge.concept.augury.species_of.concept.divination</data>
+  <data key="d7">concept.augury</data>
+  <data key="d8">Augury</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.divination</data>
+  <data key="d12">Divination</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-augury-species-of-concept-divination-st-ii-ii-q095-a003-resp</data>
+  <data key="d15">st.ii-ii.q095.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ries of birds or of any animals, or the sneezing of men , or the sudden movements of limbs, this belongs in general to "augury," which is so called from the chattering of birds [avium garritu], just as "auspice" is derived from watching birds [avium inspectione]. These are chiefly wont</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.devotion" target="concept.divine_worship" id="edge.concept.devotion.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.devotion.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.devotion</data>
+  <data key="d8">Devotion</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-devotion-directed-to-concept-divine-worship-st-ii-ii-q082-a001-resp</data>
+  <data key="d15">st.ii-ii.q082.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">iii, 9; x, 28). Hence devotion is apparently nothing else but the will to give oneself readily to things concerning the service of God . Wherefore it is written ( Exodus 35:20-21 ) that "the multitude of the children of Israel . . . offered first-fruits to the Lord with a most ready and devout</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.divination" target="concept.religion" id="edge.concept.divination.excess_opposed_to.concept.religion">
+  <data key="d6">edge.concept.divination.excess_opposed_to.concept.religion</data>
+  <data key="d7">concept.divination</data>
+  <data key="d8">Divination</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-divination-excess-opposed-to-concept-religion-st-ii-ii-q095-a002-resp</data>
+  <data key="d15">st.ii-ii.q095.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">As stated above ( Article 1 ; Q92,94 ), superstition denotes undue divine worship. Now a thing pertains to the worship of God in two ways: in one way, it is something offered to God ; as a sacrifice, an oblation, or something of the kind: in</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.divination" target="concept.superstition" id="edge.concept.divination.species_of.concept.superstition">
+  <data key="d6">edge.concept.divination.species_of.concept.superstition</data>
+  <data key="d7">concept.divination</data>
+  <data key="d8">Divination</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstition</data>
+  <data key="d12">Superstition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-divination-species-of-concept-superstition-st-ii-ii-q092-a002-resp | ann.concept-divination-species-of-concept-superstition-st-ii-ii-q095-a002-resp</data>
+  <data key="d15">st.ii-ii.q092.a002.resp | st.ii-ii.q095.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">a creature. The second end of religion is that man may be taught by God Whom he worships; and to this must be referred "divinatory" superstition, which consults the demons through compacts made with them, whether tacit or explicit. Thirdly, the end of divine worship is a certain direction | edge of the future, when one tries to get it from a source whence it cannot be foreknown. Therefore it is manifest that divination is a species of superstition .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.divination_by_demons" target="concept.divination" id="edge.concept.divination_by_demons.species_of.concept.divination">
+  <data key="d6">edge.concept.divination_by_demons.species_of.concept.divination</data>
+  <data key="d7">concept.divination_by_demons</data>
+  <data key="d8">Divination by Demons</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.divination</data>
+  <data key="d12">Divination</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-divination-by-demons-species-of-concept-divination-st-ii-ii-q095-a003-resp</data>
+  <data key="d15">st.ii-ii.q095.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">alled " divination by dreams": sometimes they employ apparitions or utterances of the dead, and this species is called "necromancy," for as Isidore observes (Etym. viii) in Greek, nekron "means dead and manteia divination , because after certain incantations and the sprinkling of blood, th</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.divination_by_dreams" target="concept.divination" id="edge.concept.divination_by_dreams.species_of.concept.divination">
+  <data key="d6">edge.concept.divination_by_dreams.species_of.concept.divination</data>
+  <data key="d7">concept.divination_by_dreams</data>
+  <data key="d8">Divination by Dreams</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.divination</data>
+  <data key="d12">Divination</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-divination-by-dreams-species-of-concept-divination-st-ii-ii-q095-a003-resp</data>
+  <data key="d15">st.ii-ii.q095.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">igiation" because man's eyes are blindfolded [praestringuntur]. Sometimes they make use of dreams, and this is called " divination by dreams": sometimes they employ apparitions or utterances of the dead, and this species is called "necromancy," for as Isidore observes (Etym. viii) in Greek, nekron "</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.first_fruits" target="concept.divine_worship" id="edge.concept.first_fruits.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.first_fruits.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.first_fruits</data>
+  <data key="d8">First-Fruits</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-first-fruits-directed-to-concept-divine-worship-st-ii-ii-q086-a004-resp</data>
+  <data key="d15">st.ii-ii.q086.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">First-fruits are a kind of oblation, because they are offered to God with a certain profession ( Deuteronomy 26 ); where the same passage continues: "The priest taking the basket containing the first-fruits from the hand of him</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.first_fruits" target="concept.oblation" id="edge.concept.first_fruits.species_of.concept.oblation">
+  <data key="d6">edge.concept.first_fruits.species_of.concept.oblation</data>
+  <data key="d7">concept.first_fruits</data>
+  <data key="d8">First-Fruits</data>
+  <data key="d9">act_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.oblation</data>
+  <data key="d12">Oblation</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-first-fruits-species-of-concept-oblation-st-ii-ii-q086-a004-resp</data>
+  <data key="d15">st.ii-ii.q086.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">First-fruits are a kind of oblation, because they are offered to God with a certain profession ( Deuteronomy 26 ); where the same passage continues: "The priest taking the basket containing the f</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.fortune_telling_observance" target="concept.superstitious_observance" id="edge.concept.fortune_telling_observance.species_of.concept.superstitious_observance">
+  <data key="d6">edge.concept.fortune_telling_observance.species_of.concept.superstitious_observance</data>
+  <data key="d7">concept.fortune_telling_observance</data>
+  <data key="d8">Fortune-Telling Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstitious_observance</data>
+  <data key="d12">Superstitious Observance</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-fortune-telling-observance-species-of-concept-superstitious-observance-st-ii-ii-q096-a003-resp</data>
+  <data key="d15">st.ii-ii.q096.a003.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">e superstitious and unlawful: they are apparently remains of idolatry , which authorized the observance of auguries, of lucky and unlucky days which is allied to divination by the stars, in respect of which one day differentiated from another: except that these observances are devoid of reason and art</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.healing_observance" target="concept.superstitious_observance" id="edge.concept.healing_observance.species_of.concept.superstitious_observance">
+  <data key="d6">edge.concept.healing_observance.species_of.concept.superstitious_observance</data>
+  <data key="d7">concept.healing_observance</data>
+  <data key="d8">Superstitious Healing Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstitious_observance</data>
+  <data key="d12">Superstitious Observance</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-healing-observance-species-of-concept-superstitious-observance-st-ii-ii-q096-a002-resp</data>
+  <data key="d15">st.ii-ii.q096.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">In things done for the purpose of producing some bodily effect we must consider whether they seem able to produce that effect naturally : for if so it will not be unlawful to do so, since it is lawful to employ natural cau</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.idolatry" target="concept.religion" id="edge.concept.idolatry.excess_opposed_to.concept.religion">
+  <data key="d6">edge.concept.idolatry.excess_opposed_to.concept.religion</data>
+  <data key="d7">concept.idolatry</data>
+  <data key="d8">Idolatry</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-idolatry-excess-opposed-to-concept-religion-st-ii-ii-q094-a001-resp</data>
+  <data key="d15">st.ii-ii.q094.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">bove ( II-II:92:2 ), it belongs to superstition to exceed the due mode of divine worship, and this is done chiefly when divine worship is given to whom it should not be given. Now it should be given to the most high uncreated God alone, as stated above ( II-II:81:1 ) when we were treating of religion. Therefore it is superstition to</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.idolatry" target="concept.divine_worship" id="edge.concept.idolatry.misuses_sacred_object.concept.divine_worship">
+  <data key="d6">edge.concept.idolatry.misuses_sacred_object.concept.divine_worship</data>
+  <data key="d7">concept.idolatry</data>
+  <data key="d8">Idolatry</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-idolatry-misuses-sacred-object-concept-divine-worship-st-ii-ii-q094-a001-resp</data>
+  <data key="d15">st.ii-ii.q094.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:92:2 ), it belongs to superstition to exceed the due mode of divine worship, and this is done chiefly when divine worship is given to whom it should not be given. Now it should be given to the most high uncreated God alone, as stated a</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.idolatry" target="concept.superstition" id="edge.concept.idolatry.species_of.concept.superstition">
+  <data key="d6">edge.concept.idolatry.species_of.concept.superstition</data>
+  <data key="d7">concept.idolatry</data>
+  <data key="d8">Idolatry</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstition</data>
+  <data key="d12">Superstition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-idolatry-species-of-concept-superstition-st-ii-ii-q092-a002-resp | ann.concept-idolatry-species-of-concept-superstition-st-ii-ii-q094-a001-resp</data>
+  <data key="d15">st.ii-ii.q092.a002.resp | st.ii-ii.q094.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ivine worship is in the first place to give reverence to God , and in this respect the first species of this genus is " idolatry ," which unduly gives divine honor to a creature. The second end of religion is that man may be taught by God Whom he worships; and to this must be referred "d | ogy ," which was celebrated by the pontiffs in the temples [De Civ. Dei vi, 5. Now all these come under the head of the superstition of idolatry . Wherefore Augustine says (De Doctr. Christ. ii, 20): "Anything invented by man for making and worshipping idols , or for giving Divine worship to a creature</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.magical_observance" target="concept.superstitious_observance" id="edge.concept.magical_observance.species_of.concept.superstitious_observance">
+  <data key="d6">edge.concept.magical_observance.species_of.concept.superstitious_observance</data>
+  <data key="d7">concept.magical_observance</data>
+  <data key="d8">Magical Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstitious_observance</data>
+  <data key="d12">Superstitious Observance</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-magical-observance-species-of-concept-superstitious-observance-st-ii-ii-q096-a001-resp</data>
+  <data key="d15">st.ii-ii.q096.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">The magic art is both unlawful and futile. It is unlawful, because the means it employs for acquiring knowledge have not in themselves the power to cause science, consisting</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.oath" target="concept.divine_name" id="edge.concept.oath.concerns_sacred_object.concept.divine_name">
+  <data key="d6">edge.concept.oath.concerns_sacred_object.concept.divine_name</data>
+  <data key="d7">concept.oath</data>
+  <data key="d8">Oath</data>
+  <data key="d9">act_type</data>
+  <data key="d10">concerns_sacred_object</data>
+  <data key="d11">concept.divine_name</data>
+  <data key="d12">Divine Name</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-oath-concerns-sacred-object-concept-divine-name-st-ii-ii-q089-a001-resp | ann.concept-oath-concerns-sacred-object-concept-divine-name-st-ii-ii-q089-a004-resp</data>
+  <data key="d15">st.ii-ii.q089.a001.resp | st.ii-ii.q089.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">. Hence the need to have recourse to a Divine witness, for neither can God lie, nor is anything hidden from Him. Now to call God to witness is named "jurare" [to swear] because it is established as though it were a principle of law [jure] that what a man asserts under the invocation of God as His w | As appears from what has been said above ( Article 1 ), he that swears calls God to witness in confirmation of what he says. Now nothing is confirmed save by what is more certain and more powerful. Therefore in the very fact that a man swears by God ,</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.oath" target="concept.sworn_assertion" id="edge.concept.oath.concerns_sacred_object.concept.sworn_assertion">
+  <data key="d6">edge.concept.oath.concerns_sacred_object.concept.sworn_assertion</data>
+  <data key="d7">concept.oath</data>
+  <data key="d8">Oath</data>
+  <data key="d9">act_type</data>
+  <data key="d10">concerns_sacred_object</data>
+  <data key="d11">concept.sworn_assertion</data>
+  <data key="d12">Sworn Assertion</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-oath-concerns-sacred-object-concept-sworn-assertion-st-ii-ii-q089-a001-resp</data>
+  <data key="d15">st.ii-ii.q089.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As the Apostle says ( Hebrews 6:16 ), oaths are taken for the purpose of confirmation. Now speculative propositions receive confirmation from reason, which proceeds from principles known naturally and infallibly true . But particular contingent</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.oath" target="concept.divine_worship" id="edge.concept.oath.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.oath.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.oath</data>
+  <data key="d8">Oath</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-oath-directed-to-concept-divine-worship-st-ii-ii-q089-a004-resp</data>
+  <data key="d15">st.ii-ii.q089.a004.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">knowledges God to be more powerful, by reason of His unfailing truth and His universal knowledge ; and thus in a way he shows reverence to God . For this reason the Apostle says ( Hebrews 6:16 ) that "men swear by one greater than themselves," and Jerome commenting on Matthew 5:34 , says that "he who</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.oblation" target="concept.divine_worship" id="edge.concept.oblation.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.oblation.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.oblation</data>
+  <data key="d8">Oblation</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-oblation-directed-to-concept-divine-worship-st-ii-ii-q086-a001-resp</data>
+  <data key="d15">st.ii-ii.q086.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:85:3 ad 3 ), the term "oblation" is common to all things offered for the Divine worship, so that if a thing be offered to be destroyed in worship of God , as though it were being made into something holy , it is both an oblation and a sacrifice. W</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.perjury" target="concept.oath" id="edge.concept.perjury.deficiency_opposed_to.concept.oath">
+  <data key="d6">edge.concept.perjury.deficiency_opposed_to.concept.oath</data>
+  <data key="d7">concept.perjury</data>
+  <data key="d8">Perjury</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.oath</data>
+  <data key="d12">Oath</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-perjury-deficiency-opposed-to-concept-oath-st-ii-ii-q098-a001-resp</data>
+  <data key="d15">st.ii-ii.q098.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">As stated above ( II-II:92:2 ), moral acts take their species from their end. Now the end of an oath is the confirmation of a human assertion. To this confirmation falsehood is opposed: since an assertion is confirmed by being firmly shown to be true ; and thi</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.perjury" target="concept.religion" id="edge.concept.perjury.deficiency_opposed_to.concept.religion">
+  <data key="d6">edge.concept.perjury.deficiency_opposed_to.concept.religion</data>
+  <data key="d7">concept.perjury</data>
+  <data key="d8">Perjury</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-perjury-deficiency-opposed-to-concept-religion-st-ii-ii-q098-a002-resp</data>
+  <data key="d15">st.ii-ii.q098.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">either that God ignores the truth or that He is willing to bear witness to a falsehood. Therefore perjury is manifestly a sin opposed to religion, to which it belongs to show reverence to God .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.perjury" target="concept.divine_name" id="edge.concept.perjury.misuses_sacred_object.concept.divine_name">
+  <data key="d6">edge.concept.perjury.misuses_sacred_object.concept.divine_name</data>
+  <data key="d7">concept.perjury</data>
+  <data key="d8">Perjury</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.divine_name</data>
+  <data key="d12">Divine Name</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-perjury-misuses-sacred-object-concept-divine-name-st-ii-ii-q098-a002-resp</data>
+  <data key="d15">st.ii-ii.q098.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:89:1 ), to swear is to call God as witness. Now it is an irreverence to God to call Him to witness to a falsehood, because by so doing one implies either that God ignores the truth or that He is willing to bear witness to a falsehood. Therefore perjury is manifestly a sin</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.praise_of_god" target="concept.divine_worship" id="edge.concept.praise_of_god.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.praise_of_god.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.praise_of_god</data>
+  <data key="d8">Praise of God</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-praise-of-god-directed-to-concept-divine-worship-st-ii-ii-q091-a001-resp</data>
+  <data key="d15">st.ii-ii.q091.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e we may incite him to yet better things; and that we may induce others, who hear him praised, to think well of him, to reverence him, and to imitate him. On the other hand we employ words, in speaking to God , not indeed to make known our thoughts to Him Who is the searcher of hearts, but th</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.prayer" target="concept.divine_worship" id="edge.concept.prayer.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.prayer.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.prayer</data>
+  <data key="d8">Prayer</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-prayer-directed-to-concept-divine-worship-st-ii-ii-q083-a003-resp</data>
+  <data key="d15">st.ii-ii.q083.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">to show honor to God , wherefore all those things through which reverence is shown to God , belong to religion. Now man shows reverence to God by means of prayer , in so far as he subjects himself to Him, and by praying confesses that he needs Him as the Author of his goods. Hence it is evident that p</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.justice" id="edge.concept.religion.annexed_to.concept.justice">
+  <data key="d6">edge.concept.religion.annexed_to.concept.justice</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">annexed_to</data>
+  <data key="d11">concept.justice</data>
+  <data key="d12">Justice</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-religion-annexed-to-concept-justice-st-ii-ii-q080-a001-resp</data>
+  <data key="d15">st.ii-ii.q080.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">stated above ( II-II:58:2 ), all the virtues that are directed to another person may by reason of this common aspect be annexed to justice . Now the essential character of justice consists in rendering to another his due according to equality, as stated above ( II-II:58:11 ). Wherefore in two ways</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.divine_worship" id="edge.concept.religion.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.religion.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-religion-directed-to-concept-divine-worship-st-ii-ii-q081-a002-resp | ann.concept-religion-directed-to-concept-divine-worship-st-ii-ii-q081-a004-resp | ann.concept-religion-directed-to-concept-divine-worship-st-ii-ii-q081-a005-resp</data>
+  <data key="d15">st.ii-ii.q081.a002.resp | st.ii-ii.q081.a004.resp | st.ii-ii.q081.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ct of good , just as mode and species , according to Augustine (De Nat. Boni iii). Since then it belongs to religion to pay due honor to someone, namely, to God , it is evident that religion is a virtue . | there is a special aspect of good , there must be a special virtue . Now the good to which religion is directed, is to give due honor to God . Again, honor is due to someone under the aspect of excellence: and to God a singular excellence is competent, since He infinitely surpasses all things and ex | As stated above ( Article 4 ) religion pays due worship to God . Hence two things are to be considered in religion: first that which it offers to God , viz. worship, and this is by way of matter and object in religion; sec</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.adjuration" id="edge.concept.religion.has_act.concept.adjuration">
+  <data key="d6">edge.concept.religion.has_act.concept.adjuration</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.adjuration</data>
+  <data key="d12">Adjuration</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-adjuration-st-ii-ii-q090-a001-resp</data>
+  <data key="d15">st.ii-ii.q090.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">s, as stated above ( II-II:83:1 ). Accordingly when either of these orderings is confirmed by something Divine it is an adjuration. Yet there is this difference between them, that man is master of his own actions but not of those of others; wherefore he can put himself under an obligation</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.adoration" id="edge.concept.religion.has_act.concept.adoration">
+  <data key="d6">edge.concept.religion.has_act.concept.adoration</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.adoration</data>
+  <data key="d12">Adoration</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-adoration-st-ii-ii-q081-a007-resp | ann.concept-religion-has-act-concept-adoration-st-ii-ii-q084-a001-resp</data>
+  <data key="d15">st.ii-ii.q081.a007.resp | st.ii-ii.q084.a001.resp</data>
+  <data key="d16">explicit_textual | strong_textual_inference</data>
+  <data key="d17">. Therefore the internal acts of religion take precedence of the others and belong to religion essentially , while its external acts are secondary, and subordinate to the internal acts. | of the person adored . Now it is evident from what we have said ( God . Hence the adoration whereby we adore God is an act of religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.devotion" id="edge.concept.religion.has_act.concept.devotion">
+  <data key="d6">edge.concept.religion.has_act.concept.devotion</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.devotion</data>
+  <data key="d12">Devotion</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-devotion-st-ii-ii-q082-a002-resp</data>
+  <data key="d15">st.ii-ii.q082.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">it belongs to that virtue to have the will ready to do such things, and this is to be devout. Hence it is evident that devotion is an act of religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.oath" id="edge.concept.religion.has_act.concept.oath">
+  <data key="d6">edge.concept.religion.has_act.concept.oath</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.oath</data>
+  <data key="d12">Oath</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-oath-st-ii-ii-q089-a004-resp</data>
+  <data key="d15">st.ii-ii.q089.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s to give very great honor ." Now to show reverence to God belongs to religion or latria . wherefore it is evident that an oath is an act of religion or latria .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.oblation" id="edge.concept.religion.has_act.concept.oblation">
+  <data key="d6">edge.concept.religion.has_act.concept.oblation</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.oblation</data>
+  <data key="d12">Oblation</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-oblation-st-ii-ii-q086-a001-resp</data>
+  <data key="d15">st.ii-ii.q086.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">As stated above ( II-II:85:3 ad 3 ), the term "oblation" is common to all things offered for the Divine worship, so that if a thing be offered to be destroyed in worship of God , as though it were being made into something holy , it is both an oblation and a sacrifice. W</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.praise_of_god" id="edge.concept.religion.has_act.concept.praise_of_god">
+  <data key="d6">edge.concept.religion.has_act.concept.praise_of_god</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.praise_of_god</data>
+  <data key="d12">Praise of God</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-praise-of-god-st-ii-ii-q091-a001-resp</data>
+  <data key="d15">st.ii-ii.q091.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ho is the searcher of hearts, but that we may bring ourselves and our hearers to reverence Him. Consequently we need to praise God with our lips, not indeed for His sake, but for our own sake; since by praising Him our devotion is aroused towards Him, according to Psalm 49:23 : "The sacrifice of praise</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.prayer" id="edge.concept.religion.has_act.concept.prayer">
+  <data key="d6">edge.concept.religion.has_act.concept.prayer</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.prayer</data>
+  <data key="d12">Prayer</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-prayer-st-ii-ii-q083-a003-resp</data>
+  <data key="d15">st.ii-ii.q083.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ubjects himself to Him, and by praying confesses that he needs Him as the Author of his goods. Hence it is evident that prayer is properly an act of religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.sacrifice" id="edge.concept.religion.has_act.concept.sacrifice">
+  <data key="d6">edge.concept.religion.has_act.concept.sacrifice</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.sacrifice</data>
+  <data key="d12">Sacrifice</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-sacrifice-st-ii-ii-q085-a003-resp</data>
+  <data key="d15">st.ii-ii.q085.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ly, sacrifice is a special act deserving of praise in that it is done out of reverence for God ; and for this reason it belongs to a definite virtue , viz. religion. But it happens that the acts of the other virtues are directed to the reverence of God , as when a man gives alms of his own things for God's sake, or when a</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.tithes" id="edge.concept.religion.has_act.concept.tithes">
+  <data key="d6">edge.concept.religion.has_act.concept.tithes</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.tithes</data>
+  <data key="d12">Tithes</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-tithes-st-ii-ii-q087-a001-resp</data>
+  <data key="d15">st.ii-ii.q087.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">In the Old Law tithes were paid for the sustenance of the ministers of God . Hence it is written ( Malachi 3:10 ): "Bring all the tithes into My [ Vulgate : 'the'] store-house that there may</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.religion" target="concept.vow" id="edge.concept.religion.has_act.concept.vow">
+  <data key="d6">edge.concept.religion.has_act.concept.vow</data>
+  <data key="d7">concept.religion</data>
+  <data key="d8">Religion</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.vow</data>
+  <data key="d12">Vow</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-religion-has-act-concept-vow-st-ii-ii-q088-a005-resp</data>
+  <data key="d15">st.ii-ii.q088.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s a directing of the thing vowed to the worship or service of God . And thus it is clear that to take a vow is properly an act of latria or religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrifice" target="concept.divine_worship" id="edge.concept.sacrifice.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.sacrifice.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.sacrifice</data>
+  <data key="d8">Sacrifice</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-sacrifice-directed-to-concept-divine-worship-st-ii-ii-q085-a001-resp | ann.concept-sacrifice-directed-to-concept-divine-worship-st-ii-ii-q085-a002-resp | ann.concept-sacrifice-directed-to-concept-divine-worship-st-ii-ii-q085-a003-resp</data>
+  <data key="d15">st.ii-ii.q085.a001.resp | st.ii-ii.q085.a002.resp | st.ii-ii.q085.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">derives his knowledge from sensibles. Hence it is a dictate of natural reason that man should use certain sensibles, by offering them to God in sign of the subjection and honor due to Him, like those who make certain offerings to their lord in recognition of his authority. Now this is what we mean b | 1 and I-II:3:7 and I-II:3:8 ). Wherefore just as to God alone ought we to offer spiritual sacrifice, so too ought we to offer outward sacrifices to Him alone: even so "in our prayers and praises we proffer significant words to Him to Whom in our hearts we offer the things which we designate thereby," as Augustine st | ery fact that it was directed to fornication. Accordingly, sacrifice is a special act deserving of praise in that it is done out of reverence for God ; and for this reason it belongs to a definite virtue , viz. religion. But it happens that the acts of the other virtues are directed to the reverence of God ,</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrilege" target="concept.religion" id="edge.concept.sacrilege.deficiency_opposed_to.concept.religion">
+  <data key="d6">edge.concept.sacrilege.deficiency_opposed_to.concept.religion</data>
+  <data key="d7">concept.sacrilege</data>
+  <data key="d8">Sacrilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-sacrilege-deficiency-opposed-to-concept-religion-st-ii-ii-q099-a002-resp</data>
+  <data key="d15">st.ii-ii.q099.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rmity, namely, the violation of a sacred thing by treating it irreverently. Hence it is a special sin . Moreover, it is opposed to religion. For according to Damascene (De Fide Orth. iv, 3), "When the purple has been made into a royal robe, we pay it honor and homage, and if anyone dishonor it he i</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrilege" target="concept.sacrament" id="edge.concept.sacrilege.misuses_sacred_object.concept.sacrament">
+  <data key="d6">edge.concept.sacrilege.misuses_sacred_object.concept.sacrament</data>
+  <data key="d7">concept.sacrilege</data>
+  <data key="d8">Sacrilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.sacrament</data>
+  <data key="d12">Sacrament</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-sacrilege-misuses-sacred-object-concept-sacrament-st-ii-ii-q099-a003-resp</data>
+  <data key="d15">st.ii-ii.q099.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ed things, has various degrees, according to the differences of sacred things. Among these the highest place belongs to the sacraments whereby man is sanctified: chief of which is the sacrament of the Eucharist , for it contains Christ Himself. Wherefore the sacrilege that is committed against</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrilege" target="concept.sacred_person" id="edge.concept.sacrilege.misuses_sacred_object.concept.sacred_person">
+  <data key="d6">edge.concept.sacrilege.misuses_sacred_object.concept.sacred_person</data>
+  <data key="d7">concept.sacrilege</data>
+  <data key="d8">Sacrilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.sacred_person</data>
+  <data key="d12">Sacred Person</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-sacrilege-misuses-sacred-object-concept-sacred-person-st-ii-ii-q099-a003-resp</data>
+  <data key="d15">st.ii-ii.q099.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">bed to the sacred thing that is sinned against, the more grievous the sacrilege . Now holiness is ascribed, not only to sacred persons , namely, those who are consecrated to the divine worship, but also to sacred places and to certain other sacred things. And the holiness of a place is directe</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrilege" target="concept.sacred_place" id="edge.concept.sacrilege.misuses_sacred_object.concept.sacred_place">
+  <data key="d6">edge.concept.sacrilege.misuses_sacred_object.concept.sacred_place</data>
+  <data key="d7">concept.sacrilege</data>
+  <data key="d8">Sacrilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.sacred_place</data>
+  <data key="d12">Sacred Place</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-sacrilege-misuses-sacred-object-concept-sacred-place-st-ii-ii-q099-a003-resp</data>
+  <data key="d15">st.ii-ii.q099.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">holiness is ascribed, not only to sacred persons , namely, those who are consecrated to the divine worship, but also to sacred places and to certain other sacred things. And the holiness of a place is directed to the holiness of man , who worships God in a holy place. For it is written ( 2 Ma</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sacrilege" target="concept.sacred_thing" id="edge.concept.sacrilege.misuses_sacred_object.concept.sacred_thing">
+  <data key="d6">edge.concept.sacrilege.misuses_sacred_object.concept.sacred_thing</data>
+  <data key="d7">concept.sacrilege</data>
+  <data key="d8">Sacrilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.sacred_thing</data>
+  <data key="d12">Sacred Thing</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-sacrilege-misuses-sacred-object-concept-sacred-thing-st-ii-ii-q099-a001-resp</data>
+  <data key="d15">st.ii-ii.q099.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">worship, and thus a certain reverence is due to it, which reverence is referred to God . Therefore whatever pertains to irreverence for sacred things is an injury to God , and comes under the head of sacrilege .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.spiritual_thing" id="edge.concept.simony.corrupts_spiritual_exchange.concept.spiritual_thing">
+  <data key="d6">edge.concept.simony.corrupts_spiritual_exchange.concept.spiritual_thing</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">corrupts_spiritual_exchange</data>
+  <data key="d11">concept.spiritual_thing</data>
+  <data key="d12">Spiritual Thing</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-simony-corrupts-spiritual-exchange-concept-spiritual-thing-st-ii-ii-q100-a005-resp</data>
+  <data key="d15">st.ii-ii.q100.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 2 ), the term "money" denotes "anything that can have a pecuniary value." Now it is evident that a man's service is directed to some kind of usefulness, which has a pecuniary value, wherefore servants are hired for a money wage. Th</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.spiritual_thing" id="edge.concept.simony.misuses_sacred_object.concept.spiritual_thing">
+  <data key="d6">edge.concept.simony.misuses_sacred_object.concept.spiritual_thing</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.spiritual_thing</data>
+  <data key="d12">Spiritual Thing</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-simony-misuses-sacred-object-concept-spiritual-thing-st-ii-ii-q100-a001-resp</data>
+  <data key="d15">st.ii-ii.q100.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( I-II:18:2 ) an act is evil generically when it bears on undue matter . Now a spiritual thing is undue matter for buying and selling for three reasons. First, because a spiritual thing cannot be appraised at any earthly price, even as it is said concern</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.religion" id="edge.concept.simony.deficiency_opposed_to.concept.religion">
+  <data key="d6">edge.concept.simony.deficiency_opposed_to.concept.religion</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-simony-deficiency-opposed-to-concept-religion-st-ii-ii-q100-a001-resp</data>
+  <data key="d15">st.ii-ii.q100.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">by buying or selling a spiritual thing, a man treats God and divine things with irreverence, and consequently commits a sin of irreligion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.sacrament" id="edge.concept.simony.misuses_sacred_object.concept.sacrament">
+  <data key="d6">edge.concept.simony.misuses_sacred_object.concept.sacrament</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.sacrament</data>
+  <data key="d12">Sacrament</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-simony-misuses-sacred-object-concept-sacrament-st-ii-ii-q100-a002-resp</data>
+  <data key="d15">st.ii-ii.q100.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the altar?" Accordingly we must answer that to receive money for the spiritual grace of the sacraments , is the sin of simony, which cannot be excused by any custom whatever, since "custom does not prevail over natural or divine law " [Cap. Cum tanto, de Consuetud.; cf. I-II:97:3 . No</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.spiritual_action" id="edge.concept.simony.misuses_sacred_object.concept.spiritual_action">
+  <data key="d6">edge.concept.simony.misuses_sacred_object.concept.spiritual_action</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.spiritual_action</data>
+  <data key="d12">Spiritual Action</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-simony-misuses-sacred-object-concept-spiritual-action-st-ii-ii-q100-a003-resp</data>
+  <data key="d15">st.ii-ii.q100.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">a soldier at any time at his own charges? Who feedeth the flock, and eateth not of the milk of the flock?" Hence it is simoniacal to sell or buy that which is spiritual in such like actions; but to receive or give something for the support of those who minister spiritual things in accorda</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.simony" target="concept.spiritual_office" id="edge.concept.simony.misuses_sacred_object.concept.spiritual_office">
+  <data key="d6">edge.concept.simony.misuses_sacred_object.concept.spiritual_office</data>
+  <data key="d7">concept.simony</data>
+  <data key="d8">Simony</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.spiritual_office</data>
+  <data key="d12">Spiritual Office</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-simony-misuses-sacred-object-concept-spiritual-office-st-ii-ii-q100-a004-resp</data>
+  <data key="d15">st.ii-ii.q100.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">g dependent on spiritual things. Thus to have to spiritual things, because it is not competent save to those who hold a clerical office. Hence such things can by no means exist apart from spiritual things. Consequently it is altogether unlawful to sell such things, because the sale thereof impl</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sortilege" target="concept.divination" id="edge.concept.sortilege.species_of.concept.divination">
+  <data key="d6">edge.concept.sortilege.species_of.concept.divination</data>
+  <data key="d7">concept.sortilege</data>
+  <data key="d8">Sortilege</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.divination</data>
+  <data key="d12">Divination</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-sortilege-species-of-concept-divination-st-ii-ii-q095-a003-resp</data>
+  <data key="d15">st.ii-ii.q095.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rving who throws the highest score; or by observing what catches the eye when one opens a book, all of which are named "sortilege." Accordingly it is clear that there are three kinds of divination . The first is when the demons are invoked openly, this comes under the head of "necromancy"</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.superstition" target="concept.religion" id="edge.concept.superstition.excess_opposed_to.concept.religion">
+  <data key="d6">edge.concept.superstition.excess_opposed_to.concept.religion</data>
+  <data key="d7">concept.superstition</data>
+  <data key="d8">Superstition</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-superstition-excess-opposed-to-concept-religion-st-ii-ii-q092-a001-resp</data>
+  <data key="d15">st.ii-ii.q092.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ought not, and in like manner as regards other circumstances, as the Philosopher shows (Ethic. iv, 1,2,3). Accordingly superstition is a vice contrary to religion by excess, not that it offers more to the divine worship than true religion, but because it offers divine worship either to whom it ought not, or in a manner it ought no</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.superstitious_observance" target="concept.religion" id="edge.concept.superstitious_observance.excess_opposed_to.concept.religion">
+  <data key="d6">edge.concept.superstitious_observance.excess_opposed_to.concept.religion</data>
+  <data key="d7">concept.superstitious_observance</data>
+  <data key="d8">Superstitious Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-superstitious-observance-excess-opposed-to-concept-religion-st-ii-ii-q096-a003-resp</data>
+  <data key="d15">st.ii-ii.q096.a003.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">s , who strive to entangle men's minds with such like trifles. Accordingly it is evident that all these observances are superstitious and unlawful: they are apparently remains of idolatry , which authorized the observance of auguries, of lucky and unlucky days which is allied to divination by the stars, i</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.superstitious_observance" target="concept.superstition" id="edge.concept.superstitious_observance.species_of.concept.superstition">
+  <data key="d6">edge.concept.superstitious_observance.species_of.concept.superstition</data>
+  <data key="d7">concept.superstitious_observance</data>
+  <data key="d8">Superstitious Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstition</data>
+  <data key="d12">Superstition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-superstitious-observance-species-of-concept-superstition-st-ii-ii-q092-a002-resp | ann.concept-superstitious-observance-species-of-concept-superstition-st-ii-ii-q096-a003-resp</data>
+  <data key="d15">st.ii-ii.q092.a002.resp | st.ii-ii.q096.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">according to the precepts of God the object of that worship: and to this must be referred the superstition of certain "observances." Augustine alludes to these three (De Doctr. Christ. ii, 20), where he says that "anything invented by man for making and worshipping idols is superstitious , | of the malice of the demons , who strive to entangle men's minds with such like trifles. Accordingly it is evident that all these observances are superstitious and unlawful: they are apparently remains of idolatry , which authorized the observance of auguries, of lucky and unlucky days which is allied to divination by</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.temptation_of_god" target="concept.religion" id="edge.concept.temptation_of_god.deficiency_opposed_to.concept.religion">
+  <data key="d6">edge.concept.temptation_of_god.deficiency_opposed_to.concept.religion</data>
+  <data key="d7">concept.temptation_of_god</data>
+  <data key="d8">Temptation of God</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-temptation-of-god-deficiency-opposed-to-concept-religion-st-ii-ii-q097-a003-resp</data>
+  <data key="d15">st.ii-ii.q097.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e for him: since no one presumes to tempt one of whose excellence he is sure. Hence it is manifest that to tempt God is a sin opposed to religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.tithes" target="concept.divine_worship" id="edge.concept.tithes.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.tithes.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.tithes</data>
+  <data key="d8">Tithes</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-tithes-directed-to-concept-divine-worship-st-ii-ii-q087-a001-resp</data>
+  <data key="d15">st.ii-ii.q087.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ge? Who planteth a vineyard and eateth not of the fruit thereof?" But the fixing of the proportion to be offered to the ministers of divine worship does not belong to the natural law , but was determined by divine institution, in accordance with the condition of that people to whom the law was being given.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.undue_worship_of_true_god" target="concept.religion" id="edge.concept.undue_worship_of_true_god.excess_opposed_to.concept.religion">
+  <data key="d6">edge.concept.undue_worship_of_true_god.excess_opposed_to.concept.religion</data>
+  <data key="d7">concept.undue_worship_of_true_god</data>
+  <data key="d8">Undue Worship of the True God</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.religion</data>
+  <data key="d12">Religion</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-undue-worship-of-true-god-excess-opposed-to-concept-religion-st-ii-ii-q093-a001-resp</data>
+  <data key="d15">st.ii-ii.q093.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e truth . But just as a thing is signified by word, so it is by deed : and it is in this signification by deed that the outward worship of religion consists, as shown above ( II-II:81:07 ). Consequently, if anything false is signified by outward worship, this worship will be pernicious. Now thi</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.undue_worship_of_true_god" target="concept.divine_worship" id="edge.concept.undue_worship_of_true_god.misuses_sacred_object.concept.divine_worship">
+  <data key="d6">edge.concept.undue_worship_of_true_god.misuses_sacred_object.concept.divine_worship</data>
+  <data key="d7">concept.undue_worship_of_true_god</data>
+  <data key="d8">Undue Worship of the True God</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">misuses_sacred_object</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-undue-worship-of-true-god-misuses-sacred-object-concept-divine-worship-st-ii-ii-q093-a001-resp | ann.concept-undue-worship-of-true-god-misuses-sacred-object-concept-divine-worship-st-ii-ii-q093-a002-resp</data>
+  <data key="d15">st.ii-ii.q093.a001.resp | st.ii-ii.q093.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e truth . But just as a thing is signified by word, so it is by deed : and it is in this signification by deed that the outward worship of religion consists, as shown above ( II-II:81:07 ). Consequently, if anything false is signified by outward worship, this worship will be pernicious. Now thi | general custom—which, according to Augustine [Ad Casulan. Ep. xxxvi], "has the force of law "—all this must be reckoned excessive and superstitious , because consisting, as it does, of mere externals, it has no connection with the internal worship of God . Hence Augustine (De Vera Relig. iii) quotes the wo</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.undue_worship_of_true_god" target="concept.superstition" id="edge.concept.undue_worship_of_true_god.species_of.concept.superstition">
+  <data key="d6">edge.concept.undue_worship_of_true_god.species_of.concept.superstition</data>
+  <data key="d7">concept.undue_worship_of_true_god</data>
+  <data key="d8">Undue Worship of the True God</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstition</data>
+  <data key="d12">Superstition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-undue-worship-of-true-god-species-of-concept-superstition-st-ii-ii-q092-a002-resp</data>
+  <data key="d15">st.ii-ii.q092.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">hip may be given either to whom it ought to be given, namely, to the true God , but "in an undue mode," and this is the first species of superstition ; or to whom it ought not to be given, namely, to any creature whatsoever, and this is another genus of superstition, divided into many species in respect of t</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.vow" target="concept.promise_to_god" id="edge.concept.vow.concerns_sacred_object.concept.promise_to_god">
+  <data key="d6">edge.concept.vow.concerns_sacred_object.concept.promise_to_god</data>
+  <data key="d7">concept.vow</data>
+  <data key="d8">Vow</data>
+  <data key="d9">act_type</data>
+  <data key="d10">concerns_sacred_object</data>
+  <data key="d11">concept.promise_to_god</data>
+  <data key="d12">Promise to God</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-vow-concerns-sacred-object-concept-promise-to-god-st-ii-ii-q088-a001-resp | ann.concept-vow-concerns-sacred-object-concept-promise-to-god-st-ii-ii-q088-a005-resp</data>
+  <data key="d15">st.ii-ii.q088.a001.resp | st.ii-ii.q088.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">A vow denotes a binding to do or omit some particular thing. Now one man binds himself to another by means of a promise, which is an act of the reason to which faculty it belongs to direct. For just as a man by commanding or praying , directs, in a fashion, what others are to do | rvice of God is the proper act of latria . Now, it is evident from what has been said above ( 1 and 2 ) that a vow is a promise made to God , and that a promise is nothing else than a directing of the thing promised to the person to whom the promise is made. Hence a vow is a directing of the thing</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.vow" target="concept.divine_worship" id="edge.concept.vow.directed_to.concept.divine_worship">
+  <data key="d6">edge.concept.vow.directed_to.concept.divine_worship</data>
+  <data key="d7">concept.vow</data>
+  <data key="d8">Vow</data>
+  <data key="d9">act_type</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_worship</data>
+  <data key="d12">Divine Worship</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-vow-directed-to-concept-divine-worship-st-ii-ii-q088-a005-resp</data>
+  <data key="d15">st.ii-ii.q088.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">g of the thing promised to the person to whom the promise is made. Hence a vow is a directing of the thing vowed to the worship or service of God . And thus it is clear that to take a vow is properly an act of latria or religion.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.written_charm_observance" target="concept.superstitious_observance" id="edge.concept.written_charm_observance.species_of.concept.superstitious_observance">
+  <data key="d6">edge.concept.written_charm_observance.species_of.concept.superstitious_observance</data>
+  <data key="d7">concept.written_charm_observance</data>
+  <data key="d8">Written-Charm Observance</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.superstitious_observance</data>
+  <data key="d12">Superstitious Observance</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-written-charm-observance-species-of-concept-superstitious-observance-st-ii-ii-q096-a004-resp</data>
+  <data key="d15">st.ii-ii.q096.a004.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">In every incantation or wearing of written words, two points seem to demand caution. The first is the thing said or written, because if it is connected with invocation of the demons it is clearly superstitiou</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+</graph></graphml>

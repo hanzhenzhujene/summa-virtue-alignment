@@ -1,0 +1,1368 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d20" for="edge" attr.name="temperance_closure_focus" attr.type="string"/>
+<key id="d19" for="edge" attr.name="temperance_closure_cluster" attr.type="string"/>
+<key id="d18" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d17" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d16" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d15" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d14" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d12" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d10" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d9" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d8" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d7" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.adams_first_sin">
+  <data key="d0">concept.adams_first_sin</data>
+  <data key="d1">Adam's First Sin</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local doctrinal case of the first sin of the first man, treated under pride without collapsing into the generic vice node.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.adultery_lust">
+  <data key="d0">concept.adultery_lust</data>
+  <data key="d1">Adultery</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Adultery as treated within the species of lust in q.154.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.anger_vice">
+  <data key="d0">concept.anger_vice</data>
+  <data key="d1">Anger (Vice-Level)</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Anger insofar as it becomes sinful by setting aside the order of reason.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.bodily_defects_first_sin">
+  <data key="d0">concept.bodily_defects_first_sin</data>
+  <data key="d1">Bodily Defects (Punishments of the First Sin)</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Bodily corruption, sickness, and defect as punishments following the loss of original integrity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.boorishness">
+  <data key="d0">concept.boorishness</data>
+  <data key="d1">Boorishness / Rudeness</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of deficient playfulness that makes a person burdensome to others in ordinary intercourse.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.curiosity">
+  <data key="d0">concept.curiosity</data>
+  <data key="d1">Curiosity</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Disordered pursuit of knowledge or inquiry, opposed to studiousness in this temperance tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.death_first_sin">
+  <data key="d0">concept.death_first_sin</data>
+  <data key="d1">Death (Punishment of the First Sin)</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Death as the common punishment flowing from the first sin.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.decalogue">
+  <data key="d0">concept.decalogue</data>
+  <data key="d1">Decalogue</data>
+  <data key="d2">precept</data>
+  <data key="d3">seed</data>
+  <data key="d4">The principal set of precepts delivered in the Old Law.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.disordered_inquiry">
+  <data key="d0">concept.disordered_inquiry</data>
+  <data key="d1">Disordered Inquiry</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The inordinate study or pursuit of knowledge treated under curiosity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.divine_likeness">
+  <data key="d0">concept.divine_likeness</data>
+  <data key="d1">Divine Likeness</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The likeness to God that the first man inordinately coveted beyond due measure.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.eutrapelia">
+  <data key="d0">concept.eutrapelia</data>
+  <data key="d1">Wittiness / Eutrapelia</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue governing games and playful actions according to reason as part of external modesty.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.excessive_adornment">
+  <data key="d0">concept.excessive_adornment</data>
+  <data key="d1">Excessive Adornment</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Immoderate attention to outward apparel seeking glory, pleasure, or excessive solicitude.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.excessive_play">
+  <data key="d0">concept.excessive_play</data>
+  <data key="d1">Excessive Play</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of going beyond reason in playful words or deeds.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.external_behavior_modesty">
+  <data key="d0">concept.external_behavior_modesty</data>
+  <data key="d1">Modesty in Outward Movements</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local species of modesty governing outward bodily movements and serious external behavior.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.first_parents_temptation">
+  <data key="d0">concept.first_parents_temptation</data>
+  <data key="d1">Temptation of the First Parents</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local temptation case leading toward Adam's first sin by intellective and sensitive incentives.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.god">
+  <data key="d0">concept.god</data>
+  <data key="d1">God</data>
+  <data key="d2">object</data>
+  <data key="d3">seed</data>
+  <data key="d4">God as the object or term of theological virtue and charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.humility">
+  <data key="d0">concept.humility</data>
+  <data key="d1">Humility</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue that restrains a person from aiming above due measure and submits the spirit under God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.knowledge">
+  <data key="d0">concept.knowledge</data>
+  <data key="d1">Knowledge</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Cognitive grasp used here for prophecy and other intellectual acts.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.knowledge_good_and_evil">
+  <data key="d0">concept.knowledge_good_and_evil</data>
+  <data key="d1">Knowledge of Good and Evil</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The knowledge-related likeness to God especially coveted in the first sin narrative as interpreted in this tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.loss_of_paradise">
+  <data key="d0">concept.loss_of_paradise</data>
+  <data key="d1">Loss of Paradise</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The deprivation of the place and state befitting original innocence after the first sin.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.meekness">
+  <data key="d0">concept.meekness</data>
+  <data key="d1">Meekness</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue moderating the passion of anger under reason.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.modesty_general">
+  <data key="d0">concept.modesty_general</data>
+  <data key="d1">Modesty (General)</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The annexed virtue moderating lesser matters where restraint is easier than in temperance proper.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.ordered_inquiry">
+  <data key="d0">concept.ordered_inquiry</data>
+  <data key="d1">Ordered Inquiry</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The rightly ordered pursuit of knowledge under reason and due end.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.outward_apparel">
+  <data key="d0">concept.outward_apparel</data>
+  <data key="d1">Outward Apparel</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Dress, ornament, and outward attire as matter moderated under exterior modesty.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.outward_attire_modesty">
+  <data key="d0">concept.outward_attire_modesty</data>
+  <data key="d1">Modesty in Outward Apparel</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local exterior-modesty species governing attire, ornament, and dress under reason and fitting custom.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.outward_behavior">
+  <data key="d0">concept.outward_behavior</data>
+  <data key="d1">Outward Behavior</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The field of bodily bearing, gesture, and exterior deportment moderated under this part of modesty.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.own_excellence">
+  <data key="d0">concept.own_excellence</data>
+  <data key="d1">One's Own Excellence</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The difficult good or excellence inordinately desired by pride.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.playful_actions">
+  <data key="d0">concept.playful_actions</data>
+  <data key="d1">Playful Actions</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Words or deeds whose immediate end is delight and rest of soul in play.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_temperance">
+  <data key="d0">concept.precepts_of_temperance</data>
+  <data key="d1">Precepts of Temperance</data>
+  <data key="d2">precept</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local synthesis of precepts directly bearing on temperance itself.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_temperance_parts">
+  <data key="d0">concept.precepts_of_temperance_parts</data>
+  <data key="d1">Precepts of the Parts of Temperance</data>
+  <data key="d2">precept</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The tract-local synthesis of precepts touching the annexed virtues and opposed vices of temperance's parts.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.pride">
+  <data key="d0">concept.pride</data>
+  <data key="d1">Pride</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Inordinate self-exaltation by which a person aims above what is proportionate under the divine rule.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.rebellion_of_carnal_appetite">
+  <data key="d0">concept.rebellion_of_carnal_appetite</data>
+  <data key="d1">Rebellion of the Carnal Appetite</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The disorder whereby the lower appetite rebels against reason as punishment of the first sin.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.studiousness">
+  <data key="d0">concept.studiousness</data>
+  <data key="d1">Studiousness</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The virtue moderating the soul's natural desire to know.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.temperance">
+  <data key="d0">concept.temperance</data>
+  <data key="d1">Temperance</data>
+  <data key="d2">virtue</data>
+  <data key="d3">seed</data>
+  <data key="d4">The cardinal virtue moderating attractions of pleasure.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.truth_about_self">
+  <data key="d0">concept.truth_about_self</data>
+  <data key="d1">Truth About Oneself</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The rule by which humility knows and acknowledges one's proportion and deficiency.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vice">
+  <data key="d0">concept.vice</data>
+  <data key="d1">Vice</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Vice considered as privative disorder contrary to virtue.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.virtue">
+  <data key="d0">concept.virtue</data>
+  <data key="d1">Virtue</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Generic virtue as good operative perfection.</data>
+  <data key="d5">Do not collapse generic virtue into a specific virtue without explicit passage support.</data>
+</node>
+<node id="st.ii-ii.q161">
+  <data key="d0">st.ii-ii.q161</data>
+  <data key="d1">II-II q.161 — Humility</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162">
+  <data key="d0">st.ii-ii.q162</data>
+  <data key="d1">II-II q.162 — Pride</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q163">
+  <data key="d0">st.ii-ii.q163</data>
+  <data key="d1">II-II q.163 — The first man's sin</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q164">
+  <data key="d0">st.ii-ii.q164</data>
+  <data key="d1">II-II q.164 — The punishments of the first man's sin</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q165">
+  <data key="d0">st.ii-ii.q165</data>
+  <data key="d1">II-II q.165 — Our first parents' temptation</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q166">
+  <data key="d0">st.ii-ii.q166</data>
+  <data key="d1">II-II q.166 — Studiousness</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q167">
+  <data key="d0">st.ii-ii.q167</data>
+  <data key="d1">II-II q.167 — Curiosity</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q168">
+  <data key="d0">st.ii-ii.q168</data>
+  <data key="d1">II-II q.168 — Modesty as consisting in the outward movements of the body</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q169">
+  <data key="d0">st.ii-ii.q169</data>
+  <data key="d1">II-II q.169 — Modesty in the outward apparel</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q170">
+  <data key="d0">st.ii-ii.q170</data>
+  <data key="d1">II-II q.170 — The precepts of temperance</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a001">
+  <data key="d0">st.ii-ii.q161.a001</data>
+  <data key="d1">II-II q.161 a.1 — Is humility a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a002">
+  <data key="d0">st.ii-ii.q161.a002</data>
+  <data key="d1">II-II q.161 a.2 — Does it reside in the appetite, or in the judgment of reason?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a003">
+  <data key="d0">st.ii-ii.q161.a003</data>
+  <data key="d1">II-II q.161 a.3 — Should one subject oneself to all men by humility?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a004">
+  <data key="d0">st.ii-ii.q161.a004</data>
+  <data key="d1">II-II q.161 a.4 — Is it a part of modesty or temperance?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a005">
+  <data key="d0">st.ii-ii.q161.a005</data>
+  <data key="d1">II-II q.161 a.5 — Its comparison with the other virtues</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q161.a006">
+  <data key="d0">st.ii-ii.q161.a006</data>
+  <data key="d1">II-II q.161 a.6 — The degrees of humility</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a001">
+  <data key="d0">st.ii-ii.q162.a001</data>
+  <data key="d1">II-II q.162 a.1 — Is pride a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a002">
+  <data key="d0">st.ii-ii.q162.a002</data>
+  <data key="d1">II-II q.162 a.2 — Is it a special vice?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a003">
+  <data key="d0">st.ii-ii.q162.a003</data>
+  <data key="d1">II-II q.162 a.3 — Wherein does it reside as in its subject?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a004">
+  <data key="d0">st.ii-ii.q162.a004</data>
+  <data key="d1">II-II q.162 a.4 — Its species</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a005">
+  <data key="d0">st.ii-ii.q162.a005</data>
+  <data key="d1">II-II q.162 a.5 — Is it a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a006">
+  <data key="d0">st.ii-ii.q162.a006</data>
+  <data key="d1">II-II q.162 a.6 — Is it the most grievous of all sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a007">
+  <data key="d0">st.ii-ii.q162.a007</data>
+  <data key="d1">II-II q.162 a.7 — Its relation to other sins</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q162.a008">
+  <data key="d0">st.ii-ii.q162.a008</data>
+  <data key="d1">II-II q.162 a.8 — Should it be reckoned a capital vice?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q163.a001">
+  <data key="d0">st.ii-ii.q163.a001</data>
+  <data key="d1">II-II q.163 a.1 — Was pride the first man's first sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q163.a002">
+  <data key="d0">st.ii-ii.q163.a002</data>
+  <data key="d1">II-II q.163 a.2 — What the first man coveted by sinning</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q163.a003">
+  <data key="d0">st.ii-ii.q163.a003</data>
+  <data key="d1">II-II q.163 a.3 — Was his sin more grievous than all other sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q163.a004">
+  <data key="d0">st.ii-ii.q163.a004</data>
+  <data key="d1">II-II q.163 a.4 — Which sinned more grievously, the man or the woman?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q164.a001">
+  <data key="d0">st.ii-ii.q164.a001</data>
+  <data key="d1">II-II q.164 a.1 — Death, which is the common punishment</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q164.a002">
+  <data key="d0">st.ii-ii.q164.a002</data>
+  <data key="d1">II-II q.164 a.2 — The other particular punishments mentioned in Genesis</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q165.a001">
+  <data key="d0">st.ii-ii.q165.a001</data>
+  <data key="d1">II-II q.165 a.1 — Was it fitting for man to be tempted by the devil?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q165.a002">
+  <data key="d0">st.ii-ii.q165.a002</data>
+  <data key="d1">II-II q.165 a.2 — The manner and order of that temptation</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q166.a001">
+  <data key="d0">st.ii-ii.q166.a001</data>
+  <data key="d1">II-II q.166 a.1 — What is the matter of studiousness?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q166.a002">
+  <data key="d0">st.ii-ii.q166.a002</data>
+  <data key="d1">II-II q.166 a.2 — Is it a part of temperance?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q167.a001">
+  <data key="d0">st.ii-ii.q167.a001</data>
+  <data key="d1">II-II q.167 a.1 — Can the vice of curiosity regard intellective knowledge?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q167.a002">
+  <data key="d0">st.ii-ii.q167.a002</data>
+  <data key="d1">II-II q.167 a.2 — Is it about sensitive knowledge?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q168.a001">
+  <data key="d0">st.ii-ii.q168.a001</data>
+  <data key="d1">II-II q.168 a.1 — Can there be virtue and vice in the outward movements of the body that are done seriously?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q168.a002">
+  <data key="d0">st.ii-ii.q168.a002</data>
+  <data key="d1">II-II q.168 a.2 — Can there be a virtue about playful actions?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q168.a003">
+  <data key="d0">st.ii-ii.q168.a003</data>
+  <data key="d1">II-II q.168 a.3 — The sin consisting in excess of play</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q168.a004">
+  <data key="d0">st.ii-ii.q168.a004</data>
+  <data key="d1">II-II q.168 a.4 — The sin consisting in lack of play</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q169.a001">
+  <data key="d0">st.ii-ii.q169.a001</data>
+  <data key="d1">II-II q.169 a.1 — Can there be virtue and vice in connection with outward apparel?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q169.a002">
+  <data key="d0">st.ii-ii.q169.a002</data>
+  <data key="d1">II-II q.169 a.2 — Do women sin mortally by excessive adornment?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q170.a001">
+  <data key="d0">st.ii-ii.q170.a001</data>
+  <data key="d1">II-II q.170 a.1 — The precepts of temperance itself</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q170.a002">
+  <data key="d0">st.ii-ii.q170.a002</data>
+  <data key="d1">II-II q.170 a.2 — The precepts of its parts</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the temperance closure tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.adams_first_sin" target="concept.pride" id="edge.concept.adams_first_sin.case_of.concept.pride">
+  <data key="d6">edge.concept.adams_first_sin.case_of.concept.pride</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">case_of</data>
+  <data key="d11">concept.pride</data>
+  <data key="d12">Pride</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-adams-first-sin-case-of-concept-pride-st-ii-ii-q163-a001-resp</data>
+  <data key="d15">st.ii-ii.q163.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">od above his measure: and this pertains to pride . Therefore it is evident that man's first sin was pride .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.divine_likeness" id="edge.concept.adams_first_sin.directed_to.concept.divine_likeness">
+  <data key="d6">edge.concept.adams_first_sin.directed_to.concept.divine_likeness</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_likeness</data>
+  <data key="d12">Divine Likeness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-directed-to-concept-divine-likeness-st-ii-ii-q163-a002-resp</data>
+  <data key="d15">st.ii-ii.q163.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">good above his measure, as stated in the foregoing Article, it follows that he coveted God's likeness inordinately. It must, however, be observed that the proper object of the appetite is a thing not possessed. Now spiritual good , in so far as the rational creature participates in the Divine</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.knowledge_good_and_evil" id="edge.concept.adams_first_sin.directed_to.concept.knowledge_good_and_evil">
+  <data key="d6">edge.concept.adams_first_sin.directed_to.concept.knowledge_good_and_evil</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.knowledge_good_and_evil</data>
+  <data key="d12">Knowledge of Good and Evil</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-directed-to-concept-knowledge-good-and-evil-st-ii-ii-q163-a002-resp</data>
+  <data key="d15">st.ii-ii.q163.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ture . But the first man sinned chiefly by coveting God's likeness as regards " knowledge of good and evil ," according to the serpent's instigation, namely that by his own natural power he might decide what was good , and what was evil for him to do; or again that he should of himself</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.bodily_defects_first_sin" id="edge.concept.adams_first_sin.results_in_punishment.concept.bodily_defects_first_sin">
+  <data key="d6">edge.concept.adams_first_sin.results_in_punishment.concept.bodily_defects_first_sin</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">results_in_punishment</data>
+  <data key="d11">concept.bodily_defects_first_sin</data>
+  <data key="d12">Bodily Defects (Punishments of the First Sin)</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-results-in-punishment-concept-bodily-defects-first-sin-st-ii-ii-q164-a001-resp</data>
+  <data key="d15">st.ii-ii.q164.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ct to its perfection. Consequently, on the other hand, death, sickness, and all defects of the body are due to the lack of the body's subjection to the soul . It is therefore evident that as the rebellion of the carnal appetite against the spirit is a punishment of our first par</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.death_first_sin" id="edge.concept.adams_first_sin.results_in_punishment.concept.death_first_sin">
+  <data key="d6">edge.concept.adams_first_sin.results_in_punishment.concept.death_first_sin</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">results_in_punishment</data>
+  <data key="d11">concept.death_first_sin</data>
+  <data key="d12">Death (Punishment of the First Sin)</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-results-in-punishment-concept-death-first-sin-st-ii-ii-q164-a001-resp</data>
+  <data key="d15">st.ii-ii.q164.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">against the reason: nor was the body wholly subject to the soul ; whence arose death and other bodily defects. For life and soundness of body depend on the body being subject to the soul , as the perfectible is subject to its perfection. Consequently, on the other</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.loss_of_paradise" id="edge.concept.adams_first_sin.results_in_punishment.concept.loss_of_paradise">
+  <data key="d6">edge.concept.adams_first_sin.results_in_punishment.concept.loss_of_paradise</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">results_in_punishment</data>
+  <data key="d11">concept.loss_of_paradise</data>
+  <data key="d12">Loss of Paradise</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-results-in-punishment-concept-loss-of-paradise-st-ii-ii-q164-a002-resp</data>
+  <data key="d15">st.ii-ii.q164.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">paradise : and this is indicated ( Genesis 3:23 ) where it is stated that " God sent him out of the paradise of pleasure." And since he was unable, of himself, to return to that state of original innocence, it was fitting that obstacles should be placed against his recovering those thing</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.rebellion_of_carnal_appetite" id="edge.concept.adams_first_sin.results_in_punishment.concept.rebellion_of_carnal_appetite">
+  <data key="d6">edge.concept.adams_first_sin.results_in_punishment.concept.rebellion_of_carnal_appetite</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">results_in_punishment</data>
+  <data key="d11">concept.rebellion_of_carnal_appetite</data>
+  <data key="d12">Rebellion of the Carnal Appetite</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-results-in-punishment-concept-rebellion-of-carnal-appetite-st-ii-ii-q164-a001-resp</data>
+  <data key="d15">st.ii-ii.q164.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">is lower powers wholly subject to his reason , whence there followed so great a rebellion of the carnal appetite against the reason: nor was the body wholly subject to the soul ; whence arose death and other bodily defects. For life and soundness of body depend on the body being subject to t</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.adams_first_sin" target="concept.first_parents_temptation" id="edge.concept.adams_first_sin.tempted_by.concept.first_parents_temptation">
+  <data key="d6">edge.concept.adams_first_sin.tempted_by.concept.first_parents_temptation</data>
+  <data key="d7">concept.adams_first_sin</data>
+  <data key="d8">Adam's First Sin</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">tempted_by</data>
+  <data key="d11">concept.first_parents_temptation</data>
+  <data key="d12">Temptation of the First Parents</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-adams-first-sin-tempted-by-concept-first-parents-temptation-st-ii-ii-q165-a002-resp</data>
+  <data key="d15">st.ii-ii.q165.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, intellective and sensitive. Hence the devil , in tempting man , made use of a twofold incentive to sin : one on the part of the intellect , by promising the Divine likeness through the acquisition of knowledge which man naturally desires to have; the other on the part of sense. Thi</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.boorishness" target="concept.eutrapelia" id="edge.concept.boorishness.deficiency_opposed_to.concept.eutrapelia">
+  <data key="d6">edge.concept.boorishness.deficiency_opposed_to.concept.eutrapelia</data>
+  <data key="d7">concept.boorishness</data>
+  <data key="d8">Boorishness / Rudeness</data>
+  <data key="d9">vice</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.eutrapelia</data>
+  <data key="d12">Wittiness / Eutrapelia</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-boorishness-deficiency-opposed-to-concept-eutrapelia-st-ii-ii-q168-a004-resp</data>
+  <data key="d15">st.ii-ii.q168.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the moderate mirth of others. Consequently they are vicious, and are said to be boorish or rude, as the Philosopher states (Ethic. iv, 8). Since, however, mirth is useful for the sake of the rest and pleasures it affords; and since, in human life, pleasure and rest are not i</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.curiosity" target="concept.disordered_inquiry" id="edge.concept.curiosity.concerns_ordered_inquiry.concept.disordered_inquiry">
+  <data key="d6">edge.concept.curiosity.concerns_ordered_inquiry.concept.disordered_inquiry</data>
+  <data key="d7">concept.curiosity</data>
+  <data key="d8">Curiosity</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_ordered_inquiry</data>
+  <data key="d11">concept.disordered_inquiry</data>
+  <data key="d12">Disordered Inquiry</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-curiosity-concerns-ordered-inquiry-concept-disordered-inquiry-st-ii-ii-q167-a001-resp</data>
+  <data key="d15">st.ii-ii.q167.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">d to commit iniquity ." Secondly, there may be sin by reason of the appetite or study directed to the learning of truth being itself inordinate; and this in four ways. First, when a man is withdrawn by a less profitable study from a study that is an obligation incumbent on him; hence Jerome says [Epist. xxi ad Damas]: "We</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.curiosity" target="concept.studiousness" id="edge.concept.curiosity.contrary_to.concept.studiousness">
+  <data key="d6">edge.concept.curiosity.contrary_to.concept.studiousness</data>
+  <data key="d7">concept.curiosity</data>
+  <data key="d8">Curiosity</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.studiousness</data>
+  <data key="d12">Studiousness</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-curiosity-contrary-to-concept-studiousness-st-ii-ii-q167-a001-resp</data>
+  <data key="d15">st.ii-ii.q167.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:166:2 ad 2 ) studiousness is directly, not about knowledge itself, but about the desire and study in the pursuit of knowledge . Now we must judge differently of the knowledge itself of truth , and of the desire and st</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.curiosity" target="concept.vice" id="edge.concept.curiosity.species_of.concept.vice">
+  <data key="d6">edge.concept.curiosity.species_of.concept.vice</data>
+  <data key="d7">concept.curiosity</data>
+  <data key="d8">Curiosity</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-curiosity-species-of-concept-vice-st-ii-ii-q167-a001-resp</data>
+  <data key="d15">st.ii-ii.q167.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ike manner, those who study to learn something in order to sin are engaged in a sinful study, according to the saying of Jeremiah 9:5 , "They have taught their tongue to speak lies, they have labored to commit iniquity ." Secondly, there may be sin by reason of the appeti</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.eutrapelia" target="concept.playful_actions" id="edge.concept.eutrapelia.concerns_external_behavior.concept.playful_actions">
+  <data key="d6">edge.concept.eutrapelia.concerns_external_behavior.concept.playful_actions</data>
+  <data key="d7">concept.eutrapelia</data>
+  <data key="d8">Wittiness / Eutrapelia</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_external_behavior</data>
+  <data key="d11">concept.playful_actions</data>
+  <data key="d12">Playful Actions</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-eutrapelia-concerns-external-behavior-concept-playful-actions-st-ii-ii-q168-a002-resp</data>
+  <data key="d15">st.ii-ii.q168.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">or deeds wherein nothing further is sought than the soul's delight, are called playful or humorous. Hence it is necessary at times to make use of them, in order to give rest, as it were, to the soul . This is in agreement with the statement of the Philosopher (Ethic. iv, 8) tha</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.eutrapelia" target="concept.external_behavior_modesty" id="edge.concept.eutrapelia.species_of.concept.external_behavior_modesty">
+  <data key="d6">edge.concept.eutrapelia.species_of.concept.external_behavior_modesty</data>
+  <data key="d7">concept.eutrapelia</data>
+  <data key="d8">Wittiness / Eutrapelia</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.external_behavior_modesty</data>
+  <data key="d12">Modesty in Outward Movements</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-eutrapelia-species-of-concept-external-behavior-modesty-st-ii-ii-q168-a002-resp</data>
+  <data key="d15">st.ii-ii.q168.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">es according to reason is virtue . Therefore there can be a virtue about games. The Philosopher gives it the name of wittiness ( eutrapelia ), and a man is said to be pleasant through having a happy turn* of mind, whereby he gives his words and deeds a cheerful turn: and inasmuch as this virtue restrains</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.excessive_adornment" target="concept.outward_apparel" id="edge.concept.excessive_adornment.concerns_outward_attire.concept.outward_apparel">
+  <data key="d6">edge.concept.excessive_adornment.concerns_outward_attire.concept.outward_apparel</data>
+  <data key="d7">concept.excessive_adornment</data>
+  <data key="d8">Excessive Adornment</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_outward_attire</data>
+  <data key="d11">concept.outward_apparel</data>
+  <data key="d12">Outward Apparel</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-excessive-adornment-concerns-outward-attire-concept-outward-apparel-st-ii-ii-q169-a001-resp</data>
+  <data key="d15">st.ii-ii.q169.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rt. Thirdly, when a man is too solicitous [Cf. II-II:55:6 ] in his attention to outward apparel. Accordingly Andronicus [De Affectibus] reckons three virtues in connection with outward attire; namely " humility ," which excludes the seeking of glory , wherefore he says that</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_attire | external_modesty</data>
+</edge>
+<edge source="concept.excessive_adornment" target="concept.outward_attire_modesty" id="edge.concept.excessive_adornment.excess_opposed_to.concept.outward_attire_modesty">
+  <data key="d6">edge.concept.excessive_adornment.excess_opposed_to.concept.outward_attire_modesty</data>
+  <data key="d7">concept.excessive_adornment</data>
+  <data key="d8">Excessive Adornment</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.outward_attire_modesty</data>
+  <data key="d12">Modesty in Outward Apparel</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-excessive-adornment-excess-opposed-to-concept-outward-attire-modesty-st-ii-ii-q169-a001-resp</data>
+  <data key="d15">st.ii-ii.q169.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s inordinate attachment occurs in three ways. First when a man seeks glory from excessive attention to dress; in so far as dress and such like things are a kind of ornament. Hence Gregory says (Hom. xl in Ev.): "There are some who think that attention to finery and costly dress is no sin</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_attire | external_modesty</data>
+</edge>
+<edge source="concept.excessive_play" target="concept.eutrapelia" id="edge.concept.excessive_play.excess_opposed_to.concept.eutrapelia">
+  <data key="d6">edge.concept.excessive_play.excess_opposed_to.concept.eutrapelia</data>
+  <data key="d7">concept.excessive_play</data>
+  <data key="d8">Excessive Play</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.eutrapelia</data>
+  <data key="d12">Wittiness / Eutrapelia</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-excessive-play-excess-opposed-to-concept-eutrapelia-st-ii-ii-q168-a003-resp</data>
+  <data key="d15">st.ii-ii.q168.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">playful or jesting words or deeds are dirigible according to reason . Wherefore excessive play is that which goes beyond the rule of reason: and this happens in two ways. First, on account of the very species of the acts employed for the purpose of fun, and this kind of jes</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.external_behavior_modesty" target="concept.outward_behavior" id="edge.concept.external_behavior_modesty.concerns_external_behavior.concept.outward_behavior">
+  <data key="d6">edge.concept.external_behavior_modesty.concerns_external_behavior.concept.outward_behavior</data>
+  <data key="d7">concept.external_behavior_modesty</data>
+  <data key="d8">Modesty in Outward Movements</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_external_behavior</data>
+  <data key="d11">concept.outward_behavior</data>
+  <data key="d12">Outward Behavior</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-external-behavior-modesty-concerns-external-behavior-concept-outward-behavior-st-ii-ii-q168-a001-resp</data>
+  <data key="d15">st.ii-ii.q168.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">gs pertaining to man being directed by his reason . Now it is manifest that the outward movements of man are dirigible by reason, since the outward members are set in motion at the command of reason. Hence it is evident that there is a moral virtue concerned with the direction of the</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.external_behavior_modesty" target="concept.modesty_general" id="edge.concept.external_behavior_modesty.species_of.concept.modesty_general">
+  <data key="d6">edge.concept.external_behavior_modesty.species_of.concept.modesty_general</data>
+  <data key="d7">concept.external_behavior_modesty</data>
+  <data key="d8">Modesty in Outward Movements</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.modesty_general</data>
+  <data key="d12">Modesty (General)</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-external-behavior-modesty-species-of-concept-modesty-general-st-ii-ii-q168-a001-resp</data>
+  <data key="d15">st.ii-ii.q168.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rd members are set in motion at the command of reason. Hence it is evident that there is a moral virtue concerned with the direction of these movements. Now the direction of these movements may be considered from a twofold standpoint. First, in respect of fittingness to the person ; secondly, in respect of fittingness to external</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_behavior | external_modesty</data>
+</edge>
+<edge source="concept.first_parents_temptation" target="concept.divine_likeness" id="edge.concept.first_parents_temptation.directed_to.concept.divine_likeness">
+  <data key="d6">edge.concept.first_parents_temptation.directed_to.concept.divine_likeness</data>
+  <data key="d7">concept.first_parents_temptation</data>
+  <data key="d8">Temptation of the First Parents</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.divine_likeness</data>
+  <data key="d12">Divine Likeness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-first-parents-temptation-directed-to-concept-divine-likeness-st-ii-ii-q165-a002-resp</data>
+  <data key="d15">st.ii-ii.q165.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">made use of a twofold incentive to sin : one on the part of the intellect , by promising the Divine likeness through the acquisition of knowledge which man naturally desires to have; the other on the part of sense. This he did by having recourse to those sensible things, which are most a</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.first_parents_temptation" target="concept.knowledge_good_and_evil" id="edge.concept.first_parents_temptation.directed_to.concept.knowledge_good_and_evil">
+  <data key="d6">edge.concept.first_parents_temptation.directed_to.concept.knowledge_good_and_evil</data>
+  <data key="d7">concept.first_parents_temptation</data>
+  <data key="d8">Temptation of the First Parents</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.knowledge_good_and_evil</data>
+  <data key="d12">Knowledge of Good and Evil</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-first-parents-temptation-directed-to-concept-knowledge-good-and-evil-st-ii-ii-q165-a002-resp</data>
+  <data key="d15">st.ii-ii.q165.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">one on the part of the intellect , by promising the Divine likeness through the acquisition of knowledge which man naturally desires to have; the other on the part of sense. This he did by having recourse to those sensible things, which are most akin to man , partly by tempting the m</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">adams_first_sin</data>
+  <data key="d20">adam_case | adams_first_sin</data>
+</edge>
+<edge source="concept.humility" target="concept.god" id="edge.concept.humility.directed_to.concept.god">
+  <data key="d6">edge.concept.humility.directed_to.concept.god</data>
+  <data key="d7">concept.humility</data>
+  <data key="d8">Humility</data>
+  <data key="d9">virtue</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.god</data>
+  <data key="d12">God</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-humility-directed-to-concept-god-st-ii-ii-q161-a003-resp</data>
+  <data key="d15">st.ii-ii.q161.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">is God's , and that which is man's . Whatever pertains to defect is man's : but whatever pertains to man's welfare and perfection is God's , according to the saying of Hosea 13:9 , "Destruction is thy own, O Israel ; thy help is only in Me." Now humility , as stated above ( Article 1, Reply to Objection 5 ; Article 2</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.humility" target="concept.temperance" id="edge.concept.humility.potential_part_of.concept.temperance">
+  <data key="d6">edge.concept.humility.potential_part_of.concept.temperance</data>
+  <data key="d7">concept.humility</data>
+  <data key="d8">Humility</data>
+  <data key="d9">virtue</data>
+  <data key="d10">potential_part_of</data>
+  <data key="d11">concept.temperance</data>
+  <data key="d12">Temperance</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-humility-potential-part-of-concept-temperance-st-ii-ii-q161-a004-resp</data>
+  <data key="d15">st.ii-ii.q161.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">h is the movement of a spirit aiming at great things. Wherefore, like meekness, humility is accounted a part of temperance . For this reason the Philosopher (Ethic. iv, 3) says that a man who aims at small things in proportion to his mode is not magnanimous but "temperate," and such a man we may call</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.humility" target="concept.truth_about_self" id="edge.concept.humility.regulated_by.concept.truth_about_self">
+  <data key="d6">edge.concept.humility.regulated_by.concept.truth_about_self</data>
+  <data key="d7">concept.humility</data>
+  <data key="d8">Humility</data>
+  <data key="d9">virtue</data>
+  <data key="d10">regulated_by</data>
+  <data key="d11">concept.truth_about_self</data>
+  <data key="d12">Truth About Oneself</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-humility-regulated-by-concept-truth-about-self-st-ii-ii-q161-a002-resp</data>
+  <data key="d15">st.ii-ii.q161.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">pose he must know his disproportion to that which surpasses his capacity. Hence knowledge of one's own deficiency belongs to humility , as a rule guiding the appetite . Nevertheless humility is essentially in the appetite itself; and consequently it must be said that humility , properly speaking, moderates the m</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.humility" target="concept.modesty_general" id="edge.concept.humility.species_of.concept.modesty_general">
+  <data key="d6">edge.concept.humility.species_of.concept.modesty_general</data>
+  <data key="d7">concept.humility</data>
+  <data key="d8">Humility</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.modesty_general</data>
+  <data key="d12">Modesty (General)</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-humility-species-of-concept-modesty-general-st-ii-ii-q161-a004-resp</data>
+  <data key="d15">st.ii-ii.q161.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the reason given above ( II-II:160:2 ), among the various parts of temperance , the one under which humility is comprised is modesty as understood by Tully (De Invent. Rhet. ii, 54), inasmuch as humility is nothing else than a moderation of spirit: wherefore it is written ( 1 Peter 3:4 ): "In the incorruptibili</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.humility" target="concept.virtue" id="edge.concept.humility.species_of.concept.virtue">
+  <data key="d6">edge.concept.humility.species_of.concept.virtue</data>
+  <data key="d7">concept.humility</data>
+  <data key="d8">Humility</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-humility-species-of-concept-virtue-st-ii-ii-q161-a001-resp</data>
+  <data key="d15">st.ii-ii.q161.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( I-II:23:2 ) when we were treating of the passions , the difficult good has something attractive to the appetite , namely the aspect of good , and likewise something repulsive to the appetite , namely the difficulty of obtaining it. On respect</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.outward_attire_modesty" target="concept.outward_apparel" id="edge.concept.outward_attire_modesty.concerns_outward_attire.concept.outward_apparel">
+  <data key="d6">edge.concept.outward_attire_modesty.concerns_outward_attire.concept.outward_apparel</data>
+  <data key="d7">concept.outward_attire_modesty</data>
+  <data key="d8">Modesty in Outward Apparel</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_outward_attire</data>
+  <data key="d11">concept.outward_apparel</data>
+  <data key="d12">Outward Apparel</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-outward-attire-modesty-concerns-outward-attire-concept-outward-apparel-st-ii-ii-q169-a001-resp</data>
+  <data key="d15">st.ii-ii.q169.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rt. Thirdly, when a man is too solicitous [Cf. II-II:55:6 ] in his attention to outward apparel. Accordingly Andronicus [De Affectibus] reckons three virtues in connection with outward attire; namely " humility ," which excludes the seeking of glory , wherefore he says that</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_attire | external_modesty</data>
+</edge>
+<edge source="concept.outward_attire_modesty" target="concept.modesty_general" id="edge.concept.outward_attire_modesty.species_of.concept.modesty_general">
+  <data key="d6">edge.concept.outward_attire_modesty.species_of.concept.modesty_general</data>
+  <data key="d7">concept.outward_attire_modesty</data>
+  <data key="d8">Modesty in Outward Apparel</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.modesty_general</data>
+  <data key="d12">Modesty (General)</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-outward-attire-modesty-species-of-concept-modesty-general-st-ii-ii-q169-a001-resp</data>
+  <data key="d15">st.ii-ii.q169.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rt. Thirdly, when a man is too solicitous [Cf. II-II:55:6 ] in his attention to outward apparel. Accordingly Andronicus [De Affectibus] reckons three virtues in connection with outward attire; namely " humility ," which excludes the seeking of glory , wherefore he says that</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">external_modesty</data>
+  <data key="d20">external_attire | external_modesty</data>
+</edge>
+<edge source="concept.precepts_of_temperance" target="concept.adultery_lust" id="edge.concept.precepts_of_temperance.forbids_opposed_vice_of.concept.adultery_lust">
+  <data key="d6">edge.concept.precepts_of_temperance.forbids_opposed_vice_of.concept.adultery_lust</data>
+  <data key="d7">concept.precepts_of_temperance</data>
+  <data key="d8">Precepts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">forbids_opposed_vice_of</data>
+  <data key="d11">concept.adultery_lust</data>
+  <data key="d12">Adultery</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-precepts-of-temperance-forbids-opposed-vice-of-concept-adultery-lust-st-ii-ii-q170-a001-resp</data>
+  <data key="d15">st.ii-ii.q170.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">abusing his neighbor's wife. Wherefore the precepts of the decalogue include a special prohibition of adultery , not only as committed in deed , but also as desired in thought.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.precepts_of_temperance" target="concept.temperance" id="edge.concept.precepts_of_temperance.precept_of.concept.temperance">
+  <data key="d6">edge.concept.precepts_of_temperance.precept_of.concept.temperance</data>
+  <data key="d7">concept.precepts_of_temperance</data>
+  <data key="d8">Precepts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">precept_of</data>
+  <data key="d11">concept.temperance</data>
+  <data key="d12">Temperance</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-precepts-of-temperance-precept-of-concept-temperance-st-ii-ii-q170-a001-resp</data>
+  <data key="d15">st.ii-ii.q170.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As the Apostle says ( 1 Timothy 1:5 ), "the end of the commandment is charity ," which is enjoined upon us in the two precepts concerning the love of God and of our neighbor. Wherefore the decalogue contains those precepts which tend more directly to the love</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.precepts_of_temperance_parts" target="concept.anger_vice" id="edge.concept.precepts_of_temperance_parts.forbids_opposed_vice_of.concept.anger_vice">
+  <data key="d6">edge.concept.precepts_of_temperance_parts.forbids_opposed_vice_of.concept.anger_vice</data>
+  <data key="d7">concept.precepts_of_temperance_parts</data>
+  <data key="d8">Precepts of the Parts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">forbids_opposed_vice_of</data>
+  <data key="d11">concept.anger_vice</data>
+  <data key="d12">Anger (Vice-Level)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-precepts-of-temperance-parts-forbids-opposed-vice-of-concept-anger-vice-st-ii-ii-q170-a002-resp</data>
+  <data key="d15">st.ii-ii.q170.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ition of the effects of the vices opposed to the parts of temperance . Thus the effect of anger , which is opposed to meekness, is sometimes that a man goes on to commit murder (and this is forbidden in the Decalogue ), and sometimes that he refuses due honor to his parents,</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.precepts_of_temperance_parts" target="concept.pride" id="edge.concept.precepts_of_temperance_parts.forbids_opposed_vice_of.concept.pride">
+  <data key="d6">edge.concept.precepts_of_temperance_parts.forbids_opposed_vice_of.concept.pride</data>
+  <data key="d7">concept.precepts_of_temperance_parts</data>
+  <data key="d8">Precepts of the Parts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">forbids_opposed_vice_of</data>
+  <data key="d11">concept.pride</data>
+  <data key="d12">Pride</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-precepts-of-temperance-parts-forbids-opposed-vice-of-concept-pride-st-ii-ii-q170-a002-resp</data>
+  <data key="d15">st.ii-ii.q170.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, and sometimes that he refuses due honor to his parents, which may also be the result of pride , which leads many to transgress the precepts of the first table.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.precepts_of_temperance_parts" target="concept.humility" id="edge.concept.precepts_of_temperance_parts.precept_of.concept.humility">
+  <data key="d6">edge.concept.precepts_of_temperance_parts.precept_of.concept.humility</data>
+  <data key="d7">concept.precepts_of_temperance_parts</data>
+  <data key="d8">Precepts of the Parts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">precept_of</data>
+  <data key="d11">concept.humility</data>
+  <data key="d12">Humility</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-precepts-of-temperance-parts-precept-of-concept-humility-st-ii-ii-q170-a002-resp</data>
+  <data key="d15">st.ii-ii.q170.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">commit murder (and this is forbidden in the Decalogue ), and sometimes that he refuses due honor to his parents, which may also be the result of pride , which leads many to transgress the precepts of the first table.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.precepts_of_temperance_parts" target="concept.meekness" id="edge.concept.precepts_of_temperance_parts.precept_of.concept.meekness">
+  <data key="d6">edge.concept.precepts_of_temperance_parts.precept_of.concept.meekness</data>
+  <data key="d7">concept.precepts_of_temperance_parts</data>
+  <data key="d8">Precepts of the Parts of Temperance</data>
+  <data key="d9">precept</data>
+  <data key="d10">precept_of</data>
+  <data key="d11">concept.meekness</data>
+  <data key="d12">Meekness</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-precepts-of-temperance-parts-precept-of-concept-meekness-st-ii-ii-q170-a002-resp</data>
+  <data key="d15">st.ii-ii.q170.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ition of the effects of the vices opposed to the parts of temperance . Thus the effect of anger , which is opposed to meekness, is sometimes that a man goes on to commit murder (and this is forbidden in the Decalogue ), and sometimes that he refuses due honor to his parents,</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">precept</data>
+  <data key="d20">precept | precept_linkage</data>
+</edge>
+<edge source="concept.pride" target="concept.humility" id="edge.concept.pride.contrary_to.concept.humility">
+  <data key="d6">edge.concept.pride.contrary_to.concept.humility</data>
+  <data key="d7">concept.pride</data>
+  <data key="d8">Pride</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.humility</data>
+  <data key="d12">Humility</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-pride-contrary-to-concept-humility-st-ii-ii-q162-a005-resp</data>
+  <data key="d15">st.ii-ii.q162.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Pride is opposed to humility . Now humility properly regards the subjection of man to God , as stated above ( II-II:161:1 ad 5 ). Hence pride properly regards lack of this subjection, in so far as a man raise</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.pride" target="concept.own_excellence" id="edge.concept.pride.directed_to.concept.own_excellence">
+  <data key="d6">edge.concept.pride.directed_to.concept.own_excellence</data>
+  <data key="d7">concept.pride</data>
+  <data key="d8">Pride</data>
+  <data key="d9">vice</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.own_excellence</data>
+  <data key="d12">One's Own Excellence</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-pride-directed-to-concept-own-excellence-st-ii-ii-q162-a002-resp</data>
+  <data key="d15">st.ii-ii.q162.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">pride is a special sin , because it has a special object: for it is inordinate desire of one's own excellence, as stated ( Article 1, Reply to Objection 2 ). Secondly, it may be considered as having a certain influence towards other sins . On this way it has somewhat of a generic characte</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.pride" target="concept.vice" id="edge.concept.pride.species_of.concept.vice">
+  <data key="d6">edge.concept.pride.species_of.concept.vice</data>
+  <data key="d7">concept.pride</data>
+  <data key="d8">Pride</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-pride-species-of-concept-vice-st-ii-ii-q162-a001-resp</data>
+  <data key="d15">st.ii-ii.q162.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Pride [superbia] is so called because a man thereby aims higher [supra] than he is; wherefore Isidore says (Etym. x): "A man is said to be proud, because he wishes to appear above ( sup</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">humility_pride</data>
+  <data key="d20">humility_pride</data>
+</edge>
+<edge source="concept.studiousness" target="concept.ordered_inquiry" id="edge.concept.studiousness.concerns_ordered_inquiry.concept.ordered_inquiry">
+  <data key="d6">edge.concept.studiousness.concerns_ordered_inquiry.concept.ordered_inquiry</data>
+  <data key="d7">concept.studiousness</data>
+  <data key="d8">Studiousness</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_ordered_inquiry</data>
+  <data key="d11">concept.ordered_inquiry</data>
+  <data key="d12">Ordered Inquiry</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-studiousness-concerns-ordered-inquiry-concept-ordered-inquiry-st-ii-ii-q166-a001-resp</data>
+  <data key="d15">st.ii-ii.q166.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Properly speaking, study denotes keen application of the mind to something. Now the mind is not applied to a thing except by knowing that thing. Wherefore the mind's application to knowledge precedes its application to those things to which</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.studiousness" target="concept.temperance" id="edge.concept.studiousness.potential_part_of.concept.temperance">
+  <data key="d6">edge.concept.studiousness.potential_part_of.concept.temperance</data>
+  <data key="d7">concept.studiousness</data>
+  <data key="d8">Studiousness</data>
+  <data key="d9">virtue</data>
+  <data key="d10">potential_part_of</data>
+  <data key="d11">concept.temperance</data>
+  <data key="d12">Temperance</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-studiousness-potential-part-of-concept-temperance-st-ii-ii-q166-a002-resp</data>
+  <data key="d15">st.ii-ii.q166.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">f this desire pertains to the virtue of studiousness; wherefore it follows that studiousness is a potential part of temperance , as a subordinate virtue annexed to a principal virtue . Moreover, it is comprised under modesty for the reason given above ( II-II:160:2 ).</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.studiousness" target="concept.modesty_general" id="edge.concept.studiousness.species_of.concept.modesty_general">
+  <data key="d6">edge.concept.studiousness.species_of.concept.modesty_general</data>
+  <data key="d7">concept.studiousness</data>
+  <data key="d8">Studiousness</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.modesty_general</data>
+  <data key="d12">Modesty (General)</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-studiousness-species-of-concept-modesty-general-st-ii-ii-q166-a002-resp</data>
+  <data key="d15">st.ii-ii.q166.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">temperance , as a subordinate virtue annexed to a principal virtue . Moreover, it is comprised under modesty for the reason given above ( II-II:160:2 ).</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+<edge source="concept.studiousness" target="concept.virtue" id="edge.concept.studiousness.species_of.concept.virtue">
+  <data key="d6">edge.concept.studiousness.species_of.concept.virtue</data>
+  <data key="d7">concept.studiousness</data>
+  <data key="d8">Studiousness</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-studiousness-species-of-concept-virtue-st-ii-ii-q166-a002-resp</data>
+  <data key="d15">st.ii-ii.q166.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">a natural desire for knowledge ." The moderation of this desire pertains to the virtue of studiousness; wherefore it follows that studiousness is a potential part of temperance , as a subordinate virtue annexed to a principal virtue . Moreover, it is comprised under modesty for the</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">study_curiosity</data>
+  <data key="d20">study_curiosity</data>
+</edge>
+</graph></graphml>

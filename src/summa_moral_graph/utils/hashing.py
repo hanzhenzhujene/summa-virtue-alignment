@@ -12,4 +12,3 @@ def canonical_json(data: Mapping[str, Any]) -> str:
 
 def record_hash(data: Mapping[str, Any]) -> str:
     return hashlib.sha256(canonical_json(data).encode("utf-8")).hexdigest()
-

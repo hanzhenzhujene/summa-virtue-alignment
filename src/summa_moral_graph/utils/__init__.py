@@ -34,4 +34,3 @@ __all__ = [
     "visible_text",
     "write_jsonl",
 ]
-

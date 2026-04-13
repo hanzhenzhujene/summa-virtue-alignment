@@ -1,0 +1,10 @@
+{
+  "candidate_mention_count": 4,
+  "candidate_relation_count": 5,
+  "duplicate_annotation_flags": [],
+  "reviewed_annotation_count": 156,
+  "reviewed_doctrinal_edge_count": 152,
+  "reviewed_structural_editorial_count": 12,
+  "status": "ok",
+  "unresolved_warnings": []
+}

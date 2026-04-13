@@ -9,6 +9,272 @@
   - `12337` segments
   - `2238` explicit cross-reference records
 - Interim artifacts are generated and validated under `data/interim/`.
+- The next reviewed doctrinal block is now implemented for the prudence tract:
+  - `II-II, QQ. 47–56`
+  - `449` passages in tract scope
+  - `156` reviewed doctrinal annotations
+  - `152` reviewed doctrinal edges
+  - `12` reviewed structural-editorial correspondences
+  - `4` candidate mentions
+  - `5` candidate relation proposals
+- Verification is clean for the current repo state:
+  - `build-prudence` succeeds
+  - `build-pilot` now succeeds for the fixed vertical slice
+  - pilot layer counts:
+    - `12` questions
+    - `792` passages
+    - `66` registered concepts
+    - `187` reviewed annotations
+    - `29` doctrinal edges
+    - `253` structural edges
+  - `pytest` passes (`32` passed, `2` network tests skipped)
+  - `ruff check` and `mypy` pass
+- The repo now supports the full moral corpus as a structural and candidate-review workflow:
+  - `296` included questions parsed
+  - `1482` articles parsed
+  - `12337` passages available for full-corpus browsing
+  - `128` corpus registry concepts
+  - `41973` candidate mentions
+  - `13342` candidate relation proposals
+  - `501` reviewed annotations remain separate from the candidate layer
+  - generated audit outputs:
+    - `data/processed/corpus_manifest.json`
+    - `data/processed/coverage_report.json`
+    - `data/processed/candidate_validation_report.json`
+    - `data/processed/corpus_review_queue.json`
+  - the first full-corpus example review packet targets `I-II q.100`
+  - verification is again clean:
+    - `build-corpus` succeeds
+    - `pytest` passes (`40` passed, `2` network tests skipped)
+    - `ruff check` and `mypy` pass
+- The first substantial reviewed doctrinal layer is now implemented for the theological virtues tract:
+  - `II-II, QQ. 1–46`
+  - `46` questions covered
+  - `2088` passages in tract scope
+  - `58` registered concepts used in tract exports
+  - `185` reviewed annotations
+  - `54` reviewed doctrinal edges
+  - `126` reviewed structural-editorial correspondences
+  - `9671` candidate mentions in tract scope
+  - `3323` candidate relation proposals in tract scope
+  - generated tract outputs:
+    - `data/processed/theological_virtues_coverage.json`
+    - `data/processed/theological_virtues_validation_report.json`
+    - `data/processed/theological_virtues_review_queue.json`
+  - tract verification is currently clean:
+    - `build-theological-virtues` succeeds
+  - tract validation status is `ok`
+  - root `pytest` now passes directly from the repo (`49` passed, `2` skipped)
+  - `ruff check` and `mypy` pass after the theological-virtues filter/type cleanup
+- The next research-grade reviewed doctrinal block is now implemented for the justice core tract:
+  - `II-II, QQ. 57–79`
+  - `23` questions covered
+  - `927` passages in tract scope
+  - `66` registered concepts used in tract exports
+  - `299` reviewed annotations
+  - `98` reviewed doctrinal edges
+  - `186` reviewed structural-editorial correspondences
+  - `1813` candidate mentions in tract scope
+  - `656` candidate relation proposals in tract scope
+  - doctrinal edge families currently counted in tract reports:
+    - `11` justice-species relations
+    - `21` harmed-domain relations
+    - `7` restitution-related relations
+    - `31` judicial-process / role-related relations
+  - generated tract outputs:
+    - `data/processed/justice_core_coverage.json`
+    - `data/processed/justice_core_validation_report.json`
+    - `data/processed/justice_core_review_queue.json`
+  - tract verification is clean:
+    - `build-justice-core` succeeds
+    - tract validation status is `ok`
+    - justice review packet now targets under-annotated `II-II q.59`
+- The next research-grade reviewed doctrinal block is now implemented for the religion tract:
+  - `II-II, QQ. 80–100`
+  - `21` questions covered
+  - `939` passages in tract scope
+  - `42` registered concepts used in tract exports
+  - `231` reviewed annotations
+  - `63` reviewed doctrinal edges
+  - `157` reviewed structural-editorial correspondences
+  - `2077` candidate mentions in tract scope
+  - `659` candidate relation proposals in tract scope
+  - doctrinal edge families currently counted in tract reports:
+    - `25` positive-act relations
+    - `5` excess-opposition relations
+    - `5` deficiency-opposition relations
+    - `28` sacred-object / domain relations
+  - generated tract outputs:
+    - `data/processed/religion_tract_coverage.json`
+    - `data/processed/religion_tract_validation_report.json`
+    - `data/processed/religion_tract_review_queue.json`
+  - tract verification is clean:
+    - `build-religion-tract` succeeds
+    - tract validation status is `ok`
+    - religion review packet now targets under-annotated `II-II q.97`
+- The next research-grade reviewed doctrinal block is now implemented for the owed-relation tract:
+  - `II-II, QQ. 101–108`
+  - `8` questions covered
+  - `282` passages in tract scope
+  - `27` registered concepts used in tract exports
+  - `169` reviewed annotations
+  - `38` reviewed doctrinal edges
+  - `110` reviewed structural-editorial correspondences
+  - `732` candidate mentions in tract scope
+  - `226` candidate relation proposals in tract scope
+  - doctrinal edge families currently counted in tract reports:
+    - `6` origin-related due relations
+    - `10` excellence-related due relations
+    - `8` authority-related due relations
+    - `9` benefaction-related due relations
+    - `5` rectificatory relations
+  - generated tract outputs:
+    - `data/processed/owed_relation_tract_coverage.json`
+    - `data/processed/owed_relation_tract_validation_report.json`
+    - `data/processed/owed_relation_tract_review_queue.json`
+  - tract verification is clean:
+    - `build-owed-relation-tract` succeeds
+    - tract validation status is `ok`
+    - owed-relation review packet now targets under-annotated `II-II q.104`
+- The next research-grade reviewed doctrinal block is now implemented for the connected virtues tract:
+  - `II-II, QQ. 109–120`
+  - `12` questions covered
+  - `340` passages in tract scope
+  - `23` registered concepts used in tract exports
+  - `182` reviewed annotations
+  - `44` reviewed doctrinal edges
+  - `138` reviewed structural-editorial correspondences
+  - `763` candidate mentions in tract scope
+  - `238` candidate relation proposals in tract scope
+  - doctrinal edge families currently counted in tract reports:
+    - `21` self-presentation relations
+    - `8` social-interaction relations
+    - `11` external-goods relations
+    - `4` epikeia / legal-equity relations
+  - generated tract outputs:
+    - `data/processed/connected_virtues_109_120_coverage.json`
+    - `data/processed/connected_virtues_109_120_validation_report.json`
+    - `data/processed/connected_virtues_109_120_review_queue.json`
+  - tract verification is clean:
+    - `build-connected-virtues-109-120` succeeds
+    - tract validation status is `ok`
+    - connected-virtues review packet now targets under-annotated `II-II q.109`
+- The next research-grade reviewed doctrinal block is now implemented for the first detailed fortitude-parts tract:
+  - `II-II, QQ. 129–135`
+  - `7` questions covered
+  - `212` passages in tract scope
+  - `20` registered concepts used in tract exports
+  - `150` reviewed annotations
+  - `33` reviewed doctrinal edges
+  - `97` reviewed structural-editorial correspondences
+  - `532` candidate mentions in tract scope
+  - `158` candidate relation proposals in tract scope
+  - doctrinal tract counts currently reported:
+    - `4` excess-opposition relations
+    - `2` deficiency-opposition relations
+    - `20` honor-related relations
+    - `13` expenditure-related relations
+  - generated tract outputs:
+    - `data/processed/fortitude_parts_129_135_coverage.json`
+    - `data/processed/fortitude_parts_129_135_validation_report.json`
+    - `data/processed/fortitude_parts_129_135_review_queue.json`
+  - tract verification is clean:
+    - `build-fortitude-parts-129-135` succeeds
+    - tract validation status is `ok`
+    - fortitude-parts review packet now targets under-annotated `II-II q.130`
+- The next research-grade reviewed doctrinal block is now implemented for the fortitude closure tract:
+  - `II-II, QQ. 136–140`
+  - `5` questions covered
+  - `117` passages in tract scope
+  - `23` registered concepts used in tract exports
+  - `86` reviewed annotations
+  - `31` reviewed doctrinal edges
+  - `53` reviewed structural-editorial correspondences
+  - `532` candidate mentions in tract scope
+  - `178` candidate relation proposals in tract scope
+  - doctrinal tract counts currently reported:
+    - `10` patience relations
+    - `10` perseverance relations
+    - `4` opposed-vice relations
+    - `6` gift-linkage relations
+    - `9` precept-linkage relations
+  - synthesis outputs now exist for the reviewed fortitude tract:
+    - `data/processed/fortitude_tract_synthesis_nodes.csv`
+    - `data/processed/fortitude_tract_synthesis_edges.csv`
+    - `data/processed/fortitude_tract_synthesis.graphml`
+  - tract verification is clean:
+    - `build-fortitude-closure-136-140` succeeds
+    - tract validation status is `ok`
+    - fortitude-closure review packet now targets under-annotated `II-II q.137`
+- The next large research-grade reviewed doctrinal block is now implemented for the major temperance tract, phase 1:
+  - `II-II, QQ. 141–160`
+  - `20` questions covered
+  - `815` passages in tract scope
+  - `48` registered concepts used in tract exports
+  - `234` reviewed annotations
+  - `67` reviewed doctrinal edges
+  - `166` reviewed structural-editorial correspondences
+  - `2085` candidate mentions in tract scope
+  - `674` candidate relation proposals in tract scope
+  - doctrinal tract counts currently reported:
+    - `2` integral-part relations
+    - `7` subjective-part relations
+    - `7` potential-part relations
+    - `10` food-related relations
+    - `8` drink-related relations
+    - `17` sex-related relations
+    - `6` continence/incontinence relations
+    - `8` meekness/anger relations
+    - `5` clemency/cruelty relations
+    - `3` modesty-general relations
+  - synthesis outputs now exist for temperance phase 1:
+    - `data/processed/temperance_phase1_synthesis_nodes.csv`
+    - `data/processed/temperance_phase1_synthesis_edges.csv`
+    - `data/processed/temperance_phase1_synthesis.graphml`
+  - tract verification is clean:
+    - `build-temperance-141-160` succeeds
+    - tract validation status is `ok`
+    - temperance review packet now targets under-annotated `II-II q.144`
+- The next large research-grade reviewed doctrinal block is now implemented for the temperance closure tract:
+  - `II-II, QQ. 161–170`
+  - `10` questions covered
+  - `321` passages in tract scope
+  - `37` registered concepts used in tract exports
+  - `148` reviewed annotations
+  - `41` reviewed doctrinal edges
+  - `107` reviewed structural-editorial correspondences
+  - `906` candidate mentions in tract scope
+  - `322` candidate relation proposals in tract scope
+  - doctrinal tract counts currently reported:
+    - `8` humility/pride relations
+    - `10` Adam’s-first-sin case relations
+    - `7` studiousness/curiosity relations
+    - `10` external-modesty relations
+    - `6` precept-linkage relations
+  - synthesis outputs now exist for the full reviewed temperance tract:
+    - `data/processed/temperance_full_synthesis_nodes.csv`
+    - `data/processed/temperance_full_synthesis_edges.csv`
+    - `data/processed/temperance_full_synthesis.graphml`
+  - tract verification is clean:
+    - `build-temperance-closure-161-170` succeeds
+    - tract validation status is `ok`
+    - temperance-closure review packet now targets under-annotated `II-II q.162`
+- The Streamlit landing page now acts as a real dashboard rather than a raw JSON summary:
+  - corpus backbone metrics, reviewed-block status, review-priority queues, and synthesis exports are aggregated through `src/summa_moral_graph/app/dashboard.py`
+  - Home stays thin and evidence-first while reusing the same processed coverage/validation artifacts the tract reports already depend on
+  - dashboard verification is covered by helper-level tests rather than brittle UI rendering tests
+- The Streamlit app now has a product-grade shared UI layer rather than page-by-page default Streamlit styling:
+  - `src/summa_moral_graph/app/ui.py` now centralizes page chrome, navigation, typography, metric cards, evidence rendering, and shared formatting helpers
+  - `Home`, `Corpus Browser`, `Passage Explorer`, `Concept Explorer`, `Graph View`, and `Stats / Audit` now share one visual system and page rhythm
+  - graph rendering in `src/summa_moral_graph/app/corpus.py` now uses a warmer, more readable presentation tuned for public-facing review rather than internal prototype defaults
+- The public-facing dashboard pass now also addresses tab-by-tab usability rather than only visual polish:
+  - `Graph View` now includes a fast-navigation guide, readable evidence-spotlight labels, and export actions for the current graph slice
+  - the graph canvas itself now exposes navigation buttons plus richer node/edge tooltips so users can inspect layer, support, and traceability without leaving the visualization
+  - page naming has shifted toward clearer first-time comprehension (`Executive Overview`, `Corpus Coverage`, `Evidence Browser`, `Concept Network`, `Relationship Map`, `Health & Audit`) rather than internal-tool terminology
+  - filtered pages now expose reset controls, and the relationship map adds evidence-segment filtering so users can move faster without hand-clearing state
+  - the landing page now includes a manager-facing quick compare mode and direct export actions for both data and an executive report
+  - `Home`, `Corpus Browser`, `Passage Explorer`, `Concept Explorer`, and `Stats / Audit` all now expose explicit download actions so displayed tables are inspectable outside the app
+  - the strongest remaining presentation emphasis is now on graph readability and evidence-first navigation, not on missing export affordances
 
 ## Surprises & Discoveries
 
@@ -19,6 +285,116 @@
 - At least one live page (`I-II q.87 a.7`) repeats `On the contrary` across multiple paragraphs, and another (`I-II q.89 a.1`) incorrectly reuses `On the contrary` inside a reply.
 - At least one live page (`II-II q.172 a.1`) uses `Objection 2.` inside the replies section, so objection labels cannot be trusted blindly once an article has entered its response/reply phase.
 - Because raw HTML redistribution is unclear, fixture strategy uses synthetic structural HTML plus optional live-network smoke tests instead of committed full source pages.
+- The prudence tract required a more precise part taxonomy than a generic `part_of` edge, so the reviewed layer now distinguishes `integral_part_of`, `subjective_part_of`, and `potential_part_of`.
+- Several prudence terms required explicit normalization notes rather than silent flattening:
+  - `reason` vs `reasoning`
+  - `understanding or intelligence` vs the gift of understanding elsewhere
+  - `political economy` / `domestic economy` vs normalized prudence labels
+- The strongest under-annotated question after the first prudence pass is `Q56`, not because parsing failed, but because precept material is doctrinally narrower and easier to overstate.
+- The broader pilot slice needed a separate concept registry rather than a growing pile of ad hoc annotation labels.
+- Article-level `treated_in` annotations work best when evidence extraction can fall back to a stable snippet instead of failing on exact alias matches.
+- A few labels needed explicit ambiguity declarations in the alias table before validation would stay honest:
+  - `love`
+  - `law`
+  - `grace`
+  - `virtue`
+- In the temperance closure tract, precept focus tags could not safely be inferred from every concept that later appears as a precept target. The first pass falsely labeled humility/pride edges as precept material until focus tags were restricted to `q.170`, precept relations, and precept nodes themselves.
+- A dashboard built directly from tract summaries can accidentally foreground candidate activity as if it were doctrinal structure. Tract highlight extraction needed to suppress generic `candidate_relation_count` so the landing page would surface tract-specific reviewed relation families instead of workflow volume.
+- The main UX problem in the Streamlit app was not a single broken page but a shared product smell:
+  - raw schema fields were exposed directly to users
+  - filters lived inline in the content flow rather than in a stable control rail
+  - reviewed, editorial, and candidate layers were technically separate in data but visually flattened in the UI
+  - default Streamlit spacing and typography made the app read like an internal console rather than a public research product
+- A polished graph treatment needed more than better colors:
+  - users need a visible narrowing workflow before they trust the canvas
+  - raw edge ids are too opaque for evidence selection
+  - public-facing pages feel unfinished if tables cannot be exported directly from the active view
+  - users also need explicit in-canvas controls and higher-signal tooltips, otherwise even a visually improved graph still feels like a black box
+- Several original page names were accurate but not helpful:
+  - `Graph View` undersold that this is the primary relationship map
+  - `Stats / Audit` sounded internal rather than decision-useful
+  - `Passage Explorer` and `Concept Explorer` benefited from plainer evidence/network framing
+- Manager-facing users benefit from comparison and export more than from raw candidate volume. Candidate counts still matter, but they belong in diagnostic sections, not at the top of the main overview.
+- `qq.163–165` worked better as a tract-local doctrinal case node (`concept.adams_first_sin`) than as either a generic pride alias or a person-instance graph.
+- `qq.168–169` confirmed that `modesty_general` from `q.160` cannot simply absorb later external-modesty species; outward behavior/play and outward attire need separate reviewed concepts and filters.
+- The pilot app search and evidence views exposed that result ordering should not assume the first matching passage is annotated.
+- Strict type-checking surfaced a useful maintenance issue: curated seed payloads needed clearer typing and less variable reuse to stay auditable.
+- The first corpus-wide candidate pass shows exactly why reviewed and candidate layers must stay separate:
+  - candidate volume is useful for discovery, but far too large to read as doctrine
+  - law/precept material and broad virtue language generate especially high ambiguity
+- Explicitly excluded `II-II qq. 183–189` are best preserved as `excluded` manifest rows rather than silently omitted, because that makes scope auditing visible in the browser and reports.
+- A single question outside the pilot subset can produce a legitimately useful review packet; `I-II q.100` became the first good example because it is high-density, structurally parsed, and not yet doctrinally reviewed.
+- The theological virtues block forced a sharper distinction between reviewed doctrinal claims and reviewed structural/editorial treatment correspondences. Question-level `treated_in` can be explicit without thereby becoming doctrinal graph truth.
+- Broad tract terms such as `God`, `neighbor`, `peace`, `mercy`, `despair`, and `hatred` are useful registry concepts but dangerous full-corpus detection labels. Candidate extraction now needs suppression/alias discipline rather than assuming every added concept should become a broad mention target.
+- The tract naturally reuses pilot-reviewed material in `II-II q.1` and `q.23`, so combined tract exports work best when they inherit stable pilot ids rather than rewriting those earlier records.
+- Merged reviewed edges can carry support from more than one question in the same tract, so question-range graph filters need to trim evidence bundles, not merely decide whether an edge is included.
+- The justice tract forced a stronger ontology split than earlier blocks:
+  - wrong acts are not interchangeable with vice labels
+  - harmed domains are not interchangeable with virtues or objects
+  - judicial roles and judicial process concepts need their own node types to keep court-related questions inspectable
+- Reusing tract-reviewed concepts inside the shared app bundle needed an overlay compatibility layer, because older prudence concept files use a tract-local schema rather than the newer corpus concept schema.
+- The first pass of justice review showed that `q.58` can still rank as under-annotated despite earlier pilot work, because the justice tract is much denser than the original pilot slice; the review queue now intentionally targets lighter non-pilot justice questions first.
+- `q.59` and `q.79` emerged as the clearest early human-review pressure points:
+  - `q.59` because generic injustice is foundational but easy to overgeneralize
+  - `q.79` because omission/transgression sit uneasily between tract-local and broader moral classification
+- The religion tract needed a new ontology split beyond generic virtue/vice language:
+  - positive acts of religion are not interchangeable with the virtue of religion itself
+  - superstition-side excesses are not interchangeable with deficiency-side irreligion
+  - sacred-object modeling is necessary to keep perjury, sacrilege, and simony inspectable
+- `q.80` works best as a structural and doctrinal gateway rather than a dense doctrinal question on its own, so its reviewed layer stays intentionally light.
+- `oath`, `vow`, and `adjuration` create real normalization pressure because all three use reverential or divine-name language without naming the same act.
+- `sacred_time` looked tempting as a reviewed node, but the current tract support was cleaner for sacred things, persons, places, sacraments, and spiritual offices.
+- `q.97` emerged as the first clear human-review pressure point in the tract, not because parsing failed, but because temptation-of-God material is doctrinally central while still sparsely reviewed.
+- The owed-relation block needed an explicit due-mode field rather than a loose note:
+  - origin, excellence, authority, benefaction, and rectificatory debt all appear in the tract
+  - collapsing them into generic respect language would have hidden the doctrinal point of the block
+- The actual question headings matter more than thematic summaries here:
+  - `Piety`
+  - `Observance, considered in itself, and its parts`
+  - `Dulia`
+  - `Obedience`
+  - `Disobedience`
+  - `Thankfulness or gratitude`
+  - `Ingratitude`
+  - `Vengeance`
+- `q.103` creates a real normalization problem because `dulia` can name broad reverence to excellence and also narrower service to a human lord.
+- `q.106` and `q.107` remain partially parsed, so benefaction-related review is usable but still lighter than the surrounding tract.
+- `q.104` emerged as the clearest first human-review pressure point in the tract because authority/command structure is central while candidate density is much higher than current reviewed coverage.
+- The connected-virtues tract needed an explicit sub-cluster field rather than a loose note:
+  - self-presentation
+  - social interaction
+  - external goods
+  - legal equity
+- `truth` in `q.109` is a real normalization hazard because the English label can drift toward faith-tract or generic truth unless the tract context stays explicit.
+- `q.109`, `q.110`, and `q.111` remain partially parsed, so the self-presentation block is usable but still visibly lighter than the surrounding tract.
+- `irony` in `q.113` is easy to misread in a modern rhetorical sense, so the registry now keeps its tract-local moral meaning explicit.
+- `q.120` is structurally clear but semantically risky because `epikeia` can drift into generic fairness unless its legal-letter and lawgiver-intent structure stay explicit in schema and UI.
+- The fortitude-parts tract needed stronger distinction pressure than the earlier connected-virtues block:
+  - `magnanimity` and `magnificence` cannot share a convenience node
+  - `presumption` in `q.130` cannot be allowed to collapse into the hope-tract `presumption`
+  - honor-related structure and expenditure-related structure need distinct tract-local concepts and filters even when both concern “greatness”
+- `q.129` remains structurally dense because honor, worthiness, confidence, assurance, and goods of fortune all cluster around magnanimity without being identical.
+- `q.135` confirmed that tract-local expenditure excess should stay distinct from generic prodigality; the magnificence questions are about proportion between work and expense, not simply about spending a lot.
+- The fortitude closure tract surfaced a second fortitude-specific normalization hazard:
+  - the corpus already had an act-level `perseverance`, so the closure tract needed a distinct virtue-level `concept.perseverance_virtue`
+  - `gift of fortitude` and virtue-level `fortitude` share English wording but cannot share a concept id
+  - the first honest fortitude synthesis view is doctrinally strong for `qq. 129–140`, but `qq. 123–128` remain only structurally framed until their own reviewed block exists
+- The temperance phase-1 tract surfaced a similarly sharp taxonomy hazard:
+  - `q.143` names `shamefacedness` and `honesty` as integral parts, `abstinence` / `sobriety` / `chastity` / `purity` as subjective parts, and `continence` / `meekness` / `modesty` as potential parts
+  - that means `fasting`, `virginity`, and `clemency` cannot be auto-promoted into the same part taxonomy merely because they sit in neighboring questions
+- `anger` needed an explicit ambiguity override in this tract because the same English label can name passion-level anger or vice-level anger depending on the local passage.
+- The major under-annotated questions are lighter doctrinally, not structurally broken:
+  - `q.144`
+  - `q.145`
+  - `q.147`
+  - `q.152`
+  - `q.155`
+  - `q.158`
+- The remaining parse-partial questions are visible but usable:
+  - `q.143`
+  - `q.148`
+  - `q.149`
+- `q.154` strongly rewards conservative species handling: the tract supports real parts-of-lust structure, but it is still easy to over-project more detailed taxonomy than the reviewed passages actually warrant.
 
 ## Decision Log
 
@@ -30,6 +406,121 @@
 - Normalize objection and reply ordinals by occurrence order when source numbering is duplicated or irregular, in order to preserve stable unique segment ids.
 - Normalize repeated or backward `sed contra` / `respondeo` labels into the current segment when the source markup would otherwise violate canonical article order.
 - Reinterpret late-stage `Objection N.` labels as replies when they appear after the article has already entered the respondeo/reply phase.
+- Keep prudence reviewed doctrine on top of the existing stable segment export rather than rebuilding the textual layer.
+- Separate prudence outputs into reviewed doctrinal, reviewed structural-editorial, structural, and candidate files so those layers cannot be confused.
+- Treat typed prudence-part relations as first-class relation types rather than a generic `part_of` with an optional note.
+- Use candidate mentions and candidate relation proposals for unresolved normalization issues rather than promoting weak reviewed edges.
+- Add the broader pilot layer as a second overlay on top of the stable interim corpus rather than replacing the prudence block.
+- Separate pilot structural annotations from pilot doctrinal annotations and export their edges to different files.
+- Use a stable concept registry plus hand-authored alias overrides for the pilot slice instead of resolving concept names ad hoc in the app.
+- Keep pilot doctrinal coverage conservative even when structural treatment coverage is much denser.
+- Use review packets and validation artifacts to direct the next annotation pass instead of widening scope immediately.
+- Scale the repo to the full moral corpus by adding structural manifests, corpus-wide candidate mentions, candidate relation proposals, and audit outputs without weakening the reviewed-evidence discipline.
+- Keep reviewed exports clean by making candidate files, validation reports, review queues, and app overlays materially distinct in filenames, code paths, and UI labels.
+- Prefer offline, inspectable tests for the corpus workflow using generated artifacts and small synthetic candidate-generation fixtures instead of making the test suite depend on live full-corpus fetches.
+- Extend the shared ontology with theological-virtues concepts through the corpus registry, but suppress or narrow high-risk single-token detection labels instead of letting shared candidate extraction become noisy by default.
+- Build the theological virtues tract as a new overlay that adds reviewed doctrinal annotations and reviewed structural-editorial correspondences, while inheriting overlapping pilot support at graph/report time.
+- Keep `hope` and the `gift of fear` close in tract navigation, but do not force a reviewed doctrinal edge unless the specific passage support is strong enough.
+- Make question-range theological-virtues graph filters evidence-aware by trimming support passages, support annotations, and snippets to the selected range instead of leaking multi-question support into a narrower view.
+- Configure `pytest` with a repo-local `pythonpath = ["src"]` entry so verification works from a clean checkout without requiring manual `PYTHONPATH` setup.
+- Extend the shared node and relation literals conservatively for justice review rather than overloading old types:
+  - node types:
+    - `wrong_act`
+    - `domain`
+    - `role`
+    - `process`
+  - relation types:
+    - `requires_restitution`
+    - `harms_domain`
+    - `corrupts_process`
+    - `abuses_role`
+- Keep the shared corpus candidate registry stable while adding justice reviewed concepts through a tract overlay. This avoids churning full-corpus candidate counts just to support a reviewed justice block.
+- Represent justice article/question treatment correspondences as reviewed structural-editorial annotations and keep them out of the default doctrinal graph, even when the article names the concept explicitly.
+- Model prudence reviewed concepts through an app-level compatibility conversion instead of forcing an immediate backfill rewrite of older prudence concept artifacts.
+- Prefer an under-annotated justice question (`II-II q.59`) for the generated review packet rather than simply taking the highest candidate-count question in the tract.
+- Extend the shared relation vocabulary conservatively for religion review rather than overloading older justice or theological-virtues relations:
+  - `annexed_to`
+  - `excess_opposed_to`
+  - `deficiency_opposed_to`
+  - `concerns_sacred_object`
+  - `misuses_sacred_object`
+  - `corrupts_spiritual_exchange`
+- Keep religion positive acts, superstition-side excesses, and irreligion-side deficiencies as distinct reviewed families rather than flattening them into one general opposition bucket.
+- Keep `oath`, `vow`, and `adjuration` as distinct concept nodes even when they co-occur in the same tract.
+- Prefer an under-annotated religion question (`II-II q.97`) for the generated review packet rather than simply taking the highest candidate-count question in the tract.
+- Extend the shared annotation and edge schema conservatively for the owed-relation tract by adding a tract-specific `due_mode` field rather than multiplying overlapping relation names for every debt pattern.
+- Keep due-mode-bearing relations explicit:
+  - `concerns_due_to`
+  - `owed_to_role`
+  - `responds_to_command`
+  - `responds_to_benefaction`
+  - `rectifies_wrong`
+- Keep role-level abstractions in the tract overlay, not person instances:
+  - `parent_role`
+  - `person_in_dignity_role`
+  - `human_lord_role`
+  - `superior_role`
+  - `benefactor_role`
+- Keep vengeance modeled as rectificatory response to prior wrong rather than generic anger, unless later human review shows the tract support needs to be narrowed further.
+- Prefer an under-annotated owed-relation question (`II-II q.104`) for the generated review packet rather than simply taking the highest raw candidate count elsewhere in the tract.
+- Extend the shared annotation and edge schema conservatively for the connected-virtues tract by adding a tract-specific `connected_virtues_cluster` field rather than smuggling cluster semantics into ad hoc labels.
+- Keep the four connected-virtues sub-clusters explicit:
+  - `self_presentation`
+  - `social_interaction`
+  - `external_goods`
+  - `legal_equity`
+- Add only a small connected-virtues relation family rather than multiplying overlapping synonyms:
+  - `concerns_self_presentation`
+  - `concerns_social_interaction`
+  - `concerns_external_goods`
+  - `corrects_legal_letter`
+  - `preserves_intent_of_law`
+- Keep `truth_self_presentation`, `friendliness_affability`, `liberality`, and `epikeia` distinct from superficially similar concepts elsewhere in the corpus.
+- Prefer an under-annotated connected-virtues question (`II-II q.109`) for the generated review packet rather than simply taking the highest candidate-count question in the tract.
+- Keep fortitude-parts opposition structure explicit with first-class relations rather than flattening every contrary into generic `opposed_by`.
+- Use tract-local ids where English labels are too collision-prone:
+  - `honor_recognition`
+  - `presumption_magnanimity`
+  - `meanness_magnificence`
+  - `waste_magnificence`
+- Prefer multi-passage support for the same doctrinal edge over inventing many weak one-off edges; this strengthened the fortitude block without widening the ontology unnecessarily.
+- Prefer an under-annotated fortitude-parts question (`II-II q.130`) for the generated review packet because presumption disambiguation is now the sharpest tract-local normalization risk.
+- Keep fortitude closure distinctions explicit with first-class reviewed relations rather than flattening patience, perseverance, gift, and precept material into one endurance bucket.
+- Use a tract-local virtue id `concept.perseverance_virtue` so fortitude-part perseverance cannot be silently merged with earlier act-level `concept.perseverance`.
+- Keep temperance closure distinctions explicit with first-class reviewed relations rather than flattening humility, pride, Adam’s first sin, curiosity, external modesty, and precepts into one generic moderation bucket.
+- Model Adam’s first sin as a tract-local doctrinal case node linked to pride by `case_of`, with punishment and temptation handled through narrow relation families rather than a wider narrative ontology.
+- Restrict temperance precept focus tags to actual precept nodes, actual precept relations, and `q.170` itself. This keeps full-synthesis graph filters evidence-first and prevents humility/pride edges from inheriting false precept labels.
+- Build the fortitude synthesis layer as a controlled reviewed export:
+  - doctrinal by default
+  - structural-editorial only when explicitly included
+  - candidate data never mixed into default synthesis outputs
+- Extend the shared relation vocabulary conservatively for temperance review rather than overloading generic `part_of` or matter notes:
+  - `integral_part_of`
+  - `subjective_part_of`
+  - `potential_part_of`
+  - `act_of`
+  - `concerns_food`
+  - `concerns_drink`
+  - `concerns_sexual_pleasure`
+  - `concerns_anger`
+  - `concerns_outward_moderation`
+- Let `q.143` control the tract-level part taxonomy instead of inferring part placement from neighboring questions or later Thomistic memory.
+- Keep `fasting` as a tract-local act/practice related to `abstinence`, not as a silent synonym or automatic subjective part.
+- Keep `virginity` distinct from `chastity`, and keep `clemency` distinct from `meekness`, unless a cited passage explicitly warrants a narrower relation.
+- Build the temperance phase-1 synthesis layer as a controlled reviewed export:
+  - doctrinal by default
+  - structural-editorial only when explicitly included
+  - candidate data never mixed into default synthesis outputs
+- Keep dashboard aggregation logic in `src/summa_moral_graph/app/dashboard.py` and let `app/Home.py` stay presentation-only. The home page should read the same processed coverage, validation, review-queue, and synthesis artifacts that the research workflow already inspects elsewhere.
+- Introduce a shared Streamlit UI layer in `src/summa_moral_graph/app/ui.py` rather than continuing to hand-style each page. This keeps page scripts thinner and makes public-facing polish a reusable system instead of one-off markup.
+- Move dense filters into the sidebar on data-heavy pages (`Corpus Browser`, `Passage Explorer`, `Concept Explorer`, `Graph View`) so the main column can prioritize reading, evidence, and visual hierarchy.
+- Replace raw JSON-first presentation with curated cards, metric grids, tables with human-readable labels, and formatted evidence panels wherever possible. Internal schema visibility is still available through the data model, but it is no longer the default public-facing experience.
+- Treat page-level export affordances as part of the evidence-first product contract, not as optional utility actions. If a public page surfaces a scoped table or graph slice, it should normally offer a matching download path.
+- Keep graph navigation opinionated: guide users toward preset, range, concept, and focus-tag narrowing before rendering dense canvases, and prefer human-readable edge labels in evidence pickers over raw stable ids.
+- Treat graph tooltips as part of the evidence surface, not as decorative hover text. Node and edge hover states should surface type, layer, support, and traceability counts directly when possible.
+- Prefer manager-readable naming and navigation labels over internally faithful but vague ones. The app should still be exact, but first-time orientation should not depend on prior repository context.
+- Add reset controls to data-heavy pages by default. Once pages have multiple presets/ranges/focus filters, users should not need to manually unwind state to recover a readable view.
+- Prefer tract comparison as a first-class workflow on the landing page instead of assuming users will mentally compare separate cards and tables.
 
 ## Outcomes & Retrospective
 
@@ -37,3 +528,119 @@
 - Offline fixture tests pass, and optional live smoke tests against New Advent pass.
 - The parser now defends against several real-world source irregularities without weakening the canonical article model.
 - The next milestone should build on these exported records rather than reparsing the corpus ad hoc.
+- The prudence tract now has a research-grade reviewed block with tract-specific coverage and validation reports, typed part-taxonomy relations, and a separate candidate queue.
+- The reviewed doctrinal export is intentionally conservative in places where theological precision matters more than annotation count, especially around false prudence, solicitude, and higher-principle judgment.
+- The repo now has a clean verification baseline for continuing the prudence tract by review packet rather than by broad rework.
+- The repo now also has a broader pilot research prototype with a stable concept registry, conservative alias normalization, evidence-backed doctrinal edges, structural graph exports, validation reporting, and a thin multi-page Streamlit explorer.
+- The pilot doctrinal layer is still intentionally smaller than the structural layer; that imbalance is acceptable for now because the goal is a trustworthy research slice, not a falsely complete concept graph.
+- The repo now has a serious full-corpus research workflow on top of the textual spine: structural coverage, parse audits, conservative candidate extraction, review packets, and a corpus browser that distinguishes reviewed from candidate knowledge.
+- The next useful work is no longer “whether to widen scope,” but “which tract to review next using the new corpus queue.” The leading near-term candidate is the law/precept block beginning with `I-II q.100`.
+- The theological virtues block makes the project feel like a defensible doctrinal graph rather than only a structural prototype. It is still intentionally conservative, especially around the sin-against-the-Spirit material, war, and the exact reviewed relation between hope and the gift of fear.
+- The app now needs only incremental tract-specific refinements for future reviewed blocks rather than another round of foundation work.
+- The dashboard now reads more like a mature public research product than an internal prototype:
+  - each primary page has a clearer read/filter/export loop
+  - the graph view is easier to enter quickly because it explains how to narrow scope before asking the user to interpret network structure
+  - evidence inspection is faster because selectable edges are described in human language rather than raw ids alone
+  - the graph no longer relies on guesswork for interaction because zoom/fit controls and richer hover context are available in the canvas itself
+  - first-time navigation is clearer because page names, quick actions, reset controls, and tract comparison now behave more like a decision-support product than a raw research console
+- The latest cleanup round tightened the tract viewer without changing the reviewed counts: preset/range views now present only in-range evidence for merged doctrinal edges, and the repo-level verification commands run cleanly again.
+- The justice core block makes the reviewed graph materially more useful for legal, social, and injury-related questions. The harmed-domain and judicial-process modeling proved worth the extra schema precision because it kept theft, false accusation, false witness, reviling, and usury from collapsing into one generic injustice bucket.
+- The new tract also exposed where the project still needs deliberate human theology review rather than more automation:
+  - foundational injustice in `q.59`
+  - restitution propagation in `q.62`
+  - judicial-role/process normalization in `qq. 68–71`
+- The religion tract confirmed that distinct act, vice, and sacred-object layers make later annexed-virtue work much safer. That investment carried forward directly into the owed-relation block.
+- The owed-relation tract now gives the project a more defensible account of annexed virtues concerned with what is due:
+  - origin-related debt in piety
+  - excellence-related debt in observance and dulia
+  - authority-related debt in obedience and disobedience
+  - benefaction-related debt in gratitude and ingratitude
+  - rectificatory debt in vengeance
+- The tract remains intentionally conservative where precision matters most:
+  - `q.103` dulia still needs careful human review because broad honor and narrower lord-service can drift together too easily
+  - `qq. 106–107` need more review once the partial parse pressure is reduced
+  - `q.108` needs continued review so rectificatory response does not drift into generic anger language
+- The app now has a reusable pattern for tract-local subtype filters that should scale into later annexed-virtue work without rebuilding the reviewed/candidate separation.
+  - omission/transgression in `q.79`
+- The religion tract adds a second annexed-to-justice block with a materially different ontology from the justice core itself. The new act, sacred-object, and opposition-mode distinctions were worth the extra schema precision because they kept religion, prayer, sacrifice, idolatry, perjury, sacrilege, and simony from collapsing into one vague worship bucket.
+- The next high-value human review is no longer just “more annexed virtues,” but specifically the low-density religion questions:
+  - `qq. 81–83` on religion, devotion, and prayer
+  - `qq. 87–89` on tithes, vows, and oaths
+  - `q.97` on temptation of God
+  - `q.100` on simony and sacred exchange
+- The connected-virtues tract now gives the project a defensible reviewed layer for four justice-adjacent clusters without flattening them into one social-virtue bucket:
+  - truth and false self-presentation
+  - ordinary social interaction
+  - right use of external goods
+  - epikeia as correction of rigid legal literalism
+- The tract remains intentionally conservative where precision matters most:
+  - `qq. 109–111` need more review once the partial parse pressure is reduced
+  - `q.117` and `q.118` need more review so liberality does not drift into mercy, almsgiving, or generic money-language
+  - `q.120` needs continued review so epikeia does not drift into generic fairness or generic justice
+- The app now has a second reusable pattern for tract-local cluster filters that should scale into later annexed-virtue work without weakening reviewed/candidate separation.
+- The next high-value human review is no longer just “more annexed virtues,” but specifically the lighter connected-virtues questions:
+  - `q.109` on truth
+  - `q.110` on lying
+  - `qq. 117–118` on liberality and covetousness
+  - `q.120` on epikeia and the letter of the law
+- The fortitude-parts tract now gives the project a defensible first detailed fortitude overlay without collapsing honor-related and expenditure-related structure into one greatness bucket:
+  - magnanimity and its opposed excesses/deficiency
+  - magnificence and its opposed excess/deficiency
+  - tract-local act/domain support around confidence, assurance, honor, glory, great work, and great expenditure
+- The tract remains intentionally conservative where precision matters most:
+  - `q.129` still needs more review so honor, worthiness, confidence, and assurance do not flatten together
+  - `q.130` still needs more review so tract-local presumption does not drift into the hope tract
+  - `q.132` still needs more review so glory and vainglory do not collapse into generic pride language
+  - `q.135` still needs more review so waste is not silently rewritten as generic prodigality
+- The app now has another reusable pattern for tract-local opposition-mode and cluster filters that should carry forward into the later patience and perseverance questions without weakening reviewed/candidate separation.
+- The fortitude closure tract now completes the currently reviewed fortitude material without collapsing patience and perseverance, gift and virtue, or doctrinal and editorial synthesis:
+  - patience and perseverance remain distinct fortitude-part virtues
+  - effeminacy and pertinacity remain distinct opposed vice concepts
+- The temperance closure tract now completes the currently reviewed temperance material without collapsing humility into modesty, pride into Adam’s first sin, curiosity into neutral inquiry, or precepts into a vague summary layer:
+  - humility and pride now have a reviewed tract-local spine
+  - Adam’s first sin is modeled as a conservative doctrinal case under pride
+  - studiousness and curiosity remain distinct moral orderings of inquiry
+  - external behavior and outward attire remain distinct modesty species
+  - the full temperance synthesis now spans `qq. 141–170` while preserving both phase-1 taxonomy metadata and closure-focus metadata
+- The Streamlit app now opens on a usable research dashboard instead of raw summary dumps. A user can see corpus coverage, reviewed tract health, synthesis exports, and current review packets from one landing page without blurring doctrinal, editorial, and candidate layers together.
+- The app now feels materially closer to a polished public research product than a prototype:
+  - shared typography, color, spacing, and card patterns create a coherent visual identity
+  - each page now has a clearer job and a more legible information hierarchy
+  - evidence panels and support passages are easier to inspect without reading raw JSON blobs
+  - graph, concept, passage, and stats workflows now share one consistent interaction model
+- The tract remains intentionally conservative where precision matters most:
+  - `q.162` still needs more direct doctrinal review because it is candidate-dense and under-annotated
+  - `qq.163–165` still need continued human review so punishments and temptation do not drift into a broader original-sin ontology
+  - `qq.168–169` still need continued human review so outward-modesty species do not collapse back into `modesty_general`
+  - `q.170` still needs continued review so precept-linkage stays narrow and evidence-backed across the full temperance synthesis
+  - the gift of fortitude remains distinct from virtue-level fortitude
+  - precept linkages are present, but stay narrowly tied to what `q.140` actually supports
+- The fortitude synthesis export is now honest and usable:
+  - reviewed doctrinal synthesis covers the existing reviewed fortitude material in `qq. 129–140`
+  - reviewed structural-editorial correspondences can be layered in separately
+  - `qq. 123–128` are visibly inside the tract frame, but not falsely presented as already doctrinally reviewed
+- The next high-value human review is no longer generic fortitude expansion, but specifically:
+  - `q.137` on perseverance
+  - `q.136` on patience, longanimity, and constancy
+  - `q.139` on gift linkage
+  - `q.140` on precept linkage
+- The temperance phase-1 tract now gives the project a full backbone for the major temperance questions without flattening part taxonomy or matter domain:
+  - temperance itself and its contrary vices
+  - integral parts in general
+  - subjective parts around food, drink, and sex
+  - potential parts through continence, meekness, clemency, and modesty in general
+- The new tract remains intentionally conservative where precision matters most:
+  - `q.143` controls the taxonomy, so neighboring questions do not get auto-promoted into the wrong part level
+  - `q.154` keeps the parts-of-lust structure real but deliberately narrower than a fully elaborated sexual vice ontology
+  - `q.157` keeps clemency and meekness adjacent without forcing them into one concept
+- The temperance synthesis export is now honest and usable:
+  - reviewed doctrinal synthesis covers `qq. 141–160`
+  - reviewed structural-editorial correspondences can be layered in separately
+  - candidate data stays out of default synthesis exports
+- The next high-value human review is no longer generic temperance expansion, but specifically:
+  - `q.144` on shamefacedness
+  - `q.145` on honesty
+  - `q.147` on fasting and abstinence
+  - `q.152` on virginity and chastity
+  - `q.155` on continence
+  - `q.158` on anger and meekness

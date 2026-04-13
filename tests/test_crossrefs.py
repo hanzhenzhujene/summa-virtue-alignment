@@ -21,4 +21,3 @@ def test_cross_reference_normalization_on_sample_strings() -> None:
         "iii",
         "supplement",
     ]
-

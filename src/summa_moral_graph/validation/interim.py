@@ -39,8 +39,7 @@ def validate_interim_artifacts() -> dict[str, int | str]:
     for article in article_records:
         if article.question_id not in question_ids:
             raise ValueError(
-                f"Article {article.article_id} points to missing question "
-                f"{article.question_id}"
+                f"Article {article.article_id} points to missing question {article.question_id}"
             )
 
     for segment in segment_records:
@@ -48,13 +47,11 @@ def validate_interim_artifacts() -> dict[str, int | str]:
             raise ValueError(f"Segment {segment.segment_id} has empty text")
         if segment.article_id not in article_ids:
             raise ValueError(
-                f"Segment {segment.segment_id} points to missing article "
-                f"{segment.article_id}"
+                f"Segment {segment.segment_id} points to missing article {segment.article_id}"
             )
         if segment.question_id not in question_ids:
             raise ValueError(
-                f"Segment {segment.segment_id} points to missing question "
-                f"{segment.question_id}"
+                f"Segment {segment.segment_id} points to missing question {segment.question_id}"
             )
 
     for crossref in crossref_records:

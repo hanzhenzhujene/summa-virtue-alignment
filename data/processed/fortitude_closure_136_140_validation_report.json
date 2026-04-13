@@ -1,0 +1,19 @@
+{
+  "candidate_mention_count": 532,
+  "candidate_relation_count": 178,
+  "duplicate_annotation_flags": [],
+  "fortitude_synthesis_edge_count": 64,
+  "fortitude_synthesis_node_count": 89,
+  "gift_linkage_relation_count": 6,
+  "opposed_vice_relation_count": 4,
+  "passage_count": 117,
+  "patience_relation_count": 10,
+  "perseverance_relation_count": 10,
+  "precept_linkage_relation_count": 9,
+  "question_count": 5,
+  "reviewed_annotation_count": 86,
+  "reviewed_doctrinal_edge_count": 31,
+  "reviewed_structural_editorial_count": 53,
+  "status": "ok",
+  "unresolved_warnings": []
+}

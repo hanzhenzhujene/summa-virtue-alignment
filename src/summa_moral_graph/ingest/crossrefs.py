@@ -59,4 +59,3 @@ def extract_crossrefs(text: str) -> list[CrossrefMatch]:
             )
         )
     return matches
-

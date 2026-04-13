@@ -27,4 +27,3 @@ def clean_question_title(raw_title: str) -> str:
 
 def clean_article_title(raw_title: str) -> str:
     return normalize_text(ARTICLE_TITLE_RE.sub("", raw_title))
-
