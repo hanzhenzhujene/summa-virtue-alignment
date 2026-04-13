@@ -2,6 +2,35 @@
 
 ## Progress
 
+- Relation labels are now on by default across the viewer's map surfaces:
+  - the overall map `Show relation labels` control now defaults to enabled
+  - the Concept Explorer local map now has the same relation-label control, also defaulting to enabled
+  - session-state defaults and regression coverage now protect this reading-first behavior
+- The Concept Explorer local-map bug has been fixed at the payload-normalization layer:
+  - tract concept payloads that exposed `reviewed_incident_edges` and `editorial_correspondences` are now normalized into the viewer's canonical doctrinal/editorial edge keys
+  - tract-scoped local maps for justice, religion, theological virtues, and similar overlays no longer collapse to the misleading `No local reviewed map` empty state when reviewed edges actually exist
+  - regression coverage now checks the normalized doctrinal/editorial edge aliases as part of concept payload selection
+- The home masthead spacing has been tightened again for a cleaner first fold:
+  - the byline now reads `By Jenny Zhu` with the LinkedIn icon trailing the name
+  - the `Start` section now sits closer to the corpus-scope/byline stack and uses slightly tighter divider spacing
+  - the `Snapshot` section has been lifted more aggressively to reduce the dead vertical gap beneath the home split layout
+- The home hero typography now uses a more unified classical treatment around the title itself:
+  - the subtitle is now rendered as a larger serif italic line rather than plain body copy
+  - the eyebrow and nearby corpus-scope line now use decorative rule treatments that echo the title
+  - the author byline now shares the same small-caps / classical family instead of reading like generic metadata
+- The overall-map graph now supports edge relation labels as an explicit reading aid:
+  - the pyvis renderer can now show or hide simplified relation labels directly on edges
+  - the map view now exposes a `Show relation labels` toggle instead of forcing labels on all the time
+  - regression coverage now checks both the hidden and visible HTML paths
+- The overall-map focus-tag control is now more stable and honest:
+  - focus-tag options are derived from tract/range coverage rather than from already-filtered visible edges
+  - reviewed spans with no tract-specific focus tags now show an explicit note instead of an empty broken-looking selector
+  - regression coverage now checks both tagged spans and no-tag spans
+- The home shell has received another presentation pass focused on the public-facing title and entry composition:
+  - the `Summa Virtutum` hero now uses a more ornate classical display treatment
+  - the decorative star in the title panel has been removed for a cleaner manuscript-like heading
+  - the `Start` area now includes a clearer top horizontal divider in addition to the internal separators
+  - the `Snapshot` block has been lifted upward to reduce the dead gap beneath the first fold
 - The repository front page has now been rewritten as a finalized, user-facing README:
   - the most important links now appear at the top
   - the dashboard launch path is explicit and easy to find

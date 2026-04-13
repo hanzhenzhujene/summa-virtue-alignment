@@ -341,9 +341,42 @@ def _normalize_concept_payload(
 ) -> dict[str, Any]:
     normalized = dict(payload)
     normalized.setdefault("concept", bundle.registry[concept_id].model_dump(mode="json"))
+
+    reviewed_incident_edges = list(normalized.get("reviewed_incident_edges", []))
+    reviewed_doctrinal_edges = list(normalized.get("reviewed_doctrinal_edges", []))
+    if reviewed_incident_edges and not reviewed_doctrinal_edges:
+        normalized["reviewed_doctrinal_edges"] = reviewed_incident_edges
+        reviewed_doctrinal_edges = reviewed_incident_edges
+    elif reviewed_doctrinal_edges and not reviewed_incident_edges:
+        normalized["reviewed_incident_edges"] = reviewed_doctrinal_edges
+
+    editorial_correspondences = list(normalized.get("editorial_correspondences", []))
+    reviewed_structural_edges = list(normalized.get("reviewed_structural_edges", []))
+    if editorial_correspondences and not reviewed_structural_edges:
+        normalized["reviewed_structural_edges"] = editorial_correspondences
+        reviewed_structural_edges = editorial_correspondences
+    elif reviewed_structural_edges and not editorial_correspondences:
+        normalized["editorial_correspondences"] = reviewed_structural_edges
+
+    top_supporting_passages = list(normalized.get("top_supporting_passages", []))
+    supporting_passages = list(normalized.get("supporting_passages", []))
+    if top_supporting_passages and not supporting_passages:
+        normalized["supporting_passages"] = top_supporting_passages
+    elif supporting_passages and not top_supporting_passages:
+        normalized["top_supporting_passages"] = supporting_passages
+
+    unresolved_notes = list(normalized.get("unresolved_disambiguation_notes", []))
+    ambiguity_notes = list(normalized.get("ambiguity_notes", []))
+    if unresolved_notes and not ambiguity_notes:
+        normalized["ambiguity_notes"] = unresolved_notes
+    elif ambiguity_notes and not unresolved_notes:
+        normalized["unresolved_disambiguation_notes"] = ambiguity_notes
+
     for key in (
         "reviewed_doctrinal_edges",
         "reviewed_structural_edges",
+        "reviewed_incident_edges",
+        "editorial_correspondences",
         "candidate_mentions",
         "candidate_relations",
         "supporting_passages",
@@ -405,6 +438,57 @@ def graph_focus_tag_options(edges: list[dict[str, Any]]) -> list[str]:
             if key.endswith("_focus_tags") and isinstance(value, list):
                 tags.update(str(item) for item in value)
     return sorted(tags)
+
+
+def available_focus_tags_for_scope(
+    data: ViewerAppData,
+    *,
+    preset_name: str | None,
+    map_range: tuple[int, int],
+) -> list[str]:
+    bundle = data.bundle
+    adapter = adapter_for_preset(preset_name) if preset_name else None
+    range_adapters = adapters_for_range(*map_range) if preset_name is None else []
+    edges: list[dict[str, Any]] = []
+    seen_edge_keys: set[tuple[str, str]] = set()
+
+    if preset_name and adapter is not None:
+        edges = adapter.filter_edges_by_preset(
+            bundle,
+            preset_name.split(":", 1)[1],
+            include_editorial=True,
+            include_candidate=True,
+            relation_types=None,
+            node_types=None,
+            center_concept=None,
+            focus_tags=None,
+        )
+    else:
+        start_question, end_question = map_range
+        for range_adapter in range_adapters:
+            overlap_start = max(start_question, range_adapter.range_start)
+            overlap_end = min(end_question, range_adapter.range_end)
+            if overlap_start > overlap_end:
+                continue
+            adapter_edges = range_adapter.filter_edges_by_question_range(
+                bundle,
+                start_question=overlap_start,
+                end_question=overlap_end,
+                include_editorial=True,
+                include_candidate=True,
+                relation_types=None,
+                node_types=None,
+                center_concept=None,
+                focus_tags=None,
+            )
+            for edge in adapter_edges:
+                edge_key = (str(edge.get("edge_id", "")), str(edge.get("layer", "")))
+                if edge_key in seen_edge_keys:
+                    continue
+                seen_edge_keys.add(edge_key)
+                edges.append(edge)
+
+    return graph_focus_tag_options(edges)
 
 
 def expand_relation_groups(

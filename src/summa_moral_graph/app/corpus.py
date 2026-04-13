@@ -483,7 +483,24 @@ def _graph_node_label(label: str, *, width: int = 18, max_lines: int = 3) -> str
     return "\n".join(trimmed)
 
 
-def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
+def _graph_edge_label(relation_type: str, *, width: int = 16, max_lines: int = 2) -> str:
+    human_label = relation_type.replace("_", " ").strip()
+    wrapped = wrap(human_label, width=width, break_long_words=False, break_on_hyphens=False)
+    if not wrapped:
+        return human_label
+    if len(wrapped) <= max_lines:
+        return "\n".join(wrapped)
+    trimmed = wrapped[:max_lines]
+    trimmed[-1] = trimmed[-1].rstrip(". ") + "…"
+    return "\n".join(trimmed)
+
+
+def graph_html(
+    graph: nx.MultiDiGraph,
+    *,
+    height: int = 760,
+    show_relation_labels: bool = False,
+) -> str:
     """Render a readable graph with explicit layer coloring."""
 
     from pyvis.network import Network
@@ -509,6 +526,7 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
             ),
         )
     for source, target, edge_id, attrs in graph.edges(data=True, keys=True):
+        relation_type = str(attrs.get("relation_type", ""))
         support_types = attrs.get("support_types", [])
         support_label = (
             ", ".join(str(value) for value in support_types)
@@ -520,10 +538,11 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
         network.add_edge(
             source,
             target,
+            label=_graph_edge_label(relation_type) if show_relation_labels else "",
             title=(
                 f"<b>{html_lib.escape(str(attrs.get('subject_label', source)))}</b> → "
                 f"<b>{html_lib.escape(str(attrs.get('object_label', target)))}</b><br>"
-                f"Relation: {html_lib.escape(str(attrs.get('relation_type', '')))}<br>"
+                f"Relation: {html_lib.escape(relation_type)}<br>"
                 f"Layer: {html_lib.escape(str(attrs.get('layer', '')))}<br>"
                 f"Support: {html_lib.escape(support_label)}<br>"
                 f"Annotations: {annotation_count}<br>"
@@ -533,6 +552,14 @@ def graph_html(graph: nx.MultiDiGraph, *, height: int = 760) -> str:
             color=EDGE_COLORS.get(str(attrs.get("layer", "")), "#6c757d"),
             arrows="to",
             dashes=str(attrs.get("layer")) == "candidate",
+            font={
+                "size": 10,
+                "face": "Manrope, Public Sans, sans-serif",
+                "color": "#5f6f82",
+                "background": "rgba(250,245,236,0.9)",
+                "strokeWidth": 0,
+                "align": "middle",
+            },
         )
     network.set_options(
         """

@@ -83,11 +83,11 @@ from .render import (
 from .state import (
     RELATION_GROUPS,
     active_scope_summary,
+    available_focus_tags_for_scope,
     concept_matches,
     concept_payload_for_selection,
     graph_edges_for_view,
     graph_focus_counts,
-    graph_focus_tag_options,
     graph_payload_for_export,
     graph_relation_type_options,
     graph_rows,
@@ -233,9 +233,16 @@ def _download_config_for_scope(
     )
 
 
-def _graph_html_for_edges(edges: list[dict[str, Any]], *, height: int) -> str:
+def _graph_html_for_edges(
+    edges: list[dict[str, Any]],
+    *,
+    height: int,
+    show_relation_labels: bool = False,
+) -> str:
     graph = build_graph_for_edges(edges)
-    return with_graph_click_bridge(graph_html(graph, height=height))
+    return with_graph_click_bridge(
+        graph_html(graph, height=height, show_relation_labels=show_relation_labels)
+    )
 
 
 def _support_types_label(edge: dict[str, Any]) -> str:
@@ -516,6 +523,7 @@ def _render_home(data: ViewerAppData) -> None:
         "<div class='smgv-hero-byline'>"
         "<a href='https://www.linkedin.com/in/hanzhen-zhu/' target='_blank' "
         "rel='noopener noreferrer' aria-label='Jenny Zhu on LinkedIn'>"
+        "<span>By Jenny Zhu</span>"
         "<svg viewBox='0 0 16 16' fill='currentColor' aria-hidden='true'>"
         "<path d='M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708"
         "C16 15.487 15.474 16 14.825 16H1.175C.526 16 0 15.487 0 14.854zM4.943 13.5V6.169H2.542"
@@ -525,7 +533,6 @@ def _render_home(data: ViewerAppData) -> None:
         "4.094c0-.219.016-.438.08-.594.173-.438.568-.891 1.232-.891.869 0 1.216.672 1.216 1.65"
         "V13.5z'/>"
         "</svg>"
-        "<span>Jenny Zhu</span>"
         "</a>"
         "</div>"
     )
@@ -534,23 +541,28 @@ def _render_home(data: ViewerAppData) -> None:
         "Summa Virtutum",
         "An interactive map of Thomas Aquinas's moral corpus",
         eyebrow="Thomas Aquinas",
-        byline_html=hero_byline,
     )
 
     main_left, main_right = st.columns((1.18, 0.82), gap="large")
     with main_left:
         st.markdown(
             (
-                "<div class='smgv-shell-note'>"
+                "<div class='smgv-shell-note smgv-shell-note--hero'>"
                 "Corpus scope: Summa Theologiae I-II qq. 1-114 and II-II qq. 1-182, "
                 "with II-II qq. 183-189 excluded."
                 "</div>"
             ),
             unsafe_allow_html=True,
         )
+        st.markdown(hero_byline, unsafe_allow_html=True)
+        st.markdown("<div class='smgv-start-tight'></div>", unsafe_allow_html=True)
         section_heading(
             "Start",
             None,
+        )
+        st.markdown(
+            "<div class='smgv-start-divider smgv-start-divider--top'></div>",
+            unsafe_allow_html=True,
         )
         start_grid_top = st.columns((1, 0.045, 1), gap="small")
         start_grid_bottom = st.columns((1, 0.045, 1), gap="small")
@@ -894,16 +906,28 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
         map_column, summary_column = st.columns((1.62, 0.48), gap="medium")
         with map_column:
             section_heading("Local map", "Read the nearby concept network before going wide.")
-            include_editorial_map = st.checkbox(
-                "Include editorial correspondences in local map",
-                key="smg_concept_show_editorial_map",
-            )
+            local_map_controls_left, local_map_controls_right = st.columns(2, gap="small")
+            with local_map_controls_left:
+                include_editorial_map = st.checkbox(
+                    "Include editorial correspondences in local map",
+                    key="smg_concept_show_editorial_map",
+                )
+            with local_map_controls_right:
+                show_relation_labels = st.checkbox(
+                    "Show relation labels",
+                    key="smg_concept_show_relation_labels",
+                    help="Render relation names directly on the local map edges.",
+                )
             local_edges = reviewed_edges + (editorial_edges if include_editorial_map else [])
             if local_edges:
                 graph_result = render_clickable_graph(
-                    graph_html=_graph_html_for_edges(local_edges, height=690),
+                    graph_html=_graph_html_for_edges(
+                        local_edges,
+                        height=690,
+                        show_relation_labels=show_relation_labels,
+                    ),
                     height="710px",
-                    key=f"smg-local-map-{selected_concept_id}",
+                    key=f"smg-local-map-{selected_concept_id}-{int(show_relation_labels)}",
                 )
                 if graph_result.warning:
                     st.warning(graph_result.warning, icon="⚠️")
@@ -1739,20 +1763,34 @@ def _render_map_view(data: ViewerAppData) -> None:
     )
     visible_edges = local_edges if map_mode == "Local map" else overall_edges
     visible_reason = local_reason if map_mode == "Local map" else overall_reason
-
-    st.multiselect(
-        "Focus tags",
-        options=sorted(
-            set(graph_focus_tag_options([*overall_edges_unfocused, *local_edges_unfocused]))
-            | focus_tags
-        ),
-        format_func=pretty_tag,
-        key="smg_map_focus_tags",
-        help=(
-            "Focus tags stay visible even when they filter the graph down to zero. "
-            "Clear them here if you need to recover the map."
-        ),
+    available_focus_tags = sorted(
+        set(
+            available_focus_tags_for_scope(
+                data,
+                preset_name=preset_name,
+                map_range=map_range,
+            )
+        )
+        | focus_tags
     )
+
+    if available_focus_tags:
+        st.multiselect(
+            "Focus tags",
+            options=available_focus_tags,
+            format_func=pretty_tag,
+            key="smg_map_focus_tags",
+            help=(
+                "Focus tags stay visible even when they filter the graph down to zero. "
+                "Clear them here if you need to recover the map."
+            ),
+        )
+    else:
+        st.caption("Focus tags")
+        st.caption(
+            "No tract-specific focus tags are available in this question span yet. "
+            "Try 57-122, 123-140, 141-170, or All."
+        )
     st.multiselect(
         "Evidence segment types",
         options=["obj", "sc", "resp", "ad"],
@@ -1880,13 +1918,22 @@ def _render_map_view(data: ViewerAppData) -> None:
                 "to open concept or passage views."
             ),
         )
+        show_relation_labels = st.checkbox(
+            "Show relation labels",
+            key="smg_map_show_relation_labels",
+            help="Render relation names directly on edges. Turn this off for a cleaner map.",
+        )
         if map_notice_title and map_notice_body:
             empty_state(map_notice_title, map_notice_body)
         else:
             graph_result = render_clickable_graph(
-                graph_html=_graph_html_for_edges(visible_edges, height=720),
+                graph_html=_graph_html_for_edges(
+                    visible_edges,
+                    height=720,
+                    show_relation_labels=show_relation_labels,
+                ),
                 height="740px",
-                key=f"smg-map-{map_mode}",
+                key=f"smg-map-{map_mode}-{int(show_relation_labels)}",
             )
             if graph_result.warning:
                 st.warning(graph_result.warning, icon="⚠️")
@@ -2261,7 +2308,7 @@ def _render_stats_audit(data: ViewerAppData) -> None:
                 hide_index=True,
             )
         with right:
-            section_heading("Reviewed doctrinal relation types", None)
+            section_heading("Doctrinal relation types", None)
             st.dataframe(
                 records_frame(
                     [

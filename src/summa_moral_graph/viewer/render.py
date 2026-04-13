@@ -45,7 +45,7 @@ def inject_viewer_css() -> None:
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:wght@500;600;700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=JetBrains+Mono:wght@500&family=Manrope:wght@400;500;600;700;800&display=swap');
 
         :root {
           --smg-bg: #f4efe7;
@@ -112,8 +112,32 @@ def inject_viewer_css() -> None:
           opacity: 0.9;
         }
 
+        .smgv-shell-note--hero {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.52rem;
+          color: rgba(20, 34, 53, 0.72);
+          font-size: 0.66rem;
+          font-family: "Cinzel", Georgia, serif;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          margin-bottom: 0.14rem;
+        }
+
+        .smgv-shell-note--hero::before {
+          content: "";
+          width: 2.2rem;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(139, 68, 46, 0),
+            rgba(139, 68, 46, 0.26) 35%,
+            rgba(139, 68, 46, 0.52)
+          );
+        }
+
         .smgv-hero {
-          padding: 0.92rem 1.12rem 0.82rem 1.12rem;
+          padding: 0.82rem 1.12rem 0.72rem 1.12rem;
           border: 1px solid var(--smg-line);
           border-radius: var(--smg-radius-xl);
           background:
@@ -133,17 +157,10 @@ def inject_viewer_css() -> None:
           pointer-events: none;
         }
 
-        .smgv-hero::after {
-          content: "✦";
-          position: absolute;
-          right: 1.15rem;
-          top: 0.8rem;
-          color: rgba(139, 68, 46, 0.28);
-          font-size: 0.92rem;
-          font-family: "Cinzel", Georgia, serif;
-        }
-
         .smgv-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.52rem;
           color: var(--smg-accent);
           font-size: 0.68rem;
           font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
@@ -153,39 +170,83 @@ def inject_viewer_css() -> None:
           margin-bottom: 0.18rem;
         }
 
-        .smgv-hero h1 {
-          margin: 0;
-          font-family: "Cormorant Garamond", Georgia, serif;
-          font-size: clamp(2.45rem, 4vw, 3.8rem);
-          line-height: 0.96;
-          letter-spacing: -0.035em;
-          font-weight: 600;
+        .smgv-kicker::before,
+        .smgv-kicker::after {
+          content: "";
+          width: 2.4rem;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            rgba(139, 68, 46, 0),
+            rgba(139, 68, 46, 0.34) 35%,
+            rgba(139, 68, 46, 0.58)
+          );
         }
 
-        .smgv-hero p {
-          margin: 0.26rem 0 0 0;
-          max-width: 42rem;
-          color: var(--smg-muted);
-          font-size: 0.82rem;
-          line-height: 1.46;
+        .smgv-kicker::after {
+          background: linear-gradient(
+            90deg,
+            rgba(139, 68, 46, 0.58),
+            rgba(139, 68, 46, 0.34) 65%,
+            rgba(139, 68, 46, 0)
+          );
+        }
+
+        .smgv-hero h1 {
+          margin: 0;
+          font-family: "Cinzel Decorative", "Cinzel", "Cormorant Garamond", Georgia, serif;
+          font-size: clamp(2.85rem, 4.8vw, 4.35rem);
+          line-height: 0.92;
+          letter-spacing: 0.012em;
+          font-weight: 700;
+          text-wrap: balance;
+        }
+
+        .smgv-hero-subtitle {
+          margin: 0.28rem 0 0 0;
+          max-width: 40rem;
+          color: rgba(36, 56, 77, 0.82);
+          font-family: "Cormorant Garamond", Georgia, serif;
+          font-size: 1.18rem;
+          font-style: italic;
+          font-weight: 600;
+          line-height: 1.12;
+          letter-spacing: 0.015em;
+          text-wrap: balance;
+        }
+
+        .smgv-hero-subtitle::after {
+          content: "";
+          display: block;
+          width: 8.8rem;
+          height: 1px;
+          margin-top: 0.46rem;
+          background: linear-gradient(
+            90deg,
+            rgba(139, 68, 46, 0.62),
+            rgba(139, 68, 46, 0.18) 72%,
+            rgba(139, 68, 46, 0)
+          );
         }
 
         .smgv-hero-byline {
           display: inline-flex;
           align-items: center;
           gap: 0.38rem;
-          margin-top: 0.42rem;
-          color: var(--smg-muted);
-          font-size: 0.66rem;
+          margin-top: 0.18rem;
+          color: rgba(20, 34, 53, 0.7);
+          font-size: 0.64rem;
+          font-family: "Cinzel", Georgia, serif;
           line-height: 1;
-          letter-spacing: 0.02em;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
         }
 
         .smgv-hero-byline a {
           display: inline-flex;
           align-items: center;
           gap: 0.32rem;
-          color: var(--smg-muted);
+          color: rgba(20, 34, 53, 0.72);
           text-decoration: none;
           transition: color 120ms ease;
         }
@@ -303,8 +364,19 @@ def inject_viewer_css() -> None:
 
         .smgv-start-divider {
           position: relative;
-          height: 1.02rem;
-          margin: 0.14rem 0 0.24rem 0;
+          height: 0.88rem;
+          margin: 0.08rem 0 0.16rem 0;
+        }
+
+        .smgv-start-divider--top {
+          height: 0.54rem;
+          margin: 0 0 0.24rem 0;
+        }
+
+        .smgv-start-tight {
+          height: 0.01rem;
+          margin-top: -0.22rem;
+          margin-bottom: -0.06rem;
         }
 
         .smgv-start-divider::before {
@@ -327,7 +399,7 @@ def inject_viewer_css() -> None:
 
         .smgv-home-snapshot-lift {
           height: 0.04rem;
-          margin-top: -0.62rem;
+          margin-top: -2.05rem;
         }
 
         .smgv-start-v-divider {
@@ -815,7 +887,7 @@ def hero(
             "<div class='smgv-hero'>"
             f"<div class='smgv-kicker'>{escape(eyebrow)}</div>"
             f"<h1>{escape(title)}</h1>"
-            f"<p>{escape(description)}</p>"
+            f"<p class='smgv-hero-subtitle'>{escape(description)}</p>"
             f"{byline_block}"
             "</div>"
         ),

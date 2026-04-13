@@ -4,6 +4,7 @@ from types import SimpleNamespace
 
 from streamlit.testing.v1 import AppTest
 
+from summa_moral_graph.app.corpus import build_graph_for_edges, graph_html
 from summa_moral_graph.viewer.graph_component import render_clickable_graph
 from summa_moral_graph.viewer.load import load_viewer_data
 from summa_moral_graph.viewer.navigation import (
@@ -30,6 +31,7 @@ from summa_moral_graph.viewer.navigation import (
 )
 from summa_moral_graph.viewer.shell import _open_overall_map_route
 from summa_moral_graph.viewer.state import (
+    available_focus_tags_for_scope,
     concept_payload_for_selection,
     generate_structural_edges_for_range,
     graph_edges_for_view,
@@ -91,6 +93,16 @@ def test_ensure_session_state_normalizes_map_range_values() -> None:
     ensure_session_state(session_state, data)
 
     assert session_state[MAP_RANGE_KEY] == (57, 80)
+
+
+def test_ensure_session_state_defaults_relation_labels_to_on() -> None:
+    data = load_viewer_data()
+    session_state: dict[str, object] = {}
+
+    ensure_session_state(session_state, data)
+
+    assert session_state["smg_map_show_relation_labels"] is True
+    assert session_state["smg_concept_show_relation_labels"] is True
 
 
 def test_reset_map_filters_clears_focus_tags_without_losing_mode_or_center() -> None:
@@ -209,6 +221,36 @@ def test_concept_payload_for_selection_preserves_tract_scope_when_empty() -> Non
     assert payload["reviewed_doctrinal_edges"] == []
 
 
+def test_concept_payload_for_selection_normalizes_justice_tract_edge_keys() -> None:
+    data = load_viewer_data()
+
+    payload = concept_payload_for_selection(
+        data,
+        "concept.justice",
+        preset_name="justice:justice_overview",
+    )
+
+    assert payload["scope_mode"] == "tract"
+    assert payload["reviewed_incident_edges"]
+    assert payload["reviewed_doctrinal_edges"] == payload["reviewed_incident_edges"]
+    assert payload["reviewed_structural_edges"] == payload["editorial_correspondences"]
+
+
+def test_concept_payload_for_selection_normalizes_supporting_passages_and_notes() -> None:
+    data = load_viewer_data()
+
+    payload = concept_payload_for_selection(
+        data,
+        "concept.justice",
+        preset_name="justice:justice_overview",
+    )
+
+    assert payload["supporting_passages"] == payload["top_supporting_passages"]
+    assert (
+        payload["ambiguity_notes"] == payload["unresolved_disambiguation_notes"]
+    )
+
+
 def test_generate_structural_edges_for_range_includes_i_ii_and_ii_ii_questions() -> None:
     data = load_viewer_data()
 
@@ -297,6 +339,17 @@ def test_render_clickable_graph_warns_when_component_raises(monkeypatch) -> None
     assert calls == [(664, True)]
 
 
+def test_graph_html_relation_labels_can_be_shown_and_hidden() -> None:
+    data = load_viewer_data()
+    graph = build_graph_for_edges(data.bundle.reviewed_doctrinal_edges[:1])
+
+    html_without_labels = graph_html(graph, height=320, show_relation_labels=False)
+    html_with_labels = graph_html(graph, height=320, show_relation_labels=True)
+
+    assert "directed to" not in html_without_labels
+    assert '"label": "directed to"' in html_with_labels
+
+
 def test_concept_shortcut_button_updates_concept_selection_in_live_shell() -> None:
     app = AppTest.from_file("streamlit_app.py")
     app.run(timeout=30)
@@ -359,6 +412,38 @@ def test_graph_edges_for_view_combines_cross_family_ranges() -> None:
     assert any(57 <= question <= 79 for question in question_numbers)
     assert any(80 <= question <= 100 for question in question_numbers)
     assert any(101 <= question <= 120 for question in question_numbers)
+
+
+def test_available_focus_tags_for_scope_returns_cross_tract_tags_for_tagged_ranges() -> None:
+    data = load_viewer_data()
+
+    tags = available_focus_tags_for_scope(
+        data,
+        preset_name=None,
+        map_range=(57, 122),
+    )
+
+    assert "justice_species" in tags
+    assert "positive_act" in tags
+    assert "authority_due" in tags
+
+
+def test_available_focus_tags_for_scope_returns_empty_when_span_has_no_tag_taxonomy() -> None:
+    data = load_viewer_data()
+
+    theological_tags = available_focus_tags_for_scope(
+        data,
+        preset_name=None,
+        map_range=(1, 46),
+    )
+    prudence_tags = available_focus_tags_for_scope(
+        data,
+        preset_name=None,
+        map_range=(47, 56),
+    )
+
+    assert theological_tags == []
+    assert prudence_tags == []
 
 
 def test_overall_map_quick_span_button_updates_range_without_exception() -> None:
