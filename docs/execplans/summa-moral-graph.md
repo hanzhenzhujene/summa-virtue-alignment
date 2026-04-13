@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The dashboard is now being reworked from a multi-page research operations surface into a
+  unified reader-first Streamlit shell:
+  - new root entrypoint: `streamlit_app.py`
+  - new viewer layer under `src/summa_moral_graph/viewer/`
+  - shared state, tract-adapter registry, and reusable render helpers now drive concept,
+    passage, graph, and stats views from one app shell
+  - legacy `app/Home.py` and `app/pages/*` files have been reduced to thin compatibility wrappers
 - Milestone 0 scaffold is complete: packaging, docs, tests, CLI, repo guidance, and Make targets are in place.
 - Milestone 1 textual ingest is complete for the in-scope corpus:
   - `296` questions
