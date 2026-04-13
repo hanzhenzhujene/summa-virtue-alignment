@@ -2,6 +2,7 @@
 
 ## Progress
 
+- The GitHub repository visibility has now been switched from private to public so the public-facing README and deployed Streamlit app can be shared without repository access gating.
 - Streamlit Community Cloud dependency installation is now unblocked for Python 3.14:
   - `lxml` is no longer a hard dependency on Python 3.14 environments
   - ingest HTML parsing now falls back to Python's built-in `html.parser` when `lxml` is unavailable
