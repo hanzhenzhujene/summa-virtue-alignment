@@ -1,0 +1,198 @@
+{
+  "fortitude_tract_summary": {
+    "concepts_linked_to_gift_of_fortitude": 6,
+    "concepts_linked_to_precepts_of_fortitude": 6,
+    "fortitude_subtracts_covered": 2,
+    "notes": [
+      "The repository currently has reviewed fortitude material for qq.129-135 and qq.136-140.",
+      "No dedicated reviewed doctrinal fortitude-core block for qq.123-128 exists yet, so the synthesis layer remains structurally scoped to qq.123-140 but doctrinally populated only where reviewed fortitude exports exist."
+    ],
+    "reviewed_annotations_total": 236,
+    "reviewed_doctrinal_edges_total": 64,
+    "unresolved_normalization_hotspots": [
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140
+    ]
+  },
+  "normalization_risk_questions": [
+    136,
+    137,
+    138,
+    139,
+    140
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 130,
+      "candidate_relation_count": 43,
+      "focus_usage": {
+        "patience": 7,
+        "perseverance": 1
+      },
+      "major_concepts": [
+        "Charity",
+        "Constancy",
+        "Fortitude",
+        "Grace",
+        "Grievous Evil / Hardship",
+        "Longanimity",
+        "Patience",
+        "Virtue"
+      ],
+      "parse_status": "partial",
+      "passage_count": 38,
+      "question_id": "st.ii-ii.q136",
+      "question_number": 136,
+      "question_title": "Patience",
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 7,
+      "reviewed_structural_editorial_count": 13,
+      "schema_extension_usage": {
+        "part_of_fortitude": 1
+      },
+      "unresolved_ambiguity_count": 38
+    },
+    {
+      "candidate_mention_count": 194,
+      "candidate_relation_count": 56,
+      "focus_usage": {
+        "perseverance": 5
+      },
+      "major_concepts": [
+        "Constancy",
+        "Continuance in Good",
+        "Fortitude",
+        "Grace",
+        "Perseverance (Fortitude Part)",
+        "Virtue"
+      ],
+      "parse_status": "ok",
+      "passage_count": 32,
+      "question_id": "st.ii-ii.q137",
+      "question_number": 137,
+      "question_title": "Perseverance",
+      "reviewed_annotation_count": 5,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 10,
+      "schema_extension_usage": {
+        "part_of_fortitude": 2
+      },
+      "unresolved_ambiguity_count": 68
+    },
+    {
+      "candidate_mention_count": 30,
+      "candidate_relation_count": 14,
+      "focus_usage": {
+        "opposed_vice": 4,
+        "perseverance": 2
+      },
+      "major_concepts": [
+        "Effeminacy",
+        "Perseverance (Fortitude Part)",
+        "Pertinacity",
+        "Vainglory"
+      ],
+      "parse_status": "partial",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q138",
+      "question_number": 138,
+      "question_title": "The vices opposed to perseverance",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {},
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 78,
+      "candidate_relation_count": 29,
+      "focus_usage": {
+        "gift": 6,
+        "patience": 1
+      },
+      "major_concepts": [
+        "Arduous / Difficult Work",
+        "Beatitude of Hunger and Thirst for Justice",
+        "Fortitude",
+        "Gift of Counsel",
+        "Gift of Fortitude",
+        "Grievous Evil / Hardship"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q139",
+      "question_number": 139,
+      "question_title": "The gift of fortitude",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 10,
+      "schema_extension_usage": {
+        "corresponding_gift_of": 1
+      },
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 100,
+      "candidate_relation_count": 36,
+      "focus_usage": {
+        "patience": 2,
+        "perseverance": 2,
+        "precept": 9
+      },
+      "major_concepts": [
+        "Fortitude",
+        "God",
+        "Magnanimity",
+        "Magnificence",
+        "Patience",
+        "Perseverance (Fortitude Part)",
+        "Precepts of Fortitude",
+        "Precepts of Patience and Perseverance"
+      ],
+      "parse_status": "partial",
+      "passage_count": 15,
+      "question_id": "st.ii-ii.q140",
+      "question_number": 140,
+      "question_title": "The precepts of fortitude",
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 9,
+      "reviewed_structural_editorial_count": 12,
+      "schema_extension_usage": {
+        "commands_act_of": 2,
+        "forbids_opposed_vice_of": 1,
+        "precept_of": 4
+      },
+      "unresolved_ambiguity_count": 12
+    }
+  ],
+  "summary": {
+    "candidate_mention_count": 532,
+    "candidate_relation_count": 178,
+    "fortitude_synthesis_edge_count": 64,
+    "fortitude_synthesis_node_count": 89,
+    "gift_linkage_relation_count": 6,
+    "opposed_vice_relation_count": 4,
+    "passage_count": 117,
+    "patience_relation_count": 10,
+    "perseverance_relation_count": 10,
+    "precept_linkage_relation_count": 9,
+    "question_count": 5,
+    "registered_concepts_used": 23,
+    "reviewed_annotation_count": 86,
+    "reviewed_doctrinal_edge_count": 31,
+    "reviewed_structural_editorial_count": 53
+  },
+  "under_annotated_questions": [
+    137
+  ]
+}

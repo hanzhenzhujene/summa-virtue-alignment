@@ -1,0 +1,16 @@
+{
+  "candidate_mention_count": 532,
+  "candidate_relation_count": 158,
+  "deficiency_opposition_relation_count": 2,
+  "duplicate_annotation_flags": [],
+  "excess_opposition_relation_count": 4,
+  "expenditure_related_relation_count": 13,
+  "honor_related_relation_count": 20,
+  "passage_count": 212,
+  "question_count": 7,
+  "reviewed_annotation_count": 150,
+  "reviewed_doctrinal_edge_count": 33,
+  "reviewed_structural_editorial_count": 97,
+  "status": "ok",
+  "unresolved_warnings": []
+}

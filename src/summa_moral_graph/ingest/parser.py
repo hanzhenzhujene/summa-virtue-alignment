@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 from collections.abc import Iterable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from bs4 import BeautifulSoup, Tag
 
@@ -27,6 +27,14 @@ class ParsedArticle:
     article_number: int
     article_title: str
     segments: list[ParsedSegment]
+    warnings: list["ParseWarning"] = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class ParseWarning:
+    warning_type: str
+    message: str
+    article_number: int | None = None
 
 
 @dataclass(frozen=True)
@@ -34,6 +42,7 @@ class ParsedQuestion:
     question_number: int
     question_title: str
     articles: list[ParsedArticle]
+    warnings: list[ParseWarning] = field(default_factory=list)
 
 
 def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
@@ -45,6 +54,7 @@ def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
 
     toc_titles = parse_article_outline(soup)
     articles: list[ParsedArticle] = []
+    warnings: list[ParseWarning] = []
     for article_heading in soup.find_all("h2"):
         article_id = article_heading.get("id")
         if not isinstance(article_id, str):
@@ -56,7 +66,10 @@ def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
         header_title = clean_article_title(visible_text(article_heading))
         article_title = toc_titles.get(article_number, header_title)
         article_paragraphs = list(iter_article_paragraphs(article_heading))
-        segments = parse_article_segments(article_paragraphs)
+        segments, article_warnings = parse_article_segments_with_warnings(
+            article_number,
+            article_paragraphs,
+        )
         if not segments:
             raise ValueError(f"Article {article_number} yielded no segments")
         articles.append(
@@ -64,8 +77,10 @@ def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
                 article_number=article_number,
                 article_title=article_title,
                 segments=segments,
+                warnings=article_warnings,
             )
         )
+        warnings.extend(article_warnings)
 
     if not articles:
         raise ValueError("Question page yielded no articles")
@@ -74,6 +89,7 @@ def parse_question_html(question_number: int, html_text: str) -> ParsedQuestion:
         question_number=question_number,
         question_title=question_title,
         articles=articles,
+        warnings=warnings,
     )
 
 
@@ -115,13 +131,25 @@ def classify_paragraph(text: str) -> tuple[str, int | None, str] | None:
 
 
 def parse_article_segments(paragraphs: list[Tag]) -> list[ParsedSegment]:
+    segments, _warnings = parse_article_segments_with_warnings(None, paragraphs)
+    return segments
+
+
+def parse_article_segments_with_warnings(
+    article_number: int | None,
+    paragraphs: list[Tag],
+) -> tuple[list[ParsedSegment], list[ParseWarning]]:
     segments: list[ParsedSegment] = []
+    warnings: list[ParseWarning] = []
     current_type: str | None = None
     current_ordinal: int | None = None
     current_paragraphs: list[str] = []
     objection_count = 0
     reply_count = 0
     state_order = {"obj": 0, "sc": 1, "resp": 2, "ad": 3}
+    skipped_unlabeled = 0
+    relabeled_replies = 0
+    repeated_label_continuations = 0
 
     def flush_current() -> None:
         nonlocal current_type, current_ordinal, current_paragraphs
@@ -148,18 +176,21 @@ def parse_article_segments(paragraphs: list[Tag]) -> list[ParsedSegment]:
         classified = classify_paragraph(text)
         if classified is None:
             if current_type is None:
+                skipped_unlabeled += 1
                 continue
             current_paragraphs.append(text)
             continue
         segment_type, _source_ordinal, body = classified
         if segment_type == "obj" and current_type in {"resp", "ad"}:
             segment_type = "ad"
+            relabeled_replies += 1
         if (
             segment_type in {"sc", "resp"}
             and current_type is not None
             and state_order[segment_type] <= state_order[current_type]
         ):
             current_paragraphs.append(body)
+            repeated_label_continuations += 1
             continue
         flush_current()
         current_type = segment_type
@@ -175,4 +206,52 @@ def parse_article_segments(paragraphs: list[Tag]) -> list[ParsedSegment]:
             current_paragraphs.append(body)
 
     flush_current()
-    return segments
+    present_types = {segment.segment_type for segment in segments}
+    if skipped_unlabeled:
+        warnings.append(
+            ParseWarning(
+                warning_type="leading_unlabeled_paragraph_skipped",
+                message=(
+                    f"Skipped {skipped_unlabeled} unlabeled paragraph(s) before a recognized "
+                    "segment label."
+                ),
+                article_number=article_number,
+            )
+        )
+    if relabeled_replies:
+        warnings.append(
+            ParseWarning(
+                warning_type="late_objection_reinterpreted_as_reply",
+                message=(
+                    f"Reinterpreted {relabeled_replies} late objection label(s) as replies to "
+                    "preserve canonical order."
+                ),
+                article_number=article_number,
+            )
+        )
+    if repeated_label_continuations:
+        warnings.append(
+            ParseWarning(
+                warning_type="repeated_label_folded_into_current_segment",
+                message=(
+                    f"Folded {repeated_label_continuations} repeated or out-of-order sed "
+                    "contra/respondeo label(s) into the current segment."
+                ),
+                article_number=article_number,
+            )
+        )
+    for missing_type, warning_type in (
+        ("obj", "article_missing_objections"),
+        ("sc", "article_missing_sed_contra"),
+        ("resp", "article_missing_respondeo"),
+        ("ad", "article_missing_replies"),
+    ):
+        if missing_type not in present_types:
+            warnings.append(
+                ParseWarning(
+                    warning_type=warning_type,
+                    message=f"Article is missing canonical `{missing_type}` segment(s).",
+                    article_number=article_number,
+                )
+            )
+    return segments, warnings

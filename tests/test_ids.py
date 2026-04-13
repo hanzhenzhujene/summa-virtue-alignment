@@ -17,4 +17,3 @@ def test_stable_id_generation() -> None:
     assert sc_id == "st.i-ii.q001.a001.sc"
     assert resp_id == "st.i-ii.q001.a001.resp"
     assert ad_id == "st.i-ii.q001.a001.ad1"
-

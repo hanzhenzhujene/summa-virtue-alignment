@@ -1,0 +1,30 @@
+{
+  "candidate_relation_proposals": [
+    "cand-rel-q047-a009-prudence-has-act-solicitude",
+    "cand-rel-q047-a013-false-prudence-contrary",
+    "cand-rel-q055-a006-temporal-solicitude-opposed",
+    "cand-rel-q055-a007-future-solicitude-opposed",
+    "cand-rel-q051-a004-gnome-higher-principles"
+  ],
+  "low_confidence_reviewed_annotations": [
+    "ann.st-ii-ii-q053-a004-resp-concept-thoughtlessness-opposed-by-concept-prudence",
+    "ann.st-ii-ii-q055-a005-resp-concept-fraud-caused-by-concept-craftiness",
+    "ann.st-ii-ii-q055-a006-resp-concept-temporal-solicitude-contrary-to-concept-prudence",
+    "ann.st-ii-ii-q055-a007-resp-concept-future-solicitude-contrary-to-concept-prudence",
+    "ann.st-ii-ii-q056-a002-resp-concept-craftiness-treated-in-st-ii-ii-q056-a002",
+    "ann.st-ii-ii-q056-a002-resp-concept-prudence-treated-in-st-ii-ii-q056-a002"
+  ],
+  "part_taxonomy_items_needing_review": [],
+  "under_annotated_questions": [
+    47,
+    49,
+    51,
+    56
+  ],
+  "unresolved_concept_ambiguities": [
+    "cand-mention-q049-a002-understanding-overlap",
+    "cand-mention-q049-a005-reason-label",
+    "cand-mention-q047-a009-solicitude-act",
+    "cand-mention-q055-a007-future-solicitude-boundary"
+  ]
+}

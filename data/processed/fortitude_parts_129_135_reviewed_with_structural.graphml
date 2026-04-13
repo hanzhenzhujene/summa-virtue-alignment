@@ -1,0 +1,2918 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d19" for="edge" attr.name="fortitude_parts_cluster" attr.type="string"/>
+<key id="d18" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d17" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d16" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d15" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d14" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d12" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d10" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d9" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d8" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d7" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.ambition">
+  <data key="d0">concept.ambition</data>
+  <data key="d1">Ambition</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Inordinate desire of honor opposed to well-ordered magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.confidence">
+  <data key="d0">concept.confidence</data>
+  <data key="d1">Confidence</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">A strength of hope that the magnanimous person has in difficult good.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fortitude">
+  <data key="d0">concept.fortitude</data>
+  <data key="d1">Fortitude</data>
+  <data key="d2">virtue</data>
+  <data key="d3">seed</data>
+  <data key="d4">The cardinal virtue governing firmness in difficulties and dangers.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.glory">
+  <data key="d0">concept.glory</data>
+  <data key="d1">Glory</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The manifest approval or public clarity of someone's good in the sight of others.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.goods_of_fortune">
+  <data key="d0">concept.goods_of_fortune</data>
+  <data key="d1">Goods of Fortune</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">External goods such as riches, power, and friends that can instrumentally conduce to magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.great_expenditure">
+  <data key="d0">concept.great_expenditure</data>
+  <data key="d1">Great Expenditure</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The scale of spending proportionate to a great work in the magnificence tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.great_work">
+  <data key="d0">concept.great_work</data>
+  <data key="d1">Great Work</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The kind of work whose becoming execution and proportionate expense belong to magnificence.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.honor_recognition">
+  <data key="d0">concept.honor_recognition</data>
+  <data key="d1">Honor as Recognition</data>
+  <data key="d2">domain</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Honor considered as public recognition or attestation of excellence, especially as the matter of magnanimity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.magnanimity">
+  <data key="d0">concept.magnanimity</data>
+  <data key="d1">Magnanimity</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The fortitude-related virtue by which a person deems himself worthy of great honors and great things in due proportion.</data>
+  <data key="d5">Keep distinct from magnificence: magnanimity is honor- and worthiness-related rather than expenditure-related.</data>
+</node>
+<node id="concept.magnificence">
+  <data key="d0">concept.magnificence</data>
+  <data key="d1">Magnificence</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The fortitude-related virtue of producing great works with proportionate expenditure.</data>
+  <data key="d5">Keep distinct from magnanimity: magnificence concerns great works and expenditure, not honor as such.</data>
+</node>
+<node id="concept.meanness_magnificence">
+  <data key="d0">concept.meanness_magnificence</data>
+  <data key="d1">Meanness</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of spending less than a great work requires, thereby failing proportion.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.presumption_magnanimity">
+  <data key="d0">concept.presumption_magnanimity</data>
+  <data key="d1">Presumption (Against Magnanimity)</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of exceeding one's own ability by attempting what is above one's power in the magnanimity tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.pusillanimity">
+  <data key="d0">concept.pusillanimity</data>
+  <data key="d1">Pusillanimity</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of shrinking from great things proportionate to one's worth.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.security_assurance">
+  <data key="d0">concept.security_assurance</data>
+  <data key="d1">Security / Assurance</data>
+  <data key="d2">act_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Freedom from fear considered in relation to magnanimity and fortitude.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sin">
+  <data key="d0">concept.sin</data>
+  <data key="d1">Sin</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Bad human act contrary to due rule and measure.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vainglory">
+  <data key="d0">concept.vainglory</data>
+  <data key="d1">Vainglory</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Inordinate desire for empty glory, opposed in this tract to magnanimity's right use of honor and glory.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.vice">
+  <data key="d0">concept.vice</data>
+  <data key="d1">Vice</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Vice considered as privative disorder contrary to virtue.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.virtue">
+  <data key="d0">concept.virtue</data>
+  <data key="d1">Virtue</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Generic virtue as good operative perfection.</data>
+  <data key="d5">Do not collapse generic virtue into a specific virtue without explicit passage support.</data>
+</node>
+<node id="concept.waste_magnificence">
+  <data key="d0">concept.waste_magnificence</data>
+  <data key="d1">Waste (Banausia / Consumptio)</data>
+  <data key="d2">vice</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The vice of spending more than a work requires, thereby exceeding due proportion in the magnificence tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.worthiness">
+  <data key="d0">concept.worthiness</data>
+  <data key="d1">Worthiness</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Proportionate worth or desert in relation to great things and great honors.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129">
+  <data key="d0">st.ii-ii.q129</data>
+  <data key="d1">II-II q.129</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Magnanimity</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a001">
+  <data key="d0">st.ii-ii.q129.a001</data>
+  <data key="d1">II-II q.129 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a002">
+  <data key="d0">st.ii-ii.q129.a002</data>
+  <data key="d1">II-II q.129 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a003">
+  <data key="d0">st.ii-ii.q129.a003</data>
+  <data key="d1">II-II q.129 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a004">
+  <data key="d0">st.ii-ii.q129.a004</data>
+  <data key="d1">II-II q.129 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a005">
+  <data key="d0">st.ii-ii.q129.a005</data>
+  <data key="d1">II-II q.129 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a006">
+  <data key="d0">st.ii-ii.q129.a006</data>
+  <data key="d1">II-II q.129 a.6</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a007">
+  <data key="d0">st.ii-ii.q129.a007</data>
+  <data key="d1">II-II q.129 a.7</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q129.a008">
+  <data key="d0">st.ii-ii.q129.a008</data>
+  <data key="d1">II-II q.129 a.8</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130">
+  <data key="d0">st.ii-ii.q130</data>
+  <data key="d1">II-II q.130</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Presumption</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130.a001">
+  <data key="d0">st.ii-ii.q130.a001</data>
+  <data key="d1">II-II q.130 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q130.a002">
+  <data key="d0">st.ii-ii.q130.a002</data>
+  <data key="d1">II-II q.130 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131">
+  <data key="d0">st.ii-ii.q131</data>
+  <data key="d1">II-II q.131</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Ambition</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131.a001">
+  <data key="d0">st.ii-ii.q131.a001</data>
+  <data key="d1">II-II q.131 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q131.a002">
+  <data key="d0">st.ii-ii.q131.a002</data>
+  <data key="d1">II-II q.131 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132">
+  <data key="d0">st.ii-ii.q132</data>
+  <data key="d1">II-II q.132</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Vainglory</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a001">
+  <data key="d0">st.ii-ii.q132.a001</data>
+  <data key="d1">II-II q.132 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a002">
+  <data key="d0">st.ii-ii.q132.a002</data>
+  <data key="d1">II-II q.132 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a003">
+  <data key="d0">st.ii-ii.q132.a003</data>
+  <data key="d1">II-II q.132 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a004">
+  <data key="d0">st.ii-ii.q132.a004</data>
+  <data key="d1">II-II q.132 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q132.a005">
+  <data key="d0">st.ii-ii.q132.a005</data>
+  <data key="d1">II-II q.132 a.5</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133">
+  <data key="d0">st.ii-ii.q133</data>
+  <data key="d1">II-II q.133</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Pusillanimity</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133.a001">
+  <data key="d0">st.ii-ii.q133.a001</data>
+  <data key="d1">II-II q.133 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q133.a002">
+  <data key="d0">st.ii-ii.q133.a002</data>
+  <data key="d1">II-II q.133 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134">
+  <data key="d0">st.ii-ii.q134</data>
+  <data key="d1">II-II q.134</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Magnificence</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a001">
+  <data key="d0">st.ii-ii.q134.a001</data>
+  <data key="d1">II-II q.134 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a002">
+  <data key="d0">st.ii-ii.q134.a002</data>
+  <data key="d1">II-II q.134 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a003">
+  <data key="d0">st.ii-ii.q134.a003</data>
+  <data key="d1">II-II q.134 a.3</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q134.a004">
+  <data key="d0">st.ii-ii.q134.a004</data>
+  <data key="d1">II-II q.134 a.4</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135">
+  <data key="d0">st.ii-ii.q135</data>
+  <data key="d1">II-II q.135</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Meanness</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135.a001">
+  <data key="d0">st.ii-ii.q135.a001</data>
+  <data key="d1">II-II q.135 a.1</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q135.a002">
+  <data key="d0">st.ii-ii.q135.a002</data>
+  <data key="d1">II-II q.135 a.2</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the fortitude parts 129-135 tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.ambition" target="concept.honor_recognition" id="edge.concept.ambition.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.ambition.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">concept.ambition</data>
+  <data key="d8">Ambition</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_honor</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-ambition-concerns-honor-concept-honor-recognition-st-ii-ii-q131-a001-resp | ann.concept-ambition-concerns-honor-concept-honor-recognition-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp | st.ii-ii.q131.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">an ought so far to be pleased that others bear witness to his excellence, as this enables him to profit others. Now the desire of honor may be inordinate in three ways. First, when a man desires recognition of an excellence which he has not: this is to desire more than his share of honor . Seco | As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.ambition" target="concept.honor_recognition" id="edge.concept.ambition.directed_to.concept.honor_recognition">
+  <data key="d6">edge.concept.ambition.directed_to.concept.honor_recognition</data>
+  <data key="d7">concept.ambition</data>
+  <data key="d8">Ambition</data>
+  <data key="d9">vice</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-ambition-directed-to-concept-honor-recognition-st-ii-ii-q131-a001-resp | ann.concept-ambition-directed-to-concept-honor-recognition-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp | st.ii-ii.q131.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">an ought so far to be pleased that others bear witness to his excellence, as this enables him to profit others. Now the desire of honor may be inordinate in three ways. First, when a man desires recognition of an excellence which he has not: this is to desire more than his share of honor . Seco | As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.ambition" target="concept.magnanimity" id="edge.concept.ambition.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.ambition.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">concept.ambition</data>
+  <data key="d8">Ambition</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-ambition-excess-opposed-to-concept-magnanimity-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ove of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate to that which is well ordered.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.ambition" target="concept.sin" id="edge.concept.ambition.species_of.concept.sin">
+  <data key="d6">edge.concept.ambition.species_of.concept.sin</data>
+  <data key="d7">concept.ambition</data>
+  <data key="d8">Ambition</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-ambition-species-of-concept-sin-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">to God . Thirdly, when a man's appetite rests in honor itself, without referring it to the profit of others. Since then ambition denotes inordinate desire of honor , it is evident that it is always a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.fortitude" target="concept.security_assurance" id="edge.concept.fortitude.has_act.concept.security_assurance">
+  <data key="d6">edge.concept.fortitude.has_act.concept.security_assurance</data>
+  <data key="d7">concept.fortitude</data>
+  <data key="d8">Fortitude</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.security_assurance</data>
+  <data key="d12">Security / Assurance</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-fortitude-has-act-concept-security-assurance-st-ii-ii-q129-a007-resp</data>
+  <data key="d15">st.ii-ii.q129.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ngs to magnanimity, so fear directly regards fortitude . Wherefore as confidence belongs immediately to magnanimity, so security belongs immediately to fortitude . It must be observed, however, that as hope is the cause of daring, so is fear the cause of despair , as stated above when we were treating of the passion ( I</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.glory" target="concept.honor_recognition" id="edge.concept.glory.caused_by.concept.honor_recognition">
+  <data key="d6">edge.concept.glory.caused_by.concept.honor_recognition</data>
+  <data key="d7">concept.glory</data>
+  <data key="d8">Glory</data>
+  <data key="d9">domain</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-glory-caused-by-concept-honor-recognition-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.honor_recognition" id="edge.concept.magnanimity.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.magnanimity.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">concept.magnanimity</data>
+  <data key="d8">Magnanimity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_honor</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a001-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a002-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a004-resp | ann.concept-magnanimity-concerns-honor-concept-honor-recognition-st-ii-ii-q129-a008-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp | st.ii-ii.q129.a002.resp | st.ii-ii.q129.a004.resp | st.ii-ii.q129.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">and simply, just as a man is said to be brave in respect of things that are difficult simply. It follows therefore that magnanimity is about honors. | ometimes for not caring about it, in so far, to wit, as both these things may be done in moderation. But with regard to great honors there is "magnanimity." Wherefore we must conclude that the proper matter of magnanimity is great honor , and that a magnanimous man tends to such things as ar | ode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated above ( 1 and 2 ): and honor , considered in itself, is a special good , and accordingly magnanimity considered in itself is a special virtue . Sinc | As stated above ( Article 1 ), magnanimity regards two things: honor as its matter , and the accomplishment of something great as its end. Now goods of fortune conduce to both these things. For since honor is conferred on the virtuous , not o</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.worthiness" id="edge.concept.magnanimity.concerns_worthiness.concept.worthiness">
+  <data key="d6">edge.concept.magnanimity.concerns_worthiness.concept.worthiness</data>
+  <data key="d7">concept.magnanimity</data>
+  <data key="d8">Magnanimity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_worthiness</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-magnanimity-concerns-worthiness-concept-worthiness-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ly deems to exceed one's ability. Thirdly, it may be considered in reference to its effect, which is to shrink from the great things of which one is worthy. But, as stated above ( II-II:132:2 ad 3 ), opposition between vice and virtue depends rather on their respective species than on their cause or effect. Hence</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.confidence" id="edge.concept.magnanimity.has_act.concept.confidence">
+  <data key="d6">edge.concept.magnanimity.has_act.concept.confidence</data>
+  <data key="d7">concept.magnanimity</data>
+  <data key="d8">Magnanimity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.confidence</data>
+  <data key="d12">Confidence</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-magnanimity-has-act-concept-confidence-st-ii-ii-q129-a006-resp</data>
+  <data key="d15">st.ii-ii.q129.a006.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">pe arising from some observation which gives one a strong opinion that one will obtain a certain good , it follows that confidence belongs to magnanimity.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.fortitude" id="edge.concept.magnanimity.related_to_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.magnanimity.related_to_fortitude.concept.fortitude</data>
+  <data key="d7">concept.magnanimity</data>
+  <data key="d8">Magnanimity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">related_to_fortitude</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-magnanimity-related-to-fortitude-concept-fortitude-st-ii-ii-q129-a005-resp</data>
+  <data key="d15">st.ii-ii.q129.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ter ; but it falls short thereof, in that it confirms the mind about a matter wherein it is easier to stand firm. Hence magnanimity is reckoned a part of fortitude , because it is annexed thereto as secondary to principal.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnanimity" target="concept.virtue" id="edge.concept.magnanimity.species_of.concept.virtue">
+  <data key="d6">edge.concept.magnanimity.species_of.concept.virtue</data>
+  <data key="d7">concept.magnanimity</data>
+  <data key="d8">Magnanimity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-magnanimity-species-of-concept-virtue-st-ii-ii-q129-a003-resp | ann.concept-magnanimity-species-of-concept-virtue-st-ii-ii-q129-a004-resp</data>
+  <data key="d15">st.ii-ii.q129.a003.resp | st.ii-ii.q129.a004.resp</data>
+  <data key="d16">explicit_textual | strong_textual_inference</data>
+  <data key="d17">al human things honors take precedence of all others, as stated above ( Article 1 ; I-II:11:2, Objection 3 ). Therefore magnanimity, which observes the mode of reason in great honors, is a virtue . | As stated above ( II-II:123:2 ), it belongs to a special virtue to establish the mode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated abo</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.magnificence" target="concept.great_expenditure" id="edge.concept.magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">concept.magnificence</data>
+  <data key="d8">Magnificence</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_great_expenditure</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q134-a003-resp | ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a001-resp | ann.concept-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a003.resp | st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to magnificence to spend much in order that some great work may be accomplished in becoming manner. Wherefore the Philosopher says (Ethic. iv | expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. iv, 4) that "the magnificent man with equal expenditure w | diture may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fai</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.magnificence" target="concept.great_work" id="edge.concept.magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">concept.magnificence</data>
+  <data key="d8">Magnificence</data>
+  <data key="d9">virtue</data>
+  <data key="d10">concerns_great_work</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a002-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a003-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q134-a004-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a001-resp | ann.concept-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a002.resp | st.ii-ii.q134.a003.resp | st.ii-ii.q134.a004.resp | st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual | strong_textual_inference</data>
+  <data key="d17">as to burn or cut, or remain in the agent, as to understand or will. Accordingly if magnificence be taken to denote the doing of something great, the doing [factio] being understood in the strict sense, it is then a special virtue . For the work done is produced by act: in the use of which it is possibl | As stated above ( Article 2 ), it belongs to magnificence to intend doing some great work. Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to | the arduous thing to which fortitude tends derives its difficulty from a danger that threatens the person , whereas the arduous thing to which magnificence tends, derives its difficulty from the dispossession of one's property, which is of much less account than danger to one's person . Wherefore magnificence is account | great in two ways: in one way as regards the work itself to be done, in another as regards the expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. | ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.magnificence" target="concept.fortitude" id="edge.concept.magnificence.related_to_fortitude.concept.fortitude">
+  <data key="d6">edge.concept.magnificence.related_to_fortitude.concept.fortitude</data>
+  <data key="d7">concept.magnificence</data>
+  <data key="d8">Magnificence</data>
+  <data key="d9">virtue</data>
+  <data key="d10">related_to_fortitude</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-magnificence-related-to-fortitude-concept-fortitude-st-ii-ii-q134-a004-resp</data>
+  <data key="d15">st.ii-ii.q134.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ficulty from the dispossession of one's property, which is of much less account than danger to one's person . Wherefore magnificence is accounted a part of fortitude .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.magnificence" target="concept.virtue" id="edge.concept.magnificence.species_of.concept.virtue">
+  <data key="d6">edge.concept.magnificence.species_of.concept.virtue</data>
+  <data key="d7">concept.magnificence</data>
+  <data key="d8">Magnificence</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-magnificence-species-of-concept-virtue-st-ii-ii-q134-a001-resp | ann.concept-magnificence-species-of-concept-virtue-st-ii-ii-q134-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp | st.ii-ii.q134.a002.resp</data>
+  <data key="d16">explicit_textual | strong_textual_inference</data>
+  <data key="d17">refore to do something great, whence magnificence takes its name, belongs properly to the very notion of virtue . Hence magnificence denotes a virtue . | be taken to denote the doing of something great, the doing [factio] being understood in the strict sense, it is then a special virtue . For the work done is produced by act: in the use of which it is possible to consider a special aspect of goodness , namely that the work produced [factum] by</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.great_expenditure" id="edge.concept.meanness_magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.meanness_magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">concept.meanness_magnificence</data>
+  <data key="d8">Meanness</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_great_expenditure</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-meanness-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e mean man intends principally to spend little, wherefore the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the | equires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spendi</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.great_work" id="edge.concept.meanness_magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.meanness_magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">concept.meanness_magnificence</data>
+  <data key="d8">Meanness</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_great_work</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-meanness-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the Philosopher says that "the mean man after going to great | ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.magnificence" id="edge.concept.meanness_magnificence.deficiency_opposed_to.concept.magnificence">
+  <data key="d6">edge.concept.meanness_magnificence.deficiency_opposed_to.concept.magnificence</data>
+  <data key="d7">concept.meanness_magnificence</data>
+  <data key="d8">Meanness</data>
+  <data key="d9">vice</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-meanness-magnificence-deficiency-opposed-to-concept-magnificence-st-ii-ii-q135-a001-resp | ann.concept-meanness-magnificence-deficiency-opposed-to-concept-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp | st.ii-ii.q135.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">e mean man intends principally to spend little, wherefore the Philosopher says (Ethic. iv, 2) that "he seeks how he may spend least." As a result of this he intends to produce a little work, that is, he does not shrink from producing a little work, so long as he spends little. Wherefore the | equires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spendi</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.meanness_magnificence" target="concept.vice" id="edge.concept.meanness_magnificence.species_of.concept.vice">
+  <data key="d6">edge.concept.meanness_magnificence.species_of.concept.vice</data>
+  <data key="d7">concept.meanness_magnificence</data>
+  <data key="d8">Meanness</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-meanness-magnificence-species-of-concept-vice-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">w the essence of vice is that it consists in failing to do what is in accordance with reason. Hence it is manifest that meanness is a vice .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.presumption_magnanimity" target="concept.magnanimity" id="edge.concept.presumption_magnanimity.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.presumption_magnanimity.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">concept.presumption_magnanimity</data>
+  <data key="d8">Presumption (Against Magnanimity)</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-presumption-magnanimity-excess-opposed-to-concept-magnanimity-st-ii-ii-q130-a002-resp</data>
+  <data key="d15">st.ii-ii.q130.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e does exceed in proportion to his own ability, whereas the magnanimous man does not exceed his. It is in this way that presumption is opposed to magnanimity by excess.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.presumption_magnanimity" target="concept.sin" id="edge.concept.presumption_magnanimity.species_of.concept.sin">
+  <data key="d6">edge.concept.presumption_magnanimity.species_of.concept.sin</data>
+  <data key="d7">concept.presumption_magnanimity</data>
+  <data key="d8">Presumption (Against Magnanimity)</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-presumption-magnanimity-species-of-concept-sin-st-ii-ii-q130-a001-resp</data>
+  <data key="d15">st.ii-ii.q130.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">what is above his power: and this is what is meant by presumption, as its very name shows. Wherefore it is evident that presumption is a sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.worthiness" id="edge.concept.pusillanimity.concerns_worthiness.concept.worthiness">
+  <data key="d6">edge.concept.pusillanimity.concerns_worthiness.concept.worthiness</data>
+  <data key="d7">concept.pusillanimity</data>
+  <data key="d8">Pusillanimity</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_worthiness</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-pusillanimity-concerns-worthiness-concept-worthiness-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ly deems to exceed one's ability. Thirdly, it may be considered in reference to its effect, which is to shrink from the great things of which one is worthy. But, as stated above ( II-II:132:2 ad 3 ), opposition between vice and virtue depends rather on their respective species than on their cause or effect. Hence</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.magnanimity" id="edge.concept.pusillanimity.deficiency_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.pusillanimity.deficiency_opposed_to.concept.magnanimity</data>
+  <data key="d7">concept.pusillanimity</data>
+  <data key="d8">Pusillanimity</data>
+  <data key="d9">vice</data>
+  <data key="d10">deficiency_opposed_to</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-pusillanimity-deficiency-opposed-to-concept-magnanimity-st-ii-ii-q133-a001-resp | ann.concept-pusillanimity-deficiency-opposed-to-concept-magnanimity-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp | st.ii-ii.q133.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">makes a man exceed what is proportionate to his power, by striving to do more than he can, so pusillanimity makes a man fall short of what is proportionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so is pusillanimity. Hence it is that the servant who buried in | Pusillanimity may be considered in three ways. First, in itself; and thus it is evident that by its very nature it is opposed to magnanimity, from which it differs as great</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.pusillanimity" target="concept.sin" id="edge.concept.pusillanimity.species_of.concept.sin">
+  <data key="d6">edge.concept.pusillanimity.species_of.concept.sin</data>
+  <data key="d7">concept.pusillanimity</data>
+  <data key="d8">Pusillanimity</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-pusillanimity-species-of-concept-sin-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">portionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so is pusillanimity. Hence it is that the servant who buried in the earth the money he had received from his master, and did not trade with it through fainthearted fear, was punis</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.vainglory" target="concept.honor_recognition" id="edge.concept.vainglory.concerns_honor.concept.honor_recognition">
+  <data key="d6">edge.concept.vainglory.concerns_honor.concept.honor_recognition</data>
+  <data key="d7">concept.vainglory</data>
+  <data key="d8">Vainglory</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_honor</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-vainglory-concerns-honor-concept-honor-recognition-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.vainglory" target="concept.glory" id="edge.concept.vainglory.directed_to.concept.glory">
+  <data key="d6">edge.concept.vainglory.directed_to.concept.glory</data>
+  <data key="d7">concept.vainglory</data>
+  <data key="d8">Vainglory</data>
+  <data key="d9">vice</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a001-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a002-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a004-resp | ann.concept-vainglory-directed-to-concept-glory-st-ii-ii-q132-a005-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp | st.ii-ii.q132.a002.resp | st.ii-ii.q132.a004.resp | st.ii-ii.q132.a005.resp</data>
+  <data key="d16">explicit_textual | strong_textual_inference</data>
+  <data key="d17">our light shine before men." Hence the desire for glory does not, of itself, denote a sin : but the desire for empty or vain glory denotes a sin : for it is sinful to desire anything vain, according to Psalm 4:3 , "Why do you love vanity, and seek after lying?" Now glory may be called vain | it also is about glory : seeing that as a man uses honor moderately, so too does he use glory in moderation. Wherefore inordinate desire of glory is directly opposed to magnanimity. | cial sources of vice , known as the capital vices . Now among the goods that are the means whereby man acquires honor , glory seems to be the most conducive to that effect, inasmuch as it denotes the manifestation of a man's goodness : since good is naturally loved and honored by all. Wherefore, just as by the glor | y their very nature are such as to be directed to the end of a certain capital vice , are called its daughters. Now the end of vainglory is the manifestation of one's own excellence, as stated above ( A1 , Article 4 ): and to this end a man may tend in two ways. On one way directly, either by wo</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.vainglory" target="concept.magnanimity" id="edge.concept.vainglory.excess_opposed_to.concept.magnanimity">
+  <data key="d6">edge.concept.vainglory.excess_opposed_to.concept.magnanimity</data>
+  <data key="d7">concept.vainglory</data>
+  <data key="d8">Vainglory</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-vainglory-excess-opposed-to-concept-magnanimity-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">ng that as a man uses honor moderately, so too does he use glory in moderation. Wherefore inordinate desire of glory is directly opposed to magnanimity.</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.vainglory" target="concept.vice" id="edge.concept.vainglory.species_of.concept.vice">
+  <data key="d6">edge.concept.vainglory.species_of.concept.vice</data>
+  <data key="d7">concept.vainglory</data>
+  <data key="d8">Vainglory</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-vainglory-species-of-concept-vice-st-ii-ii-q132-a004-resp</data>
+  <data key="d15">st.ii-ii.q132.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">The capital vices are enumerated in two ways. For some reckon pride as one of their number: and these do not place vainglory among the capital vices . Gregory , however (Moral. xxxi), reckons pride to be the queen of all the vices , and vainglory, which is the immediate offspring of</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.great_expenditure" id="edge.concept.waste_magnificence.concerns_great_expenditure.concept.great_expenditure">
+  <data key="d6">edge.concept.waste_magnificence.concerns_great_expenditure.concept.great_expenditure</data>
+  <data key="d7">concept.waste_magnificence</data>
+  <data key="d8">Waste (Banausia / Consumptio)</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_great_expenditure</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.concept-waste-magnificence-concerns-great-expenditure-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">oportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is als</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.great_work" id="edge.concept.waste_magnificence.concerns_great_work.concept.great_work">
+  <data key="d6">edge.concept.waste_magnificence.concerns_great_work.concept.great_work</data>
+  <data key="d7">concept.waste_magnificence</data>
+  <data key="d8">Waste (Banausia / Consumptio)</data>
+  <data key="d9">vice</data>
+  <data key="d10">concerns_great_work</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-waste-magnificence-concerns-great-work-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.meanness_magnificence" id="edge.concept.waste_magnificence.contrary_to.concept.meanness_magnificence">
+  <data key="d6">edge.concept.waste_magnificence.contrary_to.concept.meanness_magnificence</data>
+  <data key="d7">concept.waste_magnificence</data>
+  <data key="d8">Waste (Banausia / Consumptio)</data>
+  <data key="d9">vice</data>
+  <data key="d10">contrary_to</data>
+  <data key="d11">concept.meanness_magnificence</data>
+  <data key="d12">Meanness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-waste-magnificence-contrary-to-concept-meanness-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">at it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.magnificence" id="edge.concept.waste_magnificence.excess_opposed_to.concept.magnificence">
+  <data key="d6">edge.concept.waste_magnificence.excess_opposed_to.concept.magnificence</data>
+  <data key="d7">concept.waste_magnificence</data>
+  <data key="d8">Waste (Banausia / Consumptio)</data>
+  <data key="d9">vice</data>
+  <data key="d10">excess_opposed_to</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-waste-magnificence-excess-opposed-to-concept-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">oportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is als</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="concept.waste_magnificence" target="concept.vice" id="edge.concept.waste_magnificence.species_of.concept.vice">
+  <data key="d6">edge.concept.waste_magnificence.species_of.concept.vice</data>
+  <data key="d7">concept.waste_magnificence</data>
+  <data key="d8">Waste (Banausia / Consumptio)</data>
+  <data key="d9">vice</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.concept-waste-magnificence-species-of-concept-vice-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is also called apyrokalia , i.e. lackin</data>
+  <data key="d18">reviewed_doctrinal</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.confidence" id="edge.st.ii-ii.q129.treated_in.concept.confidence">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.confidence</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.confidence</data>
+  <data key="d12">Confidence</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-confidence-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the right use of such</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.fortitude" id="edge.st.ii-ii.q129.treated_in.concept.fortitude">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.fortitude</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-fortitude-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the right use of such</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.goods_of_fortune" id="edge.st.ii-ii.q129.treated_in.concept.goods_of_fortune">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.goods_of_fortune</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.goods_of_fortune</data>
+  <data key="d12">Goods of Fortune</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-goods-of-fortune-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the right use of such</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.honor_recognition" id="edge.st.ii-ii.q129.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-honor-recognition-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">nsists in the best use of the greatest thing. The things which come into man's use are external things, and among these honor is the greatest simply, both because it is the most akin to virtue , since it is an attestation to a person's virtue , as stated above ( II-II:103:1 and II-II:</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.magnanimity" id="edge.st.ii-ii.q129.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-magnanimity-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the fi</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.security_assurance" id="edge.st.ii-ii.q129.treated_in.concept.security_assurance">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.security_assurance</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.security_assurance</data>
+  <data key="d12">Security / Assurance</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-security-assurance-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the right use of such</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="concept.worthiness" id="edge.st.ii-ii.q129.treated_in.concept.worthiness">
+  <data key="d6">edge.st.ii-ii.q129.treated_in.concept.worthiness</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.st-ii-ii-q129-treated-in-concept-worthiness-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the right use of such</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a001" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a001">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a001</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a001</data>
+  <data key="d12">II-II q.129 a.1 — Is magnanimity about honors?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a002" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a002">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a002</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a002</data>
+  <data key="d12">II-II q.129 a.2 — Is magnanimity only about great honors?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a003" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a003">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a003</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a003</data>
+  <data key="d12">II-II q.129 a.3 — Is it a virtue?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a003.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a004" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a004">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a004</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a004</data>
+  <data key="d12">II-II q.129 a.4 — Is it a special virtue?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a004.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a005" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a005">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a005</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a005</data>
+  <data key="d12">II-II q.129 a.5 — Is it a part of fortitude?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a005.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a006" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a006">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a006</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a006</data>
+  <data key="d12">II-II q.129 a.6 — Its relation to confidence</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a006.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a007" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a007">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a007</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a007</data>
+  <data key="d12">II-II q.129 a.7 — Its relation to assurance</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a007.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129" target="st.ii-ii.q129.a008" id="structural.st.ii-ii.q129.contains.st.ii-ii.q129.a008">
+  <data key="d6">structural.st.ii-ii.q129.contains.st.ii-ii.q129.a008</data>
+  <data key="d7">st.ii-ii.q129</data>
+  <data key="d8">II-II q.129 — Magnanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q129.a008</data>
+  <data key="d12">II-II q.129 a.8 — Its relation to goods of fortune</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q129.a008.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a001" target="concept.honor_recognition" id="edge.st.ii-ii.q129.a001.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q129.a001.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q129.a001</data>
+  <data key="d8">II-II q.129 a.1 — Is magnanimity about honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-a001-treated-in-concept-honor-recognition-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">and simply, just as a man is said to be brave in respect of things that are difficult simply. It follows therefore that magnanimity is about honors.</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a001" target="concept.magnanimity" id="edge.st.ii-ii.q129.a001.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a001.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a001</data>
+  <data key="d8">II-II q.129 a.1 — Is magnanimity about honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a001-treated-in-concept-magnanimity-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the fi</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a001" target="concept.worthiness" id="edge.st.ii-ii.q129.a001.treated_in.concept.worthiness">
+  <data key="d6">edge.st.ii-ii.q129.a001.treated_in.concept.worthiness</data>
+  <data key="d7">st.ii-ii.q129.a001</data>
+  <data key="d8">II-II q.129 a.1 — Is magnanimity about honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.st-ii-ii-q129-a001-treated-in-concept-worthiness-st-ii-ii-q129-a001-resp</data>
+  <data key="d15">st.ii-ii.q129.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Magnanimity by its very name denotes stretching forth of the mind to great things. Now virtue bears a relationship to two things, first to the matter about which is the field of its activity, secondly to its proper act, which consists in the</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a002" target="concept.honor_recognition" id="edge.st.ii-ii.q129.a002.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q129.a002.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q129.a002</data>
+  <data key="d8">II-II q.129 a.2 — Is magnanimity only about great honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-a002-treated-in-concept-honor-recognition-st-ii-ii-q129-a002-resp</data>
+  <data key="d15">st.ii-ii.q129.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ometimes for not caring about it, in so far, to wit, as both these things may be done in moderation. But with regard to great honors there is "magnanimity." Wherefore we must conclude that the proper matter of magnanimity is great honor , and that a magnanimous man tends to such things as ar</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a002" target="concept.magnanimity" id="edge.st.ii-ii.q129.a002.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a002.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a002</data>
+  <data key="d8">II-II q.129 a.2 — Is magnanimity only about great honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a002-treated-in-concept-magnanimity-st-ii-ii-q129-a002-resp</data>
+  <data key="d15">st.ii-ii.q129.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">about it, in so far, to wit, as both these things may be done in moderation. But with regard to great honors there is "magnanimity." Wherefore we must conclude that the proper matter of magnanimity is great honor , and that a magnanimous man tends to such things as are deserving of honor .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a002" target="concept.worthiness" id="edge.st.ii-ii.q129.a002.treated_in.concept.worthiness">
+  <data key="d6">edge.st.ii-ii.q129.a002.treated_in.concept.worthiness</data>
+  <data key="d7">st.ii-ii.q129.a002</data>
+  <data key="d8">II-II q.129 a.2 — Is magnanimity only about great honors?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.st-ii-ii-q129-a002-treated-in-concept-worthiness-st-ii-ii-q129-a002-resp</data>
+  <data key="d15">st.ii-ii.q129.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">r, however imperfect, can extend to ordinary and trifling operations. Hence it is essential to a virtue to be about the difficult and the good , as stated in Ethic. ii, 3. Now the difficult and the good (which amount to the same) in an act of virtue may be considered from two points of view. First, fr</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a003" target="concept.magnanimity" id="edge.st.ii-ii.q129.a003.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a003.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a003</data>
+  <data key="d8">II-II q.129 a.3 — Is it a virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a003-treated-in-concept-magnanimity-st-ii-ii-q129-a003-resp</data>
+  <data key="d15">st.ii-ii.q129.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">al human things honors take precedence of all others, as stated above ( Article 1 ; I-II:11:2, Objection 3 ). Therefore magnanimity, which observes the mode of reason in great honors, is a virtue .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a003" target="concept.virtue" id="edge.st.ii-ii.q129.a003.treated_in.concept.virtue">
+  <data key="d6">edge.st.ii-ii.q129.a003.treated_in.concept.virtue</data>
+  <data key="d7">st.ii-ii.q129.a003</data>
+  <data key="d8">II-II q.129 a.3 — Is it a virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a003-treated-in-concept-virtue-st-ii-ii-q129-a003-resp</data>
+  <data key="d15">st.ii-ii.q129.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">al human things honors take precedence of all others, as stated above ( Article 1 ; I-II:11:2, Objection 3 ). Therefore magnanimity, which observes the mode of reason in great honors, is a virtue .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a004" target="concept.honor_recognition" id="edge.st.ii-ii.q129.a004.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q129.a004.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q129.a004</data>
+  <data key="d8">II-II q.129 a.4 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-a004-treated-in-concept-honor-recognition-st-ii-ii-q129-a004-resp</data>
+  <data key="d15">st.ii-ii.q129.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated above ( 1 and 2 ): and honor , considered in itself, is a special good , and accordingly magnanimity considered in itself is a special virtue . Sinc</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a004" target="concept.magnanimity" id="edge.st.ii-ii.q129.a004.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a004.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a004</data>
+  <data key="d8">II-II q.129 a.4 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a004-treated-in-concept-magnanimity-st-ii-ii-q129-a004-resp</data>
+  <data key="d15">st.ii-ii.q129.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ted above ( II-II:123:2 ), it belongs to a special virtue to establish the mode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated above ( 1 and 2 ): and honor , considered in itself, is a special good , and</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a004" target="concept.virtue" id="edge.st.ii-ii.q129.a004.treated_in.concept.virtue">
+  <data key="d6">edge.st.ii-ii.q129.a004.treated_in.concept.virtue</data>
+  <data key="d7">st.ii-ii.q129.a004</data>
+  <data key="d8">II-II q.129 a.4 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a004-treated-in-concept-virtue-st-ii-ii-q129-a004-resp</data>
+  <data key="d15">st.ii-ii.q129.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:123:2 ), it belongs to a special virtue to establish the mode of reason in a determinate matter . Now magnanimity establishes the mode of reason in a determinate matter , namely honors, as stated abo</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a005" target="concept.fortitude" id="edge.st.ii-ii.q129.a005.treated_in.concept.fortitude">
+  <data key="d6">edge.st.ii-ii.q129.a005.treated_in.concept.fortitude</data>
+  <data key="d7">st.ii-ii.q129.a005</data>
+  <data key="d8">II-II q.129 a.5 — Is it a part of fortitude?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a005-treated-in-concept-fortitude-st-ii-ii-q129-a005-resp</data>
+  <data key="d15">st.ii-ii.q129.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e virtue which makes the mind firm in that matter . Now it is more difficult to stand firm in dangers of death, wherein fortitude confirms the mind , than in hoping for or obtaining the greatest goods, wherein the mind is confirmed by magnanimity, for, as man loves his life above all thin</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a005" target="concept.magnanimity" id="edge.st.ii-ii.q129.a005.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a005.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a005</data>
+  <data key="d8">II-II q.129 a.5 — Is it a part of fortitude?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a005-treated-in-concept-magnanimity-st-ii-ii-q129-a005-resp</data>
+  <data key="d15">st.ii-ii.q129.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">rein fortitude confirms the mind , than in hoping for or obtaining the greatest goods, wherein the mind is confirmed by magnanimity, for, as man loves his life above all things, so does he fly from dangers of death more than any others. Accordingly it is clear that magnanimity agrees with f</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a006" target="concept.confidence" id="edge.st.ii-ii.q129.a006.treated_in.concept.confidence">
+  <data key="d6">edge.st.ii-ii.q129.a006.treated_in.concept.confidence</data>
+  <data key="d7">st.ii-ii.q129.a006</data>
+  <data key="d8">II-II q.129 a.6 — Its relation to confidence</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.confidence</data>
+  <data key="d12">Confidence</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.st-ii-ii-q129-a006-treated-in-concept-confidence-st-ii-ii-q129-a006-resp</data>
+  <data key="d15">st.ii-ii.q129.a006.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Confidence takes its name from "fides" [ faith ]: and it belongs to faith to believe something and in somebody. But confidence belongs to hope , according to Job 11:18 ,</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a006" target="concept.magnanimity" id="edge.st.ii-ii.q129.a006.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a006.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a006</data>
+  <data key="d8">II-II q.129 a.6 — Its relation to confidence</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a006-treated-in-concept-magnanimity-st-ii-ii-q129-a006-resp</data>
+  <data key="d15">st.ii-ii.q129.a006.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">is confident that he will receive help from him. Now it has been stated above ( Article 1, Reply to Objection 2 ) that magnanimity is chiefly about the hope of something difficult. Wherefore, since confidence denotes a certain strength of hope arising from some observation which gives one</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a007" target="concept.fortitude" id="edge.st.ii-ii.q129.a007.treated_in.concept.fortitude">
+  <data key="d6">edge.st.ii-ii.q129.a007.treated_in.concept.fortitude</data>
+  <data key="d7">st.ii-ii.q129.a007</data>
+  <data key="d8">II-II q.129 a.7 — Its relation to assurance</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a007-treated-in-concept-fortitude-st-ii-ii-q129-a007-resp</data>
+  <data key="d15">st.ii-ii.q129.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ar, just as confidence denotes strength of hope. Now, as hope directly belongs to magnanimity, so fear directly regards fortitude . Wherefore as confidence belongs immediately to magnanimity, so security belongs immediately to fortitude . It must be observed, however, that as hope is the</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a007" target="concept.magnanimity" id="edge.st.ii-ii.q129.a007.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a007.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a007</data>
+  <data key="d8">II-II q.129 a.7 — Its relation to assurance</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a007-treated-in-concept-magnanimity-st-ii-ii-q129-a007-resp</data>
+  <data key="d15">st.ii-ii.q129.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">es perfect freedom of the mind from fear, just as confidence denotes strength of hope. Now, as hope directly belongs to magnanimity, so fear directly regards fortitude . Wherefore as confidence belongs immediately to magnanimity, so security belongs immediately to fortitude . It must be obs</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a007" target="concept.security_assurance" id="edge.st.ii-ii.q129.a007.treated_in.concept.security_assurance">
+  <data key="d6">edge.st.ii-ii.q129.a007.treated_in.concept.security_assurance</data>
+  <data key="d7">st.ii-ii.q129.a007</data>
+  <data key="d8">II-II q.129 a.7 — Its relation to assurance</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.security_assurance</data>
+  <data key="d12">Security / Assurance</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.st-ii-ii-q129-a007-treated-in-concept-security-assurance-st-ii-ii-q129-a007-resp</data>
+  <data key="d15">st.ii-ii.q129.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">osopher says (Rhet. ii, 5), "fear makes a man take counsel," because, to wit he takes care to avoid what he fears . Now security takes its name from the removal of this care, of which fear is the cause : wherefore security denotes perfect freedom of the mind from fear, just as confidence</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a008" target="concept.goods_of_fortune" id="edge.st.ii-ii.q129.a008.treated_in.concept.goods_of_fortune">
+  <data key="d6">edge.st.ii-ii.q129.a008.treated_in.concept.goods_of_fortune</data>
+  <data key="d7">st.ii-ii.q129.a008</data>
+  <data key="d8">II-II q.129 a.8 — Its relation to goods of fortune</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.goods_of_fortune</data>
+  <data key="d12">Goods of Fortune</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-a008-treated-in-concept-goods-of-fortune-st-ii-ii-q129-a008-resp</data>
+  <data key="d15">st.ii-ii.q129.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">le 1 ), magnanimity regards two things: honor as its matter , and the accomplishment of something great as its end. Now goods of fortune conduce to both these things. For since honor is conferred on the virtuous , not only by the wise, but also by the multitude who hold these goods of fortune in</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a008" target="concept.honor_recognition" id="edge.st.ii-ii.q129.a008.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q129.a008.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q129.a008</data>
+  <data key="d8">II-II q.129 a.8 — Its relation to goods of fortune</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q129-a008-treated-in-concept-honor-recognition-st-ii-ii-q129-a008-resp</data>
+  <data key="d15">st.ii-ii.q129.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 1 ), magnanimity regards two things: honor as its matter , and the accomplishment of something great as its end. Now goods of fortune conduce to both these things. For since honor is conferred on the virtuous , not o</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q129.a008" target="concept.magnanimity" id="edge.st.ii-ii.q129.a008.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q129.a008.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q129.a008</data>
+  <data key="d8">II-II q.129 a.8 — Its relation to goods of fortune</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q129-a008-treated-in-concept-magnanimity-st-ii-ii-q129-a008-resp</data>
+  <data key="d15">st.ii-ii.q129.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 1 ), magnanimity regards two things: honor as its matter , and the accomplishment of something great as its end. Now goods of fortune conduce to both these things. For since ho</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130" target="concept.magnanimity" id="edge.st.ii-ii.q130.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q130.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q130</data>
+  <data key="d8">II-II q.130 — Presumption</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q130-treated-in-concept-magnanimity-st-ii-ii-q130-a001-resp</data>
+  <data key="d15">st.ii-ii.q130.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Since whatever is according to nature , is ordered by the Divine Reason , which human reason ought to imitate, whatever is done in accordance with human reason in opposition to the order established in general throughout natural things is vicious and sinful .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130" target="concept.presumption_magnanimity" id="edge.st.ii-ii.q130.treated_in.concept.presumption_magnanimity">
+  <data key="d6">edge.st.ii-ii.q130.treated_in.concept.presumption_magnanimity</data>
+  <data key="d7">st.ii-ii.q130</data>
+  <data key="d8">II-II q.130 — Presumption</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.presumption_magnanimity</data>
+  <data key="d12">Presumption (Against Magnanimity)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q130-treated-in-concept-presumption-magnanimity-st-ii-ii-q130-a001-resp</data>
+  <data key="d15">st.ii-ii.q130.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">g contrary to the natural order, that any one should assume to do what is above his power: and this is what is meant by presumption, as its very name shows. Wherefore it is evident that presumption is a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130" target="st.ii-ii.q130.a001" id="structural.st.ii-ii.q130.contains.st.ii-ii.q130.a001">
+  <data key="d6">structural.st.ii-ii.q130.contains.st.ii-ii.q130.a001</data>
+  <data key="d7">st.ii-ii.q130</data>
+  <data key="d8">II-II q.130 — Presumption</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q130.a001</data>
+  <data key="d12">II-II q.130 a.1 — Is presumption a sin?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q130.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130" target="st.ii-ii.q130.a002" id="structural.st.ii-ii.q130.contains.st.ii-ii.q130.a002">
+  <data key="d6">structural.st.ii-ii.q130.contains.st.ii-ii.q130.a002</data>
+  <data key="d7">st.ii-ii.q130</data>
+  <data key="d8">II-II q.130 — Presumption</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q130.a002</data>
+  <data key="d12">II-II q.130 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q130.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130.a001" target="concept.presumption_magnanimity" id="edge.st.ii-ii.q130.a001.treated_in.concept.presumption_magnanimity">
+  <data key="d6">edge.st.ii-ii.q130.a001.treated_in.concept.presumption_magnanimity</data>
+  <data key="d7">st.ii-ii.q130.a001</data>
+  <data key="d8">II-II q.130 a.1 — Is presumption a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.presumption_magnanimity</data>
+  <data key="d12">Presumption (Against Magnanimity)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q130-a001-treated-in-concept-presumption-magnanimity-st-ii-ii-q130-a001-resp</data>
+  <data key="d15">st.ii-ii.q130.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">g contrary to the natural order, that any one should assume to do what is above his power: and this is what is meant by presumption, as its very name shows. Wherefore it is evident that presumption is a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130.a001" target="concept.sin" id="edge.st.ii-ii.q130.a001.treated_in.concept.sin">
+  <data key="d6">edge.st.ii-ii.q130.a001.treated_in.concept.sin</data>
+  <data key="d7">st.ii-ii.q130.a001</data>
+  <data key="d8">II-II q.130 a.1 — Is presumption a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.st-ii-ii-q130-a001-treated-in-concept-sin-st-ii-ii-q130-a001-resp</data>
+  <data key="d15">st.ii-ii.q130.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">what is above his power: and this is what is meant by presumption, as its very name shows. Wherefore it is evident that presumption is a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130.a002" target="concept.magnanimity" id="edge.st.ii-ii.q130.a002.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q130.a002.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q130.a002</data>
+  <data key="d8">II-II q.130 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q130-a002-treated-in-concept-magnanimity-st-ii-ii-q130-a002-resp</data>
+  <data key="d15">st.ii-ii.q130.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:129:3 ad 1 ), magnanimity observes the means, not as regards the quantity of that to which it tends, but in proportion to our own ability: for it does not tend to anything greater than</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q130.a002" target="concept.presumption_magnanimity" id="edge.st.ii-ii.q130.a002.treated_in.concept.presumption_magnanimity">
+  <data key="d6">edge.st.ii-ii.q130.a002.treated_in.concept.presumption_magnanimity</data>
+  <data key="d7">st.ii-ii.q130.a002</data>
+  <data key="d8">II-II q.130 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.presumption_magnanimity</data>
+  <data key="d12">Presumption (Against Magnanimity)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q130-a002-treated-in-concept-presumption-magnanimity-st-ii-ii-q130-a002-resp</data>
+  <data key="d15">st.ii-ii.q130.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e does exceed in proportion to his own ability, whereas the magnanimous man does not exceed his. It is in this way that presumption is opposed to magnanimity by excess.</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131" target="concept.ambition" id="edge.st.ii-ii.q131.treated_in.concept.ambition">
+  <data key="d6">edge.st.ii-ii.q131.treated_in.concept.ambition</data>
+  <data key="d7">st.ii-ii.q131</data>
+  <data key="d8">II-II q.131 — Ambition</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.ambition</data>
+  <data key="d12">Ambition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q131-treated-in-concept-ambition-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">to God . Thirdly, when a man's appetite rests in honor itself, without referring it to the profit of others. Since then ambition denotes inordinate desire of honor , it is evident that it is always a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131" target="concept.magnanimity" id="edge.st.ii-ii.q131.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q131.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q131</data>
+  <data key="d8">II-II q.131 — Ambition</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q131-treated-in-concept-magnanimity-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">As stated above ( II-II:103:1 and II-II:103:2 ), honor denotes reverence shown to a person in witness of his excellence. Now two things have to be considered with regard to man's honor . The first is that a man has not from himself the thing in which he excels</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131" target="st.ii-ii.q131.a001" id="structural.st.ii-ii.q131.contains.st.ii-ii.q131.a001">
+  <data key="d6">structural.st.ii-ii.q131.contains.st.ii-ii.q131.a001</data>
+  <data key="d7">st.ii-ii.q131</data>
+  <data key="d8">II-II q.131 — Ambition</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q131.a001</data>
+  <data key="d12">II-II q.131 a.1 — Is it a sin?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q131.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131" target="st.ii-ii.q131.a002" id="structural.st.ii-ii.q131.contains.st.ii-ii.q131.a002">
+  <data key="d6">structural.st.ii-ii.q131.contains.st.ii-ii.q131.a002</data>
+  <data key="d7">st.ii-ii.q131</data>
+  <data key="d8">II-II q.131 — Ambition</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q131.a002</data>
+  <data key="d12">II-II q.131 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q131.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a001" target="concept.ambition" id="edge.st.ii-ii.q131.a001.treated_in.concept.ambition">
+  <data key="d6">edge.st.ii-ii.q131.a001.treated_in.concept.ambition</data>
+  <data key="d7">st.ii-ii.q131.a001</data>
+  <data key="d8">II-II q.131 a.1 — Is it a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.ambition</data>
+  <data key="d12">Ambition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q131-a001-treated-in-concept-ambition-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">to God . Thirdly, when a man's appetite rests in honor itself, without referring it to the profit of others. Since then ambition denotes inordinate desire of honor , it is evident that it is always a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a001" target="concept.honor_recognition" id="edge.st.ii-ii.q131.a001.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q131.a001.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q131.a001</data>
+  <data key="d8">II-II q.131 a.1 — Is it a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q131-a001-treated-in-concept-honor-recognition-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:103:1 and II-II:103:2 ), honor denotes reverence shown to a person in witness of his excellence. Now two things have to be considered with regard to man's honor . The first is that a man has</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a001" target="concept.sin" id="edge.st.ii-ii.q131.a001.treated_in.concept.sin">
+  <data key="d6">edge.st.ii-ii.q131.a001.treated_in.concept.sin</data>
+  <data key="d7">st.ii-ii.q131.a001</data>
+  <data key="d8">II-II q.131 a.1 — Is it a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.st-ii-ii-q131-a001-treated-in-concept-sin-st-ii-ii-q131-a001-resp</data>
+  <data key="d15">st.ii-ii.q131.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">to God . Thirdly, when a man's appetite rests in honor itself, without referring it to the profit of others. Since then ambition denotes inordinate desire of honor , it is evident that it is always a sin .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a002" target="concept.ambition" id="edge.st.ii-ii.q131.a002.treated_in.concept.ambition">
+  <data key="d6">edge.st.ii-ii.q131.a002.treated_in.concept.ambition</data>
+  <data key="d7">st.ii-ii.q131.a002</data>
+  <data key="d8">II-II q.131 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.ambition</data>
+  <data key="d12">Ambition</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q131-a002-treated-in-concept-ambition-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is oppos</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a002" target="concept.honor_recognition" id="edge.st.ii-ii.q131.a002.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q131.a002.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q131.a002</data>
+  <data key="d8">II-II q.131 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q131-a002-treated-in-concept-honor-recognition-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q131.a002" target="concept.magnanimity" id="edge.st.ii-ii.q131.a002.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q131.a002.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q131.a002</data>
+  <data key="d8">II-II q.131 a.2 — Is it opposed to magnanimity by excess?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q131-a002-treated-in-concept-magnanimity-st-ii-ii-q131-a002-resp</data>
+  <data key="d15">st.ii-ii.q131.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 1 ), ambition signifies inordinate love of honor . Now magnanimity is about honors and makes use of them in a becoming manner. Wherefore it is evident that ambition is opposed to magnanimity as the inordinate to that which is</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="concept.glory" id="edge.st.ii-ii.q132.treated_in.concept.glory">
+  <data key="d6">edge.st.ii-ii.q132.treated_in.concept.glory</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-treated-in-concept-glory-st-ii-ii-q132-a001-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Glory signifies a certain clarity, wherefore Augustine says (Tract. lxxxii, c, cxiv in Joan.) that to be "glorified is the same as to be clarified." Now clarity and</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="concept.magnanimity" id="edge.st.ii-ii.q132.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q132.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q132-treated-in-concept-magnanimity-st-ii-ii-q132-a001-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Glory signifies a certain clarity, wherefore Augustine says (Tract. lxxxii, c, cxiv in Joan.) that to be "glorified is the same as to be clarified." Now clarity and comeliness imply a certain display: wherefore the word glory properly denotes the display of so</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="concept.vainglory" id="edge.st.ii-ii.q132.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-treated-in-concept-vainglory-st-ii-ii-q132-a001-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">our light shine before men." Hence the desire for glory does not, of itself, denote a sin : but the desire for empty or vain glory denotes a sin : for it is sinful to desire anything vain, according to Psalm 4:3 , "Why do you love vanity, and seek after lying?" Now glory may be called vain</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="st.ii-ii.q132.a001" id="structural.st.ii-ii.q132.contains.st.ii-ii.q132.a001">
+  <data key="d6">structural.st.ii-ii.q132.contains.st.ii-ii.q132.a001</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q132.a001</data>
+  <data key="d12">II-II q.132 a.1 — Is desire of glory a sin?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q132.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="st.ii-ii.q132.a002" id="structural.st.ii-ii.q132.contains.st.ii-ii.q132.a002">
+  <data key="d6">structural.st.ii-ii.q132.contains.st.ii-ii.q132.a002</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q132.a002</data>
+  <data key="d12">II-II q.132 a.2 — Is it opposed to magnanimity?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q132.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="st.ii-ii.q132.a003" id="structural.st.ii-ii.q132.contains.st.ii-ii.q132.a003">
+  <data key="d6">structural.st.ii-ii.q132.contains.st.ii-ii.q132.a003</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q132.a003</data>
+  <data key="d12">II-II q.132 a.3 — Is it a mortal sin?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q132.a003.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="st.ii-ii.q132.a004" id="structural.st.ii-ii.q132.contains.st.ii-ii.q132.a004">
+  <data key="d6">structural.st.ii-ii.q132.contains.st.ii-ii.q132.a004</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q132.a004</data>
+  <data key="d12">II-II q.132 a.4 — Is it a capital vice?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q132.a004.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132" target="st.ii-ii.q132.a005" id="structural.st.ii-ii.q132.contains.st.ii-ii.q132.a005">
+  <data key="d6">structural.st.ii-ii.q132.contains.st.ii-ii.q132.a005</data>
+  <data key="d7">st.ii-ii.q132</data>
+  <data key="d8">II-II q.132 — Vainglory</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q132.a005</data>
+  <data key="d12">II-II q.132 a.5 — Its daughters</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q132.a005.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a001" target="concept.glory" id="edge.st.ii-ii.q132.a001.treated_in.concept.glory">
+  <data key="d6">edge.st.ii-ii.q132.a001.treated_in.concept.glory</data>
+  <data key="d7">st.ii-ii.q132.a001</data>
+  <data key="d8">II-II q.132 a.1 — Is desire of glory a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-a001-treated-in-concept-glory-st-ii-ii-q132-a001-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Glory signifies a certain clarity, wherefore Augustine says (Tract. lxxxii, c, cxiv in Joan.) that to be "glorified is the same as to be clarified." Now clarity and comeliness</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a001" target="concept.vainglory" id="edge.st.ii-ii.q132.a001.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.a001.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132.a001</data>
+  <data key="d8">II-II q.132 a.1 — Is desire of glory a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a001-treated-in-concept-vainglory-st-ii-ii-q132-a001-resp</data>
+  <data key="d15">st.ii-ii.q132.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">our light shine before men." Hence the desire for glory does not, of itself, denote a sin : but the desire for empty or vain glory denotes a sin : for it is sinful to desire anything vain, according to Psalm 4:3 , "Why do you love vanity, and seek after lying?" Now glory may be called vain</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a002" target="concept.glory" id="edge.st.ii-ii.q132.a002.treated_in.concept.glory">
+  <data key="d6">edge.st.ii-ii.q132.a002.treated_in.concept.glory</data>
+  <data key="d7">st.ii-ii.q132.a002</data>
+  <data key="d8">II-II q.132 a.2 — Is it opposed to magnanimity?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-a002-treated-in-concept-glory-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a002" target="concept.honor_recognition" id="edge.st.ii-ii.q132.a002.treated_in.concept.honor_recognition">
+  <data key="d6">edge.st.ii-ii.q132.a002.treated_in.concept.honor_recognition</data>
+  <data key="d7">st.ii-ii.q132.a002</data>
+  <data key="d8">II-II q.132 a.2 — Is it opposed to magnanimity?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.honor_recognition</data>
+  <data key="d12">Honor as Recognition</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-a002-treated-in-concept-honor-recognition-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( II-II:103:1 ad 3 ), glory is an effect of honor and praise: because from the fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a002" target="concept.magnanimity" id="edge.st.ii-ii.q132.a002.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q132.a002.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q132.a002</data>
+  <data key="d8">II-II q.132 a.2 — Is it opposed to magnanimity?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q132-a002-treated-in-concept-magnanimity-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e fact that a man is praised, or shown any kind of reverence, he acquires charity in the knowledge of others. And since magnanimity is about honor , as stated above ( II-II:129:1 and II-II:129:2 ), it follows that it also is about glory : seeing that as a man uses honor moderately, so too d</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a002" target="concept.vainglory" id="edge.st.ii-ii.q132.a002.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.a002.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132.a002</data>
+  <data key="d8">II-II q.132 a.2 — Is it opposed to magnanimity?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a002-treated-in-concept-vainglory-st-ii-ii-q132-a002-resp</data>
+  <data key="d15">st.ii-ii.q132.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ng that as a man uses honor moderately, so too does he use glory in moderation. Wherefore inordinate desire of glory is directly opposed to magnanimity.</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a003" target="concept.sin" id="edge.st.ii-ii.q132.a003.treated_in.concept.sin">
+  <data key="d6">edge.st.ii-ii.q132.a003.treated_in.concept.sin</data>
+  <data key="d7">st.ii-ii.q132.a003</data>
+  <data key="d8">II-II q.132 a.3 — Is it a mortal sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.st-ii-ii-q132-a003-treated-in-concept-sin-st-ii-ii-q132-a003-resp</data>
+  <data key="d15">st.ii-ii.q132.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s stated above ( II-II:24:12 ; II-II:110:4 ; II-II:112:2 ), a sin is mortal through being contrary to charity . Now the sin of vainglory, considered in itself, does not seem to be contrary to charity as regards the love of one's neighbor: yet as regards the love of God it may be contrary to char</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a003" target="concept.vainglory" id="edge.st.ii-ii.q132.a003.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.a003.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132.a003</data>
+  <data key="d8">II-II q.132 a.3 — Is it a mortal sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a003-treated-in-concept-vainglory-st-ii-ii-q132-a003-resp</data>
+  <data key="d15">st.ii-ii.q132.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">d above ( II-II:24:12 ; II-II:110:4 ; II-II:112:2 ), a sin is mortal through being contrary to charity . Now the sin of vainglory, considered in itself, does not seem to be contrary to charity as regards the love of one's neighbor: yet as regards the love of God it may be contrary to char</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a004" target="concept.glory" id="edge.st.ii-ii.q132.a004.treated_in.concept.glory">
+  <data key="d6">edge.st.ii-ii.q132.a004.treated_in.concept.glory</data>
+  <data key="d7">st.ii-ii.q132.a004</data>
+  <data key="d8">II-II q.132 a.4 — Is it a capital vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-a004-treated-in-concept-glory-st-ii-ii-q132-a004-resp</data>
+  <data key="d15">st.ii-ii.q132.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">cial sources of vice , known as the capital vices . Now among the goods that are the means whereby man acquires honor , glory seems to be the most conducive to that effect, inasmuch as it denotes the manifestation of a man's goodness : since good is naturally loved and honored by all. Wherefore, just as by the glor</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a004" target="concept.vainglory" id="edge.st.ii-ii.q132.a004.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.a004.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132.a004</data>
+  <data key="d8">II-II q.132 a.4 — Is it a capital vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a004-treated-in-concept-vainglory-st-ii-ii-q132-a004-resp</data>
+  <data key="d15">st.ii-ii.q132.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">The capital vices are enumerated in two ways. For some reckon pride as one of their number: and these do not place vainglory among the capital vices . Gregory , however (Moral. xxxi), reckons pride to be the queen of all the vices , and vainglory, which is the immediate offspring of</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a004" target="concept.vice" id="edge.st.ii-ii.q132.a004.treated_in.concept.vice">
+  <data key="d6">edge.st.ii-ii.q132.a004.treated_in.concept.vice</data>
+  <data key="d7">st.ii-ii.q132.a004</data>
+  <data key="d8">II-II q.132 a.4 — Is it a capital vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a004-treated-in-concept-vice-st-ii-ii-q132-a004-resp</data>
+  <data key="d15">st.ii-ii.q132.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">The capital vices are enumerated in two ways. For some reckon pride as one of their number: and these do not place vainglory among the capital vices . Gregory , however (Moral. xxxi), reckons pride to be the queen of all the vices , and vainglory, which is the immediate offspring of</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a005" target="concept.glory" id="edge.st.ii-ii.q132.a005.treated_in.concept.glory">
+  <data key="d6">edge.st.ii-ii.q132.a005.treated_in.concept.glory</data>
+  <data key="d7">st.ii-ii.q132.a005</data>
+  <data key="d8">II-II q.132 a.5 — Its daughters</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.glory</data>
+  <data key="d12">Glory</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q132-a005-treated-in-concept-glory-st-ii-ii-q132-a005-resp</data>
+  <data key="d15">st.ii-ii.q132.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">such as to be directed to the end of a certain capital vice , are called its daughters. Now the end of vainglory is the manifestation of one's own excellence, as stated above ( A1 , Article 4 ): and to this end a man may tend in two ways. On one way directly, either by words, and this is boasting, or by deeds , and</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q132.a005" target="concept.vainglory" id="edge.st.ii-ii.q132.a005.treated_in.concept.vainglory">
+  <data key="d6">edge.st.ii-ii.q132.a005.treated_in.concept.vainglory</data>
+  <data key="d7">st.ii-ii.q132.a005</data>
+  <data key="d8">II-II q.132 a.5 — Its daughters</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vainglory</data>
+  <data key="d12">Vainglory</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q132-a005-treated-in-concept-vainglory-st-ii-ii-q132-a005-resp</data>
+  <data key="d15">st.ii-ii.q132.a005.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, the vices which by their very nature are such as to be directed to the end of a certain capital vice , are called its daughters. Now the end of vainglory is the manifestation of one's own excellence, as stated above ( A1 , Article 4 ): and to this end a man may tend in two ways. On one</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133" target="concept.magnanimity" id="edge.st.ii-ii.q133.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q133.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q133</data>
+  <data key="d8">II-II q.133 — Pusillanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q133-treated-in-concept-magnanimity-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Whatever is contrary to a natural inclination is a sin , because it is contrary to a law of nature . Now everything has a natural inclination to accomplish an action that is commensurate with its power: as is evident in all natural things, whether animate or i</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133" target="concept.pusillanimity" id="edge.st.ii-ii.q133.treated_in.concept.pusillanimity">
+  <data key="d6">edge.st.ii-ii.q133.treated_in.concept.pusillanimity</data>
+  <data key="d7">st.ii-ii.q133</data>
+  <data key="d8">II-II q.133 — Pusillanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.pusillanimity</data>
+  <data key="d12">Pusillanimity</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q133-treated-in-concept-pusillanimity-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">. Now just as presumption makes a man exceed what is proportionate to his power, by striving to do more than he can, so pusillanimity makes a man fall short of what is proportionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133" target="concept.worthiness" id="edge.st.ii-ii.q133.treated_in.concept.worthiness">
+  <data key="d6">edge.st.ii-ii.q133.treated_in.concept.worthiness</data>
+  <data key="d7">st.ii-ii.q133</data>
+  <data key="d8">II-II q.133 — Pusillanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.st-ii-ii-q133-treated-in-concept-worthiness-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">Whatever is contrary to a natural inclination is a sin , because it is contrary to a law of nature . Now everything has a natural inclination to accomplish an action that is commensurate with its power: as is evident in all natural things, whether animate or i</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133" target="st.ii-ii.q133.a001" id="structural.st.ii-ii.q133.contains.st.ii-ii.q133.a001">
+  <data key="d6">structural.st.ii-ii.q133.contains.st.ii-ii.q133.a001</data>
+  <data key="d7">st.ii-ii.q133</data>
+  <data key="d8">II-II q.133 — Pusillanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q133.a001</data>
+  <data key="d12">II-II q.133 a.1 — Is pusillanimity a sin?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q133.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133" target="st.ii-ii.q133.a002" id="structural.st.ii-ii.q133.contains.st.ii-ii.q133.a002">
+  <data key="d6">structural.st.ii-ii.q133.contains.st.ii-ii.q133.a002</data>
+  <data key="d7">st.ii-ii.q133</data>
+  <data key="d8">II-II q.133 — Pusillanimity</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q133.a002</data>
+  <data key="d12">II-II q.133 a.2 — To what virtue is it opposed?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q133.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133.a001" target="concept.pusillanimity" id="edge.st.ii-ii.q133.a001.treated_in.concept.pusillanimity">
+  <data key="d6">edge.st.ii-ii.q133.a001.treated_in.concept.pusillanimity</data>
+  <data key="d7">st.ii-ii.q133.a001</data>
+  <data key="d8">II-II q.133 a.1 — Is pusillanimity a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.pusillanimity</data>
+  <data key="d12">Pusillanimity</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q133-a001-treated-in-concept-pusillanimity-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">. Now just as presumption makes a man exceed what is proportionate to his power, by striving to do more than he can, so pusillanimity makes a man fall short of what is proportionate to his power, by refusing to tend to that which is commensurate thereto. Wherefore as presumption is a sin , so</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133.a001" target="concept.sin" id="edge.st.ii-ii.q133.a001.treated_in.concept.sin">
+  <data key="d6">edge.st.ii-ii.q133.a001.treated_in.concept.sin</data>
+  <data key="d7">st.ii-ii.q133.a001</data>
+  <data key="d8">II-II q.133 a.1 — Is pusillanimity a sin?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.sin</data>
+  <data key="d12">Sin</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.st-ii-ii-q133-a001-treated-in-concept-sin-st-ii-ii-q133-a001-resp</data>
+  <data key="d15">st.ii-ii.q133.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Whatever is contrary to a natural inclination is a sin , because it is contrary to a law of nature . Now everything has a natural inclination to accomplish an action that is commensurate with its power: as is evident in all natural things, whether animate or i</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133.a002" target="concept.magnanimity" id="edge.st.ii-ii.q133.a002.treated_in.concept.magnanimity">
+  <data key="d6">edge.st.ii-ii.q133.a002.treated_in.concept.magnanimity</data>
+  <data key="d7">st.ii-ii.q133.a002</data>
+  <data key="d8">II-II q.133 a.2 — To what virtue is it opposed?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnanimity</data>
+  <data key="d12">Magnanimity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q133-a002-treated-in-concept-magnanimity-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">mity may be considered in three ways. First, in itself; and thus it is evident that by its very nature it is opposed to magnanimity, from which it differs as great and little differ in connection with the same subject. For just as the magnanimous man tends to great things out of greatness o</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133.a002" target="concept.pusillanimity" id="edge.st.ii-ii.q133.a002.treated_in.concept.pusillanimity">
+  <data key="d6">edge.st.ii-ii.q133.a002.treated_in.concept.pusillanimity</data>
+  <data key="d7">st.ii-ii.q133.a002</data>
+  <data key="d8">II-II q.133 a.2 — To what virtue is it opposed?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.pusillanimity</data>
+  <data key="d12">Pusillanimity</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q133-a002-treated-in-concept-pusillanimity-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Pusillanimity may be considered in three ways. First, in itself; and thus it is evident that by its very nature it is opposed to magnanimity, from which it differs as great</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q133.a002" target="concept.worthiness" id="edge.st.ii-ii.q133.a002.treated_in.concept.worthiness">
+  <data key="d6">edge.st.ii-ii.q133.a002.treated_in.concept.worthiness</data>
+  <data key="d7">st.ii-ii.q133.a002</data>
+  <data key="d8">II-II q.133 a.2 — To what virtue is it opposed?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.worthiness</data>
+  <data key="d12">Worthiness</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.st-ii-ii-q133-a002-treated-in-concept-worthiness-st-ii-ii-q133-a002-resp</data>
+  <data key="d15">st.ii-ii.q133.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ity. Thirdly, it may be considered in reference to its effect, which is to shrink from the great things of which one is worthy. But, as stated above ( II-II:132:2 ad 3 ), opposition between vice and virtue depends rather on their respective species than on their cause or effect. Hence</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">honor_worthiness</data>
+</edge>
+<edge source="st.ii-ii.q134" target="concept.fortitude" id="edge.st.ii-ii.q134.treated_in.concept.fortitude">
+  <data key="d6">edge.st.ii-ii.q134.treated_in.concept.fortitude</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-treated-in-concept-fortitude-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">According to De Coelo i, 16, "we speak of virtue in relation to the extreme limit of a thing's power," not as regards the limit of deficiency, but as regards the limit of excess, the very nature of which denotes something great. Wherefore to do something great</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="concept.great_expenditure" id="edge.st.ii-ii.q134.treated_in.concept.great_expenditure">
+  <data key="d6">edge.st.ii-ii.q134.treated_in.concept.great_expenditure</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q134-treated-in-concept-great-expenditure-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">According to De Coelo i, 16, "we speak of virtue in relation to the extreme limit of a thing's power," not as regards the limit of deficiency, but as regards the limit of excess, the very nature of which denotes something great. Wherefore to do something great</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="concept.great_work" id="edge.st.ii-ii.q134.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q134.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q134-treated-in-concept-great-work-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">According to De Coelo i, 16, "we speak of virtue in relation to the extreme limit of a thing's power," not as regards the limit of deficiency, but as regards the limit of excess, the very nature of which denotes something great. Wherefore to do something great</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="concept.magnificence" id="edge.st.ii-ii.q134.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q134.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-treated-in-concept-magnificence-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">regards the limit of excess, the very nature of which denotes something great. Wherefore to do something great, whence magnificence takes its name, belongs properly to the very notion of virtue . Hence magnificence denotes a virtue .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="st.ii-ii.q134.a001" id="structural.st.ii-ii.q134.contains.st.ii-ii.q134.a001">
+  <data key="d6">structural.st.ii-ii.q134.contains.st.ii-ii.q134.a001</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q134.a001</data>
+  <data key="d12">II-II q.134 a.1 — Is magnificence a virtue?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q134.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="st.ii-ii.q134.a002" id="structural.st.ii-ii.q134.contains.st.ii-ii.q134.a002">
+  <data key="d6">structural.st.ii-ii.q134.contains.st.ii-ii.q134.a002</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q134.a002</data>
+  <data key="d12">II-II q.134 a.2 — Is it a special virtue?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q134.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="st.ii-ii.q134.a003" id="structural.st.ii-ii.q134.contains.st.ii-ii.q134.a003">
+  <data key="d6">structural.st.ii-ii.q134.contains.st.ii-ii.q134.a003</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q134.a003</data>
+  <data key="d12">II-II q.134 a.3 — What is its matter?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q134.a003.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134" target="st.ii-ii.q134.a004" id="structural.st.ii-ii.q134.contains.st.ii-ii.q134.a004">
+  <data key="d6">structural.st.ii-ii.q134.contains.st.ii-ii.q134.a004</data>
+  <data key="d7">st.ii-ii.q134</data>
+  <data key="d8">II-II q.134 — Magnificence</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q134.a004</data>
+  <data key="d12">II-II q.134 a.4 — Is it a part of fortitude?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q134.a004.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a001" target="concept.magnificence" id="edge.st.ii-ii.q134.a001.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q134.a001.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q134.a001</data>
+  <data key="d8">II-II q.134 a.1 — Is magnificence a virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a001-treated-in-concept-magnificence-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">regards the limit of excess, the very nature of which denotes something great. Wherefore to do something great, whence magnificence takes its name, belongs properly to the very notion of virtue . Hence magnificence denotes a virtue .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a001" target="concept.virtue" id="edge.st.ii-ii.q134.a001.treated_in.concept.virtue">
+  <data key="d6">edge.st.ii-ii.q134.a001.treated_in.concept.virtue</data>
+  <data key="d7">st.ii-ii.q134.a001</data>
+  <data key="d8">II-II q.134 a.1 — Is magnificence a virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a001-treated-in-concept-virtue-st-ii-ii-q134-a001-resp</data>
+  <data key="d15">st.ii-ii.q134.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">refore to do something great, whence magnificence takes its name, belongs properly to the very notion of virtue . Hence magnificence denotes a virtue .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a002" target="concept.great_work" id="edge.st.ii-ii.q134.a002.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q134.a002.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q134.a002</data>
+  <data key="d8">II-II q.134 a.2 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q134-a002-treated-in-concept-great-work-st-ii-ii-q134-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">It belongs to magnificence to do [facere] something great, as its name implies [magnificence= magna facere—i.e. to make great things]. Now "facere" may be taken in two ways, in a strict sense, and in a broad sense. St</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a002" target="concept.magnificence" id="edge.st.ii-ii.q134.a002.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q134.a002.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q134.a002</data>
+  <data key="d8">II-II q.134 a.2 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a002-treated-in-concept-magnificence-st-ii-ii-q134-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">It belongs to magnificence to do [facere] something great, as its name implies [magnificence= magna facere—i.e. to make great things]. Now "facere" may be taken in two ways, in a strict</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a002" target="concept.virtue" id="edge.st.ii-ii.q134.a002.treated_in.concept.virtue">
+  <data key="d6">edge.st.ii-ii.q134.a002.treated_in.concept.virtue</data>
+  <data key="d7">st.ii-ii.q134.a002</data>
+  <data key="d8">II-II q.134 a.2 — Is it a special virtue?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a002-treated-in-concept-virtue-st-ii-ii-q134-a002-resp</data>
+  <data key="d15">st.ii-ii.q134.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">be taken to denote the doing of something great, the doing [factio] being understood in the strict sense, it is then a special virtue . For the work done is produced by act: in the use of which it is possible to consider a special aspect of goodness , namely that the work produced [factum] by</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a003" target="concept.great_expenditure" id="edge.st.ii-ii.q134.a003.treated_in.concept.great_expenditure">
+  <data key="d6">edge.st.ii-ii.q134.a003.treated_in.concept.great_expenditure</data>
+  <data key="d7">st.ii-ii.q134.a003</data>
+  <data key="d8">II-II q.134 a.3 — What is its matter?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q134-a003-treated-in-concept-great-expenditure-st-ii-ii-q134-a003-resp</data>
+  <data key="d15">st.ii-ii.q134.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to magnificence to spend much in order that some great work may be accomplished in becoming manner. Wherefore the Philosopher says (Ethic. iv</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a003" target="concept.great_work" id="edge.st.ii-ii.q134.a003.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q134.a003.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q134.a003</data>
+  <data key="d8">II-II q.134 a.3 — What is its matter?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q134-a003-treated-in-concept-great-work-st-ii-ii-q134-a003-resp</data>
+  <data key="d15">st.ii-ii.q134.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 2 ), it belongs to magnificence to intend doing some great work. Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great expenditure. Hence it belongs to</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a003" target="concept.magnificence" id="edge.st.ii-ii.q134.a003.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q134.a003.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q134.a003</data>
+  <data key="d8">II-II q.134 a.3 — What is its matter?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a003-treated-in-concept-magnificence-st-ii-ii-q134-a003-resp</data>
+  <data key="d15">st.ii-ii.q134.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">As stated above ( Article 2 ), it belongs to magnificence to intend doing some great work. Now for the doing of a great work, proportionate expenditure is necessary , for great works cannot be produced without great e</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a004" target="concept.fortitude" id="edge.st.ii-ii.q134.a004.treated_in.concept.fortitude">
+  <data key="d6">edge.st.ii-ii.q134.a004.treated_in.concept.fortitude</data>
+  <data key="d7">st.ii-ii.q134.a004</data>
+  <data key="d8">II-II q.134 a.4 — Is it a part of fortitude?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.fortitude</data>
+  <data key="d12">Fortitude</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a004-treated-in-concept-fortitude-st-ii-ii-q134-a004-resp</data>
+  <data key="d15">st.ii-ii.q134.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Magnificence, in so far as it is a special virtue , cannot be reckoned a subjective part of fortitude , since it does not agree with this virtue in the point of matter : but it is reckoned a part thereof, as being annexed to it as secondary to principal virtue</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a004" target="concept.great_work" id="edge.st.ii-ii.q134.a004.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q134.a004.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q134.a004</data>
+  <data key="d8">II-II q.134 a.4 — Is it a part of fortitude?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q134-a004-treated-in-concept-great-work-st-ii-ii-q134-a004-resp</data>
+  <data key="d15">st.ii-ii.q134.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">fore seemingly it is seated, like fortitude , in the irascible. Yet magnificence falls short of fortitude , in that the arduous thing to which fortitude tends derives its difficulty from a danger that threatens the person , whereas the arduous thing to which magnificence tends, derives its di</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q134.a004" target="concept.magnificence" id="edge.st.ii-ii.q134.a004.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q134.a004.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q134.a004</data>
+  <data key="d8">II-II q.134 a.4 — Is it a part of fortitude?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q134-a004-treated-in-concept-magnificence-st-ii-ii-q134-a004-resp</data>
+  <data key="d15">st.ii-ii.q134.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Magnificence, in so far as it is a special virtue , cannot be reckoned a subjective part of fortitude , since it does not agree with this virtue in the point of matter : bu</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="concept.great_expenditure" id="edge.st.ii-ii.q135.treated_in.concept.great_expenditure">
+  <data key="d6">edge.st.ii-ii.q135.treated_in.concept.great_expenditure</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q135-treated-in-concept-great-expenditure-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">producing a little work, so long as he spends little. Wherefore the Philosopher says that "the mean man after going to great expense forfeits the good " of the magnificent work, "for the trifle" that he is unwilling to spend. Therefore it is evident that the mean man fails to observe the pro</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="concept.great_work" id="edge.st.ii-ii.q135.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q135.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q135-treated-in-concept-great-work-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. iv, 4) that "the magnificent man with equal expenditure will produce a more magnificent result." On the other hand, the</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="concept.magnificence" id="edge.st.ii-ii.q135.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q135.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q135-treated-in-concept-magnificence-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">As stated above ( I-II:01:3 ; I-II:18:6 ), moral acts take their species from their end, wherefore in many cases they are denominated from that end. Accordingly a man is said to be mean [parvificus] because he intends to do something little [parvum]. Now accor</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="concept.meanness_magnificence" id="edge.st.ii-ii.q135.treated_in.concept.meanness_magnificence">
+  <data key="d6">edge.st.ii-ii.q135.treated_in.concept.meanness_magnificence</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.meanness_magnificence</data>
+  <data key="d12">Meanness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-treated-in-concept-meanness-magnificence-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">w the essence of vice is that it consists in failing to do what is in accordance with reason. Hence it is manifest that meanness is a vice .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="concept.waste_magnificence" id="edge.st.ii-ii.q135.treated_in.concept.waste_magnificence">
+  <data key="d6">edge.st.ii-ii.q135.treated_in.concept.waste_magnificence</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.waste_magnificence</data>
+  <data key="d12">Waste (Banausia / Consumptio)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-treated-in-concept-waste-magnificence-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">structural_editorial</data>
+  <data key="d17">As stated above ( I-II:01:3 ; I-II:18:6 ), moral acts take their species from their end, wherefore in many cases they are denominated from that end. Accordingly a man is said to be mean [parvificus] because he intends to do something little [parvum]. Now accor</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="st.ii-ii.q135.a001" id="structural.st.ii-ii.q135.contains.st.ii-ii.q135.a001">
+  <data key="d6">structural.st.ii-ii.q135.contains.st.ii-ii.q135.a001</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q135.a001</data>
+  <data key="d12">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q135.a001.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135" target="st.ii-ii.q135.a002" id="structural.st.ii-ii.q135.contains.st.ii-ii.q135.a002">
+  <data key="d6">structural.st.ii-ii.q135.contains.st.ii-ii.q135.a002</data>
+  <data key="d7">st.ii-ii.q135</data>
+  <data key="d8">II-II q.135 — Meanness</data>
+  <data key="d9">question</data>
+  <data key="d10">contains_article</data>
+  <data key="d11">st.ii-ii.q135.a002</data>
+  <data key="d12">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d13">article</data>
+  <data key="d14"></data>
+  <data key="d15">st.ii-ii.q135.a002.obj1</data>
+  <data key="d16"></data>
+  <data key="d17"></data>
+  <data key="d18">structural</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a001" target="concept.great_expenditure" id="edge.st.ii-ii.q135.a001.treated_in.concept.great_expenditure">
+  <data key="d6">edge.st.ii-ii.q135.a001.treated_in.concept.great_expenditure</data>
+  <data key="d7">st.ii-ii.q135.a001</data>
+  <data key="d8">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q135-a001-treated-in-concept-great-expenditure-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s. This may be little or great in two ways: in one way as regards the work itself to be done, in another as regards the expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shir</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a001" target="concept.great_work" id="edge.st.ii-ii.q135.a001.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q135.a001.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q135.a001</data>
+  <data key="d8">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q135-a001-treated-in-concept-great-work-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great work. Wherefore the Philosopher says (Ethic. iv, 4) that "the magnificent man with equal expenditure will produce a more magnificent result." On the other hand, the</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a001" target="concept.magnificence" id="edge.st.ii-ii.q135.a001.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q135.a001.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q135.a001</data>
+  <data key="d8">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q135-a001-treated-in-concept-magnificence-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">great in two ways: in one way as regards the work itself to be done, in another as regards the expense. Accordingly the magnificent man intends principally the greatness of his work, and secondarily he intends the greatness of the expense, which he does not shirk, so that he may produce a great</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a001" target="concept.meanness_magnificence" id="edge.st.ii-ii.q135.a001.treated_in.concept.meanness_magnificence">
+  <data key="d6">edge.st.ii-ii.q135.a001.treated_in.concept.meanness_magnificence</data>
+  <data key="d7">st.ii-ii.q135.a001</data>
+  <data key="d8">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.meanness_magnificence</data>
+  <data key="d12">Meanness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-a001-treated-in-concept-meanness-magnificence-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">according to the Philosopher (De Praedic. Cap. Ad aliquid.) great and little are relative terms: and when we say that a mean man intends to do something little, this must be understood in relation to the kind of work he does. This may be little or great in two ways: in one way as regards</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a001" target="concept.vice" id="edge.st.ii-ii.q135.a001.treated_in.concept.vice">
+  <data key="d6">edge.st.ii-ii.q135.a001.treated_in.concept.vice</data>
+  <data key="d7">st.ii-ii.q135.a001</data>
+  <data key="d8">II-II q.135 a.1 — Is meanness a vice?</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-a001-treated-in-concept-vice-st-ii-ii-q135-a001-resp</data>
+  <data key="d15">st.ii-ii.q135.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">w the essence of vice is that it consists in failing to do what is in accordance with reason. Hence it is manifest that meanness is a vice .</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.great_expenditure" id="edge.st.ii-ii.q135.a002.treated_in.concept.great_expenditure">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.great_expenditure</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_expenditure</data>
+  <data key="d12">Great Expenditure</data>
+  <data key="d13">domain</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-great-expenditure-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">oportion between his expenditure and his work, has a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is als</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.great_work" id="edge.st.ii-ii.q135.a002.treated_in.concept.great_work">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.great_work</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.great_work</data>
+  <data key="d12">Great Work</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-great-work-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ttle. Also little and great are relative terms, as stated above ( Article 1 ). Now just as expenditure may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is mani</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.magnificence" id="edge.st.ii-ii.q135.a002.treated_in.concept.magnificence">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.magnificence</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.magnificence</data>
+  <data key="d12">Magnificence</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">diture may be little in comparison with the work, so may it be great in comparison with the work in that it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fai</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.meanness_magnificence" id="edge.st.ii-ii.q135.a002.treated_in.concept.meanness_magnificence">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.meanness_magnificence</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.meanness_magnificence</data>
+  <data key="d12">Meanness</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-meanness-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">at it exceeds the proportion which reason requires to exist between expenditure and work. Hence it is manifest that the vice of meanness, whereby a man intends to spend less than his work is worth, and thus fails to observe due proportion between his expenditure and his work, has a vice opposed</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.vice" id="edge.st.ii-ii.q135.a002.treated_in.concept.vice">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.vice</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.vice</data>
+  <data key="d12">Vice</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-vice-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s a vice opposed to it, whereby a man exceeds this same proportion, by spending more than is proportionate to his work. This vice is called in Greek banausia , so called from the Greek baunos , because, like the fire in the furnace, it consumes everything. It is also called apyrokalia , i.e. lackin</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+<edge source="st.ii-ii.q135.a002" target="concept.waste_magnificence" id="edge.st.ii-ii.q135.a002.treated_in.concept.waste_magnificence">
+  <data key="d6">edge.st.ii-ii.q135.a002.treated_in.concept.waste_magnificence</data>
+  <data key="d7">st.ii-ii.q135.a002</data>
+  <data key="d8">II-II q.135 a.2 — The vice opposed to it</data>
+  <data key="d9">article</data>
+  <data key="d10">treated_in</data>
+  <data key="d11">concept.waste_magnificence</data>
+  <data key="d12">Waste (Banausia / Consumptio)</data>
+  <data key="d13">vice</data>
+  <data key="d14">ann.st-ii-ii-q135-a002-treated-in-concept-waste-magnificence-st-ii-ii-q135-a002-resp</data>
+  <data key="d15">st.ii-ii.q135.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, i.e. lacking good fire, since like fire it consumes all, but not for a good purpose. Hence in Latin it may be called "consumptio" [waste].</data>
+  <data key="d18">reviewed_structural_editorial</data>
+  <data key="d19">expenditure_work</data>
+</edge>
+</graph></graphml>

@@ -1,0 +1,16 @@
+{
+  "candidate_mention_count": 1813,
+  "candidate_relation_count": 656,
+  "duplicate_annotation_flags": [],
+  "harmed_domain_relation_count": 21,
+  "judicial_process_relation_count": 31,
+  "justice_species_relation_count": 11,
+  "passage_count": 927,
+  "question_count": 23,
+  "restitution_related_relation_count": 7,
+  "reviewed_annotation_count": 299,
+  "reviewed_doctrinal_edge_count": 98,
+  "reviewed_structural_editorial_count": 186,
+  "status": "ok",
+  "unresolved_warnings": []
+}

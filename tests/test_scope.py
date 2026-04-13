@@ -27,4 +27,3 @@ def test_ii_ii_scope_excludes_out_of_scope_questions() -> None:
     """
     entries = parse_part_index_html("ii-ii", "https://www.newadvent.org/summa/3.htm", html_text)
     assert [entry.question_number for entry in entries] == [182]
-

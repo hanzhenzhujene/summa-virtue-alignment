@@ -1,0 +1,43 @@
+node_id,label,node_type,registry_status,description,notes
+concept.arduous_work,Arduous / Difficult Work,act_type,reviewed_seed,The difficult good work whose completion and endurance are explicitly attached to fortitude and the gift of fortitude.,
+concept.beatitude_hunger_for_justice,Beatitude of Hunger and Thirst for Justice,beatitude,seed,Beatitude pronounced on those hungering and thirsting for justice.,
+concept.charity,Charity,virtue,reviewed_seed,Theological virtue of friendship with God.,Do not auto-normalize bare 'love' to charity outside clearly theological context.
+concept.constancy_fortitude,Constancy,habit,reviewed_seed,The fortitude-related habit of persisting in good against external hindrances rather than the mere duration of the act.,Kept distinct from perseverance even though q.137 closely compares the two.
+concept.continuance_in_good,Continuance in Good,act_type,reviewed_seed,The continued accomplishment of a good work over time that is distinctive of perseverance.,
+concept.counsel_gift,Gift of Counsel,gift_holy_spirit,seed,Gift of the Holy Spirit perfecting right counsel in action.,
+concept.effeminacy_perseverance,Effeminacy,vice,reviewed_seed,"The vice by which one forsakes a good on account of difficulties that cannot be endured, especially through softness regarding pleasure.",
+concept.fortitude,Fortitude,virtue,seed,The cardinal virtue governing firmness in difficulties and dangers.,
+concept.fortitude_gift,Gift of Fortitude,gift_holy_spirit,seed,Gift of the Holy Spirit strengthening endurance in arduous good.,
+concept.god,God,object,seed,God as the object or term of theological virtue and charity.,
+concept.grace,Grace,grace,reviewed_seed,Grace as the supernatural help needed beyond fallen nature.,Generic grace remains distinct from operating and cooperating grace unless the text names the subtype.
+concept.grievous_evil,Grievous Evil / Hardship,domain,reviewed_seed,"The difficult evil or sorrow endured by patience and, analogously, by fortitude.",
+concept.longanimity_fortitude,Longanimity,habit,reviewed_seed,"The habit of tending toward a good that lies far off, compared with patience without being simply identical to it.",Kept tract-local because q.136 explicitly resists collapsing longanimity into patience.
+concept.magnanimity,Magnanimity,virtue,reviewed_seed,The fortitude-related virtue by which a person deems himself worthy of great honors and great things in due proportion.,Keep distinct from magnificence: magnanimity is honor- and worthiness-related rather than expenditure-related.
+concept.magnificence,Magnificence,virtue,reviewed_seed,The fortitude-related virtue of producing great works with proportionate expenditure.,"Keep distinct from magnanimity: magnificence concerns great works and expenditure, not honor as such."
+concept.patience,Patience,virtue,reviewed_seed,The annexed virtue by which one bears grievous evils with an equal mind for the sake of good.,Keep distinct from fruit-level patience in later correspondence work.
+concept.perseverance_virtue,Perseverance (Fortitude Part),virtue,reviewed_seed,The virtue by which one persists long in a good work despite the difficulty arising from its continuance.,This tract-local concept is kept distinct from the broader act-level `concept.perseverance` already present from the I-II grace pilot.
+concept.pertinacity_perseverance,Pertinacity,vice,reviewed_seed,"The vice by which one persists more than one ought, exceeding the mean of perseverance.",
+concept.precepts_of_fortitude,Precepts of Fortitude,precept,reviewed_seed,The precept-complex by which Divine Law directs fortitude itself toward adherence to God and brave endurance.,
+concept.precepts_of_fortitude_parts,Precepts of Patience and Perseverance,precept,reviewed_seed,The precept-complex by which Divine Law gives directions concerning patience and perseverance as annexed virtues.,
+concept.vainglory,Vainglory,vice,reviewed_seed,"Inordinate desire for empty glory, opposed in this tract to magnanimity's right use of honor and glory.",
+concept.virtue,Virtue,virtue,reviewed_seed,Generic virtue as good operative perfection.,Do not collapse generic virtue into a specific virtue without explicit passage support.
+st.ii-ii.q136,II-II q.136 — Patience,question,structural,Structural question node for the fortitude closure tract.,
+st.ii-ii.q137,II-II q.137 — Perseverance,question,structural,Structural question node for the fortitude closure tract.,
+st.ii-ii.q138,II-II q.138 — The vices opposed to perseverance,question,structural,Structural question node for the fortitude closure tract.,
+st.ii-ii.q139,II-II q.139 — The gift of fortitude,question,structural,Structural question node for the fortitude closure tract.,
+st.ii-ii.q140,II-II q.140 — The precepts of fortitude,question,structural,Structural question node for the fortitude closure tract.,
+st.ii-ii.q136.a001,II-II q.136 a.1 — Is patience a virtue?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q136.a002,II-II q.136 a.2 — Is it the greatest of the virtues?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q136.a003,II-II q.136 a.3 — Can it be had without grace?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q136.a004,II-II q.136 a.4 — Is it a part of fortitude?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q136.a005,II-II q.136 a.5 — Is it the same as longanimity?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q137.a001,II-II q.137 a.1 — Is perseverance a virtue?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q137.a002,II-II q.137 a.2 — Is it a part of fortitude?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q137.a003,II-II q.137 a.3 — Its relation to constancy,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q137.a004,II-II q.137 a.4 — Does it need the help of grace?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q138.a001,II-II q.138 a.1 — Effeminacy,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q138.a002,II-II q.138 a.2 — Pertinacity,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q139.a001,II-II q.139 a.1 — Is fortitude a gift?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q139.a002,II-II q.139 a.2 — Which among the beatitudes and fruits correspond to it?,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q140.a001,II-II q.140 a.1 — The precepts of fortitude itself,article,structural,Structural article node for the fortitude closure tract.,
+st.ii-ii.q140.a002,II-II q.140 a.2 — The precepts of its parts,article,structural,Structural article node for the fortitude closure tract.,

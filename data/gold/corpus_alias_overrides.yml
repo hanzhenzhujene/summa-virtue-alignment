@@ -1,0 +1,49 @@
+exact:
+  last end: concept.ultimate_end
+  ultimate end: concept.ultimate_end
+  articles of faith: concept.article_of_faith
+  symbol of faith: concept.symbol_of_faith
+  creed: concept.symbol_of_faith
+  legal justice: concept.general_justice
+  practical reason: concept.practical_reason
+  eternal law: concept.eternal_law
+  natural law: concept.natural_law
+  human law: concept.human_law
+  divine law: concept.divine_law
+  everlasting life: concept.eternal_life
+  cardinal virtues: concept.cardinal_virtue
+  theological virtues: concept.theological_virtue
+  ten commandments: concept.decalogue
+
+normalized:
+  render to each one his own: concept.rendering_due
+  render to everyone his own: concept.rendering_due
+  friendship of man for god: concept.friendship_with_god
+  form of the virtues: concept.form_of_virtues
+  hunger and thirst after justice: concept.beatitude_hunger_for_justice
+
+ambiguous:
+  love:
+    - concept.charity
+    - concept.love_passion
+  law:
+    - concept.law
+    - concept.natural_law
+    - concept.human_law
+    - concept.divine_law
+    - concept.eternal_law
+  grace:
+    - concept.grace
+    - concept.operating_grace
+    - concept.cooperating_grace
+  virtue:
+    - concept.virtue
+    - concept.charity
+    - concept.prudence
+    - concept.justice
+    - concept.hope
+    - concept.fortitude
+    - concept.temperance
+  fear:
+    - concept.fear
+    - concept.fear_of_lord_gift

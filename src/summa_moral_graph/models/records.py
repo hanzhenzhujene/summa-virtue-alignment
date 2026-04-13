@@ -80,4 +80,3 @@ class CrossrefRecord(BaseRecord):
     target_article_number: int | None = Field(default=None, ge=1)
     source_url: str = Field(min_length=1)
     hash: str = Field(min_length=1)
-

@@ -1,0 +1,227 @@
+{
+  "normalization_risk_questions": [
+    47,
+    49,
+    51,
+    55
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 1,
+      "candidate_relation_count": 2,
+      "major_concepts": [
+        "Command",
+        "Common Good",
+        "False Prudence",
+        "Practical Reason",
+        "Prudence",
+        "Reason",
+        "Solicitude"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 126,
+      "question_id": "st.ii-ii.q047",
+      "question_number": 47,
+      "reviewed_annotation_count": 28,
+      "reviewed_doctrinal_edge_count": 28,
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Caution",
+        "Circumspection",
+        "Docility",
+        "Domestic Prudence",
+        "Euboulia",
+        "Foresight",
+        "Gnome",
+        "Memory",
+        "Military Prudence",
+        "Political Prudence",
+        "Prudence",
+        "Reasoning",
+        "Regnative Prudence",
+        "Shrewdness",
+        "Synesis",
+        "Understanding or Intelligence"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "integral": 8,
+        "potential": 3,
+        "subjective": 4
+      },
+      "passage_count": 11,
+      "question_id": "st.ii-ii.q048",
+      "question_number": 48,
+      "reviewed_annotation_count": 31,
+      "reviewed_doctrinal_edge_count": 31,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 2,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Caution",
+        "Circumspection",
+        "Docility",
+        "Foresight",
+        "Memory",
+        "Prudence",
+        "Reasoning",
+        "Shrewdness",
+        "Understanding or Intelligence"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 64,
+      "question_id": "st.ii-ii.q049",
+      "question_number": 49,
+      "reviewed_annotation_count": 16,
+      "reviewed_doctrinal_edge_count": 16,
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Domestic Prudence",
+        "Military Prudence",
+        "Political Prudence",
+        "Prudence",
+        "Regnative Prudence"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "subjective": 4
+      },
+      "passage_count": 32,
+      "question_id": "st.ii-ii.q050",
+      "question_number": 50,
+      "reviewed_annotation_count": 12,
+      "reviewed_doctrinal_edge_count": 12,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 1,
+      "major_concepts": [
+        "Euboulia",
+        "Gnome",
+        "Prudence",
+        "Synesis"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 32,
+      "question_id": "st.ii-ii.q051",
+      "question_number": 51,
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 8,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Beatitude of Mercy",
+        "Gift of Counsel",
+        "Prudence"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 32,
+      "question_id": "st.ii-ii.q052",
+      "question_number": 52,
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 9,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Command",
+        "Imprudence",
+        "Inconstancy",
+        "Lust",
+        "Precipitation or Temerity",
+        "Prudence",
+        "Thoughtlessness"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 48,
+      "question_id": "st.ii-ii.q053",
+      "question_number": 53,
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 18,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Imprudence",
+        "Negligence",
+        "Prudence",
+        "Solicitude"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 26,
+      "question_id": "st.ii-ii.q054",
+      "question_number": 54,
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 7,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 1,
+      "candidate_relation_count": 2,
+      "major_concepts": [
+        "Covetousness",
+        "Craftiness",
+        "Fraud",
+        "Guile",
+        "Prudence",
+        "Prudence of the Flesh",
+        "Solicitude about Temporal Things",
+        "Solicitude about the Future"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 64,
+      "question_id": "st.ii-ii.q055",
+      "question_number": 55,
+      "reviewed_annotation_count": 24,
+      "reviewed_doctrinal_edge_count": 24,
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 0,
+      "candidate_relation_count": 0,
+      "major_concepts": [
+        "Craftiness",
+        "Prudence"
+      ],
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 14,
+      "question_id": "st.ii-ii.q056",
+      "question_number": 56,
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "unresolved_ambiguity_count": 0
+    }
+  ],
+  "under_annotated_questions": [
+    47,
+    49,
+    51,
+    56
+  ]
+}

@@ -5,16 +5,17 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
+from ..models.records import PartId
 from ..utils.ids import question_number_from_summa_url
 from ..utils.text import normalize_text, visible_text
 from .source import NewAdventClient
 
-PART_INDEX_URLS = {
+PART_INDEX_URLS: dict[PartId, str] = {
     "i-ii": "https://www.newadvent.org/summa/2.htm",
     "ii-ii": "https://www.newadvent.org/summa/3.htm",
 }
 
-QUESTION_RANGES = {
+QUESTION_RANGES: dict[PartId, range] = {
     "i-ii": range(1, 115),
     "ii-ii": range(1, 183),
 }
@@ -22,18 +23,22 @@ QUESTION_RANGES = {
 
 @dataclass(frozen=True)
 class ScopeEntry:
-    part_id: str
+    part_id: PartId
     question_number: int
     source_part_url: str
     source_url: str
     question_title_hint: str | None = None
 
 
-def is_in_scope(part_id: str, question_number: int) -> bool:
+def is_in_scope(part_id: PartId, question_number: int) -> bool:
     return question_number in QUESTION_RANGES.get(part_id, range(0))
 
 
-def parse_part_index_html(part_id: str, source_part_url: str, html_text: str) -> list[ScopeEntry]:
+def parse_part_index_html(
+    part_id: PartId,
+    source_part_url: str,
+    html_text: str,
+) -> list[ScopeEntry]:
     soup = BeautifulSoup(html_text, "lxml")
     seen: set[int] = set()
     entries: list[ScopeEntry] = []
@@ -66,8 +71,7 @@ def parse_part_index_html(part_id: str, source_part_url: str, html_text: str) ->
 def build_scope_manifest(refresh_cache: bool = False) -> list[ScopeEntry]:
     manifest: list[ScopeEntry] = []
     with NewAdventClient() as client:
-        for part_id in ("i-ii", "ii-ii"):
-            source_part_url = PART_INDEX_URLS[part_id]
+        for part_id, source_part_url in PART_INDEX_URLS.items():
             html_text = client.fetch_text(source_part_url, refresh_cache=refresh_cache)
             manifest.extend(parse_part_index_html(part_id, source_part_url, html_text))
     return manifest

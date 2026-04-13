@@ -72,4 +72,3 @@ def segment_citation_label(
 
 def canonical_crossref_reference(part_id: str, question_number: int, article_number: int) -> str:
     return f"{PART_DISPLAY[part_id]}:{question_number}:{article_number}"
-

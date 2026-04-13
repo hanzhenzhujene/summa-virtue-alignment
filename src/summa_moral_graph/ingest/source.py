@@ -64,4 +64,3 @@ class NewAdventClient:
         if not filename:
             raise ValueError(f"Cannot derive cache filename for URL: {url}")
         return self.cache_dir / filename
-

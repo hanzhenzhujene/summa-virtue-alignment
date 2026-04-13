@@ -26,4 +26,3 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
                 continue
             records.append(json.loads(stripped))
     return records
-
