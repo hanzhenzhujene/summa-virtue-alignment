@@ -1592,7 +1592,8 @@ def _render_map_view(data: ViewerAppData) -> None:
         "Reviewed doctrine first. Narrow the range only when the graph gets too large to read.",
     )
     st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
-    top_control_left, top_control_mid, top_control_right = st.columns((0.62, 1.0, 1.08), gap="medium")
+    st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
+    top_control_left, top_control_mid, top_control_right = st.columns((0.42, 1.22, 1.16), gap="medium")
     with top_control_left:
         st.radio(
             "Map mode",
@@ -1601,7 +1602,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             horizontal=True,
         )
     with top_control_mid:
-        st.caption("Quick spans")
+        st.markdown("<div class='smgv-map-controls-note'>Quick spans</div>", unsafe_allow_html=True)
         quick_ranges = [
             ("1–46", (1, 46)),
             ("47–56", (47, 56)),
@@ -1623,6 +1624,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                         queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
                         st.rerun()
     with top_control_right:
+        st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
         st.slider(
             "Question span",
             min_value=1,
@@ -1857,9 +1859,9 @@ def _render_map_view(data: ViewerAppData) -> None:
             ):
                 queue_widget_updates(session_state, **{MAP_MODE_KEY: "Overall map"})
                 st.rerun()
-        section_heading(
-            map_mode,
-            "Click a node to inspect it here first, then step outward to concept or passage views.",
+        st.markdown(
+            "<div class='smgv-map-controls-note'>Click a node to inspect it here first, then step outward to concept or passage views.</div>",
+            unsafe_allow_html=True,
         )
         show_relation_labels = st.checkbox(
             "Show relation labels",

@@ -592,6 +592,19 @@ def inject_viewer_css() -> None:
           margin-top: -0.08rem;
         }
 
+        .smgv-map-controls-lift {
+          height: 0.01rem;
+          margin-top: -0.1rem;
+          margin-bottom: -0.02rem;
+        }
+
+        .smgv-map-controls-note {
+          color: var(--smg-muted);
+          font-size: 0.7rem;
+          line-height: 1.18;
+          margin: 0 0 0.18rem 0;
+        }
+
         .smgv-pager-chip {
           border: 1px solid rgba(20, 34, 53, 0.1);
           border-radius: 18px;
