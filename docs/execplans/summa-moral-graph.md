@@ -2,6 +2,11 @@
 
 ## Progress
 
+- The passage explorer advanced filters are being hardened against stale cross-scope state:
+  - question options now narrow to the active part or tract scope instead of always listing the whole corpus
+  - article options now narrow to the active part/question scope instead of preserving incompatible article ids
+  - stale `question` / `article` values are now cleared before search runs, so switching part or tract scope no longer traps the reader in a false `No passages matched` state
+  - a small `Clear advanced filters` recovery action now appears directly in the empty state
 - The landing-page start/download affordances are being clarified again around user intent:
   - the home and sidebar download panels now expose a dedicated `Tract preset` control inside `Download data`, so tract scope is clearly understood as export scope rather than a hidden global dependency
   - the home `IV Map` route no longer uses a page screenshot and now renders a small abstract interactive-map preview, which better signals that this route opens a live graph surface
@@ -409,6 +414,7 @@
 
 ## Surprises & Discoveries
 
+- In passage search, the most common “broken filter” feeling did not come from search itself. It came from valid-looking question/article widget values that no longer belonged to the currently selected part or preset scope.
 - Streamlit Community Cloud currently provisions Python `3.14.x`, and `lxml==5.4.0` may not install there without system `libxml2/libxslt` development headers.
 - The current repository only needs BeautifulSoup parsing behavior for app runtime; a hard `lxml` dependency is not required to run the dashboard.
 - In a graph-centered scholarly dashboard, an expanded filter container can do more harm than a missing control. If the first fold does not show the graph itself, users read the page as a control panel instead of a map.
@@ -537,6 +543,10 @@
 
 ## Decision Log
 
+- Keep passage-explorer advanced filters scope-consistent rather than permissive:
+  - `Question` options should follow the active part or tract scope
+  - `Article` options should follow the surviving question scope
+  - invalid stale values should be cleared automatically before results are computed, instead of silently producing an empty list
 - Keep `lxml` optional for Python `3.14+` installs and use BeautifulSoup parser fallback (`lxml` first, then `html.parser`) in ingest parsing paths.
 - Keep the top of the overall-map page map-first rather than control-first. Essential mode/range controls can stay visible, but richer filters should sit behind an explicit user action instead of expanding by default.
 - Keep concept-local side metadata short enough that it does not compete with the local graph canvas. Related-question counts are a better first summary than long wrapped question lists in the narrow support column.
@@ -668,6 +678,10 @@
 
 ## Outcomes & Retrospective
 
+- Passage Explorer now behaves more like a reader tool and less like a fragile admin filter stack:
+  - switching `Part` no longer leaves an incompatible `Question` or `Article` behind
+  - tract-scoped passage reading no longer inherits impossible full-corpus combinations
+  - when a genuine empty result still happens, the page now offers an immediate filter-reset escape hatch
 - The deployment path is now more robust across hosted environments:
   - Streamlit Cloud no longer needs to compile `lxml` to install the package
   - parser behavior remains stable by preferring `lxml` when present and falling back gracefully when it is not

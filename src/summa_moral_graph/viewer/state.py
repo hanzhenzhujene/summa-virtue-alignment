@@ -91,6 +91,17 @@ class ScopeSummary:
     end_question: int | None
 
 
+@dataclass(frozen=True)
+class PassageFilterState:
+    part_options: tuple[str, ...]
+    question_options: tuple[str, ...]
+    article_options: tuple[str, ...]
+    selected_part: str
+    selected_question: str
+    selected_article: str
+    part_locked: bool
+
+
 def active_scope_summary(session_state: Mapping[str, object]) -> ScopeSummary:
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "")
     if preset_name:
@@ -262,6 +273,63 @@ def passage_results(
             and start_question <= passage.question_number <= end_question
         ]
     return results
+
+
+def normalize_passage_filter_state(
+    data: ViewerAppData,
+    *,
+    part_id: str | None,
+    question_id: str | None,
+    article_id: str | None,
+    preset_name: str | None,
+) -> PassageFilterState:
+    bundle = data.bundle
+    part_locked = preset_name is not None
+    if part_locked:
+        start_question, end_question = preset_range(preset_name)
+        scoped_passages = [
+            passage
+            for passage in bundle.passages.values()
+            if passage.part_id == "ii-ii"
+            and start_question <= passage.question_number <= end_question
+        ]
+        selected_part = "ii-ii"
+        part_options: tuple[str, ...] = ("ii-ii",)
+    else:
+        selected_part = str(part_id or "")
+        if selected_part not in {"", "i-ii", "ii-ii"}:
+            selected_part = ""
+        part_options = ("", "i-ii", "ii-ii")
+        scoped_passages = [
+            passage
+            for passage in bundle.passages.values()
+            if not selected_part or passage.part_id == selected_part
+        ]
+
+    question_options = tuple(sorted({passage.question_id for passage in scoped_passages}))
+    selected_question = str(question_id or "")
+    if selected_question not in question_options:
+        selected_question = ""
+
+    article_source_passages = [
+        passage
+        for passage in scoped_passages
+        if not selected_question or passage.question_id == selected_question
+    ]
+    article_options = tuple(sorted({passage.article_id for passage in article_source_passages}))
+    selected_article = str(article_id or "")
+    if selected_article not in article_options:
+        selected_article = ""
+
+    return PassageFilterState(
+        part_options=part_options,
+        question_options=question_options,
+        article_options=article_options,
+        selected_part=selected_part,
+        selected_question=selected_question,
+        selected_article=selected_article,
+        part_locked=part_locked,
+    )
 
 
 def selected_passage_for_results(

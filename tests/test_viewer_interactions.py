@@ -36,6 +36,7 @@ from summa_moral_graph.viewer.state import (
     concept_payload_for_selection,
     generate_structural_edges_for_range,
     graph_edges_for_view,
+    normalize_passage_filter_state,
     passage_results,
     selected_passage_for_results,
 )
@@ -235,6 +236,85 @@ def test_selected_passage_for_results_returns_none_when_result_set_is_empty() ->
     selected = selected_passage_for_results(session_state, [], data.bundle)
 
     assert selected is None
+
+
+def test_normalize_passage_filter_state_clears_stale_question_and_article_for_part() -> None:
+    data = load_viewer_data()
+
+    filters = normalize_passage_filter_state(
+        data,
+        part_id="i-ii",
+        question_id="st.ii-ii.q057",
+        article_id="st.ii-ii.q057.a001",
+        preset_name=None,
+    )
+
+    assert filters.selected_part == "i-ii"
+    assert filters.selected_question == ""
+    assert filters.selected_article == ""
+
+    results = passage_results(
+        data,
+        query="",
+        part_id=filters.selected_part or None,
+        question_id=filters.selected_question or None,
+        article_id=filters.selected_article or None,
+        segment_type=None,
+        preset_name=None,
+    )
+
+    assert results
+    assert all(passage.part_id == "i-ii" for passage in results[:25])
+
+
+def test_normalize_passage_filter_state_respects_tract_scope() -> None:
+    data = load_viewer_data()
+
+    filters = normalize_passage_filter_state(
+        data,
+        part_id="i-ii",
+        question_id="st.i-ii.q001",
+        article_id="st.i-ii.q001.a001",
+        preset_name="prudence:overview",
+    )
+
+    assert filters.part_locked is True
+    assert filters.selected_part == "ii-ii"
+    assert filters.selected_question == ""
+    assert filters.selected_article == ""
+    assert filters.part_options == ("ii-ii",)
+    assert filters.question_options
+    assert all(question_id.startswith("st.ii-ii.q0") for question_id in filters.question_options)
+
+
+def test_passage_explorer_clears_stale_advanced_filters_in_live_shell() -> None:
+    app = AppTest.from_file("streamlit_app.py")
+    app.run(timeout=30)
+    for radio in app.radio:
+        if getattr(radio, "options", None) and "Passage Explorer" in radio.options:
+            radio.set_value("Passage Explorer")
+            break
+    app.run(timeout=30)
+
+    def selectbox(label: str):
+        return next(widget for widget in app.selectbox if widget.label == label)
+
+    selectbox("Part").set_value("ii-ii")
+    app.run(timeout=30)
+    selectbox("Question").set_value("st.ii-ii.q057")
+    app.run(timeout=30)
+    selectbox("Article").set_value("st.ii-ii.q057.a001")
+    app.run(timeout=30)
+    selectbox("Part").set_value("i-ii")
+    app.run(timeout=30)
+
+    assert not app.exception
+    assert selectbox("Question").value == ""
+    assert selectbox("Article").value == ""
+    assert any(
+        button.label.startswith("Open I-II q.")
+        for button in app.button
+    )
 
 
 def test_concept_payload_for_selection_preserves_tract_scope_when_empty() -> None:

@@ -91,6 +91,7 @@ from .state import (
     graph_payload_for_export,
     graph_relation_type_options,
     graph_rows,
+    normalize_passage_filter_state,
     passage_results,
     relation_groups_for_concept,
     selected_passage_for_results,
@@ -1264,6 +1265,16 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
     bundle = data.bundle
     session_state = _session_state()
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
+    filter_state = normalize_passage_filter_state(
+        data,
+        part_id=str(session_state.get("smg_passage_part", "") or "") or None,
+        question_id=str(session_state.get("smg_passage_question", "") or "") or None,
+        article_id=str(session_state.get("smg_passage_article", "") or "") or None,
+        preset_name=preset_name,
+    )
+    session_state["smg_passage_part"] = filter_state.selected_part
+    session_state["smg_passage_question"] = filter_state.selected_question
+    session_state["smg_passage_article"] = filter_state.selected_article
 
     section_heading(
         "¶ Passage Explorer",
@@ -1283,30 +1294,23 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
         with left:
             st.selectbox(
                 "Part",
-                options=["", "i-ii", "ii-ii"],
+                options=list(filter_state.part_options),
                 format_func=lambda value: "All parts" if not value else value.upper(),
                 key="smg_passage_part",
+                disabled=filter_state.part_locked,
             )
             st.selectbox(
                 "Question",
-                options=["", *sorted(bundle.questions)],
+                options=["", *filter_state.question_options],
                 format_func=lambda value: "All questions"
                 if not value
                 else data.question_label_by_id[value],
                 key="smg_passage_question",
             )
         with right:
-            article_options = [""] + sorted(
-                {
-                    passage.article_id
-                    for passage in bundle.passages.values()
-                    if not st.session_state["smg_passage_question"]
-                    or passage.question_id == st.session_state["smg_passage_question"]
-                }
-            )
             st.selectbox(
                 "Article",
-                options=article_options,
+                options=["", *filter_state.article_options],
                 format_func=lambda value: "All articles" if not value else value,
                 key="smg_passage_article",
             )
@@ -1463,6 +1467,18 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
                 "No passages matched",
                 "Broaden the query or clear one of the advanced filters.",
             )
+            if st.button(
+                "Clear advanced filters",
+                key="smg-pass-clear-advanced-filters",
+                use_container_width=True,
+                type="secondary",
+            ):
+                session_state["smg_passage_part"] = "ii-ii" if preset_name else ""
+                session_state["smg_passage_question"] = ""
+                session_state["smg_passage_article"] = ""
+                session_state["smg_passage_segment_type"] = ""
+                session_state["smg_passage_page"] = 1
+                st.rerun()
         for passage in visible_results:
             counts = passage_activity_summary(bundle, passage.segment_id)
             support_card(
