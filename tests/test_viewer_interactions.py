@@ -30,7 +30,7 @@ from summa_moral_graph.viewer.navigation import (
     reset_map_filters,
     select_map_node,
 )
-from summa_moral_graph.viewer.shell import _open_overall_map_route
+from summa_moral_graph.viewer.shell import _open_overall_map_route, _resolve_download_scope
 from summa_moral_graph.viewer.state import (
     available_focus_tags_for_scope,
     concept_payload_for_selection,
@@ -58,6 +58,22 @@ def test_open_overall_map_route_forces_overall_mode() -> None:
     assert session_state[MAP_MODE_KEY] == "Overall map"
     assert session_state[ACTIVE_PRESET_KEY] == "prudence:overview"
     assert session_state[CONCEPT_ID_KEY] == "concept.prudence"
+
+
+def test_download_scope_defaults_to_active_preset_but_stays_local() -> None:
+    session_state: dict[str, object] = {
+        ACTIVE_PRESET_KEY: "prudence:overview",
+    }
+
+    resolved = _resolve_download_scope(
+        session_state,
+        key="smg_home_download_scope",
+        fallback_preset_name=str(session_state[ACTIVE_PRESET_KEY]),
+    )
+
+    assert resolved == "prudence:overview"
+    assert session_state["smg_home_download_scope"] == "prudence:overview"
+    assert session_state[ACTIVE_PRESET_KEY] == "prudence:overview"
 
 
 def test_open_concept_queues_concept_selectbox_widget_sync() -> None:
@@ -561,7 +577,7 @@ def test_home_open_tract_scope_button_does_not_raise_streamlit_exception() -> No
     app.run(timeout=30)
 
     for button in app.button:
-        if button.label == "Open tract scope":
+        if button.label == "Open tract":
             button.click()
             break
     app.run(timeout=30)

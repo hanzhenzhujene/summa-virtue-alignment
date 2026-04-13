@@ -1,8 +1,6 @@
 from __future__ import annotations
 
-import base64
 from collections.abc import MutableMapping
-from pathlib import Path
 from textwrap import shorten
 from typing import Any, cast
 
@@ -103,56 +101,74 @@ from .state import (
 def _session_state() -> MutableMapping[str, object]:
     return cast(MutableMapping[str, object], st.session_state)
 
-
-_ASSETS_DIR = Path(__file__).resolve().parents[3] / "docs" / "assets"
-
-
-def _asset_data_url(filename: str) -> str | None:
-    asset_path = _ASSETS_DIR / filename
-    if not asset_path.exists():
-        return None
-    encoded = base64.b64encode(asset_path.read_bytes()).decode("ascii")
-    return f"data:image/png;base64,{encoded}"
-
-
-def _route_button(
+def _route_intro(
     *,
     title: str,
     body: str,
-    button_label: str,
-    key: str,
     badge: str,
-    disabled: bool = False,
-) -> bool:
+) -> None:
     st.markdown(
         (
-            "<div class='smgv-route-block'>"
-            f"<div class='smgv-route-badge'>{badge}</div>"
-            "<div class='smgv-route-text'>"
+            "<div class='smgv-route-card-head'>"
+            f"<div class='smgv-route-index'>{badge}</div>"
             f"<div class='smgv-route-title'>{title}</div>"
             f"<div class='smgv-route-copy'>{body}</div>"
-            "</div>"
             "</div>"
         ),
         unsafe_allow_html=True,
     )
+
+
+def _route_button(
+    *,
+    button_label: str,
+    key: str,
+    button_type: str = "secondary",
+    disabled: bool = False,
+) -> bool:
     return st.button(
         button_label,
         key=key,
         use_container_width=True,
+        type=button_type,
         disabled=disabled,
     )
 
 
-def _route_preview_image(*, filename: str, alt: str, label: str) -> None:
-    data_url = _asset_data_url(filename)
-    if not data_url:
-        return
+def _route_preview_map() -> None:
     st.markdown(
         (
-            "<div class='smgv-route-preview'>"
-            f"<img src='{data_url}' alt='{alt}' />"
-            f"<div class='smgv-route-preview-label'>{label}</div>"
+            "<div class='smgv-route-preview smgv-route-preview--map' aria-hidden='true'>"
+            "<div class='smgv-route-preview-surface'>"
+            "<svg class='smgv-route-map-svg' viewBox='0 0 520 220' role='img' "
+            "aria-label='Static preview of the interactive concept graph'>"
+            "<defs>"
+            "<linearGradient id='smgv-map-stroke' x1='0%' x2='100%' y1='0%' y2='0%'>"
+            "<stop offset='0%' stop-color='#214b66' stop-opacity='0.34'/>"
+            "<stop offset='100%' stop-color='#8b442e' stop-opacity='0.42'/>"
+            "</linearGradient>"
+            "<radialGradient id='smgv-map-node-light' cx='35%' cy='30%' r='75%'>"
+            "<stop offset='0%' stop-color='#ffffff'/>"
+            "<stop offset='100%' stop-color='#e9e0d4'/>"
+            "</radialGradient>"
+            "<radialGradient id='smgv-map-node-core' cx='35%' cy='30%' r='75%'>"
+            "<stop offset='0%' stop-color='#fefefe'/>"
+            "<stop offset='100%' stop-color='#d7e6ef'/>"
+            "</radialGradient>"
+            "</defs>"
+            "<line x1='112' y1='94' x2='240' y2='72' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='240' y1='72' x2='356' y2='100' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='136' y1='150' x2='258' y2='126' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='258' y1='126' x2='376' y2='148' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='240' y1='72' x2='258' y2='126' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
+            "<circle cx='112' cy='94' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='240' cy='72' r='21' fill='url(#smgv-map-node-core)' stroke='#214b66' stroke-opacity='0.18' stroke-width='2'/>"
+            "<circle cx='356' cy='100' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='136' cy='150' r='16' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
+            "<circle cx='258' cy='126' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='376' cy='148' r='16' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
+            "</svg>"
+            "</div>"
             "</div>"
         ),
         unsafe_allow_html=True,
@@ -259,6 +275,93 @@ def _download_config_for_scope(
             f"{compact_number(len(reviewed_edges))} reviewed doctrinal edges"
         ),
     )
+
+
+def _resolve_download_scope(
+    session_state: MutableMapping[str, object],
+    *,
+    key: str,
+    fallback_preset_name: str | None,
+) -> str | None:
+    options = {"", *sorted_preset_names()}
+    current_value = str(session_state.get(key, "") or "")
+    if key not in session_state or current_value not in options:
+        session_state[key] = fallback_preset_name if fallback_preset_name in options else ""
+    resolved = str(session_state.get(key, "") or "")
+    return resolved or None
+
+
+def _render_download_panel(
+    data: ViewerAppData,
+    *,
+    panel_key: str,
+    fallback_preset_name: str | None,
+    stats_button_label: str | None = None,
+) -> None:
+    session_state = _session_state()
+    preset_key = f"{panel_key}_download_scope"
+    export_key = f"{panel_key}_export_target"
+    download_key = f"{panel_key}_download_button"
+    stats_key = f"{panel_key}_open_stats"
+
+    _resolve_download_scope(
+        session_state,
+        key=preset_key,
+        fallback_preset_name=fallback_preset_name,
+    )
+
+    st.markdown(
+        (
+            "<div class='smgv-download-note'>"
+            "Choose the tract preset for this file here. It only changes the export."
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+    preset_tab, file_tab = st.tabs(["Tract preset", "Export type"])
+    with preset_tab:
+        st.selectbox(
+            "For this download",
+            options=["", *sorted_preset_names()],
+            format_func=lambda value: "Full corpus" if not value else preset_label(value),
+            key=preset_key,
+        )
+        st.caption("Download scope only.")
+    with file_tab:
+        st.selectbox(
+            "File",
+            options=[
+                "Reviewed graph edges (CSV)",
+                "Tract coverage (CSV)",
+                "Corpus summary (JSON)",
+            ],
+            key=export_key,
+            label_visibility="collapsed",
+        )
+
+    export_data, export_name, export_mime, export_scope_note = _download_config_for_scope(
+        data,
+        preset_name=str(session_state.get(preset_key, "") or "") or None,
+        export_target=str(session_state.get(export_key, "Reviewed graph edges (CSV)") or ""),
+    )
+    st.caption(export_scope_note)
+    st.download_button(
+        "Download data",
+        data=export_data,
+        file_name=export_name,
+        mime=export_mime,
+        use_container_width=True,
+        type="primary",
+        key=download_key,
+    )
+    if stats_button_label:
+        if st.button(
+            stats_button_label,
+            key=stats_key,
+            use_container_width=True,
+        ):
+            open_stats(session_state, tab_name="Reader stats")
+            st.rerun()
 
 
 def _graph_html_for_edges(
@@ -478,37 +581,13 @@ def render_dashboard(
         )
         st.caption("Current focus")
         meta_line(_scope_pills(data))
-        sidebar_export_target = st.selectbox(
-            "Download type",
-            options=[
-                "Reviewed graph edges (CSV)",
-                "Tract coverage (CSV)",
-                "Corpus summary (JSON)",
-            ],
-            key="smg_sidebar_export_target",
-        )
-        export_data, export_name, export_mime, export_scope_note = _download_config_for_scope(
+        st.markdown("### Download data")
+        _render_download_panel(
             data,
-            preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
-            export_target=sidebar_export_target,
+            panel_key="smg_sidebar",
+            fallback_preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
+            stats_button_label="Open Stats",
         )
-        st.caption(export_scope_note)
-        st.download_button(
-            "Download selected data",
-            data=export_data,
-            file_name=export_name,
-            mime=export_mime,
-            use_container_width=True,
-            type="primary",
-            key="smg-sidebar-download-data",
-        )
-        if st.button(
-            "Open Stats",
-            key="smg-sidebar-open-stats",
-            use_container_width=True,
-        ):
-            open_stats(session_state, tab_name="Reader stats")
-            st.rerun()
 
     chosen_view = top_nav(str(session_state[ACTIVE_VIEW_KEY]), PRIMARY_VIEWS)
     if chosen_view == MAP_VIEW:
@@ -592,8 +671,8 @@ def _render_home(data: ViewerAppData) -> None:
             "<div class='smgv-start-divider smgv-start-divider--top'></div>",
             unsafe_allow_html=True,
         )
-        start_grid_top = st.columns((1, 0.045, 1), gap="small")
-        start_grid_bottom = st.columns((1, 0.045, 1), gap="small")
+        start_grid_top = st.columns((1, 0.072, 1), gap="medium")
+        start_grid_bottom = st.columns((1, 0.072, 1), gap="medium")
 
         concept_options = list(data.home_start_concepts)
         tract_options = sorted_preset_names()
@@ -602,6 +681,11 @@ def _render_home(data: ViewerAppData) -> None:
         selected_start_preset = ""
 
         with start_grid_top[0]:
+            _route_intro(
+                title="Concept",
+                body="Read one concept through doctrine, passages, and nearby links.",
+                badge="I",
+            )
             selected_start_concept = st.selectbox(
                 "High-value concept",
                 options=concept_options,
@@ -609,12 +693,10 @@ def _render_home(data: ViewerAppData) -> None:
                 key="smg_home_start_concept",
                 label_visibility="collapsed",
             )
+            st.markdown("<div class='smgv-route-control-spacer'></div>", unsafe_allow_html=True)
             if _route_button(
-                title="Concept",
-                body="Doctrine, passages, and related concepts.",
-                button_label="Open concept page",
+                button_label="Open concept",
                 key="smg-home-open-concept",
-                badge="I",
             ):
                 open_concept(session_state, selected_start_concept)
                 st.rerun()
@@ -623,6 +705,11 @@ def _render_home(data: ViewerAppData) -> None:
             st.markdown("<div class='smgv-start-v-divider'></div>", unsafe_allow_html=True)
 
         with start_grid_top[2]:
+            _route_intro(
+                title="Passage",
+                body="Start from one passage, then step out to its concepts and evidence.",
+                badge="II",
+            )
             selected_start_passage = st.selectbox(
                 "Starting passage",
                 options=list(data.home_start_passages),
@@ -630,12 +717,10 @@ def _render_home(data: ViewerAppData) -> None:
                 key="smg_home_start_passage",
                 label_visibility="collapsed",
             )
+            st.markdown("<div class='smgv-route-control-spacer'></div>", unsafe_allow_html=True)
             if _route_button(
-                title="Passage",
-                body="Read the text first, then inspect evidence.",
-                button_label="Read passage text",
+                button_label="Open passage",
                 key="smg-home-open-passage",
-                badge="II",
             ):
                 open_passage(session_state, selected_start_passage)
                 st.rerun()
@@ -646,6 +731,11 @@ def _render_home(data: ViewerAppData) -> None:
         )
 
         with start_grid_bottom[0]:
+            _route_intro(
+                title="Tract",
+                body="Enter one reviewed tract scope directly.",
+                badge="III",
+            )
             current_home_preset = str(session_state.get("smg_home_start_preset", "") or "")
             if current_home_preset not in tract_options and tract_options:
                 session_state["smg_home_start_preset"] = (
@@ -658,12 +748,13 @@ def _render_home(data: ViewerAppData) -> None:
                 key="smg_home_start_preset",
                 label_visibility="collapsed",
             )
+            st.markdown(
+                "<div class='smgv-route-control-spacer smgv-route-control-spacer--tract'></div>",
+                unsafe_allow_html=True,
+            )
             if _route_button(
-                title="Tract",
-                body="Enter one reviewed tract overlay directly.",
-                button_label="Open tract scope",
+                button_label="Open tract",
                 key="smg-home-open-tract",
-                badge="III",
             ):
                 queue_widget_updates(
                     session_state,
@@ -676,17 +767,20 @@ def _render_home(data: ViewerAppData) -> None:
             st.markdown("<div class='smgv-start-v-divider'></div>", unsafe_allow_html=True)
 
         with start_grid_bottom[2]:
-            _route_preview_image(
-                filename="dashboard-overall-map.png",
-                alt="Overall map preview",
-                label="Overall map preview",
+            _route_intro(
+                title="Map",
+                body="See the graph first, then jump back into concepts and passages.",
+                badge="IV",
+            )
+            _route_preview_map()
+            st.markdown(
+                "<div class='smgv-route-control-spacer smgv-route-control-spacer--map'></div>",
+                unsafe_allow_html=True,
             )
             if _route_button(
-                title="Map",
-                body="Open the reviewed graph and move back to text.",
-                button_label="Open overall map",
+                button_label="Open interactive map",
                 key="smg-home-open-map",
-                badge="IV",
+                button_type="primary",
             ):
                 chosen_preset = str(session_state.get("smg_home_start_preset") or "")
                 _open_overall_map_route(
@@ -697,38 +791,13 @@ def _render_home(data: ViewerAppData) -> None:
                 st.rerun()
 
     with main_right:
-        section_heading("Download", None)
-        home_export_target = st.selectbox(
-            "Download type",
-            options=[
-                "Reviewed graph edges (CSV)",
-                "Tract coverage (CSV)",
-                "Corpus summary (JSON)",
-            ],
-            key="smg_home_export_target",
-        )
-        export_data, export_name, export_mime, export_scope_note = _download_config_for_scope(
+        section_heading("Download data", None)
+        _render_download_panel(
             data,
-            preset_name=preset_name,
-            export_target=home_export_target,
+            panel_key="smg_home",
+            fallback_preset_name=preset_name,
+            stats_button_label="Open Audit",
         )
-        st.caption(export_scope_note)
-        st.download_button(
-            "Download selected data",
-            data=export_data,
-            file_name=export_name,
-            mime=export_mime,
-            use_container_width=True,
-            type="primary",
-            key="smg-home-download-data",
-        )
-        if st.button(
-            "Open Audit",
-            key="smg-home-open-audit",
-            use_container_width=True,
-        ):
-            open_stats(session_state, tab_name="Reader stats")
-            st.rerun()
         section_heading("At a glance", None)
         metric_cards(
             [

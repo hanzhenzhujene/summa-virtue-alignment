@@ -314,99 +314,98 @@ def inject_viewer_css() -> None:
           font-size: 0.84rem;
         }
 
-        .smgv-route-block {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.62rem;
-          margin: 0.04rem 0 0.18rem 0;
-          padding: 0.02rem 0 0 0;
+        .smgv-route-card-head {
+          margin: 0.04rem 0 0.32rem 0;
+          padding-top: 0.02rem;
         }
 
-        .smgv-route-badge {
-          width: 2.1rem;
-          height: 2.1rem;
-          border-radius: 999px;
-          border: 1px solid rgba(139, 68, 46, 0.22);
-          background:
-            radial-gradient(circle at 30% 30%, rgba(255,255,255,0.96), rgba(246, 237, 225, 0.96));
+        .smgv-route-index {
           display: inline-flex;
           align-items: center;
           justify-content: center;
+          min-width: 2.1rem;
+          height: 1.62rem;
+          padding: 0 0.62rem;
+          margin-bottom: 0.46rem;
+          border-radius: 999px;
+          border: 1px solid rgba(139, 68, 46, 0.24);
+          background:
+            linear-gradient(180deg, rgba(255,255,255,0.95), rgba(246, 237, 225, 0.96));
           color: var(--smg-accent);
-          font-size: 0.74rem;
+          font-size: 0.72rem;
           font-family: "Cinzel", Georgia, serif;
-          font-weight: 600;
-          letter-spacing: 0.04em;
-          flex: 0 0 auto;
-          box-shadow: inset 0 0 0 1px rgba(20, 34, 53, 0.05);
-        }
-
-        .smgv-route-text {
-          min-width: 0;
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          box-shadow:
+            inset 0 0 0 1px rgba(20, 34, 53, 0.05),
+            0 6px 14px rgba(29, 39, 49, 0.05);
         }
 
         .smgv-route-title {
           color: var(--smg-ink);
-          font-size: 0.82rem;
+          font-size: 0.9rem;
           font-family: "Cinzel", "Cormorant Garamond", Georgia, serif;
           font-weight: 600;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.06em;
           text-transform: uppercase;
-          margin-bottom: 0.14rem;
+          margin-bottom: 0.18rem;
         }
 
         .smgv-route-copy {
           color: var(--smg-muted);
           font-size: 0.72rem;
-          line-height: 1.28;
-          min-height: 0.9rem;
+          line-height: 1.34;
+          min-height: 2.02rem;
         }
 
         .smgv-route-preview {
           position: relative;
-          margin: 0.06rem 0 0.28rem 0;
-          border-radius: 16px;
-          overflow: hidden;
-          border: 1px solid rgba(20, 34, 53, 0.12);
-          box-shadow: 0 10px 22px rgba(29, 39, 49, 0.08);
-          background: rgba(255, 252, 248, 0.92);
+          margin: -0.2rem 0 0.08rem 0;
+          border-radius: 0;
+          overflow: visible;
+          border: none;
+          box-shadow: none;
+          background: transparent;
         }
 
-        .smgv-route-preview img {
-          display: block;
+        .smgv-route-preview-surface {
+          position: relative;
           width: 100%;
-          height: 8.1rem;
-          object-fit: cover;
-          object-position: center top;
-          filter: saturate(0.92) contrast(1.02);
+          height: 3.72rem;
         }
 
         .smgv-route-preview::after {
           content: "";
           position: absolute;
           inset: 0;
-          background: linear-gradient(
-            180deg,
-            rgba(20, 34, 53, 0.02) 0%,
-            rgba(20, 34, 53, 0.08) 100%
-          );
+          background: none;
           pointer-events: none;
         }
 
-        .smgv-route-preview-label {
-          position: absolute;
-          left: 0.62rem;
-          bottom: 0.52rem;
-          z-index: 1;
-          padding: 0.22rem 0.52rem;
-          border-radius: 999px;
-          background: rgba(249, 243, 236, 0.92);
-          border: 1px solid rgba(20, 34, 53, 0.1);
-          color: var(--smg-ink);
-          font-size: 0.64rem;
-          font-family: "Cinzel", Georgia, serif;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+        .smgv-route-preview--map {
+          background: transparent;
+        }
+
+        .smgv-route-preview--map::after {
+          background: none;
+        }
+
+        .smgv-route-map-svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+
+        .smgv-route-control-spacer {
+          height: 0.06rem;
+        }
+
+        .smgv-route-control-spacer--tract {
+          height: 0.58rem;
+        }
+
+        .smgv-route-control-spacer--map {
+          height: 0.04rem;
         }
 
         .smgv-start-divider {
@@ -421,8 +420,8 @@ def inject_viewer_css() -> None:
         }
 
         .smgv-start-divider--rows {
-          height: 1.02rem;
-          margin: 0.2rem 0 0.28rem 0;
+          height: 1.12rem;
+          margin: 0.22rem 0 0.34rem 0;
         }
 
         .smgv-start-tight {
@@ -454,18 +453,22 @@ def inject_viewer_css() -> None:
           position: absolute;
           left: 50%;
           top: 50%;
-          width: 0.72rem;
-          height: 0.72rem;
+          width: 5.4rem;
+          height: 0.32rem;
           border-radius: 999px;
           transform: translate(-50%, -50%);
-          background:
-            radial-gradient(
-              circle,
-              rgba(139, 68, 46, 0.18) 0%,
-              rgba(139, 68, 46, 0.08) 42%,
-              rgba(139, 68, 46, 0) 78%
-            );
+          background: linear-gradient(
+            90deg,
+            rgba(20, 34, 53, 0),
+            rgba(139, 68, 46, 0.3) 24%,
+            rgba(139, 68, 46, 0.56) 50%,
+            rgba(139, 68, 46, 0.3) 76%,
+            rgba(20, 34, 53, 0)
+          );
           pointer-events: none;
+          box-shadow:
+            0 -5px 0 rgba(20, 34, 53, 0.08),
+            0 5px 0 rgba(20, 34, 53, 0.08);
         }
 
         .smgv-home-snapshot-lift {
@@ -476,32 +479,55 @@ def inject_viewer_css() -> None:
         .smgv-start-v-divider {
           position: relative;
           min-height: 100%;
-          height: 7.2rem;
-          margin: 0.1rem 0 0.14rem 0;
+          height: 9.65rem;
+          margin: 0.12rem 0 0.16rem 0;
         }
 
         .smgv-start-v-divider::before {
           content: "";
           position: absolute;
-          top: 0.1rem;
-          bottom: 0.1rem;
+          top: 0;
+          bottom: 0;
           left: 50%;
-          width: 1px;
+          width: 2px;
           transform: translateX(-50%);
           background: linear-gradient(
             180deg,
             rgba(20, 34, 53, 0),
-            rgba(20, 34, 53, 0.12) 16%,
-            rgba(139, 68, 46, 0.18) 50%,
-            rgba(20, 34, 53, 0.12) 84%,
+            rgba(20, 34, 53, 0.18) 14%,
+            rgba(139, 68, 46, 0.28) 50%,
+            rgba(20, 34, 53, 0.18) 86%,
             rgba(20, 34, 53, 0)
           );
+          box-shadow:
+            0 0 0 1px rgba(255,255,255,0.18),
+            0 0 24px rgba(139, 68, 46, 0.06);
+        }
+
+        .smgv-start-v-divider::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 0.52rem;
+          height: 0.52rem;
+          transform: translate(-50%, -50%);
+          border-radius: 999px;
+          background:
+            radial-gradient(circle, rgba(139, 68, 46, 0.34), rgba(139, 68, 46, 0.02) 72%);
         }
 
         .smgv-small {
           color: var(--smg-muted);
           font-size: 0.76rem;
           line-height: 1.38;
+        }
+
+        .smgv-download-note {
+          margin: 0.06rem 0 0.38rem 0;
+          color: rgba(20, 34, 53, 0.66);
+          font-size: 0.68rem;
+          line-height: 1.35;
         }
 
         .smgv-meta-line {
@@ -835,6 +861,87 @@ def inject_viewer_css() -> None:
           letter-spacing: 0.01em;
           box-shadow: 0 10px 22px rgba(29, 39, 49, 0.07);
           transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+        }
+
+        [class*="st-key-smg-home-open-"] button {
+          min-height: 2.92rem !important;
+          border-radius: 18px !important;
+          border: 1px solid rgba(139, 68, 46, 0.24) !important;
+          background:
+            linear-gradient(
+              145deg,
+              rgba(255, 254, 251, 0.99) 0%,
+              rgba(249, 241, 231, 0.99) 42%,
+              rgba(232, 219, 202, 0.98) 100%
+            ) !important;
+          box-shadow:
+            0 16px 28px rgba(29, 39, 49, 0.09),
+            0 3px 0 rgba(125, 91, 62, 0.16),
+            inset 0 1px 0 rgba(255,255,255,0.82),
+            inset -1px -4px 8px rgba(139, 68, 46, 0.08) !important;
+          font-family: "Cinzel", Georgia, serif !important;
+          font-size: 0.8rem !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.08em !important;
+          text-transform: uppercase !important;
+        }
+
+        [class*="st-key-smg-home-open-tract"],
+        [class*="st-key-smg-home-open-map"] {
+          margin-top: -0.14rem;
+        }
+
+        [class*="st-key-smg-home-open-"] button:hover {
+          border-color: rgba(139, 68, 46, 0.42) !important;
+          background:
+            linear-gradient(
+              145deg,
+              rgba(255, 254, 251, 1) 0%,
+              rgba(250, 243, 234, 0.99) 42%,
+              rgba(236, 224, 209, 0.99) 100%
+            ) !important;
+          box-shadow:
+            0 20px 36px rgba(29, 39, 49, 0.11),
+            0 3px 0 rgba(125, 91, 62, 0.19),
+            inset 0 1px 0 rgba(255,255,255,0.9),
+            inset -1px -5px 9px rgba(139, 68, 46, 0.1) !important;
+          transform: translateY(-1px);
+        }
+
+        [class*="st-key-smg-home-open-map"] button {
+          background:
+            linear-gradient(
+              145deg,
+              #6f97b5 0%,
+              #4d7899 42%,
+              #2d5874 100%
+            ) !important;
+          color: #fdf8f2 !important;
+          border-color: rgba(32, 68, 93, 0.94) !important;
+          box-shadow:
+            0 18px 34px rgba(20, 44, 65, 0.24),
+            0 4px 0 rgba(18, 40, 57, 0.42),
+            inset 0 1px 0 rgba(255,255,255,0.24),
+            inset -1px -6px 10px rgba(13, 30, 43, 0.2),
+            inset 0 0 0 1px rgba(255,255,255,0.08) !important;
+          text-shadow: 0 1px 0 rgba(8, 16, 24, 0.28);
+        }
+
+        [class*="st-key-smg-home-open-map"] button:hover {
+          border-color: rgba(33, 78, 112, 0.98) !important;
+          background:
+            linear-gradient(
+              145deg,
+              #7aa3c1 0%,
+              #5683a5 42%,
+              #376785 100%
+            ) !important;
+          box-shadow:
+            0 22px 40px rgba(20, 44, 65, 0.28),
+            0 4px 0 rgba(18, 40, 57, 0.46),
+            inset 0 1px 0 rgba(255,255,255,0.3),
+            inset -1px -6px 10px rgba(13, 30, 43, 0.18),
+            inset 0 0 0 1px rgba(255,255,255,0.12) !important;
         }
 
         [class*="st-key-smgv-nav-"] button {

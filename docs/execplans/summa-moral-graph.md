@@ -2,6 +2,41 @@
 
 ## Progress
 
+- The landing-page start/download affordances are being clarified again around user intent:
+  - the home and sidebar download panels now expose a dedicated `Tract preset` control inside `Download data`, so tract scope is clearly understood as export scope rather than a hidden global dependency
+  - the home `IV Map` route no longer uses a page screenshot and now renders a small abstract interactive-map preview, which better signals that this route opens a live graph surface
+  - the `Start` block row separator has been strengthened into a visibly readable horizontal divider so the two launch rows no longer blur together
+- The home `Start` grid is being simplified again for faster first-glance reading:
+  - each route now leads with its Roman numeral and title at the top of the card instead of placing the numeral mid-layout beside the copy
+  - the 1–2 and 3–4 columns now use a stronger vertical divider so the two-column structure reads immediately
+  - the map tile preview has been reduced to a quieter static panel with no floating chips or pseudo-interactive labels competing with the card title
+- The start-route polish pass now leans more clearly into the map as the marquee entry:
+  - the `Map` tile now uses a stable inline SVG preview instead of CSS-positioned decorative fragments that could feel broken
+  - the map CTA now reads `Open interactive map`
+  - the four home-route buttons now use a stronger, more product-like button treatment, with the map CTA carrying the deepest emphasis
+- The map route preview is being stripped down again for visual cleanliness:
+  - the outer preview frame and the inner SVG box have both been removed
+  - the graph preview now sits directly on the page background with no nested panel effect
+  - the preview height is slightly reduced so the map tile pulls upward and reads lighter
+- The map CTA and tile spacing are being tightened one more step:
+  - the home map button now renders as a true primary button so the gradient treatment is guaranteed rather than only CSS-dependent
+  - the preview band is shorter and sits closer to the button, reducing dead vertical space in the bottom-right tile
+- The start-card baseline is being tuned for a cleaner row finish:
+  - small control spacers now normalize the distance from selector/preview to button across the four home cards
+  - the tract row receives a deliberate spacer so its CTA baseline sits closer to the map CTA
+  - the map button gradient has been deepened and brightened so it reads unmistakably as the marquee action
+- The map CTA gradient is being refined toward a clearer center-weighted ribbon:
+  - the button now uses a horizontal light-to-dark-to-light blue gradient
+  - the outer blue stops are darker than before so the sides no longer feel washed out
+  - the center stop has now been lifted slightly so the middle reads rich rather than overly dark
+  - the center transition has now been softened again so the button reads smoother and less sharply pinched at the middle
+- The home launch buttons are now being steered away from flat ribbons toward a more tactile treatment:
+  - all four start buttons now use a diagonal highlight-to-shadow gradient with stronger lower-edge shadowing
+  - the map CTA now places its darker weight toward the lower-right, so it reads more like a raised button than a striped band
+- The lower `Start` row is being nudged upward for cleaner baseline alignment:
+  - the tract spacer is now smaller
+  - the map preview band is shorter again
+  - the `Open tract` and `Open interactive map` button wrappers now receive a small shared upward shift so their bottoms align more cleanly
 - The repository has now been moved back to private visibility on GitHub while the Streamlit deployment remains a separate sharing surface that still needs to be made public from Streamlit Community Cloud settings.
 - The repository visibility has now been iterated in support of launch testing:
   - it was briefly made public to validate public-facing repo copy and links
