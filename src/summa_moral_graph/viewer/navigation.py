@@ -68,6 +68,7 @@ DEFAULT_STATE: dict[str, object] = {
     "smg_map_segment_types": [],
     "smg_map_question_spotlight": "",
     "smg_map_center_concept": "",
+    "smg_map_show_filters": False,
     "smg_map_show_relation_labels": True,
     "smg_stats_coverage_part": "",
     "smg_stats_coverage_status": ["parsed", "partial"],
@@ -275,9 +276,14 @@ def open_map(
     if concept_id is not None:
         session_state[CONCEPT_ID_KEY] = concept_id
         if PENDING_WIDGET_UPDATES_KEY in session_state:
-            queue_widget_updates(session_state, smg_map_center_concept=concept_id)
+            queue_widget_updates(
+                session_state,
+                smg_map_center_concept=concept_id,
+                smg_map_show_relation_labels=True,
+            )
         else:
             session_state["smg_map_center_concept"] = concept_id
+            session_state["smg_map_show_relation_labels"] = True
     if edge_id is not None:
         session_state[EDGE_ID_KEY] = edge_id
     if preset_name is not None:
@@ -287,9 +293,20 @@ def open_map(
             session_state[ACTIVE_PRESET_KEY] = preset_name
     if mode is not None:
         if PENDING_WIDGET_UPDATES_KEY in session_state:
-            queue_widget_updates(session_state, **{MAP_MODE_KEY: mode})
+            queue_widget_updates(
+                session_state,
+                **{
+                    MAP_MODE_KEY: mode,
+                    "smg_map_show_relation_labels": True,
+                },
+            )
         else:
             session_state[MAP_MODE_KEY] = mode
+            session_state["smg_map_show_relation_labels"] = True
+    elif PENDING_WIDGET_UPDATES_KEY in session_state:
+        queue_widget_updates(session_state, smg_map_show_relation_labels=True)
+    else:
+        session_state["smg_map_show_relation_labels"] = True
     session_state[ACTIVE_VIEW_KEY] = MAP_VIEW
 
 

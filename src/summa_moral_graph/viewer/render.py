@@ -85,8 +85,8 @@ def inject_viewer_css() -> None:
 
         .block-container {
           max-width: 1460px;
-          padding-top: 3rem;
-          padding-bottom: 3rem;
+          padding-top: 2.86rem;
+          padding-bottom: 2.55rem;
         }
 
         h1, h2, h3, h4 {
@@ -143,7 +143,7 @@ def inject_viewer_css() -> None:
           background:
             linear-gradient(135deg, rgba(255, 252, 248, 0.99), rgba(249, 242, 234, 0.9));
           box-shadow: var(--smg-shadow);
-          margin-bottom: 0.52rem;
+          margin-bottom: 0.28rem;
           position: relative;
           overflow: hidden;
         }
@@ -263,13 +263,13 @@ def inject_viewer_css() -> None:
         }
 
         .smgv-section {
-          margin: 1.12rem 0 0.58rem 0;
+          margin: 0.62rem 0 0.34rem 0;
         }
 
         .smgv-section h2,
         .smgv-section h3 {
           margin: 0 0 0.2rem 0;
-          font-size: 1.26rem;
+          font-size: 1.18rem;
           line-height: 1.02;
         }
 
@@ -285,7 +285,7 @@ def inject_viewer_css() -> None:
           border: 1px solid var(--smg-line);
           border-radius: var(--smg-radius-lg);
           background: var(--smg-panel);
-          padding: 1rem 1.05rem;
+          padding: 0.92rem 1rem;
           box-shadow: 0 10px 26px rgba(29, 39, 49, 0.05);
           height: 100%;
           position: relative;
@@ -317,8 +317,8 @@ def inject_viewer_css() -> None:
         .smgv-route-block {
           display: flex;
           align-items: flex-start;
-          gap: 0.7rem;
-          margin: 0.1rem 0 0.32rem 0;
+          gap: 0.62rem;
+          margin: 0.04rem 0 0.18rem 0;
           padding: 0.02rem 0 0 0;
         }
 
@@ -357,26 +357,26 @@ def inject_viewer_css() -> None:
 
         .smgv-route-copy {
           color: var(--smg-muted);
-          font-size: 0.74rem;
-          line-height: 1.34;
-          min-height: 1.18rem;
+          font-size: 0.72rem;
+          line-height: 1.28;
+          min-height: 0.9rem;
         }
 
         .smgv-start-divider {
           position: relative;
-          height: 0.88rem;
-          margin: 0.08rem 0 0.16rem 0;
+          height: 0.62rem;
+          margin: 0.04rem 0 0.1rem 0;
         }
 
         .smgv-start-divider--top {
-          height: 0.54rem;
-          margin: 0 0 0.24rem 0;
+          height: 0.36rem;
+          margin: 0 0 0.12rem 0;
         }
 
         .smgv-start-tight {
           height: 0.01rem;
-          margin-top: -0.22rem;
-          margin-bottom: -0.06rem;
+          margin-top: -0.18rem;
+          margin-bottom: -0.02rem;
         }
 
         .smgv-start-divider::before {
@@ -399,14 +399,14 @@ def inject_viewer_css() -> None:
 
         .smgv-home-snapshot-lift {
           height: 0.04rem;
-          margin-top: -2.05rem;
+          margin-top: -2.72rem;
         }
 
         .smgv-start-v-divider {
           position: relative;
           min-height: 100%;
-          height: 8.3rem;
-          margin: 0.18rem 0 0.28rem 0;
+          height: 7.2rem;
+          margin: 0.1rem 0 0.14rem 0;
         }
 
         .smgv-start-v-divider::before {
@@ -482,7 +482,7 @@ def inject_viewer_css() -> None:
           border: 1px solid var(--smg-line);
           border-radius: 18px;
           background: rgba(255, 252, 248, 0.96);
-          padding: 0.62rem 0.82rem;
+          padding: 0.54rem 0.78rem 0.48rem 0.78rem;
           box-shadow: 0 8px 20px rgba(29, 39, 49, 0.04);
           position: relative;
           overflow: hidden;
@@ -509,7 +509,7 @@ def inject_viewer_css() -> None:
           font-family: "Cormorant Garamond", Georgia, serif;
           font-size: 1.28rem;
           line-height: 1;
-          margin-top: 0.2rem;
+          margin-top: 0.12rem;
           color: var(--smg-ink);
         }
 
@@ -517,7 +517,7 @@ def inject_viewer_css() -> None:
           display: flex;
           align-items: center;
           gap: 0.8rem;
-          margin: 0.02rem 0 0.26rem 0;
+          margin: 0.18rem 0 0.08rem 0;
           color: var(--smg-muted);
         }
 
@@ -546,7 +546,7 @@ def inject_viewer_css() -> None:
         .smgv-top-nav-tail {
           height: 0.38rem;
           margin-top: -0.02rem;
-          margin-bottom: 0.34rem;
+          margin-bottom: 0.12rem;
           position: relative;
         }
 
@@ -572,7 +572,24 @@ def inject_viewer_css() -> None:
           color: var(--smg-muted);
           font-size: 0.66rem;
           line-height: 1.28;
-          margin-top: 0.18rem;
+          margin-top: 0.1rem;
+        }
+
+        .smgv-map-summary {
+          display: flex;
+          flex-direction: column;
+          gap: 0.52rem;
+        }
+
+        .smgv-map-summary-note {
+          color: var(--smg-muted);
+          font-size: 0.72rem;
+          line-height: 1.35;
+          margin-top: 0.02rem;
+        }
+
+        .smgv-map-section-tight {
+          margin-top: -0.08rem;
         }
 
         .smgv-pager-chip {
@@ -781,8 +798,8 @@ def inject_viewer_css() -> None:
 
         div.stButton,
         div.stDownloadButton {
-          margin-top: 0.22rem;
-          margin-bottom: 0.56rem;
+          margin-top: 0.18rem;
+          margin-bottom: 0.32rem;
         }
 
         div.stButton > button:hover,

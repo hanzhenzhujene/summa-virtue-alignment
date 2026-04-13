@@ -6,6 +6,22 @@
   - `lxml` is no longer a hard dependency on Python 3.14 environments
   - ingest HTML parsing now falls back to Python's built-in `html.parser` when `lxml` is unavailable
   - this preserves parser behavior for local environments with `lxml` while avoiding Cloud build failures tied to missing system `libxml2/libxslt` headers
+- The shell spacing is being refined again for cleaner first-fold readability:
+  - the top navigator now sits a little lower so the `Guide` line no longer feels clipped against the app chrome
+  - main section, route-card, and button spacing have been tightened so the downward shift does not make the page taller overall
+  - the snapshot lift and start-grid spacing have been rebalanced together rather than moving only one block
+- Map entry now re-enables relation labels on arrival:
+  - `open_map()` now restores `Show relation labels` to on when users enter the overall map
+  - this makes the default map reading mode more explicit even after a prior session turned labels off
+  - regression coverage now protects the route-level default, not only initial session-state defaults
+- The viewer is now being tightened around first-fold map visibility:
+  - the Concept Explorer local map now sits higher in the reading order and uses a wider, taller canvas
+  - the Overall Map now keeps only mode/range controls above the graph by default, with heavier filters moved behind an explicit `Show more filters` toggle
+  - the home snapshot block has been lifted again so the landing page shows more signal before the first scroll
+- The README top section is now being simplified toward one obvious public entry:
+  - the live Streamlit app now replaces the earlier run/deploy choice cluster at the top of the README
+  - fresh home and overall-map screenshots have been regenerated after the latest layout pass
+  - GitHub, docs, and maintainer setup paths remain available, but no longer compete with the live viewer button in the first screen
 - The README front page is now being pushed closer to a real public product surface:
   - the top section now includes badge-style metadata, stronger run/deploy calls to action, and a compact three-column viewer summary
   - freshly generated dashboard screenshots now appear near the top of the README for both the landing view and the overall map
@@ -349,6 +365,9 @@
 
 - Streamlit Community Cloud currently provisions Python `3.14.x`, and `lxml==5.4.0` may not install there without system `libxml2/libxslt` development headers.
 - The current repository only needs BeautifulSoup parsing behavior for app runtime; a hard `lxml` dependency is not required to run the dashboard.
+- In a graph-centered scholarly dashboard, an expanded filter container can do more harm than a missing control. If the first fold does not show the graph itself, users read the page as a control panel instead of a map.
+- The auto-carried center concept was enough to make the old overall-map filter panel feel “active” even when the user had not intentionally narrowed anything. That made the page look busier than it really was.
+- README top-level choice overload matters quickly once the app is already live. After deployment exists, a public-facing repo front page benefits from one obvious “open the app” path and demoting run/deploy/setup choices beneath it.
 - The site feels much more “AI dashboard” than “finished scholarly object” when icons are emoji-forward. Classical typography and restrained ornament do more work here than adding more decorative graphics.
 - On the landing page, a disabled route button reads to users as a broken button, not as a helpful guardrail. The tract card works better when it always starts from a real reviewed tract.
 - The recent overall-map bug was not mainly a widget problem; the deeper failure was that range rendering still assumed a single tract family even after the UI had grown cross-tract quick spans and free-form question sliders.
@@ -473,6 +492,9 @@
 ## Decision Log
 
 - Keep `lxml` optional for Python `3.14+` installs and use BeautifulSoup parser fallback (`lxml` first, then `html.parser`) in ingest parsing paths.
+- Keep the top of the overall-map page map-first rather than control-first. Essential mode/range controls can stay visible, but richer filters should sit behind an explicit user action instead of expanding by default.
+- Keep concept-local side metadata short enough that it does not compete with the local graph canvas. Related-question counts are a better first summary than long wrapped question lists in the narrow support column.
+- Once the public Streamlit deployment exists, give the README a single primary app-entry button at the top and demote GitHub/setup/deployment choices to secondary positions.
 - For the overall map, question ranges should aggregate every overlapping reviewed tract adapter rather than forcing users into one-family spans. When a selected range has no reviewed tract coverage, the UI should say that directly instead of asking for a preset as though the user had made no scope choice.
 - Use New Advent as the primary parser target for the first sprint.
 - Keep raw HTML cached locally and out of version control.
@@ -603,6 +625,14 @@
 - The deployment path is now more robust across hosted environments:
   - Streamlit Cloud no longer needs to compile `lxml` to install the package
   - parser behavior remains stable by preferring `lxml` when present and falling back gracefully when it is not
+- The graph views now read more like the product's center of gravity:
+  - the local concept map appears earlier and larger in the concept page
+  - the overall map no longer spends its first fold on advanced filters
+  - README screenshots now reflect this more map-forward layout
+- The repo front page is now closer to a real public viewer homepage:
+  - the live Streamlit app is the first obvious action
+  - secondary repo/setup paths no longer compete with the deployed viewer in the opening block
+  - the top screenshots better match the current product surface instead of an older layout state
 - The shell now feels closer to a polished artifact than a generic analytics app:
   - navigation reads as a designed navigator rather than five default buttons
   - Roman-numeral route markers fit the tone better than emoji badges

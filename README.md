@@ -9,9 +9,9 @@ An interactive map of Thomas Aquinas's moral corpus.
 
 > Passage-grounded concept, relation, and graph navigation across Aquinas's moral corpus.
 >
-> **[Open on GitHub](https://github.com/hanzhenzhujene/summa-moral-graph)** · **[Run now](#run-the-dashboard)** · **[Deploy now](#deploy-from-github-with-streamlit)**
+> [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://summa-moral-graph.streamlit.app/)
 >
-> by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
 This dashboard is built to be read, not merely queried. Start from a concept, a passage, a tract
 scope, or the overall map, and move between concept, relation, passage, and graph without losing
@@ -22,15 +22,10 @@ visibly separate throughout the app.
 
 ## Open The Viewer
 
-| GitHub | Run now | Deploy now | Docs |
-| --- | --- | --- | --- |
-| **[Repository](https://github.com/hanzhenzhujene/summa-moral-graph)** | **[`make app`](#run-the-dashboard)** | **[Streamlit Community Cloud](#deploy-from-github-with-streamlit)** | [Viewer audit](./docs/dashboard_interaction_audit.md) |
+**[Open the live app](https://summa-moral-graph.streamlit.app/)**  
+`https://summa-moral-graph.streamlit.app/`
 
 The Streamlit entrypoint is [`streamlit_app.py`](./streamlit_app.py).
-
-| Run now | Deploy now |
-| --- | --- |
-| Create a local environment, install dependencies, and launch the Streamlit shell immediately.<br><br>`python3.12 -m venv .venv`<br>`source .venv/bin/activate`<br>`pip install -e ".[dev]"`<br>`make app` | Publish the repo directly from GitHub with Streamlit Community Cloud.<br><br>1. Open [Streamlit Community Cloud](https://share.streamlit.io/).<br>2. Choose `hanzhenzhujene/summa-moral-graph`.<br>3. Set branch `main`.<br>4. Set main file `streamlit_app.py`. |
 
 | Dashboard home | Overall map |
 | --- | --- |

@@ -22,6 +22,7 @@ from summa_moral_graph.viewer.navigation import (
     consume_widget_updates,
     ensure_session_state,
     open_concept,
+    open_map,
     open_passage,
     open_stats,
     queue_map_action,
@@ -103,6 +104,20 @@ def test_ensure_session_state_defaults_relation_labels_to_on() -> None:
 
     assert session_state["smg_map_show_relation_labels"] is True
     assert session_state["smg_concept_show_relation_labels"] is True
+
+
+def test_open_map_forces_relation_labels_on() -> None:
+    session_state: dict[str, object] = {
+        ACTIVE_VIEW_KEY: "Concept Explorer",
+        MAP_MODE_KEY: "Local map",
+        "smg_map_show_relation_labels": False,
+    }
+
+    open_map(session_state, concept_id="concept.justice", mode="Overall map")
+
+    assert session_state[ACTIVE_VIEW_KEY] == MAP_VIEW
+    assert session_state[MAP_MODE_KEY] == "Overall map"
+    assert session_state["smg_map_show_relation_labels"] is True
 
 
 def test_reset_map_filters_clears_focus_tags_without_losing_mode_or_center() -> None:

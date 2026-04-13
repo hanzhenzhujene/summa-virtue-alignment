@@ -774,10 +774,7 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
 
     section_heading(
         "Concept Explorer",
-        (
-            "Start with a concept, read the distinction notes, inspect the "
-            "local map, then open supporting passages."
-        ),
+        "Start with one concept, then move between nearby doctrine, passages, and map context.",
     )
 
     controls_left, controls_right = st.columns((0.9, 1.1), gap="large")
@@ -814,7 +811,7 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
         selected_concept_id = available_concept_ids[0]
         session_state[CONCEPT_ID_KEY] = selected_concept_id
 
-    nav_column, detail_column = st.columns((0.54, 1.66), gap="large")
+    nav_column, detail_column = st.columns((0.48, 1.72), gap="large")
     with nav_column:
         section_heading("Browse concepts", "Pick one concept and keep the reading panel open.")
         pending_concept_widget = str(
@@ -878,34 +875,10 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                 ],
             )
 
-        metric_cards(
-            [
-                MetricCard(
-                    "Reviewed doctrine",
-                    compact_number(len(reviewed_edges)),
-                    "Incident doctrinal edges in the current scope.",
-                ),
-                MetricCard(
-                    "Editorial correspondences",
-                    compact_number(len(editorial_edges)),
-                    "Visible, but separate from doctrine.",
-                ),
-                MetricCard(
-                    "Candidate mentions",
-                    compact_number(len(candidate_mentions)),
-                    "Unreviewed detections touching this concept.",
-                ),
-                MetricCard(
-                    "Supporting passages",
-                    compact_number(len(supporting_passages)),
-                    "Passage cards available below.",
-                ),
-            ]
-        )
-
-        map_column, summary_column = st.columns((1.62, 0.48), gap="medium")
+        st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
+        map_column, summary_column = st.columns((1.92, 0.44), gap="medium")
         with map_column:
-            section_heading("Local map", "Read the nearby concept network before going wide.")
+            section_heading("Local map", None)
             local_map_controls_left, local_map_controls_right = st.columns(2, gap="small")
             with local_map_controls_left:
                 include_editorial_map = st.checkbox(
@@ -923,10 +896,10 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                 graph_result = render_clickable_graph(
                     graph_html=_graph_html_for_edges(
                         local_edges,
-                        height=690,
+                        height=760,
                         show_relation_labels=show_relation_labels,
                     ),
-                    height="710px",
+                    height="780px",
                     key=f"smg-local-map-{selected_concept_id}-{int(show_relation_labels)}",
                 )
                 if graph_result.warning:
@@ -948,22 +921,26 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                     ),
                 )
         with summary_column:
-            st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
             relation_groups = relation_groups_for_concept(
                 reviewed_edges,
                 concept_id=selected_concept_id,
             )
-            st.caption(
-                f"Scope: {scope_label} · {compact_number(len(relation_groups))} relation groups · "
-                f"Questions {format_question_list(list(payload.get('related_questions', [])))}"
+            st.markdown(
+                (
+                    "<div class='smgv-map-summary-note'>"
+                    f"{scope_label} · {compact_number(len(relation_groups))} relation groups · "
+                    f"{compact_number(len(list(payload.get('related_questions', []))))} related questions"
+                    "</div>"
+                ),
+                unsafe_allow_html=True,
             )
-            key_value_card(
-                "Counts",
+            pill_row(
                 [
-                    ("Reviewed", compact_number(len(reviewed_edges))),
-                    ("Editorial", compact_number(len(editorial_edges))),
-                    ("Candidates", compact_number(len(candidate_mentions))),
+                    f"Reviewed {compact_number(len(reviewed_edges))}",
+                    f"Editorial {compact_number(len(editorial_edges))}",
+                    f"Candidates {compact_number(len(candidate_mentions))}",
                 ],
+                tone="accent",
             )
             if st.button(
                 "← Return to overall map",
@@ -994,6 +971,32 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                     st.caption(
                         "Aliases: " + ", ".join(str(alias) for alias in concept["aliases"][:8])
                     )
+
+        metric_cards(
+            [
+                MetricCard(
+                    "Reviewed doctrine",
+                    compact_number(len(reviewed_edges)),
+                    "Incident doctrinal edges in the current scope.",
+                ),
+                MetricCard(
+                    "Editorial correspondences",
+                    compact_number(len(editorial_edges)),
+                    "Visible, but separate from doctrine.",
+                ),
+                MetricCard(
+                    "Candidate mentions",
+                    compact_number(len(candidate_mentions)),
+                    "Unreviewed detections touching this concept.",
+                ),
+                MetricCard(
+                    "Supporting passages",
+                    compact_number(len(supporting_passages)),
+                    "Passage cards available below.",
+                ),
+            ],
+            row_gap=0.22,
+        )
 
         section_heading("Reviewed doctrinal edges", "Grouped by relation family for close reading.")
         if reviewed_edges:
@@ -1585,21 +1588,84 @@ def _render_map_view(data: ViewerAppData) -> None:
         session_state["smg_map_center_concept"] = current_center
 
     section_heading(
-        "✣ Overall Map",
-        (
-            "Start with a tract span or question spotlight, then inspect one node "
-            "or one edge at a time."
-        ),
+        "Overall Map",
+        "Reviewed doctrine first. Narrow the range only when the graph gets too large to read.",
     )
-    with st.expander("Map controls", expanded=False):
+    st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
+    top_control_left, top_control_mid, top_control_right = st.columns((0.62, 1.0, 1.08), gap="medium")
+    with top_control_left:
+        st.radio(
+            "Map mode",
+            options=["Local map", "Overall map"],
+            key=MAP_MODE_KEY,
+            horizontal=True,
+        )
+    with top_control_mid:
+        st.caption("Quick spans")
+        quick_ranges = [
+            ("1–46", (1, 46)),
+            ("47–56", (47, 56)),
+            ("57–122", (57, 122)),
+            ("123–140", (123, 140)),
+            ("141–170", (141, 170)),
+            ("All", (1, 182)),
+        ]
+        quick_rows = [quick_ranges[:3], quick_ranges[3:]]
+        for row_index, quick_row in enumerate(quick_rows):
+            quick_columns = st.columns(len(quick_row), gap="small")
+            for column, (label, range_value) in zip(quick_columns, quick_row, strict=False):
+                with column:
+                    if st.button(
+                        label,
+                        key=f"smg-map-quick-range-{row_index}-{label}",
+                        use_container_width=True,
+                    ):
+                        queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
+                        st.rerun()
+    with top_control_right:
+        st.slider(
+            "Question span",
+            min_value=1,
+            max_value=182,
+            key="smg_map_range",
+            help=(
+                "Numeric question span. Pair it with a tract preset or question "
+                "spotlight when you want a tighter overall map."
+            ),
+        )
+
+    preliminary_map_range = normalize_map_range(session_state.get("smg_map_range", (1, 46)))
+    available_focus_tags = sorted(
+        set(
+            available_focus_tags_for_scope(
+                data,
+                preset_name=preset_name,
+                map_range=preliminary_map_range,
+            )
+        )
+        | set(cast(list[str], session_state.get("smg_map_focus_tags", [])))
+    )
+    advanced_filter_active = any(
+        [
+            bool(session_state.get("smg_map_include_structural")),
+            bool(session_state.get("smg_map_include_editorial")),
+            bool(session_state.get("smg_map_include_candidate")),
+            bool(session_state.get("smg_map_relation_groups")),
+            bool(session_state.get("smg_map_relation_types")),
+            bool(session_state.get("smg_map_node_types")),
+            bool(session_state.get("smg_map_focus_tags")),
+            bool(session_state.get("smg_map_segment_types")),
+            bool(session_state.get("smg_map_question_spotlight")),
+        ]
+    )
+    show_more_filters = st.toggle(
+        "Show more filters",
+        key="smg_map_show_filters",
+        help="Reveal layer toggles, focus tags, relation filters, and other advanced controls.",
+    )
+    if show_more_filters or advanced_filter_active:
         control_left, control_mid, control_right = st.columns(3, gap="large")
         with control_left:
-            st.radio(
-                "Map mode",
-                options=["Local map", "Overall map"],
-                key=MAP_MODE_KEY,
-                horizontal=True,
-            )
             st.checkbox(
                 "Include structural edges",
                 key="smg_map_include_structural",
@@ -1612,6 +1678,19 @@ def _render_map_view(data: ViewerAppData) -> None:
                 "Include candidate proposals",
                 key="smg_map_include_candidate",
             )
+            if available_focus_tags:
+                st.multiselect(
+                    "Focus tags",
+                    options=available_focus_tags,
+                    format_func=pretty_tag,
+                    key="smg_map_focus_tags",
+                    help=(
+                        "Focus tags stay visible even when they filter the graph down to zero. "
+                        "Clear them here if you need to recover the map."
+                    ),
+                )
+            else:
+                st.caption("No tract-specific focus tags are available in this span yet.")
         with control_mid:
             st.selectbox(
                 "Center concept",
@@ -1632,43 +1711,12 @@ def _render_map_view(data: ViewerAppData) -> None:
                 options=list(RELATION_GROUPS),
                 key="smg_map_relation_groups",
             )
-        with control_right:
-            st.caption("Quick spans")
-            quick_ranges = [
-                ("1–46", (1, 46)),
-                ("47–56", (47, 56)),
-                ("57–122", (57, 122)),
-                ("123–140", (123, 140)),
-                ("141–170", (141, 170)),
-                ("All", (1, 182)),
-            ]
-            quick_rows = [quick_ranges[:3], quick_ranges[3:]]
-            for row_index, quick_row in enumerate(quick_rows):
-                quick_columns = st.columns(len(quick_row), gap="small")
-                for column, (label, range_value) in zip(quick_columns, quick_row, strict=False):
-                    with column:
-                        if st.button(
-                            label,
-                            key=f"smg-map-quick-range-{row_index}-{label}",
-                            use_container_width=True,
-                        ):
-                            queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
-                            st.rerun()
-            st.slider(
-                "Question span",
-                min_value=1,
-                max_value=182,
-                key="smg_map_range",
-                help=(
-                    "Numeric question span. Pair it with a tract preset or question "
-                    "spotlight when you want a tighter overall map."
-                ),
-            )
             st.multiselect(
                 "Exact relation types",
                 options=graph_relation_type_options(bundle),
                 key="smg_map_relation_types",
             )
+        with control_right:
             st.multiselect(
                 "Node types",
                 options=sorted(
@@ -1676,6 +1724,12 @@ def _render_map_view(data: ViewerAppData) -> None:
                     | {"question", "article"}
                 ),
                 key="smg_map_node_types",
+            )
+            st.multiselect(
+                "Evidence segment types",
+                options=["obj", "sc", "resp", "ad"],
+                key="smg_map_segment_types",
+                help="Filter edges by the segment types of their supporting passages.",
             )
 
     include_structural = bool(session_state.get("smg_map_include_structural"))
@@ -1696,23 +1750,8 @@ def _render_map_view(data: ViewerAppData) -> None:
         cast(list[str], session_state.get("smg_map_segment_types", []))
     )
     map_mode = str(session_state.get(MAP_MODE_KEY, "Overall map"))
+    _render_map_reset_actions(session_state)
 
-    local_edges_unfocused, _ = graph_edges_for_view(
-        data,
-        preset_name=preset_name,
-        map_range=map_range,
-        include_structural=False,
-        include_editorial=include_editorial,
-        include_candidate=False,
-        relation_types=relation_types or None,
-        relation_groups=relation_groups or None,
-        node_types=node_types or None,
-        focus_tags=None,
-        question_id=map_question,
-        center_concept=center_concept,
-        segment_types=segment_types or None,
-        local_only=True,
-    )
     overall_edges_unfocused, _ = graph_edges_for_view(
         data,
         preset_name=preset_name,
@@ -1763,99 +1802,6 @@ def _render_map_view(data: ViewerAppData) -> None:
     )
     visible_edges = local_edges if map_mode == "Local map" else overall_edges
     visible_reason = local_reason if map_mode == "Local map" else overall_reason
-    available_focus_tags = sorted(
-        set(
-            available_focus_tags_for_scope(
-                data,
-                preset_name=preset_name,
-                map_range=map_range,
-            )
-        )
-        | focus_tags
-    )
-
-    if available_focus_tags:
-        st.multiselect(
-            "Focus tags",
-            options=available_focus_tags,
-            format_func=pretty_tag,
-            key="smg_map_focus_tags",
-            help=(
-                "Focus tags stay visible even when they filter the graph down to zero. "
-                "Clear them here if you need to recover the map."
-            ),
-        )
-    else:
-        st.caption("Focus tags")
-        st.caption(
-            "No tract-specific focus tags are available in this question span yet. "
-            "Try 57-122, 123-140, 141-170, or All."
-        )
-    st.multiselect(
-        "Evidence segment types",
-        options=["obj", "sc", "resp", "ad"],
-        key="smg_map_segment_types",
-        help="Filter edges by the segment types of their supporting passages.",
-    )
-
-    metric_cards(
-        [
-            MetricCard(
-                "Visible edges",
-                compact_number(len(visible_edges)),
-                f"{map_mode} after filters.",
-            ),
-            MetricCard(
-                "Visible nodes",
-                compact_number(
-                    len(
-                        {str(edge["subject_id"]) for edge in visible_edges}
-                        | {str(edge["object_id"]) for edge in visible_edges}
-                    )
-                ),
-                "Distinct nodes touched by the current slice.",
-            ),
-            MetricCard(
-                "Doctrinal edges",
-                compact_number(
-                    sum(
-                        1
-                        for edge in visible_edges
-                        if edge["layer"] == "reviewed_doctrinal"
-                    )
-                ),
-                "Default public graph layer.",
-            ),
-            MetricCard(
-                "Non-doctrinal overlays",
-                compact_number(
-                    sum(
-                        1
-                        for edge in visible_edges
-                        if edge["layer"] != "reviewed_doctrinal"
-                    )
-                ),
-                "Editorial, structural, or candidate layers currently visible.",
-            ),
-        ]
-    )
-    pill_row(
-        _map_filter_pills(
-            map_mode=map_mode,
-            map_range=map_range,
-            map_question=map_question,
-            relation_groups=relation_groups,
-            relation_types=relation_types,
-            node_types=node_types,
-            focus_tags=focus_tags,
-            segment_types=segment_types,
-            include_structural=include_structural,
-            include_editorial=include_editorial,
-            include_candidate=include_candidate,
-        ),
-        tone="accent",
-    )
-    _render_map_reset_actions(session_state)
 
     map_notice_title: str | None = None
     map_notice_body: str | None = None
@@ -1899,7 +1845,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             map_question=map_question,
         )
 
-    graph_column, evidence_column = st.columns((1.35, 0.88), gap="large")
+    graph_column, evidence_column = st.columns((1.58, 0.82), gap="large")
     node_rows, edge_rows = graph_rows(visible_edges)
     node_catalog = {str(row["node_id"]): row for row in node_rows}
     with graph_column:
@@ -1913,10 +1859,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                 st.rerun()
         section_heading(
             map_mode,
-            (
-                "Click a node to inspect it here first, then decide whether "
-                "to open concept or passage views."
-            ),
+            "Click a node to inspect it here first, then step outward to concept or passage views.",
         )
         show_relation_labels = st.checkbox(
             "Show relation labels",
@@ -1929,10 +1872,10 @@ def _render_map_view(data: ViewerAppData) -> None:
             graph_result = render_clickable_graph(
                 graph_html=_graph_html_for_edges(
                     visible_edges,
-                    height=720,
+                    height=760,
                     show_relation_labels=show_relation_labels,
                 ),
-                height="740px",
+                height="780px",
                 key=f"smg-map-{map_mode}-{int(show_relation_labels)}",
             )
             if graph_result.warning:
@@ -1980,10 +1923,7 @@ def _render_map_view(data: ViewerAppData) -> None:
     with evidence_column:
         section_heading(
             "Legend and evidence",
-            (
-                "Use the selected node and selected edge panels as the "
-                "reading bridge back to text."
-            ),
+            "Use the selected node and selected edge panels as the bridge back to text.",
         )
         layer_badges(["reviewed_doctrinal", "reviewed_structural", "structural", "candidate"])
         focus_counts = graph_focus_counts(visible_edges)
@@ -2243,6 +2183,65 @@ def _render_map_view(data: ViewerAppData) -> None:
                     preset_name=preset_name,
                 )
                 st.rerun()
+
+    metric_cards(
+        [
+            MetricCard(
+                "Visible edges",
+                compact_number(len(visible_edges)),
+                f"{map_mode} after filters.",
+            ),
+            MetricCard(
+                "Visible nodes",
+                compact_number(
+                    len(
+                        {str(edge["subject_id"]) for edge in visible_edges}
+                        | {str(edge["object_id"]) for edge in visible_edges}
+                    )
+                ),
+                "Distinct nodes touched by the current slice.",
+            ),
+            MetricCard(
+                "Doctrinal edges",
+                compact_number(
+                    sum(
+                        1
+                        for edge in visible_edges
+                        if edge["layer"] == "reviewed_doctrinal"
+                    )
+                ),
+                "Default public graph layer.",
+            ),
+            MetricCard(
+                "Non-doctrinal overlays",
+                compact_number(
+                    sum(
+                        1
+                        for edge in visible_edges
+                        if edge["layer"] != "reviewed_doctrinal"
+                    )
+                ),
+                "Editorial, structural, or candidate layers currently visible.",
+            ),
+        ],
+        row_gap=0.22,
+    )
+    pill_row(
+        _map_filter_pills(
+            map_mode=map_mode,
+            map_range=map_range,
+            map_question=map_question,
+            relation_groups=relation_groups,
+            relation_types=relation_types,
+            node_types=node_types,
+            focus_tags=focus_tags,
+            segment_types=segment_types,
+            include_structural=include_structural,
+            include_editorial=include_editorial,
+            include_candidate=include_candidate,
+        ),
+        tone="accent",
+    )
 
 
 def _render_stats_audit(data: ViewerAppData) -> None:
