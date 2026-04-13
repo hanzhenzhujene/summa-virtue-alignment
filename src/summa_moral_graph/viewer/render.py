@@ -362,6 +362,53 @@ def inject_viewer_css() -> None:
           min-height: 0.9rem;
         }
 
+        .smgv-route-preview {
+          position: relative;
+          margin: 0.06rem 0 0.28rem 0;
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid rgba(20, 34, 53, 0.12);
+          box-shadow: 0 10px 22px rgba(29, 39, 49, 0.08);
+          background: rgba(255, 252, 248, 0.92);
+        }
+
+        .smgv-route-preview img {
+          display: block;
+          width: 100%;
+          height: 8.1rem;
+          object-fit: cover;
+          object-position: center top;
+          filter: saturate(0.92) contrast(1.02);
+        }
+
+        .smgv-route-preview::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            180deg,
+            rgba(20, 34, 53, 0.02) 0%,
+            rgba(20, 34, 53, 0.08) 100%
+          );
+          pointer-events: none;
+        }
+
+        .smgv-route-preview-label {
+          position: absolute;
+          left: 0.62rem;
+          bottom: 0.52rem;
+          z-index: 1;
+          padding: 0.22rem 0.52rem;
+          border-radius: 999px;
+          background: rgba(249, 243, 236, 0.92);
+          border: 1px solid rgba(20, 34, 53, 0.1);
+          color: var(--smg-ink);
+          font-size: 0.64rem;
+          font-family: "Cinzel", Georgia, serif;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+
         .smgv-start-divider {
           position: relative;
           height: 0.62rem;
@@ -371,6 +418,11 @@ def inject_viewer_css() -> None:
         .smgv-start-divider--top {
           height: 0.36rem;
           margin: 0 0 0.12rem 0;
+        }
+
+        .smgv-start-divider--rows {
+          height: 1.02rem;
+          margin: 0.2rem 0 0.28rem 0;
         }
 
         .smgv-start-tight {
@@ -395,6 +447,25 @@ def inject_viewer_css() -> None:
             rgba(20, 34, 53, 0)
           );
           transform: translateY(-50%);
+        }
+
+        .smgv-start-divider--rows::after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 0.72rem;
+          height: 0.72rem;
+          border-radius: 999px;
+          transform: translate(-50%, -50%);
+          background:
+            radial-gradient(
+              circle,
+              rgba(139, 68, 46, 0.18) 0%,
+              rgba(139, 68, 46, 0.08) 42%,
+              rgba(139, 68, 46, 0) 78%
+            );
+          pointer-events: none;
         }
 
         .smgv-home-snapshot-lift {

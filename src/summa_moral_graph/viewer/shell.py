@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import base64
 from collections.abc import MutableMapping
+from pathlib import Path
 from textwrap import shorten
 from typing import Any, cast
 
@@ -102,6 +104,17 @@ def _session_state() -> MutableMapping[str, object]:
     return cast(MutableMapping[str, object], st.session_state)
 
 
+_ASSETS_DIR = Path(__file__).resolve().parents[3] / "docs" / "assets"
+
+
+def _asset_data_url(filename: str) -> str | None:
+    asset_path = _ASSETS_DIR / filename
+    if not asset_path.exists():
+        return None
+    encoded = base64.b64encode(asset_path.read_bytes()).decode("ascii")
+    return f"data:image/png;base64,{encoded}"
+
+
 def _route_button(
     *,
     title: str,
@@ -128,6 +141,21 @@ def _route_button(
         key=key,
         use_container_width=True,
         disabled=disabled,
+    )
+
+
+def _route_preview_image(*, filename: str, alt: str, label: str) -> None:
+    data_url = _asset_data_url(filename)
+    if not data_url:
+        return
+    st.markdown(
+        (
+            "<div class='smgv-route-preview'>"
+            f"<img src='{data_url}' alt='{alt}' />"
+            f"<div class='smgv-route-preview-label'>{label}</div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
     )
 
 
@@ -612,7 +640,10 @@ def _render_home(data: ViewerAppData) -> None:
                 open_passage(session_state, selected_start_passage)
                 st.rerun()
 
-        st.markdown("<div class='smgv-start-divider'></div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='smgv-start-divider smgv-start-divider--rows'></div>",
+            unsafe_allow_html=True,
+        )
 
         with start_grid_bottom[0]:
             current_home_preset = str(session_state.get("smg_home_start_preset", "") or "")
@@ -645,10 +676,15 @@ def _render_home(data: ViewerAppData) -> None:
             st.markdown("<div class='smgv-start-v-divider'></div>", unsafe_allow_html=True)
 
         with start_grid_bottom[2]:
+            _route_preview_image(
+                filename="dashboard-overall-map.png",
+                alt="Overall map preview",
+                label="Overall map preview",
+            )
             if _route_button(
                 title="Map",
                 body="Open the reviewed graph and move back to text.",
-                button_label="Open reviewed map",
+                button_label="Open overall map",
                 key="smg-home-open-map",
                 badge="IV",
             ):

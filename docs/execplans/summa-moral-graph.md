@@ -14,8 +14,10 @@
   - the top navigator now sits a little lower so the `Guide` line no longer feels clipped against the app chrome
   - main section, route-card, and button spacing have been tightened so the downward shift does not make the page taller overall
   - the snapshot lift and start-grid spacing have been rebalanced together rather than moving only one block
+  - the `Start` block now has a more legible horizontal divider between its top and bottom rows so the two launch bands read as distinct groups
   - the overall-map page no longer repeats the `Overall Map` title above the canvas, and its quick-span / question-span controls now sit in a tighter top row so the graph starts earlier
   - the overall-map quick spans are now a single row with the `All` shortcut removed, and the intro sentence sits closer to the title instead of floating in a loose block
+  - the home-page `IV Map` route now includes a small overall-map preview image so the map entry reads visually as a graph destination rather than only a text button
 - Map entry now re-enables relation labels on arrival:
   - `open_map()` now restores `Show relation labels` to on when users enter the overall map
   - this makes the default map reading mode more explicit even after a prior session turned labels off
