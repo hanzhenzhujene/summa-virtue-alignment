@@ -17,8 +17,8 @@ def test_temperance_reports_are_consistent(
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 2085,
-        "candidate_relation_count": 674,
+        "candidate_mention_count": 1258,
+        "candidate_relation_count": 468,
         "clemency_cruelty_relation_count": 5,
         "continence_incontinence_relation_count": 6,
         "drink_related_relation_count": 8,
@@ -26,7 +26,7 @@ def test_temperance_reports_are_consistent(
         "integral_part_relation_count": 2,
         "meekness_anger_relation_count": 8,
         "modesty_general_relation_count": 3,
-        "passage_count": 815,
+        "passage_count": 407,
         "potential_part_relation_count": 7,
         "question_count": 20,
         "registered_concepts_used": 48,
@@ -54,8 +54,8 @@ def test_temperance_question_rows_keep_cluster_and_usage_details(
     by_question = {row["question_number"]: row for row in coverage["questions"]}
 
     assert by_question[141]["parse_status"] == "ok"
-    assert by_question[143]["parse_status"] == "partial"
-    assert by_question[148]["parse_status"] == "partial"
+    assert by_question[143]["parse_status"] == "ok"
+    assert by_question[148]["parse_status"] == "ok"
     assert by_question[149]["parse_status"] == "partial"
     assert by_question[143]["part_taxonomy_usage"] == {
         "integral": 2,

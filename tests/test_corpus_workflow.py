@@ -31,7 +31,7 @@ def test_corpus_manifest_integrity() -> None:
         "questions_parsed": 296,
         "articles_expected": 1482,
         "articles_parsed": 1482,
-        "passages_parsed": 12337,
+        "passages_parsed": 6032,
     }
     assert len(question_rows) == 303
     assert len(article_rows) == 1482
@@ -62,10 +62,10 @@ def test_build_corpus_reports_is_ok() -> None:
     assert summary["questions_parsed"] == 296
     assert summary["articles_expected"] == 1482
     assert summary["articles_parsed"] == 1482
-    assert summary["passages_parsed"] == 12337
+    assert summary["passages_parsed"] == 6032
     assert summary["reviewed_annotations"] == 501
-    assert summary["candidate_mentions"] == 41973
-    assert summary["candidate_relation_proposals"] == 13342
+    assert summary["candidate_mentions"] == 25755
+    assert summary["candidate_relation_proposals"] == 8977
     assert summary["validation_status"] == "ok"
     assert validation["status"] == "ok"
     assert validation["unresolved_warnings"] == []

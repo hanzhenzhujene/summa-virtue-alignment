@@ -15,18 +15,16 @@
     70,
     71,
     72,
-    73,
     74,
     75,
-    76,
     77,
     78,
     79
   ],
   "questions": [
     {
-      "candidate_mention_count": 66,
-      "candidate_relation_count": 19,
+      "candidate_mention_count": 39,
+      "candidate_relation_count": 12,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {
@@ -42,7 +40,7 @@
         "Right of Nations"
       ],
       "parse_status": "ok",
-      "passage_count": 31,
+      "passage_count": 15,
       "question_id": "st.ii-ii.q057",
       "question_number": 57,
       "question_title": "Right",
@@ -50,11 +48,11 @@
       "reviewed_annotation_count": 16,
       "reviewed_doctrinal_edge_count": 6,
       "reviewed_structural_editorial_count": 10,
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 503,
-      "candidate_relation_count": 166,
+      "candidate_mention_count": 287,
+      "candidate_relation_count": 108,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {
@@ -69,8 +67,8 @@
         "Virtue",
         "Will"
       ],
-      "parse_status": "partial",
-      "passage_count": 101,
+      "parse_status": "ok",
+      "passage_count": 49,
       "question_id": "st.ii-ii.q058",
       "question_number": 58,
       "question_title": "Justice",
@@ -78,11 +76,11 @@
       "reviewed_annotation_count": 27,
       "reviewed_doctrinal_edge_count": 6,
       "reviewed_structural_editorial_count": 19,
-      "unresolved_ambiguity_count": 76
+      "unresolved_ambiguity_count": 41
     },
     {
-      "candidate_mention_count": 141,
-      "candidate_relation_count": 61,
+      "candidate_mention_count": 82,
+      "candidate_relation_count": 37,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {},
@@ -92,7 +90,7 @@
         "Justice"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q059",
       "question_number": 59,
       "question_title": "Injustice",
@@ -100,11 +98,11 @@
       "reviewed_annotation_count": 7,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 5,
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 112,
-      "candidate_relation_count": 35,
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 21,
       "injury_domain_usage": {},
       "judicial_process_usage": {
         "Judge": 2,
@@ -125,7 +123,7 @@
         "Usurped Judgment"
       ],
       "parse_status": "ok",
-      "passage_count": 51,
+      "passage_count": 25,
       "question_id": "st.ii-ii.q060",
       "question_number": 60,
       "question_title": "Judgment",
@@ -133,11 +131,11 @@
       "reviewed_annotation_count": 20,
       "reviewed_doctrinal_edge_count": 10,
       "reviewed_structural_editorial_count": 10,
-      "unresolved_ambiguity_count": 31
+      "unresolved_ambiguity_count": 22
     },
     {
-      "candidate_mention_count": 124,
-      "candidate_relation_count": 43,
+      "candidate_mention_count": 67,
+      "candidate_relation_count": 20,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {
@@ -151,7 +149,7 @@
         "Particular Justice"
       ],
       "parse_status": "partial",
-      "passage_count": 33,
+      "passage_count": 15,
       "question_id": "st.ii-ii.q061",
       "question_number": 61,
       "question_title": "The parts of Justice",
@@ -159,11 +157,11 @@
       "reviewed_annotation_count": 11,
       "reviewed_doctrinal_edge_count": 4,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 72,
-      "candidate_relation_count": 30,
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 25,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {},
@@ -176,7 +174,7 @@
         "Unjust Detention"
       ],
       "parse_status": "ok",
-      "passage_count": 67,
+      "passage_count": 32,
       "question_id": "st.ii-ii.q062",
       "question_number": 62,
       "question_title": "Restitution",
@@ -187,11 +185,11 @@
       "reviewed_annotation_count": 18,
       "reviewed_doctrinal_edge_count": 5,
       "reviewed_structural_editorial_count": 10,
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 59,
-      "candidate_relation_count": 17,
+      "candidate_mention_count": 41,
+      "candidate_relation_count": 13,
       "injury_domain_usage": {
         "Fairness in Distribution": 1
       },
@@ -207,7 +205,7 @@
         "Respect of Persons"
       ],
       "parse_status": "partial",
-      "passage_count": 31,
+      "passage_count": 14,
       "question_id": "st.ii-ii.q063",
       "question_number": 63,
       "question_title": "Respect of persons",
@@ -215,11 +213,11 @@
       "reviewed_annotation_count": 11,
       "reviewed_doctrinal_edge_count": 4,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 8
     },
     {
-      "candidate_mention_count": 103,
-      "candidate_relation_count": 45,
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 34,
       "injury_domain_usage": {
         "Life": 2
       },
@@ -239,7 +237,7 @@
         "Unjust Killing"
       ],
       "parse_status": "ok",
-      "passage_count": 71,
+      "passage_count": 35,
       "question_id": "st.ii-ii.q064",
       "question_number": 64,
       "question_title": "Murder",
@@ -250,8 +248,8 @@
       "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 25,
-      "candidate_relation_count": 8,
+      "candidate_mention_count": 15,
+      "candidate_relation_count": 5,
       "injury_domain_usage": {
         "Bodily Integrity": 2,
         "Personal Liberty": 1
@@ -269,7 +267,7 @@
         "Unjust Detention"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q065",
       "question_number": 65,
       "question_title": "Other injuries committed on the person",
@@ -280,8 +278,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 71,
-      "candidate_relation_count": 31,
+      "candidate_mention_count": 56,
+      "candidate_relation_count": 26,
       "injury_domain_usage": {
         "Property": 2
       },
@@ -296,7 +294,7 @@
         "Theft"
       ],
       "parse_status": "ok",
-      "passage_count": 71,
+      "passage_count": 35,
       "question_id": "st.ii-ii.q066",
       "question_number": 66,
       "question_title": "Theft and robbery",
@@ -306,11 +304,11 @@
       "reviewed_annotation_count": 21,
       "reviewed_doctrinal_edge_count": 7,
       "reviewed_structural_editorial_count": 14,
-      "unresolved_ambiguity_count": 4
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 43,
-      "candidate_relation_count": 13,
+      "candidate_mention_count": 24,
+      "candidate_relation_count": 8,
       "injury_domain_usage": {
         "Truth in Legal Proceedings": 1
       },
@@ -329,7 +327,7 @@
         "Unjust Judgment"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q067",
       "question_number": 67,
       "question_title": "The injustice of a judge, in judging",
@@ -337,11 +335,11 @@
       "reviewed_annotation_count": 13,
       "reviewed_doctrinal_edge_count": 6,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 30,
-      "candidate_relation_count": 11,
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 9,
       "injury_domain_usage": {
         "Reputation": 1,
         "Truth in Legal Proceedings": 1
@@ -360,7 +358,7 @@
         "Truth in Legal Proceedings"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q068",
       "question_number": 68,
       "question_title": "Matters concerning unjust accusation",
@@ -368,11 +366,11 @@
       "reviewed_annotation_count": 12,
       "reviewed_doctrinal_edge_count": 5,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 2
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 55,
-      "candidate_relation_count": 19,
+      "candidate_mention_count": 40,
+      "candidate_relation_count": 14,
       "injury_domain_usage": {
         "Truth in Legal Proceedings": 1
       },
@@ -389,7 +387,7 @@
         "Unjust Appeal"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q069",
       "question_number": 69,
       "question_title": "Sins committed against justice: of the part of the defendant",
@@ -397,11 +395,11 @@
       "reviewed_annotation_count": 13,
       "reviewed_doctrinal_edge_count": 6,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 12
+      "unresolved_ambiguity_count": 10
     },
     {
-      "candidate_mention_count": 28,
-      "candidate_relation_count": 14,
+      "candidate_mention_count": 26,
+      "candidate_relation_count": 12,
       "injury_domain_usage": {
         "Truth in Legal Proceedings": 1
       },
@@ -418,7 +416,7 @@
         "Witness"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q070",
       "question_number": 70,
       "question_title": "Injustice with regard to the person of the witness",
@@ -429,8 +427,8 @@
       "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 27,
-      "candidate_relation_count": 11,
+      "candidate_mention_count": 17,
+      "candidate_relation_count": 9,
       "injury_domain_usage": {
         "Fairness in Exchange": 1
       },
@@ -448,7 +446,7 @@
         "Restitution"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q071",
       "question_number": 71,
       "question_title": "Injustice in judgment: the part of counsel",
@@ -458,11 +456,11 @@
       "reviewed_annotation_count": 12,
       "reviewed_doctrinal_edge_count": 5,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 4
+      "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 42,
-      "candidate_relation_count": 14,
+      "candidate_mention_count": 26,
+      "candidate_relation_count": 11,
       "injury_domain_usage": {
         "Honor": 2
       },
@@ -474,7 +472,7 @@
         "Reviling"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q072",
       "question_number": 72,
       "question_title": "Reviling",
@@ -482,11 +480,11 @@
       "reviewed_annotation_count": 9,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 6,
-      "unresolved_ambiguity_count": 3
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 51,
-      "candidate_relation_count": 16,
+      "candidate_mention_count": 35,
+      "candidate_relation_count": 12,
       "injury_domain_usage": {
         "Reputation": 3
       },
@@ -497,7 +495,7 @@
         "Reputation"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q073",
       "question_number": 73,
       "question_title": "Backbiting",
@@ -505,11 +503,11 @@
       "reviewed_annotation_count": 9,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 6,
-      "unresolved_ambiguity_count": 2
+      "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 16,
-      "candidate_relation_count": 5,
+      "candidate_mention_count": 9,
+      "candidate_relation_count": 3,
       "injury_domain_usage": {
         "Friendship": 2
       },
@@ -520,7 +518,7 @@
         "Tale-Bearing"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q074",
       "question_number": 74,
       "question_title": "Tale-bearing",
@@ -528,11 +526,11 @@
       "reviewed_annotation_count": 6,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 4,
-      "unresolved_ambiguity_count": 3
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 21,
-      "candidate_relation_count": 7,
+      "candidate_mention_count": 12,
+      "candidate_relation_count": 4,
       "injury_domain_usage": {
         "Honor": 2
       },
@@ -543,7 +541,7 @@
         "Honor"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q075",
       "question_number": 75,
       "question_title": "Derision",
@@ -554,8 +552,8 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 48,
-      "candidate_relation_count": 31,
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 25,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {},
@@ -564,7 +562,7 @@
         "Cursing"
       ],
       "parse_status": "partial",
-      "passage_count": 29,
+      "passage_count": 11,
       "question_id": "st.ii-ii.q076",
       "question_number": 76,
       "question_title": "Cursing",
@@ -572,11 +570,11 @@
       "reviewed_annotation_count": 8,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 6,
-      "unresolved_ambiguity_count": 1
+      "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 38,
-      "candidate_relation_count": 14,
+      "candidate_mention_count": 27,
+      "candidate_relation_count": 11,
       "injury_domain_usage": {
         "Fairness in Exchange": 2,
         "Property": 1
@@ -591,7 +589,7 @@
         "Property"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q077",
       "question_number": 77,
       "question_title": "Cheating, which is committed in buying and selling",
@@ -599,11 +597,11 @@
       "reviewed_annotation_count": 13,
       "reviewed_doctrinal_edge_count": 4,
       "reviewed_structural_editorial_count": 8,
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 7
     },
     {
-      "candidate_mention_count": 36,
-      "candidate_relation_count": 12,
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 10,
       "injury_domain_usage": {
         "Fairness in Exchange": 2
       },
@@ -616,7 +614,7 @@
         "Usury"
       ],
       "parse_status": "ok",
-      "passage_count": 48,
+      "passage_count": 24,
       "question_id": "st.ii-ii.q078",
       "question_number": 78,
       "question_title": "The sin of usury",
@@ -626,11 +624,11 @@
       "reviewed_annotation_count": 11,
       "reviewed_doctrinal_edge_count": 3,
       "reviewed_structural_editorial_count": 7,
-      "unresolved_ambiguity_count": 6
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 102,
-      "candidate_relation_count": 34,
+      "candidate_mention_count": 74,
+      "candidate_relation_count": 30,
       "injury_domain_usage": {},
       "judicial_process_usage": {},
       "justice_species_usage": {},
@@ -640,7 +638,7 @@
         "Transgression"
       ],
       "parse_status": "ok",
-      "passage_count": 36,
+      "passage_count": 18,
       "question_id": "st.ii-ii.q079",
       "question_number": 79,
       "question_title": "The quasi-integral parts of Justice",
@@ -648,19 +646,19 @@
       "reviewed_annotation_count": 8,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 6,
-      "unresolved_ambiguity_count": 20
+      "unresolved_ambiguity_count": 11
     }
   ],
   "questions_with_domain_process_modeling_risk": [
     76
   ],
   "summary": {
-    "candidate_mention_count": 1813,
-    "candidate_relation_count": 656,
+    "candidate_mention_count": 1141,
+    "candidate_relation_count": 459,
     "harmed_domain_relation_count": 21,
     "judicial_process_relation_count": 31,
     "justice_species_relation_count": 11,
-    "passage_count": 927,
+    "passage_count": 452,
     "question_count": 23,
     "registered_concepts_used": 66,
     "restitution_related_relation_count": 7,
@@ -672,8 +670,8 @@
     58,
     59,
     62,
+    72,
     73,
-    76,
     78,
     79
   ]

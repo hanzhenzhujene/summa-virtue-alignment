@@ -44,8 +44,8 @@
   ],
   "questions": [
     {
-      "candidate_mention_count": 411,
-      "candidate_relation_count": 149,
+      "candidate_mention_count": 255,
+      "candidate_relation_count": 101,
       "major_concepts": [
         "Article of Faith",
         "Faith",
@@ -54,106 +54,106 @@
         "Symbol of Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 99,
+      "passage_count": 49,
       "question_id": "st.ii-ii.q001",
       "question_number": 1,
       "question_title": "Faith",
       "reviewed_annotation_count": 24,
       "reviewed_doctrinal_edge_count": 3,
       "reviewed_structural_editorial_count": 21,
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 348,
-      "candidate_relation_count": 103,
+      "candidate_mention_count": 232,
+      "candidate_relation_count": 76,
       "major_concepts": [
         "Act of Faith",
         "Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 81,
+      "passage_count": 40,
       "question_id": "st.ii-ii.q002",
       "question_number": 2,
       "question_title": "The act of faith",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 27
+      "unresolved_ambiguity_count": 22
     },
     {
-      "candidate_mention_count": 84,
-      "candidate_relation_count": 26,
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 19,
       "major_concepts": [
         "Confession of Faith",
         "Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q003",
       "question_number": 3,
       "question_title": "The outward act of faith",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 6
+      "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 452,
-      "candidate_relation_count": 153,
+      "candidate_mention_count": 289,
+      "candidate_relation_count": 104,
       "major_concepts": [
         "Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 74,
+      "passage_count": 37,
       "question_id": "st.ii-ii.q004",
       "question_number": 4,
       "question_title": "The virtue itself of faith",
       "reviewed_annotation_count": 1,
       "reviewed_doctrinal_edge_count": 0,
       "reviewed_structural_editorial_count": 1,
-      "unresolved_ambiguity_count": 42
+      "unresolved_ambiguity_count": 24
     },
     {
-      "candidate_mention_count": 177,
-      "candidate_relation_count": 59,
+      "candidate_mention_count": 108,
+      "candidate_relation_count": 37,
       "major_concepts": [
         "Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q005",
       "question_number": 5,
       "question_title": "Those who have faith",
       "reviewed_annotation_count": 1,
       "reviewed_doctrinal_edge_count": 0,
       "reviewed_structural_editorial_count": 1,
-      "unresolved_ambiguity_count": 15
+      "unresolved_ambiguity_count": 9
     },
     {
-      "candidate_mention_count": 98,
-      "candidate_relation_count": 28,
+      "candidate_mention_count": 59,
+      "candidate_relation_count": 17,
       "major_concepts": [
         "Faith",
         "God"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q006",
       "question_number": 6,
       "question_title": "The cause of faith",
       "reviewed_annotation_count": 2,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 1,
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 77,
-      "candidate_relation_count": 27,
+      "candidate_mention_count": 49,
+      "candidate_relation_count": 18,
       "major_concepts": [
         "Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q007",
       "question_number": 7,
       "question_title": "The effects of faith",
@@ -163,26 +163,26 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 274,
-      "candidate_relation_count": 91,
+      "candidate_mention_count": 160,
+      "candidate_relation_count": 59,
       "major_concepts": [
         "Beatitude of the Clean of Heart",
         "Faith",
         "Gift of Understanding"
       ],
       "parse_status": "partial",
-      "passage_count": 58,
+      "passage_count": 26,
       "question_id": "st.ii-ii.q008",
       "question_number": 8,
       "question_title": "The gift of understanding",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 38
+      "unresolved_ambiguity_count": 15
     },
     {
-      "candidate_mention_count": 165,
-      "candidate_relation_count": 63,
+      "candidate_mention_count": 100,
+      "candidate_relation_count": 46,
       "major_concepts": [
         "Beatitude of Those Who Mourn",
         "Faith",
@@ -190,41 +190,41 @@
         "Gift of Understanding"
       ],
       "parse_status": "ok",
-      "passage_count": 31,
+      "passage_count": 15,
       "question_id": "st.ii-ii.q009",
       "question_number": 9,
       "question_title": "The gift of knowledge",
       "reviewed_annotation_count": 5,
       "reviewed_doctrinal_edge_count": 3,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 356,
-      "candidate_relation_count": 121,
+      "candidate_mention_count": 238,
+      "candidate_relation_count": 82,
       "major_concepts": [
         "Faith",
         "Unbelief"
       ],
       "parse_status": "partial",
-      "passage_count": 93,
+      "passage_count": 42,
       "question_id": "st.ii-ii.q010",
       "question_number": 10,
       "question_title": "Unbelief in general",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 39
+      "unresolved_ambiguity_count": 30
     },
     {
-      "candidate_mention_count": 125,
-      "candidate_relation_count": 57,
+      "candidate_mention_count": 76,
+      "candidate_relation_count": 34,
       "major_concepts": [
         "Heresy",
         "Unbelief"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q011",
       "question_number": 11,
       "question_title": "Heresy",
@@ -234,14 +234,14 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 107,
-      "candidate_relation_count": 33,
+      "candidate_mention_count": 65,
+      "candidate_relation_count": 20,
       "major_concepts": [
         "Apostasy",
         "Unbelief"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q012",
       "question_number": 12,
       "question_title": "Apostasy",
@@ -251,14 +251,14 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 147,
-      "candidate_relation_count": 66,
+      "candidate_mention_count": 92,
+      "candidate_relation_count": 47,
       "major_concepts": [
         "Blasphemy",
         "Confession of Faith"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q013",
       "question_number": 13,
       "question_title": "The sin of blasphemy, in general",
@@ -268,8 +268,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 169,
-      "candidate_relation_count": 68,
+      "candidate_mention_count": 100,
+      "candidate_relation_count": 39,
       "major_concepts": [
         "Despair (Sin)",
         "Holy Spirit",
@@ -277,25 +277,25 @@
         "Sin Against the Holy Spirit"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q014",
       "question_number": 14,
       "question_title": "Blasphemy against the Holy Ghost",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 70,
-      "candidate_relation_count": 39,
+      "candidate_mention_count": 19,
+      "candidate_relation_count": 17,
       "major_concepts": [
         "Blindness of Mind",
         "Dullness of Sense",
         "Sin Against the Holy Spirit"
       ],
       "parse_status": "partial",
-      "passage_count": 21,
+      "passage_count": 9,
       "question_id": "st.ii-ii.q015",
       "question_number": 15,
       "question_title": "The vices opposed to knowledge and understanding",
@@ -305,84 +305,84 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 171,
-      "candidate_relation_count": 32,
+      "candidate_mention_count": 100,
+      "candidate_relation_count": 23,
       "major_concepts": [
         "Faith",
         "Precepts of Faith, Knowledge, and Understanding"
       ],
       "parse_status": "ok",
-      "passage_count": 22,
+      "passage_count": 11,
       "question_id": "st.ii-ii.q016",
       "question_number": 16,
       "question_title": "The precepts of faith, knowledge and understanding",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 50
+      "unresolved_ambiguity_count": 27
     },
     {
-      "candidate_mention_count": 396,
-      "candidate_relation_count": 134,
+      "candidate_mention_count": 228,
+      "candidate_relation_count": 79,
       "major_concepts": [
         "Eternal Life",
         "Faith",
         "Hope"
       ],
       "parse_status": "partial",
-      "passage_count": 59,
+      "passage_count": 26,
       "question_id": "st.ii-ii.q017",
       "question_number": 17,
       "question_title": "Hope, considered in itself",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 29
+      "unresolved_ambiguity_count": 17
     },
     {
-      "candidate_mention_count": 155,
-      "candidate_relation_count": 57,
+      "candidate_mention_count": 95,
+      "candidate_relation_count": 39,
       "major_concepts": [
         "Hope",
         "Will"
       ],
       "parse_status": "ok",
-      "passage_count": 33,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q018",
       "question_number": 18,
       "question_title": "The subject of hope",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 14
+      "unresolved_ambiguity_count": 11
     },
     {
-      "candidate_mention_count": 672,
-      "candidate_relation_count": 225,
+      "candidate_mention_count": 418,
+      "candidate_relation_count": 141,
       "major_concepts": [
         "Beatitude of the Poor in Spirit",
         "Gift of Fear of the Lord",
         "Hope"
       ],
       "parse_status": "ok",
-      "passage_count": 103,
+      "passage_count": 50,
       "question_id": "st.ii-ii.q019",
       "question_number": 19,
       "question_title": "The gift of fear",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 16
+      "unresolved_ambiguity_count": 10
     },
     {
-      "candidate_mention_count": 143,
-      "candidate_relation_count": 59,
+      "candidate_mention_count": 98,
+      "candidate_relation_count": 42,
       "major_concepts": [
         "Despair (Sin)",
         "Hope"
       ],
       "parse_status": "partial",
-      "passage_count": 27,
+      "passage_count": 11,
       "question_id": "st.ii-ii.q020",
       "question_number": 20,
       "question_title": "Despair",
@@ -392,43 +392,43 @@
       "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 193,
-      "candidate_relation_count": 87,
+      "candidate_mention_count": 106,
+      "candidate_relation_count": 51,
       "major_concepts": [
         "Hope",
         "Presumption",
         "Sin Against the Holy Spirit"
       ],
       "parse_status": "partial",
-      "passage_count": 29,
+      "passage_count": 13,
       "question_id": "st.ii-ii.q021",
       "question_number": 21,
       "question_title": "Presumption",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 187,
-      "candidate_relation_count": 54,
+      "candidate_mention_count": 119,
+      "candidate_relation_count": 33,
       "major_concepts": [
         "Hope",
         "Precepts of Hope and Fear"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q022",
       "question_number": 22,
       "question_title": "The precepts relating to hope and fear",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 40
+      "unresolved_ambiguity_count": 27
     },
     {
-      "candidate_mention_count": 444,
-      "candidate_relation_count": 146,
+      "candidate_mention_count": 270,
+      "candidate_relation_count": 103,
       "major_concepts": [
         "Charity",
         "Form of the Virtues",
@@ -436,43 +436,43 @@
         "Virtue"
       ],
       "parse_status": "ok",
-      "passage_count": 64,
+      "passage_count": 32,
       "question_id": "st.ii-ii.q023",
       "question_number": 23,
       "question_title": "Charity, considered in itself",
       "reviewed_annotation_count": 15,
       "reviewed_doctrinal_edge_count": 3,
       "reviewed_structural_editorial_count": 12,
-      "unresolved_ambiguity_count": 73
+      "unresolved_ambiguity_count": 38
     },
     {
-      "candidate_mention_count": 561,
-      "candidate_relation_count": 165,
+      "candidate_mention_count": 347,
+      "candidate_relation_count": 100,
       "major_concepts": [
         "Charity",
         "Holy Spirit",
         "Will"
       ],
       "parse_status": "ok",
-      "passage_count": 101,
+      "passage_count": 50,
       "question_id": "st.ii-ii.q024",
       "question_number": 24,
       "question_title": "The subject of charity",
       "reviewed_annotation_count": 5,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 28
+      "unresolved_ambiguity_count": 18
     },
     {
-      "candidate_mention_count": 521,
-      "candidate_relation_count": 162,
+      "candidate_mention_count": 293,
+      "candidate_relation_count": 98,
       "major_concepts": [
         "Charity",
         "God",
         "Neighbor"
       ],
       "parse_status": "partial",
-      "passage_count": 94,
+      "passage_count": 44,
       "question_id": "st.ii-ii.q025",
       "question_number": 25,
       "question_title": "The object of charity",
@@ -482,153 +482,153 @@
       "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 477,
-      "candidate_relation_count": 144,
+      "candidate_mention_count": 291,
+      "candidate_relation_count": 92,
       "major_concepts": [
         "Charity",
         "God",
         "Neighbor"
       ],
       "parse_status": "ok",
-      "passage_count": 103,
+      "passage_count": 51,
       "question_id": "st.ii-ii.q026",
       "question_number": 26,
       "question_title": "The order of charity",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 15
+      "unresolved_ambiguity_count": 11
     },
     {
-      "candidate_mention_count": 373,
-      "candidate_relation_count": 108,
+      "candidate_mention_count": 221,
+      "candidate_relation_count": 64,
       "major_concepts": [
         "Charity",
         "Love (Act)"
       ],
       "parse_status": "partial",
-      "passage_count": 59,
+      "passage_count": 27,
       "question_id": "st.ii-ii.q027",
       "question_number": 27,
       "question_title": "The principle act of charity, which is to love",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 8
     },
     {
-      "candidate_mention_count": 176,
-      "candidate_relation_count": 65,
+      "candidate_mention_count": 108,
+      "candidate_relation_count": 43,
       "major_concepts": [
         "Charity",
         "Joy"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q028",
       "question_number": 28,
       "question_title": "Joy",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 19
+      "unresolved_ambiguity_count": 11
     },
     {
-      "candidate_mention_count": 104,
-      "candidate_relation_count": 36,
+      "candidate_mention_count": 52,
+      "candidate_relation_count": 22,
       "major_concepts": [
         "Charity",
         "Peace"
       ],
       "parse_status": "ok",
-      "passage_count": 33,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q029",
       "question_number": 29,
       "question_title": "Peace",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 18
+      "unresolved_ambiguity_count": 7
     },
     {
-      "candidate_mention_count": 103,
-      "candidate_relation_count": 32,
+      "candidate_mention_count": 56,
+      "candidate_relation_count": 23,
       "major_concepts": [
         "Charity",
         "Mercy"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q030",
       "question_number": 30,
       "question_title": "Mercy",
       "reviewed_annotation_count": 2,
       "reviewed_doctrinal_edge_count": 0,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 25
+      "unresolved_ambiguity_count": 9
     },
     {
-      "candidate_mention_count": 105,
-      "candidate_relation_count": 40,
+      "candidate_mention_count": 60,
+      "candidate_relation_count": 24,
       "major_concepts": [
         "Beneficence",
         "Charity"
       ],
       "parse_status": "ok",
-      "passage_count": 33,
+      "passage_count": 16,
       "question_id": "st.ii-ii.q031",
       "question_number": 31,
       "question_title": "Beneficence",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 13
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 201,
-      "candidate_relation_count": 69,
+      "candidate_mention_count": 108,
+      "candidate_relation_count": 42,
       "major_concepts": [
         "Almsgiving",
         "Charity",
         "Mercy"
       ],
       "parse_status": "partial",
-      "passage_count": 83,
+      "passage_count": 39,
       "question_id": "st.ii-ii.q032",
       "question_number": 32,
       "question_title": "Almsdeeds",
       "reviewed_annotation_count": 5,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 21
+      "unresolved_ambiguity_count": 20
     },
     {
-      "candidate_mention_count": 243,
-      "candidate_relation_count": 92,
+      "candidate_mention_count": 143,
+      "candidate_relation_count": 62,
       "major_concepts": [
         "Charity",
         "Fraternal Correction"
       ],
       "parse_status": "partial",
-      "passage_count": 69,
+      "passage_count": 33,
       "question_id": "st.ii-ii.q033",
       "question_number": 33,
       "question_title": "Fraternal correction",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 21
+      "unresolved_ambiguity_count": 15
     },
     {
-      "candidate_mention_count": 257,
-      "candidate_relation_count": 95,
+      "candidate_mention_count": 156,
+      "candidate_relation_count": 62,
       "major_concepts": [
         "Charity",
         "Hatred (Sin)",
         "Love (Act)"
       ],
       "parse_status": "partial",
-      "passage_count": 44,
+      "passage_count": 21,
       "question_id": "st.ii-ii.q034",
       "question_number": 34,
       "question_title": "Hatred",
@@ -638,50 +638,50 @@
       "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 62,
-      "candidate_relation_count": 23,
+      "candidate_mention_count": 45,
+      "candidate_relation_count": 19,
       "major_concepts": [
         "Charity",
         "Joy",
         "Sloth"
       ],
       "parse_status": "partial",
-      "passage_count": 31,
+      "passage_count": 14,
       "question_id": "st.ii-ii.q035",
       "question_number": 35,
       "question_title": "Sloth",
       "reviewed_annotation_count": 5,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 41,
-      "candidate_relation_count": 20,
+      "candidate_mention_count": 31,
+      "candidate_relation_count": 18,
       "major_concepts": [
         "Charity",
         "Envy"
       ],
       "parse_status": "ok",
-      "passage_count": 35,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q036",
       "question_number": 36,
       "question_title": "Envy",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 4
+      "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 72,
-      "candidate_relation_count": 28,
+      "candidate_mention_count": 49,
+      "candidate_relation_count": 19,
       "major_concepts": [
         "Charity",
         "Concord",
         "Discord"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q037",
       "question_number": 37,
       "question_title": "Discord, which is contrary to peace",
@@ -691,13 +691,13 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 26,
-      "candidate_relation_count": 10,
+      "candidate_mention_count": 12,
+      "candidate_relation_count": 5,
       "major_concepts": [
         "Contention"
       ],
       "parse_status": "ok",
-      "passage_count": 18,
+      "passage_count": 9,
       "question_id": "st.ii-ii.q038",
       "question_number": 38,
       "question_title": "Contention",
@@ -707,49 +707,49 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 148,
-      "candidate_relation_count": 62,
+      "candidate_mention_count": 91,
+      "candidate_relation_count": 44,
       "major_concepts": [
         "Charity",
         "Ecclesial Unity",
         "Schism"
       ],
       "parse_status": "partial",
-      "passage_count": 29,
+      "passage_count": 13,
       "question_id": "st.ii-ii.q039",
       "question_number": 39,
       "question_title": "Schism",
       "reviewed_annotation_count": 5,
       "reviewed_doctrinal_edge_count": 2,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 2
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 31,
-      "candidate_relation_count": 19,
+      "candidate_mention_count": 20,
+      "candidate_relation_count": 15,
       "major_concepts": [
         "Common Good",
         "War"
       ],
       "parse_status": "partial",
-      "passage_count": 30,
+      "passage_count": 12,
       "question_id": "st.ii-ii.q040",
       "question_number": 40,
       "question_title": "War",
       "reviewed_annotation_count": 2,
       "reviewed_doctrinal_edge_count": 0,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 2
+      "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 46,
-      "candidate_relation_count": 18,
+      "candidate_mention_count": 33,
+      "candidate_relation_count": 15,
       "major_concepts": [
         "Strife",
         "War"
       ],
       "parse_status": "ok",
-      "passage_count": 20,
+      "passage_count": 10,
       "question_id": "st.ii-ii.q041",
       "question_number": 41,
       "question_title": "Strife",
@@ -759,14 +759,14 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 73,
-      "candidate_relation_count": 30,
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 19,
       "major_concepts": [
         "Peace",
         "Sedition"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q042",
       "question_number": 42,
       "question_title": "Sedition",
@@ -776,66 +776,66 @@
       "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 81,
-      "candidate_relation_count": 35,
+      "candidate_mention_count": 46,
+      "candidate_relation_count": 25,
       "major_concepts": [
         "Charity",
         "Scandal"
       ],
       "parse_status": "partial",
-      "passage_count": 72,
+      "passage_count": 34,
       "question_id": "st.ii-ii.q043",
       "question_number": 43,
       "question_title": "Scandal",
       "reviewed_annotation_count": 3,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 373,
-      "candidate_relation_count": 126,
+      "candidate_mention_count": 200,
+      "candidate_relation_count": 77,
       "major_concepts": [
         "Charity",
         "Precepts of Charity"
       ],
       "parse_status": "partial",
-      "passage_count": 60,
+      "passage_count": 27,
       "question_id": "st.ii-ii.q044",
       "question_number": 44,
       "question_title": "The precepts of charity",
       "reviewed_annotation_count": 4,
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 2,
-      "unresolved_ambiguity_count": 28
+      "unresolved_ambiguity_count": 15
     },
     {
-      "candidate_mention_count": 151,
-      "candidate_relation_count": 56,
+      "candidate_mention_count": 79,
+      "candidate_relation_count": 40,
       "major_concepts": [
         "Beatitude of the Peacemakers",
         "Charity",
         "Gift of Wisdom"
       ],
       "parse_status": "ok",
-      "passage_count": 47,
+      "passage_count": 23,
       "question_id": "st.ii-ii.q045",
       "question_number": 45,
       "question_title": "The gift of wisdom",
       "reviewed_annotation_count": 6,
       "reviewed_doctrinal_edge_count": 3,
       "reviewed_structural_editorial_count": 3,
-      "unresolved_ambiguity_count": 22
+      "unresolved_ambiguity_count": 7
     },
     {
-      "candidate_mention_count": 25,
-      "candidate_relation_count": 11,
+      "candidate_mention_count": 14,
+      "candidate_relation_count": 6,
       "major_concepts": [
         "Folly",
         "Gift of Wisdom"
       ],
       "parse_status": "ok",
-      "passage_count": 25,
+      "passage_count": 12,
       "question_id": "st.ii-ii.q046",
       "question_number": 46,
       "question_title": "Folly which is opposed to wisdom",
@@ -846,9 +846,9 @@
     }
   ],
   "summary": {
-    "candidate_mention_count": 9671,
-    "candidate_relation_count": 3323,
-    "passage_count": 2088,
+    "candidate_mention_count": 5832,
+    "candidate_relation_count": 2161,
+    "passage_count": 999,
     "question_count": 46,
     "registered_concepts_used": 58,
     "reviewed_annotation_count": 185,

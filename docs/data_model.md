@@ -9,10 +9,19 @@ Stable ID format:
 - question: `st.i-ii.q001`
 - article: `st.i-ii.q001.a001`
 - segment:
-  - `st.i-ii.q001.a001.obj1`
-  - `st.i-ii.q001.a001.sc`
   - `st.i-ii.q001.a001.resp`
   - `st.i-ii.q001.a001.ad1`
+
+The parser still recognizes objections and the sed contra internally so it can
+find the doctrinal boundaries of each article correctly. The exported corpus,
+however, retains only doctrinally usable segments:
+
+- `resp` for `I answer that`
+- `ad` for `Reply to Objection ...`
+
+Standalone objections and the sed contra are excluded from exported segments,
+cross-reference records, candidate extraction, graph construction, search, and
+app display.
 
 ID generation is deterministic and derived only from:
 
@@ -104,25 +113,25 @@ Fields:
 
 Segment types:
 
-- `obj`
-- `sc`
 - `resp`
 - `ad`
 
 Segment ordering inside an article must be:
 
-1. zero or more objections
-2. optional sed contra
-3. optional respondeo
-4. zero or more replies
+1. optional respondeo
+2. zero or more replies
 
 Ordinal rules:
 
-- `obj` and `ad` require `segment_ordinal`
-- `sc` and `resp` must have `segment_ordinal = null`
-- if source numbering is irregular or duplicated, exported objection and reply ordinals are normalized to occurrence order within the article so ids remain unique and deterministic
+- `ad` requires `segment_ordinal`
+- `resp` must have `segment_ordinal = null`
+- if source reply numbering is irregular or duplicated, exported reply ordinals
+  are normalized to occurrence order within the article so ids remain unique and
+  deterministic
 
-Normalized segment text excludes boilerplate labels such as `Objection 1.` or `I answer that,` because that structure is already represented explicitly in typed fields.
+Normalized segment text excludes boilerplate labels such as `I answer that,` or
+`Reply to Objection 1.` because that structure is already represented
+explicitly in typed fields.
 
 ### Cross-reference record
 
@@ -144,7 +153,8 @@ Fields:
 Notes:
 
 - one record per explicit citation occurrence
-- `crossref_id` is stable within a segment, for example `st.ii-ii.q001.a001.obj1.xref01`
+- `crossref_id` is stable within a retained doctrinal segment, for example
+  `st.ii-ii.q001.a001.ad1.xref01`
 - local references like `Article 1` are ignored unless they explicitly name a *Summa* part/question/article
 
 ## Cross-reference normalization

@@ -4,8 +4,10 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
+from ..utils.segments import USABLE_SEGMENT_TYPES
+
 PartId = Literal["i", "i-ii", "ii-ii", "iii", "supplement"]
-SegmentType = Literal["obj", "sc", "resp", "ad"]
+SegmentType = Literal["resp", "ad"]
 
 
 class BaseRecord(BaseModel):
@@ -58,10 +60,12 @@ class SegmentRecord(BaseRecord):
 
     @model_validator(mode="after")
     def validate_segment_shape(self) -> "SegmentRecord":
-        if self.segment_type in {"obj", "ad"} and self.segment_ordinal is None:
-            raise ValueError("obj/ad segments require a segment_ordinal")
-        if self.segment_type in {"sc", "resp"} and self.segment_ordinal is not None:
-            raise ValueError("sc/resp segments must not have a segment_ordinal")
+        if self.segment_type not in USABLE_SEGMENT_TYPES:
+            raise ValueError("Only respondeo and reply segments are allowed in exported records")
+        if self.segment_type == "ad" and self.segment_ordinal is None:
+            raise ValueError("reply segments require a segment_ordinal")
+        if self.segment_type == "resp" and self.segment_ordinal is not None:
+            raise ValueError("respondeo segments must not have a segment_ordinal")
         if self.char_count != len(self.text):
             raise ValueError("char_count must match len(text)")
         return self

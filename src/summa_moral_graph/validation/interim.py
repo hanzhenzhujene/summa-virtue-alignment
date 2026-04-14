@@ -7,6 +7,7 @@ from typing import Any
 from ..models import ArticleRecord, CrossrefRecord, QuestionRecord, SegmentRecord
 from ..utils.jsonl import load_jsonl
 from ..utils.paths import INTERIM_DIR
+from ..utils.segments import USABLE_SEGMENT_TYPES
 
 
 def validate_interim_artifacts() -> dict[str, int | str]:
@@ -106,28 +107,22 @@ def assert_unique_ids(records: Sequence[Any], field_name: str) -> None:
 
 
 def validate_segment_order(article_id: str, segments: list[SegmentRecord]) -> None:
-    seen_sc = 0
     seen_resp = 0
-    state_order = {"obj": 0, "sc": 1, "resp": 2, "ad": 3}
+    state_order = {"resp": 0, "ad": 1}
     previous_state = -1
-    expected_obj = 1
     expected_ad = 1
 
     for segment in segments:
+        if segment.segment_type not in USABLE_SEGMENT_TYPES:
+            raise ValueError(
+                f"Article {article_id} includes non-usable segment type {segment.segment_type}"
+            )
         state = state_order[segment.segment_type]
         if state < previous_state:
             raise ValueError(f"Article {article_id} has invalid segment ordering")
         previous_state = state
 
-        if segment.segment_type == "obj":
-            if segment.segment_ordinal != expected_obj:
-                raise ValueError(f"Article {article_id} has non-consecutive objections")
-            expected_obj += 1
-        elif segment.segment_type == "sc":
-            seen_sc += 1
-            if seen_sc > 1:
-                raise ValueError(f"Article {article_id} has more than one sed contra")
-        elif segment.segment_type == "resp":
+        if segment.segment_type == "resp":
             seen_resp += 1
             if seen_resp > 1:
                 raise ValueError(f"Article {article_id} has more than one respondeo")

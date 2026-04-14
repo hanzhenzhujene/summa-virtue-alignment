@@ -19,11 +19,11 @@ def test_connected_virtues_109_120_reports_are_consistent(
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 763,
-        "candidate_relation_count": 238,
+        "candidate_mention_count": 466,
+        "candidate_relation_count": 174,
         "external_goods_relation_count": 11,
         "legal_equity_relation_count": 4,
-        "passage_count": 340,
+        "passage_count": 165,
         "question_count": 12,
         "registered_concepts_used": 23,
         "reviewed_annotation_count": 182,
@@ -37,7 +37,6 @@ def test_connected_virtues_109_120_reports_are_consistent(
         109,
         110,
         111,
-        112,
         114,
         115,
         116,

@@ -91,7 +91,10 @@ def build_temperance_closure_161_170_review_queue() -> dict[str, str]:
         "unresolved_humility_pride_issues": [
             record.candidate_id
             for record in candidate_mentions
-            if record.ambiguity_flag and record.passage_id.startswith(("st.ii-ii.q161", "st.ii-ii.q162"))
+            if record.ambiguity_flag
+            and record.passage_id.startswith(
+                ("st.ii-ii.q161", "st.ii-ii.q162")
+            )
         ][:200],
         "unresolved_adams_first_sin_case_issues": [
             record.candidate_id
@@ -102,7 +105,10 @@ def build_temperance_closure_161_170_review_queue() -> dict[str, str]:
         "unresolved_studiousness_curiosity_issues": [
             record.candidate_id
             for record in candidate_mentions
-            if record.ambiguity_flag and record.passage_id.startswith(("st.ii-ii.q166", "st.ii-ii.q167"))
+            if record.ambiguity_flag
+            and record.passage_id.startswith(
+                ("st.ii-ii.q166", "st.ii-ii.q167")
+            )
         ][:200],
         "weak_precept_linkage_edges": sorted(
             record.annotation_id
@@ -173,18 +179,26 @@ def choose_packet_question(
     *,
     under_annotated_questions: list[int],
 ) -> str:
+    def row_int(row: dict[str, object], key: str) -> int:
+        value = row.get(key, 0)
+        if isinstance(value, bool):
+            return int(value)
+        if isinstance(value, (int, float)):
+            return int(value)
+        return int(str(value))
+
     eligible = [
         row
         for row in question_rows
-        if int(row["question_number"]) in set(under_annotated_questions)
+        if row_int(row, "question_number") in set(under_annotated_questions)
     ] or list(question_rows)
     ranked = sorted(
         eligible,
         key=lambda row: (
-            int(row["reviewed_annotation_count"]),
-            -int(row["candidate_relation_count"]),
-            -int(row["candidate_mention_count"]),
-            int(row["question_number"]),
+            row_int(row, "reviewed_annotation_count"),
+            -row_int(row, "candidate_relation_count"),
+            -row_int(row, "candidate_mention_count"),
+            row_int(row, "question_number"),
         ),
     )
     return str(ranked[0]["question_id"])
@@ -279,8 +293,8 @@ def build_review_packet(
         if relation_rows:
             lines.extend(
                 (
-                    f"- `{row.proposal_id}` :: {row.subject_id or row.subject_candidate_id} "
-                    f"{row.relation_type} {row.object_id or row.object_candidate_id}"
+                    f"- `{row.proposal_id}` :: {row.subject_id} "
+                    f"{row.relation_type} {row.object_id}"
                 )
                 for row in relation_rows[:12]
             )

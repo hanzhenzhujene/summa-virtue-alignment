@@ -13,6 +13,15 @@ The parser depends on New Advent's stable question and article structure:
 - question pages contain ordered article anchors
 - article bodies contain objection, sed contra, respondeo, and reply sections
 
+The parser uses the objection and sed-contra sections only as structural
+boundaries. Exported doctrinal content keeps only:
+
+- `I answer that`
+- `Reply to Objection ...`
+
+Standalone objection statements and the sed contra are not retained as usable
+segments in the final pipeline.
+
 ## Redistribution stance
 
 Raw HTML redistribution is not assumed to be safe merely because the underlying translation is old.
@@ -61,4 +70,3 @@ For this sprint, Corpus Thomisticum is **not** the primary parser target.
 - keep raw HTML out of git
 - commit only derived structured data plus provenance
 - preserve deterministic hashes and stable IDs
-

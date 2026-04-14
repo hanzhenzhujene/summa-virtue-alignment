@@ -2,12 +2,12 @@
 
 - status: `ok`
 - questions: `5`
-- passages: `117`
-- reviewed annotations: `86`
+- passages: `58`
+- reviewed annotations: `84`
 - reviewed doctrinal edges: `31`
 - reviewed structural-editorial correspondences: `53`
-- candidate mentions: `532`
-- candidate relation proposals: `178`
+- candidate mentions: `307`
+- candidate relation proposals: `115`
 - patience relations: `10`
 - perseverance relations: `10`
 - opposed-vice relations: `4`

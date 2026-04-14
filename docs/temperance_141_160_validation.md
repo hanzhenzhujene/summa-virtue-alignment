@@ -2,12 +2,12 @@
 
 - status: `ok`
 - questions: `20`
-- passages: `815`
+- passages: `407`
 - reviewed annotations: `234`
 - reviewed doctrinal edges: `67`
 - reviewed structural-editorial correspondences: `166`
-- candidate mentions: `2085`
-- candidate relation proposals: `674`
+- candidate mentions: `1258`
+- candidate relation proposals: `468`
 - integral-part relations: `2`
 - subjective-part relations: `7`
 - potential-part relations: `7`

@@ -10,7 +10,7 @@ def test_dashboard_payload_surfaces_current_reviewed_blocks(
     payload = load_dashboard_payload()
 
     assert payload["summary"]["questions_parsed"] == 296
-    assert payload["summary"]["passages_parsed"] == 12337
+    assert payload["summary"]["passages_parsed"] == 6032
     assert payload["summary"]["reviewed_tract_blocks"] == 10
     assert payload["summary"]["ok_validation_blocks"] == 10
 
@@ -19,7 +19,7 @@ def test_dashboard_payload_surfaces_current_reviewed_blocks(
 
     assert temperance_closure["reviewed_annotations"] == 148
     assert temperance_closure["reviewed_doctrinal_edges"] == 41
-    assert temperance_closure["candidate_relation_proposals"] == 322
+    assert temperance_closure["candidate_relation_proposals"] == 223
     assert temperance_closure["review_packet_question"] == 162
     assert all(
         "candidate relation" not in highlight

@@ -22,16 +22,13 @@ def test_duplicate_reply_labels_are_normalized_by_occurrence_order() -> None:
     segments = parse_article_segments(paragraphs)
 
     assert [(segment.segment_type, segment.segment_ordinal) for segment in segments] == [
-        ("obj", 1),
-        ("obj", 2),
-        ("sc", None),
         ("resp", None),
         ("ad", 1),
         ("ad", 2),
     ]
 
 
-def test_repeated_sed_contra_labels_are_merged_into_one_segment() -> None:
+def test_repeated_sed_contra_labels_do_not_leak_into_exported_segments() -> None:
     html_text = """
     <div>
       <p><strong>Objection 1.</strong> First objection.</p>
@@ -46,11 +43,9 @@ def test_repeated_sed_contra_labels_are_merged_into_one_segment() -> None:
     segments = parse_article_segments(paragraphs)
 
     assert [(segment.segment_type, segment.segment_ordinal) for segment in segments] == [
-        ("obj", 1),
-        ("sc", None),
         ("resp", None),
     ]
-    assert segments[1].text == "First sed contra paragraph. Second sed contra paragraph."
+    assert segments[0].text == "Respondeo text."
 
 
 def test_out_of_order_repeated_sed_contra_is_folded_into_current_reply() -> None:
@@ -69,8 +64,6 @@ def test_out_of_order_repeated_sed_contra_is_folded_into_current_reply() -> None
     segments = parse_article_segments(paragraphs)
 
     assert [(segment.segment_type, segment.segment_ordinal) for segment in segments] == [
-        ("obj", 1),
-        ("sc", None),
         ("resp", None),
         ("ad", 1),
     ]
@@ -94,9 +87,6 @@ def test_late_objection_label_is_normalized_into_reply_section() -> None:
     segments = parse_article_segments(paragraphs)
 
     assert [(segment.segment_type, segment.segment_ordinal) for segment in segments] == [
-        ("obj", 1),
-        ("obj", 2),
-        ("sc", None),
         ("resp", None),
         ("ad", 1),
         ("ad", 2),

@@ -27,10 +27,12 @@ def segment_id(
     ordinal: int | None = None,
 ) -> str:
     base = f"st.ii-ii.q{question_number:03d}.a{article_number:03d}"
-    if segment_type in {"obj", "ad"}:
+    if segment_type == "ad":
         if ordinal is None:
             raise ValueError(f"{segment_type} segments require an ordinal")
         return f"{base}.{segment_type}{ordinal}"
+    if segment_type != "resp":
+        raise ValueError("Only respondeo and reply segments are allowed in reviewed seeds")
     if ordinal is not None:
         raise ValueError(f"{segment_type} does not accept an ordinal")
     return f"{base}.{segment_type}"
@@ -569,9 +571,7 @@ for source_passage_id, subject_id, relation_type, object_id, support_type, confi
     (segment_id(137, 2, "resp"), "concept.perseverance_virtue", "part_of_fortitude", "concept.fortitude", "explicit_textual", 0.98, "Article 2 explicitly says perseverance is annexed to fortitude as secondary to principal virtue.", ("perseverance is annexed to fortitude",)),
     (segment_id(137, 3, "resp"), "concept.constancy_fortitude", "part_of_fortitude", "concept.fortitude", "explicit_textual", 0.93, "Article 3 explicitly describes constancy as a part of fortitude while ranking perseverance before it.", ("perseverance takes precedence of constancy as a part of fortitude",)),
     (segment_id(137, 4, "resp"), "concept.perseverance_virtue", "requires", "concept.grace", "explicit_textual", 0.97, "Article 4 explicitly says perseverance as virtue needs habitual grace.", ("it needs the gift of habitual grace",)),
-    (segment_id(138, 1, "sc"), "concept.effeminacy_perseverance", "deficiency_opposed_to", "concept.perseverance_virtue", "explicit_textual", 0.97, "Article 1 sed contra explicitly opposes the persevering man and the effeminate.", ("persevering man is opposed to the effeminate",)),
     (segment_id(138, 1, "resp"), "concept.effeminacy_perseverance", "deficiency_opposed_to", "concept.perseverance_virtue", "explicit_textual", 0.96, "Article 1 respondeo explicitly says effeminacy is directly opposed to perseverance by falling away from good through softness.", ("directly opposed", "effeminacy")),
-    (segment_id(138, 2, "sc"), "concept.pertinacity_perseverance", "excess_opposed_to", "concept.perseverance_virtue", "explicit_textual", 0.96, "Article 2 sed contra explicitly opposes pertinacity to perseverance.", ("pertinacity is opposed to perseverance",)),
     (segment_id(138, 2, "resp"), "concept.pertinacity_perseverance", "excess_opposed_to", "concept.perseverance_virtue", "explicit_textual", 0.97, "Article 2 respondeo explicitly says pertinacity exceeds the mean that perseverance keeps.", ("pertinacity is reproved for exceeding the mean",)),
     (segment_id(138, 2, "resp"), "concept.pertinacity_perseverance", "contrary_to", "concept.effeminacy_perseverance", "explicit_textual", 0.93, "Article 2 explicitly contrasts pertinacity as excess with effeminacy as falling short.", ("pertinacity is reproved for exceeding the mean, and effeminacy for falling short",)),
     (segment_id(138, 2, "ad", 1), "concept.pertinacity_perseverance", "caused_by", "concept.vainglory", "explicit_textual", 0.95, "Article 2 reply 1 explicitly says pertinacity results from vainglory as cause.", ("result of vainglory as its cause",)),

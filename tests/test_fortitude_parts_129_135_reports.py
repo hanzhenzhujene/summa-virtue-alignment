@@ -19,13 +19,13 @@ def test_fortitude_parts_reports_are_consistent(
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 532,
-        "candidate_relation_count": 158,
+        "candidate_mention_count": 346,
+        "candidate_relation_count": 114,
         "deficiency_opposition_relation_count": 2,
         "excess_opposition_relation_count": 4,
         "expenditure_related_relation_count": 13,
         "honor_related_relation_count": 20,
-        "passage_count": 212,
+        "passage_count": 106,
         "question_count": 7,
         "registered_concepts_used": 20,
         "reviewed_annotation_count": 150,

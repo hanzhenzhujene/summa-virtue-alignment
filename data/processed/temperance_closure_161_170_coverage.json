@@ -12,8 +12,8 @@
   ],
   "questions": [
     {
-      "candidate_mention_count": 208,
-      "candidate_relation_count": 69,
+      "candidate_mention_count": 133,
+      "candidate_relation_count": 48,
       "focus_usage": {
         "humility_pride": 5
       },
@@ -25,8 +25,8 @@
         "Truth About Oneself",
         "Virtue"
       ],
-      "parse_status": "partial",
-      "passage_count": 59,
+      "parse_status": "ok",
+      "passage_count": 30,
       "question_id": "st.ii-ii.q161",
       "question_number": 161,
       "question_title": "Humility",
@@ -35,11 +35,11 @@
       "reviewed_structural_editorial_count": 13,
       "schema_extension_usage": {},
       "subcluster": "humility_pride",
-      "unresolved_ambiguity_count": 41
+      "unresolved_ambiguity_count": 23
     },
     {
-      "candidate_mention_count": 218,
-      "candidate_relation_count": 82,
+      "candidate_mention_count": 149,
+      "candidate_relation_count": 62,
       "focus_usage": {
         "humility_pride": 3
       },
@@ -51,7 +51,7 @@
         "Vice"
       ],
       "parse_status": "ok",
-      "passage_count": 73,
+      "passage_count": 36,
       "question_id": "st.ii-ii.q162",
       "question_number": 162,
       "question_title": "Pride",
@@ -60,11 +60,11 @@
       "reviewed_structural_editorial_count": 13,
       "schema_extension_usage": {},
       "subcluster": "humility_pride",
-      "unresolved_ambiguity_count": 24
+      "unresolved_ambiguity_count": 16
     },
     {
-      "candidate_mention_count": 83,
-      "candidate_relation_count": 25,
+      "candidate_mention_count": 49,
+      "candidate_relation_count": 14,
       "focus_usage": {
         "adam_case": 3,
         "adams_first_sin": 3
@@ -76,7 +76,7 @@
         "Pride"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q163",
       "question_number": 163,
       "question_title": "The first man's sin",
@@ -90,8 +90,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 29,
-      "candidate_relation_count": 8,
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 6,
       "focus_usage": {
         "adam_case": 4,
         "adams_first_sin": 4
@@ -104,7 +104,7 @@
         "Rebellion of the Carnal Appetite"
       ],
       "parse_status": "ok",
-      "passage_count": 38,
+      "passage_count": 19,
       "question_id": "st.ii-ii.q164",
       "question_number": 164,
       "question_title": "The punishments of the first man's sin",
@@ -118,8 +118,8 @@
       "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 15,
-      "candidate_relation_count": 8,
+      "candidate_mention_count": 11,
+      "candidate_relation_count": 5,
       "focus_usage": {
         "adam_case": 3,
         "adams_first_sin": 3
@@ -131,7 +131,7 @@
         "Temptation of the First Parents"
       ],
       "parse_status": "ok",
-      "passage_count": 18,
+      "passage_count": 9,
       "question_id": "st.ii-ii.q165",
       "question_number": 165,
       "question_title": "Our first parents' temptation",
@@ -145,8 +145,8 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 78,
-      "candidate_relation_count": 33,
+      "candidate_mention_count": 53,
+      "candidate_relation_count": 24,
       "focus_usage": {
         "study_curiosity": 4
       },
@@ -159,7 +159,7 @@
         "Virtue"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q166",
       "question_number": 166,
       "question_title": "Studiousness",
@@ -170,11 +170,11 @@
         "concerns_ordered_inquiry": 1
       },
       "subcluster": "study_curiosity",
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 7
     },
     {
-      "candidate_mention_count": 79,
-      "candidate_relation_count": 19,
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 14,
       "focus_usage": {
         "study_curiosity": 3
       },
@@ -186,7 +186,7 @@
         "Vice"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q167",
       "question_number": 167,
       "question_title": "Curiosity",
@@ -200,8 +200,8 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 59,
-      "candidate_relation_count": 18,
+      "candidate_mention_count": 31,
+      "candidate_relation_count": 12,
       "focus_usage": {
         "external_behavior": 6,
         "external_modesty": 6
@@ -216,7 +216,7 @@
         "Wittiness / Eutrapelia"
       ],
       "parse_status": "ok",
-      "passage_count": 34,
+      "passage_count": 17,
       "question_id": "st.ii-ii.q168",
       "question_number": 168,
       "question_title": "Modesty as consisting in the outward movements of the body",
@@ -227,11 +227,11 @@
         "concerns_external_behavior": 2
       },
       "subcluster": "external_modesty",
-      "unresolved_ambiguity_count": 26
+      "unresolved_ambiguity_count": 8
     },
     {
-      "candidate_mention_count": 37,
-      "candidate_relation_count": 12,
+      "candidate_mention_count": 15,
+      "candidate_relation_count": 8,
       "focus_usage": {
         "external_attire": 4,
         "external_modesty": 4
@@ -242,8 +242,8 @@
         "Modesty in Outward Apparel",
         "Outward Apparel"
       ],
-      "parse_status": "partial",
-      "passage_count": 17,
+      "parse_status": "ok",
+      "passage_count": 9,
       "question_id": "st.ii-ii.q169",
       "question_number": 169,
       "question_title": "Modesty in the outward apparel",
@@ -254,11 +254,11 @@
         "concerns_outward_attire": 2
       },
       "subcluster": "external_modesty",
-      "unresolved_ambiguity_count": 14
+      "unresolved_ambiguity_count": 5
     },
     {
-      "candidate_mention_count": 100,
-      "candidate_relation_count": 48,
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 30,
       "focus_usage": {
         "precept": 6,
         "precept_linkage": 6
@@ -275,7 +275,7 @@
         "Temperance"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q170",
       "question_number": 170,
       "question_title": "The precepts of temperance",
@@ -287,7 +287,7 @@
         "precept_of": 3
       },
       "subcluster": "precept",
-      "unresolved_ambiguity_count": 9
+      "unresolved_ambiguity_count": 3
     }
   ],
   "questions_with_case_modeling_risk": [
@@ -297,11 +297,11 @@
   "questions_with_external_modesty_risk": [],
   "summary": {
     "adams_first_sin_case_relation_count": 10,
-    "candidate_mention_count": 906,
-    "candidate_relation_count": 322,
+    "candidate_mention_count": 563,
+    "candidate_relation_count": 223,
     "external_modesty_relation_count": 10,
     "humility_pride_relation_count": 8,
-    "passage_count": 321,
+    "passage_count": 161,
     "precept_linkage_relation_count": 6,
     "question_count": 10,
     "registered_concepts_used": 37,

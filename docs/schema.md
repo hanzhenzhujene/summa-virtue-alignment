@@ -25,12 +25,19 @@ Canonical passage ids come from the interim corpus and remain stable:
 
 - question: `st.i-ii.q001`
 - article: `st.i-ii.q001.a001`
-- segment: `st.i-ii.q001.a001.obj1`
-- segment: `st.i-ii.q001.a001.sc`
 - segment: `st.i-ii.q001.a001.resp`
 - segment: `st.i-ii.q001.a001.ad1`
 
-All reviewed pilot and prudence annotations cite those segment ids.
+The parser still recognizes the full article structure, including objections and
+the sed contra, but exported passage ids are doctrinal-content ids only:
+
+- `resp` = `I answer that`
+- `ad` = `Reply to Objection ...`
+
+Standalone objections and sed-contra text are excluded from interim segments,
+candidate artifacts, graph exports, and Streamlit passage displays.
+
+All reviewed annotations must cite those retained doctrinal segment ids.
 
 ## Pilot Concept Registry
 

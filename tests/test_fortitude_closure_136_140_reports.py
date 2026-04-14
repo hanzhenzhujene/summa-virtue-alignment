@@ -19,24 +19,24 @@ def test_fortitude_closure_reports_are_consistent(
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 532,
-        "candidate_relation_count": 178,
+        "candidate_mention_count": 307,
+        "candidate_relation_count": 115,
         "fortitude_synthesis_edge_count": 64,
         "fortitude_synthesis_node_count": 89,
         "gift_linkage_relation_count": 6,
         "opposed_vice_relation_count": 4,
-        "passage_count": 117,
+        "passage_count": 58,
         "patience_relation_count": 10,
         "perseverance_relation_count": 10,
         "precept_linkage_relation_count": 9,
         "question_count": 5,
         "registered_concepts_used": 23,
-        "reviewed_annotation_count": 86,
+        "reviewed_annotation_count": 84,
         "reviewed_doctrinal_edge_count": 31,
         "reviewed_structural_editorial_count": 53,
     }
     assert coverage["under_annotated_questions"] == [137]
-    assert coverage["normalization_risk_questions"] == [136, 137, 138, 139, 140]
+    assert coverage["normalization_risk_questions"] == [136, 137, 139, 140]
     assert validation["status"] == "ok"
     assert validation["unresolved_warnings"] == []
 
@@ -51,16 +51,16 @@ def test_fortitude_closure_question_rows_and_synthesis_notes_are_stable(
     )
 
     by_question = {row["question_number"]: row for row in coverage["questions"]}
-    assert by_question[136]["parse_status"] == "partial"
+    assert by_question[136]["parse_status"] == "ok"
     assert by_question[137]["parse_status"] == "ok"
     assert by_question[138]["parse_status"] == "partial"
     assert by_question[139]["parse_status"] == "ok"
-    assert by_question[140]["parse_status"] == "partial"
+    assert by_question[140]["parse_status"] == "ok"
     assert (
         coverage["fortitude_tract_summary"]["reviewed_doctrinal_edges_total"] == 64
     )
     assert (
-        coverage["fortitude_tract_summary"]["reviewed_annotations_total"] == 236
+        coverage["fortitude_tract_summary"]["reviewed_annotations_total"] == 234
     )
     assert any(
         "qq.123-128" in note

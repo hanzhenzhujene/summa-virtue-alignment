@@ -1,7 +1,7 @@
 # Validation Summary
 
 - status: `ok`
-- passages: `792`
+- passages: `388`
 - concepts: `66`
 - annotations: `187`
 - doctrinal edges: `29`

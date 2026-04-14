@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import MutableMapping
 
+from ..utils.segments import USABLE_SEGMENT_TYPES
 from .load import ViewerAppData
 
 HOME_VIEW = "Home"
@@ -146,6 +147,17 @@ def ensure_session_state(
     session_state[MAP_RANGE_KEY] = normalize_map_range(
         session_state.get(MAP_RANGE_KEY, DEFAULT_MAP_RANGE)
     )
+    allowed_segment_types = {"", *USABLE_SEGMENT_TYPES}
+    current_passage_segment_type = str(session_state.get("smg_passage_segment_type", "") or "")
+    if current_passage_segment_type not in allowed_segment_types:
+        session_state["smg_passage_segment_type"] = ""
+    current_map_segment_types = session_state.get("smg_map_segment_types", [])
+    if not isinstance(current_map_segment_types, list):
+        session_state["smg_map_segment_types"] = []
+    else:
+        session_state["smg_map_segment_types"] = [
+            value for value in current_map_segment_types if value in USABLE_SEGMENT_TYPES
+        ]
 
     if session_state.get(CONCEPT_ID_KEY) not in data.bundle.registry:
         session_state[CONCEPT_ID_KEY] = (
@@ -169,9 +181,10 @@ def queue_widget_updates(
     session_state: MutableMapping[str, object],
     **updates: object,
 ) -> None:
-    pending = dict(
-        session_state.get(PENDING_WIDGET_UPDATES_KEY, {})
-        if isinstance(session_state.get(PENDING_WIDGET_UPDATES_KEY, {}), dict)
+    raw_pending = session_state.get(PENDING_WIDGET_UPDATES_KEY, {})
+    pending = (
+        {str(key): value for key, value in raw_pending.items()}
+        if isinstance(raw_pending, dict)
         else {}
     )
     pending.update(updates)

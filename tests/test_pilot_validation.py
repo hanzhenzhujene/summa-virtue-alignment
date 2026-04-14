@@ -9,4 +9,4 @@ def test_pilot_validation_report_is_ok(pilot_artifacts) -> None:
     assert payload["status"] == "ok"
     assert payload["alias_collisions"] == []
     assert payload["missing_evidence"] == []
-    assert payload["passage_count"] == 792
+    assert payload["passage_count"] == 388

@@ -22,6 +22,7 @@ from ..models import (
 )
 from ..utils.jsonl import load_jsonl
 from ..utils.paths import CANDIDATE_DIR, GOLD_DIR, INTERIM_DIR, PROCESSED_DIR, REPO_ROOT
+from ..utils.segments import DISALLOWED_PASSAGE_ID_RE
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
@@ -39,6 +40,10 @@ REVIEWED_EDGE_FILES = (
     PROCESSED_DIR / "prudence_reviewed_doctrinal_edges.jsonl",
     PROCESSED_DIR / "theological_virtues_reviewed_doctrinal_edges.jsonl",
 )
+SCANNED_EXPORT_SUFFIXES = {".jsonl", ".json", ".csv", ".graphml"}
+EXCLUDED_SCAN_PATHS = {
+    PROCESSED_DIR / "candidate_validation_report.json",
+}
 
 
 def build_corpus_reports() -> dict[str, int | str]:
@@ -297,6 +302,7 @@ def validate_candidate_artifacts(
 
     warnings: list[str] = []
     manifest_warnings: list[str] = []
+    warnings.extend(scan_exported_artifacts_for_disallowed_passage_refs())
 
     for mention in candidate_mentions:
         if mention.passage_id not in passages:
@@ -371,6 +377,24 @@ def validate_candidate_artifacts(
         unresolved_warnings=sorted(set(warnings)),
         manifest_consistency_warnings=sorted(set(manifest_warnings)),
     )
+
+
+def scan_exported_artifacts_for_disallowed_passage_refs() -> list[str]:
+    warnings: list[str] = []
+    for base_dir in (INTERIM_DIR, CANDIDATE_DIR, GOLD_DIR, PROCESSED_DIR):
+        for path in sorted(base_dir.rglob("*")):
+            if not path.is_file() or path.suffix not in SCANNED_EXPORT_SUFFIXES:
+                continue
+            if path in EXCLUDED_SCAN_PATHS:
+                continue
+            match = DISALLOWED_PASSAGE_ID_RE.search(path.read_text(encoding="utf-8"))
+            if match is None:
+                continue
+            warnings.append(
+                f"Disallowed objection/sed-contra passage id found in "
+                f"{path.relative_to(REPO_ROOT)}: {match.group(0)}"
+            )
+    return warnings
 
 
 def identify_under_reviewed_clusters(

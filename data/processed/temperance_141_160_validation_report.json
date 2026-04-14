@@ -1,6 +1,6 @@
 {
-  "candidate_mention_count": 2085,
-  "candidate_relation_count": 674,
+  "candidate_mention_count": 1258,
+  "candidate_relation_count": 468,
   "clemency_cruelty_relation_count": 5,
   "continence_incontinence_relation_count": 6,
   "drink_related_relation_count": 8,
@@ -9,7 +9,7 @@
   "integral_part_relation_count": 2,
   "meekness_anger_relation_count": 8,
   "modesty_general_relation_count": 3,
-  "passage_count": 815,
+  "passage_count": 407,
   "potential_part_relation_count": 7,
   "question_count": 20,
   "reviewed_annotation_count": 234,

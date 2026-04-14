@@ -2,12 +2,12 @@
 
 - status: `ok`
 - questions: `10`
-- passages: `321`
+- passages: `161`
 - reviewed annotations: `148`
 - reviewed doctrinal edges: `41`
 - reviewed structural-editorial correspondences: `107`
-- candidate mentions: `906`
-- candidate relation proposals: `322`
+- candidate mentions: `563`
+- candidate relation proposals: `223`
 - humility/pride relations: `8`
 - Adam's-first-sin case relations: `10`
 - studiousness/curiosity relations: `7`

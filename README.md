@@ -13,6 +13,8 @@ An interactive map of Thomas Aquinas's moral corpus.
 >
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
+> In the Summa article form — [obj](https://en.wikipedia.org/wiki/Summa_Theologica), [sc](https://en.wikipedia.org/wiki/Summa_Theologica), [resp](https://en.wikipedia.org/wiki/Summa_Theologica), [ad](https://en.wikipedia.org/wiki/Summa_Theologica) — this viewer keeps only `resp` and `ad`: Thomas's own answer. No opening objections are included.
+
 This dashboard is built to be read, not merely queried. Search Aquinas concepts, passages,
 reviewed doctrinal relations, and tract maps across the moral corpus of the *Summa Theologiae*,
 then move between concept, relation, passage, and graph without losing the segment-level evidence

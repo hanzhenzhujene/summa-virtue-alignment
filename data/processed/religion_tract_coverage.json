@@ -9,7 +9,6 @@
     87,
     88,
     89,
-    91,
     92,
     93,
     94,
@@ -21,16 +20,16 @@
   ],
   "questions": [
     {
-      "candidate_mention_count": 66,
-      "candidate_relation_count": 15,
+      "candidate_mention_count": 51,
+      "candidate_relation_count": 11,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
         "Justice",
         "Religion"
       ],
-      "parse_status": "partial",
-      "passage_count": 11,
+      "parse_status": "ok",
+      "passage_count": 6,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q080",
       "question_number": 80,
@@ -42,8 +41,8 @@
       "unresolved_ambiguity_count": 10
     },
     {
-      "candidate_mention_count": 257,
-      "candidate_relation_count": 74,
+      "candidate_mention_count": 150,
+      "candidate_relation_count": 52,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -52,7 +51,7 @@
         "Religion"
       ],
       "parse_status": "ok",
-      "passage_count": 68,
+      "passage_count": 34,
       "positive_act_usage": {
         "Adoration": 1
       },
@@ -65,11 +64,11 @@
       "sacred_object_usage": {
         "Divine Worship": 3
       },
-      "unresolved_ambiguity_count": 52
+      "unresolved_ambiguity_count": 23
     },
     {
-      "candidate_mention_count": 72,
-      "candidate_relation_count": 25,
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 21,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -78,7 +77,7 @@
         "Religion"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "positive_act_usage": {
         "Devotion": 2
       },
@@ -91,11 +90,11 @@
       "sacred_object_usage": {
         "Divine Worship": 1
       },
-      "unresolved_ambiguity_count": 3
+      "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 398,
-      "candidate_relation_count": 142,
+      "candidate_mention_count": 285,
+      "candidate_relation_count": 106,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -103,8 +102,8 @@
         "Prayer",
         "Religion"
       ],
-      "parse_status": "partial",
-      "passage_count": 147,
+      "parse_status": "ok",
+      "passage_count": 74,
       "positive_act_usage": {
         "Prayer": 2
       },
@@ -117,11 +116,11 @@
       "sacred_object_usage": {
         "Divine Worship": 1
       },
-      "unresolved_ambiguity_count": 18
+      "unresolved_ambiguity_count": 11
     },
     {
-      "candidate_mention_count": 31,
-      "candidate_relation_count": 8,
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 7,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -130,7 +129,7 @@
         "Religion"
       ],
       "parse_status": "ok",
-      "passage_count": 24,
+      "passage_count": 12,
       "positive_act_usage": {
         "Adoration": 2
       },
@@ -146,8 +145,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 98,
-      "candidate_relation_count": 31,
+      "candidate_mention_count": 66,
+      "candidate_relation_count": 24,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -156,7 +155,7 @@
         "Sacrifice"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "positive_act_usage": {
         "Sacrifice": 4
       },
@@ -169,11 +168,11 @@
       "sacred_object_usage": {
         "Divine Worship": 3
       },
-      "unresolved_ambiguity_count": 21
+      "unresolved_ambiguity_count": 12
     },
     {
-      "candidate_mention_count": 60,
-      "candidate_relation_count": 16,
+      "candidate_mention_count": 41,
+      "candidate_relation_count": 13,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -183,7 +182,7 @@
         "Religion"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "positive_act_usage": {
         "First-Fruits": 1,
         "Oblation": 2
@@ -197,11 +196,11 @@
       "sacred_object_usage": {
         "Divine Worship": 2
       },
-      "unresolved_ambiguity_count": 18
+      "unresolved_ambiguity_count": 13
     },
     {
-      "candidate_mention_count": 84,
-      "candidate_relation_count": 13,
+      "candidate_mention_count": 55,
+      "candidate_relation_count": 11,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -210,7 +209,7 @@
         "Tithes"
       ],
       "parse_status": "ok",
-      "passage_count": 38,
+      "passage_count": 18,
       "positive_act_usage": {
         "Tithes": 2
       },
@@ -223,11 +222,11 @@
       "sacred_object_usage": {
         "Divine Worship": 1
       },
-      "unresolved_ambiguity_count": 42
+      "unresolved_ambiguity_count": 26
     },
     {
-      "candidate_mention_count": 171,
-      "candidate_relation_count": 55,
+      "candidate_mention_count": 122,
+      "candidate_relation_count": 44,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -237,7 +236,7 @@
         "Vow"
       ],
       "parse_status": "ok",
-      "passage_count": 100,
+      "passage_count": 50,
       "positive_act_usage": {
         "Vow": 4
       },
@@ -251,11 +250,11 @@
         "Divine Worship": 1,
         "Promise to God": 2
       },
-      "unresolved_ambiguity_count": 30
+      "unresolved_ambiguity_count": 23
     },
     {
-      "candidate_mention_count": 157,
-      "candidate_relation_count": 51,
+      "candidate_mention_count": 108,
+      "candidate_relation_count": 40,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -266,7 +265,7 @@
         "Sworn Assertion"
       ],
       "parse_status": "ok",
-      "passage_count": 83,
+      "passage_count": 41,
       "positive_act_usage": {
         "Oath": 5
       },
@@ -281,11 +280,11 @@
         "Divine Worship": 1,
         "Sworn Assertion": 1
       },
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 16,
-      "candidate_relation_count": 6,
+      "candidate_mention_count": 11,
+      "candidate_relation_count": 5,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -295,7 +294,7 @@
         "Sacred Thing"
       ],
       "parse_status": "partial",
-      "passage_count": 21,
+      "passage_count": 9,
       "positive_act_usage": {
         "Adjuration": 3
       },
@@ -312,8 +311,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 36,
-      "candidate_relation_count": 12,
+      "candidate_mention_count": 19,
+      "candidate_relation_count": 6,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {},
       "major_concepts": [
@@ -322,7 +321,7 @@
         "Religion"
       ],
       "parse_status": "ok",
-      "passage_count": 20,
+      "passage_count": 10,
       "positive_act_usage": {
         "Praise of God": 2
       },
@@ -335,11 +334,11 @@
       "sacred_object_usage": {
         "Divine Worship": 1
       },
-      "unresolved_ambiguity_count": 1
+      "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 27,
-      "candidate_relation_count": 10,
+      "candidate_mention_count": 23,
+      "candidate_relation_count": 8,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {
         "Superstition": 1
@@ -353,7 +352,7 @@
         "Undue Worship of the True God"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q092",
       "question_number": 92,
@@ -365,8 +364,8 @@
       "unresolved_ambiguity_count": 11
     },
     {
-      "candidate_mention_count": 57,
-      "candidate_relation_count": 18,
+      "candidate_mention_count": 31,
+      "candidate_relation_count": 8,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {
         "Undue Worship of the True God": 1
@@ -377,7 +376,7 @@
         "Undue Worship of the True God"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q093",
       "question_number": 93,
@@ -388,11 +387,11 @@
       "sacred_object_usage": {
         "Divine Worship": 2
       },
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 93,
-      "candidate_relation_count": 36,
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 21,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {
         "Idolatry": 1
@@ -404,7 +403,7 @@
         "Superstition"
       ],
       "parse_status": "ok",
-      "passage_count": 36,
+      "passage_count": 17,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q094",
       "question_number": 94,
@@ -415,11 +414,11 @@
       "sacred_object_usage": {
         "Divine Worship": 1
       },
-      "unresolved_ambiguity_count": 10
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 72,
-      "candidate_relation_count": 34,
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 31,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {
         "Divination": 1
@@ -435,7 +434,7 @@
         "Superstition"
       ],
       "parse_status": "partial",
-      "passage_count": 57,
+      "passage_count": 25,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q095",
       "question_number": 95,
@@ -447,8 +446,8 @@
       "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 44,
-      "candidate_relation_count": 14,
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 11,
       "deficiency_opposition_usage": {},
       "excess_opposition_usage": {
         "Superstitious Observance": 1
@@ -462,8 +461,8 @@
         "Superstitious Observance",
         "Written-Charm Observance"
       ],
-      "parse_status": "partial",
-      "passage_count": 33,
+      "parse_status": "ok",
+      "passage_count": 17,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q096",
       "question_number": 96,
@@ -475,8 +474,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 161,
-      "candidate_relation_count": 48,
+      "candidate_mention_count": 90,
+      "candidate_relation_count": 25,
       "deficiency_opposition_usage": {
         "Temptation of God": 1
       },
@@ -486,7 +485,7 @@
         "Temptation of God"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q097",
       "question_number": 97,
@@ -495,11 +494,11 @@
       "reviewed_doctrinal_edge_count": 1,
       "reviewed_structural_editorial_count": 5,
       "sacred_object_usage": {},
-      "unresolved_ambiguity_count": 8
+      "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 39,
-      "candidate_relation_count": 12,
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 8,
       "deficiency_opposition_usage": {
         "Perjury": 2
       },
@@ -510,8 +509,8 @@
         "Perjury",
         "Religion"
       ],
-      "parse_status": "partial",
-      "passage_count": 35,
+      "parse_status": "ok",
+      "passage_count": 18,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q098",
       "question_number": 98,
@@ -522,11 +521,11 @@
       "sacred_object_usage": {
         "Divine Name": 1
       },
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 36,
-      "candidate_relation_count": 13,
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 10,
       "deficiency_opposition_usage": {
         "Sacrilege": 1
       },
@@ -540,7 +539,7 @@
         "Sacrilege"
       ],
       "parse_status": "ok",
-      "passage_count": 32,
+      "passage_count": 16,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q099",
       "question_number": 99,
@@ -554,11 +553,11 @@
         "Sacred Place": 1,
         "Sacred Thing": 1
       },
-      "unresolved_ambiguity_count": 7
+      "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 102,
-      "candidate_relation_count": 26,
+      "candidate_mention_count": 78,
+      "candidate_relation_count": 20,
       "deficiency_opposition_usage": {
         "Simony": 1
       },
@@ -572,7 +571,7 @@
         "Spiritual Thing"
       ],
       "parse_status": "ok",
-      "passage_count": 74,
+      "passage_count": 37,
       "positive_act_usage": {},
       "question_id": "st.ii-ii.q100",
       "question_number": 100,
@@ -586,7 +585,7 @@
         "Spiritual Office": 1,
         "Spiritual Thing": 2
       },
-      "unresolved_ambiguity_count": 26
+      "unresolved_ambiguity_count": 24
     }
   ],
   "questions_with_act_taxonomy_risk": [],
@@ -597,11 +596,11 @@
     97
   ],
   "summary": {
-    "candidate_mention_count": 2077,
-    "candidate_relation_count": 659,
+    "candidate_mention_count": 1400,
+    "candidate_relation_count": 482,
     "deficiency_opposition_relation_count": 5,
     "excess_opposition_relation_count": 5,
-    "passage_count": 939,
+    "passage_count": 464,
     "positive_act_relation_count": 25,
     "question_count": 21,
     "registered_concepts_used": 42,

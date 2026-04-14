@@ -2,7 +2,7 @@
 
 Question title: Prophecy
 Article count: 6
-Passage count: 47
+Passage count: 22
 Reviewed annotations: 9
 
 ## Articles

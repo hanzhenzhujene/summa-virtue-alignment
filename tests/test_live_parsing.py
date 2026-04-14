@@ -24,6 +24,11 @@ def test_parse_live_i_ii_question_page(tmp_path) -> None:
     assert parsed.question_title == "Man's last end"
     assert len(parsed.articles) == 8
     assert all(segment.text for article in parsed.articles for segment in article.segments)
+    assert all(
+        segment.segment_type in {"resp", "ad"}
+        for article in parsed.articles
+        for segment in article.segments
+    )
 
 
 @pytest.mark.network
@@ -43,5 +48,4 @@ def test_parse_live_ii_ii_question_page_and_crossrefs(tmp_path) -> None:
         for segment in first_article.segments
         for match in extract_crossrefs(segment.text)
     ]
-    assert "I-II:62:3" in crossrefs
     assert "II-II:25:1" in crossrefs

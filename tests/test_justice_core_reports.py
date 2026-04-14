@@ -15,12 +15,12 @@ def test_justice_core_reports_are_consistent(justice_core_artifacts) -> None:
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 1813,
-        "candidate_relation_count": 656,
+        "candidate_mention_count": 1141,
+        "candidate_relation_count": 459,
         "harmed_domain_relation_count": 21,
         "judicial_process_relation_count": 31,
         "justice_species_relation_count": 11,
-        "passage_count": 927,
+        "passage_count": 452,
         "question_count": 23,
         "registered_concepts_used": 66,
         "restitution_related_relation_count": 7,

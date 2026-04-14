@@ -10,8 +10,8 @@
   ],
   "questions": [
     {
-      "candidate_mention_count": 222,
-      "candidate_relation_count": 53,
+      "candidate_mention_count": 151,
+      "candidate_relation_count": 42,
       "distinction_usage": {
         "fortitude_related": 1,
         "honor_related": 1
@@ -28,7 +28,7 @@
       ],
       "opposition_mode_usage": {},
       "parse_status": "ok",
-      "passage_count": 68,
+      "passage_count": 34,
       "question_id": "st.ii-ii.q129",
       "question_number": 129,
       "question_title": "Magnanimity",
@@ -40,11 +40,11 @@
         "related_to_fortitude": 1
       },
       "subcluster": "honor_worthiness",
-      "unresolved_ambiguity_count": 74
+      "unresolved_ambiguity_count": 40
     },
     {
-      "candidate_mention_count": 42,
-      "candidate_relation_count": 18,
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 10,
       "distinction_usage": {},
       "major_concepts": [
         "Magnanimity",
@@ -55,7 +55,7 @@
         "excess": 1
       },
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q130",
       "question_number": 130,
       "question_title": "Presumption",
@@ -67,8 +67,8 @@
       "unresolved_ambiguity_count": 7
     },
     {
-      "candidate_mention_count": 24,
-      "candidate_relation_count": 7,
+      "candidate_mention_count": 18,
+      "candidate_relation_count": 6,
       "distinction_usage": {
         "honor_related": 2
       },
@@ -82,7 +82,7 @@
         "excess": 1
       },
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q131",
       "question_number": 131,
       "question_title": "Ambition",
@@ -93,11 +93,11 @@
         "concerns_honor": 1
       },
       "subcluster": "honor_worthiness",
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 4
     },
     {
-      "candidate_mention_count": 103,
-      "candidate_relation_count": 46,
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 36,
       "distinction_usage": {
         "honor_related": 3
       },
@@ -113,7 +113,7 @@
         "excess": 1
       },
       "parse_status": "ok",
-      "passage_count": 40,
+      "passage_count": 20,
       "question_id": "st.ii-ii.q132",
       "question_number": 132,
       "question_title": "Vainglory",
@@ -127,8 +127,8 @@
       "unresolved_ambiguity_count": 1
     },
     {
-      "candidate_mention_count": 41,
-      "candidate_relation_count": 15,
+      "candidate_mention_count": 23,
+      "candidate_relation_count": 9,
       "distinction_usage": {
         "honor_related": 2
       },
@@ -142,7 +142,7 @@
         "deficiency": 1
       },
       "parse_status": "ok",
-      "passage_count": 20,
+      "passage_count": 10,
       "question_id": "st.ii-ii.q133",
       "question_number": 133,
       "question_title": "Pusillanimity",
@@ -153,11 +153,11 @@
         "concerns_worthiness": 2
       },
       "subcluster": "honor_worthiness",
-      "unresolved_ambiguity_count": 11
+      "unresolved_ambiguity_count": 8
     },
     {
-      "candidate_mention_count": 93,
-      "candidate_relation_count": 18,
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 10,
       "distinction_usage": {
         "expenditure_related": 2,
         "fortitude_related": 1
@@ -171,7 +171,7 @@
       ],
       "opposition_mode_usage": {},
       "parse_status": "ok",
-      "passage_count": 36,
+      "passage_count": 18,
       "question_id": "st.ii-ii.q134",
       "question_number": 134,
       "question_title": "Magnificence",
@@ -184,10 +184,10 @@
         "related_to_fortitude": 1
       },
       "subcluster": "expenditure_work",
-      "unresolved_ambiguity_count": 42
+      "unresolved_ambiguity_count": 24
     },
     {
-      "candidate_mention_count": 7,
+      "candidate_mention_count": 4,
       "candidate_relation_count": 1,
       "distinction_usage": {
         "expenditure_related": 6
@@ -205,7 +205,7 @@
         "excess": 1
       },
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q135",
       "question_number": 135,
       "question_title": "Meanness",
@@ -217,7 +217,7 @@
         "concerns_great_work": 3
       },
       "subcluster": "expenditure_work",
-      "unresolved_ambiguity_count": 5
+      "unresolved_ambiguity_count": 2
     }
   ],
   "questions_with_honor_expenditure_modeling_risk": [
@@ -228,13 +228,13 @@
     134
   ],
   "summary": {
-    "candidate_mention_count": 532,
-    "candidate_relation_count": 158,
+    "candidate_mention_count": 346,
+    "candidate_relation_count": 114,
     "deficiency_opposition_relation_count": 2,
     "excess_opposition_relation_count": 4,
     "expenditure_related_relation_count": 13,
     "honor_related_relation_count": 20,
-    "passage_count": 212,
+    "passage_count": 106,
     "question_count": 7,
     "registered_concepts_used": 20,
     "reviewed_annotation_count": 150,

@@ -19,17 +19,16 @@ def test_parse_fixture_i_ii_question_page() -> None:
     first_article = parsed.articles[0]
     assert first_article.article_title == "Whether it belongs to man to act for an end?"
     assert [segment.segment_type for segment in first_article.segments] == [
-        "obj",
-        "obj",
-        "sc",
         "resp",
         "ad",
         "ad",
     ]
-    assert first_article.segments[4].text.endswith(
+    assert first_article.segments[1].text.endswith(
         "The same answer applies to the Second Objection, as regards all actions "
         "ordered to the good."
     )
+    assert all("Objection 1." not in segment.text for segment in first_article.segments)
+    assert all("On the contrary" not in segment.text for segment in first_article.segments)
 
 
 def test_parse_fixture_ii_ii_question_page() -> None:
@@ -41,9 +40,6 @@ def test_parse_fixture_ii_ii_question_page() -> None:
     article = parsed.articles[0]
     assert article.article_title == "Is the object of faith the First Truth?"
     assert [segment.segment_type for segment in article.segments] == [
-        "obj",
-        "obj",
-        "sc",
         "resp",
         "ad",
         "ad",
@@ -68,27 +64,23 @@ def test_segment_ordering_and_crossref_occurrence_ids_are_stable() -> None:
     ) = build_records_for_question(scope_entry, parsed)
 
     assert article_records[0].segment_ids == [
-        "st.i-ii.q001.a001.obj1",
-        "st.i-ii.q001.a001.obj2",
-        "st.i-ii.q001.a001.sc",
         "st.i-ii.q001.a001.resp",
         "st.i-ii.q001.a001.ad1",
         "st.i-ii.q001.a001.ad2",
     ]
-    assert crossref_records[0].crossref_id == "st.i-ii.q001.a001.obj2.xref01"
-    assert crossref_records[1].crossref_id == "st.i-ii.q001.a001.ad2.xref01"
+    assert [record.crossref_id for record in crossref_records] == [
+        "st.i-ii.q001.a001.ad2.xref01"
+    ]
     assert all(segment.text.strip() for segment in segment_records)
 
 
 def test_extract_crossrefs_from_fixture_segment_text() -> None:
     html_text = (FIXTURE_DIR / "ii_ii_q001_fixture.html").read_text(encoding="utf-8")
     parsed = parse_question_html(1, html_text)
-    objection_two = parsed.articles[0].segments[1]
+    respondeo = parsed.articles[0].segments[0]
     reply_two = parsed.articles[0].segments[-1]
 
-    assert [match.normalized_reference for match in extract_crossrefs(objection_two.text)] == [
-        "I-II:62:3"
-    ]
+    assert [match.normalized_reference for match in extract_crossrefs(respondeo.text)] == []
     assert [match.normalized_reference for match in extract_crossrefs(reply_two.text)] == [
         "II-II:25:1"
     ]

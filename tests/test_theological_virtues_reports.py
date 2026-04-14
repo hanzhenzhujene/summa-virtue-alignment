@@ -15,9 +15,9 @@ def test_theological_virtues_reports_are_consistent(theological_virtues_artifact
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 9671,
-        "candidate_relation_count": 3323,
-        "passage_count": 2088,
+        "candidate_mention_count": 5832,
+        "candidate_relation_count": 2161,
+        "passage_count": 999,
         "question_count": 46,
         "registered_concepts_used": 58,
         "reviewed_annotation_count": 185,

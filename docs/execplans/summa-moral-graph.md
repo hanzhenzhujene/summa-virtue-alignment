@@ -2,6 +2,19 @@
 
 ## Progress
 
+- The homepage and README Summa-structure note is being clarified again for readers:
+  - the note now says more directly that only `resp` and `ad` are included here as Thomas's own answer
+  - it now also says explicitly that no opening `obj` or `sc` material is included
+  - the `obj / sc / resp / ad` acronyms now link out to a short public explainer page for the Summa article form
+- The public-facing app and README now explain the Summa article structure more plainly:
+  - both surfaces now note the conventional `obj / sc / resp / ad` article structure in one short line
+  - they also now state explicitly that the viewer keeps only `resp` and `ad` because the opening objections / counter-position are not used as Aquinas's own doctrinal answer
+- The doctrinal-content policy has now been tightened so objections can no longer leak into the corpus, graph, or app:
+  - the parser still recognizes the full article structure for boundary detection, but exported usable segments are now limited to `I answer that` (`resp`) and `Reply to Objection ...` (`ad`)
+  - opening objections (`obj`) and `On the contrary` / `sed contra` (`sc`) are now excluded from interim data, candidate generation, viewer filters, and downstream exports
+  - interim passage volume has been reduced from the older all-sections export to `6032` usable doctrinal passages (`1482` respondeo + `4550` reply segments)
+  - candidate/reviewed artifacts have been regenerated against the cleaned corpus, and explicit scans now fail if any exported passage id ends in `.objN` or `.sc`
+  - dedicated regression coverage now checks both parser output and exported artifacts for objection leakage
 - The favicon is being pushed further toward a monastery-seal direction:
   - the outer ring is now heavier again
   - the center motif has been simplified to a bold Latin cross with an open book in front of it
@@ -171,8 +184,8 @@
 - Milestone 1 textual ingest is complete for the in-scope corpus:
   - `296` questions
   - `1482` articles
-  - `12337` segments
-  - `2238` explicit cross-reference records
+  - `6032` usable doctrinal segments
+  - `1603` explicit cross-reference records
 - Interim artifacts are generated and validated under `data/interim/`.
 - The next reviewed doctrinal block is now implemented for the prudence tract:
   - `II-II, QQ. 47–56`
@@ -197,10 +210,10 @@
 - The repo now supports the full moral corpus as a structural and candidate-review workflow:
   - `296` included questions parsed
   - `1482` articles parsed
-  - `12337` passages available for full-corpus browsing
+  - `6032` doctrinally usable passages available for full-corpus browsing
   - `128` corpus registry concepts
-  - `41973` candidate mentions
-  - `13342` candidate relation proposals
+  - `25755` candidate mentions
+  - `8977` candidate relation proposals
   - `501` reviewed annotations remain separate from the candidate layer
   - generated audit outputs:
     - `data/processed/corpus_manifest.json`
@@ -215,13 +228,13 @@
 - The first substantial reviewed doctrinal layer is now implemented for the theological virtues tract:
   - `II-II, QQ. 1–46`
   - `46` questions covered
-  - `2088` passages in tract scope
+  - `999` passages in tract scope
   - `58` registered concepts used in tract exports
   - `185` reviewed annotations
   - `54` reviewed doctrinal edges
   - `126` reviewed structural-editorial correspondences
-  - `9671` candidate mentions in tract scope
-  - `3323` candidate relation proposals in tract scope
+  - `5832` candidate mentions in tract scope
+  - `2161` candidate relation proposals in tract scope
   - generated tract outputs:
     - `data/processed/theological_virtues_coverage.json`
     - `data/processed/theological_virtues_validation_report.json`
@@ -234,13 +247,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the justice core tract:
   - `II-II, QQ. 57–79`
   - `23` questions covered
-  - `927` passages in tract scope
+  - `452` passages in tract scope
   - `66` registered concepts used in tract exports
   - `299` reviewed annotations
   - `98` reviewed doctrinal edges
   - `186` reviewed structural-editorial correspondences
-  - `1813` candidate mentions in tract scope
-  - `656` candidate relation proposals in tract scope
+  - `1141` candidate mentions in tract scope
+  - `459` candidate relation proposals in tract scope
   - doctrinal edge families currently counted in tract reports:
     - `11` justice-species relations
     - `21` harmed-domain relations
@@ -257,13 +270,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the religion tract:
   - `II-II, QQ. 80–100`
   - `21` questions covered
-  - `939` passages in tract scope
+  - `464` passages in tract scope
   - `42` registered concepts used in tract exports
   - `231` reviewed annotations
   - `63` reviewed doctrinal edges
   - `157` reviewed structural-editorial correspondences
-  - `2077` candidate mentions in tract scope
-  - `659` candidate relation proposals in tract scope
+  - `1400` candidate mentions in tract scope
+  - `482` candidate relation proposals in tract scope
   - doctrinal edge families currently counted in tract reports:
     - `25` positive-act relations
     - `5` excess-opposition relations
@@ -280,13 +293,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the owed-relation tract:
   - `II-II, QQ. 101–108`
   - `8` questions covered
-  - `282` passages in tract scope
+  - `140` passages in tract scope
   - `27` registered concepts used in tract exports
   - `169` reviewed annotations
   - `38` reviewed doctrinal edges
   - `110` reviewed structural-editorial correspondences
-  - `732` candidate mentions in tract scope
-  - `226` candidate relation proposals in tract scope
+  - `475` candidate mentions in tract scope
+  - `166` candidate relation proposals in tract scope
   - doctrinal edge families currently counted in tract reports:
     - `6` origin-related due relations
     - `10` excellence-related due relations
@@ -304,13 +317,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the connected virtues tract:
   - `II-II, QQ. 109–120`
   - `12` questions covered
-  - `340` passages in tract scope
+  - `165` passages in tract scope
   - `23` registered concepts used in tract exports
   - `182` reviewed annotations
   - `44` reviewed doctrinal edges
   - `138` reviewed structural-editorial correspondences
-  - `763` candidate mentions in tract scope
-  - `238` candidate relation proposals in tract scope
+  - `466` candidate mentions in tract scope
+  - `174` candidate relation proposals in tract scope
   - doctrinal edge families currently counted in tract reports:
     - `21` self-presentation relations
     - `8` social-interaction relations
@@ -327,13 +340,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the first detailed fortitude-parts tract:
   - `II-II, QQ. 129–135`
   - `7` questions covered
-  - `212` passages in tract scope
+  - `106` passages in tract scope
   - `20` registered concepts used in tract exports
   - `150` reviewed annotations
   - `33` reviewed doctrinal edges
   - `97` reviewed structural-editorial correspondences
-  - `532` candidate mentions in tract scope
-  - `158` candidate relation proposals in tract scope
+  - `346` candidate mentions in tract scope
+  - `114` candidate relation proposals in tract scope
   - doctrinal tract counts currently reported:
     - `4` excess-opposition relations
     - `2` deficiency-opposition relations
@@ -350,13 +363,13 @@
 - The next research-grade reviewed doctrinal block is now implemented for the fortitude closure tract:
   - `II-II, QQ. 136–140`
   - `5` questions covered
-  - `117` passages in tract scope
+  - `58` passages in tract scope
   - `23` registered concepts used in tract exports
-  - `86` reviewed annotations
+  - `84` reviewed annotations
   - `31` reviewed doctrinal edges
   - `53` reviewed structural-editorial correspondences
-  - `532` candidate mentions in tract scope
-  - `178` candidate relation proposals in tract scope
+  - `307` candidate mentions in tract scope
+  - `115` candidate relation proposals in tract scope
   - doctrinal tract counts currently reported:
     - `10` patience relations
     - `10` perseverance relations
@@ -374,13 +387,13 @@
 - The next large research-grade reviewed doctrinal block is now implemented for the major temperance tract, phase 1:
   - `II-II, QQ. 141–160`
   - `20` questions covered
-  - `815` passages in tract scope
+  - `407` passages in tract scope
   - `48` registered concepts used in tract exports
   - `234` reviewed annotations
   - `67` reviewed doctrinal edges
   - `166` reviewed structural-editorial correspondences
-  - `2085` candidate mentions in tract scope
-  - `674` candidate relation proposals in tract scope
+  - `1258` candidate mentions in tract scope
+  - `468` candidate relation proposals in tract scope
   - doctrinal tract counts currently reported:
     - `2` integral-part relations
     - `7` subjective-part relations
@@ -403,13 +416,13 @@
 - The next large research-grade reviewed doctrinal block is now implemented for the temperance closure tract:
   - `II-II, QQ. 161–170`
   - `10` questions covered
-  - `321` passages in tract scope
+  - `161` passages in tract scope
   - `37` registered concepts used in tract exports
   - `148` reviewed annotations
   - `41` reviewed doctrinal edges
   - `107` reviewed structural-editorial correspondences
-  - `906` candidate mentions in tract scope
-  - `322` candidate relation proposals in tract scope
+  - `563` candidate mentions in tract scope
+  - `223` candidate relation proposals in tract scope
   - doctrinal tract counts currently reported:
     - `8` humility/pride relations
     - `10` Adam’s-first-sin case relations

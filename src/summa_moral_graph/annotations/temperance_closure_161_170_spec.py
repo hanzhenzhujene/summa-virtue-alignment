@@ -30,10 +30,12 @@ def segment_id(
     ordinal: int | None = None,
 ) -> str:
     base = f"st.ii-ii.q{question_number:03d}.a{article_number:03d}"
-    if segment_type in {"obj", "ad"}:
+    if segment_type == "ad":
         if ordinal is None:
             raise ValueError(f"{segment_type} segments require an ordinal")
         return f"{base}.{segment_type}{ordinal}"
+    if segment_type != "resp":
+        raise ValueError("Only respondeo and reply segments are allowed in reviewed seeds")
     if ordinal is not None:
         raise ValueError(f"{segment_type} does not accept an ordinal")
     return f"{base}.{segment_type}"

@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 
 from bs4 import BeautifulSoup, FeatureNotFound, Tag
 
+from ..utils.segments import USABLE_SEGMENT_TYPES
 from ..utils.text import clean_article_title, clean_question_title, normalize_text, visible_text
 
 ARTICLE_ID_RE = re.compile(r"^article(\d+)$", re.IGNORECASE)
@@ -161,13 +162,17 @@ def parse_article_segments_with_warnings(
         text = normalize_text(" ".join(part for part in current_paragraphs if part))
         if not text:
             raise ValueError(f"Segment {current_type} is empty")
-        segments.append(
-            ParsedSegment(
-                segment_type=current_type,
-                segment_ordinal=current_ordinal,
-                text=text,
+        # We keep objection and sed-contra recognition only for boundary detection.
+        # The exported corpus retains doctrinally usable content only: respondeo and
+        # replies to objections.
+        if current_type in USABLE_SEGMENT_TYPES:
+            segments.append(
+                ParsedSegment(
+                    segment_type=current_type,
+                    segment_ordinal=current_ordinal,
+                    text=text,
+                )
             )
-        )
         current_type = None
         current_ordinal = None
         current_paragraphs = []
@@ -244,8 +249,6 @@ def parse_article_segments_with_warnings(
             )
         )
     for missing_type, warning_type in (
-        ("obj", "article_missing_objections"),
-        ("sc", "article_missing_sed_contra"),
         ("resp", "article_missing_respondeo"),
         ("ad", "article_missing_replies"),
     ):
@@ -253,7 +256,7 @@ def parse_article_segments_with_warnings(
             warnings.append(
                 ParseWarning(
                     warning_type=warning_type,
-                    message=f"Article is missing canonical `{missing_type}` segment(s).",
+                    message=f"Article is missing usable doctrinal `{missing_type}` segment(s).",
                     article_number=article_number,
                 )
             )

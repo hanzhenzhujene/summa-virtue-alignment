@@ -3,7 +3,6 @@
     109,
     110,
     111,
-    112,
     114,
     115,
     116,
@@ -14,8 +13,8 @@
   ],
   "questions": [
     {
-      "candidate_mention_count": 121,
-      "candidate_relation_count": 17,
+      "candidate_mention_count": 72,
+      "candidate_relation_count": 10,
       "cluster_usage": {
         "self-presentation": 2
       },
@@ -27,7 +26,7 @@
         "Truth"
       ],
       "parse_status": "partial",
-      "passage_count": 31,
+      "passage_count": 14,
       "question_id": "st.ii-ii.q109",
       "question_number": 109,
       "question_title": "Truth",
@@ -38,11 +37,11 @@
         "concerns_self_presentation": 1
       },
       "subcluster": "self_presentation",
-      "unresolved_ambiguity_count": 60
+      "unresolved_ambiguity_count": 36
     },
     {
-      "candidate_mention_count": 98,
-      "candidate_relation_count": 46,
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 38,
       "cluster_usage": {
         "self-presentation": 4
       },
@@ -54,7 +53,7 @@
         "Truth"
       ],
       "parse_status": "partial",
-      "passage_count": 39,
+      "passage_count": 18,
       "question_id": "st.ii-ii.q110",
       "question_number": 110,
       "question_title": "The vices opposed to truth, and first of lying",
@@ -63,11 +62,11 @@
       "reviewed_structural_editorial_count": 14,
       "schema_extension_usage": {},
       "subcluster": "self_presentation",
-      "unresolved_ambiguity_count": 12
+      "unresolved_ambiguity_count": 9
     },
     {
-      "candidate_mention_count": 55,
-      "candidate_relation_count": 20,
+      "candidate_mention_count": 27,
+      "candidate_relation_count": 12,
       "cluster_usage": {
         "self-presentation": 8
       },
@@ -79,7 +78,7 @@
         "Truth"
       ],
       "parse_status": "partial",
-      "passage_count": 31,
+      "passage_count": 14,
       "question_id": "st.ii-ii.q111",
       "question_number": 111,
       "question_title": "Dissimulation and hypocrisy",
@@ -90,10 +89,10 @@
         "concerns_self_presentation": 2
       },
       "subcluster": "self_presentation",
-      "unresolved_ambiguity_count": 14
+      "unresolved_ambiguity_count": 10
     },
     {
-      "candidate_mention_count": 25,
+      "candidate_mention_count": 16,
       "candidate_relation_count": 8,
       "cluster_usage": {
         "self-presentation": 3
@@ -105,7 +104,7 @@
         "Truth"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q112",
       "question_number": 112,
       "question_title": "Boasting",
@@ -116,11 +115,11 @@
         "concerns_self_presentation": 1
       },
       "subcluster": "self_presentation",
-      "unresolved_ambiguity_count": 4
+      "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 11,
-      "candidate_relation_count": 4,
+      "candidate_mention_count": 7,
+      "candidate_relation_count": 3,
       "cluster_usage": {
         "self-presentation": 4
       },
@@ -132,7 +131,7 @@
         "Truth"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q113",
       "question_number": 113,
       "question_title": "Irony",
@@ -146,8 +145,8 @@
       "unresolved_ambiguity_count": 0
     },
     {
-      "candidate_mention_count": 48,
-      "candidate_relation_count": 6,
+      "candidate_mention_count": 19,
+      "candidate_relation_count": 2,
       "cluster_usage": {
         "social interaction": 2
       },
@@ -157,7 +156,7 @@
         "Social Interaction"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q114",
       "question_number": 114,
       "question_title": "The friendliness which is called affability",
@@ -168,10 +167,10 @@
         "concerns_social_interaction": 1
       },
       "subcluster": "social_interaction",
-      "unresolved_ambiguity_count": 28
+      "unresolved_ambiguity_count": 10
     },
     {
-      "candidate_mention_count": 21,
+      "candidate_mention_count": 18,
       "candidate_relation_count": 13,
       "cluster_usage": {
         "social interaction": 3
@@ -182,7 +181,7 @@
         "Social Interaction"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q115",
       "question_number": 115,
       "question_title": "Flattery",
@@ -196,8 +195,8 @@
       "unresolved_ambiguity_count": 2
     },
     {
-      "candidate_mention_count": 27,
-      "candidate_relation_count": 12,
+      "candidate_mention_count": 18,
+      "candidate_relation_count": 8,
       "cluster_usage": {
         "social interaction": 3
       },
@@ -208,7 +207,7 @@
         "Social Interaction"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q116",
       "question_number": 116,
       "question_title": "Quarreling",
@@ -219,11 +218,11 @@
         "concerns_social_interaction": 1
       },
       "subcluster": "social_interaction",
-      "unresolved_ambiguity_count": 4
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 125,
-      "candidate_relation_count": 37,
+      "candidate_mention_count": 73,
+      "candidate_relation_count": 26,
       "cluster_usage": {
         "external goods": 3
       },
@@ -234,7 +233,7 @@
         "Liberality"
       ],
       "parse_status": "ok",
-      "passage_count": 50,
+      "passage_count": 25,
       "question_id": "st.ii-ii.q117",
       "question_number": 117,
       "question_title": "Liberality",
@@ -245,11 +244,11 @@
         "concerns_external_goods": 1
       },
       "subcluster": "external_goods",
-      "unresolved_ambiguity_count": 30
+      "unresolved_ambiguity_count": 18
     },
     {
-      "candidate_mention_count": 119,
-      "candidate_relation_count": 51,
+      "candidate_mention_count": 74,
+      "candidate_relation_count": 40,
       "cluster_usage": {
         "external goods": 4
       },
@@ -260,7 +259,7 @@
         "Retaining"
       ],
       "parse_status": "ok",
-      "passage_count": 69,
+      "passage_count": 34,
       "question_id": "st.ii-ii.q118",
       "question_number": 118,
       "question_title": "The vices opposed to liberality, and in the first place, of covetousness",
@@ -271,11 +270,11 @@
         "concerns_external_goods": 1
       },
       "subcluster": "external_goods",
-      "unresolved_ambiguity_count": 8
+      "unresolved_ambiguity_count": 3
     },
     {
-      "candidate_mention_count": 34,
-      "candidate_relation_count": 8,
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 5,
       "cluster_usage": {
         "external goods": 4
       },
@@ -287,7 +286,7 @@
         "Prodigality"
       ],
       "parse_status": "ok",
-      "passage_count": 24,
+      "passage_count": 12,
       "question_id": "st.ii-ii.q119",
       "question_number": 119,
       "question_title": "Prodigality",
@@ -301,8 +300,8 @@
       "unresolved_ambiguity_count": 6
     },
     {
-      "candidate_mention_count": 79,
-      "candidate_relation_count": 16,
+      "candidate_mention_count": 46,
+      "candidate_relation_count": 9,
       "cluster_usage": {
         "legal-equity / epikeia": 4
       },
@@ -315,7 +314,7 @@
         "Letter of the Law"
       ],
       "parse_status": "ok",
-      "passage_count": 16,
+      "passage_count": 8,
       "question_id": "st.ii-ii.q120",
       "question_number": 120,
       "question_title": "\"Epikeia\" or equity",
@@ -327,16 +326,16 @@
         "preserves_intent_of_law": 1
       },
       "subcluster": "legal_equity",
-      "unresolved_ambiguity_count": 40
+      "unresolved_ambiguity_count": 23
     }
   ],
   "questions_with_subcluster_semantics_risk": [],
   "summary": {
-    "candidate_mention_count": 763,
-    "candidate_relation_count": 238,
+    "candidate_mention_count": 466,
+    "candidate_relation_count": 174,
     "external_goods_relation_count": 11,
     "legal_equity_relation_count": 4,
-    "passage_count": 340,
+    "passage_count": 165,
     "question_count": 12,
     "registered_concepts_used": 23,
     "reviewed_annotation_count": 182,

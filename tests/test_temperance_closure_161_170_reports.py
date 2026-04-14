@@ -17,7 +17,7 @@ def test_temperance_closure_reports_are_consistent(
     )
 
     assert coverage["summary"]["question_count"] == 10
-    assert coverage["summary"]["passage_count"] == 321
+    assert coverage["summary"]["passage_count"] == 161
     assert coverage["summary"]["temperance_full_synthesis_node_count"] >= 1
     assert coverage["summary"]["temperance_full_synthesis_edge_count"] >= 1
     assert coverage["summary"]["humility_pride_relation_count"] >= 1

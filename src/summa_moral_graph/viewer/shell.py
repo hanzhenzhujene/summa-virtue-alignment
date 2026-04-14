@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections.abc import MutableMapping
 from textwrap import shorten
-from typing import Any, cast
+from typing import Any, Literal, cast
 
 import altair as alt
 import streamlit as st
@@ -98,6 +98,8 @@ from .state import (
     supporting_concepts_for_passage,
 )
 
+SUMMA_STRUCTURE_URL = "https://en.wikipedia.org/wiki/Summa_Theologica"
+
 
 def _session_state() -> MutableMapping[str, object]:
     return cast(MutableMapping[str, object], st.session_state)
@@ -124,7 +126,7 @@ def _route_button(
     *,
     button_label: str,
     key: str,
-    button_type: str = "secondary",
+    button_type: Literal["primary", "secondary", "tertiary"] = "secondary",
     disabled: bool = False,
 ) -> bool:
     return st.button(
@@ -157,17 +159,28 @@ def _route_preview_map() -> None:
             "<stop offset='100%' stop-color='#d7e6ef'/>"
             "</radialGradient>"
             "</defs>"
-            "<line x1='112' y1='94' x2='240' y2='72' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
-            "<line x1='240' y1='72' x2='356' y2='100' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
-            "<line x1='136' y1='150' x2='258' y2='126' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
-            "<line x1='258' y1='126' x2='376' y2='148' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
-            "<line x1='240' y1='72' x2='258' y2='126' stroke='url(#smgv-map-stroke)' stroke-width='4' stroke-linecap='round'/>"
-            "<circle cx='112' cy='94' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
-            "<circle cx='240' cy='72' r='21' fill='url(#smgv-map-node-core)' stroke='#214b66' stroke-opacity='0.18' stroke-width='2'/>"
-            "<circle cx='356' cy='100' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
-            "<circle cx='136' cy='150' r='16' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
-            "<circle cx='258' cy='126' r='18' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
-            "<circle cx='376' cy='148' r='16' fill='url(#smgv-map-node-light)' stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
+            "<line x1='112' y1='94' x2='240' y2='72' stroke='url(#smgv-map-stroke)' "
+            "stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='240' y1='72' x2='356' y2='100' stroke='url(#smgv-map-stroke)' "
+            "stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='136' y1='150' x2='258' y2='126' stroke='url(#smgv-map-stroke)' "
+            "stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='258' y1='126' x2='376' y2='148' stroke='url(#smgv-map-stroke)' "
+            "stroke-width='4' stroke-linecap='round'/>"
+            "<line x1='240' y1='72' x2='258' y2='126' stroke='url(#smgv-map-stroke)' "
+            "stroke-width='4' stroke-linecap='round'/>"
+            "<circle cx='112' cy='94' r='18' fill='url(#smgv-map-node-light)' "
+            "stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='240' cy='72' r='21' fill='url(#smgv-map-node-core)' "
+            "stroke='#214b66' stroke-opacity='0.18' stroke-width='2'/>"
+            "<circle cx='356' cy='100' r='18' fill='url(#smgv-map-node-light)' "
+            "stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='136' cy='150' r='16' fill='url(#smgv-map-node-light)' "
+            "stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
+            "<circle cx='258' cy='126' r='18' fill='url(#smgv-map-node-light)' "
+            "stroke='#142235' stroke-opacity='0.12' stroke-width='2'/>"
+            "<circle cx='376' cy='148' r='16' fill='url(#smgv-map-node-light)' "
+            "stroke='#142235' stroke-opacity='0.11' stroke-width='2'/>"
             "</svg>"
             "</div>"
             "</div>"
@@ -187,6 +200,20 @@ def _scope_pills(data: ViewerAppData) -> list[str]:
     if selected_passage_id in data.bundle.passages:
         values.append(f"Passage: {data.bundle.passages[selected_passage_id].citation_label}")
     return values
+
+
+def _summa_structure_note_html() -> str:
+    def linked(token: str) -> str:
+        return (
+            f"<a href='{SUMMA_STRUCTURE_URL}' target='_blank' rel='noopener noreferrer'>"
+            f"{token}</a>"
+        )
+
+    return (
+        f"Only <strong>{linked('resp')}</strong> and <strong>{linked('ad')}</strong> "
+        "are included here as Thomas's own answer; "
+        f"no {linked('obj')} or {linked('sc')} opening objections are included."
+    )
 
 
 def _relation_counterparty(edge: dict[str, Any], concept_id: str) -> tuple[str, str]:
@@ -392,7 +419,8 @@ def _home_bar_chart(
     color: str,
 ) -> alt.Chart:
     frame = records_frame(rows)
-    return (
+    return cast(
+        alt.Chart,
         alt.Chart(frame)
         .mark_bar(cornerRadiusTopLeft=4, cornerRadiusTopRight=4, color=color)
         .encode(
@@ -408,7 +436,7 @@ def _home_bar_chart(
             gridColor="rgba(20,34,53,0.08)",
             tickColor="rgba(20,34,53,0.08)",
         )
-        .configure(background="transparent")
+        .configure(background="transparent"),
     )
 
 
@@ -605,9 +633,10 @@ def render_dashboard(
         set_active_view(session_state, chosen_view)
         st.rerun()
 
-    meta_line(_scope_pills(data))
-
     active_view = str(session_state[ACTIVE_VIEW_KEY])
+    doctrine_note_html = _summa_structure_note_html() if active_view != HOME_VIEW else None
+    meta_line(_scope_pills(data), note_html=doctrine_note_html)
+
     if active_view == HOME_VIEW:
         _render_home(data)
     elif active_view == CONCEPT_VIEW:
@@ -1035,7 +1064,8 @@ def _render_concept_explorer(data: ViewerAppData) -> None:
                 (
                     "<div class='smgv-map-summary-note'>"
                     f"{scope_label} · {compact_number(len(relation_groups))} relation groups · "
-                    f"{compact_number(len(list(payload.get('related_questions', []))))} related questions"
+                    f"{compact_number(len(list(payload.get('related_questions', []))))} "
+                    "related questions"
                     "</div>"
                 ),
                 unsafe_allow_html=True,
@@ -1316,7 +1346,7 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
             )
             st.selectbox(
                 "Segment type",
-                options=["", "obj", "sc", "resp", "ad"],
+                options=["", "resp", "ad"],
                 format_func=lambda value: "All segment types" if not value else value,
                 key="smg_passage_segment_type",
             )
@@ -1764,7 +1794,10 @@ def _render_map_view(data: ViewerAppData) -> None:
                     queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
                     st.rerun()
     with top_control_right:
-        st.markdown("<div class='smgv-map-controls-note'>Question span</div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='smgv-map-controls-note'>Question span</div>",
+            unsafe_allow_html=True,
+        )
         st.slider(
             "Question span",
             min_value=1,
@@ -1870,7 +1903,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             )
             st.multiselect(
                 "Evidence segment types",
-                options=["obj", "sc", "resp", "ad"],
+                options=["resp", "ad"],
                 key="smg_map_segment_types",
                 help="Filter edges by the segment types of their supporting passages.",
             )
@@ -2001,7 +2034,12 @@ def _render_map_view(data: ViewerAppData) -> None:
                 queue_widget_updates(session_state, **{MAP_MODE_KEY: "Overall map"})
                 st.rerun()
         st.markdown(
-            "<div class='smgv-map-controls-note'>Click a node to inspect it here first, then step outward to concept or passage views.</div>",
+            (
+                "<div class='smgv-map-controls-note'>"
+                "Click a node to inspect it here first, then step outward to concept "
+                "or passage views."
+                "</div>"
+            ),
             unsafe_allow_html=True,
         )
         show_relation_labels = st.checkbox(

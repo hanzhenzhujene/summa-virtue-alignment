@@ -13,11 +13,11 @@ def test_religion_tract_reports_are_consistent(religion_tract_artifacts) -> None
     )
 
     assert coverage["summary"] == {
-        "candidate_mention_count": 2077,
-        "candidate_relation_count": 659,
+        "candidate_mention_count": 1400,
+        "candidate_relation_count": 482,
         "deficiency_opposition_relation_count": 5,
         "excess_opposition_relation_count": 5,
-        "passage_count": 939,
+        "passage_count": 464,
         "positive_act_relation_count": 25,
         "question_count": 21,
         "registered_concepts_used": 42,

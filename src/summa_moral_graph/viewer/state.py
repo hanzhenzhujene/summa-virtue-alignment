@@ -285,7 +285,7 @@ def normalize_passage_filter_state(
 ) -> PassageFilterState:
     bundle = data.bundle
     part_locked = preset_name is not None
-    if part_locked:
+    if preset_name is not None:
         start_question, end_question = preset_range(preset_name)
         scoped_passages = [
             passage

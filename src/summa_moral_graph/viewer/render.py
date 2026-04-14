@@ -119,6 +119,57 @@ def inject_viewer_css() -> None:
           opacity: 0.9;
         }
 
+        .smgv-inline-meta {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.8rem 1.2rem;
+          flex-wrap: wrap;
+          color: var(--smg-muted);
+          font-size: 0.78rem;
+          margin: 0.12rem 0 0.7rem;
+        }
+
+        .smgv-inline-meta-left {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.48rem 0.78rem;
+          flex-wrap: wrap;
+        }
+
+        .smgv-inline-meta-left span {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.45rem;
+        }
+
+        .smgv-inline-meta-left span + span::before {
+          content: "•";
+          margin-right: 0.3rem;
+          color: rgba(20, 34, 53, 0.26);
+        }
+
+        .smgv-inline-meta-note {
+          margin-left: auto;
+          color: rgba(20, 34, 53, 0.56);
+          font-size: 0.69rem;
+          line-height: 1.28;
+          text-align: right;
+          max-width: min(38rem, 48vw);
+        }
+
+        .smgv-inline-meta-note a {
+          color: rgba(20, 34, 53, 0.72);
+          text-decoration: underline;
+          text-decoration-color: rgba(20, 34, 53, 0.22);
+          text-underline-offset: 0.12rem;
+        }
+
+        .smgv-inline-meta-note a:hover {
+          color: rgba(20, 34, 53, 0.88);
+          text-decoration-color: rgba(20, 34, 53, 0.42);
+        }
+
         .smgv-shell-note--hero {
           display: inline-flex;
           align-items: center;
@@ -1193,7 +1244,9 @@ def key_value_card(title: str, rows: list[tuple[str, str]]) -> None:
     items = "".join(
         (
             f"<strong>{escape(label)}</strong>"
-            f"<div class='smgv-kv-value{' smgv-kv-value--id' if label.lower() == 'id' else ''}'>{escape(value)}</div>"
+            "<div class='smgv-kv-value"
+            f"{' smgv-kv-value--id' if label.lower() == 'id' else ''}"
+            f"'>{escape(value)}</div>"
         )
         for label, value in rows
     )
@@ -1286,15 +1339,35 @@ def layer_badges(layers: Iterable[str]) -> None:
     st.markdown(f"<div class='smgv-pills'>{pills}</div>", unsafe_allow_html=True)
 
 
-def meta_line(values: Iterable[str]) -> None:
+def meta_line(
+    values: Iterable[str],
+    *,
+    note: str | None = None,
+    note_html: str | None = None,
+) -> None:
     items = "".join(
         f"<span>{escape(str(value))}</span>"
         for value in values
         if str(value).strip()
     )
-    if not items:
+    rendered_note = (
+        f"<div class='smgv-inline-meta-note'>{note_html}</div>"
+        if note_html and note_html.strip()
+        else f"<div class='smgv-inline-meta-note'>{escape(note)}</div>"
+        if note and note.strip()
+        else ""
+    )
+    if not items and not rendered_note:
         return
-    st.markdown(f"<div class='smgv-inline-meta'>{items}</div>", unsafe_allow_html=True)
+    st.markdown(
+        (
+            "<div class='smgv-inline-meta'>"
+            f"<div class='smgv-inline-meta-left'>{items}</div>"
+            f"{rendered_note}"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
 
 
 def empty_state(title: str, body: str) -> None:

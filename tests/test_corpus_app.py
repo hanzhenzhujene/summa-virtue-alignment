@@ -25,8 +25,8 @@ def test_corpus_browser_rows_expose_coverage(corpus_bundle) -> None:
     q100 = next(row for row in question_rows if row["question_id"] == "st.i-ii.q100")
     excluded = next(row for row in question_rows if row["question_id"] == "st.ii-ii.q183")
 
-    assert q100["candidate_mention_count"] == 921
-    assert q100["candidate_relation_count"] == 246
+    assert q100["candidate_mention_count"] == 549
+    assert q100["candidate_relation_count"] == 150
     assert q100["parse_status"] == "partial"
     assert excluded["parse_status"] == "excluded"
 
@@ -44,7 +44,7 @@ def test_passage_search_and_concept_page_keep_reviewed_and_candidate_separate(
     assert passages
     assert any(passage.question_id == "st.ii-ii.q047" for passage in passages)
     assert payload["coverage"]["reviewed_annotation_count"] == 95
-    assert payload["coverage"]["candidate_mention_count"] == 4350
+    assert payload["coverage"]["candidate_mention_count"] == 2481
     assert payload["reviewed_doctrinal_edges"]
     assert payload["candidate_mentions"]
     assert all(
@@ -75,7 +75,7 @@ def test_stats_payload_matches_corpus_audit(corpus_bundle) -> None:
 
     assert payload["summary"]["questions_parsed"] == 296
     assert payload["summary"]["articles_parsed"] == 1482
-    assert payload["summary"]["passages_parsed"] == 12337
+    assert payload["summary"]["passages_parsed"] == 6032
     assert payload["summary"]["candidate_mentions"] == len(corpus_bundle.candidate_mentions)
     assert (
         payload["summary"]["candidate_relation_proposals"]

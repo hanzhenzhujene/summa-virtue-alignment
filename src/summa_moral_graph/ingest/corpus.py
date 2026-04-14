@@ -20,6 +20,7 @@ from ..models.corpus import ParseStatus
 from ..utils.ids import article_id, question_id
 from ..utils.jsonl import load_jsonl, write_jsonl
 from ..utils.paths import INTERIM_DIR, PROCESSED_DIR
+from ..utils.segments import USABLE_SEGMENT_TYPES
 from .parser import ParseWarning, parse_question_html
 from .scope import PART_INDEX_URLS, QUESTION_RANGES, ScopeEntry, build_scope_manifest
 from .source import NewAdventClient
@@ -27,7 +28,7 @@ from .source import NewAdventClient
 ModelT = TypeVar("ModelT", bound=BaseModel)
 
 SUSPICIOUS_ARTICLE_CHAR_THRESHOLD = 350
-EXPECTED_SEGMENT_TYPES = ("obj", "sc", "resp", "ad")
+EXPECTED_SEGMENT_TYPES = USABLE_SEGMENT_TYPES
 
 
 def build_corpus_structural_artifacts(refresh_cache: bool = False) -> dict[str, int]:

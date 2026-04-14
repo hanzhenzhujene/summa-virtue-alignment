@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import re
 
+from .segments import USABLE_SEGMENT_TYPES
+
 PART_DISPLAY = {
     "i": "I",
     "i-ii": "I-II",
@@ -40,11 +42,15 @@ def article_id(question_identifier: str, article_number: int) -> str:
 
 
 def segment_id(article_identifier: str, segment_type: str, segment_ordinal: int | None) -> str:
-    if segment_type in {"obj", "ad"}:
+    if segment_type not in USABLE_SEGMENT_TYPES:
+        raise ValueError(f"Unsupported exported segment type: {segment_type}")
+    if segment_type == "ad":
         if segment_ordinal is None:
-            raise ValueError("obj/ad segments require an ordinal")
+            raise ValueError("reply segments require an ordinal")
         suffix = f"{segment_type}{segment_ordinal}"
     else:
+        if segment_ordinal is not None:
+            raise ValueError("respondeo segments do not accept an ordinal")
         suffix = segment_type
     return f"{article_identifier}.{suffix}"
 
@@ -65,7 +71,9 @@ def segment_citation_label(
     segment_ordinal: int | None,
 ) -> str:
     base = article_citation_label(part_id, question_number, article_number)
-    if segment_type in {"obj", "ad"}:
+    if segment_type not in USABLE_SEGMENT_TYPES:
+        raise ValueError(f"Unsupported exported segment type: {segment_type}")
+    if segment_type == "ad":
         return f"{base} {segment_type}.{segment_ordinal}"
     return f"{base} {segment_type}"
 
