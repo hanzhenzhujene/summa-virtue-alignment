@@ -2,6 +2,10 @@
 
 ## Progress
 
+- The favicon is being simplified for recognizability at tiny sizes:
+  - the portrait crop has been replaced with a monochrome `SV` seal-style icon
+  - the new version uses black linework on a light ground so it still reads when zoomed out in a browser tab
+  - the asset path stays the same, so the Streamlit app picks it up without further code changes
 - The top-of-page layout is being tightened again around readability:
   - the redundant home helper sentence beneath the hero has been removed
   - overall-map top controls now allocate more width to quick spans and show shorter `Local` / `Overall` labels instead of wrapping `Local map` / `Overall map`
@@ -426,6 +430,7 @@
 
 ## Surprises & Discoveries
 
+- A favicon that works at art-book scale can still fail at browser-tab scale. For this app, recognizability matters more than portrait fidelity once the icon shrinks to a few pixels.
 - Very small wording choices matter in narrow dashboard rails: `Local map` is semantically fine, but `Local` reads much better once the control has to live beside quick spans and a range slider.
 - For this project, a portrait-based favicon works better than a symbolic glyph because the product is already visually anchored around Aquinas rather than abstract data tooling.
 - The homepage title can stay literary while search-critical wording moves into the page title, subtitle, and first supporting sentence. That gives better discoverability without flattening the product voice.
@@ -558,6 +563,7 @@
 
 ## Decision Log
 
+- Keep the favicon path stable and iterate the asset itself rather than changing the code path each time the visual direction changes.
 - Prefer shorter visible control labels in constrained dashboard rows, as long as the underlying state names stay explicit and stable.
 - Keep the favicon as a local bundled asset instead of a remote URL so the tab icon stays stable offline, in local dev, and in deployment.
 - Keep `Summa Virtutum` as the visible product title, but make browser-title and top-of-page copy more literal about `Thomas Aquinas`, `moral corpus`, `Summa Theologiae`, `concepts`, `passages`, and `maps`.
@@ -696,6 +702,9 @@
 
 ## Outcomes & Retrospective
 
+- The app icon now behaves more like a durable product mark than an artwork thumbnail:
+  - it is simpler, monochrome, and easier to recognize in small browser tabs
+  - the switch preserves the local asset workflow and avoids another round of code-level favicon plumbing
 - The dashboard top rows now use space more intentionally:
   - the home hero starts cleaner without the redundant helper sentence
   - quick-span buttons have more horizontal room and stop breaking so aggressively
