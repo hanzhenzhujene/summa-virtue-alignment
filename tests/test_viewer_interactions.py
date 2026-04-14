@@ -10,6 +10,7 @@ from summa_moral_graph.viewer.load import load_viewer_data
 from summa_moral_graph.viewer.navigation import (
     ACTIVE_PRESET_KEY,
     ACTIVE_VIEW_KEY,
+    CONCEPT_VIEW,
     CONCEPT_ID_KEY,
     MAP_MODE_KEY,
     MAP_PENDING_ACTION_KEY,
@@ -29,6 +30,7 @@ from summa_moral_graph.viewer.navigation import (
     queue_widget_updates,
     reset_map_filters,
     select_map_node,
+    set_active_view,
 )
 from summa_moral_graph.viewer.shell import _open_overall_map_route, _resolve_download_scope
 from summa_moral_graph.viewer.state import (
@@ -83,6 +85,7 @@ def test_open_concept_queues_concept_selectbox_widget_sync() -> None:
     open_concept(session_state, "concept.justice", preset_name="justice:overview")
 
     assert session_state["smg_pending_concept_selectbox"] == "concept.justice"
+    assert session_state["smg_concept_show_relation_labels"] is True
 
 
 def test_navigation_helpers_keep_cross_view_state_consistent() -> None:
@@ -92,6 +95,7 @@ def test_navigation_helpers_keep_cross_view_state_consistent() -> None:
     assert session_state[ACTIVE_VIEW_KEY] == "Concept Explorer"
     assert session_state[CONCEPT_ID_KEY] == "concept.justice"
     assert session_state[ACTIVE_PRESET_KEY] == "justice:overview"
+    assert session_state["smg_concept_show_relation_labels"] is True
 
     open_passage(session_state, "st.ii-ii.q057.a001.resp", preset_name="justice:overview")
     assert session_state[ACTIVE_VIEW_KEY] == "Passage Explorer"
@@ -120,6 +124,18 @@ def test_ensure_session_state_defaults_relation_labels_to_on() -> None:
     ensure_session_state(session_state, data)
 
     assert session_state["smg_map_show_relation_labels"] is True
+    assert session_state["smg_concept_show_relation_labels"] is True
+
+
+def test_set_active_view_resets_concept_relation_labels_to_on() -> None:
+    session_state: dict[str, object] = {
+        ACTIVE_VIEW_KEY: "Overall Map",
+        "smg_concept_show_relation_labels": False,
+    }
+
+    set_active_view(session_state, CONCEPT_VIEW)
+
+    assert session_state[ACTIVE_VIEW_KEY] == CONCEPT_VIEW
     assert session_state["smg_concept_show_relation_labels"] is True
 
 

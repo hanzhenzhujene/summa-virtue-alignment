@@ -240,6 +240,8 @@ def select_map_node(session_state: MutableMapping[str, object], node_id: str) ->
 
 def set_active_view(session_state: MutableMapping[str, object], view_name: str) -> None:
     if view_name in PRIMARY_VIEWS:
+        if view_name == CONCEPT_VIEW:
+            session_state["smg_concept_show_relation_labels"] = True
         session_state[ACTIVE_VIEW_KEY] = view_name
 
 
@@ -252,9 +254,14 @@ def open_concept(
     session_state[CONCEPT_ID_KEY] = concept_id
     session_state["smg_pending_concept_selectbox"] = concept_id
     if PENDING_WIDGET_UPDATES_KEY in session_state:
-        queue_widget_updates(session_state, smg_map_center_concept=concept_id)
+        queue_widget_updates(
+            session_state,
+            smg_map_center_concept=concept_id,
+            smg_concept_show_relation_labels=True,
+        )
     else:
         session_state["smg_map_center_concept"] = concept_id
+        session_state["smg_concept_show_relation_labels"] = True
     if preset_name is not None:
         if PENDING_WIDGET_UPDATES_KEY in session_state:
             queue_widget_updates(session_state, **{ACTIVE_PRESET_KEY: preset_name})
