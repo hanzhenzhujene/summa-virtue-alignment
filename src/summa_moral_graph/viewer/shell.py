@@ -98,7 +98,24 @@ from .state import (
     supporting_concepts_for_passage,
 )
 
-SUMMA_STRUCTURE_URL = "https://en.wikipedia.org/wiki/Summa_Theologica"
+SUMMA_STRUCTURE_URLS = {
+    "obj": (
+        "https://en.wikipedia.org/wiki/Summa_Theologica"
+        "#Structure:~:text=is%20as%20follows%3A-,A%20series%20of%20objections,-(praeterea)%20to"
+    ),
+    "sc": (
+        "https://en.wikipedia.org/wiki/Summa_Theologica"
+        "#Structure:~:text=A%20short%20counter%2Dstatement"
+    ),
+    "resp": (
+        "https://en.wikipedia.org/wiki/Summa_Theologica"
+        "#Structure:~:text=%5B8%5D-,The%20actual%20argument,-is%20made%2C%20beginning"
+    ),
+    "ad": (
+        "https://en.wikipedia.org/wiki/Summa_Theologica"
+        "#Structure:~:text=of%20the%20issue.-,Individual%20replies,-to%20the%20preceding"
+    ),
+}
 
 
 def _session_state() -> MutableMapping[str, object]:
@@ -205,7 +222,7 @@ def _scope_pills(data: ViewerAppData) -> list[str]:
 def _summa_structure_note_html() -> str:
     def linked(token: str) -> str:
         return (
-            f"<a href='{SUMMA_STRUCTURE_URL}' target='_blank' rel='noopener noreferrer'>"
+            f"<a href='{SUMMA_STRUCTURE_URLS[token]}' target='_blank' rel='noopener noreferrer'>"
             f"{token}</a>"
         )
 
