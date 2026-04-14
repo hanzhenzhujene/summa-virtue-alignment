@@ -1731,7 +1731,7 @@ def _render_map_view(data: ViewerAppData) -> None:
     st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
     st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
     top_control_left, top_control_mid, top_control_right = st.columns(
-        (0.68, 2.12, 1.14),
+        (0.54, 2.36, 1.1),
         gap="medium",
     )
     with top_control_left:
@@ -2115,7 +2115,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             if selected_node_id in bundle.registry:
                 with node_left:
                     if st.button(
-                        "Open concept page",
+                        "Open concept",
                         key="smg-map-open-selected-concept",
                         use_container_width=True,
                     ):
@@ -2127,7 +2127,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                         st.rerun()
                 with node_mid:
                     if st.button(
-                        "Use as local center",
+                        "Set local center",
                         key="smg-map-center-selected-concept",
                         use_container_width=True,
                     ):
@@ -2140,7 +2140,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             elif selected_node_id in bundle.questions:
                 with node_left:
                     if st.button(
-                        "Open question passages",
+                        "Open passages",
                         key="smg-map-open-selected-question",
                         use_container_width=True,
                     ):
@@ -2155,7 +2155,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                         st.rerun()
                 with node_mid:
                     if st.button(
-                        "Use as question spotlight",
+                        "Set spotlight",
                         key="smg-map-spotlight-selected-question",
                         use_container_width=True,
                     ):
@@ -2168,7 +2168,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                 article_question_id = _question_for_article(bundle, selected_node_id)
                 with node_left:
                     if st.button(
-                        "Open article passages",
+                        "Open article",
                         key="smg-map-open-selected-article",
                         use_container_width=True,
                     ):

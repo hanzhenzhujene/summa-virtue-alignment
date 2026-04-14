@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The map shell is being tightened for narrow-column readability:
+  - the home `Summa Virtutum` title is slightly smaller, so the masthead keeps its drama without crowding the first fold
+  - overall-map quick-span buttons now receive a smaller, less wrap-prone treatment
+  - selected-node cards and map-side action buttons now use shorter labels and smaller typography so ids and actions stop breaking awkwardly in the evidence rail
+- The GitHub front page is being tightened again around one obvious public entry:
+  - the live Streamlit link now leads the README with a stronger app-first badge treatment
+  - duplicate top-of-page viewer links have been reduced so the README reads cleaner and faster
 - The favicon is being simplified for recognizability at tiny sizes:
   - the portrait crop has been replaced with a monochrome `SV` seal-style icon
   - the new version uses black linework on a light ground so it still reads when zoomed out in a browser tab
@@ -430,6 +437,10 @@
 
 ## Surprises & Discoveries
 
+- The remaining “prototype feel” was coming from narrow-column typography more than from any major layout bug. A few oversized labels in the map evidence rail made the whole page feel less polished than the underlying structure already was.
+- On a public-facing README, one strong viewer entry works better than several medium-strength links. Repeating the same app URL in different visual styles made the top of the page feel busier rather than more useful.
+- For favicon-scale medieval styling, subtraction helps more than addition. A heavier seal ring and one simple central symbol read better than multiple tiny ornaments.
+- A tab icon can be recognizable without being typographic. For this project, a book-centered seal reads more “scholarly press” than initials alone.
 - A favicon that works at art-book scale can still fail at browser-tab scale. For this app, recognizability matters more than portrait fidelity once the icon shrinks to a few pixels.
 - Very small wording choices matter in narrow dashboard rails: `Local map` is semantically fine, but `Local` reads much better once the control has to live beside quick spans and a range slider.
 - For this project, a portrait-based favicon works better than a symbolic glyph because the product is already visually anchored around Aquinas rather than abstract data tooling.
@@ -563,6 +574,8 @@
 
 ## Decision Log
 
+- Prefer shorter action labels in the map evidence rail when the meaning stays obvious. `Open concept`, `Set local center`, and `Set spotlight` read better in a narrow support column than the longer earlier phrasing.
+- Keep the README top focused on a single public `open the app` action rather than stacking multiple equivalent link blocks.
 - Keep the favicon path stable and iterate the asset itself rather than changing the code path each time the visual direction changes.
 - Prefer shorter visible control labels in constrained dashboard rows, as long as the underlying state names stay explicit and stable.
 - Keep the favicon as a local bundled asset instead of a remote URL so the tab icon stays stable offline, in local dev, and in deployment.
@@ -702,6 +715,13 @@
 
 ## Outcomes & Retrospective
 
+- The map page now reads more cleanly at first glance:
+  - quick spans stay on one line more reliably
+  - selected-node metadata no longer dominates the right rail with oversized wrapped text
+  - map-side action buttons look more deliberate and less cramped
+- The repository front page now feels more app-first:
+  - the live viewer link is easier to spot immediately on GitHub
+  - the top of the README spends less space repeating the same destination in multiple formats
 - The app icon now behaves more like a durable product mark than an artwork thumbnail:
   - it is simpler, monochrome, and easier to recognize in small browser tabs
   - the switch preserves the local asset workflow and avoids another round of code-level favicon plumbing

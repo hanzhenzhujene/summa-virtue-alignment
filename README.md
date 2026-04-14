@@ -2,7 +2,7 @@
 
 An interactive map of Thomas Aquinas's moral corpus.
 
-**Open the live viewer:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
+[![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-2f5d8a?style=flat-square)
 ![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-b04a2f?style=flat-square)
@@ -10,8 +10,6 @@ An interactive map of Thomas Aquinas's moral corpus.
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
 > Passage-grounded concept, relation, and graph navigation across Thomas Aquinas's moral corpus in the *Summa Theologiae*.
->
-> [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://summa-moral-graph.streamlit.app/)
 >
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
@@ -25,8 +23,7 @@ visibly separate throughout the app.
 
 ## Open The Viewer
 
-**Run now:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)  
-`https://summa-moral-graph.streamlit.app/`
+**Live app:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 
 The Streamlit entrypoint is [`streamlit_app.py`](./streamlit_app.py).
 

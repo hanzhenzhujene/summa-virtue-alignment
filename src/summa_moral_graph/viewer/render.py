@@ -202,7 +202,7 @@ def inject_viewer_css() -> None:
         .smgv-hero h1 {
           margin: 0;
           font-family: "Cinzel Decorative", "Cinzel", "Cormorant Garamond", Georgia, serif;
-          font-size: clamp(2.85rem, 4.8vw, 4.35rem);
+          font-size: clamp(2.45rem, 4.2vw, 3.82rem);
           line-height: 0.92;
           letter-spacing: 0.012em;
           font-weight: 700;
@@ -311,7 +311,8 @@ def inject_viewer_css() -> None:
         .smgv-card h3, .smgv-card h4 {
           margin: 0 0 0.2rem 0;
           line-height: 1.16;
-          font-size: 1rem;
+          font-size: 0.96rem;
+          text-wrap: balance;
         }
 
         .smgv-card p {
@@ -724,7 +725,7 @@ def inject_viewer_css() -> None:
 
         .smgv-map-controls-note {
           color: var(--smg-muted);
-          font-size: 0.66rem;
+          font-size: 0.64rem;
           line-height: 1.12;
           margin: 0 0 0.14rem 0;
           white-space: nowrap;
@@ -791,15 +792,28 @@ def inject_viewer_css() -> None:
 
         .smgv-kv {
           display: grid;
-          grid-template-columns: minmax(7rem, 9rem) 1fr;
-          gap: 0.35rem 0.9rem;
+          grid-template-columns: minmax(5.25rem, 6.7rem) minmax(0, 1fr);
+          gap: 0.28rem 0.72rem;
         }
 
         .smgv-kv strong {
           color: var(--smg-muted);
-          font-size: 0.82rem;
+          font-size: 0.72rem;
+          line-height: 1.08;
           text-transform: uppercase;
           letter-spacing: 0.06em;
+        }
+
+        .smgv-kv-value {
+          color: var(--smg-ink);
+          font-size: 0.88rem;
+          line-height: 1.18;
+          overflow-wrap: anywhere;
+        }
+
+        .smgv-kv-value--id {
+          font-size: 0.78rem;
+          letter-spacing: -0.01em;
         }
 
         .smgv-pills {
@@ -866,16 +880,39 @@ def inject_viewer_css() -> None:
         div.stButton > button,
         div.stDownloadButton > button {
           width: 100%;
-          min-height: 2.65rem;
+          min-height: 2.58rem;
           border-radius: 16px;
           border: 1px solid rgba(20, 34, 53, 0.18);
           background: linear-gradient(180deg, rgba(255, 253, 250, 0.98), rgba(246, 239, 230, 0.98));
           color: var(--smg-ink);
           font-family: "Manrope", sans-serif;
           font-weight: 700;
+          font-size: 0.82rem;
+          line-height: 1.18;
           letter-spacing: 0.01em;
+          white-space: normal;
+          overflow-wrap: anywhere;
+          padding: 0.38rem 0.72rem;
           box-shadow: 0 10px 22px rgba(29, 39, 49, 0.07);
           transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
+        }
+
+        [class*="st-key-smg-map-quick-range-"] button {
+          min-height: 2.3rem !important;
+          font-size: 0.72rem !important;
+          letter-spacing: 0 !important;
+          padding: 0.26rem 0.42rem !important;
+        }
+
+        [class*="st-key-smg-map-open-selected-"] button,
+        [class*="st-key-smg-map-center-selected-"] button,
+        [class*="st-key-smg-map-spotlight-selected-"] button,
+        [class*="st-key-smg-passage_previous_page"] button,
+        [class*="st-key-smg-passage_next_page"] button {
+          min-height: 2.42rem !important;
+          font-size: 0.78rem !important;
+          line-height: 1.14 !important;
+          padding: 0.34rem 0.6rem !important;
         }
 
         [class*="st-key-smg-home-open-"] button {
@@ -1154,7 +1191,11 @@ def card(title: str, body: str, *, kicker: str | None = None) -> None:
 
 def key_value_card(title: str, rows: list[tuple[str, str]]) -> None:
     items = "".join(
-        f"<strong>{escape(label)}</strong><div>{escape(value)}</div>" for label, value in rows
+        (
+            f"<strong>{escape(label)}</strong>"
+            f"<div class='smgv-kv-value{' smgv-kv-value--id' if label.lower() == 'id' else ''}'>{escape(value)}</div>"
+        )
+        for label, value in rows
     )
     st.markdown(
         (
