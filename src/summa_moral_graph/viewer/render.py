@@ -189,18 +189,20 @@ def inject_viewer_css() -> None:
         .smgv-shell-note--hero {
           display: inline-flex;
           align-items: center;
-          gap: 0.52rem;
+          gap: 0.38rem;
+          flex-wrap: nowrap;
+          white-space: nowrap;
           color: rgba(20, 34, 53, 0.72);
-          font-size: 0.66rem;
+          font-size: 0.6rem;
           font-family: "Cinzel", Georgia, serif;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.05em;
           text-transform: uppercase;
-          margin-bottom: 0.14rem;
+          margin-bottom: 0.06rem;
         }
 
         .smgv-shell-note--hero::before {
           content: "";
-          width: 2.2rem;
+          width: 1.5rem;
           height: 1px;
           background: linear-gradient(
             90deg,
@@ -307,7 +309,7 @@ def inject_viewer_css() -> None:
           display: inline-flex;
           align-items: center;
           gap: 0.38rem;
-          margin-top: 0.18rem;
+          margin-top: 0.06rem;
           color: rgba(20, 34, 53, 0.7);
           font-size: 0.64rem;
           font-family: "Cinzel", Georgia, serif;
@@ -501,8 +503,8 @@ def inject_viewer_css() -> None:
 
         .smgv-start-tight {
           height: 0.01rem;
-          margin-top: -0.18rem;
-          margin-bottom: -0.02rem;
+          margin-top: -0.36rem;
+          margin-bottom: -0.18rem;
         }
 
         .smgv-start-divider::before {

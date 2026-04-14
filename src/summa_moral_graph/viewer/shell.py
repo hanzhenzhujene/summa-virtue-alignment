@@ -228,7 +228,7 @@ def _summa_structure_note_html() -> str:
 
     return (
         f"Only <strong>{linked('resp')}</strong> and <strong>{linked('ad')}</strong> "
-        "are included here as Thomas's own answer. "
+        "are included here as Thomas's own answer.<br>"
         f"No {linked('obj')} or {linked('sc')} opening objections are included."
     )
 
