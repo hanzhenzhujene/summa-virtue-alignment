@@ -697,7 +697,7 @@ def inject_viewer_css() -> None:
         }
 
         .smgv-map-intro {
-          margin: 0.34rem 0 0.14rem 0;
+          margin: 0.22rem 0 0.08rem 0;
         }
 
         .smgv-map-intro h2 {
@@ -711,22 +711,30 @@ def inject_viewer_css() -> None:
         .smgv-map-intro p {
           margin: 0;
           color: var(--smg-muted);
-          line-height: 1.3;
-          font-size: 0.77rem;
+          line-height: 1.24;
+          font-size: 0.72rem;
           max-width: 44rem;
         }
 
         .smgv-map-controls-lift {
           height: 0.01rem;
-          margin-top: -0.1rem;
-          margin-bottom: -0.02rem;
+          margin-top: -0.16rem;
+          margin-bottom: -0.06rem;
         }
 
         .smgv-map-controls-note {
           color: var(--smg-muted);
+          font-size: 0.66rem;
+          line-height: 1.12;
+          margin: 0 0 0.14rem 0;
+          white-space: nowrap;
+        }
+
+        .smgv-control-note {
+          color: var(--smg-muted);
           font-size: 0.7rem;
           line-height: 1.18;
-          margin: 0 0 0.18rem 0;
+          margin: 0 0 0.16rem 0;
         }
 
         .smgv-pager-chip {
@@ -734,8 +742,8 @@ def inject_viewer_css() -> None:
           border-radius: 18px;
           background: rgba(255, 252, 248, 0.96);
           box-shadow: 0 8px 18px rgba(29, 39, 49, 0.05);
-          padding: 0.5rem 0.78rem;
-          min-height: 2.72rem;
+          padding: 0.46rem 0.72rem;
+          min-height: 0;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -752,17 +760,17 @@ def inject_viewer_css() -> None:
 
         .smgv-pager-value {
           color: var(--smg-ink);
-          font-size: 0.94rem;
+          font-size: 0.9rem;
           font-weight: 800;
-          line-height: 1.2;
-          margin-top: 0.12rem;
+          line-height: 1.15;
+          margin-top: 0.1rem;
         }
 
         .smgv-pager-sub {
           color: var(--smg-muted);
-          font-size: 0.67rem;
-          line-height: 1.18;
-          margin-top: 0.08rem;
+          font-size: 0.64rem;
+          line-height: 1.14;
+          margin-top: 0.06rem;
         }
 
         .smgv-side-list {

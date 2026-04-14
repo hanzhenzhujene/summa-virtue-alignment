@@ -655,15 +655,6 @@ def _render_home(data: ViewerAppData) -> None:
     with main_left:
         st.markdown(
             (
-                "<div class='smgv-shell-note'>"
-                "Search Aquinas concepts, passages, reviewed doctrinal relations, and tract-level "
-                "maps across the moral corpus."
-                "</div>"
-            ),
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            (
                 "<div class='smgv-shell-note smgv-shell-note--hero'>"
                 "Corpus scope: Summa Theologiae I-II qq. 1-114 and II-II qq. 1-182, "
                 "with II-II qq. 183-189 excluded."
@@ -1429,46 +1420,57 @@ def _render_passage_explorer(data: ViewerAppData) -> None:
         ]
     )
 
-    results_column, reader_column = st.columns((0.76, 1.34), gap="large")
+    results_column, reader_column = st.columns((0.9, 1.2), gap="large")
     with results_column:
-        section_heading("Result list", "Open one result and keep reading on the right.")
-        pager_left, pager_mid, pager_right, pager_far = st.columns(
-            (0.74, 0.92, 0.92, 0.88),
-            gap="small",
+        section_heading("Result list", None)
+        st.markdown(
+            "<div class='smgv-control-note'>Select a passage on the left.</div>",
+            unsafe_allow_html=True,
+        )
+        pager_left, pager_mid, pager_right = st.columns(
+            (0.72, 1.44, 0.98),
+            gap="medium",
         )
         with pager_left:
+            st.markdown(
+                "<div class='smgv-control-note'>Results per page</div>",
+                unsafe_allow_html=True,
+            )
             st.selectbox(
                 "Per page",
                 options=[4, 6, 8, 12],
                 key="smg_passage_page_size",
+                label_visibility="collapsed",
             )
         with pager_mid:
-            if st.button(
-                "← Previous",
-                key="smg_passage_previous_page",
-                use_container_width=True,
-                disabled=current_page <= 1,
-                type="secondary",
-            ):
-                session_state["smg_passage_page"] = max(1, current_page - 1)
-                st.rerun()
+            prev_col, next_col = st.columns(2, gap="small")
+            with prev_col:
+                if st.button(
+                    "← Previous",
+                    key="smg_passage_previous_page",
+                    use_container_width=True,
+                    disabled=current_page <= 1,
+                    type="secondary",
+                ):
+                    session_state["smg_passage_page"] = max(1, current_page - 1)
+                    st.rerun()
+            with next_col:
+                if st.button(
+                    "Next →",
+                    key="smg_passage_next_page",
+                    use_container_width=True,
+                    disabled=current_page >= total_pages,
+                    type="primary",
+                ):
+                    session_state["smg_passage_page"] = min(total_pages, current_page + 1)
+                    st.rerun()
         with pager_right:
-            if st.button(
-                "Next →",
-                key="smg_passage_next_page",
-                use_container_width=True,
-                disabled=current_page >= total_pages,
-                type="primary",
-            ):
-                session_state["smg_passage_page"] = min(total_pages, current_page + 1)
-                st.rerun()
-        with pager_far:
             pager_chip(
                 "Page",
-                f"{current_page} / {total_pages}",
+                f"{current_page} / {total_pages:,}",
                 (
                     f"{page_start + 1 if visible_results else 0}–"
-                    f"{page_start + len(visible_results)} of {len(results)}"
+                    f"{page_start + len(visible_results)} of {len(results):,}"
                 ),
             )
         if not visible_results:
@@ -1721,20 +1723,26 @@ def _render_map_view(data: ViewerAppData) -> None:
         (
             "<div class='smgv-map-intro'>"
             "<h2>Overall Map</h2>"
-            "<p>Reviewed doctrine first. Narrow the range only when the graph gets too large to read.</p>"
+            "<p>Reviewed doctrine first. Narrow only when the graph gets too large to read.</p>"
             "</div>"
         ),
         unsafe_allow_html=True,
     )
     st.markdown("<div class='smgv-map-section-tight'></div>", unsafe_allow_html=True)
     st.markdown("<div class='smgv-map-controls-lift'></div>", unsafe_allow_html=True)
-    top_control_left, top_control_mid, top_control_right = st.columns((0.34, 1.42, 1.04), gap="medium")
+    top_control_left, top_control_mid, top_control_right = st.columns(
+        (0.68, 2.12, 1.14),
+        gap="medium",
+    )
     with top_control_left:
+        st.markdown("<div class='smgv-map-controls-note'>Map mode</div>", unsafe_allow_html=True)
         st.radio(
             "Map mode",
             options=["Local map", "Overall map"],
             key=MAP_MODE_KEY,
             horizontal=True,
+            label_visibility="collapsed",
+            format_func=lambda value: "Local" if value == "Local map" else "Overall",
         )
     with top_control_mid:
         st.markdown("<div class='smgv-map-controls-note'>Quick spans</div>", unsafe_allow_html=True)
@@ -1745,7 +1753,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             ("123–140", (123, 140)),
             ("141–170", (141, 170)),
         ]
-        quick_columns = st.columns(len(quick_ranges), gap="small")
+        quick_columns = st.columns((1, 1, 1.12, 1.12, 1.12), gap="small")
         for column, (label, range_value) in zip(quick_columns, quick_ranges, strict=False):
             with column:
                 if st.button(
@@ -1980,7 +1988,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             map_question=map_question,
         )
 
-    graph_column, evidence_column = st.columns((1.58, 0.82), gap="large")
+    graph_column, evidence_column = st.columns((1.72, 0.74), gap="large")
     node_rows, edge_rows = graph_rows(visible_edges)
     node_catalog = {str(row["node_id"]): row for row in node_rows}
     with graph_column:

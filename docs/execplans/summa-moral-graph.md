@@ -2,6 +2,11 @@
 
 ## Progress
 
+- The top-of-page layout is being tightened again around readability:
+  - the redundant home helper sentence beneath the hero has been removed
+  - overall-map top controls now allocate more width to quick spans and show shorter `Local` / `Overall` labels instead of wrapping `Local map` / `Overall map`
+  - passage-list pagination now uses a wider three-part layout so `Results per page`, `Previous` / `Next`, and the page chip stop collapsing into awkward line breaks
+  - the map canvas column has been widened slightly relative to the evidence column
 - The browser-tab identity is being upgraded from a glyph to a real Aquinas icon:
   - a square-cropped Thomas Aquinas portrait asset now lives under `docs/assets/summa-virtutum-icon.png`
   - the Streamlit page icon now uses that local asset when present, falling back to `§` only if the file is missing
@@ -421,6 +426,7 @@
 
 ## Surprises & Discoveries
 
+- Very small wording choices matter in narrow dashboard rails: `Local map` is semantically fine, but `Local` reads much better once the control has to live beside quick spans and a range slider.
 - For this project, a portrait-based favicon works better than a symbolic glyph because the product is already visually anchored around Aquinas rather than abstract data tooling.
 - The homepage title can stay literary while search-critical wording moves into the page title, subtitle, and first supporting sentence. That gives better discoverability without flattening the product voice.
 - In passage search, the most common “broken filter” feeling did not come from search itself. It came from valid-looking question/article widget values that no longer belonged to the currently selected part or preset scope.
@@ -552,6 +558,7 @@
 
 ## Decision Log
 
+- Prefer shorter visible control labels in constrained dashboard rows, as long as the underlying state names stay explicit and stable.
 - Keep the favicon as a local bundled asset instead of a remote URL so the tab icon stays stable offline, in local dev, and in deployment.
 - Keep `Summa Virtutum` as the visible product title, but make browser-title and top-of-page copy more literal about `Thomas Aquinas`, `moral corpus`, `Summa Theologiae`, `concepts`, `passages`, and `maps`.
 - Keep passage-explorer advanced filters scope-consistent rather than permissive:
@@ -689,6 +696,10 @@
 
 ## Outcomes & Retrospective
 
+- The dashboard top rows now use space more intentionally:
+  - the home hero starts cleaner without the redundant helper sentence
+  - quick-span buttons have more horizontal room and stop breaking so aggressively
+  - the passage result rail reads more like a compact product control bar and less like four cramped widgets fighting each other
 - The app now feels more finished at the browser-tab level as well:
   - users see an Aquinas portrait icon instead of a generic section-mark glyph
   - local and hosted app tabs now share the same visual identity without relying on remote assets
