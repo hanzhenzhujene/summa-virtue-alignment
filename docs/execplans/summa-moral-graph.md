@@ -2,6 +2,12 @@
 
 ## Progress
 
+- The favicon is being pushed further toward a monastery-seal direction:
+  - the outer ring is now heavier again
+  - the center motif has been simplified to a bold Latin cross with an open book in front of it
+  - the cross has now been enlarged further so it reads first, even at favicon scale
+  - the cross has also been shifted slightly downward so the seal feels less top-heavy
+  - small interior ornament has been removed so the mark reads more like a medieval seal than a modern UI monogram
 - The map shell is being tightened for narrow-column readability:
   - the home `Summa Virtutum` title is slightly smaller, so the masthead keeps its drama without crowding the first fold
   - overall-map quick-span buttons now receive a smaller, less wrap-prone treatment
@@ -437,6 +443,7 @@
 
 ## Surprises & Discoveries
 
+- For this icon, a cross works best when it is structural rather than decorative. Putting the cross behind the book makes the mark read faster and feel more monastic than adding a tiny floating cross elsewhere.
 - The remaining “prototype feel” was coming from narrow-column typography more than from any major layout bug. A few oversized labels in the map evidence rail made the whole page feel less polished than the underlying structure already was.
 - On a public-facing README, one strong viewer entry works better than several medium-strength links. Repeating the same app URL in different visual styles made the top of the page feel busier rather than more useful.
 - For favicon-scale medieval styling, subtraction helps more than addition. A heavier seal ring and one simple central symbol read better than multiple tiny ornaments.
@@ -574,6 +581,7 @@
 
 ## Decision Log
 
+- Keep the favicon on a black-and-white seal vocabulary and prefer one bold cross-plus-book composition over multiple small symbolic details.
 - Prefer shorter action labels in the map evidence rail when the meaning stays obvious. `Open concept`, `Set local center`, and `Set spotlight` read better in a narrow support column than the longer earlier phrasing.
 - Keep the README top focused on a single public `open the app` action rather than stacking multiple equivalent link blocks.
 - Keep the favicon path stable and iterate the asset itself rather than changing the code path each time the visual direction changes.
@@ -715,6 +723,9 @@
 
 ## Outcomes & Retrospective
 
+- The favicon now reads more like a medieval seal than a modern app mark:
+  - the cross is now a primary structural element instead of an absent implication
+  - the heavier ring and reduced inner detail make the icon feel more monastic and more recognizable at small sizes
 - The map page now reads more cleanly at first glance:
   - quick spans stay on one line more reliably
   - selected-node metadata no longer dominates the right rail with oversized wrapped text
