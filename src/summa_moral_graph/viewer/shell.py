@@ -552,7 +552,7 @@ def render_dashboard(
 
     with st.sidebar:
         st.markdown("## Summa Virtutum")
-        st.caption("An interactive map of Thomas Aquinas's moral corpus")
+        st.caption("Thomas Aquinas moral corpus viewer for concepts, passages, and maps")
         current_view = str(session_state[ACTIVE_VIEW_KEY])
         next_view = st.radio(
             "Navigate",
@@ -647,12 +647,21 @@ def _render_home(data: ViewerAppData) -> None:
 
     hero(
         "Summa Virtutum",
-        "An interactive map of Thomas Aquinas's moral corpus",
+        "Interactive map of Thomas Aquinas's moral corpus in the Summa Theologiae",
         eyebrow="Thomas Aquinas",
     )
 
     main_left, main_right = st.columns((1.18, 0.82), gap="large")
     with main_left:
+        st.markdown(
+            (
+                "<div class='smgv-shell-note'>"
+                "Search Aquinas concepts, passages, reviewed doctrinal relations, and tract-level "
+                "maps across the moral corpus."
+                "</div>"
+            ),
+            unsafe_allow_html=True,
+        )
         st.markdown(
             (
                 "<div class='smgv-shell-note smgv-shell-note--hero'>"

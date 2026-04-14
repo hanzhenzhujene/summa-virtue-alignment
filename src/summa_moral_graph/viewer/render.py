@@ -31,7 +31,10 @@ NAV_LABELS = {
 }
 
 
-def configure_viewer_page(*, page_title: str = "Summa Virtutum") -> None:
+def configure_viewer_page(
+    *,
+    page_title: str = "Summa Virtutum — Interactive map of Thomas Aquinas's moral corpus",
+) -> None:
     st.set_page_config(
         page_title=page_title,
         page_icon="§",

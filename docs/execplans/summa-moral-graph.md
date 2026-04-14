@@ -2,6 +2,10 @@
 
 ## Progress
 
+- The public entry copy is being tightened for search and first-time discovery:
+  - the Streamlit browser title now names the app as an interactive map of Thomas Aquinas's moral corpus instead of only `Summa Virtutum`
+  - the home hero and sidebar subtitle now mention Aquinas, concepts, passages, and maps in clearer search-friendly language
+  - the README top section now puts the live Streamlit URL in a stronger first-screen position
 - The passage explorer advanced filters are being hardened against stale cross-scope state:
   - question options now narrow to the active part or tract scope instead of always listing the whole corpus
   - article options now narrow to the active part/question scope instead of preserving incompatible article ids
@@ -414,6 +418,7 @@
 
 ## Surprises & Discoveries
 
+- The homepage title can stay literary while search-critical wording moves into the page title, subtitle, and first supporting sentence. That gives better discoverability without flattening the product voice.
 - In passage search, the most common “broken filter” feeling did not come from search itself. It came from valid-looking question/article widget values that no longer belonged to the currently selected part or preset scope.
 - Streamlit Community Cloud currently provisions Python `3.14.x`, and `lxml==5.4.0` may not install there without system `libxml2/libxslt` development headers.
 - The current repository only needs BeautifulSoup parsing behavior for app runtime; a hard `lxml` dependency is not required to run the dashboard.
@@ -543,6 +548,7 @@
 
 ## Decision Log
 
+- Keep `Summa Virtutum` as the visible product title, but make browser-title and top-of-page copy more literal about `Thomas Aquinas`, `moral corpus`, `Summa Theologiae`, `concepts`, `passages`, and `maps`.
 - Keep passage-explorer advanced filters scope-consistent rather than permissive:
   - `Question` options should follow the active part or tract scope
   - `Article` options should follow the surviving question scope
@@ -678,6 +684,10 @@
 
 ## Outcomes & Retrospective
 
+- The app is now easier for both search engines and first-time readers to identify:
+  - browser tabs expose a descriptive title instead of only the branded Latin name
+  - the first home-page text now signals what can actually be searched and read in the viewer
+  - the README front page now surfaces the live app link sooner
 - Passage Explorer now behaves more like a reader tool and less like a fragile admin filter stack:
   - switching `Part` no longer leaves an incompatible `Question` or `Article` behind
   - tract-scoped passage reading no longer inherits impossible full-corpus combinations
