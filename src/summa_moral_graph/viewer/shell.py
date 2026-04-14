@@ -211,8 +211,8 @@ def _summa_structure_note_html() -> str:
 
     return (
         f"Only <strong>{linked('resp')}</strong> and <strong>{linked('ad')}</strong> "
-        "are included here as Thomas's own answer; "
-        f"no {linked('obj')} or {linked('sc')} opening objections are included."
+        "are included here as Thomas's own answer. "
+        f"No {linked('obj')} or {linked('sc')} opening objections are included."
     )
 
 
@@ -634,7 +634,7 @@ def render_dashboard(
         st.rerun()
 
     active_view = str(session_state[ACTIVE_VIEW_KEY])
-    doctrine_note_html = _summa_structure_note_html() if active_view != HOME_VIEW else None
+    doctrine_note_html = _summa_structure_note_html()
     meta_line(_scope_pills(data), note_html=doctrine_note_html)
 
     if active_view == HOME_VIEW:

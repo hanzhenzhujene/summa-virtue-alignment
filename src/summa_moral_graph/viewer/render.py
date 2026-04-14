@@ -120,11 +120,10 @@ def inject_viewer_css() -> None:
         }
 
         .smgv-inline-meta {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) auto;
+          align-items: start;
           gap: 0.8rem 1.2rem;
-          flex-wrap: wrap;
           color: var(--smg-muted);
           font-size: 0.78rem;
           margin: 0.12rem 0 0.7rem;
@@ -151,11 +150,11 @@ def inject_viewer_css() -> None:
 
         .smgv-inline-meta-note {
           margin-left: auto;
-          color: rgba(20, 34, 53, 0.56);
-          font-size: 0.69rem;
-          line-height: 1.28;
+          color: rgba(20, 34, 53, 0.68);
+          font-size: 0.72rem;
+          line-height: 1.3;
           text-align: right;
-          max-width: min(38rem, 48vw);
+          max-width: min(40rem, 50vw);
         }
 
         .smgv-inline-meta-note a {
@@ -168,6 +167,23 @@ def inject_viewer_css() -> None:
         .smgv-inline-meta-note a:hover {
           color: rgba(20, 34, 53, 0.88);
           text-decoration-color: rgba(20, 34, 53, 0.42);
+        }
+
+        .smgv-inline-meta-note strong {
+          color: rgba(20, 34, 53, 0.92);
+          font-weight: 800;
+        }
+
+        @media (max-width: 960px) {
+          .smgv-inline-meta {
+            grid-template-columns: 1fr;
+          }
+
+          .smgv-inline-meta-note {
+            margin-left: 0;
+            text-align: left;
+            max-width: none;
+          }
         }
 
         .smgv-shell-note--hero {
