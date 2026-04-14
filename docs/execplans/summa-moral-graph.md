@@ -2,6 +2,9 @@
 
 ## Progress
 
+- The browser-tab identity is being upgraded from a glyph to a real Aquinas icon:
+  - a square-cropped Thomas Aquinas portrait asset now lives under `docs/assets/summa-virtutum-icon.png`
+  - the Streamlit page icon now uses that local asset when present, falling back to `§` only if the file is missing
 - The public entry copy is being tightened for search and first-time discovery:
   - the Streamlit browser title now names the app as an interactive map of Thomas Aquinas's moral corpus instead of only `Summa Virtutum`
   - the home hero and sidebar subtitle now mention Aquinas, concepts, passages, and maps in clearer search-friendly language
@@ -418,6 +421,7 @@
 
 ## Surprises & Discoveries
 
+- For this project, a portrait-based favicon works better than a symbolic glyph because the product is already visually anchored around Aquinas rather than abstract data tooling.
 - The homepage title can stay literary while search-critical wording moves into the page title, subtitle, and first supporting sentence. That gives better discoverability without flattening the product voice.
 - In passage search, the most common “broken filter” feeling did not come from search itself. It came from valid-looking question/article widget values that no longer belonged to the currently selected part or preset scope.
 - Streamlit Community Cloud currently provisions Python `3.14.x`, and `lxml==5.4.0` may not install there without system `libxml2/libxslt` development headers.
@@ -548,6 +552,7 @@
 
 ## Decision Log
 
+- Keep the favicon as a local bundled asset instead of a remote URL so the tab icon stays stable offline, in local dev, and in deployment.
 - Keep `Summa Virtutum` as the visible product title, but make browser-title and top-of-page copy more literal about `Thomas Aquinas`, `moral corpus`, `Summa Theologiae`, `concepts`, `passages`, and `maps`.
 - Keep passage-explorer advanced filters scope-consistent rather than permissive:
   - `Question` options should follow the active part or tract scope
@@ -684,6 +689,9 @@
 
 ## Outcomes & Retrospective
 
+- The app now feels more finished at the browser-tab level as well:
+  - users see an Aquinas portrait icon instead of a generic section-mark glyph
+  - local and hosted app tabs now share the same visual identity without relying on remote assets
 - The app is now easier for both search engines and first-time readers to identify:
   - browser tabs expose a descriptive title instead of only the branded Latin name
   - the first home-page text now signals what can actually be searched and read in the viewer

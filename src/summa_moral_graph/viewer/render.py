@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 from html import escape
+from pathlib import Path
 from textwrap import shorten
 from typing import Iterable
 
 import streamlit as st
 
 from ..app.ui import MetricCard
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+PAGE_ICON_PATH = REPO_ROOT / "docs" / "assets" / "summa-virtutum-icon.png"
 
 LAYER_LABELS = {
     "reviewed_doctrinal": "Reviewed doctrine",
@@ -37,7 +41,7 @@ def configure_viewer_page(
 ) -> None:
     st.set_page_config(
         page_title=page_title,
-        page_icon="§",
+        page_icon=str(PAGE_ICON_PATH) if PAGE_ICON_PATH.exists() else "§",
         layout="wide",
         initial_sidebar_state="expanded",
     )
