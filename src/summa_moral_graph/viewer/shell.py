@@ -1803,6 +1803,7 @@ def _render_map_view(data: ViewerAppData) -> None:
             ("123–140", (123, 140)),
             ("141–170", (141, 170)),
         ]
+        current_quick_range = normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46)))
         quick_columns = st.columns((1, 1, 1.12, 1.12, 1.12), gap="small")
         for column, (label, range_value) in zip(quick_columns, quick_ranges, strict=False):
             with column:
@@ -1810,6 +1811,7 @@ def _render_map_view(data: ViewerAppData) -> None:
                     label,
                     key=f"smg-map-quick-range-{label}",
                     use_container_width=True,
+                    type="primary" if current_quick_range == range_value else "secondary",
                 ):
                     queue_widget_updates(session_state, **{MAP_RANGE_KEY: range_value})
                     st.rerun()

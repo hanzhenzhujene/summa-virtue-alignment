@@ -973,6 +973,13 @@ def inject_viewer_css() -> None:
           padding: 0.26rem 0.42rem !important;
         }
 
+        [class*="st-key-smg-map-quick-range-"] button[kind="primary"] {
+          background: linear-gradient(135deg, #8b442e, #6f2f1f) !important;
+          color: #fdf8f2 !important;
+          border-color: rgba(111, 47, 31, 0.92) !important;
+          box-shadow: 0 10px 20px rgba(111, 47, 31, 0.16) !important;
+        }
+
         [class*="st-key-smg-map-open-selected-"] button,
         [class*="st-key-smg-map-center-selected-"] button,
         [class*="st-key-smg-map-spotlight-selected-"] button,
