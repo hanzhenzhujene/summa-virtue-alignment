@@ -32,9 +32,14 @@ from summa_moral_graph.viewer.navigation import (
     select_map_node,
     set_active_view,
 )
-from summa_moral_graph.viewer.shell import _open_overall_map_route, _resolve_download_scope
+from summa_moral_graph.viewer.shell import (
+    _open_global_overall_map_route,
+    _open_overall_map_route,
+    _resolve_download_scope,
+)
 from summa_moral_graph.viewer.state import (
     available_focus_tags_for_scope,
+    center_concept_ids_for_view,
     concept_payload_for_selection,
     generate_structural_edges_for_range,
     graph_edges_for_view,
@@ -61,6 +66,25 @@ def test_open_overall_map_route_forces_overall_mode() -> None:
     assert session_state[MAP_MODE_KEY] == "Overall map"
     assert session_state[ACTIVE_PRESET_KEY] == "prudence:overview"
     assert session_state[CONCEPT_ID_KEY] == "concept.prudence"
+
+
+def test_open_global_overall_map_route_clears_stale_center_concept() -> None:
+    session_state: dict[str, object] = {
+        ACTIVE_VIEW_KEY: CONCEPT_VIEW,
+        ACTIVE_PRESET_KEY: "justice:overview",
+        MAP_MODE_KEY: "Local map",
+        "smg_map_center_concept": "concept.justice",
+    }
+
+    _open_global_overall_map_route(
+        session_state,
+        preset_name="justice:overview",
+    )
+
+    assert session_state[ACTIVE_VIEW_KEY] == MAP_VIEW
+    assert session_state[MAP_MODE_KEY] == "Overall map"
+    assert session_state[ACTIVE_PRESET_KEY] == "justice:overview"
+    assert session_state["smg_map_center_concept"] == ""
 
 
 def test_download_scope_defaults_to_active_preset_but_stays_local() -> None:
@@ -541,6 +565,28 @@ def test_graph_edges_for_view_combines_cross_family_ranges() -> None:
     assert any(101 <= question <= 120 for question in question_numbers)
 
 
+def test_center_concept_ids_for_view_are_scoped_to_current_range() -> None:
+    data = load_viewer_data()
+
+    concept_ids = center_concept_ids_for_view(
+        data,
+        preset_name=None,
+        map_range=(57, 79),
+        include_structural=False,
+        include_editorial=False,
+        include_candidate=False,
+        relation_types=None,
+        relation_groups=None,
+        node_types=None,
+        focus_tags=None,
+        question_id=None,
+        segment_types=None,
+    )
+
+    assert "concept.justice" in concept_ids
+    assert "concept.abstinence" not in concept_ids
+
+
 def test_available_focus_tags_for_scope_returns_cross_tract_tags_for_tagged_ranges() -> None:
     data = load_viewer_data()
 
@@ -617,25 +663,46 @@ def test_overall_map_question_span_slider_handles_cross_family_ranges() -> None:
     assert question_span_values == [(141, 170)]
 
 
-def test_overall_map_center_concept_filter_reaches_graph_query(monkeypatch) -> None:
-    recorded_calls: list[tuple[bool, str | None]] = []
+def test_graph_edges_for_view_filters_edges_by_center_concept() -> None:
+    data = load_viewer_data()
+
+    edges, reason = graph_edges_for_view(
+        data,
+        preset_name=None,
+        map_range=(57, 122),
+        include_structural=False,
+        include_editorial=False,
+        include_candidate=False,
+        relation_types=None,
+        relation_groups=None,
+        node_types=None,
+        focus_tags=None,
+        question_id=None,
+        center_concept="concept.justice",
+        segment_types=None,
+        local_only=False,
+    )
+
+    assert reason is None
+    assert edges
+    assert all(
+        "concept.justice" in {str(edge["subject_id"]), str(edge["object_id"])}
+        for edge in edges
+    )
+
+
+def test_overall_map_center_concept_changes_rendered_edges(monkeypatch) -> None:
+    rendered_edges: list[list[dict[str, object]]] = []
 
     from summa_moral_graph.viewer import shell
 
-    original = shell.graph_edges_for_view
-
-    def wrapped_graph_edges_for_view(*args, **kwargs):
-        recorded_calls.append(
-            (
-                bool(kwargs.get("local_only")),
-                str(kwargs.get("center_concept"))
-                if kwargs.get("center_concept") is not None
-                else None,
-            )
-        )
-        return original(*args, **kwargs)
-
-    monkeypatch.setattr(shell, "graph_edges_for_view", wrapped_graph_edges_for_view)
+    monkeypatch.setattr(
+        shell,
+        "_graph_html_for_edges",
+        lambda edges, **kwargs: (
+            rendered_edges.append(list(edges)) or "<html><body>graph</body></html>"
+        ),
+    )
 
     app = AppTest.from_file("streamlit_app.py")
     app.run(timeout=30)
@@ -644,28 +711,34 @@ def test_overall_map_center_concept_filter_reaches_graph_query(monkeypatch) -> N
             radio.set_value("Overall Map")
             break
     app.run(timeout=30)
+    for button in app.button:
+        if button.label == "57–122":
+            button.click()
+            break
+    app.run(timeout=30)
+
+    baseline_edges = rendered_edges[-1]
+    assert baseline_edges
+
     for toggle in app.toggle:
         if toggle.label == "Show more filters":
             toggle.set_value(True)
             break
     app.run(timeout=30)
+    rendered_edges.clear()
 
-    recorded_calls.clear()
-    for selectbox in app.selectbox:
-        if selectbox.label == "Center concept":
-            selectbox.set_value("concept.justice")
-            break
+    app.session_state["smg_map_center_concept"] = "concept.justice"
     app.run(timeout=30)
 
-    overall_calls = [
-        center_concept
-        for local_only, center_concept in recorded_calls
-        if local_only is False
-    ]
+    centered_edges = rendered_edges[-1]
 
     assert not app.exception
-    assert overall_calls
-    assert all(center_concept == "concept.justice" for center_concept in overall_calls)
+    assert centered_edges
+    assert len(centered_edges) < len(baseline_edges)
+    assert all(
+        "concept.justice" in {str(edge["subject_id"]), str(edge["object_id"])}
+        for edge in centered_edges
+    )
 
 
 def test_overall_map_reset_all_filters_does_not_raise_streamlit_exception() -> None:

@@ -84,6 +84,7 @@ from .state import (
     RELATION_GROUPS,
     active_scope_summary,
     available_focus_tags_for_scope,
+    center_concept_ids_for_view,
     concept_matches,
     concept_payload_for_selection,
     graph_edges_for_view,
@@ -476,6 +477,22 @@ def _open_overall_map_route(
     )
 
 
+def _open_global_overall_map_route(
+    session_state: MutableMapping[str, object],
+    *,
+    preset_name: str | None = None,
+) -> None:
+    if "smg_pending_widget_updates" in session_state:
+        queue_widget_updates(session_state, smg_map_center_concept="")
+    else:
+        session_state["smg_map_center_concept"] = ""
+    open_map(
+        session_state,
+        preset_name=preset_name,
+        mode="Overall map",
+    )
+
+
 def _map_filter_pills(
     *,
     map_mode: str,
@@ -610,9 +627,8 @@ def render_dashboard(
         )
         if next_view != current_view:
             if next_view == MAP_VIEW:
-                _open_overall_map_route(
+                _open_global_overall_map_route(
                     session_state,
-                    concept_id=str(session_state.get(CONCEPT_ID_KEY, "") or "") or None,
                     preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
                 )
             elif next_view == STATS_VIEW:
@@ -640,9 +656,8 @@ def render_dashboard(
 
     chosen_view = top_nav(str(session_state[ACTIVE_VIEW_KEY]), PRIMARY_VIEWS)
     if chosen_view == MAP_VIEW:
-        _open_overall_map_route(
+        _open_global_overall_map_route(
             session_state,
-            concept_id=str(session_state.get(CONCEPT_ID_KEY, "") or "") or None,
             preset_name=str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None,
         )
         st.rerun()
@@ -1761,11 +1776,15 @@ def _render_map_view(data: ViewerAppData) -> None:
     session_state = _session_state()
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
     consume_pending_map_action(session_state)
+    current_map_mode = str(session_state.get(MAP_MODE_KEY, "Overall map"))
     normalized_initial_range = normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46)))
     if session_state.get(MAP_RANGE_KEY) != normalized_initial_range:
         session_state[MAP_RANGE_KEY] = normalized_initial_range
     current_center = str(session_state.get("smg_map_center_concept", "") or "")
-    if not current_center:
+    if current_center and current_center not in bundle.registry:
+        current_center = ""
+        session_state["smg_map_center_concept"] = ""
+    if not current_center and current_map_mode == "Local map":
         current_center = str(session_state.get(CONCEPT_ID_KEY, "") or "")
         session_state["smg_map_center_concept"] = current_center
 
@@ -1843,6 +1862,45 @@ def _render_map_view(data: ViewerAppData) -> None:
         )
         | set(cast(list[str], session_state.get("smg_map_focus_tags", [])))
     )
+    preliminary_include_structural = bool(session_state.get("smg_map_include_structural"))
+    preliminary_include_editorial = bool(session_state.get("smg_map_include_editorial"))
+    preliminary_include_candidate = bool(session_state.get("smg_map_include_candidate"))
+    preliminary_relation_types = set(
+        cast(list[str], session_state.get("smg_map_relation_types", []))
+    )
+    preliminary_relation_groups = set(
+        cast(list[str], session_state.get("smg_map_relation_groups", []))
+    )
+    preliminary_node_types = set(cast(list[str], session_state.get("smg_map_node_types", [])))
+    preliminary_focus_tags = set(cast(list[str], session_state.get("smg_map_focus_tags", [])))
+    preliminary_segment_types = set(
+        cast(list[str], session_state.get("smg_map_segment_types", []))
+    )
+    preliminary_question = str(session_state.get("smg_map_question_spotlight", "") or "") or None
+    scoped_center_concepts = center_concept_ids_for_view(
+        data,
+        preset_name=preset_name,
+        map_range=preliminary_map_range,
+        include_structural=preliminary_include_structural,
+        include_editorial=preliminary_include_editorial,
+        include_candidate=preliminary_include_candidate,
+        relation_types=preliminary_relation_types or None,
+        relation_groups=preliminary_relation_groups or None,
+        node_types=preliminary_node_types or None,
+        focus_tags=preliminary_focus_tags or None,
+        question_id=preliminary_question,
+        segment_types=preliminary_segment_types or None,
+    )
+    center_select_ids = [
+        *scoped_center_concepts,
+        *(
+            [current_center]
+            if current_center
+            and current_center in bundle.registry
+            and current_center not in scoped_center_concepts
+            else []
+        ),
+    ]
     advanced_filter_active = any(
         [
             bool(session_state.get("smg_map_include_structural")),
@@ -1892,11 +1950,18 @@ def _render_map_view(data: ViewerAppData) -> None:
         with control_mid:
             st.selectbox(
                 "Center concept",
-                options=["", *sorted(bundle.registry)],
+                options=["", *center_select_ids],
                 format_func=lambda value: (
-                    "None" if not value else bundle.registry[value].canonical_label
+                    (
+                        "None"
+                        if not value
+                        else bundle.registry[value].canonical_label
+                        if value in bundle.registry
+                        else str(value)
+                    )
                 ),
                 key="smg_map_center_concept",
+                help="Only concepts present in the current map scope are listed here.",
             )
             st.selectbox(
                 "Question spotlight",

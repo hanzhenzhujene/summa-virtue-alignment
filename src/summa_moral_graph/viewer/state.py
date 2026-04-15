@@ -711,6 +711,52 @@ def graph_edges_for_view(
     return (edges, None)
 
 
+def center_concept_ids_for_view(
+    data: ViewerAppData,
+    *,
+    preset_name: str | None,
+    map_range: tuple[int, int],
+    include_structural: bool,
+    include_editorial: bool,
+    include_candidate: bool,
+    relation_types: set[str] | None,
+    relation_groups: set[str] | None,
+    node_types: set[str] | None,
+    focus_tags: set[str] | None,
+    question_id: str | None,
+    segment_types: set[str] | None,
+) -> list[str]:
+    edges, _ = graph_edges_for_view(
+        data,
+        preset_name=preset_name,
+        map_range=map_range,
+        include_structural=include_structural,
+        include_editorial=include_editorial,
+        include_candidate=include_candidate,
+        relation_types=relation_types,
+        relation_groups=relation_groups,
+        node_types=node_types,
+        focus_tags=focus_tags,
+        question_id=question_id,
+        center_concept=None,
+        segment_types=segment_types,
+        local_only=False,
+    )
+    concept_ids = {
+        concept_id
+        for edge in edges
+        for concept_id in (str(edge["subject_id"]), str(edge["object_id"]))
+        if concept_id in data.bundle.registry
+    }
+    return sorted(
+        concept_ids,
+        key=lambda concept_id: (
+            data.bundle.registry[concept_id].canonical_label.casefold(),
+            concept_id,
+        ),
+    )
+
+
 def generate_structural_edges_for_range(
     bundle: CorpusAppBundle,
     *,

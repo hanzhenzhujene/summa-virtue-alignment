@@ -5,7 +5,9 @@
 - The overall-map `Center concept` filter is being repaired so the control actually affects the reviewed graph:
   - the shell had been discarding `center_concept` whenever map mode was `Overall map`, so the filter UI existed but the graph query silently ignored it
   - the overall map will now honor the selected center concept the same way the empty-state and evidence copy already imply
-  - regression coverage is being added so `Show more filters → Center concept` cannot silently become a no-op again
+  - the generic `Overall Map` navigation path no longer silently inherits the current concept as a hidden center filter
+  - the center-concept dropdown is now scoped to concepts actually present in the current map slice, which avoids a large class of misleading no-result selections
+  - regression coverage now checks the route behavior, the scope-aware center options, the graph-edge filtering semantics, and the live rendered-edge narrowing path
 - The homepage and README Summa-structure note is being clarified again for readers:
   - the note now says more directly that only `resp` and `ad` are included here as Thomas's own answer
   - it now also says explicitly that no opening `obj` or `sc` material is included
@@ -461,6 +463,8 @@
 ## Surprises & Discoveries
 
 - A control can look perfectly wired in Streamlit while still being a semantic no-op if the shell drops its value before the data query. That is exactly what happened with `Center concept` in Overall Map: the selectbox updated session state, but the graph call path forcibly replaced it with `None`.
+- The next layer of confusion was subtler: generic navigation into `Overall Map` was also carrying the currently selected concept into map state, so users could arrive in what looked like a global view that was already secretly centered on one node.
+- For a map-centered filter, scope-aware options matter almost as much as the filtering itself. Offering every concept in the whole registry made it too easy to choose a concept that had no edges in the current span and conclude the control was broken.
 - For this icon, a cross works best when it is structural rather than decorative. Putting the cross behind the book makes the mark read faster and feel more monastic than adding a tiny floating cross elsewhere.
 - The remaining “prototype feel” was coming from narrow-column typography more than from any major layout bug. A few oversized labels in the map evidence rail made the whole page feel less polished than the underlying structure already was.
 - On a public-facing README, one strong viewer entry works better than several medium-strength links. Repeating the same app URL in different visual styles made the top of the page feel busier rather than more useful.
@@ -600,6 +604,8 @@
 ## Decision Log
 
 - Keep `Center concept` as a true graph filter in both map modes. Local map still requires a center concept to exist at all, but Overall Map should also honor the explicit reader choice rather than pretending the control is only decorative.
+- Separate “open the global map” from “open the overall map around this concept.” The top navigation and sidebar should open an uncentered overall map, while concept/passage context buttons can still carry an explicit center.
+- Keep the `Center concept` choices scoped to the current map slice instead of the whole corpus registry, while still tolerating and clearing stale invalid session values safely.
 - Keep the favicon on a black-and-white seal vocabulary and prefer one bold cross-plus-book composition over multiple small symbolic details.
 - Prefer shorter action labels in the map evidence rail when the meaning stays obvious. `Open concept`, `Set local center`, and `Set spotlight` read better in a narrow support column than the longer earlier phrasing.
 - Keep the README top focused on a single public `open the app` action rather than stacking multiple equivalent link blocks.
@@ -745,7 +751,9 @@
 - The Overall Map filter rail is now more trustworthy:
   - choosing `Center concept` inside `Show more filters` actually narrows the overall reviewed graph
   - the control now matches its label, help text, and empty-state guidance instead of silently doing nothing
-  - a live-shell regression test now verifies that the selected concept reaches the overall-map graph query path
+  - generic navigation to `Overall Map` now opens a genuinely global map instead of carrying a hidden concept-center from the previous page
+  - the center selector now offers scope-aware concepts, so readers are much less likely to choose a concept that cannot affect the current graph
+  - regression coverage now verifies route clearing, scope-aware center choices, pure graph filtering semantics, and live rendered-edge narrowing in the shell
 - The favicon now reads more like a medieval seal than a modern app mark:
   - the cross is now a primary structural element instead of an absent implication
   - the heavier ring and reduced inner detail make the icon feel more monastic and more recognizable at small sizes
