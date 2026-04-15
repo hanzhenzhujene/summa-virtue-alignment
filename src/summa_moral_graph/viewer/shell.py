@@ -1962,7 +1962,10 @@ def _render_map_view(data: ViewerAppData) -> None:
         node_types=node_types or None,
         focus_tags=None,
         question_id=map_question,
-        center_concept=None if map_mode == "Overall map" else center_concept,
+        # Overall-map center filtering is an explicit reader control, not a
+        # local-map-only affordance. Keep honoring it here so the graph, empty
+        # states, and evidence rail stay aligned.
+        center_concept=center_concept,
         segment_types=segment_types or None,
         local_only=False,
     )
@@ -1994,7 +1997,7 @@ def _render_map_view(data: ViewerAppData) -> None:
         node_types=node_types or None,
         focus_tags=focus_tags or None,
         question_id=map_question,
-        center_concept=None if map_mode == "Overall map" else center_concept,
+        center_concept=center_concept,
         segment_types=segment_types or None,
         local_only=False,
     )

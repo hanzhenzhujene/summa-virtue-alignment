@@ -617,6 +617,57 @@ def test_overall_map_question_span_slider_handles_cross_family_ranges() -> None:
     assert question_span_values == [(141, 170)]
 
 
+def test_overall_map_center_concept_filter_reaches_graph_query(monkeypatch) -> None:
+    recorded_calls: list[tuple[bool, str | None]] = []
+
+    from summa_moral_graph.viewer import shell
+
+    original = shell.graph_edges_for_view
+
+    def wrapped_graph_edges_for_view(*args, **kwargs):
+        recorded_calls.append(
+            (
+                bool(kwargs.get("local_only")),
+                str(kwargs.get("center_concept"))
+                if kwargs.get("center_concept") is not None
+                else None,
+            )
+        )
+        return original(*args, **kwargs)
+
+    monkeypatch.setattr(shell, "graph_edges_for_view", wrapped_graph_edges_for_view)
+
+    app = AppTest.from_file("streamlit_app.py")
+    app.run(timeout=30)
+    for radio in app.radio:
+        if getattr(radio, "options", None) and "Overall Map" in radio.options:
+            radio.set_value("Overall Map")
+            break
+    app.run(timeout=30)
+    for toggle in app.toggle:
+        if toggle.label == "Show more filters":
+            toggle.set_value(True)
+            break
+    app.run(timeout=30)
+
+    recorded_calls.clear()
+    for selectbox in app.selectbox:
+        if selectbox.label == "Center concept":
+            selectbox.set_value("concept.justice")
+            break
+    app.run(timeout=30)
+
+    overall_calls = [
+        center_concept
+        for local_only, center_concept in recorded_calls
+        if local_only is False
+    ]
+
+    assert not app.exception
+    assert overall_calls
+    assert all(center_concept == "concept.justice" for center_concept in overall_calls)
+
+
 def test_overall_map_reset_all_filters_does_not_raise_streamlit_exception() -> None:
     app = AppTest.from_file("streamlit_app.py")
     app.run(timeout=30)
