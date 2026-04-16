@@ -19,6 +19,7 @@ from summa_moral_graph.viewer.navigation import (
     MAP_VIEW,
     PASSAGE_ID_KEY,
     STATS_TAB_KEY,
+    DEFAULT_MAP_RANGE,
     consume_pending_map_action,
     consume_widget_updates,
     ensure_session_state,
@@ -141,6 +142,15 @@ def test_ensure_session_state_normalizes_map_range_values() -> None:
     assert session_state[MAP_RANGE_KEY] == (57, 80)
 
 
+def test_ensure_session_state_defaults_map_range_to_full_corpus() -> None:
+    data = load_viewer_data()
+    session_state: dict[str, object] = {}
+
+    ensure_session_state(session_state, data)
+
+    assert session_state[MAP_RANGE_KEY] == DEFAULT_MAP_RANGE
+
+
 def test_ensure_session_state_defaults_relation_labels_to_on() -> None:
     data = load_viewer_data()
     session_state: dict[str, object] = {}
@@ -194,7 +204,7 @@ def test_reset_map_filters_clears_focus_tags_without_losing_mode_or_center() -> 
     assert session_state["smg_map_focus_tags"] == []
     assert session_state["smg_map_relation_groups"] == []
     assert session_state["smg_map_include_candidate"] is False
-    assert session_state[MAP_RANGE_KEY] == (1, 46)
+    assert session_state[MAP_RANGE_KEY] == DEFAULT_MAP_RANGE
 
 
 def test_queue_and_consume_pending_map_reset_action() -> None:
@@ -214,7 +224,7 @@ def test_queue_and_consume_pending_map_reset_action() -> None:
 
     assert consumed == "reset_filters"
     assert session_state["smg_map_focus_tags"] == []
-    assert session_state[MAP_RANGE_KEY] == (1, 46)
+    assert session_state[MAP_RANGE_KEY] == DEFAULT_MAP_RANGE
     assert session_state["smg_map_center_concept"] == "concept.justice"
 
 
@@ -528,6 +538,53 @@ def test_overall_map_view_renders_without_streamlit_exception() -> None:
     app.run(timeout=30)
 
     assert not app.exception
+
+
+def test_overall_map_defaults_question_span_to_full_corpus() -> None:
+    app = AppTest.from_file("streamlit_app.py")
+    app.run(timeout=30)
+    for radio in app.radio:
+        if getattr(radio, "options", None) and "Overall Map" in radio.options:
+            radio.set_value("Overall Map")
+            break
+    app.run(timeout=30)
+
+    question_span_values = [
+        slider.value for slider in app.slider if getattr(slider, "label", "") == "Question span"
+    ]
+
+    assert not app.exception
+    assert question_span_values == [DEFAULT_MAP_RANGE]
+
+
+def test_home_open_interactive_map_renders_graph_instead_of_blank_slice(monkeypatch) -> None:
+    rendered_edges: list[list[dict[str, object]]] = []
+
+    from summa_moral_graph.viewer import shell
+
+    monkeypatch.setattr(
+        shell,
+        "_graph_html_for_edges",
+        lambda edges, **kwargs: (
+            rendered_edges.append(list(edges)) or "<html><body>graph</body></html>"
+        ),
+    )
+
+    app = AppTest.from_file("streamlit_app.py")
+    app.run(timeout=30)
+
+    for button in app.button:
+        if button.label == "Open interactive map":
+            button.click()
+            break
+    app.run(timeout=30)
+
+    assert not app.exception
+    assert app.session_state[ACTIVE_VIEW_KEY] == MAP_VIEW
+    assert app.session_state[MAP_MODE_KEY] == "Overall map"
+    assert app.session_state["smg_map_center_concept"] == ""
+    assert rendered_edges
+    assert rendered_edges[-1]
 
 
 def test_graph_edges_for_view_combines_cross_family_ranges() -> None:

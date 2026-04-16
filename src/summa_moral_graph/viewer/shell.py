@@ -34,6 +34,7 @@ from .navigation import (
     ACTIVE_VIEW_KEY,
     CONCEPT_ID_KEY,
     CONCEPT_VIEW,
+    DEFAULT_MAP_RANGE,
     EDGE_ID_KEY,
     HOME_VIEW,
     MAP_MODE_KEY,
@@ -573,7 +574,8 @@ def _render_map_reset_actions(session_state: MutableMapping[str, object]) -> Non
             bool(session_state.get("smg_map_include_structural")),
             bool(session_state.get("smg_map_include_editorial")),
             bool(session_state.get("smg_map_include_candidate")),
-            normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46))) != (1, 46),
+            normalize_map_range(session_state.get(MAP_RANGE_KEY, DEFAULT_MAP_RANGE))
+            != DEFAULT_MAP_RANGE,
         ]
     )
     if not has_focus_tags and not has_other_filters:
@@ -848,9 +850,8 @@ def _render_home(data: ViewerAppData) -> None:
                 button_type="primary",
             ):
                 chosen_preset = str(session_state.get("smg_home_start_preset") or "")
-                _open_overall_map_route(
+                _open_global_overall_map_route(
                     session_state,
-                    concept_id=selected_start_concept,
                     preset_name=chosen_preset or None,
                 )
                 st.rerun()
@@ -1777,7 +1778,9 @@ def _render_map_view(data: ViewerAppData) -> None:
     preset_name = str(session_state.get(ACTIVE_PRESET_KEY, "") or "") or None
     consume_pending_map_action(session_state)
     current_map_mode = str(session_state.get(MAP_MODE_KEY, "Overall map"))
-    normalized_initial_range = normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46)))
+    normalized_initial_range = normalize_map_range(
+        session_state.get(MAP_RANGE_KEY, DEFAULT_MAP_RANGE)
+    )
     if session_state.get(MAP_RANGE_KEY) != normalized_initial_range:
         session_state[MAP_RANGE_KEY] = normalized_initial_range
     current_center = str(session_state.get("smg_map_center_concept", "") or "")
@@ -1822,7 +1825,9 @@ def _render_map_view(data: ViewerAppData) -> None:
             ("123–140", (123, 140)),
             ("141–170", (141, 170)),
         ]
-        current_quick_range = normalize_map_range(session_state.get(MAP_RANGE_KEY, (1, 46)))
+        current_quick_range = normalize_map_range(
+            session_state.get(MAP_RANGE_KEY, DEFAULT_MAP_RANGE)
+        )
         quick_columns = st.columns((1, 1, 1.12, 1.12, 1.12), gap="small")
         for column, (label, range_value) in zip(quick_columns, quick_ranges, strict=False):
             with column:
@@ -1851,7 +1856,9 @@ def _render_map_view(data: ViewerAppData) -> None:
             ),
         )
 
-    preliminary_map_range = normalize_map_range(session_state.get("smg_map_range", (1, 46)))
+    preliminary_map_range = normalize_map_range(
+        session_state.get("smg_map_range", DEFAULT_MAP_RANGE)
+    )
     available_focus_tags = sorted(
         set(
             available_focus_tags_for_scope(
@@ -1998,7 +2005,7 @@ def _render_map_view(data: ViewerAppData) -> None:
     include_structural = bool(session_state.get("smg_map_include_structural"))
     include_editorial = bool(session_state.get("smg_map_include_editorial"))
     include_candidate = bool(session_state.get("smg_map_include_candidate"))
-    map_range = normalize_map_range(session_state.get("smg_map_range", (1, 46)))
+    map_range = normalize_map_range(session_state.get("smg_map_range", DEFAULT_MAP_RANGE))
     map_question = str(session_state.get("smg_map_question_spotlight", "") or "") or None
     center_concept = str(session_state.get("smg_map_center_concept", "") or "") or None
     relation_types = set(
