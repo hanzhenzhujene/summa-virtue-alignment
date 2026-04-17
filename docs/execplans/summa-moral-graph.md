@@ -2,6 +2,20 @@
 
 ## Progress
 
+- The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
+  addition to the existing remote CUDA loop:
+  - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
+  - training and inference configs now grow a shared `runtime_backend` / `torch_dtype` surface
+  - the training runner is being split into a true dual path:
+    - CUDA keeps the existing 4-bit QLoRA flow
+    - MPS falls back to standard float16 LoRA without `bitsandbytes`
+  - run artifacts are being upgraded to include `environment.json`, `train_log_history.jsonl`,
+    richer `run_manifest.json` metadata, and timestamped run ids for the new local path
+  - the current repo is being polished as the public fine-tuning entrypoint rather than requiring a
+    companion repo:
+    - committed dataset exports under `data/processed/sft/exports/christian_virtue_v1*`
+    - a public `Fine-Tune With Summa Moral Graph` guide
+    - an experiment index and clearer README entry path
 - The small-model Christian virtue path is now being turned into a real remote-GPU research loop
   rather than just a loose collection of train/eval scripts:
   - `Qwen/Qwen3-0.6B` is now the first fully wired end-to-end baseline
@@ -512,6 +526,16 @@
 
 ## Surprises & Discoveries
 
+- The real local-research blocker was not dataset size but runtime mismatch: the existing training
+  stack was written as though every serious run were CUDA + 4-bit QLoRA, while the user's actual
+  first baseline machine is a 16 GB Apple-Silicon laptop.
+- Committing the public Christian virtue dataset exports into the canonical repo is operationally
+  reasonable here. The two export trees are only about `27 MB` together, so keeping data, docs, and
+  training entrypoints in one GitHub repo is cleaner than splitting public usage across multiple
+  repositories.
+- For the local 1.5B path, good experiment hygiene matters as much as raw throughput. Timestamped
+  run directories, config snapshots, environment captures, and train-log histories are the
+  difference between “it ran once on my laptop” and a reusable pilot baseline.
 - The last mile for research reproducibility was not the model code itself but the operator path:
   without standardized run directories, preflight failure messages, and an explicit base-vs-adapter
   comparison report, it is too easy for a “successful” experiment to remain hard to rerun or hard
@@ -684,6 +708,16 @@
 
 ## Decision Log
 
+- Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
+  companion training repo for the Christian virtue dataset.
+- Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
+  and carve them out of `.gitignore`, while continuing to ignore raw run logs under `runs/`.
+- Add a first-class local pilot route around `Qwen/Qwen2.5-1.5B-Instruct` on Apple Silicon MPS.
+- Extend the training stack to support two explicit runtime families:
+  - CUDA + 4-bit QLoRA when the backend is truly CUDA
+  - MPS float16 LoRA with no `bitsandbytes` dependency when the backend is MPS
+- Prefer timestamped run directories for the new local 1.5B path so smoke, pilot, base-test, and
+  adapter-test runs never overwrite one another.
 - Treat the `Qwen/Qwen3-0.6B` route as the first-class operational baseline and optimize the repo
   around that exact experiment loop before widening scope again.
 - Standardize small-run artifacts under `runs/christian_virtue/qwen3_0_6b/{smoke,proto,...}` so
@@ -860,6 +894,22 @@
 
 ## Outcomes & Retrospective
 
+- The repo is now being refactored into a more complete public fine-tuning surface instead of only
+  an internal research workspace:
+  - the committed Christian virtue dataset exports are now intended to live in-tree as a public
+    training release
+  - README copy is being expanded to point external users directly to the dataset, fine-tuning
+    guide, and experiment index
+  - the maintainer doc is being rewritten around the actual local-vs-remote execution paths rather
+    than only the earlier remote small-model story
+- The local 1.5B Apple-Silicon path is now moving from “possible in principle” to an explicit
+  operational baseline:
+  - new MPS training/inference configs target `Qwen/Qwen2.5-1.5B-Instruct`
+  - the runtime layer now resolves device and dtype explicitly for both training and inference
+  - the training path now gates `bitsandbytes` on real CUDA 4-bit usage instead of assuming it is
+    always required
+  - timestamped wrapper scripts are being added so each local smoke/pilot/eval run writes a clean
+    artifact folder with logs and manifests
 - The Christian virtue small-model path is now much closer to an operational research loop than a
   local-only prototype:
   - the repo now exposes explicit Linux-CUDA preflight checks, smoke training, real small training,

@@ -1,27 +1,26 @@
 # Christian Virtue SFT
 
-## Objective
+## Research Objective
 
-This pipeline builds a v1 instruction-tuning dataset for a Christian virtue assistant grounded in
-Thomas Aquinas's moral corpus as structured in this repository. The goal is not a generic theology
-chatbot and not a whole-repo text dump. The goal is a virtue-centered SFT dataset that preserves:
+This repo now supports a clean Christian virtue SFT workflow built from the reviewed moral corpus of
+Thomas Aquinas in the *Summa Theologiae*. The v1 target is not a general theology chatbot. The
+target is a citation-aware virtue assistant that:
 
-- stable passage ids from `data/interim/`
-- reviewed doctrinal supervision from selected `data/gold/` files
-- citation traceability back to segment-level evidence
-- separation between doctrinal, structural-editorial, and candidate layers
+- stays grounded in segment-level evidence
+- inherits stable passage ids from `data/interim/`
+- uses only approved reviewed doctrinal supervision in the default build
+- keeps doctrinal, structural-editorial, and candidate layers separate
+- can be trained and evaluated through reproducible local and remote loops
 
-The canonical evidence unit remains the interim segment id. Every generated example keeps source
-passage ids and citation labels in metadata, and the assistant outputs include citation blocks.
+The canonical evidence unit remains the segment id, not the whole article.
 
 ## Why V1 Is Virtue-Centered
 
-The repo's full moral corpus contains several distinct supervision layers and tract families. V1
-focuses on Christian virtue formation and virtue-adjacent doctrinal relations because that is the
-highest-signal path to an assistant that can explain virtues, vices, acts, and tract-local
-distinctions in Aquinas's own moral corpus without flattening the repo into generic prose.
+The repo contains more than one review layer and more than one tract family. V1 stays tightly
+scoped to the Christian virtue path so the fine-tuning target is doctrinally coherent and
+operationally reproducible.
 
-The selected reviewed doctrinal files are:
+Included doctrinal sources:
 
 - `data/gold/theological_virtues_reviewed_doctrinal_annotations.jsonl`
 - `data/gold/prudence_reviewed_doctrinal_annotations.jsonl`
@@ -32,17 +31,13 @@ The selected reviewed doctrinal files are:
 - `data/gold/temperance_141_160_reviewed_doctrinal_annotations.jsonl`
 - `data/gold/temperance_closure_161_170_reviewed_doctrinal_annotations.jsonl`
 
-The default builder keeps only rows with:
+Included rows must satisfy:
 
 - `review_status == "approved"`
 - `support_type in {"explicit_textual", "strong_textual_inference"}`
-- `edge_layer == "doctrinal"` when present
+- doctrinal layer only
 
-The current v1 build uses `555` reviewed source annotations across those files.
-
-## Why Structural-Editorial And Candidate Layers Stay Out
-
-V1 explicitly excludes:
+Default exclusions:
 
 - all `*_reviewed_structural_editorial_annotations.jsonl`
 - all `data/candidate/*`
@@ -51,121 +46,93 @@ V1 explicitly excludes:
 - `owed_relation_tract_reviewed_doctrinal_annotations.jsonl`
 - `pilot_reviewed_doctrinal_annotations.jsonl`
 
-That exclusion is deliberate. Structural-editorial files are valuable for graph navigation and
-scholarly review, but they are not the same thing as doctrinal supervision. Candidate files are
-review queues, not approved truth. Derived processed edges are exports, not the canonical source of
-evidence. Keeping those layers separate prevents the training set from silently learning reviewer
-workflow shortcuts as though they were doctrinal claims.
+## Why Structural-Editorial And Candidate Layers Stay Out
+
+This repo is evidence-first and layer-aware. Structural-editorial review is useful, but it is not
+the same thing as doctrinal supervision. Candidate files are review material, not approved truth.
+Keeping those layers out of default SFT prevents reviewer workflow artifacts from being learned as
+if they were direct doctrinal claims.
 
 ## How Examples Are Built
 
-The builder lives under
-[src/summa_moral_graph/sft](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/src/summa_moral_graph/sft).
+The builder lives under [src/summa_moral_graph/sft](../src/summa_moral_graph/sft).
 It:
 
-1. loads the canonical interim segments, questions, and articles
-2. loads the selected doctrinal annotation files
+1. loads `data/interim/summa_moral_segments.jsonl` plus question and article metadata
+2. loads the selected reviewed doctrinal files
 3. validates required fields
-4. defaults missing doctrinal `edge_layer` fields to `"doctrinal"` when the source file itself is a
-   reviewed doctrinal file
-5. filters by approved review status and allowed support types
-6. deduplicates by `annotation_id`
-7. joins each annotation back to its source segment text and citation label
-8. emits chat-style SFT examples plus a manifest
+4. filters by approved review status and allowed support type
+5. deduplicates by `annotation_id`
+6. joins each annotation back to `source_passage_id`
+7. emits chat-style SFT examples with stable ids, citation labels, and tract metadata
+8. emits manifests and prompt-only benchmark splits for held-out inference
 
-The serialized example schema is:
+Current default dataset scale:
 
-```json
-{
-  "example_id": "christian_virtue_v1.reviewed_relation_explanation.ann.charity-has-act-beneficence",
-  "task_type": "reviewed_relation_explanation",
-  "messages": [
-    {"role": "system", "content": "..."},
-    {"role": "user", "content": "..."},
-    {"role": "assistant", "content": "..."}
-  ],
-  "metadata": {
-    "annotation_id": "ann.charity-has-act-beneficence",
-    "source_passage_id": "st.ii-ii.q023.a001.resp",
-    "citation_label": "II-II q.23 a.1 resp",
-    "tract": "theological_virtues",
-    "subject_id": "concept.charity",
-    "relation_type": "has_act",
-    "object_id": "concept.beneficence",
-    "support_type": "explicit_textual",
-    "group_keys": {"question_id": "st.ii-ii.q023"}
-  }
-}
-```
+- `555` reviewed source annotations
+- `1883` total SFT examples
+- `1475` train examples
+- `175` val examples
+- `233` test examples
 
-V1 generates four template families:
+Current OOD dataset scale:
+
+- `1360` train examples
+- `162` val examples
+- `222` test examples
+- `139` `ood_test` examples
+
+Template families:
 
 - `passage_grounded_doctrinal_qa`
 - `reviewed_relation_explanation`
 - `virtue_concept_explanation`
 - `citation_grounded_moral_answer`
 
-The default full build currently yields:
+## Split Policy
 
-- `555` passage-grounded doctrinal QA examples
-- `555` reviewed relation explanation examples
-- `555` citation-grounded moral answer examples
-- `218` concept explanation examples
-- `1883` total examples
+Splits are grouped by `question_id`, not by row-level random shuffle.
 
-The builder also emits prompt-only benchmark files under
-`data/processed/sft/exports/<dataset>/benchmarks/` for every non-train split. Those benchmark
-files keep the exact `system` and `user` messages plus metadata, but strip the gold assistant
-answer so evaluation runs do not accidentally leak the reference response into generation inputs.
+Why:
 
-## How Splits Are Built
+- many examples share the same passage or doctrinal locus
+- question-level grouping avoids leakage across train and evaluation splits
+- it preserves tract structure better than naive global random splitting
 
-The default split policy is deterministic grouped splitting by `question_id`, stratified
-tract-by-tract.
+The OOD config holds out a coherent tract block:
 
-Why `question_id`:
+- `temperance_closure_161_170` becomes `ood_test`
 
-- many examples are generated from the same source passage or from multiple annotations within one
-  question
-- grouping by question prevents the same doctrinal locus from appearing in both train and
-  evaluation splits
-- question grouping is still fine-grained enough to preserve tract balance better than tract-level
-  splitting alone
+## Public Dataset Surface
 
-How it works:
+The public committed dataset release is now part of this repo:
 
-- within each tract, question groups are ordered by a stable hash of `(seed, tract, question_id)`
-- groups are then assigned to `train`, `val`, and `test` according to the configured ratios
-- every example inherits the split of its question group
+- [data/processed/sft/exports/christian_virtue_v1](../data/processed/sft/exports/christian_virtue_v1)
+- [data/processed/sft/exports/christian_virtue_v1_ood](../data/processed/sft/exports/christian_virtue_v1_ood)
+- [data/processed/sft/samples/christian_virtue_v1_sample.jsonl](../data/processed/sft/samples/christian_virtue_v1_sample.jsonl)
 
-The default `christian_virtue_v1` build currently produces:
+Important files inside each export:
 
-- `train`: `1475` examples across `98` question groups
-- `val`: `175` examples across `13` question groups
-- `test`: `233` examples across `13` question groups
+- `all.jsonl`
+- `train.jsonl`
+- `val.jsonl`
+- `test.jsonl`
+- `manifest.json`
+- `benchmark_manifest.json`
+- `benchmarks/*.jsonl`
 
-The harder OOD config in
-[configs/sft/christian_virtue_v1_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/sft/christian_virtue_v1_ood.yaml)
-holds out the whole `temperance_closure_161_170` tract as `ood_test`. That build currently yields:
-
-- `train`: `1360`
-- `val`: `162`
-- `test`: `222`
-- `ood_test`: `139`
-
-Because prompt-only benchmark exports are written for non-train splits, the default evaluation
-surfaces are now:
-
-- `data/processed/sft/exports/christian_virtue_v1/benchmarks/test.jsonl`
-- `data/processed/sft/exports/christian_virtue_v1/benchmarks/val.jsonl`
-- `data/processed/sft/exports/christian_virtue_v1_ood/benchmarks/{test, val, ood_test}.jsonl`
-
-## Commands
+## Build Commands
 
 Build the default dataset:
 
 ```bash
 make build-christian-virtue-sft
+```
+
+Build the OOD dataset:
+
+```bash
+make build-christian-virtue-sft-ood
 ```
 
 Run the smoke test:
@@ -174,95 +141,79 @@ Run the smoke test:
 make smoke-test-christian-virtue-sft
 ```
 
-Run the builder directly with a different config:
+Builder direct invocation:
 
 ```bash
 .venv/bin/python scripts/build_christian_virtue_sft_dataset.py \
-  --config configs/sft/christian_virtue_v1_ood.yaml
+  --config configs/sft/christian_virtue_v1.yaml
 ```
 
-Prototype QLoRA training on the default 4B target:
+## Local Mac MPS Path
+
+The first local baseline is:
+
+- `Qwen/Qwen2.5-1.5B-Instruct`
+
+This is a LoRA path for Apple Silicon MPS, not a CUDA QLoRA path.
+
+Runtime behavior on MPS:
+
+- `load_in_4bit=false`
+- no `bitsandbytes` requirement
+- no `BitsAndBytesConfig`
+- no `prepare_model_for_kbit_training`
+- model weights load in `float16`
+- runtime resolves to `mps`
+
+Recommended local environment:
 
 ```bash
-.venv/bin/pip install -e ".[dev,sft]"
-make train-christian-virtue-proto
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e ".[dev,sft]"
+make build-christian-virtue-sft
 ```
 
-Smaller same-family prototype training on `Qwen/Qwen3-0.6B`:
+Smoke train:
 
 ```bash
-.venv/bin/pip install -e ".[dev,sft]"
-make train-christian-virtue-small
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
 ```
 
-Fast smoke-train validation on the same small-model path:
+Pilot train:
 
 ```bash
-.venv/bin/pip install -e ".[dev,sft]"
-make train-christian-virtue-small-smoke
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot
 ```
 
-Dry-run the training plan without launching training:
+Base-model held-out test:
 
 ```bash
-.venv/bin/python scripts/train_christian_virtue_qlora.py \
-  --config configs/train/qwen3_4b_qlora.yaml \
-  --dry-run
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
 ```
 
-Dry-run a held-out inference run:
+Adapter held-out test:
 
 ```bash
-.venv/bin/python scripts/generate_christian_virtue_predictions.py \
-  --config configs/inference/qwen3_4b_base_test.yaml \
-  --dry-run
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
 ```
 
-Generate test predictions from a base or adapter-backed model:
+One-command local pilot loop:
 
 ```bash
-.venv/bin/python scripts/generate_christian_virtue_predictions.py \
-  --config configs/inference/qwen3_4b_base_test.yaml
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
 ```
 
-Smaller same-family baseline benchmark:
+## Remote CUDA Path
 
-```bash
-.venv/bin/python scripts/generate_christian_virtue_predictions.py \
-  --config configs/inference/qwen3_0_6b_base_test.yaml
-```
+The remote CUDA path remains the right place for larger QLoRA experiments such as:
 
-On CUDA machines, the default inference configs keep 4-bit loading enabled. On non-CUDA machines,
-the runner now records an explicit fallback in `run_manifest.json` and uses standard weights on the
-resolved device (`mps` on Apple Silicon when available, otherwise CPU) instead of pretending that
-CUDA-only quantization is still active.
+- `Qwen/Qwen3-0.6B`
+- `Qwen/Qwen3-4B`
+- `Qwen/Qwen3-8B`
 
-Evaluate only the intended held-out split:
-
-```bash
-.venv/bin/python scripts/eval_christian_virtue_sft.py \
-  --dataset-dir data/processed/sft/exports/christian_virtue_v1 \
-  --predictions data/processed/sft/eval/christian_virtue_qwen3_4b_base_test/predictions.jsonl \
-  --splits test
-```
-
-Evaluate a prediction file:
-
-```bash
-.venv/bin/python scripts/eval_christian_virtue_sft.py \
-  --dataset-dir data/processed/sft/exports/christian_virtue_v1 \
-  --predictions path/to/predictions.jsonl
-```
-
-If `--predictions` is omitted, the evaluation script self-evaluates against the reference dataset.
-That is useful for smoke checks, not for model comparison.
-
-## Remote Small-Model Loop
-
-The first fully runnable remote baseline is now the `Qwen/Qwen3-0.6B` path. The target machine for
-this loop is a Linux CUDA box, not the current local Apple-Silicon laptop.
-
-Minimal environment setup:
+Environment:
 
 ```bash
 python3.11 -m venv .venv
@@ -271,38 +222,17 @@ pip install --upgrade pip
 pip install -e ".[dev,sft]"
 ```
 
-Preflight the machine before spending time on model downloads or training:
+Preflight:
 
 ```bash
 make preflight-christian-virtue-gpu
 ```
 
-The preflight script checks:
-
-- Python version
-- required training and inference imports
-- `torch.cuda.is_available()`
-- CUDA device name
-- bf16 support when detectable
-- free workspace disk
-- required config presence
-- writable output directories
-
-Quick smoke validation for the whole small-train path:
+Small remote baseline loop:
 
 ```bash
 make train-christian-virtue-small-smoke
-```
-
-Real small prototype training:
-
-```bash
 make train-christian-virtue-small
-```
-
-Stepwise held-out test evaluation:
-
-```bash
 make generate-christian-virtue-small-base-test
 make eval-christian-virtue-small-base-test
 make generate-christian-virtue-small-adapter-test
@@ -310,209 +240,122 @@ make eval-christian-virtue-small-adapter-test
 make compare-christian-virtue-small-test
 ```
 
-Optional OOD comparison:
-
-```bash
-make build-christian-virtue-sft-ood
-make generate-christian-virtue-small-base-ood
-make eval-christian-virtue-small-base-ood
-make generate-christian-virtue-small-adapter-ood
-make eval-christian-virtue-small-adapter-ood
-make compare-christian-virtue-small-ood
-```
-
-One-command shell wrappers are also available:
-
-```bash
-bash scripts/run_christian_virtue_small_train.sh smoke
-bash scripts/run_christian_virtue_small_train.sh proto
-bash scripts/run_christian_virtue_small_base_eval.sh test
-bash scripts/run_christian_virtue_small_adapter_eval.sh test
-bash scripts/run_christian_virtue_small_loop.sh --with-ood
-```
-
-Those wrappers now export repo-local `PYTHONPATH`, run preflight unless `SKIP_PREFLIGHT=1`, build
-the required dataset export if it is missing, and write command/stdout/stderr logs into the run
-directory.
-
 ## Standard Run Outputs
 
-The standardized small-model output root is:
+The local 1.5B run root is:
+
+```text
+runs/christian_virtue/qwen2_5_1_5b_instruct/
+```
+
+Expected step roots:
+
+- `smoke/<run_id>/`
+- `pilot/<run_id>/`
+- `base_test/<run_id>/`
+- `adapter_test/<run_id>/`
+
+The remote 0.6B baseline remains under:
 
 ```text
 runs/christian_virtue/qwen3_0_6b/
 ```
 
-Expected subdirectories:
-
-- `smoke/`
-- `proto/`
-- `base_test/`
-- `adapter_test/`
-- `base_ood/`
-- `adapter_ood/`
-- `compare_test/`
-- `compare_ood/`
-
-Each train or generation/eval run directory is now expected to contain some or all of:
+Every timestamped local run directory is designed to hold:
 
 - `config_snapshot.yaml`
 - `command.log`
 - `stdout.log`
 - `stderr.log`
-- `preflight.json`
 - `run_manifest.json`
-- `predictions.jsonl`
-- `predictions.partial.jsonl` during in-progress generation only
+- `environment.json`
 - `metrics.json`
 - `report.md`
-- `train_metadata.json`
+- `predictions.jsonl` for inference runs
+- `predictions.partial.jsonl` during in-progress generation
+- `train_metadata.json` for training runs
+- `train_log_history.jsonl` for training runs
 
-If you want the most explicit remote run order rather than the one-command loop, use:
+`run_manifest.json` records:
 
-```bash
-make preflight-christian-virtue-gpu
-make build-christian-virtue-sft
-make train-christian-virtue-small-smoke
-make train-christian-virtue-small
-make generate-christian-virtue-small-base-test
-make eval-christian-virtue-small-base-test
-make generate-christian-virtue-small-adapter-test
-make eval-christian-virtue-small-adapter-test
-make compare-christian-virtue-small-test
-```
+- `run_id`
+- `start_time`
+- `end_time`
+- `git_commit`
+- `resolved_device`
+- `torch_dtype`
+- `model_name_or_path`
+- `dataset_dir`
+- `dataset_manifest_path`
+- `config_snapshot_path`
+- package versions for `python`, `torch`, `transformers`, `peft`, `trl`, and `accelerate`
 
-## Training Scaffolding
+## Config Surface
 
-The training scaffolding uses:
+Shared runtime fields:
 
-- `transformers`
-- `trl`
-- `peft`
-- `bitsandbytes`
-- `accelerate`
+- `runtime_backend`: `auto | cuda | mps | cpu`
+- `torch_dtype`: `auto | float16 | float32 | bfloat16`
 
-The default train configs are:
+Useful training config fields to swap when using your own model:
 
-- [configs/train/qwen3_0_6b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_0_6b_qlora.yaml)
-- [configs/train/qwen3_4b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_4b_qlora.yaml)
-- [configs/train/qwen3_8b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_8b_qlora.yaml)
+- `model_name_or_path`
+- `lora_target_modules`
+- `max_seq_length`
+- `runtime_backend`
+- `torch_dtype`
+- `load_in_4bit`
 
-Recommended order for this repo:
+New local MPS configs:
 
-- start with `Qwen/Qwen3-0.6B` to validate the end-to-end training/eval loop cheaply
-- move to `Qwen/Qwen3-4B` once the small-model run shows real citation gains
-- treat `Qwen/Qwen3-8B` as the later, quality-first run rather than the first paid experiment
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml)
+- [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
+- [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
 
-The training code lazy-imports those dependencies so the dataset builder, tests, and smoke checks do
-not require heavy GPU packages.
+## Evaluation
 
-Default QLoRA choices:
-
-- 4-bit loading
-- NF4 quantization
-- bfloat16 compute when CUDA bf16 is available, otherwise float16
-- LoRA target modules for standard attention/MLP projections
-- gradient checkpointing
-- config-driven sequence length, batch size, accumulation, and save/eval cadence
-
-## Evaluation Scaffolding
-
-The evaluation script computes:
+The evaluator reports:
 
 - citation exact match
 - citation partial match
-- citation overlap ratio
-- relation-type accuracy when predictions expose `predicted_relation_type`
+- citation overlap
+- relation-type accuracy when prediction rows expose `predicted_relation_type`
 - tract-wise breakdowns
 - support-type breakdowns
-- a markdown qualitative review report
+- qualitative examples in `report.md`
 
-The repo now also includes config-driven inference generation so evaluation can be run against
-prompt-only benchmark exports rather than ad hoc hand-built prediction files. The default inference
-configs live in:
+Direct evaluation command:
 
-- [configs/inference/qwen3_0_6b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_base_test.yaml)
-- [configs/inference/qwen3_0_6b_base_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_base_ood.yaml)
-- [configs/inference/qwen3_0_6b_adapter_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_adapter_test.yaml)
-- [configs/inference/qwen3_0_6b_adapter_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_adapter_ood.yaml)
-- [configs/inference/qwen3_4b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_test.yaml)
-- [configs/inference/qwen3_4b_base_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_ood.yaml)
-- [configs/inference/qwen3_4b_adapter_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_adapter_test.yaml)
-
-The generation runner writes `predictions.jsonl` plus a `run_manifest.json` under the configured
-evaluation output directory. Each prediction row preserves `example_id`, `split`, and metadata so
-the evaluator can score only the intended held-out split.
-
-`run_manifest.json` now also records the resolved runtime device, the effective dtype, and whether
-4-bit loading remained active. That makes Apple-Silicon or CPU benchmark runs inspectable instead
-of hiding a hardware-specific fallback.
-
-The inference runner now also:
-
-- disables Qwen3 reasoning mode at prompt-render time so benchmark outputs do not include
-  `<think> ... </think>` traces by default
-- strips any stray `<think> ... </think>` block from decoded assistant text before serialization
-- writes `predictions.partial.jsonl` incrementally during long runs so interrupted benchmarks can
-  resume instead of restarting from scratch
-
-The small-run comparison utility lives at
-[scripts/compare_christian_virtue_runs.py](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/scripts/compare_christian_virtue_runs.py).
-It consumes two `metrics.json` files and emits a concise markdown report covering:
-
-- overall citation metrics
-- relation-type accuracy
-- split-wise comparisons
-- tract-wise comparisons
-
-Prediction rows may expose either:
-
-- `assistant_text`
-- `prediction`
-- a `messages` array with an assistant message
-
-If relation-type accuracy is desired for non-reference predictions, include
-`predicted_relation_type` in each prediction row. The evaluator no longer infers a predicted
-relation type from copied reference metadata inside prediction files, because that would turn a
-traceability field into a false perfect score.
+```bash
+.venv/bin/python scripts/eval_christian_virtue_sft.py \
+  --dataset-dir data/processed/sft/exports/christian_virtue_v1 \
+  --predictions runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/predictions.jsonl \
+  --splits test \
+  --report-path runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/report.md \
+  --metrics-path runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/metrics.json
+```
 
 ## Common Failure Points
 
-- `make preflight-christian-virtue-gpu` is supposed to fail on this local Mac because the real
-  small-model baseline requires a CUDA-visible GPU.
-- `bitsandbytes` import failures usually mean the environment is not a Linux CUDA runtime or the
-  package stack is inconsistent.
-- Missing `predictions.jsonl` during evaluation usually means generation was never run or the run
-  directory was changed manually.
-- Adapter evaluation requires the trained small adapter under
-  `runs/christian_virtue/qwen3_0_6b/proto`; if that directory is missing, run
-  `make train-christian-virtue-small` first.
-- Re-running generation into the same directory is deterministic, but interrupted runs may leave
-  `predictions.partial.jsonl` behind until the next successful completion.
-- The smoke config is intentionally tiny. A successful smoke run validates plumbing only; it does
-  not count as a doctrinally meaningful experiment.
+- `bitsandbytes` is only required for the CUDA 4-bit path, not for the local MPS 1.5B path.
+- If `runtime_backend: mps` is set on a non-Apple-Silicon machine, runtime resolution should fail
+  loudly instead of silently falling back.
+- Adapter evaluation expects `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot/latest` to exist.
+- A successful smoke train proves wiring, not model quality.
+- A 16 GB MacBook can run the local pilot path, but it is not the right target for long,
+  full-scale experiments.
 
 ## Known Limitations
 
-- Template generation is deterministic and evidence-first, but still synthetic. It is not a
-  substitute for human-authored doctrinal QA at scale.
-- The evaluation scaffold focuses on citation behavior and relation labels. It does not yet score
-  doctrinal adequacy or stylistic faithfulness beyond those measurable surfaces.
-- The current inference runner generates sequentially and is designed for clean reproducibility, not
-  maximum throughput.
-- The `Qwen/Qwen3-0.6B` path is now fully wired for remote GPU execution, but this local machine
-  still cannot validate the actual CUDA training step end to end because it does not expose CUDA.
-- On a 16 GB Apple-Silicon laptop, the full `Qwen/Qwen3-4B` held-out benchmark is still slow
-  enough that full test and OOD sweeps should be treated as remote-GPU work rather than assumed
-  local workflows.
-- The builder currently trusts the selected doctrinal file list rather than auto-discovering tract
-  inclusion from review manifests.
-- Some reviewed doctrinal files omit an `edge_layer` field. The builder treats those rows as
-  doctrinal because the file boundary itself is already doctrinally scoped.
+- The current evaluation scaffold still measures traceability better than doctrinal adequacy.
+- The local 1.5B path is meant to be a stable pilot baseline, not the final quality ceiling.
+- The dataset is templated from reviewed doctrine, so stylistic diversity is intentionally bounded.
+- Sequential generation is slower than high-throughput inference backends, but easier to audit.
 
 ## Recommended V2 Next Steps
 
-- add reviewer-authored free-response supervision for especially central virtues
-- enrich evaluation with doctrinal entailment and unsupported-claim checks
-- add harder cross-tract question synthesis tasks once more reviewed doctrinal coverage is in place
-- explore DPO or preference optimization after a stable citation-faithful SFT baseline exists
+- add human-authored doctrinal response targets for central virtue questions
+- score unsupported claims and doctrinal entailment explicitly
+- add stronger cross-tract held-out evaluations
+- compare multiple small instruct backbones after the 1.5B local baseline is stable

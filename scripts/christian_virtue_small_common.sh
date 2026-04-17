@@ -12,6 +12,27 @@ resolve_python_bin() {
   export PYTHONPATH="${ROOT_DIR}/src${PYTHONPATH:+:${PYTHONPATH}}"
 }
 
+create_timestamped_run_dir() {
+  local root_dir="$1"
+  mkdir -p "${root_dir}"
+  "${PYTHON_BIN}" - "${root_dir}" <<'PY'
+from pathlib import Path
+import sys
+
+from summa_moral_graph.sft.run_layout import create_timestamped_run_dir
+
+run_dir = create_timestamped_run_dir(Path(sys.argv[1]).resolve())
+print(run_dir)
+PY
+}
+
+link_latest_run() {
+  local root_dir="$1"
+  local run_dir="$2"
+  mkdir -p "${root_dir}"
+  ln -sfn "$(basename "${run_dir}")" "${root_dir}/latest"
+}
+
 init_run_dir() {
   local run_dir="$1"
   mkdir -p "${run_dir}"

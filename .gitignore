@@ -10,7 +10,13 @@ __pycache__/
 htmlcov/
 *.egg-info/
 data/cache/
-data/processed/sft/exports/
+data/processed/sft/exports/*
+!data/processed/sft/exports/christian_virtue_v1/
+!data/processed/sft/exports/christian_virtue_v1/**
+!data/processed/sft/exports/christian_virtue_v1_ood/
+!data/processed/sft/exports/christian_virtue_v1_ood/**
+!data/processed/sft/samples/
+!data/processed/sft/samples/**
 data/processed/sft/eval/
 outputs/
 runs/

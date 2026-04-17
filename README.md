@@ -23,6 +23,44 @@ underneath.
 Reviewed doctrine, editorial correspondences, structural links, and candidate proposals stay
 visibly separate throughout the app.
 
+## Fine-Tune Your Model With Summa Moral Graph
+
+This repo is also the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
+
+- Training data lives directly in the repo under
+  [`data/processed/sft/exports/christian_virtue_v1`](./data/processed/sft/exports/christian_virtue_v1)
+  and
+  [`data/processed/sft/exports/christian_virtue_v1_ood`](./data/processed/sft/exports/christian_virtue_v1_ood).
+- The dataset is evidence-first: every example keeps stable passage ids, citation labels, tract
+  metadata, and reviewed doctrinal supervision traceable back to `data/interim/` and selected
+  approved doctrinal annotations in `data/gold/`.
+- The first local baseline is
+  `Qwen/Qwen2.5-1.5B-Instruct` with a Mac MPS LoRA path for smoke and pilot runs.
+- The remote CUDA path remains available for larger QLoRA experiments.
+
+Start here:
+
+- Public fine-tuning guide:
+  [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
+- Maintainer and research workflow:
+  [docs/christian_virtue_sft.md](./docs/christian_virtue_sft.md)
+- Dataset card:
+  [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
+- Experiment index:
+  [docs/reports/christian_virtue_experiments.md](./docs/reports/christian_virtue_experiments.md)
+
+Quick local path on an Apple-Silicon laptop:
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e ".[dev,sft]"
+make build-christian-virtue-sft
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
+```
+
 ## Open The Viewer
 
 **Live app:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)

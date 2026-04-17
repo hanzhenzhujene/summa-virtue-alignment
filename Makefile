@@ -35,6 +35,11 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	review-temperance-closure-161-170 build-christian-virtue-sft \
 	build-christian-virtue-sft-ood smoke-test-christian-virtue-sft \
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
+	train-christian-virtue-qwen2-5-1-5b-local-smoke \
+	train-christian-virtue-qwen2-5-1-5b-local-pilot \
+	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
+	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
+	run-christian-virtue-qwen2-5-1-5b-local-loop \
 	train-christian-virtue-small-smoke train-christian-virtue-small \
 	generate-christian-virtue-predictions generate-christian-virtue-small-predictions \
 	generate-christian-virtue-small-base-test generate-christian-virtue-small-adapter-test \
@@ -181,6 +186,21 @@ preflight-christian-virtue-gpu:
 
 train-christian-virtue-proto:
 	$(BIN)/python scripts/train_christian_virtue_qlora.py --config configs/train/qwen3_4b_qlora.yaml
+
+train-christian-virtue-qwen2-5-1-5b-local-smoke:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
+
+train-christian-virtue-qwen2-5-1-5b-local-pilot:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot
+
+eval-christian-virtue-qwen2-5-1-5b-local-base-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
+
+eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
+
+run-christian-virtue-qwen2-5-1-5b-local-loop:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
 
 $(SMALL_SMOKE_METADATA): $(SMALL_DATASET) configs/train/qwen3_0_6b_qlora_smoke.yaml scripts/run_christian_virtue_small_train.sh scripts/christian_virtue_small_common.sh scripts/preflight_christian_virtue_gpu.py scripts/train_christian_virtue_qlora.py
 	bash scripts/run_christian_virtue_small_train.sh smoke

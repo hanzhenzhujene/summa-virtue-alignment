@@ -7,6 +7,7 @@ import yaml  # type: ignore[import-untyped]
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
 from ..utils.paths import REPO_ROOT
+from .runtime import RuntimeBackend, TorchDtypeSetting
 
 DEFAULT_ALLOWED_SUBJECT_TYPES = [
     "virtue",
@@ -170,6 +171,8 @@ class TrainingConfig(BaseModel):
     max_steps: int = Field(default=-1)
     seed: int = 17
     gradient_checkpointing: bool = True
+    runtime_backend: RuntimeBackend = "auto"
+    torch_dtype: TorchDtypeSetting = "auto"
     load_in_4bit: bool = True
     bnb_4bit_quant_type: str = Field(default="nf4", min_length=1)
     bnb_4bit_use_double_quant: bool = True
@@ -197,6 +200,8 @@ class InferenceConfig(BaseModel):
     output_dir: Path
     adapter_path: Path | None = None
     trust_remote_code: bool = False
+    runtime_backend: RuntimeBackend = "auto"
+    torch_dtype: TorchDtypeSetting = "auto"
     load_in_4bit: bool = True
     bnb_4bit_quant_type: str = Field(default="nf4", min_length=1)
     bnb_4bit_use_double_quant: bool = True

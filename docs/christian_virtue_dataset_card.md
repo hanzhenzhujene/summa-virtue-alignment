@@ -6,6 +6,11 @@
 Summa Moral Graph repository. It is designed for a Christian virtue assistant grounded in Aquinas's
 virtue corpus rather than a generic theology model.
 
+The committed public dataset exports live in:
+
+- [data/processed/sft/exports/christian_virtue_v1](../data/processed/sft/exports/christian_virtue_v1)
+- [data/processed/sft/exports/christian_virtue_v1_ood](../data/processed/sft/exports/christian_virtue_v1_ood)
+
 ## Source Data
 
 - Canonical text: `data/interim/summa_moral_segments.jsonl`
@@ -56,6 +61,8 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - supervised fine-tuning for citation-aware virtue assistance
 - qualitative evaluation of citation behavior
 - tract-aware doctrinal QA prototypes grounded in Aquinas
+- local Apple-Silicon LoRA pilot runs with `Qwen/Qwen2.5-1.5B-Instruct`
+- remote CUDA QLoRA baselines for larger models
 
 ## Out of Scope
 

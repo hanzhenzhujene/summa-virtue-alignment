@@ -3,12 +3,20 @@ from __future__ import annotations
 import importlib
 import json
 import re
-from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Literal
+from typing import Any
 
+from ..utils.paths import REPO_ROOT
 from .config import InferenceConfig
-from .run_layout import run_artifacts_for_dir, write_config_snapshot
+from .run_layout import (
+    build_environment_snapshot,
+    dataset_manifest_path,
+    iso_timestamp,
+    run_artifacts_for_dir,
+    write_config_snapshot,
+    write_json,
+)
+from .runtime import ModelRuntime, detect_torch_availability, resolve_model_runtime
 
 REQUIRED_INFERENCE_PACKAGES = [
     "peft",
@@ -17,13 +25,7 @@ REQUIRED_INFERENCE_PACKAGES = [
 ]
 THINK_BLOCK_RE = re.compile(r"<think>.*?</think>\s*", re.DOTALL)
 
-
-@dataclass(frozen=True)
-class InferenceRuntime:
-    device_type: Literal["cuda", "mps", "cpu"]
-    effective_load_in_4bit: bool
-    torch_dtype_name: Literal["bfloat16", "float16", "float32"]
-    warnings: tuple[str, ...] = ()
+InferenceRuntime = ModelRuntime
 
 
 def _benchmark_path(dataset_dir: Path, split_name: str) -> Path:
@@ -65,50 +67,25 @@ def resolve_inference_runtime(
     mps_available: bool,
     bf16_supported: bool,
 ) -> InferenceRuntime:
-    if cuda_available:
-        device_type: Literal["cuda", "mps", "cpu"] = "cuda"
-    elif mps_available:
-        device_type = "mps"
-    else:
-        device_type = "cpu"
-
-    effective_load_in_4bit = config.load_in_4bit and device_type == "cuda"
-    warnings: list[str] = []
-    if config.load_in_4bit and not effective_load_in_4bit:
-        warnings.append(
-            "4-bit quantization is CUDA-only in this runner; using standard weights on "
-            f"{device_type} instead."
-        )
-
-    if device_type == "cuda":
-        torch_dtype_name: Literal["bfloat16", "float16", "float32"] = (
-            "bfloat16" if bf16_supported else "float16"
-        )
-    elif device_type == "mps":
-        torch_dtype_name = "float16"
-    else:
-        torch_dtype_name = "float32"
-    return InferenceRuntime(
-        device_type=device_type,
-        effective_load_in_4bit=effective_load_in_4bit,
-        torch_dtype_name=torch_dtype_name,
-        warnings=tuple(warnings),
+    return resolve_model_runtime(
+        runtime_backend=config.runtime_backend,
+        torch_dtype=config.torch_dtype,
+        load_in_4bit=config.load_in_4bit,
+        cuda_available=cuda_available,
+        mps_available=mps_available,
+        bf16_supported=bf16_supported,
     )
 
 
 def _detect_runtime(config: InferenceConfig) -> InferenceRuntime | None:
-    torch_spec = importlib.util.find_spec("torch")
-    if torch_spec is None:
+    availability = detect_torch_availability()
+    if availability is None:
         return None
-    import torch
-
-    mps_backend = getattr(torch.backends, "mps", None)
-    mps_available = bool(mps_backend is not None and mps_backend.is_available())
     return resolve_inference_runtime(
         config,
-        cuda_available=torch.cuda.is_available(),
-        mps_available=mps_available,
-        bf16_supported=torch.cuda.is_available() and torch.cuda.is_bf16_supported(),
+        cuda_available=availability.cuda_available,
+        mps_available=availability.mps_available,
+        bf16_supported=availability.bf16_supported,
     )
 
 
@@ -124,6 +101,8 @@ def describe_inference_plan(config: InferenceConfig) -> dict[str, Any]:
         "max_new_tokens": config.max_new_tokens,
         "model_name_or_path": config.model_name_or_path,
         "output_dir": str(config.output_dir),
+        "requested_runtime_backend": config.runtime_backend,
+        "requested_torch_dtype": config.torch_dtype,
         "run_name": config.run_name,
         "split_names": list(config.split_names),
     }
@@ -191,6 +170,7 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
     benchmark_rows = load_benchmark_inputs(config.dataset_dir, config.split_names)
     config.output_dir.mkdir(parents=True, exist_ok=True)
     artifacts = run_artifacts_for_dir(config.output_dir)
+    start_time = iso_timestamp()
     config_snapshot_path = write_config_snapshot(
         config.output_dir,
         config_path=config.config_path,
@@ -199,6 +179,12 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
     runtime = _detect_runtime(config)
     if runtime is None:
         raise RuntimeError("Torch is required for inference runtime detection.")
+    environment = build_environment_snapshot(
+        workspace_root=REPO_ROOT,
+        resolved_device=runtime.device_type,
+        torch_dtype=runtime.torch_dtype_name,
+    )
+    write_json(artifacts.environment_path, environment)
     predictions_path = artifacts.predictions_path
     partial_path = artifacts.partial_predictions_path
     existing_rows = _load_jsonl(partial_path) if partial_path.exists() else []
@@ -320,22 +306,34 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
     if partial_path.exists():
         partial_path.unlink()
 
+    end_time = iso_timestamp()
+    package_versions = environment["versions"]
+    dataset_manifest = dataset_manifest_path(config.dataset_dir)
     manifest = {
         "adapter_path": str(config.adapter_path) if config.adapter_path is not None else None,
         "benchmark_count": len(benchmark_rows),
         "config_snapshot_path": str(config_snapshot_path),
         "dataset_dir": str(config.dataset_dir),
+        "dataset_manifest_path": str(dataset_manifest) if dataset_manifest is not None else None,
+        "end_time": end_time,
         "effective_load_in_4bit": runtime.effective_load_in_4bit,
+        "environment_path": str(artifacts.environment_path),
+        "git_commit": environment["git_commit"],
         "model_name_or_path": config.model_name_or_path,
+        "peft_version": package_versions["peft"],
         "predictions_path": str(predictions_path),
+        "python_version": environment["platform"]["python_version"],
         "resolved_device": runtime.device_type,
+        "run_id": config.output_dir.name,
         "run_name": config.run_name,
         "split_names": list(config.split_names),
+        "start_time": start_time,
+        "torch_version": package_versions["torch"],
+        "transformers_version": package_versions["transformers"],
         "runtime_warnings": list(runtime.warnings),
+        "trl_version": package_versions["trl"],
+        "accelerate_version": package_versions["accelerate"],
         "torch_dtype": runtime.torch_dtype_name,
     }
-    manifest_path = artifacts.run_manifest_path
-    manifest_path.write_text(
-        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    write_json(artifacts.run_manifest_path, manifest)
     return manifest

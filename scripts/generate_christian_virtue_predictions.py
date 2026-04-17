@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
 from summa_moral_graph.sft import (
     describe_inference_plan,
@@ -22,12 +23,15 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Only print the resolved inference plan.",
     )
+    parser.add_argument("--output-dir", help="Optional output directory override.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     config = load_inference_config(args.config)
+    if args.output_dir:
+        config = config.model_copy(update={"output_dir": Path(args.output_dir).resolve()})
     if args.dry_run:
         print(json.dumps(describe_inference_plan(config), indent=2, sort_keys=True))
         return
