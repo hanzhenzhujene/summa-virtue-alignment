@@ -142,7 +142,7 @@ def test_ensure_session_state_normalizes_map_range_values() -> None:
     assert session_state[MAP_RANGE_KEY] == (57, 80)
 
 
-def test_ensure_session_state_defaults_map_range_to_full_corpus() -> None:
+def test_ensure_session_state_defaults_map_range_to_first_reviewed_span() -> None:
     data = load_viewer_data()
     session_state: dict[str, object] = {}
 
@@ -540,7 +540,7 @@ def test_overall_map_view_renders_without_streamlit_exception() -> None:
     assert not app.exception
 
 
-def test_overall_map_defaults_question_span_to_full_corpus() -> None:
+def test_overall_map_defaults_question_span_to_first_reviewed_span() -> None:
     app = AppTest.from_file("streamlit_app.py")
     app.run(timeout=30)
     for radio in app.radio:

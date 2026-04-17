@@ -31,7 +31,7 @@ MAP_PENDING_ACTION_KEY = "smg_pending_map_action"
 PENDING_WIDGET_UPDATES_KEY = "smg_pending_widget_updates"
 STATS_TAB_KEY = "smg_stats_tab"
 ENTRYPOINT_KEY = "smg_entrypoint"
-DEFAULT_MAP_RANGE = (1, 182)
+DEFAULT_MAP_RANGE = (1, 46)
 
 DEFAULT_STATE: dict[str, object] = {
     ACTIVE_VIEW_KEY: HOME_VIEW,
