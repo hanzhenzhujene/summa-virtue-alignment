@@ -46,6 +46,7 @@ def test_evaluate_predictions_respects_reference_split_filter(tmp_path) -> None:
 
     assert metrics["evaluated_splits"] == ["test"]
     assert metrics["overall"]["count"] == len(test_examples)
+    assert metrics["by_split"]["test"]["count"] == len(test_examples)
     assert metrics["missing_prediction_count"] == 0
     assert metrics["overall"]["citation_exact_match"] == 1.0
 

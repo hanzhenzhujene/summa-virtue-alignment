@@ -1,10 +1,10 @@
-run_name: christian-virtue-qwen3-0.6b-base-test
+run_name: christian-virtue-qwen3-0.6b-adapter-test
 model_name_or_path: Qwen/Qwen3-0.6B
 dataset_dir: data/processed/sft/exports/christian_virtue_v1
 split_names:
   - test
-output_dir: runs/christian_virtue/qwen3_0_6b/base_test
-adapter_path:
+output_dir: runs/christian_virtue/qwen3_0_6b/adapter_test
+adapter_path: runs/christian_virtue/qwen3_0_6b/proto
 trust_remote_code: false
 load_in_4bit: true
 bnb_4bit_quant_type: nf4

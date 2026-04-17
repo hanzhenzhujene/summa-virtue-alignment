@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any
 
 from .config import TrainingConfig
+from .run_layout import run_artifacts_for_dir, write_config_snapshot, write_json
 
 REQUIRED_TRAINING_PACKAGES = [
     "accelerate",
@@ -37,6 +38,8 @@ def describe_training_plan(config: TrainingConfig) -> dict[str, Any]:
         "eval_path": str(dataset_eval_path),
         "output_dir": str(config.output_dir),
         "max_seq_length": config.max_seq_length,
+        "max_train_examples": config.max_train_examples,
+        "max_eval_examples": config.max_eval_examples,
         "load_in_4bit": config.load_in_4bit,
         "lora_target_modules": config.lora_target_modules or list(DEFAULT_LORA_TARGET_MODULES),
         "gradient_checkpointing": config.gradient_checkpointing,
@@ -70,6 +73,32 @@ def _load_jsonl_dataset(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def _slice_rows(rows: list[dict[str, Any]], max_examples: int | None) -> list[dict[str, Any]]:
+    if max_examples is None:
+        return rows
+    return rows[:max_examples]
+
+
+def _write_training_report(metadata: dict[str, Any], output_path: Path) -> None:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    lines = [
+        "# Christian Virtue Training Report",
+        "",
+        f"- Run name: {metadata['run_name']}",
+        f"- Model: {metadata['model_name_or_path']}",
+        f"- Train examples: {metadata['train_examples']}",
+        f"- Eval examples: {metadata['eval_examples']}",
+        f"- Adapter path: {metadata['adapter_path']}",
+        f"- Config snapshot: {metadata['config_snapshot_path']}",
+        "",
+        "## Metrics",
+        "",
+    ]
+    for key, value in sorted(metadata["metrics"].items()):
+        lines.append(f"- {key}: {value}")
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
     ensure_training_dependencies()
 
@@ -91,8 +120,16 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
     if not eval_path.exists():
         raise FileNotFoundError(f"Eval split not found: {eval_path}")
 
-    train_rows = _load_jsonl_dataset(train_path)
-    eval_rows = _load_jsonl_dataset(eval_path)
+    config.output_dir.mkdir(parents=True, exist_ok=True)
+    artifacts = run_artifacts_for_dir(config.output_dir)
+    config_snapshot_path = write_config_snapshot(
+        config.output_dir,
+        config_path=config.config_path,
+        payload=config.model_dump(mode="json", exclude={"config_path"}),
+    )
+
+    train_rows = _slice_rows(_load_jsonl_dataset(train_path), config.max_train_examples)
+    eval_rows = _slice_rows(_load_jsonl_dataset(eval_path), config.max_eval_examples)
 
     tokenizer = AutoTokenizer.from_pretrained(
         config.model_name_or_path,
@@ -166,7 +203,8 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         eval_strategy="steps",
         save_strategy="steps",
     )
-    trainer = SFTTrainer(
+    trainer_class: Any = SFTTrainer
+    trainer = trainer_class(
         model=model,
         tokenizer=tokenizer,
         args=training_args,
@@ -181,10 +219,21 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
     trainer.save_model()
     tokenizer.save_pretrained(config.output_dir)
     metrics = trainer.evaluate()
-    return {
+    write_json(artifacts.metrics_path, metrics)
+    metadata = {
         "run_name": config.run_name,
+        "model_name_or_path": config.model_name_or_path,
         "output_dir": str(config.output_dir),
+        "adapter_path": str(config.output_dir),
+        "config_snapshot_path": str(config_snapshot_path),
         "metrics": metrics,
         "train_examples": len(train_dataset),
         "eval_examples": len(eval_dataset),
+        "max_train_examples": config.max_train_examples,
+        "max_eval_examples": config.max_eval_examples,
+        "best_model_checkpoint": trainer.state.best_model_checkpoint,
+        "global_step": trainer.state.global_step,
     }
+    write_json(artifacts.train_metadata_path, metadata)
+    _write_training_report(metadata, artifacts.report_path)
+    return metadata

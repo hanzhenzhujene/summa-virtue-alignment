@@ -195,6 +195,13 @@ Smaller same-family prototype training on `Qwen/Qwen3-0.6B`:
 make train-christian-virtue-small
 ```
 
+Fast smoke-train validation on the same small-model path:
+
+```bash
+.venv/bin/pip install -e ".[dev,sft]"
+make train-christian-virtue-small-smoke
+```
+
 Dry-run the training plan without launching training:
 
 ```bash
@@ -250,6 +257,131 @@ Evaluate a prediction file:
 If `--predictions` is omitted, the evaluation script self-evaluates against the reference dataset.
 That is useful for smoke checks, not for model comparison.
 
+## Remote Small-Model Loop
+
+The first fully runnable remote baseline is now the `Qwen/Qwen3-0.6B` path. The target machine for
+this loop is a Linux CUDA box, not the current local Apple-Silicon laptop.
+
+Minimal environment setup:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -e ".[dev,sft]"
+```
+
+Preflight the machine before spending time on model downloads or training:
+
+```bash
+make preflight-christian-virtue-gpu
+```
+
+The preflight script checks:
+
+- Python version
+- required training and inference imports
+- `torch.cuda.is_available()`
+- CUDA device name
+- bf16 support when detectable
+- free workspace disk
+- required config presence
+- writable output directories
+
+Quick smoke validation for the whole small-train path:
+
+```bash
+make train-christian-virtue-small-smoke
+```
+
+Real small prototype training:
+
+```bash
+make train-christian-virtue-small
+```
+
+Stepwise held-out test evaluation:
+
+```bash
+make generate-christian-virtue-small-base-test
+make eval-christian-virtue-small-base-test
+make generate-christian-virtue-small-adapter-test
+make eval-christian-virtue-small-adapter-test
+make compare-christian-virtue-small-test
+```
+
+Optional OOD comparison:
+
+```bash
+make build-christian-virtue-sft-ood
+make generate-christian-virtue-small-base-ood
+make eval-christian-virtue-small-base-ood
+make generate-christian-virtue-small-adapter-ood
+make eval-christian-virtue-small-adapter-ood
+make compare-christian-virtue-small-ood
+```
+
+One-command shell wrappers are also available:
+
+```bash
+bash scripts/run_christian_virtue_small_train.sh smoke
+bash scripts/run_christian_virtue_small_train.sh proto
+bash scripts/run_christian_virtue_small_base_eval.sh test
+bash scripts/run_christian_virtue_small_adapter_eval.sh test
+bash scripts/run_christian_virtue_small_loop.sh --with-ood
+```
+
+Those wrappers now export repo-local `PYTHONPATH`, run preflight unless `SKIP_PREFLIGHT=1`, build
+the required dataset export if it is missing, and write command/stdout/stderr logs into the run
+directory.
+
+## Standard Run Outputs
+
+The standardized small-model output root is:
+
+```text
+runs/christian_virtue/qwen3_0_6b/
+```
+
+Expected subdirectories:
+
+- `smoke/`
+- `proto/`
+- `base_test/`
+- `adapter_test/`
+- `base_ood/`
+- `adapter_ood/`
+- `compare_test/`
+- `compare_ood/`
+
+Each train or generation/eval run directory is now expected to contain some or all of:
+
+- `config_snapshot.yaml`
+- `command.log`
+- `stdout.log`
+- `stderr.log`
+- `preflight.json`
+- `run_manifest.json`
+- `predictions.jsonl`
+- `predictions.partial.jsonl` during in-progress generation only
+- `metrics.json`
+- `report.md`
+- `train_metadata.json`
+
+If you want the most explicit remote run order rather than the one-command loop, use:
+
+```bash
+make preflight-christian-virtue-gpu
+make build-christian-virtue-sft
+make train-christian-virtue-small-smoke
+make train-christian-virtue-small
+make generate-christian-virtue-small-base-test
+make eval-christian-virtue-small-base-test
+make generate-christian-virtue-small-adapter-test
+make eval-christian-virtue-small-adapter-test
+make compare-christian-virtue-small-test
+```
+
 ## Training Scaffolding
 
 The training scaffolding uses:
@@ -301,6 +433,9 @@ prompt-only benchmark exports rather than ad hoc hand-built prediction files. Th
 configs live in:
 
 - [configs/inference/qwen3_0_6b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_base_test.yaml)
+- [configs/inference/qwen3_0_6b_base_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_base_ood.yaml)
+- [configs/inference/qwen3_0_6b_adapter_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_adapter_test.yaml)
+- [configs/inference/qwen3_0_6b_adapter_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_adapter_ood.yaml)
 - [configs/inference/qwen3_4b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_test.yaml)
 - [configs/inference/qwen3_4b_base_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_ood.yaml)
 - [configs/inference/qwen3_4b_adapter_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_adapter_test.yaml)
@@ -321,6 +456,15 @@ The inference runner now also:
 - writes `predictions.partial.jsonl` incrementally during long runs so interrupted benchmarks can
   resume instead of restarting from scratch
 
+The small-run comparison utility lives at
+[scripts/compare_christian_virtue_runs.py](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/scripts/compare_christian_virtue_runs.py).
+It consumes two `metrics.json` files and emits a concise markdown report covering:
+
+- overall citation metrics
+- relation-type accuracy
+- split-wise comparisons
+- tract-wise comparisons
+
 Prediction rows may expose either:
 
 - `assistant_text`
@@ -332,6 +476,22 @@ If relation-type accuracy is desired for non-reference predictions, include
 relation type from copied reference metadata inside prediction files, because that would turn a
 traceability field into a false perfect score.
 
+## Common Failure Points
+
+- `make preflight-christian-virtue-gpu` is supposed to fail on this local Mac because the real
+  small-model baseline requires a CUDA-visible GPU.
+- `bitsandbytes` import failures usually mean the environment is not a Linux CUDA runtime or the
+  package stack is inconsistent.
+- Missing `predictions.jsonl` during evaluation usually means generation was never run or the run
+  directory was changed manually.
+- Adapter evaluation requires the trained small adapter under
+  `runs/christian_virtue/qwen3_0_6b/proto`; if that directory is missing, run
+  `make train-christian-virtue-small` first.
+- Re-running generation into the same directory is deterministic, but interrupted runs may leave
+  `predictions.partial.jsonl` behind until the next successful completion.
+- The smoke config is intentionally tiny. A successful smoke run validates plumbing only; it does
+  not count as a doctrinally meaningful experiment.
+
 ## Known Limitations
 
 - Template generation is deterministic and evidence-first, but still synthetic. It is not a
@@ -340,6 +500,8 @@ traceability field into a false perfect score.
   doctrinal adequacy or stylistic faithfulness beyond those measurable surfaces.
 - The current inference runner generates sequentially and is designed for clean reproducibility, not
   maximum throughput.
+- The `Qwen/Qwen3-0.6B` path is now fully wired for remote GPU execution, but this local machine
+  still cannot validate the actual CUDA training step end to end because it does not expose CUDA.
 - On a 16 GB Apple-Silicon laptop, the full `Qwen/Qwen3-4B` held-out benchmark is still slow
   enough that full test and OOD sweeps should be treated as remote-GPU work rather than assumed
   local workflows.

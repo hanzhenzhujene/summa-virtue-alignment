@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The small-model Christian virtue path is now being turned into a real remote-GPU research loop
+  rather than just a loose collection of train/eval scripts:
+  - `Qwen/Qwen3-0.6B` is now the first fully wired end-to-end baseline
+  - Linux CUDA preflight checks are being added explicitly
+  - a tiny smoke-train config is being added for cheap validation before the real run
+  - standardized run outputs are being consolidated under `runs/christian_virtue/qwen3_0_6b/`
+  - base-vs-adapter comparison reporting is being formalized as a maintained script instead of an
+    ad hoc notebook step
+  - Make targets and maintainer docs are being updated so a rented GPU box can follow one clean
+    stepwise command path
 - A smaller Christian virtue prototype track is now being added so remote training does not have to
   start at `Qwen/Qwen3-4B`:
   - the repo will add a `Qwen/Qwen3-0.6B` QLoRA config as the cheapest same-family training path
@@ -502,6 +512,10 @@
 
 ## Surprises & Discoveries
 
+- The last mile for research reproducibility was not the model code itself but the operator path:
+  without standardized run directories, preflight failure messages, and an explicit base-vs-adapter
+  comparison report, it is too easy for a “successful” experiment to remain hard to rerun or hard
+  to compare honestly a week later.
 - For this repo, the best “small model” choice is not a random tiny instruct model but a smaller
   member of the same family. `Qwen/Qwen3-0.6B` keeps the same chat-template / thinking-mode
   behavior as the 4B baseline while materially lowering remote training cost and benchmark time.
@@ -670,6 +684,12 @@
 
 ## Decision Log
 
+- Treat the `Qwen/Qwen3-0.6B` route as the first-class operational baseline and optimize the repo
+  around that exact experiment loop before widening scope again.
+- Standardize small-run artifacts under `runs/christian_virtue/qwen3_0_6b/{smoke,proto,...}` so
+  config snapshots, logs, predictions, metrics, and reports are collocated by run.
+- Prefer a tiny smoke-train config plus a loud GPU preflight over trying to infer readiness from a
+  full real run that might fail after expensive downloads.
 - Add a first-class small-model route based on `Qwen/Qwen3-0.6B` rather than jumping straight from
   the 4B config to unrelated tiny models. That keeps prompt formatting, tokenizer behavior, and
   evaluation expectations closer to the main target while still lowering the cost of the first
@@ -840,6 +860,24 @@
 
 ## Outcomes & Retrospective
 
+- The Christian virtue small-model path is now much closer to an operational research loop than a
+  local-only prototype:
+  - the repo now exposes explicit Linux-CUDA preflight checks, smoke training, real small training,
+    held-out base generation/eval, held-out adapter generation/eval, and markdown comparison
+    reporting
+  - run outputs are now standardized under `runs/christian_virtue/qwen3_0_6b/`
+  - the Makefile now exposes the loop as concrete stepwise targets instead of expecting maintainers
+    to remember script order manually
+  - focused tests now cover run-layout paths, comparison report generation, preflight helper logic,
+    and small smoke-config loading
+  - local verification completed with:
+    - `pytest tests/test_sft_loaders.py tests/test_sft_filters.py tests/test_sft_builders.py tests/test_sft_splitters.py tests/test_sft_templates.py tests/test_sft_serialization.py tests/test_sft_evaluation.py tests/test_sft_inference.py tests/test_sft_run_layout.py tests/test_sft_comparison.py tests/test_sft_preflight.py tests/test_sft_config.py`
+    - `python3.12 -m ruff check src/summa_moral_graph/sft ...`
+    - `python3.12 -m mypy src/summa_moral_graph/sft ...`
+    - `PYTHONPATH=src python3.12 scripts/smoke_test_christian_virtue_sft.py`
+    - `PYTHONPATH=src python3.12 scripts/train_christian_virtue_qlora.py --config configs/train/qwen3_0_6b_qlora_smoke.yaml --dry-run`
+    - `PYTHONPATH=src python3.12 scripts/generate_christian_virtue_predictions.py --config configs/inference/qwen3_0_6b_base_test.yaml --dry-run`
+    - `PYTHONPATH=src python3.12 scripts/preflight_christian_virtue_gpu.py`, which failed as expected on this non-CUDA Mac because `bitsandbytes` is absent, CUDA is unavailable, and the local disk budget is below the configured remote threshold
 - Christian virtue SFT v1 is now scaffolded end to end inside the repo:
   - `src/summa_moral_graph/sft/` now covers config loading, corpus/gold loading, doctrinal
     filtering, multi-template example building, grouped split assignment, serialization, prompt-only

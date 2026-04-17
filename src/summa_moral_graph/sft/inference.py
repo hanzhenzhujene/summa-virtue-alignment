@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any, Literal
 
 from .config import InferenceConfig
+from .run_layout import run_artifacts_for_dir, write_config_snapshot
 
 REQUIRED_INFERENCE_PACKAGES = [
     "peft",
@@ -189,11 +190,17 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
 
     benchmark_rows = load_benchmark_inputs(config.dataset_dir, config.split_names)
     config.output_dir.mkdir(parents=True, exist_ok=True)
+    artifacts = run_artifacts_for_dir(config.output_dir)
+    config_snapshot_path = write_config_snapshot(
+        config.output_dir,
+        config_path=config.config_path,
+        payload=config.model_dump(mode="json", exclude={"config_path"}),
+    )
     runtime = _detect_runtime(config)
     if runtime is None:
         raise RuntimeError("Torch is required for inference runtime detection.")
-    predictions_path = config.output_dir / "predictions.jsonl"
-    partial_path = config.output_dir / "predictions.partial.jsonl"
+    predictions_path = artifacts.predictions_path
+    partial_path = artifacts.partial_predictions_path
     existing_rows = _load_jsonl(partial_path) if partial_path.exists() else []
     completed_example_ids = {str(row["example_id"]) for row in existing_rows}
     remaining_rows = [
@@ -218,7 +225,7 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
         )
     torch_dtype = getattr(torch, runtime.torch_dtype_name)
 
-    model = AutoModelForCausalLM.from_pretrained(
+    model: Any = AutoModelForCausalLM.from_pretrained(
         config.model_name_or_path,
         trust_remote_code=config.trust_remote_code,
         quantization_config=quantization_config,
@@ -316,6 +323,7 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
     manifest = {
         "adapter_path": str(config.adapter_path) if config.adapter_path is not None else None,
         "benchmark_count": len(benchmark_rows),
+        "config_snapshot_path": str(config_snapshot_path),
         "dataset_dir": str(config.dataset_dir),
         "effective_load_in_4bit": runtime.effective_load_in_4bit,
         "model_name_or_path": config.model_name_or_path,
@@ -326,7 +334,7 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
         "runtime_warnings": list(runtime.warnings),
         "torch_dtype": runtime.torch_dtype_name,
     }
-    manifest_path = config.output_dir / "run_manifest.json"
+    manifest_path = artifacts.run_manifest_path
     manifest_path.write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )

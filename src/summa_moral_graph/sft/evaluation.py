@@ -6,6 +6,7 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from .run_layout import write_json
 from .utils import extract_passage_ids
 
 
@@ -143,6 +144,7 @@ def evaluate_predictions(
         rows.append(
             {
                 "example_id": example_id,
+                "split": reference.get("split"),
                 "task_type": reference.get("task_type"),
                 "tract": reference.get("metadata", {}).get("tract"),
                 "support_types": reference.get("metadata", {}).get("support_types", []),
@@ -159,10 +161,12 @@ def evaluate_predictions(
             }
         )
 
+    split_buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
     tract_buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
     support_buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
     task_buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
+        split_buckets[str(row["split"])].append(row)
         tract_buckets[str(row["tract"])].append(row)
         task_buckets[str(row["task_type"])].append(row)
         for support_type in row["support_types"]:
@@ -175,6 +179,7 @@ def evaluate_predictions(
     return {
         "overall": _metric_summary(rows),
         "evaluated_splits": active_splits,
+        "by_split": {key: _metric_summary(value) for key, value in sorted(split_buckets.items())},
         "by_tract": {key: _metric_summary(value) for key, value in sorted(tract_buckets.items())},
         "by_support_type": {
             key: _metric_summary(value) for key, value in sorted(support_buckets.items())
@@ -200,10 +205,25 @@ def write_markdown_report(metrics: dict[str, Any], output_path: Path) -> None:
         f"- Citation partial match: {metrics['overall']['citation_partial_match']:.3f}",
         f"- Citation overlap: {metrics['overall']['citation_overlap']:.3f}",
         f"- Relation type accuracy: {metrics['overall']['relation_type_accuracy']}",
+        f"- Missing predictions: {metrics['missing_prediction_count']}",
+        "",
+        "## By Split",
+        "",
+    ]
+    for split_name, summary in metrics["by_split"].items():
+        lines.append(
+            f"- {split_name}: exact={summary['citation_exact_match']:.3f}, "
+            f"partial={summary['citation_partial_match']:.3f}, "
+            f"overlap={summary['citation_overlap']:.3f}, "
+            f"relation={summary['relation_type_accuracy']}"
+        )
+    lines.extend(
+        [
         "",
         "## By Tract",
         "",
-    ]
+        ]
+    )
     for tract, summary in metrics["by_tract"].items():
         lines.append(
             f"- {tract}: exact={summary['citation_exact_match']:.3f}, "
@@ -241,3 +261,7 @@ def write_markdown_report(metrics: dict[str, Any], output_path: Path) -> None:
             ]
         )
     output_path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_metrics_json(metrics: dict[str, Any], output_path: Path) -> Path:
+    return write_json(output_path, metrics)

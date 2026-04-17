@@ -156,6 +156,8 @@ class TrainingConfig(BaseModel):
     learning_rate: float = Field(default=2e-4, gt=0)
     num_train_epochs: float = Field(default=3.0, gt=0)
     max_seq_length: int = Field(default=2048, ge=128)
+    max_train_examples: int | None = Field(default=None, ge=1)
+    max_eval_examples: int | None = Field(default=None, ge=1)
     per_device_train_batch_size: int = Field(default=1, ge=1)
     per_device_eval_batch_size: int = Field(default=1, ge=1)
     gradient_accumulation_steps: int = Field(default=16, ge=1)
@@ -177,6 +179,7 @@ class TrainingConfig(BaseModel):
     lora_target_modules: list[str] | None = None
     report_to: list[str] = Field(default_factory=list)
     trust_remote_code: bool = False
+    config_path: Path | None = None
 
     @field_validator("dataset_dir", "output_dir", mode="before")
     @classmethod
@@ -203,6 +206,7 @@ class InferenceConfig(BaseModel):
     repetition_penalty: float = Field(default=1.0, gt=0)
     do_sample: bool = False
     seed: int = 17
+    config_path: Path | None = None
 
     @field_validator("dataset_dir", "output_dir", "adapter_path", mode="before")
     @classmethod
@@ -226,7 +230,8 @@ def load_training_config(path: str | Path) -> TrainingConfig:
     payload = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"Training config must parse to an object: {config_path}")
-    return TrainingConfig.model_validate(payload)
+    config = TrainingConfig.model_validate(payload)
+    return config.model_copy(update={"config_path": config_path})
 
 
 def load_inference_config(path: str | Path) -> InferenceConfig:
@@ -234,4 +239,5 @@ def load_inference_config(path: str | Path) -> InferenceConfig:
     payload = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise ValueError(f"Inference config must parse to an object: {config_path}")
-    return InferenceConfig.model_validate(payload)
+    config = InferenceConfig.model_validate(payload)
+    return config.model_copy(update={"config_path": config_path})
