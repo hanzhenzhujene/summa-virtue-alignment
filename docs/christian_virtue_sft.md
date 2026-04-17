@@ -211,6 +211,11 @@ Generate test predictions from a base or adapter-backed model:
   --config configs/inference/qwen3_4b_base_test.yaml
 ```
 
+On CUDA machines, the default inference configs keep 4-bit loading enabled. On non-CUDA machines,
+the runner now records an explicit fallback in `run_manifest.json` and uses standard weights on the
+resolved device (`mps` on Apple Silicon when available, otherwise CPU) instead of pretending that
+CUDA-only quantization is still active.
+
 Evaluate only the intended held-out split:
 
 ```bash
@@ -282,6 +287,18 @@ The generation runner writes `predictions.jsonl` plus a `run_manifest.json` unde
 evaluation output directory. Each prediction row preserves `example_id`, `split`, and metadata so
 the evaluator can score only the intended held-out split.
 
+`run_manifest.json` now also records the resolved runtime device, the effective dtype, and whether
+4-bit loading remained active. That makes Apple-Silicon or CPU benchmark runs inspectable instead
+of hiding a hardware-specific fallback.
+
+The inference runner now also:
+
+- disables Qwen3 reasoning mode at prompt-render time so benchmark outputs do not include
+  `<think> ... </think>` traces by default
+- strips any stray `<think> ... </think>` block from decoded assistant text before serialization
+- writes `predictions.partial.jsonl` incrementally during long runs so interrupted benchmarks can
+  resume instead of restarting from scratch
+
 Prediction rows may expose either:
 
 - `assistant_text`
@@ -289,7 +306,9 @@ Prediction rows may expose either:
 - a `messages` array with an assistant message
 
 If relation-type accuracy is desired for non-reference predictions, include
-`predicted_relation_type` in each prediction row.
+`predicted_relation_type` in each prediction row. The evaluator no longer infers a predicted
+relation type from copied reference metadata inside prediction files, because that would turn a
+traceability field into a false perfect score.
 
 ## Known Limitations
 
@@ -299,6 +318,9 @@ If relation-type accuracy is desired for non-reference predictions, include
   doctrinal adequacy or stylistic faithfulness beyond those measurable surfaces.
 - The current inference runner generates sequentially and is designed for clean reproducibility, not
   maximum throughput.
+- On a 16 GB Apple-Silicon laptop, the full `Qwen/Qwen3-4B` held-out benchmark is still slow
+  enough that full test and OOD sweeps should be treated as remote-GPU work rather than assumed
+  local workflows.
 - The builder currently trusts the selected doctrinal file list rather than auto-discovering tract
   inclusion from review manifests.
 - Some reviewed doctrinal files omit an `edge_layer` field. The builder treats those rows as

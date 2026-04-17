@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The held-out Christian virtue benchmark is now being executed on the duplicate repo, and the
+  inference runner is being made portable enough to run on Apple Silicon as well as CUDA:
+  - the local machine does not expose CUDA, but it does expose `mps`
+  - the generation path is therefore being updated to resolve its runtime device explicitly instead
+    of assuming CUDA-style 4-bit loading
+  - dry-run plans and generation manifests will now record the effective device, dtype, and whether
+    4-bit quantization remained active or was safely disabled
+  - generation now also writes incremental partial outputs so long benchmark runs can resume
+  - an initial six-example held-out pilot on `Qwen/Qwen3-4B` has already shown the main base-model
+    failure mode: broad Thomistic-sounding hallucination with zero passage-id citation grounding
 - A new Christian virtue SFT pipeline is now being added inside the repo without disturbing the
   existing viewer or graph workflow:
   - the builder reads the canonical interim textual spine from `data/interim/`
@@ -488,6 +498,15 @@
 
 ## Surprises & Discoveries
 
+- The first real benchmark run exposed a portability gap rather than a data bug: this machine has
+  Apple `mps` but no CUDA, and the original inference path treated `load_in_4bit: true` as though
+  that implied a CUDA-capable runtime. For this repo, the honest fix is to make the runner
+  device-aware and record when it falls back to full-weight generation on non-CUDA hardware.
+- The first local `Qwen/Qwen3-4B` generations also exposed two evaluation-quality hazards:
+  - Qwen3 will happily emit `<think> ... </think>` traces unless the chat template explicitly
+    disables that mode
+  - copied benchmark metadata can accidentally look like a model-predicted relation label if the
+    evaluator is too permissive about fallback fields
 - The reviewed doctrinal files are structurally consistent on the essentials, but not on every
   convenience field. In particular, some tract files omit `edge_layer`, so the SFT loader has to
   default that field to doctrinal at load time rather than assuming the JSONL rows are perfectly
@@ -644,6 +663,16 @@
 
 ## Decision Log
 
+- Keep inference device-aware instead of CUDA-assumptive:
+  - use 4-bit quantization only when CUDA is actually available
+  - fall back to MPS or CPU with an explicit dtype choice and manifest warning instead of failing
+    late or silently pretending quantization still applied
+- Keep benchmark generation answer-only and leakage-safe:
+  - disable Qwen3 reasoning traces at render time and strip any stray `<think>` block from decoded
+    output before evaluation
+  - write benchmark predictions incrementally so long runs can resume
+  - only score relation-type accuracy when a prediction file explicitly provides
+    `predicted_relation_type`, not when copied metadata happens to contain the reference label
 - Keep the v1 builder strictly on the eight selected virtue-centered doctrinal files and exclude
   structural-editorial, candidate, religion, owed-relation, and pilot material from the default SFT
   path.
@@ -804,6 +833,12 @@
   - `src/summa_moral_graph/sft/` now covers config loading, corpus/gold loading, doctrinal
     filtering, multi-template example building, grouped split assignment, serialization, prompt-only
     benchmark export, QLoRA training scaffolding, inference generation, and evaluation
+  - the inference/evaluation layer is now more honest in practice:
+    - non-CUDA runs resolve to `mps`/CPU explicitly instead of silently assuming CUDA-style
+      quantization
+    - long generation runs checkpoint partial outputs for resume
+    - Qwen3 reasoning traces are suppressed/cleaned for benchmark outputs
+    - relation-type accuracy no longer leaks through copied reference metadata in prediction files
   - `scripts/` now includes dataset build, training, generation, evaluation, and smoke-test entry
     points
   - `configs/sft/`, `configs/train/`, and `configs/inference/` now define reproducible dataset,
@@ -817,6 +852,12 @@
     - `pytest tests/test_sft_loaders.py tests/test_sft_filters.py tests/test_sft_builders.py tests/test_sft_splitters.py tests/test_sft_templates.py`
     - `ruff check src/summa_moral_graph/sft tests/sft_test_utils.py tests/test_sft_loaders.py tests/test_sft_filters.py tests/test_sft_builders.py tests/test_sft_splitters.py tests/test_sft_templates.py scripts/build_christian_virtue_sft_dataset.py scripts/train_christian_virtue_qlora.py scripts/eval_christian_virtue_sft.py scripts/smoke_test_christian_virtue_sft.py`
     - `PYTHONPATH=src python scripts/smoke_test_christian_virtue_sft.py`
+  - the first held-out base-model pilot on this Apple-Silicon machine is now concrete:
+    - `6` test examples were generated with `Qwen/Qwen3-4B`
+    - citation exact / partial / overlap were all `0.0`
+    - the model produced broad Aquinas-adjacent prose but not passage-grounded answers
+    - a full `233`-example local test sweep is therefore a hardware-throughput problem, not just a
+      missing-script problem
 - The landing-page map entry now behaves like a reliable public route instead of a brittle internal shortcut:
   - `Open interactive map` on Home now opens a real overall map rather than a concept-centered empty slice
   - the default home state no longer collapses into a blank `Faith tract + Charity center` combination

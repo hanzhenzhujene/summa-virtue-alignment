@@ -53,12 +53,15 @@ def _extract_prediction_text(row: dict[str, Any]) -> str:
     )
 
 
-def _extract_predicted_relation_type(row: dict[str, Any]) -> str | None:
+def _extract_predicted_relation_type(
+    row: dict[str, Any], *, allow_metadata_fallback: bool
+) -> str | None:
     if isinstance(row.get("predicted_relation_type"), str):
         return str(row["predicted_relation_type"])
-    metadata = row.get("metadata")
-    if isinstance(metadata, dict) and isinstance(metadata.get("relation_type"), str):
-        return str(metadata["relation_type"])
+    if allow_metadata_fallback:
+        metadata = row.get("metadata")
+        if isinstance(metadata, dict) and isinstance(metadata.get("relation_type"), str):
+            return str(metadata["relation_type"])
     return None
 
 
@@ -128,7 +131,10 @@ def evaluate_predictions(
         reference_ids = set(reference.get("metadata", {}).get("source_passage_ids", []))
         predicted_ids = set(extract_passage_ids(prediction_text))
         relation_type = reference.get("metadata", {}).get("relation_type")
-        predicted_relation_type = _extract_predicted_relation_type(prediction)
+        predicted_relation_type = _extract_predicted_relation_type(
+            prediction,
+            allow_metadata_fallback=predictions_path is None,
+        )
         relation_type_correct: bool | None
         if isinstance(relation_type, str) and predicted_relation_type is not None:
             relation_type_correct = relation_type == predicted_relation_type
