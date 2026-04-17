@@ -2,6 +2,10 @@
 
 ## Progress
 
+- A smaller Christian virtue prototype track is now being added so remote training does not have to
+  start at `Qwen/Qwen3-4B`:
+  - the repo will add a `Qwen/Qwen3-0.6B` QLoRA config as the cheapest same-family training path
+  - Make targets and maintainer docs will expose that smaller run directly
 - The held-out Christian virtue benchmark is now being executed on the duplicate repo, and the
   inference runner is being made portable enough to run on Apple Silicon as well as CUDA:
   - the local machine does not expose CUDA, but it does expose `mps`
@@ -498,6 +502,9 @@
 
 ## Surprises & Discoveries
 
+- For this repo, the best “small model” choice is not a random tiny instruct model but a smaller
+  member of the same family. `Qwen/Qwen3-0.6B` keeps the same chat-template / thinking-mode
+  behavior as the 4B baseline while materially lowering remote training cost and benchmark time.
 - The first real benchmark run exposed a portability gap rather than a data bug: this machine has
   Apple `mps` but no CUDA, and the original inference path treated `load_in_4bit: true` as though
   that implied a CUDA-capable runtime. For this repo, the honest fix is to make the runner
@@ -663,6 +670,10 @@
 
 ## Decision Log
 
+- Add a first-class small-model route based on `Qwen/Qwen3-0.6B` rather than jumping straight from
+  the 4B config to unrelated tiny models. That keeps prompt formatting, tokenizer behavior, and
+  evaluation expectations closer to the main target while still lowering the cost of the first
+  remote experiment.
 - Keep inference device-aware instead of CUDA-assumptive:
   - use 4-bit quantization only when CUDA is actually available
   - fall back to MPS or CPU with an explicit dtype choice and manifest warning instead of failing
@@ -858,6 +869,11 @@
     - the model produced broad Aquinas-adjacent prose but not passage-grounded answers
     - a full `233`-example local test sweep is therefore a hardware-throughput problem, not just a
       missing-script problem
+  - the repo now also exposes a cheaper same-family prototype path:
+    - `configs/train/qwen3_0_6b_qlora.yaml`
+    - `configs/inference/qwen3_0_6b_base_test.yaml`
+    - `make train-christian-virtue-small`
+    - `make generate-christian-virtue-small-predictions`
 - The landing-page map entry now behaves like a reliable public route instead of a brittle internal shortcut:
   - `Open interactive map` on Home now opens a real overall map rather than a concept-centered empty slice
   - the default home state no longer collapses into a blank `Faith tract + Charity center` combination

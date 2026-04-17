@@ -188,6 +188,13 @@ Prototype QLoRA training on the default 4B target:
 make train-christian-virtue-proto
 ```
 
+Smaller same-family prototype training on `Qwen/Qwen3-0.6B`:
+
+```bash
+.venv/bin/pip install -e ".[dev,sft]"
+make train-christian-virtue-small
+```
+
 Dry-run the training plan without launching training:
 
 ```bash
@@ -209,6 +216,13 @@ Generate test predictions from a base or adapter-backed model:
 ```bash
 .venv/bin/python scripts/generate_christian_virtue_predictions.py \
   --config configs/inference/qwen3_4b_base_test.yaml
+```
+
+Smaller same-family baseline benchmark:
+
+```bash
+.venv/bin/python scripts/generate_christian_virtue_predictions.py \
+  --config configs/inference/qwen3_0_6b_base_test.yaml
 ```
 
 On CUDA machines, the default inference configs keep 4-bit loading enabled. On non-CUDA machines,
@@ -248,8 +262,15 @@ The training scaffolding uses:
 
 The default train configs are:
 
+- [configs/train/qwen3_0_6b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_0_6b_qlora.yaml)
 - [configs/train/qwen3_4b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_4b_qlora.yaml)
 - [configs/train/qwen3_8b_qlora.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/train/qwen3_8b_qlora.yaml)
+
+Recommended order for this repo:
+
+- start with `Qwen/Qwen3-0.6B` to validate the end-to-end training/eval loop cheaply
+- move to `Qwen/Qwen3-4B` once the small-model run shows real citation gains
+- treat `Qwen/Qwen3-8B` as the later, quality-first run rather than the first paid experiment
 
 The training code lazy-imports those dependencies so the dataset builder, tests, and smoke checks do
 not require heavy GPU packages.
@@ -279,6 +300,7 @@ The repo now also includes config-driven inference generation so evaluation can 
 prompt-only benchmark exports rather than ad hoc hand-built prediction files. The default inference
 configs live in:
 
+- [configs/inference/qwen3_0_6b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_0_6b_base_test.yaml)
 - [configs/inference/qwen3_4b_base_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_test.yaml)
 - [configs/inference/qwen3_4b_base_ood.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_base_ood.yaml)
 - [configs/inference/qwen3_4b_adapter_test.yaml](/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/inference/qwen3_4b_adapter_test.yaml)
