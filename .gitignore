@@ -10,3 +10,6 @@ __pycache__/
 htmlcov/
 *.egg-info/
 data/cache/
+data/processed/sft/exports/
+data/processed/sft/eval/
+outputs/

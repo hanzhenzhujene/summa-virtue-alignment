@@ -1,0 +1,65 @@
+dataset_name: christian_virtue_v1
+description: >-
+  Virtue-centered instruction-tuning dataset grounded in reviewed doctrinal
+  annotations from Aquinas's moral corpus.
+system_prompt: >-
+  You are a Christian virtue assistant grounded in reviewed doctrinal passages
+  from Thomas Aquinas's moral corpus. Answer clearly and concisely, stay within
+  the cited evidence, use Aquinas's categories rather than generic self-help
+  language, and always include passage ids with citation labels.
+corpus:
+  segments_path: data/interim/summa_moral_segments.jsonl
+  questions_path: data/interim/summa_moral_questions.jsonl
+  articles_path: data/interim/summa_moral_articles.jsonl
+sources:
+  - tract: theological_virtues
+    annotations_path: data/gold/theological_virtues_reviewed_doctrinal_annotations.jsonl
+  - tract: prudence
+    annotations_path: data/gold/prudence_reviewed_doctrinal_annotations.jsonl
+  - tract: justice_core
+    annotations_path: data/gold/justice_core_reviewed_doctrinal_annotations.jsonl
+  - tract: connected_virtues_109_120
+    annotations_path: data/gold/connected_virtues_109_120_reviewed_doctrinal_annotations.jsonl
+  - tract: fortitude_parts_129_135
+    annotations_path: data/gold/fortitude_parts_129_135_reviewed_doctrinal_annotations.jsonl
+  - tract: fortitude_closure_136_140
+    annotations_path: data/gold/fortitude_closure_136_140_reviewed_doctrinal_annotations.jsonl
+  - tract: temperance_141_160
+    annotations_path: data/gold/temperance_141_160_reviewed_doctrinal_annotations.jsonl
+  - tract: temperance_closure_161_170
+    annotations_path: data/gold/temperance_closure_161_170_reviewed_doctrinal_annotations.jsonl
+filters:
+  allowed_review_statuses:
+    - approved
+  allowed_support_types:
+    - explicit_textual
+    - strong_textual_inference
+  required_edge_layer: doctrinal
+templates:
+  passage_grounded_doctrinal_qa:
+    enabled: true
+  reviewed_relation_explanation:
+    enabled: true
+  virtue_concept_explanation:
+    enabled: true
+    max_supporting_passages: 3
+    max_relations: 3
+    excluded_relation_types:
+      - treated_in
+  citation_grounded_moral_answer:
+    enabled: true
+splits:
+  group_by: question_id
+  train_ratio: 0.8
+  val_ratio: 0.1
+  test_ratio: 0.1
+  seed: 17
+  stratify_by_tract: true
+  min_eval_groups_per_tract: 1
+ood_split:
+  name: ood_test
+  held_out_tracts: []
+serialization:
+  output_dir: data/processed/sft/exports/christian_virtue_v1
+  sample_output_path: data/processed/sft/samples/christian_virtue_v1_sample.jsonl
+  sample_size: 16

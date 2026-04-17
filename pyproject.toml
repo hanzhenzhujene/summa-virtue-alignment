@@ -33,6 +33,15 @@ dev = [
   "pytest-cov>=5,<6",
   "ruff>=0.6,<1",
 ]
+sft = [
+  "accelerate>=1.1,<2",
+  "bitsandbytes>=0.44,<1",
+  "datasets>=3.0,<5",
+  "peft>=0.13,<1",
+  "torch>=2.4,<3",
+  "transformers>=4.55,<5",
+  "trl>=0.12,<1",
+]
 
 [project.scripts]
 summa-moral-graph = "summa_moral_graph.cli:main"

@@ -1,0 +1,37 @@
+run_name: christian-virtue-qwen3-8b-qlora
+model_name_or_path: Qwen/Qwen3-8B
+dataset_dir: data/processed/sft/exports/christian_virtue_v1
+train_split: train
+eval_split: val
+output_dir: outputs/christian_virtue/qwen3_8b_qlora
+learning_rate: 0.0002
+num_train_epochs: 3.0
+max_seq_length: 2048
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 32
+warmup_ratio: 0.03
+weight_decay: 0.0
+logging_steps: 10
+eval_steps: 100
+save_steps: 100
+save_total_limit: 2
+max_steps: -1
+seed: 17
+gradient_checkpointing: true
+load_in_4bit: true
+bnb_4bit_quant_type: nf4
+bnb_4bit_use_double_quant: true
+lora_r: 32
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+report_to: []
+trust_remote_code: false

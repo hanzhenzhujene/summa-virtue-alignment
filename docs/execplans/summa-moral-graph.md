@@ -2,6 +2,24 @@
 
 ## Progress
 
+- A new Christian virtue SFT pipeline is now being added inside the repo without disturbing the
+  existing viewer or graph workflow:
+  - the builder reads the canonical interim textual spine from `data/interim/`
+  - it consumes only the selected reviewed doctrinal files from `data/gold/`
+  - it filters to approved doctrinal supervision with `explicit_textual` and
+    `strong_textual_inference` support
+  - it emits four chat-style template families with stable passage ids and citation labels in both
+    metadata and assistant outputs
+  - deterministic grouped splits now use `question_id` within each tract, and an alternate config
+    adds an explicit `temperance_closure_161_170` OOD holdout
+  - prompt-only benchmark exports are now also being added for non-train splits so held-out
+    evaluation can run without gold-answer leakage
+  - a config-driven inference runner is now being added so base and adapter-backed models can
+    generate prediction files directly from those benchmark prompts
+  - a new `src/summa_moral_graph/sft/` package, config YAMLs, builder/train/eval/smoke scripts,
+    Make targets, fixture-backed tests, and maintainer docs now carry this workflow
+  - the current default build produces `1883` examples from `555` reviewed source annotations, and
+    the local smoke path is already clean
 - The overall-map `Center concept` filter is being repaired so the control actually affects the reviewed graph:
   - the shell had been discarding `center_concept` whenever map mode was `Overall map`, so the filter UI existed but the graph query silently ignored it
   - the overall map will now honor the selected center concept the same way the empty-state and evidence copy already imply
@@ -470,6 +488,19 @@
 
 ## Surprises & Discoveries
 
+- The reviewed doctrinal files are structurally consistent on the essentials, but not on every
+  convenience field. In particular, some tract files omit `edge_layer`, so the SFT loader has to
+  default that field to doctrinal at load time rather than assuming the JSONL rows are perfectly
+  uniform.
+- `question_id` is the right split boundary here because concept-explainer examples synthesize
+  multiple annotations from one question. Grouping at the row level would leak the same doctrinal
+  locus across train and eval even if the annotations themselves were distinct.
+- A tract-wide OOD holdout is more informative than a random hard subset for this first pass. The
+  `temperance_closure_161_170` block is coherent enough to act as a real transfer test while still
+  leaving the core virtue set broad in train/val/test.
+- Once the dataset export exists, the next research bottleneck is not another template family but a
+  leakage-safe way to run actual generations. Without prompt-only benchmark files, it is too easy
+  to evaluate against exports that already contain the gold assistant answer.
 - A control can look perfectly wired in Streamlit while still being a semantic no-op if the shell drops its value before the data query. That is exactly what happened with `Center concept` in Overall Map: the selectbox updated session state, but the graph call path forcibly replaced it with `None`.
 - The next layer of confusion was subtler: generic navigation into `Overall Map` was also carrying the currently selected concept into map state, so users could arrive in what looked like a global view that was already secretly centered on one node.
 - For a map-centered filter, scope-aware options matter almost as much as the filtering itself. Offering every concept in the whole registry made it too easy to choose a concept that had no edges in the current span and conclude the control was broken.
@@ -613,6 +644,15 @@
 
 ## Decision Log
 
+- Keep the v1 builder strictly on the eight selected virtue-centered doctrinal files and exclude
+  structural-editorial, candidate, religion, owed-relation, and pilot material from the default SFT
+  path.
+- Use deterministic tract-stratified grouped splits by `question_id`.
+- Treat missing doctrinal `edge_layer` fields in reviewed doctrinal JSONL as `doctrinal`, but only
+  within explicitly selected doctrinal source files.
+- Keep training dependencies optional and lazy-imported.
+- Emit prompt-only benchmark files for every non-train split and make the inference runner consume
+  those files rather than full chat examples with assistant answers attached.
 - Keep `Center concept` as a true graph filter in both map modes. Local map still requires a center concept to exist at all, but Overall Map should also honor the explicit reader choice rather than pretending the control is only decorative.
 - Separate “open the global map” from “open the overall map around this concept.” The top navigation and sidebar should open an uncentered overall map, while concept/passage context buttons can still carry an explicit center.
 - Keep the `Center concept` choices scoped to the current map slice instead of the whole corpus registry, while still tolerating and clearing stale invalid session values safely.
@@ -760,6 +800,23 @@
 
 ## Outcomes & Retrospective
 
+- Christian virtue SFT v1 is now scaffolded end to end inside the repo:
+  - `src/summa_moral_graph/sft/` now covers config loading, corpus/gold loading, doctrinal
+    filtering, multi-template example building, grouped split assignment, serialization, prompt-only
+    benchmark export, QLoRA training scaffolding, inference generation, and evaluation
+  - `scripts/` now includes dataset build, training, generation, evaluation, and smoke-test entry
+    points
+  - `configs/sft/`, `configs/train/`, and `configs/inference/` now define reproducible dataset,
+    QLoRA, and held-out generation runs
+  - maintainer-facing docs now live in:
+    - `docs/christian_virtue_sft.md`
+    - `docs/christian_virtue_dataset_card.md`
+    - `data/processed/sft/README.md`
+  - focused fixture-backed coverage now lives in the new `tests/test_sft_*.py` files
+  - verification completed locally with:
+    - `pytest tests/test_sft_loaders.py tests/test_sft_filters.py tests/test_sft_builders.py tests/test_sft_splitters.py tests/test_sft_templates.py`
+    - `ruff check src/summa_moral_graph/sft tests/sft_test_utils.py tests/test_sft_loaders.py tests/test_sft_filters.py tests/test_sft_builders.py tests/test_sft_splitters.py tests/test_sft_templates.py scripts/build_christian_virtue_sft_dataset.py scripts/train_christian_virtue_qlora.py scripts/eval_christian_virtue_sft.py scripts/smoke_test_christian_virtue_sft.py`
+    - `PYTHONPATH=src python scripts/smoke_test_christian_virtue_sft.py`
 - The landing-page map entry now behaves like a reliable public route instead of a brittle internal shortcut:
   - `Open interactive map` on Home now opens a real overall map rather than a concept-centered empty slice
   - the default home state no longer collapses into a blank `Faith tract + Charity center` combination
