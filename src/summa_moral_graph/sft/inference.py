@@ -160,6 +160,24 @@ def _clean_assistant_text(text: str) -> str:
     return cleaned.strip()
 
 
+def _align_generation_config(model: Any, config: InferenceConfig) -> None:
+    generation_config = getattr(model, "generation_config", None)
+    if generation_config is None:
+        return
+    generation_config.do_sample = config.do_sample
+    if config.do_sample:
+        generation_config.temperature = config.temperature
+        generation_config.top_p = config.top_p
+        return
+
+    # Some base model generation configs ship sampling-only defaults that trigger noisy warnings
+    # even when we are running deterministic evaluation. Clearing them keeps the public CLI path
+    # quieter without changing the actual decode behavior.
+    for field_name in ("temperature", "top_p", "top_k"):
+        if hasattr(generation_config, field_name):
+            setattr(generation_config, field_name, None)
+
+
 def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
     ensure_inference_dependencies(config)
 
@@ -225,6 +243,7 @@ def run_generation_inference(config: InferenceConfig) -> dict[str, Any]:
         model = PeftModel.from_pretrained(model, str(config.adapter_path))
     if runtime.device_type != "cuda":
         model = model.to(runtime.device_type)
+    _align_generation_config(model, config)
     model.eval()
     set_seed(config.seed)
 

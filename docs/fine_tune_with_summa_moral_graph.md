@@ -5,6 +5,10 @@
 This repo is a ready-to-use fine-tuning entrypoint for an evidence-first Christian virtue dataset
 grounded in Thomas Aquinas's moral corpus.
 
+The purpose of this SFT is not only to make a model emit aligned citations. The purpose is to help
+the model internalize Aquinas's virtue structure well enough to answer faithfully in Aquinas's
+categories, while using citations as a verification layer.
+
 You do not need to rebuild the dataset before you start. The committed dataset exports already live
 in the repo:
 
@@ -17,6 +21,20 @@ Those exports include:
 - prompt-only benchmark files for held-out inference
 - dataset manifests
 - stable passage ids and citation labels in metadata
+
+## What You Are Training For
+
+The north-star behavior is:
+
+- faithful Christian virtue reasoning in Aquinas's framework
+- clear distinctions between virtue, vice, act, object, part, and opposition
+- evidence-bounded answers rather than generic moralizing
+- citation-grounded traceability as a guardrail
+
+In short:
+
+- first, teach the model to think and answer like an Aquinas-grounded Christian virtue assistant
+- then, make that behavior inspectable through stable passage-id citations
 
 ## Why This Dataset Is Evidence-First
 
@@ -53,11 +71,12 @@ Optional OOD data lives under `christian_virtue_v1_ood/`.
 
 ## Quickstart: Local Mac MPS With Qwen2.5 1.5B
 
-This is the first local baseline path:
+This is the official local demonstration path:
 
 - model: `Qwen/Qwen2.5-1.5B-Instruct`
 - method: LoRA on Apple Silicon MPS
-- goal: smoke and pilot reproducibility, not giant long-form local training
+- official rung: `pilot-lite`
+- goal: stable reproducibility and publishable demonstration, not giant local training
 
 Setup:
 
@@ -72,38 +91,49 @@ make build-christian-virtue-sft
 Smoke train:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
+make train-christian-virtue-qwen2-5-1-5b-local-smoke
 ```
 
 Mac-safe pilot-lite train:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
-```
-
-Pilot train:
-
-```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot
+make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
 
 Base-model test predictions and evaluation:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
+make eval-christian-virtue-qwen2-5-1-5b-local-base-test
 ```
 
 Adapter test predictions and evaluation:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
+make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
 ```
+
+Base-vs-adapter comparison:
+
+```bash
+make compare-christian-virtue-qwen2-5-1-5b-local-test
+```
+
+Curated publishable report:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+```
+
+The adapter eval wrapper prefers `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`.
 
 One-command local loop:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
+make run-christian-virtue-qwen2-5-1-5b-local-loop
 ```
+
+That loop now defaults to `pilot-lite`, which is the practical local rung on a 16 GB Apple-Silicon
+machine.
 
 ## What The Local Run Writes
 
@@ -116,7 +146,7 @@ runs/christian_virtue/qwen2_5_1_5b_instruct/
 Examples:
 
 - `smoke/20260417_141530/`
-- `pilot/20260417_142245/`
+- `pilot_lite/20260417_142245/`
 - `base_test/20260417_143012/`
 - `adapter_test/20260417_144108/`
 
@@ -140,9 +170,11 @@ Recommended local order on a 16 GB Apple-Silicon laptop:
 2. `pilot-lite`
 3. `base_test`
 4. `adapter_test`
+5. `compare_test`
+6. curated report generation
 
 The full `pilot` config is still available, but it is intentionally heavier and may be too slow for
-routine local use on this hardware.
+routine local use on this hardware. It is an experimental stretch path, not the public default.
 
 ## Remote CUDA Path
 
@@ -224,6 +256,9 @@ Look at:
 - `report.md` for a readable summary plus qualitative samples
 - `run_manifest.json` for device, dtype, model, git commit, and dataset linkage
 - `environment.json` for package versions and execution context
+- the curated report in
+  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  for the publishable research summary
 
 Key evaluation fields:
 
@@ -233,6 +268,29 @@ Key evaluation fields:
 - `relation_type_accuracy`
 - `by_tract`
 - `by_support_type`
+
+## Packaging And Publication
+
+Once the canonical `pilot-lite`, `base_test`, and `adapter_test` runs exist, package the adapter:
+
+```bash
+make package-christian-virtue-qwen2-5-1-5b-local-adapter
+```
+
+Publish the adapter to Hugging Face Hub and cut the matching GitHub release:
+
+```bash
+make publish-christian-virtue-qwen2-5-1-5b-local-adapter
+```
+
+The package metadata records:
+
+- base model name
+- dataset export path
+- canonical run id
+- git commit
+- held-out base vs adapter headline metrics
+- links to the curated report and dataset card
 
 ## What To Read Next
 

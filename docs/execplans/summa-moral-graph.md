@@ -2,12 +2,42 @@
 
 ## Progress
 
+- The repo is being locked around one official, publishable local demonstration path rather than a
+  loose set of roughly equal training recipes:
+  - the canonical local model is `Qwen/Qwen2.5-1.5B-Instruct`
+  - the canonical local rung is `pilot-lite`
+  - the public story is now organized around one clean rerun, one base-vs-adapter comparison, one
+    curated report, and one publication package
+  - reporting utilities now generate:
+    - a fixed goal-demo panel from held-out benchmark prompts
+    - training-trajectory SVGs
+    - base-vs-adapter comparison SVGs
+    - a publishable markdown report that ties dataset, method, runtime, metrics, and qualitative
+      samples to one run id
+  - publication utilities now package the canonical adapter, write a model card and release notes,
+    infer the current fork from the `origin` remote, and prepare synchronized Hugging Face / GitHub
+    publication targets
+  - the fresh canonical local loop has now completed successfully:
+    - train run `20260418_142602`
+    - base test run `20260418_143349`
+    - adapter test run `20260418_152723`
+    - compare run `20260418_155301`
+    - held-out citation exact moved from `0.000` on base to `0.163` on the adapter across `233`
+      test prompts
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
   - the first full local `pilot` config has now proven too slow on the user's 16 GB Mac, so a
     smaller `pilot-lite` rung is being added as the default practical local step between `smoke`
     and any heavier experiment
+  - local adapter evaluation now resolves `pilot_lite/latest` first and only falls back to
+    `pilot/latest`, so the default Mac path no longer breaks after a successful `pilot-lite` run
+  - the first successful `pilot-lite` training + base-test + adapter-test loop is now being written
+    up as a full curated experiment report with method, data, training curves, result plots, and
+    qualitative analysis under `docs/reports/`
+  - the repo docs are now being tightened around the real SFT purpose:
+    - faithful Aquinas-grounded virtue reasoning is the primary objective
+    - evidence-bounded citation traceability is the guardrail, not the whole aim
   - training and inference configs now grow a shared `runtime_backend` / `torch_dtype` surface
   - the training runner is being split into a true dual path:
     - CUDA keeps the existing 4-bit QLoRA flow
@@ -529,6 +559,14 @@
 
 ## Surprises & Discoveries
 
+- The last publishability gap was not another model feature but public artifact coherence: once the
+  local pilot became stable, the missing pieces were a fixed goal-demo panel, a curated report
+  generator, and a packaging path that ties a checkpoint, report, dataset card, and release tag
+  back to the same run id.
+- GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
+  can resolve to the upstream repository in a way that is fine for browsing but wrong for release
+  creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
+  as a fallback.
 - The real local-research blocker was not dataset size but runtime mismatch: the existing training
   stack was written as though every serious run were CUDA + 4-bit QLoRA, while the user's actual
   first baseline machine is a 16 GB Apple-Silicon laptop.
@@ -539,6 +577,16 @@
 - For the local 1.5B path, good experiment hygiene matters as much as raw throughput. Timestamped
   run directories, config snapshots, environment captures, and train-log histories are the
   difference between “it ran once on my laptop” and a reusable pilot baseline.
+- The latest operational bug on the Mac path was not model loading but adapter-path drift:
+  `pilot-lite` became the practical default, but one wrapper and one inference config were still
+  wired to `pilot/latest`, so adapter evaluation failed even after a successful `pilot-lite` run.
+- Comparing the finished `pilot-lite` run against the earlier interrupted full `pilot` showed that
+  the main failure mode was runtime pathology, not optimization collapse:
+  - both runs showed a healthy downward loss curve through step 20
+  - the heavier full `pilot` even reached slightly better step-20 eval loss on its larger eval
+    slice
+  - but its per-step wall time became wildly unstable on MPS, with multi-hour jumps appearing by
+    steps 17 and 20, while `pilot-lite` stayed in a consistent seconds-per-step regime
 - The last mile for research reproducibility was not the model code itself but the operator path:
   without standardized run directories, preflight failure messages, and an explicit base-vs-adapter
   comparison report, it is too easy for a “successful” experiment to remain hard to rerun or hard
@@ -711,11 +759,25 @@
 
 ## Decision Log
 
+- Keep one official public local recipe instead of documenting multiple equally blessed Mac
+  training rungs:
+  - `smoke` stays a debug sanity check
+  - `pilot-lite` is the only canonical local training rung in README, guides, and report index
+  - heavier local `pilot` remains in-repo but is explicitly experimental
+- Keep the public purpose statement consistent across README, guides, reports, and model packaging:
+  train an Aquinas-grounded Christian virtue assistant that answers within reviewed evidence, uses
+  Aquinas's moral categories, and preserves source traceability.
+- Add a fixed qualitative goal-demo panel for the public report, but keep it separate from the
+  training set and use it only for held-out manual review and publication-facing comparison.
+- Treat Hugging Face Hub as the primary adapter host and GitHub releases as the public mirror layer,
+  with both pointing back to the same run id, commit hash, dataset export, and report.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
   and carve them out of `.gitignore`, while continuing to ignore raw run logs under `runs/`.
 - Add a first-class local pilot route around `Qwen/Qwen2.5-1.5B-Instruct` on Apple Silicon MPS.
+- Treat `pilot-lite` as the default local adapter source and make adapter evaluation fall back
+  through `pilot` and then `smoke` rather than assuming the heaviest local rung always exists.
 - Extend the training stack to support two explicit runtime families:
   - CUDA + 4-bit QLoRA when the backend is truly CUDA
   - MPS float16 LoRA with no `bitsandbytes` dependency when the backend is MPS
@@ -897,6 +959,18 @@
 
 ## Outcomes & Retrospective
 
+- The repo is now much closer to a genuinely publishable fine-tuning entrypoint instead of a
+  capable-but-internal research stack:
+  - the public docs now converge on one clear local demonstration recipe
+  - comparison reporting now reflects the real SFT goal rather than only citation alignment
+  - packaging and publication scripts now exist for the canonical local adapter
+  - the canonical report pipeline can regenerate the public markdown and SVG assets directly from
+    run artifacts
+  - the canonical local loop has now been executed end to end on the user's Mac:
+    - `pilot-lite` training completed successfully
+    - base and adapter held-out test runs both completed
+    - the comparison report now records a `+0.163` absolute citation-exact gain over base on the
+      `233`-example test split
 - The repo is now being refactored into a more complete public fine-tuning surface instead of only
   an internal research workspace:
   - the committed Christian virtue dataset exports are now intended to live in-tree as a public
@@ -913,6 +987,20 @@
     always required
   - timestamped wrapper scripts are being added so each local smoke/pilot/eval run writes a clean
     artifact folder with logs and manifests
+  - local adapter evaluation no longer hard-fails after a successful `pilot-lite` run:
+    - the adapter config now points at `pilot_lite/latest` by default
+    - the wrapper resolves `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`
+    - the generation CLI now accepts an explicit `--adapter-path` override so wrappers can choose
+      the correct adapter without rewriting configs on disk
+  - the first side-by-side local training comparison now clarifies the next-step policy:
+    - keep `pilot-lite` as the default Mac baseline
+    - do not treat the interrupted full `pilot` as evidence of a bad optimization setup
+    - treat it instead as evidence that the heavier `1024 / 512 / 64 / grad_accum=16` rung is not
+      operationally well-matched to this 16 GB MPS machine
+  - the run now has a first-class curated write-up rather than only raw logs:
+    - `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
+    - generated SVG plots for training curves, base-vs-adapter results, and local timing
+      comparison
 - The Christian virtue small-model path is now much closer to an operational research loop than a
   local-only prototype:
   - the repo now exposes explicit Linux-CUDA preflight checks, smoke training, real small training,

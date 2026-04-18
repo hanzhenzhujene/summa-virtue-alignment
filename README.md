@@ -11,7 +11,7 @@ An interactive map of Thomas Aquinas's moral corpus.
 
 > Passage-grounded concept, relation, and graph navigation across Thomas Aquinas's moral corpus in the *Summa Theologiae*.
 >
-> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
 > In the Summa article form — [obj](https://en.wikipedia.org/wiki/Summa_Theologica), [sc](https://en.wikipedia.org/wiki/Summa_Theologica), [resp](https://en.wikipedia.org/wiki/Summa_Theologica), [ad](https://en.wikipedia.org/wiki/Summa_Theologica) — this viewer keeps only `resp` and `ad`: Thomas's own answer. No opening objections are included.
 
@@ -27,6 +27,14 @@ visibly separate throughout the app.
 
 This repo is also the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
 
+The purpose of this SFT is not merely to teach citation formatting. The purpose is to train an
+Aquinas-grounded Christian virtue assistant that:
+
+- answers within reviewed evidence
+- uses Aquinas's moral categories rather than generic self-help language
+- preserves source traceability through stable passage ids
+- gives other model trainers a concrete, inspectable fine-tuning recipe
+
 - Training data lives directly in the repo under
   [`data/processed/sft/exports/christian_virtue_v1`](./data/processed/sft/exports/christian_virtue_v1)
   and
@@ -34,8 +42,8 @@ This repo is also the public fine-tuning entrypoint for the Christian virtue SFT
 - The dataset is evidence-first: every example keeps stable passage ids, citation labels, tract
   metadata, and reviewed doctrinal supervision traceable back to `data/interim/` and selected
   approved doctrinal annotations in `data/gold/`.
-- The first local baseline is
-  `Qwen/Qwen2.5-1.5B-Instruct` with a Mac MPS LoRA path for smoke and pilot runs.
+- The official local demonstration path is `Qwen/Qwen2.5-1.5B-Instruct` with `pilot-lite` LoRA on
+  Apple Silicon `mps`.
 - The remote CUDA path remains available for larger QLoRA experiments.
 
 Start here:
@@ -57,9 +65,23 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -e ".[dev,sft]"
 make build-christian-virtue-sft
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
+make train-christian-virtue-qwen2-5-1-5b-local-smoke
+make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make eval-christian-virtue-qwen2-5-1-5b-local-base-test
+make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
+make compare-christian-virtue-qwen2-5-1-5b-local-test
+make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
+
+Published public artifacts for the canonical local run:
+
+- Curated experiment report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+- Experiment index:
+  [docs/reports/christian_virtue_experiments.md](./docs/reports/christian_virtue_experiments.md)
+- Latest headline result:
+  held-out `test` citation exact match moved from `0.000` on the untouched base model to `0.163`
+  on the `pilot-lite` adapter over `233` evaluation prompts.
 
 ## Open The Viewer
 
@@ -166,7 +188,7 @@ Recommended deployment path:
 2. Go to [Streamlit Community Cloud](https://share.streamlit.io/).
 3. Click **New app**.
 4. Choose:
-   - repository: `hanzhenzhujene/summa-moral-graph`
+   - repository: `hanzhenzhujene/summa-moral-graph-fork`
    - branch: `main`
    - main file path: `streamlit_app.py`
 5. Deploy.

@@ -33,6 +33,17 @@ link_latest_run() {
   ln -sfn "$(basename "${run_dir}")" "${root_dir}/latest"
 }
 
+resolve_first_existing_path() {
+  local candidate
+  for candidate in "$@"; do
+    if [[ -e "${candidate}" ]]; then
+      printf '%s\n' "${candidate}"
+      return 0
+    fi
+  done
+  return 1
+}
+
 init_run_dir() {
   local run_dir="$1"
   mkdir -p "${run_dir}"

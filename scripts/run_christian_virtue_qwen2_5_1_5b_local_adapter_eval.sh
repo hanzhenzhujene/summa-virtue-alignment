@@ -6,11 +6,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/christian_virtue_small_common.sh"
 resolve_python_bin
 
-ADAPTER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/pilot"
-ADAPTER_DIR="${ADAPTER_ROOT}/latest"
-if [[ ! -e "${ADAPTER_DIR}" ]]; then
-  echo "Adapter directory not found: ${ADAPTER_DIR}" >&2
-  echo "Run the pilot training first." >&2
+PILOT_LITE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite"
+PILOT_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/pilot"
+SMOKE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/smoke"
+if ! ADAPTER_DIR="$(resolve_first_existing_path "${PILOT_LITE_ROOT}/latest" "${PILOT_ROOT}/latest" "${SMOKE_ROOT}/latest")"; then
+  echo "Adapter directory not found." >&2
+  echo "Expected one of:" >&2
+  echo "  ${PILOT_LITE_ROOT}/latest" >&2
+  echo "  ${PILOT_ROOT}/latest" >&2
+  echo "  ${SMOKE_ROOT}/latest" >&2
+  echo "Run the smoke or pilot-lite training first." >&2
   exit 1
 fi
 
@@ -30,6 +35,8 @@ run_logged \
   "${ROOT_DIR}/scripts/generate_christian_virtue_predictions.py" \
   --config \
   "${ROOT_DIR}/${INFERENCE_CONFIG}" \
+  --adapter-path \
+  "${ADAPTER_DIR}" \
   --output-dir \
   "${RUN_DIR}"
 

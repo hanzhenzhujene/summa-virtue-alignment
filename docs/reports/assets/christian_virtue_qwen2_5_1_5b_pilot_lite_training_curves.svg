@@ -1,0 +1,31 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='980' height='420' viewBox='0 0 980 420' role='img' aria-label='Christian virtue training curves'>
+<rect x='0' y='0' width='980' height='420' fill='#f8fafc' />
+<g transform='translate(20.0,24.0)'>
+<rect x='0' y='0' width='450.0' height='360.0' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='12' />
+<text x='20' y='28' font-size='16' font-weight='700' fill='#111827'>Loss by step</text>
+<line x1='56.0' y1='48.0' x2='56.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
+<line x1='56.0' y1='316.0' x2='428.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
+<polyline fill='none' stroke='#b45309' stroke-width='2.5' points='56.0,48.0 180.0,237.0 304.0,304.6 428.0,311.4' />
+<circle cx='428.0' cy='311.4' r='3.5' fill='#b45309' />
+<polyline fill='none' stroke='#1d4ed8' stroke-width='2.5' points='428.0,316.0 428.0,316.0' />
+<circle cx='428.0' cy='316.0' r='3.5' fill='#1d4ed8' />
+<circle cx='18.0' cy='336.0' r='5' fill='#b45309' />
+<text x='28.0' y='340.0' font-size='12' fill='#374151'>Train loss</text>
+<circle cx='150.0' cy='336.0' r='5' fill='#1d4ed8' />
+<text x='160.0' y='340.0' font-size='12' fill='#374151'>Eval loss</text>
+</g>
+<g transform='translate(500.0,24.0)'>
+<rect x='0' y='0' width='450.0' height='360.0' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='12' />
+<text x='20' y='28' font-size='16' font-weight='700' fill='#111827'>Mean token accuracy by step</text>
+<line x1='56.0' y1='48.0' x2='56.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
+<line x1='56.0' y1='316.0' x2='428.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
+<polyline fill='none' stroke='#15803d' stroke-width='2.5' points='56.0,316.0 180.0,134.9 304.0,59.1 428.0,51.4' />
+<circle cx='428.0' cy='51.4' r='3.5' fill='#15803d' />
+<polyline fill='none' stroke='#7c3aed' stroke-width='2.5' points='428.0,48.0 428.0,48.0' />
+<circle cx='428.0' cy='48.0' r='3.5' fill='#7c3aed' />
+<circle cx='18.0' cy='336.0' r='5' fill='#15803d' />
+<text x='28.0' y='340.0' font-size='12' fill='#374151'>Train accuracy</text>
+<circle cx='150.0' cy='336.0' r='5' fill='#7c3aed' />
+<text x='160.0' y='340.0' font-size='12' fill='#374151'>Eval accuracy</text>
+</g>
+</svg>

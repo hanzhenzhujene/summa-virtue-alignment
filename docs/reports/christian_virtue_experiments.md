@@ -2,70 +2,59 @@
 
 ## Purpose
 
-This file is a short human-readable index of noteworthy Christian virtue SFT runs. Full raw logs
-stay under `runs/` and are not part of the committed repo history by default. This report tracks
-the curated, repo-level experiment story instead.
+This index tracks the curated experiment story for the Christian virtue SFT path.
 
-## Current Recorded Snapshots
+Raw `runs/` artifacts stay out of the committed repo by default. The entries here are the
+publishable, reader-facing checkpoints that matter for reproducing the dataset, method, and model
+behavior.
 
-### Qwen3 0.6B Base Test Baseline
+## Flagship Local Baseline
 
-Recorded from the local benchmark artifacts under
-`runs/christian_virtue/qwen3_0_6b/base_test/`. Those raw run files are not part of the committed
-repo surface.
+### Qwen2.5 1.5B Local Pilot-Lite
 
-Observed on the held-out `test` split:
+This is the canonical Apple-Silicon local demonstration run for the repo.
 
-- count: `233`
-- citation exact match: `0.172`
-- citation partial match: `0.172`
-- citation overlap: `0.172`
+- Report:
+  [christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+- Dataset card:
+  [../christian_virtue_dataset_card.md](../christian_virtue_dataset_card.md)
+- Public fine-tune guide:
+  [../fine_tune_with_summa_moral_graph.md](../fine_tune_with_summa_moral_graph.md)
 
-Interpretation:
+What it demonstrates:
 
-- the base model can produce Thomistic-sounding prose
-- it often fails the repo's citation-grounding requirement
-- this is the benchmark floor the adapter path is meant to beat
+- the committed Christian virtue dataset can drive a real SFT loop end-to-end
+- the official local `pilot-lite` recipe is reproducible on a 16 GB Apple-Silicon laptop
+- the LoRA adapter beats the untouched base model on the held-out benchmark
+- the repo can serve as a public fine-tuning entrypoint rather than only a private research log
 
-### Qwen2.5 1.5B Local MPS Pilot Path
+Canonical run ids:
 
-Target path:
+- train: `20260418_142602`
+- base test: `20260418_143349`
+- adapter test: `20260418_152723`
+- compare test: `20260418_155301`
 
-- `Qwen/Qwen2.5-1.5B-Instruct`
-- LoRA on Apple Silicon MPS
-- timestamped outputs under `runs/christian_virtue/qwen2_5_1_5b_instruct/`
+Headline result on the held-out `test` split:
 
-Validated smoke checkpoint:
+- base citation exact match: `0.000`
+- adapter citation exact match: `0.163`
+- net gain: `+0.163`
 
-- smoke run id: `20260417_135222`
-- train examples: `64`
-- eval examples: `16`
-- global steps: `8`
-- train runtime: about `85s`
-- final eval loss: `2.524`
-- final device: `mps`
-- final dtype: `float16`
+## Canonical Command Surface
 
-What is now confirmed:
+```bash
+make build-christian-virtue-sft
+make train-christian-virtue-qwen2-5-1-5b-local-smoke
+make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make eval-christian-virtue-qwen2-5-1-5b-local-base-test
+make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
+make compare-christian-virtue-qwen2-5-1-5b-local-test
+make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+```
 
-- the local MPS LoRA training path genuinely starts and finishes
-- the run writes `config_snapshot.yaml`, `environment.json`, `run_manifest.json`,
-  `train_metadata.json`, `train_log_history.jsonl`, and shell logs
-- the adapter artifacts are reusable for the next evaluation step
+## Policy
 
-Still pending for this model path:
-
-- a real local `pilot` run
-- held-out `base_test` generation and evaluation
-- held-out `adapter_test` generation and evaluation
-
-## How To Add A New Curated Entry
-
-For a new experiment, record:
-
-- model and runtime
-- exact config file
-- split evaluated
-- headline citation metrics
-- one short interpretation
-- links to the run's `report.md`, `metrics.json`, and config snapshot
+- `pilot-lite` is the only official local rung for public docs and quickstart paths.
+- Heavier local `pilot` runs remain experimental.
+- Larger CUDA experiments remain important, but they are not the public baseline for this repo.

@@ -4,7 +4,7 @@ dataset_dir: data/processed/sft/exports/christian_virtue_v1
 split_names:
   - test
 output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test
-adapter_path: runs/christian_virtue/qwen2_5_1_5b_instruct/pilot/latest
+adapter_path: runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/latest
 trust_remote_code: false
 runtime_backend: mps
 torch_dtype: float16

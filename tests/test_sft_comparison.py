@@ -30,6 +30,24 @@ def _metrics_fixture() -> tuple[dict[str, object], dict[str, object]]:
                 "relation_type_accuracy": 0.25,
             }
         },
+        "by_support_type": {
+            "explicit_textual": {
+                "count": 9,
+                "citation_exact_match": 0.1,
+                "citation_partial_match": 0.2,
+                "citation_overlap": 0.2,
+                "relation_type_accuracy": None,
+            }
+        },
+        "by_task_type": {
+            "reviewed_relation_explanation": {
+                "count": 4,
+                "citation_exact_match": 0.25,
+                "citation_partial_match": 0.25,
+                "citation_overlap": 0.25,
+                "relation_type_accuracy": None,
+            }
+        },
     }
     candidate = {
         "overall": {
@@ -57,11 +75,29 @@ def _metrics_fixture() -> tuple[dict[str, object], dict[str, object]]:
                 "relation_type_accuracy": 0.5,
             }
         },
+        "by_support_type": {
+            "explicit_textual": {
+                "count": 9,
+                "citation_exact_match": 0.3,
+                "citation_partial_match": 0.3,
+                "citation_overlap": 0.3,
+                "relation_type_accuracy": None,
+            }
+        },
+        "by_task_type": {
+            "reviewed_relation_explanation": {
+                "count": 4,
+                "citation_exact_match": 0.5,
+                "citation_partial_match": 0.5,
+                "citation_overlap": 0.5,
+                "relation_type_accuracy": None,
+            }
+        },
     }
     return baseline, candidate
 
 
-def test_build_comparison_report_includes_overall_split_and_tract_sections() -> None:
+def test_build_comparison_report_includes_all_metric_sections() -> None:
     baseline, candidate = _metrics_fixture()
 
     report = build_comparison_report(
@@ -75,8 +111,12 @@ def test_build_comparison_report_includes_overall_split_and_tract_sections() -> 
     assert "## Overall" in report
     assert "## By Split" in report
     assert "## By Tract" in report
+    assert "## By Support Type" in report
+    assert "## By Task Type" in report
     assert "### test" in report
     assert "### prudence" in report
+    assert "### explicit_textual" in report
+    assert "### reviewed_relation_explanation" in report
     assert "| citation_exact_match | 0.100 | 0.400 | +0.300 |" in report
 
 

@@ -20,3 +20,4 @@ data/processed/sft/exports/*
 data/processed/sft/eval/
 outputs/
 runs/
+artifacts/

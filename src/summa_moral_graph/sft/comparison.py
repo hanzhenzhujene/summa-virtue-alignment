@@ -105,7 +105,12 @@ def build_comparison_report(
         _comparison_rows(baseline_metrics["overall"], candidate_metrics["overall"]),
     )
 
-    for bucket_name, title in [("by_split", "By Split"), ("by_tract", "By Tract")]:
+    for bucket_name, title in [
+        ("by_split", "By Split"),
+        ("by_tract", "By Tract"),
+        ("by_support_type", "By Support Type"),
+        ("by_task_type", "By Task Type"),
+    ]:
         lines.extend(["", f"## {title}", ""])
         keys = _bucket_keys(baseline_metrics, candidate_metrics, bucket_name)
         if not keys:

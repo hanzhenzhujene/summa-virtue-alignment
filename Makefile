@@ -1,6 +1,9 @@
 PYTHON ?= python3.12
 VENV ?= .venv
 BIN := $(VENV)/bin
+LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
+LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md
+LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -40,6 +43,10 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	train-christian-virtue-qwen2-5-1-5b-local-pilot \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
+	compare-christian-virtue-qwen2-5-1-5b-local-test \
+	report-christian-virtue-qwen2-5-1-5b-local-pilot-lite \
+	package-christian-virtue-qwen2-5-1-5b-local-adapter \
+	publish-christian-virtue-qwen2-5-1-5b-local-adapter \
 	run-christian-virtue-qwen2-5-1-5b-local-loop \
 	train-christian-virtue-small-smoke train-christian-virtue-small \
 	generate-christian-virtue-predictions generate-christian-virtue-small-predictions \
@@ -202,6 +209,18 @@ eval-christian-virtue-qwen2-5-1-5b-local-base-test:
 
 eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
+
+compare-christian-virtue-qwen2-5-1-5b-local-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
+
+report-christian-virtue-qwen2-5-1-5b-local-pilot-lite:
+	$(BIN)/python scripts/build_christian_virtue_local_report.py
+
+package-christian-virtue-qwen2-5-1-5b-local-adapter:
+	$(BIN)/python scripts/publish_christian_virtue_adapter.py --skip-hf --skip-github-release
+
+publish-christian-virtue-qwen2-5-1-5b-local-adapter:
+	$(BIN)/python scripts/publish_christian_virtue_adapter.py
 
 run-christian-virtue-qwen2-5-1-5b-local-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh

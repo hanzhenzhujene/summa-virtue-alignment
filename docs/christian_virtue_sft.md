@@ -4,8 +4,10 @@
 
 This repo now supports a clean Christian virtue SFT workflow built from the reviewed moral corpus of
 Thomas Aquinas in the *Summa Theologiae*. The v1 target is not a general theology chatbot. The
-target is a citation-aware virtue assistant that:
+target is an Aquinas-grounded Christian virtue assistant that:
 
+- learns Aquinas's moral structure rather than generic moral advice
+- explains virtues, vices, acts, parts, and doctrinal relations in Aquinas's categories
 - stays grounded in segment-level evidence
 - inherits stable passage ids from `data/interim/`
 - uses only approved reviewed doctrinal supervision in the default build
@@ -13,6 +15,27 @@ target is a citation-aware virtue assistant that:
 - can be trained and evaluated through reproducible local and remote loops
 
 The canonical evidence unit remains the segment id, not the whole article.
+
+### North Star
+
+The purpose of this SFT is not merely to align citation formatting.
+
+The real goal is to turn a general model into a Christian virtue model that can:
+
+- reason faithfully within Aquinas's virtue framework
+- distinguish virtue, vice, act, object, part, and opposition correctly
+- answer in clear modern English without collapsing into generic self-help language
+- remain bounded by reviewed doctrinal evidence
+- provide citations as accountability and traceability, not as the whole end of the project
+
+The working priority is:
+
+1. faithful virtue reasoning
+2. evidence-bounded doctrinal answers
+3. citation-grounded traceability
+
+That means a run should not be judged as successful simply because it emits passage ids. A strong
+run should also show that the model has actually internalized Aquinas's moral distinctions.
 
 ## Why V1 Is Virtue-Centered
 
@@ -150,7 +173,7 @@ Builder direct invocation:
 
 ## Local Mac MPS Path
 
-The first local baseline is:
+The canonical local baseline is:
 
 - `Qwen/Qwen2.5-1.5B-Instruct`
 
@@ -178,38 +201,68 @@ make build-christian-virtue-sft
 Smoke train:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
+make train-christian-virtue-qwen2-5-1-5b-local-smoke
 ```
 
 Mac-safe pilot-lite train:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
-```
-
-Pilot train:
-
-```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot
+make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
 
 Base-model held-out test:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
+make eval-christian-virtue-qwen2-5-1-5b-local-base-test
 ```
 
 Adapter held-out test:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
+make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
+```
+
+Base-vs-adapter comparison:
+
+```bash
+make compare-christian-virtue-qwen2-5-1-5b-local-test
+```
+
+Curated local report:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
 
 One-command local pilot loop:
 
 ```bash
-bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
+make run-christian-virtue-qwen2-5-1-5b-local-loop
 ```
+
+The local adapter eval wrapper now looks for `pilot_lite/latest` first and falls back to
+`pilot/latest` if you have a heavier full pilot run.
+
+The heavier full `pilot` config remains in the repo as an experimental path, but it is no longer
+the public default because `pilot-lite` is the reliable rung on the current 16 GB Mac.
+
+## Publication Workflow
+
+Package the canonical adapter locally:
+
+```bash
+make package-christian-virtue-qwen2-5-1-5b-local-adapter
+```
+
+Publish the adapter to Hugging Face Hub and create the matching GitHub release:
+
+```bash
+make publish-christian-virtue-qwen2-5-1-5b-local-adapter
+```
+
+The packaging step copies the adapter weights and tokenizer-side metadata into an isolated
+`artifacts/` directory, writes a model card, and writes release notes tied to the exact run id and
+git commit.
 
 ## Remote CUDA Path
 
@@ -348,7 +401,10 @@ Direct evaluation command:
 - `bitsandbytes` is only required for the CUDA 4-bit path, not for the local MPS 1.5B path.
 - If `runtime_backend: mps` is set on a non-Apple-Silicon machine, runtime resolution should fail
   loudly instead of silently falling back.
-- Adapter evaluation expects `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot/latest` to exist.
+- Adapter evaluation now prefers
+  `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/latest` and falls back to
+  `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot/latest`, then to
+  `runs/christian_virtue/qwen2_5_1_5b_instruct/smoke/latest`.
 - A successful smoke train proves wiring, not model quality.
 - A 16 GB MacBook can run the local pilot path, but it is not the right target for long,
   full-scale experiments.

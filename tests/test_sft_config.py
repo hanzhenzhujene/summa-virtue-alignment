@@ -60,6 +60,6 @@ def test_load_qwen2_5_local_adapter_inference_config() -> None:
     assert config.torch_dtype == "float16"
     assert config.load_in_4bit is False
     assert config.adapter_path is not None
-    assert config.adapter_path.name == "latest"
+    assert config.adapter_path.parent.name == "pilot_lite"
     assert config.config_path is not None
     assert config.config_path.name == "qwen2_5_1_5b_instruct_adapter_test.yaml"

@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+from types import SimpleNamespace
 
 from summa_moral_graph.sft.config import InferenceConfig
 from summa_moral_graph.sft.inference import (
+    _align_generation_config,
     _clean_assistant_text,
     describe_inference_plan,
     resolve_inference_runtime,
@@ -69,3 +71,24 @@ def test_clean_assistant_text_removes_qwen_think_blocks() -> None:
     text = "<think>\ninternal reasoning\n</think>\n\nFinal answer with citations."
 
     assert _clean_assistant_text(text) == "Final answer with citations."
+
+
+def test_align_generation_config_clears_sampling_fields_for_greedy_decode(tmp_path) -> None:
+    config = _build_inference_config(tmp_path).model_copy(
+        update={"do_sample": False, "temperature": 0.7, "top_p": 0.9}
+    )
+    model = SimpleNamespace(
+        generation_config=SimpleNamespace(
+            do_sample=True,
+            temperature=0.7,
+            top_p=0.9,
+            top_k=20,
+        )
+    )
+
+    _align_generation_config(model, config)
+
+    assert model.generation_config.do_sample is False
+    assert model.generation_config.temperature is None
+    assert model.generation_config.top_p is None
+    assert model.generation_config.top_k is None
