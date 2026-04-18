@@ -75,6 +75,12 @@ Smoke train:
 bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
 ```
 
+Mac-safe pilot-lite train:
+
+```bash
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
+```
+
 Pilot train:
 
 ```bash
@@ -127,6 +133,16 @@ Each run directory is designed to contain:
 - `train_metadata.json` for training runs
 - `train_log_history.jsonl` for training runs
 - `predictions.jsonl` for inference runs
+
+Recommended local order on a 16 GB Apple-Silicon laptop:
+
+1. `smoke`
+2. `pilot-lite`
+3. `base_test`
+4. `adapter_test`
+
+The full `pilot` config is still available, but it is intentionally heavier and may be too slow for
+routine local use on this hardware.
 
 ## Remote CUDA Path
 

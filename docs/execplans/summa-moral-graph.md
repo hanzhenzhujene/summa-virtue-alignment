@@ -5,6 +5,9 @@
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
+  - the first full local `pilot` config has now proven too slow on the user's 16 GB Mac, so a
+    smaller `pilot-lite` rung is being added as the default practical local step between `smoke`
+    and any heavier experiment
   - training and inference configs now grow a shared `runtime_backend` / `torch_dtype` surface
   - the training runner is being split into a true dual path:
     - CUDA keeps the existing 4-bit QLoRA flow

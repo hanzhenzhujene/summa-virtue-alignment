@@ -36,6 +36,7 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	build-christian-virtue-sft-ood smoke-test-christian-virtue-sft \
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
+	train-christian-virtue-qwen2-5-1-5b-local-pilot-lite \
 	train-christian-virtue-qwen2-5-1-5b-local-pilot \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
@@ -189,6 +190,9 @@ train-christian-virtue-proto:
 
 train-christian-virtue-qwen2-5-1-5b-local-smoke:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
+
+train-christian-virtue-qwen2-5-1-5b-local-pilot-lite:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
 
 train-christian-virtue-qwen2-5-1-5b-local-pilot:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot

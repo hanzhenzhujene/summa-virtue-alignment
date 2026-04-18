@@ -181,6 +181,12 @@ Smoke train:
 bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
 ```
 
+Mac-safe pilot-lite train:
+
+```bash
+bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
+```
+
 Pilot train:
 
 ```bash
@@ -309,6 +315,7 @@ Useful training config fields to swap when using your own model:
 New local MPS configs:
 
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
