@@ -38,6 +38,38 @@ Committed inputs:
 - Published adapter: [Hugging Face model page](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
 - GitHub release: [Release page](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 
+## Executive Readout
+
+| Slice | Base | Adapter | Delta |
+| --- | ---: | ---: | ---: |
+| Held-out test citation exact | `0.0%` | `15.0%` | `15.0%` |
+| Strongest task: Virtue concept explanation | `0.0%` | `50.0%` | `50.0%` |
+| Strongest tract: Justice core | `0.0%` | `23.8%` | `23.8%` |
+| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+
+Strongest task slices:
+
+- Virtue concept explanation: 50.0% exact over `32` held-out prompts.
+- Reviewed relation explanation: 19.4% exact over `67` held-out prompts.
+- Passage-grounded doctrinal QA: 9.0% exact over `67` held-out prompts.
+
+Strongest tract slices:
+
+- Justice core: 23.8% exact over `42` held-out prompts.
+- Prudence: 22.5% exact over `40` held-out prompts.
+- Theological virtues: 15.8% exact over `19` held-out prompts.
+
+Persistent weak spots:
+
+- Hardest task type remains Citation-grounded moral answer at 0.0% exact over `67` prompts.
+- Zero-gain tracts in this run: Temperance closure (II-II qq.161-170), Connected virtues (II-II qq.109-120).
+- Goal-demo exact citations move from `0 / 12` to `3 / 12`, leaving `9` shared misses for qualitative review.
+
+Representative examples:
+
+- Clear adapter win: slot 3 `Commutative justice and restitution`.
+- Representative stubborn failure: slot 10 `Lust and chastity`.
+
 ## Data And Split Policy
 
 This run uses the committed `christian_virtue_v1` export built from approved reviewed doctrinal annotations only. Structural-editorial review, candidate material, and processed edge exports are not used as training truth.
@@ -361,12 +393,10 @@ LoRA adapter:
 
 ## Comparison Summary
 
-# Christian Virtue Run Comparison
-
 - Baseline: Base model
 - Candidate: LoRA adapter
 
-## Overall
+### Overall
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -376,9 +406,9 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.150 | +0.150 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-## By Split
+### By Split
 
-### test
+#### test
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -389,9 +419,9 @@ LoRA adapter:
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
-## By Tract
+### By Tract
 
-### connected_virtues_109_120
+#### connected_virtues_109_120
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -401,7 +431,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.000 | +0.000 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### fortitude_closure_136_140
+#### fortitude_closure_136_140
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -411,7 +441,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.118 | +0.118 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### fortitude_parts_129_135
+#### fortitude_parts_129_135
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -421,7 +451,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.098 | +0.098 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### justice_core
+#### justice_core
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -431,7 +461,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.238 | +0.238 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### prudence
+#### prudence
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -441,7 +471,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.225 | +0.225 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### temperance_141_160
+#### temperance_141_160
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -451,7 +481,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.130 | +0.130 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### temperance_closure_161_170
+#### temperance_closure_161_170
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -461,7 +491,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.000 | +0.000 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### theological_virtues
+#### theological_virtues
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -472,9 +502,9 @@ LoRA adapter:
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
-## By Support Type
+### By Support Type
 
-### explicit_textual
+#### explicit_textual
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -484,7 +514,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.145 | +0.145 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### strong_textual_inference
+#### strong_textual_inference
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -495,9 +525,9 @@ LoRA adapter:
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
-## By Task Type
+### By Task Type
 
-### citation_grounded_moral_answer
+#### citation_grounded_moral_answer
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -507,7 +537,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.000 | +0.000 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### passage_grounded_doctrinal_qa
+#### passage_grounded_doctrinal_qa
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -517,7 +547,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.090 | +0.090 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### reviewed_relation_explanation
+#### reviewed_relation_explanation
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
@@ -527,7 +557,7 @@ LoRA adapter:
 | citation_overlap | 0.000 | 0.194 | +0.194 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
-### virtue_concept_explanation
+#### virtue_concept_explanation
 
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |

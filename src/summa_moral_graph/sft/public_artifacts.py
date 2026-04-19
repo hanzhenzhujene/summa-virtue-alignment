@@ -87,6 +87,8 @@ def build_publication_doc_expectations(
             git_commit,
             base_metric,
             adapter_metric,
+            "## Executive Readout",
+            "Goal-demo exact citations",
         ],
     }
 

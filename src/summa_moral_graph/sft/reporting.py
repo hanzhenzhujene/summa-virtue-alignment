@@ -75,6 +75,133 @@ def _format_percent(value: float | None) -> str:
     return f"{value * 100:.1f}%"
 
 
+def _metric_value(row: dict[str, Any], key: str) -> float:
+    value = row.get(key, 0.0)
+    if value is None:
+        return 0.0
+    return float(value)
+
+
+def _bucket_display_name(bucket_name: str, key: str) -> str:
+    if bucket_name == "by_task_type":
+        return TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title())
+    if bucket_name == "by_tract":
+        return tract_display_name(key)
+    return key.replace("_", " ").title()
+
+
+def _metric_breakdown_rows(
+    baseline_metrics: dict[str, Any],
+    candidate_metrics: dict[str, Any],
+    *,
+    bucket_name: str,
+) -> list[dict[str, Any]]:
+    baseline_bucket = cast(dict[str, Any], baseline_metrics.get(bucket_name, {}))
+    candidate_bucket = cast(dict[str, Any], candidate_metrics.get(bucket_name, {}))
+
+    rows: list[dict[str, Any]] = []
+    for key, candidate_row_any in candidate_bucket.items():
+        candidate_row = cast(dict[str, Any], candidate_row_any)
+        baseline_row = cast(dict[str, Any], baseline_bucket.get(key, {}))
+        baseline_exact = _metric_value(baseline_row, "citation_exact_match")
+        candidate_exact = _metric_value(candidate_row, "citation_exact_match")
+        count_value = candidate_row.get("count", 0)
+        rows.append(
+            {
+                "key": key,
+                "label": _bucket_display_name(bucket_name, str(key)),
+                "count": int(count_value) if count_value is not None else 0,
+                "baseline_exact": baseline_exact,
+                "candidate_exact": candidate_exact,
+                "delta_exact": candidate_exact - baseline_exact,
+            }
+        )
+
+    rows.sort(
+        key=lambda row: (
+            float(row["candidate_exact"]),
+            float(row["delta_exact"]),
+            int(row["count"]),
+            str(row["label"]),
+        ),
+        reverse=True,
+    )
+    return rows
+
+
+def _lowest_metric_row(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    if not rows:
+        return None
+    return min(
+        rows,
+        key=lambda row: (
+            float(row["candidate_exact"]),
+            float(row["delta_exact"]),
+            int(row["count"]),
+            str(row["label"]),
+        ),
+    )
+
+
+def _summarize_goal_demo_rows(rows: list[dict[str, Any]]) -> dict[str, int]:
+    return {
+        "total": len(rows),
+        "base_exact_count": sum(1 for row in rows if bool(row.get("base_exact_match"))),
+        "adapter_exact_count": sum(1 for row in rows if bool(row.get("adapter_exact_match"))),
+        "adapter_only_wins": sum(
+            1
+            for row in rows
+            if bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match"))
+        ),
+        "both_miss": sum(
+            1
+            for row in rows
+            if not bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match"))
+        ),
+    }
+
+
+def _find_goal_demo_win(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for row in rows:
+        if bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match")):
+            return row
+    return None
+
+
+def _find_goal_demo_failure(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for row in rows:
+        if (
+            not bool(row.get("adapter_exact_match"))
+            and str(row.get("task_type")) == "citation_grounded_moral_answer"
+        ):
+            return row
+    for row in rows:
+        if not bool(row.get("adapter_exact_match")):
+            return row
+    return None
+
+
+def _shift_heading(line: str, *, levels: int) -> str:
+    stripped = line.lstrip()
+    if not stripped.startswith("#"):
+        return line
+    heading_marks, _, rest = stripped.partition(" ")
+    if not rest:
+        return line
+    prefix_width = len(line) - len(stripped)
+    shifted_marks = "#" * min(len(heading_marks) + levels, 6)
+    return f"{line[:prefix_width]}{shifted_marks} {rest}"
+
+
+def _normalize_embedded_comparison_markdown(markdown: str) -> str:
+    normalized_lines: list[str] = []
+    for line in markdown.strip().splitlines():
+        if line.startswith("# "):
+            continue
+        normalized_lines.append(_shift_heading(line, levels=1))
+    return "\n".join(normalized_lines).strip()
+
+
 def _read_goal_demo_specs(path: Path) -> list[GoalDemoSpec]:
     rows = _load_jsonl(path)
     specs = [
@@ -453,6 +580,18 @@ def build_publishable_local_report(
     net_gain = float(adapter_overall["citation_exact_match"]) - float(
         base_overall["citation_exact_match"]
     )
+    task_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_task_type")
+    tract_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_tract")
+    strongest_task = task_rows[0] if task_rows else None
+    weakest_task = _lowest_metric_row(task_rows)
+    strongest_tract = tract_rows[0] if tract_rows else None
+    zero_gain_tracts = [
+        row for row in tract_rows if float(row["candidate_exact"]) == 0.0 and int(row["count"]) > 0
+    ]
+    goal_demo_summary = _summarize_goal_demo_rows(goal_demo_rows)
+    representative_win = _find_goal_demo_win(goal_demo_rows)
+    representative_failure = _find_goal_demo_failure(goal_demo_rows)
+    embedded_comparison_markdown = _normalize_embedded_comparison_markdown(comparison_markdown)
     runtime_minutes = _runtime_minutes(
         str(train_metadata.get("start_time")) if train_metadata.get("start_time") else None,
         str(train_metadata.get("end_time")) if train_metadata.get("end_time") else None,
@@ -517,6 +656,108 @@ def build_publishable_local_report(
         lines.append(f"- Published adapter: [Hugging Face model page]({published_model_url})")
     if release_url is not None:
         lines.append(f"- GitHub release: [Release page]({release_url})")
+
+    lines.extend(
+        [
+            "",
+            "## Executive Readout",
+            "",
+            "| Slice | Base | Adapter | Delta |",
+            "| --- | ---: | ---: | ---: |",
+            f"| Held-out test citation exact | "
+            f"`{_format_percent(float(base_overall['citation_exact_match']))}` | "
+            f"`{_format_percent(float(adapter_overall['citation_exact_match']))}` | "
+            f"`{_format_percent(net_gain)}` |",
+        ]
+    )
+    if strongest_task is not None:
+        lines.append(
+            f"| Strongest task: {strongest_task['label']} | "
+            f"`{_format_percent(float(strongest_task['baseline_exact']))}` | "
+            f"`{_format_percent(float(strongest_task['candidate_exact']))}` | "
+            f"`{_format_percent(float(strongest_task['delta_exact']))}` |"
+        )
+    if strongest_tract is not None:
+        lines.append(
+            f"| Strongest tract: {strongest_tract['label']} | "
+            f"`{_format_percent(float(strongest_tract['baseline_exact']))}` | "
+            f"`{_format_percent(float(strongest_tract['candidate_exact']))}` | "
+            f"`{_format_percent(float(strongest_tract['delta_exact']))}` |"
+        )
+    if goal_demo_summary["total"] > 0:
+        lines.append(
+            f"| Goal-demo exact citations | "
+            f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` | "
+            f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}` | "
+            f"`+{goal_demo_summary['adapter_only_wins']}` |"
+        )
+
+    if task_rows:
+        lines.extend(
+            [
+                "",
+                "Strongest task slices:",
+                "",
+            ]
+        )
+        for row in task_rows[:3]:
+            lines.append(
+                f"- {row['label']}: {_format_percent(float(row['candidate_exact']))} exact over "
+                f"`{row['count']}` held-out prompts."
+            )
+
+    if tract_rows:
+        lines.extend(
+            [
+                "",
+                "Strongest tract slices:",
+                "",
+            ]
+        )
+        for row in tract_rows[:3]:
+            lines.append(
+                f"- {row['label']}: {_format_percent(float(row['candidate_exact']))} exact over "
+                f"`{row['count']}` held-out prompts."
+            )
+
+    weak_spot_lines: list[str] = []
+    if weakest_task is not None and float(weakest_task["candidate_exact"]) == 0.0:
+        weak_spot_lines.append(
+            f"- Hardest task type remains {weakest_task['label']} at "
+            f"{_format_percent(float(weakest_task['candidate_exact']))} exact over "
+            f"`{weakest_task['count']}` prompts."
+        )
+    if zero_gain_tracts:
+        weak_spot_lines.append(
+            "- Zero-gain tracts in this run: "
+            + ", ".join(str(row["label"]) for row in zero_gain_tracts)
+            + "."
+        )
+    if goal_demo_summary["total"] > 0:
+        weak_spot_lines.append(
+            f"- Goal-demo exact citations move from "
+            f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` to "
+            f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}`, "
+            f"leaving `{goal_demo_summary['both_miss']}` shared misses for qualitative review."
+        )
+    if weak_spot_lines:
+        lines.extend(["", "Persistent weak spots:", ""])
+        lines.extend(weak_spot_lines)
+
+    representative_lines: list[str] = []
+    if representative_win is not None:
+        representative_lines.append(
+            f"- Clear adapter win: slot {representative_win['slot']} "
+            f"`{representative_win['title']}`."
+        )
+    if representative_failure is not None:
+        representative_lines.append(
+            f"- Representative stubborn failure: slot {representative_failure['slot']} "
+            f"`{representative_failure['title']}`."
+        )
+    if representative_lines:
+        lines.extend(["", "Representative examples:", ""])
+        lines.extend(representative_lines)
 
     lines.extend(
         [
@@ -633,7 +874,7 @@ def build_publishable_local_report(
         [
             "## Comparison Summary",
             "",
-            comparison_markdown.strip(),
+            embedded_comparison_markdown,
             "",
             "## What This Demonstrates",
             "",

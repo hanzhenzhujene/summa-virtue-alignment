@@ -253,8 +253,13 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "<svg" in comparison_svg_path.read_text(encoding="utf-8")
     report_text = report_path.read_text(encoding="utf-8")
     assert "## Canonical Purpose" in report_text
+    assert "## Executive Readout" in report_text
+    assert "Goal-demo exact citations" in report_text
+    assert "Clear adapter win" in report_text
     assert "## Goal Demo Panel" in report_text
     assert "Base citation exact match" in report_text
     assert "https://huggingface.co/example/model" in report_text
     assert "https://github.com/example/release" in report_text
+    assert "# Christian Virtue Run Comparison" not in report_text
+    assert "### Overall" in report_text
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in report_text

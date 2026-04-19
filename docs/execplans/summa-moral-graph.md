@@ -60,6 +60,12 @@
       “first-class public entry surfaces”
     - publication verification is being widened so those data-facing docs are checked alongside the
       README, fine-tune guide, maintainer doc, experiment index, and flagship report
+  - the next polish target after surface coherence is report readability at research-lead level:
+    - the flagship local report is now being upgraded with an executive readout that summarizes the
+      strongest task slices, strongest tracts, persistent weak spots, and goal-demo scoreboard
+      before the full evidence dump
+    - the embedded comparison markdown is also being normalized so the report no longer contains an
+      awkward nested top-level heading inside the comparison section
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -617,6 +623,10 @@
 - A dataset card can technically exist while still under-serving the public story. For this repo,
   the dataset itself is a headline product, so the dataset card and `data/processed/sft/README.md`
   also need to point readers toward the guide, flagship report, and canonical published baseline.
+- A report can be exhaustive and still underperform publicly if it makes the reader work too hard
+  for the top-line judgment. Once the flagship report had all the tables and examples, the next
+  quality step was to surface an executive readout that says plainly where the adapter is strong,
+  where it is weak, and what the goal-demo panel actually shows.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -848,6 +858,9 @@
 - Treat the dataset-facing docs as part of that same release surface. The canonical publication
   check should also fail if the dataset card or `data/processed/sft/README.md` drift away from the
   guide, flagship report, or committed export paths.
+- Treat the flagship report as both an evidence archive and an executive research artifact. The
+  published report should surface the headline strengths, weak spots, and goal-demo score before
+  the long-form tables, and the publication gate should fail if that executive layer disappears.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1073,6 +1086,15 @@
       flagship local report
     - publication verification now checks those two surfaces as part of the canonical release
       bundle
+  - the flagship report now reads more like a polished research deliverable:
+    - it opens with an executive readout instead of forcing readers to infer the headline from the
+      later comparison tables
+    - it now calls out strongest task slices, strongest tracts, persistent weak spots, and one
+      representative win / one representative failure from the fixed goal-demo panel
+    - the embedded comparison section no longer restarts at a nested top-level heading, so the
+      report structure reads cleanly as one document
+    - publication verification now expects the executive readout language to remain present in the
+      canonical published report
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed
