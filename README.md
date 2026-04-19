@@ -81,6 +81,30 @@ The purpose of this SFT is not merely to copy citation strings. The target behav
 Aquinas-grounded Christian virtue assistant that answers within reviewed evidence, uses Aquinas's
 moral categories, and preserves source traceability.
 
+### Why This SFT Counts As A Real Win
+
+The local `pilot-lite` baseline is intentionally modest, but the result is still clear: the
+adapter learns a real task-specific behavior shift over the untouched base model. The optimization
+trace is stable, and the held-out benchmark moves in the right direction on the most structured,
+evidence-grounded task families.
+
+| Held-out `test` slice | Base | Adapter | Delta |
+| --- | ---: | ---: | ---: |
+| Overall citation exact | `0.0%` | `15.0%` | `+15.0%` |
+| Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
+| Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
+| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
+| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+
+| Training trace | Held-out improvement |
+| --- | --- |
+| ![Pilot-lite training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg) | ![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg) |
+| Stable local optimization on `mps`: loss falls, token accuracy rises, and the run completes in about `4.7` minutes. | The adapter improves the overall held-out benchmark and shows the strongest gains on virtue-concept and reviewed-relation tasks. |
+
+If you want the full breakdown, including tract-wise slices and qualitative successes/failures, go
+straight to the flagship report:
+[docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md).
+
 ## Reproduce The Canonical Local Result
 
 The official public reproduction path is the local Apple-Silicon `pilot-lite` baseline.

@@ -2,6 +2,14 @@
 
 ## Progress
 
+- The GitHub-facing results story is now being tightened so a reviewer can see the SFT success
+  case without digging through the long report:
+  - the README now foregrounds a compact held-out benchmark table instead of only listing the
+    overall citation gain in prose
+  - the README also now embeds the canonical training-curve SVG and base-vs-adapter comparison SVG
+    directly inside the key-results section
+  - the experiment index now mirrors that same quick-read table and figure pair so the repo has a
+    second GitHub-visible results surface beyond the top-level README
 - The external adapter page is now being treated as a first-class research surface instead of a
   thin post-hoc upload:
   - the Hugging Face model card template now emits a stronger abstract, snapshot table, benchmark
@@ -642,6 +650,10 @@
 
 ## Surprises & Discoveries
 
+- For the GitHub repo page, “good results” were already present but not yet legible at first
+  glance. The missing ingredient was not more experiments; it was a tighter visual/results summary
+  that puts the training curve and base-vs-adapter improvement directly on the public landing
+  surface.
 - The weakest remaining public surface was not another missing experiment or repo doc. It was the
   live Hugging Face model page itself: even after the local package improved, the published README
   still undersold the project until the publication template, package tests, and actual Hub upload
@@ -883,6 +895,12 @@
 
 ## Decision Log
 
+- Treat the GitHub README and experiment index as results surfaces, not only navigation docs. They
+  should show:
+  - one compact held-out benchmark table
+  - one visible training-curve figure
+  - one visible base-vs-adapter comparison figure
+  - one short interpretive sentence that explains why those visuals support the SFT claim
 - Treat the Hugging Face model page as part of the review-grade publication surface, not as a
   secondary mirror. The generated model card should include:
   - a strong abstract and snapshot table
@@ -1138,6 +1156,13 @@
 
 ## Outcomes & Retrospective
 
+- The GitHub repo now makes the local SFT result legible much faster:
+  - the README now shows both the training curve and held-out improvement figure inside the key
+    results section
+  - the README also now includes a compact base-vs-adapter table that surfaces the strongest task
+    gains instead of forcing readers into the long-form report
+  - the experiment index now mirrors that same visual quick-read so the result remains clear even
+    one click below the repo root
 - The live external adapter page now reads much closer to a reviewer-grade research artifact:
   - the Hugging Face model card now exposes the run snapshot, benchmark figure, usage code,
     direct GitHub/dataset/report links, and the final verify command on the page itself

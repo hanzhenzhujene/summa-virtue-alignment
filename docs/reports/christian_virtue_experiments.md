@@ -48,6 +48,21 @@ Headline result on the held-out `test` split:
 - adapter citation exact match: `0.150`
 - net gain: `+0.150`
 
+### Quick Read: Why This Shows The SFT Works
+
+| Held-out `test` slice | Base | Adapter | Delta |
+| --- | ---: | ---: | ---: |
+| Overall citation exact | `0.0%` | `15.0%` | `+15.0%` |
+| Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
+| Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
+| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
+| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+
+| Training trace | Benchmark improvement |
+| --- | --- |
+| ![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg) | ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg) |
+| A clean local optimization trace on Apple `mps`: loss falls sharply and token accuracy rises over the 20-step run. | The adapter materially outperforms base on the held-out benchmark, especially on virtue-concept and reviewed-relation tasks. |
+
 ## Canonical Command Surface
 
 ```bash
