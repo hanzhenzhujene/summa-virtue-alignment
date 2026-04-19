@@ -1,7 +1,7 @@
 # Summa Virtutum
 
-Canonical SFT guide, demo, and evidence package for fine-tuning on Summa Moral Graph, built from
-Thomas Aquinas's moral corpus in the *Summa Theologiae*.
+Evidence-first Thomist moral virtue SFT and evidence browser built from Thomas Aquinas's moral
+corpus in the *Summa Theologiae*.
 
 [![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
 [![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
@@ -12,78 +12,102 @@ Thomas Aquinas's moral corpus in the *Summa Theologiae*.
 ![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
-> This repo is the public guide, demo, and proof-of-work for fine-tuning on Summa Moral Graph.
-> It gives you the committed Christian virtue dataset, the exact training/eval commands, the
-> released adapter, and the held-out evidence that the SFT actually moves model behavior.
+> This repo is the public guide, dataset, minimal demo, and evidence package for aligning language
+> models to Thomist moral virtue.
+>
+> Minimal example, not ceiling: the released `Qwen/Qwen2.5-1.5B-Instruct` LoRA adapter is a
+> deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
+> evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final
+> model.
 >
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
 > [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
 ## Start Here
 
-If your goal is to use this repo for SFT, start with this path:
-
 | I want to... | Start here |
 | --- | --- |
-| Reproduce the canonical local baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
-| Train my own model on the same dataset | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
-| Inspect the released adapter and public run artifacts | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite) · [GitHub release](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
-| Read the strongest evidence that the SFT works | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) |
-| Inspect the underlying corpus and graph | [Live viewer](https://summa-moral-graph.streamlit.app/) |
+| Reproduce the minimal public baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
+| Understand the training goal and method | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
+| Inspect the strongest research evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) |
+| Inspect the published model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite) · [GitHub release](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
+| Audit the underlying passages and graph | [Live viewer](https://summa-moral-graph.streamlit.app/) |
 
-## What This Repo Is
+## Why This Repo Exists
 
-This repository has two tightly connected research products:
+From first principles, supervised fine-tuning only helps when the supervision actually matches the
+behavior you want.
 
-1. a reproducible fine-tuning pipeline for an Aquinas-grounded Christian virtue assistant
-2. an interactive evidence-first viewer for Aquinas's moral corpus
+If the target behavior is Thomist moral virtue reasoning, then the training signal must be:
 
-The core research problem is the same in both surfaces: how to move from concept to relation to
-passage to model behavior without losing textual grounding. In public-facing terms, the SFT path is
-the main demo, and the viewer is the evidence surface that lets you inspect what the model is being
-trained from.
+- doctrinally coherent rather than theologically generic
+- passage-grounded rather than article-blob supervision
+- reviewed rather than candidate-level guesswork
+- inspectable after training rather than hidden behind opaque preprocessing
 
-In the Summa article form, this repo keeps only `resp` and `ad` segments as doctrinal evidence.
-Opening objections and `sed contra` material are parsed for structure, but they are not promoted
-into the doctrinal evidence layer used by the viewer or the default SFT dataset.
+Generic religion corpora are too broad for that target. Raw article dumps are too coarse. Candidate
+annotations are too noisy. Summa Moral Graph exists to solve that problem with a reviewed,
+segment-grounded Christian virtue dataset tied to Aquinas's moral corpus.
 
-## The SFT Goal
+## What This Repo Contributes
 
-The goal of this repo is to train an Aquinas-grounded Christian virtue assistant.
+| Surface | What it is | Why it matters |
+| --- | --- | --- |
+| Christian virtue SFT dataset | `555` reviewed doctrinal annotations turned into `1883` chat-style examples | Gives a reusable supervised signal for Thomist moral virtue alignment |
+| Minimal local proof-of-pipeline | A reproducible `Qwen/Qwen2.5-1.5B-Instruct` LoRA run on Apple Silicon `mps` | Shows the method works end to end on ordinary hardware |
+| Public evaluation and release surface | Held-out benchmarks, curated report, Hugging Face adapter, GitHub release | Makes the research claim inspectable rather than aspirational |
+| Evidence browser | Streamlit app for passages, concepts, relations, and graph slices | Lets a reader audit what the model is being trained from |
 
-Concretely, that means a model that:
+## SFT Purpose: Thomist Moral Virtue Alignment
 
-- explains virtues, vices, acts, parts, and oppositions in Aquinas's categories
-- answers within reviewed doctrinal evidence rather than generic moralizing
-- preserves citation traceability back to stable passage ids
+The goal is not to build a generic theology chatbot, a devotional assistant, or a pious citation
+emitter.
 
-The published 1.5B run is a small demo baseline chosen to prove this workflow end to end. Stronger
-final results should come from larger models and longer GPU-backed training, using the same dataset
-and evaluation pattern.
+The goal is to align a model to Thomist moral virtue: the moral architecture Aquinas develops
+across the theological virtues, prudence, justice, fortitude, temperance, their acts, objects,
+parts, opposed vices, and tract-local doctrinal relations.
 
-## Method At A Glance
+A successful model in this repo should be able to do things like:
 
-The repository is organized around five non-negotiable design choices:
+- explain what prudence is in Aquinas's framework
+- distinguish a virtue from its act, object, part, or opposed vice
+- explain why charity has fraternal correction as an act
+- explain why restitution belongs to commutative justice
+- stay inside reviewed textual support rather than drifting into generic moralizing
 
-- the canonical evidence unit is the segment id, not the whole article
-- stable ids stay attached from `data/interim/` through dataset exports, reports, and model runs
-- reviewed doctrinal, structural-editorial, structural, and candidate layers remain separate
-- candidate material is never auto-promoted into approved truth
-- the public baseline is intentionally small and reproducible so the SFT loop can be verified end
-  to end before larger GPU runs
+In scope:
 
-For the Christian virtue SFT release, the default builder:
+- Aquinas-grounded explanations of virtues, vices, acts, parts, and oppositions
+- evidence-bounded doctrinal QA
+- citation traceability back to stable passage ids
 
-- reads the canonical textual spine from `data/interim/`
-- joins only approved doctrinal annotations from selected virtue tracts in `data/gold/`
-- filters to `explicit_textual` and `strong_textual_inference`
-- emits four instruction families with stable passage ids and citation labels
-- evaluates base and adapter models on held-out prompt-only benchmarks
+Out of scope:
 
-## Key Results
+- generic religion chat
+- unconstrained pastoral or spiritual advice
+- candidate material or structural-editorial review treated as training truth
+- objections and `sed contra` used as default doctrinal supervision
 
-This repo is meant to do more than host a dataset. It is meant to show, publicly and
-reproducibly, that Summa Moral Graph supervision can train a model in the right direction.
+Because Aquinas's own answer in the *Summa* is carried chiefly by the `resp` and `ad` segments,
+those are the default doctrinal evidence units in this repo. Opening objections and `sed contra`
+are parsed for article structure, but they are not promoted into the default SFT supervision layer.
+
+## Why This Dataset Is Worth Using
+
+From first principles, a good SFT dataset is valuable when its signal quality is high even if its
+scale is modest. The strength of this dataset is not just that it exists; it is that its evidence
+policy is explicit and disciplined.
+
+| Design choice | Why it matters |
+| --- | --- |
+| Segment id is the evidence unit | Keeps supervision attached to precise textual support instead of vague article-level blobs |
+| Only approved reviewed doctrinal annotations are used | Avoids silently training on speculative or candidate material |
+| `resp` and `ad` only by default | Centers supervision on Aquinas's own answer rather than surrounding article structure |
+| Stable ids survive end to end | Makes reports, predictions, and model outputs auditable back to source passages |
+| Grouped `question_id` splits | Reduces leakage across train and held-out evaluation |
+| Prompt-only benchmark exports | Keeps held-out inference honest by removing the gold assistant answer from generation input |
+
+## Dataset Snapshot
 
 ### Corpus Surface
 
@@ -91,109 +115,132 @@ reproducibly, that Summa Moral Graph supervision can train a model in the right 
 - `1482` articles
 - `6032` doctrinally usable `resp`/`ad` segments
 
-### Christian Virtue Dataset
+### Virtue-Centered SFT Export
 
+- dataset: [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1)
+- optional OOD companion:
+  [data/processed/sft/exports/christian_virtue_v1_ood](./data/processed/sft/exports/christian_virtue_v1_ood)
 - `555` approved doctrinal source annotations
 - `1883` SFT examples
 - split sizes: `1475` train, `175` val, `233` test
-- task families:
-  - `555` passage-grounded doctrinal QA
-  - `555` reviewed relation explanation
-  - `555` citation-grounded moral answer
-  - `218` virtue concept explanation
+- default grouping key: `question_id`
 
-### Canonical Local Baseline
+The v1 doctrinal scope is virtue-centered: theological virtues, prudence, justice core, connected
+virtues, fortitude parts and closure, and temperance parts and closure.
 
-- model: `Qwen/Qwen2.5-1.5B-Instruct`
-- method: LoRA on Apple Silicon `mps`
-- official local rung: `pilot-lite`
-- role: small demo baseline for proving the SFT pipeline
-- held-out `test` citation exact match:
-  - base: `0.000`
-  - adapter: `0.150`
-  - gain: `+0.150`
+### Task Families
 
-The purpose of this SFT is not merely to copy citation strings. The target behavior is an
-Aquinas-grounded Christian virtue assistant that answers within reviewed evidence, uses Aquinas's
-moral categories, and preserves source traceability.
+| Task family | Count | What it teaches |
+| --- | ---: | --- |
+| Passage-grounded doctrinal QA | `555` | Answer from a cited passage without leaving the evidence |
+| Reviewed relation explanation | `555` | Explain subject-relation-object claims in natural language |
+| Citation-grounded moral answer | `555` | Answer user-style moral questions with explicit passage traceability |
+| Virtue concept explanation | `218` | Explain a virtue, vice, act, or part relation from supporting passages |
 
-### Why This SFT Counts As A Real Win
+## Minimal Local Example: Qwen2.5-1.5B
 
-This local `pilot-lite` run uses a deliberately small 1.5B model so the repo can serve as a
-practical guide and demo. Even with that small demo baseline, the adapter learns a real
-task-specific behavior shift over the untouched base model. The optimization trace is stable, and
-the held-out benchmark moves in the right direction on the most structured, evidence-grounded task
-families.
+The canonical public baseline is a minimal example.
 
-Goal-aligned virtue slices:
+| Property | Value |
+| --- | --- |
+| Base model | `Qwen/Qwen2.5-1.5B-Instruct` |
+| Training method | LoRA on Apple Silicon `mps`, `float16`, no quantization |
+| Public rung | `pilot-lite` |
+| Train subset | `128` examples |
+| Eval subset | `16` examples |
+| Max steps | `20` |
+| Runtime goal | Honest end-to-end reproducibility on a 16 GB laptop |
 
-| Held-out virtue slice | Base | Adapter | Delta |
+This is the smallest serious baseline we can ask a new user to reproduce locally.
+
+This is not the strongest achievable final model.
+
+What it proves:
+
+- the reviewed dataset can move model behavior in the right Thomist direction
+- the local train / infer / eval / report / package loop is real, not aspirational
+- the repo is usable as a public fine-tuning template
+
+What it does not prove:
+
+- that `1.5B` is the intended final deployment size
+- that local Apple-Silicon training is the best path for strongest model quality
+- that citation exact match is the whole theological evaluation story
+
+## How Good Is The Minimal Example?
+
+Automatic metric shown below: exact citation match on held-out prompts. In this repo, that metric
+is a useful guardrail for evidence-bounded Thomist answering, but it is not the whole purpose of
+the SFT.
+
+Headline held-out `test` result on `233` prompts:
+
+- overall citation exact: `0.000` on base -> `0.150` on adapter
+
+Goal-aligned Thomist moral virtue slices:
+
+| Held-out slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
 | Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
 | Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
 | Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
 | Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
 
+Why this is meaningful:
+
+- base is `0.0%` across the public goal-aligned slices, so the adapter is not merely preserving an
+  already-good baseline
+- the adapter improves every public goal-aligned slice we foreground in the README
+- this happens in a deliberately minimal example, which makes the dataset and method more credible
+  as a reusable template
+
 #### Training Trace
 
 ![Pilot-lite training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
 
-Stable local optimization on `mps`: loss falls, token accuracy rises, and the canonical run
-completes in about `4.7` minutes.
+*Figure 1. Loss and mean token accuracy across the canonical `pilot-lite` local run. The point of
+this figure is not state-of-the-art scale; it is to show a stable, inspectable optimization trace
+for the minimal public example.*
 
 #### Held-Out Improvement
 
 ![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-The adapter improves the goal-aligned held-out virtue slices and shows the strongest gains on
-virtue-concept and reviewed-relation tasks.
+*Figure 2. Held-out exact citation match for the untouched base model versus the LoRA adapter,
+restricted to goal-aligned virtue task families. This is the central public empirical claim of the
+repo: even a minimal example can align model behavior toward Thomist moral virtue reasoning.*
 
-This is the important framing for the repo: the published 1.5B run is the easy-to-reproduce demo,
-not the ceiling. The same dataset and workflow are designed so larger models and longer GPU runs
-can push the result further once the proof-of-pipeline baseline is established.
+If you want the full breakdown, including tract-wise slices and qualitative examples, go directly
+to the
+[flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md).
 
-If you want the full breakdown, including tract-wise slices and qualitative examples, go
-straight to the flagship report:
-[docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md).
+## Reproduce The Minimal Example
 
-## Reproduce The Canonical Local Result
-
-The official public reproduction path is the local Apple-Silicon `pilot-lite` baseline.
-
-### 1. Setup
-
-This command creates `.venv`, installs the pinned local lockfile, and then installs the repo in
-editable mode without re-resolving dependencies:
+The canonical public path is intentionally short:
 
 ```bash
 make setup-christian-virtue-local
-```
-
-The canonical lockfile lives at
-[requirements/local-mps-py312.lock.txt](./requirements/local-mps-py312.lock.txt).
-
-### 2. Run The Full Local Research Loop
-
-This command rebuilds the dataset if needed, runs `smoke`, runs the canonical `pilot-lite` train,
-generates base and adapter predictions on held-out `test`, compares them, rebuilds the curated
-report, and runs the publication verification gate:
-
-```bash
 make reproduce-christian-virtue-qwen2-5-1-5b-local
+make public-release-check
 ```
 
-If you want the stepwise path instead of the one-command path:
+What these commands do:
 
-```bash
-make build-christian-virtue-sft
-make train-christian-virtue-qwen2-5-1-5b-local-smoke
-make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make eval-christian-virtue-qwen2-5-1-5b-local-base-test
-make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
-make compare-christian-virtue-qwen2-5-1-5b-local-test
-make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make verify-christian-virtue-qwen2-5-1-5b-local-publishable
-```
+- `make setup-christian-virtue-local`
+  - creates `.venv`
+  - installs the pinned Apple-Silicon environment from
+    [requirements/local-mps-py312.lock.txt](./requirements/local-mps-py312.lock.txt)
+- `make reproduce-christian-virtue-qwen2-5-1-5b-local`
+  - rebuilds the dataset if needed
+  - runs `smoke`
+  - runs the canonical `pilot-lite` train
+  - generates base and adapter held-out predictions
+  - compares them and rebuilds the curated report
+- `make public-release-check`
+  - runs `ruff`
+  - runs `mypy`
+  - runs the targeted publication-surface tests
+  - verifies repo/package coherence for the published Christian virtue release
 
 Expected outputs land under:
 
@@ -201,18 +248,10 @@ Expected outputs land under:
 - `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
 - `artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/`
 
-### 3. Run The Public-Release Check
+For the full stepwise path, model swapping guide, and remote CUDA path, see
+[docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md).
 
-Before you share this repo as a research artifact, run:
-
-```bash
-make public-release-check
-```
-
-That target runs `ruff`, `mypy`, the targeted publication-surface tests, and the repo/package
-coherence verification gate for the canonical Christian virtue release.
-
-## Public SFT Artifacts
+## Public Artifacts
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
@@ -220,37 +259,48 @@ coherence verification gate for the canonical Christian virtue release.
   [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+- Dataset card:
+  [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
 - Fine-tuning guide:
   [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
 - Maintainer workflow:
   [docs/christian_virtue_sft.md](./docs/christian_virtue_sft.md)
-- Dataset card:
-  [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
-- Repository map:
-  [docs/repository_map.md](./docs/repository_map.md)
 
 ## Fine-Tune Your Model With Summa Moral Graph
 
-This repo is the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
+If you want to train your own model on the same evidence-first supervision, this repo is the
+public entrypoint.
 
-The intended outcome is not a generic theology chatbot. It is a model that can:
+Start with:
 
-- explain virtue, vice, act, object, part, and opposition in Aquinas's categories
-- answer within reviewed doctrinal evidence
-- preserve stable passage-id traceability
-- give other researchers a concrete, inspectable adaptation recipe
-
-The committed public dataset exports live directly in the repo:
-
+- [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
+- [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
 - [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1)
 - [data/processed/sft/exports/christian_virtue_v1_ood](./data/processed/sft/exports/christian_virtue_v1_ood)
 
-Recommended reading order for a new user:
+The smallest model-swap contract is:
 
-1. [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
-2. [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
-3. [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
-4. [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+- `model_name_or_path`
+- `lora_target_modules`
+- `runtime_backend`
+- `torch_dtype`
+- `max_seq_length`
+
+## Use Cases And Non-Goals
+
+Good use cases:
+
+- training a citation-aware Thomist moral virtue assistant
+- benchmarking whether a model can stay inside Aquinas's moral categories
+- comparing base vs adapter behavior on structured doctrinal tasks
+- reusing the same dataset and eval loop with larger local or remote models
+
+Not the intended use:
+
+- generic religion chat
+- broad catechetical coverage outside the repo's virtue-centered doctrinal scope
+- pastoral counseling or spiritual direction
+- training on candidate or structural-editorial material as if it were approved doctrine
 
 ## Repository Structure
 
@@ -271,7 +321,7 @@ scripts/
   generate_christian_virtue_predictions.py
   eval_christian_virtue_sft.py
   run_christian_virtue_qwen2_5_1_5b_local_*.sh
-  README.md      grouped entrypoints and public-vs-maintainer guidance
+  README.md
 src/summa_moral_graph/
   annotations/  tract-specific reviewed overlays and specs
   ingest/       textual parsing and normalization
@@ -289,7 +339,7 @@ tests/
 For a fuller guided tour, see [docs/repository_map.md](./docs/repository_map.md).
 For a grouped entrypoint guide, see [scripts/README.md](./scripts/README.md).
 
-## Open The Viewer
+## Evidence Browser
 
 **Live app:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 
@@ -300,8 +350,8 @@ The Streamlit entrypoint is [streamlit_app.py](./streamlit_app.py).
 | ![Dashboard home](docs/assets/dashboard-home.png) | ![Overall map](docs/assets/dashboard-overall-map.png) |
 | _Landing view with concept, passage, tract, and map entry routes._ | _Graph view with doctrinal edges, evidence panel, and current-slice controls._ |
 
-The viewer is built to be read, not merely queried. It lets a user move from concept to relation to
-segment to graph while keeping the underlying evidence visible.
+The viewer is the companion evidence surface for the SFT work. It lets a reader move from concept
+to relation to segment to graph while keeping the underlying reviewed evidence visible.
 
 Run it locally with:
 

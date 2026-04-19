@@ -26,6 +26,12 @@
     surface rather than a pile of ad hoc helpers
   - the public reproducibility story is gaining one shorter memorable `make` target for final
     release checks instead of relying only on the longer canonical verify command name
+- The README is now being reworked from first principles so the public landing page answers the
+  right questions in the right order:
+  - why Thomist moral virtue alignment needs a different dataset than generic theology chat
+  - why the committed dataset is worth trusting
+  - why the public `1.5B` run is a minimal example rather than the claimed ceiling
+  - what the result actually proves for a reviewer or collaborator
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many
@@ -695,6 +701,9 @@
 - “Looks documented” is not the same as “is navigable.” Even after the README improved, the lack
   of top-level docstrings in a cluster of core SFT modules and the absence of a `scripts/README.md`
   still made the implementation surface feel denser than it needed to for a reviewer-grade repo.
+- A README can contain the right facts and still underperform if it answers them in the wrong
+  order. For this repo, reviewers need to see the problem, purpose, dataset discipline, minimal
+  example framing, and empirical claim before they need the long command inventory.
 - Making the SFT more prominent did not mainly require new metrics. The bigger usability win was
   narrative: readers needed a clearer first-action path and larger result figures more than they
   needed another paragraph about why the repo matters.
@@ -972,6 +981,10 @@
     ones are maintenance helpers
   - a short memorable public-release check target is worth adding even if the longer specialized
     verify command remains available
+- Treat README framing as part of the research claim itself:
+  - the landing page should say explicitly that the `1.5B` adapter is a minimal example
+  - it should explain that the purpose is Thomist moral virtue alignment, not generic theology chat
+  - it should explain why the dataset is trustworthy before asking the reader to trust the result
 - Treat the Hugging Face model page as part of the review-grade publication surface, not as a
   secondary mirror. The generated model card should include:
   - a strong abstract and snapshot table
@@ -1245,6 +1258,11 @@
     reproduction commands from tract-maintenance utilities
   - a shorter `make public-release-check` alias is being introduced to make final release QA easier
     to remember and cite in docs
+- The README is now being tightened into a more reviewer-grade research landing page:
+  - the top-level story now starts from the problem and purpose, not just from command routing
+  - the minimal-example status of the public `1.5B` run is now explicit and prominent
+  - the dataset task families and evidence policy are now explained as reasons to trust the SFT
+    signal, not just as background facts
 - The repo root now reads more clearly as an SFT deliverable instead of a mixed-surface codebase:
   - the README now leads with the guide/demo/proof framing for Summa Moral Graph fine-tuning
   - a `Start Here` table now reduces the number of clicks needed for a new user to choose the

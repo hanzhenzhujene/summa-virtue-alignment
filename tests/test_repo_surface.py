@@ -56,6 +56,14 @@ def test_public_release_check_is_documented() -> None:
     assert "public-release-check:" in makefile_text
 
 
+def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
+    readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
+    assert "thomist moral virtue" in readme_text
+    assert "minimal example" in readme_text
+    assert "generic theology chatbot" in readme_text
+    assert "not the strongest achievable final model" in readme_text
+
+
 def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     scripts_guide = (REPO_ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
     assert "setup_christian_virtue_local.sh" in scripts_guide
