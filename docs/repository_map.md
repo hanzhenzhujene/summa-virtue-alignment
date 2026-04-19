@@ -5,6 +5,7 @@ model trainer.
 
 ## Public Entry Surfaces
 
+- [CITATION.cff](../CITATION.cff): citation metadata for the public software and dataset release
 - [README.md](../README.md): first-stop overview, headline results, and canonical reproduction path
 - [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md): external
   user guide for training or swapping in another model

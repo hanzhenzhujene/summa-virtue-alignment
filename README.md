@@ -27,6 +27,16 @@ text.
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
 > [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
+## Repository At A Glance
+
+| Dimension | Public answer |
+| --- | --- |
+| Core artifact | An evidence-first Christian virtue dataset and SFT workflow grounded in Aquinas's moral corpus |
+| Theological target | A Thomist moral virtue assistant that reasons within Aquinas's categories rather than generic religion chat |
+| Canonical local demo | `Qwen/Qwen2.5-1.5B-Instruct` LoRA on Apple Silicon `mps`, published as a minimal example rather than a final ceiling |
+| What a reviewer can inspect | Dataset exports, held-out benchmarks, curated report, released adapter, and live evidence browser |
+| Where to start | [Fine-tuning guide](./docs/fine_tune_with_summa_moral_graph.md) · [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) · [Repository map](./docs/repository_map.md) |
+
 ## Three Purposes
 
 This repo has three public purposes, and each one is visible in the repository itself:

@@ -43,6 +43,8 @@
     - the README title and opening summary are being aligned more explicitly to the real page
       identity: an evidence-first Thomist moral virtue alignment release rather than a merely
       branded project nickname
+    - the repo is also being upgraded from “good branch” to “strong public artifact” by adding a
+      clearer at-a-glance landing block and proper citation metadata for the release surface
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many

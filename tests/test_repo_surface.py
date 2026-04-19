@@ -6,6 +6,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
 PUBLIC_DOC_PATHS = [
+    REPO_ROOT / "CITATION.cff",
     REPO_ROOT / "README.md",
     REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md",
     REPO_ROOT / "docs" / "repository_map.md",
@@ -60,6 +61,7 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
     assert "# summa moral graph: thomist moral virtue alignment" in readme_text
     assert "evidence-first dataset, minimal sft demonstration, and audit surface" in readme_text
+    assert "## repository at a glance" in readme_text
     assert "## three purposes" in readme_text
     assert "## theological grounding" in readme_text
     assert "three public purposes" in readme_text
@@ -69,6 +71,13 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "not the strongest achievable final model" in readme_text
     assert "newadvent.org/summa/3023.htm#article1" in readme_text
     assert "newadvent.org/summa/3058.htm#article1" in readme_text
+
+
+def test_citation_file_states_public_release_identity() -> None:
+    citation_text = (REPO_ROOT / "CITATION.cff").read_text(encoding="utf-8").lower()
+    assert "summa moral graph: thomist moral virtue alignment" in citation_text
+    assert "thomas aquinas" in citation_text
+    assert "christian virtue" in citation_text
 
 
 def test_scripts_guide_names_canonical_local_entrypoints() -> None:
