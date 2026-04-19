@@ -2,6 +2,18 @@
 
 ## Progress
 
+- The external publication loop is now complete and publicly inspectable:
+  - the Hugging Face adapter page is live at
+    `https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b`
+  - the matching GitHub release page is live at
+    `https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038`
+  - `make public-release-check` is green on the same repo state, and
+    `.github/workflows/public-release-check.yml` now enforces that contract on `main`
+  - the public provenance story is now explicit rather than implied:
+    - the adapter-producing run remains `20260419_154300`
+    - the run commit remains `662c9d3`
+    - the publication commit that refreshed repo-facing docs, package links, and CI is `21dcc7c`
+    - the older GitHub release slug is still intentionally preserved for continuity
 - The publication bundle has now been brought back into coherence after the corrected rerun:
   - the local adapter package has been rebuilt from train run `20260419_154300` and adapter eval
     `20260419_154757`
@@ -767,6 +779,12 @@
 
 ## Surprises & Discoveries
 
+- External publication surfaced a real provenance nuance:
+  - the adapter-producing training commit and the later publication-refresh commit are not the same
+  - preserving both turned out to be the honest solution, because the release should still point
+    back to the actual adapter-producing run while the current repo docs and package links move
+    forward with the later publication commit
+  - that is why the package surfaces now need both `git_commit` and `publication_git_commit`
 - Fixing the benchmark defect did not simply move the headline in one direction:
   - the corrected local-baseline adapter now lands at `0.137` held-out citation exact instead of
     the earlier `0.150`
@@ -1055,6 +1073,19 @@
 
 ## Decision Log
 
+- Keep the public release identity stable while distinguishing run provenance from publication
+  provenance.
+  Reason:
+  - the existing GitHub release slug is already linked across the repo and external publication
+    surfaces
+  - the adapter itself was produced from run commit `662c9d3`, which should remain the authoritative
+    training provenance
+  - the later repo polish and publication sync landed at `21dcc7c`, which should remain visible as
+    the publication-refresh commit
+  Consequence:
+  - generated package surfaces now carry both commit roles explicitly
+  - the live Hugging Face page and GitHub release can stay stable without pretending the training
+    run and publication refresh happened on one identical commit
 - Treat the repo-local adapter package and flagship report as the canonical evaluation surfaces for
   the corrected rerun even before the public distribution endpoints are refreshed.
   Reason:
@@ -1379,6 +1410,12 @@
 
 ## Outcomes & Retrospective
 
+- The publication story is now complete enough to hand to an outsider without caveats about missing
+  endpoints:
+  - the GitHub repo, GitHub release, Hugging Face adapter page, curated report, dataset card, and
+    package manifest now form one inspectable release surface
+  - the remaining frontier is therefore model quality and future scope, not basic publication
+    hygiene
 - The publication-integrity layer is now stronger and more honest:
   - the repo no longer asks readers to infer which result is authoritative
   - package metadata, package prose, README, guides, and the verifier now all agree that the
