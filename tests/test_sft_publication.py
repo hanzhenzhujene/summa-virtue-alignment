@@ -69,7 +69,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
         package_dir=package_dir,
         hf_repo_id="JennyZhu0822/demo",
         release_tag="demo-tag",
-        github_repo_url="https://github.com/hanzhenzhujene/summa-moral-graph-fork",
+        github_repo_url="https://github.com/hanzhenzhujene/summa-virtue-alignment",
         report_path=report_path,
         dataset_card_path=dataset_card_path,
     )
@@ -84,7 +84,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     ).exists()
     manifest = json.loads((package_dir / "package_manifest.json").read_text(encoding="utf-8"))
     assert manifest["hf_repo_id"] == "JennyZhu0822/demo"
-    assert manifest["github_repo_url"] == "https://github.com/hanzhenzhujene/summa-moral-graph-fork"
+    assert manifest["github_repo_url"] == "https://github.com/hanzhenzhujene/summa-virtue-alignment"
     assert manifest["local_train_run_id"] == "20260418_101010"
     assert manifest["dataset_summary"]["dataset_name"] == "christian_virtue_v1"
     assert manifest["dataset_summary"]["total_examples"] == 1883
@@ -113,7 +113,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "![Held-out benchmark comparison]" in readme
     assert "Keep the tokenizer/chat template aligned with the listed base model" in readme
     assert "https://huggingface.co/JennyZhu0822/demo" in readme
-    assert "github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/demo-tag" in readme
+    assert "github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/demo-tag" in readme
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in readme
     assert "## Executive Readout" in release_notes
     assert "Strongest tract slice" in release_notes

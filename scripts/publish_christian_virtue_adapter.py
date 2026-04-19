@@ -16,7 +16,7 @@ from summa_moral_graph.sft import (
 )
 from summa_moral_graph.utils.paths import REPO_ROOT
 
-DEFAULT_HF_REPO_ID = "JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite"
+DEFAULT_HF_REPO_ID = "JennyZhu0822/summa-virtue-qwen2.5-1.5b"
 
 
 def _parse_github_remote_url(remote_url: str) -> tuple[str, str] | None:

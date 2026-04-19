@@ -1,4 +1,4 @@
-# Summa Moral Graph: Thomist Moral Virtue Alignment
+# Summa Virtue Alignment
 
 Evidence-first dataset, minimal SFT demonstration, and audit surface for training
 Aquinas-grounded Christian virtue assistants from reviewed passage-level supervision in the moral
@@ -6,10 +6,10 @@ corpus of Thomas Aquinas's *Summa Theologiae*.
 
 This public release is organized around three things: a reviewed Christian virtue dataset, a
 reproducible local fine-tuning path, and an inspectable theological evidence trail back to Aquinas's
-text.
+text, built on the evidence model and corpus work of Summa Moral Graph.
 
 [![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
-[![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+[![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-2f5d8a?style=flat-square)
@@ -24,7 +24,7 @@ text.
 > evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final
 > model.
 >
-> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
+> Source: [GitHub](https://github.com/hanzhenzhujene/summa-virtue-alignment) · by
 > [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
 ## Repository At A Glance
@@ -75,7 +75,7 @@ distinctions that remain tethered to Aquinas's own text.
 | Reproduce the minimal public baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
 | Understand the training goal and method | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
 | Inspect the strongest research evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) |
-| Inspect the published model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite) · [GitHub release](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
+| Inspect the published model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
 | Audit the underlying passages and graph | [Live viewer](https://summa-moral-graph.streamlit.app/) |
 
 ## Why This Repo Exists
@@ -306,9 +306,9 @@ For the full stepwise path, model swapping guide, and remote CUDA path, see
 ## Public Artifacts
 
 - Hugging Face adapter:
-  [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+  [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
 - Dataset card:

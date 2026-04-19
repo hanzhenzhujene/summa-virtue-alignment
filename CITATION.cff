@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Summa Moral Graph: Thomist Moral Virtue Alignment"
+title: "Summa Virtue Alignment"
 message: "If you use this repository, dataset, or released adapter, please cite this software release."
 type: software
 version: "0.3.0"
@@ -7,8 +7,8 @@ authors:
   - family-names: Zhu
     given-names: Hanzhen
     affiliation: Independent Researcher
-repository-code: "https://github.com/hanzhenzhujene/summa-moral-graph-fork"
-url: "https://github.com/hanzhenzhujene/summa-moral-graph-fork"
+repository-code: "https://github.com/hanzhenzhujene/summa-virtue-alignment"
+url: "https://github.com/hanzhenzhujene/summa-virtue-alignment"
 abstract: >-
   Evidence-first dataset, fine-tuning workflow, and audit surface for training
   Aquinas-grounded Christian virtue assistants from reviewed passage-level

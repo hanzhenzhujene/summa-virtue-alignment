@@ -14,10 +14,10 @@ from summa_moral_graph.sft import (
 from summa_moral_graph.utils.paths import REPO_ROOT
 
 DEFAULT_PUBLISHED_MODEL_URL = (
-    "https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite"
+    "https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b"
 )
 DEFAULT_RELEASE_URL = (
-    "https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/"
+    "https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/"
     "christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038"
 )
 

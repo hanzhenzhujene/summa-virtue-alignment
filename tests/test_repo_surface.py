@@ -59,8 +59,9 @@ def test_public_release_check_is_documented() -> None:
 
 def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
-    assert "# summa moral graph: thomist moral virtue alignment" in readme_text
+    assert "# summa virtue alignment" in readme_text
     assert "evidence-first dataset, minimal sft demonstration, and audit surface" in readme_text
+    assert "built on the evidence model and corpus work of summa moral graph" in readme_text
     assert "## repository at a glance" in readme_text
     assert "## three purposes" in readme_text
     assert "## theological grounding" in readme_text
@@ -75,7 +76,7 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
 
 def test_citation_file_states_public_release_identity() -> None:
     citation_text = (REPO_ROOT / "CITATION.cff").read_text(encoding="utf-8").lower()
-    assert "summa moral graph: thomist moral virtue alignment" in citation_text
+    assert 'title: "summa virtue alignment"' in citation_text
     assert "thomas aquinas" in citation_text
     assert "christian virtue" in citation_text
 

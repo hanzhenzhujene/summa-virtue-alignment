@@ -3,6 +3,12 @@
 ## Progress
 
 - The public SFT story is now being tightened around a clearer research-release framing:
+  - the canonical public slugs have now been renamed to cleaner artifact names:
+    - GitHub repo: `summa-virtue-alignment`
+    - Hugging Face model: `summa-virtue-qwen2.5-1.5b`
+  - first-screen public surfaces are being aligned to those names so the repo slug, README title,
+    citation metadata, and release links read coherently instead of mixing polished prose with old
+    fork-era identifiers
   - the 1.5B `pilot-lite` run is being described explicitly as a deliberately small demo baseline
     whose job is to prove the pipeline works end to end
   - README, fine-tune guide, experiment index, flagship report, and generated package surfaces are

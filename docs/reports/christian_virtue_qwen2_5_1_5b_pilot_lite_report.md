@@ -35,8 +35,8 @@ Committed inputs:
 - Training config: [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml](../../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml)
 - Base inference config: [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - Adapter inference config: [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
-- Published adapter: [Hugging Face model page](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
-- GitHub release: [Release page](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+- Published adapter: [Hugging Face model page](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
+- GitHub release: [Release page](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 
 ## Executive Readout
 
