@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import importlib
 import inspect
+from importlib.util import find_spec
 from pathlib import Path
 from typing import Any
 
@@ -106,13 +106,13 @@ def ensure_training_dependencies(config: TrainingConfig) -> None:
     missing = [
         package
         for package in REQUIRED_TRAINING_PACKAGES
-        if importlib.util.find_spec(package) is None
+        if find_spec(package) is None
     ]
     runtime = _detect_runtime(config)
     if (
         runtime is not None
         and runtime.effective_load_in_4bit
-        and importlib.util.find_spec("bitsandbytes") is None
+        and find_spec("bitsandbytes") is None
     ):
         missing.append("bitsandbytes")
     if missing:

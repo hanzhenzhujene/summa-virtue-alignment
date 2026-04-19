@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import importlib
 import json
 import re
+from importlib.util import find_spec
 from pathlib import Path
 from typing import Any
 
@@ -125,14 +125,14 @@ def ensure_inference_dependencies(config: InferenceConfig) -> None:
     missing = [
         package
         for package in REQUIRED_INFERENCE_PACKAGES
-        if importlib.util.find_spec(package) is None
+        if find_spec(package) is None
     ]
     runtime = _detect_runtime(config)
     if (
         config.load_in_4bit
         and runtime is not None
         and runtime.effective_load_in_4bit
-        and importlib.util.find_spec("bitsandbytes") is None
+        and find_spec("bitsandbytes") is None
     ):
         missing.append("bitsandbytes")
     if missing:

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-import importlib
 from dataclasses import dataclass
+from importlib.util import find_spec
 from typing import Literal
 
 RuntimeBackend = Literal["auto", "cuda", "mps", "cpu"]
@@ -28,7 +28,7 @@ class ModelRuntime:
 
 
 def detect_torch_availability() -> TorchAvailability | None:
-    if importlib.util.find_spec("torch") is None:
+    if find_spec("torch") is None:
         return None
 
     import torch

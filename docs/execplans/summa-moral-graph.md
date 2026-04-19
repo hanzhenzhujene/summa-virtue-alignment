@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The first real post-release CI regression has now been fixed at the source:
+  - GitHub Actions surfaced a stricter `mypy` environment than the local interactive loop had
+    exposed for `importlib.util.find_spec(...)`
+  - the SFT runtime, training, and inference modules now import `find_spec` explicitly instead of
+    relying on `importlib.util` attribute access
+  - local `mypy` now passes on those modules, and `make public-release-check` is green again after
+    the fix
 - The external publication loop is now complete and publicly inspectable:
   - the Hugging Face adapter page is live at
     `https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b`
@@ -779,6 +786,11 @@
 
 ## Surprises & Discoveries
 
+- The first CI break after publication was not a logic bug but a type-stub mismatch:
+  - local runtime behavior was fine
+  - GitHub Actions caught that `mypy` does not reliably accept `importlib.util` as an attribute on
+    the imported `importlib` module in this environment
+  - importing `find_spec` directly is therefore the more portable choice for release-facing code
 - External publication surfaced a real provenance nuance:
   - the adapter-producing training commit and the later publication-refresh commit are not the same
   - preserving both turned out to be the honest solution, because the release should still point
@@ -1073,6 +1085,14 @@
 
 ## Decision Log
 
+- Prefer explicit `from importlib.util import find_spec` imports in the SFT execution surface.
+  Reason:
+  - it preserves identical runtime behavior
+  - it is clearer to read
+  - it avoids `mypy` environment drift between local runs and GitHub Actions
+  Consequence:
+  - the CI-visible SFT modules no longer depend on `importlib.util` attribute resolution
+  - `public-release-check` is more trustworthy as a cross-environment gate
 - Keep the public release identity stable while distinguishing run provenance from publication
   provenance.
   Reason:
@@ -1410,6 +1430,10 @@
 
 ## Outcomes & Retrospective
 
+- The release gate has now survived its first real post-publication correction:
+  - GitHub Actions found a cross-environment typing issue quickly
+  - the fix was small, source-level, and reproducible
+  - the repo now has one more proof point that the public-release check is catching real drift
 - The publication story is now complete enough to hand to an outsider without caveats about missing
   endpoints:
   - the GitHub repo, GitHub release, Hugging Face adapter page, curated report, dataset card, and
