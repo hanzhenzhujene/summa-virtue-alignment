@@ -4,6 +4,11 @@ BIN := $(VENV)/bin
 LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
 LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
 LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter
+LOCAL_15B_HF_REPO_ID := JennyZhu0822/summa-virtue-qwen2.5-1.5b
+LOCAL_15B_HF_URL := https://huggingface.co/$(LOCAL_15B_HF_REPO_ID)
+LOCAL_15B_GITHUB_REPO_URL := https://github.com/hanzhenzhujene/summa-virtue-alignment
+LOCAL_15B_RELEASE_TAG := christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
+LOCAL_15B_RELEASE_URL := $(LOCAL_15B_GITHUB_REPO_URL)/releases/tag/$(LOCAL_15B_RELEASE_TAG)
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -220,13 +225,20 @@ compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
 
 report-christian-virtue-qwen2-5-1-5b-local-baseline:
-	$(BIN)/python scripts/build_christian_virtue_local_report.py
+	$(BIN)/python scripts/build_christian_virtue_local_report.py \
+		--published-model-url $(LOCAL_15B_HF_URL) \
+		--release-url $(LOCAL_15B_RELEASE_URL)
 
 package-christian-virtue-qwen2-5-1-5b-local-adapter:
-	$(BIN)/python scripts/publish_christian_virtue_adapter.py --skip-hf --skip-github-release
+	$(BIN)/python scripts/publish_christian_virtue_adapter.py \
+		--skip-hf --skip-github-release \
+		--hf-repo-id $(LOCAL_15B_HF_REPO_ID) \
+		--release-tag $(LOCAL_15B_RELEASE_TAG)
 
 publish-christian-virtue-qwen2-5-1-5b-local-adapter:
-	$(BIN)/python scripts/publish_christian_virtue_adapter.py
+	$(BIN)/python scripts/publish_christian_virtue_adapter.py \
+		--hf-repo-id $(LOCAL_15B_HF_REPO_ID) \
+		--release-tag $(LOCAL_15B_RELEASE_TAG)
 
 verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 	$(MAKE) build-christian-virtue-sft

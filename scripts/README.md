@@ -13,6 +13,7 @@ These are the scripts behind the canonical Christian virtue local baseline:
     `requirements/local-mps-py312.lock.txt`
 - `reproduce_christian_virtue_qwen2_5_1_5b_local.sh`
   - runs the full canonical local loop from dataset build through verification
+  - prints the key output paths for the curated report, local adapter package, and latest run dirs
 - `run_christian_virtue_qwen2_5_1_5b_local_train.sh`
   - launches `smoke`, `local-baseline`, or the heavier experimental `extended` local training
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
@@ -29,6 +30,12 @@ make setup-christian-virtue-local
 make reproduce-christian-virtue-qwen2-5-1-5b-local
 make public-release-check
 ```
+
+After the reproduction command completes, the most important outputs are:
+
+- `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
+- `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest`
 
 ## Dataset, Eval, Report, And Publication
 

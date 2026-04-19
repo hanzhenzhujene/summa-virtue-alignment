@@ -4,6 +4,18 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+VENV_PYTHON="${ROOT_DIR}/.venv/bin/python"
+REPORT_PATH="${ROOT_DIR}/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md"
+PACKAGE_DIR="${ROOT_DIR}/artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter"
+TRAIN_LATEST="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest"
+BASE_LATEST="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest"
+ADAPTER_LATEST="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest"
+
+if [[ ! -x "${VENV_PYTHON}" ]]; then
+  echo "Pinned local environment not found at ${VENV_PYTHON}." >&2
+  echo "Run 'make setup-christian-virtue-local' first, then retry this command." >&2
+  exit 1
+fi
 
 run_step() {
   local label="$1"
@@ -24,3 +36,10 @@ run_step "Run the publication verification gate" make -C "${ROOT_DIR}" verify-ch
 
 echo
 echo "Canonical local reproduction completed."
+echo
+echo "Key outputs:"
+echo "- Report: ${REPORT_PATH}"
+echo "- Local adapter package: ${PACKAGE_DIR}"
+echo "- Latest train run: ${TRAIN_LATEST}"
+echo "- Latest base eval run: ${BASE_LATEST}"
+echo "- Latest adapter eval run: ${ADAPTER_LATEST}"

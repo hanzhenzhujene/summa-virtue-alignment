@@ -94,13 +94,13 @@ def render_citation_grounded_question(annotation: "JoinedAnnotationRecord", seed
         "caused_by": f"According to Aquinas, what causes {annotation.subject_label}?",
         "contrary_to": f"According to Aquinas, what is contrary to {annotation.subject_label}?",
         "deficiency_opposed_to": (
-            "According to Aquinas, what is the deficient vice opposed to "
-            f"{annotation.subject_label}?"
+            "According to Aquinas, what vice is opposed to "
+            f"{annotation.object_label} by deficiency?"
         ),
         "directed_to": f"According to Aquinas, to what is {annotation.subject_label} directed?",
         "excess_opposed_to": (
-            "According to Aquinas, what is the excessive vice opposed to "
-            f"{annotation.subject_label}?"
+            "According to Aquinas, what vice is opposed to "
+            f"{annotation.object_label} by excess?"
         ),
         "has_act": f"According to Aquinas, what act belongs to {annotation.subject_label}?",
         "has_object": f"According to Aquinas, what object does {annotation.subject_label} concern?",

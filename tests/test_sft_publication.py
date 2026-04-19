@@ -111,6 +111,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     manifest = json.loads((package_dir / "package_manifest.json").read_text(encoding="utf-8"))
     assert manifest["hf_repo_id"] == "JennyZhu0822/demo"
     assert manifest["github_repo_url"] == "https://github.com/hanzhenzhujene/summa-virtue-alignment"
+    assert manifest["release_tag"] == "demo-tag"
     assert manifest["local_train_run_id"] == "20260418_101010"
     assert manifest["dataset_summary"]["dataset_name"] == "christian_virtue_v1"
     assert manifest["dataset_summary"]["total_examples"] == 1883
@@ -133,6 +134,8 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "license: mit" in readme
     assert "pipeline_tag: text-generation" in readme
     assert "docs/christian_virtue_dataset_card.md" in readme
+    assert "## Artifact Status" in readme
+    assert "earlier distribution tag `demo-tag`" in readme
     assert "## Executive Readout" in readme
     assert "Strongest task slice" in readme
     assert "deliberately small 1.5B local demo model" in readme
@@ -141,6 +144,8 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "https://huggingface.co/JennyZhu0822/demo" in readme
     assert "github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/demo-tag" in readme
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in readme
+    assert "## Artifact Status" in release_notes
+    assert "earlier distribution tag `demo-tag`" in release_notes
     assert "## Executive Readout" in release_notes
     assert "Strongest tract slice" in release_notes
     assert "deliberately small local demo model" in release_notes

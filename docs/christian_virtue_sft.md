@@ -289,15 +289,25 @@ The packaging step copies the adapter weights and tokenizer-side metadata into a
 `artifacts/` directory, writes a model card, and writes release notes tied to the exact run id and
 git commit.
 
-Current published canonical artifacts:
+Current public distribution endpoints:
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
-- Canonical train run id: `20260418_193038`
-- Canonical adapter eval run id: `20260418_203546`
-- Current held-out `test` citation exact: `0.150`
+- Local adapter package:
+  [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
+
+Current corrected repo-local rerun used by the flagship report:
+
+- Train run id: `20260419_154300`
+- Adapter eval run id: `20260419_154757`
+- Held-out `test` citation exact: `0.137`
+
+Treat the flagship report and the local adapter package as the canonical evaluation surfaces for
+the corrected benchmark numbers. The Hugging Face repo and GitHub release remain the public
+distribution endpoints, and the GitHub release keeps its original tag slug `20260418_193038` for
+continuity.
 
 ## Remote CUDA Path
 

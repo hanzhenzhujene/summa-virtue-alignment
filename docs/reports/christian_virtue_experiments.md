@@ -38,19 +38,28 @@ Published artifacts:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
+- Local adapter package:
+  [../../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](../../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
 
-Canonical run ids:
+Current corrected repo-local run ids:
 
-- train: `20260418_193038`
+- train: `20260419_154300`
 - base test: `20260418_143349`
-- adapter test: `20260418_203546`
-- compare test: `20260418_225541`
+- adapter test: `20260419_154757`
+- compare test: `20260419_160910`
 
-Headline result on the held-out `test` split:
+Headline result on the corrected held-out `test` split:
 
 - base citation exact match: `0.000`
-- adapter citation exact match: `0.150`
-- net gain: `+0.150`
+- adapter citation exact match: `0.137`
+- net gain: `+0.137`
+
+Publication note:
+
+- the Hugging Face repo and GitHub release remain the public distribution endpoints
+- the GitHub release keeps its original tag slug `20260418_193038` for continuity
+- the local adapter package, flagship report, and figures in this repo are the authoritative
+  evaluation surfaces for the corrected `0.137` result
 
 ### Quick Read: Why This Shows The SFT Works
 
@@ -58,10 +67,10 @@ Goal-aligned virtue slices:
 
 | Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
-| Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
-| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
-| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+| Virtue concept explanation | `0.0%` | `40.6%` | `+40.6%` |
+| Reviewed relation explanation | `0.0%` | `20.9%` | `+20.9%` |
+| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `+7.5%` |
+| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
 #### Training Trace
 
@@ -75,7 +84,8 @@ the 20-step run.
 ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
 The adapter materially outperforms base on the goal-aligned held-out virtue slices, especially on
-virtue-concept and reviewed-relation tasks.
+virtue-concept and reviewed-relation tasks, even though the user-style citation-grounded moral-QA
+slice still remains at `0.0%` exact in this corrected rerun.
 
 This is the public demo result, not the intended ceiling. The point of this run is to show that a
 small easy-to-reproduce model already exhibits the right movement, which makes the case for larger

@@ -109,6 +109,12 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - Public quickstart and command path:
   [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
 
+The current report reflects the corrected local rerun (`20260419_154300` train,
+`20260419_154757` adapter eval). The local adapter package in
+`artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/` is the authoritative
+packaged evaluation surface for that corrected result, while the public GitHub release keeps its
+original tag slug for continuity.
+
 ## Out of Scope
 
 - ungrounded theology chat

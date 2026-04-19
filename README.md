@@ -16,6 +16,7 @@ text, built on the evidence model and corpus work of Summa Moral Graph.
 ![Research Release](https://img.shields.io/badge/Release-publication--ready-1f4d3b?style=flat-square)
 ![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
+[![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
 
 > This repo is a public research release for Thomist moral virtue alignment.
 >
@@ -223,24 +224,34 @@ the SFT.
 
 Headline held-out `test` result on `233` prompts:
 
-- overall citation exact: `0.000` on base -> `0.150` on adapter
+- overall citation exact: `0.000` on base -> `0.137` on the corrected local-baseline adapter rerun
 
 Goal-aligned Thomist moral virtue slices:
 
 | Held-out slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
-| Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
-| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
-| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+| Virtue concept explanation | `0.0%` | `40.6%` | `+40.6%` |
+| Reviewed relation explanation | `0.0%` | `20.9%` | `+20.9%` |
+| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `+7.5%` |
+| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
 Why this is meaningful:
 
 - base is `0.0%` across the public goal-aligned slices, so the adapter is not merely preserving an
   already-good baseline
-- the adapter improves every public goal-aligned slice we foreground in the README
+- the adapter improves the concept and relation slices most closely aligned with Thomist virtue
+  reasoning, even though the citation-grounded moral-answer slice still remains difficult
 - this happens in a deliberately minimal example, which makes the dataset and method more credible
   as a reusable template
+
+Repo note:
+
+- the flagship report reflects the corrected rerun tied to commit `662c9d3`
+- the local package at
+  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
+  now reflects the corrected rerun
+- the Hugging Face repo and GitHub release remain the public distribution endpoints, but the GitHub
+  release keeps its original tag slug `20260418_193038` for continuity
 
 Read prudently, this result supports a modest but important claim: the supervision is strong enough
 to move a small general model toward better Thomist moral-virtue behavior. It does not yet settle
@@ -305,10 +316,19 @@ For the full stepwise path, model swapping guide, and remote CUDA path, see
 
 ## Public Artifacts
 
+| Surface | Current role |
+| --- | --- |
+| Curated report | Canonical evaluation surface for the corrected local rerun (`0.137` exact on held-out `test`) |
+| Local adapter package | Canonical packaged artifact inside the repo, tied to run `20260419_154300` |
+| Hugging Face adapter | Public download endpoint for the adapter family |
+| GitHub release | Public release endpoint; keeps the original distribution tag slug `20260418_193038` |
+
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
+- Local adapter package:
+  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Dataset card:

@@ -26,8 +26,8 @@ It is meant to show more than citation formatting. The real question is whether 
 | Local-baseline eval subset | `16` |
 | Max steps | `20` |
 | Runtime device | `mps` |
-| Git commit | `f9fd58981e8182dbe92ee6ed1c1a389ef2e7f1e9` |
-| Training run id | `20260418_193038` |
+| Git commit | `662c9d309fefd80d22f2caf7f65622afdee7ef10` |
+| Training run id | `20260419_154300` |
 
 Committed inputs:
 
@@ -44,32 +44,41 @@ This table foregrounds the goal-aligned virtue slices that best match the intend
 
 | Slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Virtue concept explanation | `0.0%` | `50.0%` | `50.0%` |
-| Reviewed relation explanation | `0.0%` | `19.4%` | `19.4%` |
-| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `9.0%` |
-| Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
+| Virtue concept explanation | `0.0%` | `40.6%` | `40.6%` |
+| Reviewed relation explanation | `0.0%` | `20.9%` | `20.9%` |
+| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `7.5%` |
+| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
 Strongest task slices:
 
-- Virtue concept explanation: 50.0% exact over `32` held-out prompts.
-- Reviewed relation explanation: 19.4% exact over `67` held-out prompts.
-- Passage-grounded doctrinal QA: 9.0% exact over `67` held-out prompts.
+- Virtue concept explanation: 40.6% exact over `32` held-out prompts.
+- Reviewed relation explanation: 20.9% exact over `67` held-out prompts.
+- Passage-grounded doctrinal QA: 7.5% exact over `67` held-out prompts.
 
 Strongest tract slices:
 
-- Justice core: 23.8% exact over `42` held-out prompts.
-- Prudence: 22.5% exact over `40` held-out prompts.
-- Theological virtues: 15.8% exact over `19` held-out prompts.
+- Theological virtues: 21.1% exact over `19` held-out prompts.
+- Prudence: 17.5% exact over `40` held-out prompts.
+- Justice core: 16.7% exact over `42` held-out prompts.
+
+Main remaining weak spot:
+
+- Citation-grounded moral answer: 0.0% exact over `67` held-out prompts.
+
+Zero-gain tracts in this run:
+
+- Connected virtues (II-II qq.109-120).
 
 Why this is already meaningful:
 
-- Goal-demo exact citations move from `0 / 12` to `3 / 12`.
+- Goal-demo exact citations move from `0 / 12` to `5 / 12`.
 - The gain appears on held-out prompts rather than on memorized training rows.
+- The overall benchmark is still modest at `0.137` exact, so this result should be read as evidence of movement in the right direction rather than as a finished assistant.
 - This is a deliberately small demo run, so the result should be read as proof that the pipeline works and can scale upward.
 
 Representative examples:
 
-- Clear adapter win: slot 3 `Commutative justice and restitution`.
+- Clear adapter win: slot 2 `Faith as a theological virtue`.
 
 ## Data And Split Policy
 
@@ -95,6 +104,14 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 | LoRA dropout | `0.05` |
 | Seed | `17` |
 
+The local-baseline subset policy is deterministic rather than random: the trainer uses the first `max_train_examples` rows from the committed `train.jsonl` export and the first `max_eval_examples` rows from `val.jsonl`, preserving the dataset's stable ordering.
+
+This corrected local-baseline rerun also uses the repaired vice-opposition prompt wording in the `citation_grounded_moral_answer` family: `excess_opposed_to` and `deficiency_opposed_to` questions now ask for the vice opposed to the virtue object, which matches the underlying reviewed `vice -> virtue` annotations.
+
+Held-out generation also uses deterministic decoding. Both the base model and the adapter run with `do_sample = false`, `max_new_tokens = 256` / `256`, and seed `17` / `17` on the prompt-only benchmark export.
+
+Citation metrics are computed by extracting passage ids from free-form model outputs and comparing them against the reference `source_passage_ids` for each held-out example. Relation-type accuracy is not reported for this baseline because the current generation format does not emit a structured predicted relation label.
+
 ## Runtime Environment
 
 | Item | Value |
@@ -105,7 +122,7 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 | PEFT | `0.19.1` |
 | TRL | `0.29.1` |
 | Accelerate | `1.13.0` |
-| Approx train wall-clock | `4.7 minutes` |
+| Approx train wall-clock | `3.1 minutes` |
 
 ## Training Trajectory
 
@@ -132,9 +149,9 @@ The repo keeps the heavier `extended` config for experimentation, but the timing
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
 | Base model | `233` | `0.000` | `0.000` | `0.000` |
-| LoRA adapter | `233` | `0.150` | `0.150` | `0.150` |
+| LoRA adapter | `233` | `0.137` | `0.137` | `0.137` |
 
-The adapter materially improves held-out citation grounding over the untouched base model on the virtue-aligned slices that most closely match the repo's intended SFT goal.
+The adapter materially improves held-out citation grounding over the untouched base model on the virtue-aligned slices that most closely match the repo's intended SFT goal. At the same time, the `citation_grounded_moral_answer` slice remains at `0.000` exact in this corrected run, so the present baseline is strongest on concept and relation tasks rather than on fully user-style moral QA.
 
 ## Goal Demo Panel
 
@@ -160,7 +177,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, fraternal correction is an act of charity rather than a healing of a bodily infirmity or relieving of an external bodily need. The passage states this directly. The relation type is "has_act", and the object is "Fraternal Correction". The passage cites Aquinas's own words to support this claim. Article 1 explicitly states that fraternal correction is an act of charity. Article 2 expla…
+> According to the cited passage, fraternal correction is an act of charity rather than a healing of a bodily infirmity or relieving of an external bodily need. The passage states this directly. The relation type is "has_act", and the object is "Fraternal Correction". The passage cites Aquinas's categories to support this claim, using phrases like "the contrary good of virtue" and "the good of the body or of external…
 
 ### 2. Faith as a theological virtue
 
@@ -170,7 +187,7 @@ LoRA adapter:
 - Prompt: Explain this concept using only the supporting passages below. Concept: Faith Tract: Theological virtues Question context: The act of faith Supporting passages: - st.ii-ii.q002.a002.resp (II-II q.2 a.2 resp) The act of…
 - Reference citations: `st.ii-ii.q002.a002.resp`
 - Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Adapter exact citation match: `True`
 
 Reference:
 
@@ -182,7 +199,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, faith is an act of the intellect on the part of the will. The object of faith is considered on three aspects: material, formal, and formal on account of the will. The formal aspect is the First Truth referred to the will as an end. Answering this question requires citing passage II-II.q002.a002.resp.
+> According to the cited passage, faith is an act of the intellect on the part of the will. The object of faith is considered on three aspects: material, formal, and formal on account of the will. The formal aspect is the medium for assent to a point of faith. The passage states that faith is to believe in God on these three aspects. Citations: - st.ii-ii.q002.a002.resp (II-II q.2 a.2 resp)
 
 ### 3. Commutative justice and restitution
 
@@ -204,7 +221,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, restitution is an act of commutative justice. The passage states this directly. Restitution is considered the same as reinstate a person in possession or dominion of his thing, which is part of commutative justice. The passage explicitly links restitution to commutative justice. Citations: - st.ii-ii.q062.a001.resp
+> According to the cited passage, restitution is an act of commutative justice. The passage states this directly. The relation type is has_act, with restitution as the object. The passage cites Aquinas's review of the definition of restitution in the cited passage. Key passage: st.ii-ii.q062.a001.resp Citations: - st.ii-ii.q062.a001.resp
 
 ### 4. Commutative justice as a concept
 
@@ -226,7 +243,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, restitution is considered the same as reinstate a person in possession of their thing, which is a key aspect of commutative justice. The passage states that restitution involves equality of justice in payment of one thing for another, which is part of commutative justice. It mentions restitution as occasioned by one person having what belongs to another, either with consent or against…
+> According to the cited passage, restitution is considered the same as reinstate a person in possession or dominion of their thing, which is a key aspect of commutative justice. The passage explicitly states that restitution involves equality of justice in payment of one thing for another, which is directly related to commutative justice. The passage also provides examples of restitution occurring due to consent or a…
 
 ### 5. Regnative prudence
 
@@ -248,7 +265,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, regnative prudence is a special kind of prudence that governs and commands in a king's governance of a city or kingdom. The passage states this directly and provides evidence from II-II:47:10 that prudence governs and commands in governance, and that this is a special kind of prudence. The passage also explains why regnative prudence is a special kind of prudence, citing the universal…
+> Regnative Prudence is the special and perfect kind of prudence that governs and commands in a king's governance of a city or kingdom. The passage states this directly and provides evidence from II-II:47:10 that prudence governs and commands in governance, and that this is the most perfect kind of governance. The passage concludes by stating that regnative prudence is a species of prudence that belongs to kings. Cita…
 
 ### 6. Military prudence as a part of prudence
 
@@ -258,7 +275,7 @@ LoRA adapter:
 - Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Prudence Subject: Military Prudence Relation type: subjective_part_of Object: Prudence Passage id: st.ii-ii.q050.a004.resp Passage text: Whatev…
 - Reference citations: `st.ii-ii.q050.a004.resp`
 - Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Adapter exact citation match: `True`
 
 Reference:
 
@@ -270,7 +287,7 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that military prudence is a subjective part of prudence. The passage directly compares military prudence to political prudence and explicitly includes military prudence as a part of prudence. The cited passage explicitly states that military prudence is a part of prudence, making this passage directly support the doctrinal relation between m…
+> This passage supports the reviewed doctrinal relation by explicitly stating that military prudence is a subjective part of prudence. The passage directly cites this relation in Aquinas's text. Citations: - st.ii-ii.q050.a004.resp (II-II q.50 a.4 resp)
 
 ### 7. Truth in self-presentation
 
@@ -292,7 +309,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passages, truth is a special virtue connected to justice. The passage states that truth has two aspects in common with justice: it is directed to another and sets up equality between things. However, it falls short of justice in the notion of debt. Truth is thus considered a part of justice, annexed as a secondary virtue. The passage cites Augustine's statement that good consists in order to s…
+> According to the cited passages, truth is a special virtue connected to justice. Truth is related to justice as a secondary virtue, having two aspects in common with it. It is directed to another person and sets up equality between things, but it falls short of justice in the notion of debt. Truth is considered a part of justice, annexed to it as a secondary virtue. The passage explicitly states that truth is a spec…
 
 ### 8. Abstinence within temperance
 
@@ -314,7 +331,7 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage directly compares temperance to shamefacedness and honesty, which are explicitly called subjective parts of temperance. The review correctly identifies this as subjective_part_of relation type.
+> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage directly mentions "subjective parts of a virtue are its species" and provides examples of subjective parts of temperance, such as "shamefacedness" and "honesty".
 
 ### 9. Continence within temperance
 
@@ -336,21 +353,21 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has potential parts that are secondary virtues. The passage directly cites this as part of Aquinas's explanation of temperance's potential parts. Article 1 explicitly states that temperance has potential parts, and then goes on to list these potential parts as secondary virtues. Article 2 further elaborates on this by explain…
+> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has potential parts that are secondary virtues. The passage directly cites this as part of Aquinas's categorization of temperance's potential parts.
 
 ### 10. Lust and chastity
 
 - Focus: Vice opposition rather than generic moral paraphrase
 - Task type: Citation-grounded moral answer
 - Tract: Temperance (II-II qq.141-160)
-- Prompt: According to Aquinas, what is the excessive vice opposed to Lust?
+- Prompt: According to Aquinas, what vice is opposed to Chastity by excess?
 - Reference citations: `st.ii-ii.q153.a001.resp`
 - Base exact citation match: `False`
 - Adapter exact citation match: `False`
 
 Reference:
 
-> According to the cited passage, Lust is opposed by the excessive vice Chastity. The passage states this directly. Lust is the disordered contrary of chastity in venereal matter. Citations: - st.ii-ii.q153.a001.resp (II-II q.153 a.1 resp)
+> According to the cited passage, Lust is opposed to Chastity by excess. The passage states this directly. Lust is the disordered contrary of chastity in venereal matter. Citations: - st.ii-ii.q153.a001.resp (II-II q.153 a.1 resp)
 
 Base model:
 
@@ -358,7 +375,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, Excessive Lust is opposed by Diligence. The passage states this directly. Article 1 explicitly states this opposition. Citations: - st.ii-ii.q125.a001.resp (II-II q.125 a.1 resp)
+> According to the cited passage, Chastity by excess is Lust. The passage states this directly. Article 1 explicitly states this opposition. Citations: - st.ii-ii.q165.a001.resp (II-II q.165 a.1 resp)
 
 ### 11. Constancy in the fortitude tract
 
@@ -380,7 +397,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, constancy differs from perseverance in Aquinas's view. Perseverance is about persisting in good against intrinsic difficulties, while constancy is about persisting against external hindrances. Perseverance is seen as a more intrinsic virtue related to the act itself, whereas constancy deals with external obstacles. The passage states that perseverance takes precedence over constancy i…
+> According to the cited passage, constancy differs from perseverance in that constancy deals with external hindrances rather than intrinsic difficulties of the act. Perseverance is seen as a more intrinsic virtue related to the act itself, while constancy is about overcoming external obstacles. The passage states that perseverance takes precedence over constancy in fortitude due to the greater difficulty posed by the…
 
 ### 12. Magnificence and great work
 
@@ -414,9 +431,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.150 | +0.150 |
-| citation_partial_match | 0.000 | 0.150 | +0.150 |
-| citation_overlap | 0.000 | 0.150 | +0.150 |
+| citation_exact_match | 0.000 | 0.137 | +0.137 |
+| citation_partial_match | 0.000 | 0.137 | +0.137 |
+| citation_overlap | 0.000 | 0.137 | +0.137 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### By Split
@@ -426,9 +443,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.150 | +0.150 |
-| citation_partial_match | 0.000 | 0.150 | +0.150 |
-| citation_overlap | 0.000 | 0.150 | +0.150 |
+| citation_exact_match | 0.000 | 0.137 | +0.137 |
+| citation_partial_match | 0.000 | 0.137 | +0.137 |
+| citation_overlap | 0.000 | 0.137 | +0.137 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -459,9 +476,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 51 | 51 | +0 |
-| citation_exact_match | 0.000 | 0.098 | +0.098 |
-| citation_partial_match | 0.000 | 0.098 | +0.098 |
-| citation_overlap | 0.000 | 0.098 | +0.098 |
+| citation_exact_match | 0.000 | 0.118 | +0.118 |
+| citation_partial_match | 0.000 | 0.118 | +0.118 |
+| citation_overlap | 0.000 | 0.118 | +0.118 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### justice_core
@@ -469,9 +486,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 42 | 42 | +0 |
-| citation_exact_match | 0.000 | 0.238 | +0.238 |
-| citation_partial_match | 0.000 | 0.238 | +0.238 |
-| citation_overlap | 0.000 | 0.238 | +0.238 |
+| citation_exact_match | 0.000 | 0.167 | +0.167 |
+| citation_partial_match | 0.000 | 0.167 | +0.167 |
+| citation_overlap | 0.000 | 0.167 | +0.167 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### prudence
@@ -479,9 +496,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 40 | 40 | +0 |
-| citation_exact_match | 0.000 | 0.225 | +0.225 |
-| citation_partial_match | 0.000 | 0.225 | +0.225 |
-| citation_overlap | 0.000 | 0.225 | +0.225 |
+| citation_exact_match | 0.000 | 0.175 | +0.175 |
+| citation_partial_match | 0.000 | 0.175 | +0.175 |
+| citation_overlap | 0.000 | 0.175 | +0.175 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### temperance_141_160
@@ -489,9 +506,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 46 | 46 | +0 |
-| citation_exact_match | 0.000 | 0.130 | +0.130 |
-| citation_partial_match | 0.000 | 0.130 | +0.130 |
-| citation_overlap | 0.000 | 0.130 | +0.130 |
+| citation_exact_match | 0.000 | 0.109 | +0.109 |
+| citation_partial_match | 0.000 | 0.109 | +0.109 |
+| citation_overlap | 0.000 | 0.109 | +0.109 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### temperance_closure_161_170
@@ -499,9 +516,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 11 | 11 | +0 |
-| citation_exact_match | 0.000 | 0.000 | +0.000 |
-| citation_partial_match | 0.000 | 0.000 | +0.000 |
-| citation_overlap | 0.000 | 0.000 | +0.000 |
+| citation_exact_match | 0.000 | 0.091 | +0.091 |
+| citation_partial_match | 0.000 | 0.091 | +0.091 |
+| citation_overlap | 0.000 | 0.091 | +0.091 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### theological_virtues
@@ -509,9 +526,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 19 | 19 | +0 |
-| citation_exact_match | 0.000 | 0.158 | +0.158 |
-| citation_partial_match | 0.000 | 0.158 | +0.158 |
-| citation_overlap | 0.000 | 0.158 | +0.158 |
+| citation_exact_match | 0.000 | 0.211 | +0.211 |
+| citation_partial_match | 0.000 | 0.211 | +0.211 |
+| citation_overlap | 0.000 | 0.211 | +0.211 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -522,9 +539,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 200 | 200 | +0 |
-| citation_exact_match | 0.000 | 0.145 | +0.145 |
-| citation_partial_match | 0.000 | 0.145 | +0.145 |
-| citation_overlap | 0.000 | 0.145 | +0.145 |
+| citation_exact_match | 0.000 | 0.130 | +0.130 |
+| citation_partial_match | 0.000 | 0.130 | +0.130 |
+| citation_overlap | 0.000 | 0.130 | +0.130 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### strong_textual_inference
@@ -555,9 +572,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 67 | 67 | +0 |
-| citation_exact_match | 0.000 | 0.090 | +0.090 |
-| citation_partial_match | 0.000 | 0.090 | +0.090 |
-| citation_overlap | 0.000 | 0.090 | +0.090 |
+| citation_exact_match | 0.000 | 0.075 | +0.075 |
+| citation_partial_match | 0.000 | 0.075 | +0.075 |
+| citation_overlap | 0.000 | 0.075 | +0.075 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### reviewed_relation_explanation
@@ -565,9 +582,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 67 | 67 | +0 |
-| citation_exact_match | 0.000 | 0.194 | +0.194 |
-| citation_partial_match | 0.000 | 0.194 | +0.194 |
-| citation_overlap | 0.000 | 0.194 | +0.194 |
+| citation_exact_match | 0.000 | 0.209 | +0.209 |
+| citation_partial_match | 0.000 | 0.209 | +0.209 |
+| citation_overlap | 0.000 | 0.209 | +0.209 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### virtue_concept_explanation
@@ -575,9 +592,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 32 | 32 | +0 |
-| citation_exact_match | 0.000 | 0.500 | +0.500 |
-| citation_partial_match | 0.000 | 0.500 | +0.500 |
-| citation_overlap | 0.000 | 0.500 | +0.500 |
+| citation_exact_match | 0.000 | 0.406 | +0.406 |
+| citation_partial_match | 0.000 | 0.406 | +0.406 |
+| citation_overlap | 0.000 | 0.406 | +0.406 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ## What This Demonstrates
@@ -606,5 +623,5 @@ The final verification step is still exposed directly as `make verify-christian-
 ## Headline Numbers
 
 - Base citation exact match: 0.0%
-- Adapter citation exact match: 15.0%
-- Net gain: 15.0%
+- Adapter citation exact match: 13.7%
+- Net gain: 13.7%

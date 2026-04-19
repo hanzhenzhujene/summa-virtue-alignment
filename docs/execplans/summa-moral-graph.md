@@ -2,6 +2,60 @@
 
 ## Progress
 
+- The publication bundle has now been brought back into coherence after the corrected rerun:
+  - the local adapter package has been rebuilt from train run `20260419_154300` and adapter eval
+    `20260419_154757`
+  - the package manifest, copied provenance files, model-card text, and release notes now all carry
+    the corrected `0.137` held-out citation-exact headline
+  - package surfaces now state explicitly that the GitHub release keeps its older distribution tag
+    slug for continuity while the repo-local package and flagship report are the authoritative
+    evaluation surfaces for the corrected run
+  - publication verification is therefore being restored as a meaningful integrity gate rather than
+    silently pointing at a stale package snapshot
+  - the canonical repo check `make public-release-check` is now green again, which means lint,
+    type-checking, report regeneration, package regeneration, publication-surface tests, and the
+    standalone publication verifier all agree on one stable artifact story
+- The first-run local reproduction path is now being hardened as a user-facing research interface,
+  not just a maintainer helper:
+  - the canonical `reproduce_christian_virtue_qwen2_5_1_5b_local.sh` wrapper now fails fast with a
+    clear setup instruction if the pinned `.venv` has not been created yet
+  - the same wrapper now prints the key output paths for the report, package, and latest run dirs
+    at the end of a successful run
+  - `scripts/README.md` and repo-surface tests now cover those expectations so the newcomer path is
+    explicit rather than implicit
+  - the `Makefile` now carries explicit canonical constants for the Hugging Face repo id and
+    GitHub release slug used by the local publication path, so the public artifact identity cannot
+    drift silently on the next regeneration
+- The repo now has a formal CI gate for the same public release contract it claims locally:
+  - `.github/workflows/public-release-check.yml` now runs the canonical `make public-release-check`
+    path on pushes and pull requests to `main`
+  - the README now exposes that workflow as a visible badge near the top of the page
+  - repo-surface tests now assert both that the workflow exists and that it really calls the
+    canonical release-quality make target
+- The manuscript-style local-baseline report has now been reconciled against the corrected SFT
+  artifact rather than the older optimistic benchmark snapshot:
+  - the `excess_opposed_to` / `deficiency_opposed_to` polarity bug has been fixed in the template
+    layer and regression-tested
+  - both committed dataset exports (`christian_virtue_v1` and `christian_virtue_v1_ood`) have been
+    rebuilt from the corrected templates
+  - the canonical local-baseline training rung has been rerun from commit `662c9d3` as
+    run `20260419_154300`
+  - the corrected held-out adapter evaluation has been rerun as `20260419_154757`, and the fresh
+    comparison report now lives at `runs/.../compare_test/20260419_160910/report.md`
+  - the flagship markdown report and GitHub-visible figures have been regenerated from those fresh
+    artifacts
+  - the report generator now reads config snapshots instead of hardcoding method details, so the
+    manuscript-style writeup is derived from the actual run configuration
+- The flagship local-baseline report is now being audited against the actual dataset templates and
+  generated run artifacts rather than treated as correct by default:
+  - the largest consistency bug found so far is a polarity error in the
+    `citation_grounded_moral_answer` template for `excess_opposed_to` /
+    `deficiency_opposed_to` relations
+  - in the current export, those user questions sometimes ask for the vice opposed to the vice
+    subject, while the underlying annotation actually encodes a vice-to-virtue opposition
+  - the relation wording and user-question template are therefore being corrected before the
+    canonical report is rewritten, and the local baseline will be rerun on the corrected export so
+    the manuscript-style writeup matches the true artifact
 - The public SFT story is now being tightened around a clearer research-release framing:
   - the canonical public slugs have now been renamed to cleaner artifact names:
     - GitHub repo: `summa-virtue-alignment`
@@ -713,6 +767,27 @@
 
 ## Surprises & Discoveries
 
+- Fixing the benchmark defect did not simply move the headline in one direction:
+  - the corrected local-baseline adapter now lands at `0.137` held-out citation exact instead of
+    the earlier `0.150`
+  - yet the fixed 12-prompt goal-demo panel improved from `3 / 12` to `5 / 12` exact citation wins
+  - the corrected artifact therefore tells a more nuanced and more trustworthy story: the baseline
+    is better than the untouched model in the intended virtue-reasoning slices, but its weakest
+    user-style moral-QA slice still remains unresolved
+- The untouched base model still produces zero passage-id citations even on the repaired
+  vice-opposition prompt wording:
+  - a four-prompt post-fix check on the only affected held-out base questions stayed at `0 / 4`
+    exact matches
+  - this made it safe to retain the prior full base benchmark surface while rerunning the adapter on
+    the corrected export
+- The highest-impact paper-versus-artifact discrepancy turned out not to be a markdown claim but a
+  benchmark-template bug:
+  - all in-scope `excess_opposed_to` and `deficiency_opposed_to` annotations in the Christian
+    virtue subset are `vice -> virtue` relations
+  - the exported citation-grounded questions nevertheless asked for the vice opposed to the vice
+    subject in those cases, which makes that slice semantically ill-posed
+  - this likely explains part of the zero-gain behavior on the
+    `citation_grounded_moral_answer` task family in the current local-baseline report
 - The strongest convincing story for this repo is not “look how high the numbers are” but “even a
   deliberately tiny reproducible demo run already shows the right directional gain.” Once that
   framing is explicit, the repo reads more confidently without needing to over-claim the current
@@ -980,6 +1055,36 @@
 
 ## Decision Log
 
+- Treat the repo-local adapter package and flagship report as the canonical evaluation surfaces for
+  the corrected rerun even before the public distribution endpoints are refreshed.
+  Reason:
+  - the corrected rerun is now the truth-bearing artifact inside the repo
+  - the Hugging Face repo and GitHub release still matter as stable download endpoints
+  - keeping the older GitHub release slug is acceptable if the repo states clearly which surfaces
+    carry the authoritative corrected numbers
+  Consequence:
+  - `package_manifest.json`, package `README.md`, and `release_notes.md` now point to the corrected
+    run ids and metrics
+  - the README, fine-tune guide, experiment index, dataset card, and maintainer workflow now all
+    describe the same artifact-status split instead of competing stories
+- Treat the older `0.150` local-baseline adapter score as superseded once the corrected
+  vice-opposition prompt rerun completed.
+  Reason:
+  - that score came from a benchmark with a real question-polarity defect
+  - the corrected rerun now exists and is cheap enough to be the canonical manuscript artifact
+  Consequence:
+  - the flagship report, regenerated figures, and comparison markdown now use the corrected
+    adapter run `20260419_154757`
+  - the report now states the weaker aggregate headline (`0.137`) together with the stronger
+    goal-demo improvement (`5 / 12`) so the artifact stays exact rather than selectively upbeat
+- Treat the polarity error in `excess_opposed_to` / `deficiency_opposed_to` template rendering as
+  a code bug, not merely a documentation bug:
+  - the gold annotations are internally coherent
+  - the question/answer templates are what invert the intended virtue-opposition direction
+  - leaving the export untouched and only narrowing the report would preserve a known benchmark
+    defect inside the canonical public artifact
+  - therefore the correct next step is to fix the template layer, rebuild the export, rerun the
+    canonical local baseline, and then revise the manuscript-style report against the corrected run
 - Keep the public framing of the canonical 1.5B run intentionally narrow and strong:
   - describe it as a small reproducible demo baseline
   - emphasize that it proves the dataset and SFT workflow work end to end
@@ -1273,6 +1378,36 @@
 - Prefer tract comparison as a first-class workflow on the landing page instead of assuming users will mentally compare separate cards and tables.
 
 ## Outcomes & Retrospective
+
+- The publication-integrity layer is now stronger and more honest:
+  - the repo no longer asks readers to infer which result is authoritative
+  - package metadata, package prose, README, guides, and the verifier now all agree that the
+    corrected local rerun is the canonical evaluated artifact
+  - the public distribution endpoints remain linked, but their continuity role is now stated
+    explicitly instead of being allowed to blur the benchmark story
+  - the repo's own one-command final QA gate now passes end to end, which makes the public
+    reproducibility claim operational rather than merely documented
+- The newcomer experience is now more publication-grade:
+  - the shortest local path gives clearer failure guidance before work starts
+  - the same path gives a clearer artifact handoff after work ends
+  - the release-identity contract is now tested directly instead of being trusted informally
+- The repo now projects its release discipline more credibly to outsiders:
+  - the CI badge makes the release-quality gate visible on first open
+  - the GitHub Actions workflow means that the polished repo state is no longer only a local claim
+    on one machine
+- The paper-style reporting surface is now materially closer to reviewer-grade coherence:
+  - the core methodological wording now matches the implemented dataset templates
+  - the report generator now reads real config snapshots and names the deterministic subset and
+    decode policies explicitly
+  - the corrected local-baseline artifact now reports:
+    - overall held-out citation exact: `0.137`
+    - virtue concept explanation exact: `0.406`
+    - reviewed relation explanation exact: `0.209`
+    - passage-grounded doctrinal QA exact: `0.075`
+    - citation-grounded moral answer exact: `0.000`
+    - goal-demo exact citation wins: `5 / 12`
+  - the final report is therefore more trustworthy than the earlier version precisely because it
+    names both the gains and the remaining failure mode
 
 - The repo now presents the local 1.5B result more convincingly without changing the underlying
   facts:

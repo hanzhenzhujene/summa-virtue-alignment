@@ -284,6 +284,7 @@ def build_adapter_package_manifest(
         "dataset_summary": _load_dataset_summary(dataset_manifest_path),
         "git_commit": train_metadata["git_commit"],
         "publication_git_commit": publication_git_commit,
+        "release_tag": release_tag,
         "github_repo_url": github_repo_url,
         "github_release_url": f"{github_repo_url}/releases/tag/{release_tag}",
         "hf_repo_id": hf_repo_id,
@@ -305,6 +306,18 @@ def build_adapter_package_manifest(
             adapter_metrics=adapter_metrics,
         ),
     }
+
+
+def _release_slug_note(package_manifest: dict[str, Any]) -> str | None:
+    release_tag = str(package_manifest.get("release_tag", "")).strip()
+    run_id = str(package_manifest.get("local_train_run_id", "")).strip()
+    if not release_tag or not run_id or run_id in release_tag:
+        return None
+    return (
+        "The public GitHub release keeps the earlier distribution tag "
+        f"`{release_tag}` for continuity, but the authoritative benchmark numbers in this "
+        f"package and curated report come from the corrected run `{run_id}`."
+    )
 
 
 def build_model_card_text(
@@ -346,6 +359,7 @@ def build_model_card_text(
     base_exact = float(base_metrics["citation_exact_match"])
     adapter_exact = float(adapter_metrics["citation_exact_match"])
     exact_delta = adapter_exact - base_exact
+    release_slug_note = _release_slug_note(package_manifest)
 
     lines = [
         "---",
@@ -396,30 +410,45 @@ def build_model_card_text(
         f"| Canonical run id | `{package_manifest['local_train_run_id']}` |",
         f"| Git commit | `{package_manifest['git_commit']}` |",
         "",
-        "## Why This Adapter Exists",
-        "",
-        "- Train an Aquinas-grounded Christian virtue assistant rather than a generic "
-        "theology bot.",
-        "- Keep the supervision evidence-first: reviewed doctrinal annotations only, "
-        "joined back to stable passage ids.",
-        "- Demonstrate a small public baseline that others can inspect, reproduce, "
-        "and adapt to their own models before scaling up to larger runs.",
-        "",
-        "## Benchmark Summary",
-        "",
-        "| Slice | Base | Adapter | Delta |",
-        "| --- | ---: | ---: | ---: |",
-        (
-            f"| Held-out citation exact | `{_format_percent(base_exact)}` | "
-            f"`{_format_percent(adapter_exact)}` | "
-            f"`{_format_percent(exact_delta)}` |"
-        ),
-        "",
-        "## Executive Readout",
-        "",
-        f"- Held-out test citation exact moved from `{_format_percent(base_exact)}` to "
-        f"`{_format_percent(adapter_exact)}`.",
     ]
+    if release_slug_note is not None:
+        lines.extend(
+            [
+                "## Artifact Status",
+                "",
+                f"- {release_slug_note}",
+                "- Treat the curated report and local package manifest as the canonical evaluation "
+                "surface for the current repo numbers.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## Why This Adapter Exists",
+            "",
+            "- Train an Aquinas-grounded Christian virtue assistant rather than a generic "
+            "theology bot.",
+            "- Keep the supervision evidence-first: reviewed doctrinal annotations only, "
+            "joined back to stable passage ids.",
+            "- Demonstrate a small public baseline that others can inspect, reproduce, "
+            "and adapt to their own models before scaling up to larger runs.",
+            "",
+            "## Benchmark Summary",
+            "",
+            "| Slice | Base | Adapter | Delta |",
+            "| --- | ---: | ---: | ---: |",
+            (
+                f"| Held-out citation exact | `{_format_percent(base_exact)}` | "
+                f"`{_format_percent(adapter_exact)}` | "
+                f"`{_format_percent(exact_delta)}` |"
+            ),
+            "",
+            "## Executive Readout",
+            "",
+            f"- Held-out test citation exact moved from `{_format_percent(base_exact)}` to "
+            f"`{_format_percent(adapter_exact)}`.",
+        ]
+    )
 
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
@@ -571,6 +600,7 @@ def build_release_notes_text(
     dataset_card_url = _github_blob_url(
         github_repo_url, publication_git_commit, dataset_card_display
     )
+    release_slug_note = _release_slug_note(package_manifest)
 
     lines = [
         "# Christian Virtue Qwen2.5 1.5B Local Baseline",
@@ -590,12 +620,27 @@ def build_release_notes_text(
         "Train an Aquinas-grounded Christian virtue assistant that answers within reviewed "
         "evidence, uses Aquinas's moral categories, and preserves source traceability.",
         "",
-        "## Executive Readout",
-        "",
-        f"- Held-out test citation exact moved from "
-        f"`{_format_percent(float(base_metrics['citation_exact_match']))}` to "
-        f"`{_format_percent(float(adapter_metrics['citation_exact_match']))}`.",
     ]
+    if release_slug_note is not None:
+        lines.extend(
+            [
+                "## Artifact Status",
+                "",
+                f"- {release_slug_note}",
+                "- Treat the curated report and local package manifest as the canonical evaluation "
+                "surface for the current repo numbers.",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## Executive Readout",
+            "",
+            f"- Held-out test citation exact moved from "
+            f"`{_format_percent(float(base_metrics['citation_exact_match']))}` to "
+            f"`{_format_percent(float(adapter_metrics['citation_exact_match']))}`.",
+        ]
+    )
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
     if strongest_task is not None:

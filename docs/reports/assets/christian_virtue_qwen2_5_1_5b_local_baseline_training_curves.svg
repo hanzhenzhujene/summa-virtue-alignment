@@ -6,17 +6,17 @@
 <line x1='72.0' y1='48.0' x2='72.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
 <line x1='72.0' y1='316.0' x2='426.0' y2='316.0' stroke='#9ca3af' stroke-width='1.5' />
 <line x1='72.0' y1='316.0' x2='426.0' y2='316.0' stroke='#e5e7eb' stroke-width='1' />
-<text x='62.0' y='320.0' font-size='11' text-anchor='end' fill='#4b5563'>0.70</text>
+<text x='62.0' y='320.0' font-size='11' text-anchor='end' fill='#4b5563'>0.71</text>
 <line x1='72.0' y1='249.0' x2='426.0' y2='249.0' stroke='#e5e7eb' stroke-width='1' />
-<text x='62.0' y='253.0' font-size='11' text-anchor='end' fill='#4b5563'>1.28</text>
+<text x='62.0' y='253.0' font-size='11' text-anchor='end' fill='#4b5563'>1.29</text>
 <line x1='72.0' y1='182.0' x2='426.0' y2='182.0' stroke='#e5e7eb' stroke-width='1' />
 <text x='62.0' y='186.0' font-size='11' text-anchor='end' fill='#4b5563'>1.87</text>
 <line x1='72.0' y1='115.0' x2='426.0' y2='115.0' stroke='#e5e7eb' stroke-width='1' />
-<text x='62.0' y='119.0' font-size='11' text-anchor='end' fill='#4b5563'>2.45</text>
+<text x='62.0' y='119.0' font-size='11' text-anchor='end' fill='#4b5563'>2.46</text>
 <line x1='72.0' y1='48.0' x2='426.0' y2='48.0' stroke='#e5e7eb' stroke-width='1' />
-<text x='62.0' y='52.0' font-size='11' text-anchor='end' fill='#4b5563'>3.03</text>
-<polyline fill='none' stroke='#b45309' stroke-width='2.5' points='72.0,48.0 190.0,237.9 308.0,304.8 426.0,311.2' />
-<circle cx='426.0' cy='311.2' r='3.5' fill='#b45309' />
+<text x='62.0' y='52.0' font-size='11' text-anchor='end' fill='#4b5563'>3.04</text>
+<polyline fill='none' stroke='#b45309' stroke-width='2.5' points='72.0,48.0 190.0,236.2 308.0,305.5 426.0,312.2' />
+<circle cx='426.0' cy='312.2' r='3.5' fill='#b45309' />
 <polyline fill='none' stroke='#1d4ed8' stroke-width='2.5' points='426.0,316.0 426.0,316.0' />
 <circle cx='426.0' cy='316.0' r='3.5' fill='#1d4ed8' />
 <circle cx='18.0' cy='336.0' r='5' fill='#b45309' />
@@ -39,8 +39,8 @@
 <text x='62.0' y='119.0' font-size='11' text-anchor='end' fill='#4b5563'>0.77</text>
 <line x1='72.0' y1='48.0' x2='426.0' y2='48.0' stroke='#e5e7eb' stroke-width='1' />
 <text x='62.0' y='52.0' font-size='11' text-anchor='end' fill='#4b5563'>0.86</text>
-<polyline fill='none' stroke='#15803d' stroke-width='2.5' points='72.0,316.0 190.0,134.3 308.0,58.5 426.0,51.1' />
-<circle cx='426.0' cy='51.1' r='3.5' fill='#15803d' />
+<polyline fill='none' stroke='#15803d' stroke-width='2.5' points='72.0,316.0 190.0,135.1 308.0,58.3 426.0,51.8' />
+<circle cx='426.0' cy='51.8' r='3.5' fill='#15803d' />
 <polyline fill='none' stroke='#7c3aed' stroke-width='2.5' points='426.0,48.0 426.0,48.0' />
 <circle cx='426.0' cy='48.0' r='3.5' fill='#7c3aed' />
 <circle cx='18.0' cy='336.0' r='5' fill='#15803d' />

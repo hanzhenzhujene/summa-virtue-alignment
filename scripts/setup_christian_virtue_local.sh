@@ -25,3 +25,4 @@ fi
 "${VENV_DIR}/bin/pip" install --no-deps -e "${ROOT_DIR}"
 
 echo "Local environment ready at ${VENV_DIR}"
+echo "Next step: make reproduce-christian-virtue-qwen2-5-1-5b-local"

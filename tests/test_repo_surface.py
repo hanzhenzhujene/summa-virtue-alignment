@@ -13,6 +13,10 @@ PUBLIC_DOC_PATHS = [
     REPO_ROOT / "scripts" / "README.md",
 ]
 
+PUBLIC_WORKFLOW_PATHS = [
+    REPO_ROOT / ".github" / "workflows" / "public-release-check.yml",
+]
+
 DOCSTRING_PATHS = [
     REPO_ROOT / "streamlit_app.py",
     REPO_ROOT / "app" / "Home.py",
@@ -39,6 +43,11 @@ def test_public_docs_exist() -> None:
         assert path.exists(), f"Expected public doc surface to exist: {path}"
 
 
+def test_public_release_workflow_exists() -> None:
+    for path in PUBLIC_WORKFLOW_PATHS:
+        assert path.exists(), f"Expected public workflow surface to exist: {path}"
+
+
 def test_major_public_python_files_have_module_docstrings() -> None:
     for path in DOCSTRING_PATHS:
         docstring = _module_docstring(path)
@@ -51,10 +60,28 @@ def test_public_release_check_is_documented() -> None:
         encoding="utf-8"
     )
     makefile_text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+    workflow_text = (
+        REPO_ROOT / ".github" / "workflows" / "public-release-check.yml"
+    ).read_text(encoding="utf-8")
 
     assert "make public-release-check" in readme_text
     assert "make public-release-check" in guide_text
     assert "public-release-check:" in makefile_text
+    assert "make public-release-check" in workflow_text
+
+
+def test_makefile_pins_canonical_local_publication_identity() -> None:
+    makefile_text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+
+    assert "LOCAL_15B_HF_REPO_ID := JennyZhu0822/summa-virtue-qwen2.5-1.5b" in makefile_text
+    assert (
+        "LOCAL_15B_RELEASE_TAG := christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038"
+        in makefile_text
+    )
+    assert "--published-model-url $(LOCAL_15B_HF_URL)" in makefile_text
+    assert "--release-url $(LOCAL_15B_RELEASE_URL)" in makefile_text
+    assert "--hf-repo-id $(LOCAL_15B_HF_REPO_ID)" in makefile_text
+    assert "--release-tag $(LOCAL_15B_RELEASE_TAG)" in makefile_text
 
 
 def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
@@ -72,6 +99,7 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "not the strongest achievable final model" in readme_text
     assert "newadvent.org/summa/3023.htm#article1" in readme_text
     assert "newadvent.org/summa/3058.htm#article1" in readme_text
+    assert "actions/workflows/public-release-check.yml/badge.svg" in readme_text
 
 
 def test_citation_file_states_public_release_identity() -> None:
@@ -86,3 +114,4 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "setup_christian_virtue_local.sh" in scripts_guide
     assert "reproduce_christian_virtue_qwen2_5_1_5b_local.sh" in scripts_guide
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
+    assert "prints the key output paths" in scripts_guide

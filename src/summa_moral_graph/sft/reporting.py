@@ -9,6 +9,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
 
+import yaml
+
 from .comparison import build_comparison_report
 from .evaluation import load_prediction_rows, load_reference_examples
 from .utils import extract_passage_ids, tract_display_name
@@ -37,6 +39,19 @@ class GoalDemoSpec:
 
 def _load_json(path: Path) -> dict[str, Any]:
     return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
+
+
+def _load_yaml(path: Path) -> dict[str, Any]:
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError(f"Expected a mapping in {path}")
+    return cast(dict[str, Any], payload)
+
+
+def _load_optional_yaml(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    return _load_yaml(path)
 
 
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -81,6 +96,13 @@ def _format_percent(value: float | None) -> str:
     if value is None:
         return "n/a"
     return f"{value * 100:.1f}%"
+
+
+def _config_value(config: dict[str, Any], key: str, default: Any = "n/a") -> Any:
+    value = config.get(key, default)
+    if value is None:
+        return default
+    return value
 
 
 def _metric_value(row: dict[str, Any], key: str) -> float:
@@ -629,6 +651,9 @@ def _runtime_minutes(start_time: str | None, end_time: str | None) -> float | No
 def build_publishable_local_report(
     *,
     dataset_manifest: dict[str, Any],
+    train_config: dict[str, Any],
+    base_inference_config: dict[str, Any],
+    adapter_inference_config: dict[str, Any],
     train_metadata: dict[str, Any],
     base_metrics: dict[str, Any],
     adapter_metrics: dict[str, Any],
@@ -649,6 +674,8 @@ def build_publishable_local_report(
     tract_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_tract")
     goal_demo_summary = _summarize_goal_demo_rows(goal_demo_rows)
     representative_win = _find_goal_demo_win(goal_demo_rows)
+    weakest_task = _lowest_metric_row(task_rows)
+    zero_gain_tracts = [row["label"] for row in tract_rows if float(row["candidate_exact"]) == 0.0]
     embedded_comparison_markdown = _normalize_embedded_comparison_markdown(comparison_markdown)
     runtime_minutes = _runtime_minutes(
         str(train_metadata.get("start_time")) if train_metadata.get("start_time") else None,
@@ -773,6 +800,28 @@ def build_publishable_local_report(
                 f"`{row['count']}` held-out prompts."
             )
 
+    if weakest_task is not None:
+        lines.extend(
+            [
+                "",
+                "Main remaining weak spot:",
+                "",
+                f"- {weakest_task['label']}: "
+                f"{_format_percent(float(weakest_task['candidate_exact']))} exact over "
+                f"`{weakest_task['count']}` held-out prompts.",
+            ]
+        )
+
+    if zero_gain_tracts:
+        lines.extend(
+            [
+                "",
+                "Zero-gain tracts in this run:",
+                "",
+                f"- {', '.join(zero_gain_tracts)}.",
+            ]
+        )
+
     if goal_demo_summary["total"] > 0:
         lines.extend(
             [
@@ -783,6 +832,10 @@ def build_publishable_local_report(
                 f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` to "
                 f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}`.",
                 "- The gain appears on held-out prompts rather than on memorized training rows.",
+                f"- The overall benchmark is still modest at "
+                f"`{adapter_overall['citation_exact_match']:.3f}` exact, so this result should "
+                "be read as evidence of movement in the right direction rather than as a finished "
+                "assistant.",
                 "- This is a deliberately small demo run, so the result should be read as proof "
                 "that the pipeline works and can scale upward.",
             ]
@@ -818,16 +871,45 @@ def build_publishable_local_report(
             "",
             "| Parameter | Value |",
             "| --- | ---: |",
-            f"| Learning rate | `{2e-4}` |",
-            f"| Max sequence length | `{768}` |",
-            f"| Train examples | `{train_metadata['train_examples']}` |",
-            f"| Eval examples | `{train_metadata['eval_examples']}` |",
-            "| Per-device train batch size | `1` |",
-            "| Gradient accumulation steps | `8` |",
-            "| LoRA rank | `16` |",
-            "| LoRA alpha | `32` |",
-            "| LoRA dropout | `0.05` |",
-            "| Seed | `17` |",
+            f"| Learning rate | `{_config_value(train_config, 'learning_rate')}` |",
+            f"| Max sequence length | `{_config_value(train_config, 'max_seq_length')}` |",
+            f"| Train examples | `{_config_value(train_config, 'max_train_examples')}` |",
+            f"| Eval examples | `{_config_value(train_config, 'max_eval_examples')}` |",
+            (
+                "| Per-device train batch size | "
+                f"`{_config_value(train_config, 'per_device_train_batch_size')}` |"
+            ),
+            (
+                "| Gradient accumulation steps | "
+                f"`{_config_value(train_config, 'gradient_accumulation_steps')}` |"
+            ),
+            f"| LoRA rank | `{_config_value(train_config, 'lora_r')}` |",
+            f"| LoRA alpha | `{_config_value(train_config, 'lora_alpha')}` |",
+            f"| LoRA dropout | `{_config_value(train_config, 'lora_dropout')}` |",
+            f"| Seed | `{_config_value(train_config, 'seed')}` |",
+            "",
+            "The local-baseline subset policy is deterministic rather than random: "
+            "the trainer uses the first `max_train_examples` rows from the committed "
+            "`train.jsonl` export and the first `max_eval_examples` rows from "
+            "`val.jsonl`, preserving the dataset's stable ordering.",
+            "",
+            "This corrected local-baseline rerun also uses the repaired vice-opposition prompt "
+            "wording in the `citation_grounded_moral_answer` family: `excess_opposed_to` and "
+            "`deficiency_opposed_to` questions now ask for the vice opposed to the virtue object, "
+            "which matches the underlying reviewed `vice -> virtue` annotations.",
+            "",
+            "Held-out generation also uses deterministic decoding. Both the base model and the "
+            "adapter run with `do_sample = false`, `max_new_tokens = "
+            f"{_config_value(base_inference_config, 'max_new_tokens')}` / "
+            f"`{_config_value(adapter_inference_config, 'max_new_tokens')}`, and seed "
+            f"`{_config_value(base_inference_config, 'seed')}` / "
+            f"`{_config_value(adapter_inference_config, 'seed')}` on the "
+            "prompt-only benchmark export.",
+            "",
+            "Citation metrics are computed by extracting passage ids from free-form model outputs "
+            "and comparing them against the reference `source_passage_ids` for each held-out "
+            "example. Relation-type accuracy is not reported for this baseline because the current "
+            "generation format does not emit a structured predicted relation label.",
             "",
             "## Runtime Environment",
             "",
@@ -907,7 +989,9 @@ def build_publishable_local_report(
             "",
             "The adapter materially improves held-out citation grounding over the untouched base "
             "model on the virtue-aligned slices that most closely match the repo's intended SFT "
-            "goal.",
+            "goal. At the same time, the `citation_grounded_moral_answer` slice remains at "
+            "`0.000` exact in this corrected run, so the present baseline is strongest on concept "
+            "and relation tasks rather than on fully user-style moral QA.",
             "",
             "## Goal Demo Panel",
             "",
@@ -1011,6 +1095,9 @@ def write_publishable_local_report(
     release_url: str | None = None,
 ) -> Path:
     dataset_manifest = _load_json(dataset_dir / "manifest.json")
+    train_config = _load_optional_yaml(train_run_dir / "config_snapshot.yaml")
+    base_inference_config = _load_optional_yaml(base_run_dir / "config_snapshot.yaml")
+    adapter_inference_config = _load_optional_yaml(adapter_run_dir / "config_snapshot.yaml")
     train_metadata = _load_json(train_run_dir / "train_metadata.json")
     base_metrics = _load_json(base_run_dir / "metrics.json")
     adapter_metrics = _load_json(adapter_run_dir / "metrics.json")
@@ -1028,6 +1115,9 @@ def write_publishable_local_report(
     )
     report_text = build_publishable_local_report(
         dataset_manifest=dataset_manifest,
+        train_config=train_config,
+        base_inference_config=base_inference_config,
+        adapter_inference_config=adapter_inference_config,
         train_metadata=train_metadata,
         base_metrics=base_metrics,
         adapter_metrics=adapter_metrics,

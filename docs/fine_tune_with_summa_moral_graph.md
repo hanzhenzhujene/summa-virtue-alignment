@@ -173,33 +173,40 @@ That loop is the experiment loop only. The canonical publishable path for a fres
 2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
 3. `make public-release-check`
 
-## Current Canonical Published Artifacts
+## Current Artifact Status
 
-The current official local publication bundle is:
+The repo now keeps one corrected canonical local package and two stable public distribution
+endpoints:
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
+- Local adapter package:
+  [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
 - Curated report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 
-Canonical published run ids:
+Canonical corrected repo-local run ids:
 
-- train: `20260418_193038`
+- train: `20260419_154300`
 - base test: `20260418_143349`
-- adapter test: `20260418_203546`
-- compare test: `20260418_225541`
+- adapter test: `20260419_154757`
+- compare test: `20260419_160910`
 
-Current headline held-out `test` result:
+Current corrected headline held-out `test` result:
 
 - base citation exact match: `0.000`
-- adapter citation exact match: `0.150`
-- net gain: `+0.150`
+- adapter citation exact match: `0.137`
+- net gain: `+0.137`
 
 Interpret this published result as a small-model demonstration baseline. It is the public example
 showing that the Summa Moral Graph dataset can move model behavior in the right direction. The same
 pipeline is meant to scale to larger models and longer GPU runs afterward.
+
+The Hugging Face repo and GitHub release remain the public distribution endpoints. The GitHub
+release keeps its original tag slug `20260418_193038` for continuity, while the curated report and
+local adapter package are the authoritative evaluation surfaces for the corrected `0.137` result.
 
 ## What The Local Run Writes
 
