@@ -51,11 +51,45 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
         "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
         "dataset_manifest_path": "data/processed/sft/exports/christian_virtue_v1/manifest.json",
         "git_commit": "abc123",
+        "github_repo_url": "https://github.com/example/repo",
         "github_release_url": "https://github.com/example/repo/releases/tag/demo-tag",
         "hf_repo_id": "example/repo",
         "hf_repo_url": "https://huggingface.co/example/repo",
         "local_train_run_id": "20260418_193038",
         "published_report_path": str(report_path),
+        "summary": {
+            "strongest_task": {
+                "key": "reviewed_relation_explanation",
+                "label": "Reviewed relation explanation",
+                "count": 67,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.194,
+                "delta_exact": 0.194,
+            },
+            "strongest_tract": {
+                "key": "justice_core",
+                "label": "Justice core",
+                "count": 42,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.238,
+                "delta_exact": 0.238,
+            },
+            "weakest_task": {
+                "key": "citation_grounded_moral_answer",
+                "label": "Citation-grounded moral answer",
+                "count": 67,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.0,
+                "delta_exact": 0.0,
+            },
+            "zero_gain_tracts": [
+                {
+                    "key": "connected_virtues_109_120",
+                    "label": "Connected virtues (II-II qq.109-120)",
+                    "count": 7,
+                }
+            ],
+        },
         "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/20260418_193038",
     }
 
@@ -87,6 +121,37 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
         document_path.parent.mkdir(parents=True, exist_ok=True)
         document_path.write_text("\n".join(expected_substrings), encoding="utf-8")
 
+    package_dir = package_manifest_path.parent
+    (package_dir / "README.md").write_text(
+        "\n".join(
+            [
+                "## Executive Readout",
+                str(package_manifest["github_release_url"]),
+                str(package_manifest["hf_repo_url"]),
+                "Strongest task slice: `Reviewed relation explanation`",
+                "Strongest tract slice: `Justice core`",
+                "Hardest task type: `Citation-grounded moral answer`",
+                "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+                "published report.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (package_dir / "release_notes.md").write_text(
+        "\n".join(
+            [
+                "## Executive Readout",
+                str(package_manifest["hf_repo_url"]),
+                "Strongest task slice: `Reviewed relation explanation`",
+                "Strongest tract slice: `Justice core`",
+                "Hardest task type: `Citation-grounded moral answer`",
+                "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+                "curated report.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
     summary = verify_publication_bundle(
         repo_root=repo_root,
         package_manifest_path=package_manifest_path,
@@ -94,6 +159,8 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
 
     assert summary["local_train_run_id"] == "20260418_193038"
     assert abs(summary["citation_exact_gain"] - 0.15) < 1e-9
+    assert "README.md" in summary["checked_package_surfaces"]
+    assert "release_notes.md" in summary["checked_package_surfaces"]
 
 
 def test_markdown_link_resolution_handles_internal_and_external_targets(tmp_path) -> None:
@@ -192,3 +259,5 @@ def test_repo_publication_bundle_is_coherent() -> None:
     assert "docs/christian_virtue_dataset_card.md" in summary["checked_docs"]
     assert "data/processed/sft/README.md" in summary["checked_docs"]
     assert "README.md" in summary["checked_doc_link_counts"]
+    assert "README.md" in summary["checked_package_surfaces"]
+    assert "release_notes.md" in summary["checked_package_surfaces"]

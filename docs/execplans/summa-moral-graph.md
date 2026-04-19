@@ -66,6 +66,14 @@
       before the full evidence dump
     - the embedded comparison markdown is also being normalized so the report no longer contains an
       awkward nested top-level heading inside the comparison section
+  - the next publishability gap after that is the external package surface:
+    - the Hugging Face model card and GitHub release notes are now being upgraded from simple
+      headline-metric stubs into compact executive summaries with strongest slice, weakest slice,
+      and zero-gain tract readouts
+    - the adapter package manifest is also being widened to carry the summary fields needed to keep
+      those external surfaces deterministic and reproducible
+    - publication verification is being extended so local package `README.md` and
+      `release_notes.md` are checked alongside the repo docs
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -627,6 +635,10 @@
   for the top-line judgment. Once the flagship report had all the tables and examples, the next
   quality step was to surface an executive readout that says plainly where the adapter is strong,
   where it is weak, and what the goal-demo panel actually shows.
+- External publication surfaces can lag behind repo quality even when they are generated from the
+  same run. A model card or release note that exposes only one headline metric still undersells the
+  actual research result compared with the flagship report, so those package surfaces need their
+  own executive summary layer too.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -861,6 +873,9 @@
 - Treat the flagship report as both an evidence archive and an executive research artifact. The
   published report should surface the headline strengths, weak spots, and goal-demo score before
   the long-form tables, and the publication gate should fail if that executive layer disappears.
+- Treat the generated adapter package surfaces the same way. The packaged model card and release
+  notes should carry a concise executive readout, and the publication gate should fail if those
+  generated surfaces fall back to an under-informative summary.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1095,6 +1110,15 @@
       report structure reads cleanly as one document
     - publication verification now expects the executive readout language to remain present in the
       canonical published report
+  - the generated publication package now matches that stronger standard:
+    - the adapter package manifest now carries a compact summary of strongest task, strongest tract,
+      weakest task, and zero-gain tracts
+    - the packaged Hugging Face model card now includes direct GitHub links to the dataset card,
+      flagship report, matching release, and an executive readout of the canonical local result
+    - the generated GitHub release notes now include the same executive summary rather than only a
+      single headline metric
+    - publication verification now checks package `README.md` and `release_notes.md` as first-class
+      publication surfaces
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed

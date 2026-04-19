@@ -93,6 +93,41 @@ def build_publication_doc_expectations(
     }
 
 
+def build_publication_package_surface_expectations(
+    package_manifest: dict[str, Any],
+) -> dict[str, list[str]]:
+    summary = cast(dict[str, Any], package_manifest.get("summary", {}))
+    strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
+    strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
+    weakest_task = cast(dict[str, Any] | None, summary.get("weakest_task"))
+
+    expected: dict[str, list[str]] = {
+        "README.md": [
+            "## Executive Readout",
+            str(package_manifest["github_release_url"]),
+            str(package_manifest["hf_repo_url"]),
+            "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+            "published report.",
+        ],
+        "release_notes.md": [
+            "## Executive Readout",
+            str(package_manifest["hf_repo_url"]),
+            "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+            "curated report.",
+        ],
+    }
+    if strongest_task is not None:
+        expected["README.md"].append(f"Strongest task slice: `{strongest_task['label']}`")
+        expected["release_notes.md"].append(f"Strongest task slice: `{strongest_task['label']}`")
+    if strongest_tract is not None:
+        expected["README.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
+        expected["release_notes.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
+    if weakest_task is not None:
+        expected["README.md"].append(f"Hardest task type: `{weakest_task['label']}`")
+        expected["release_notes.md"].append(f"Hardest task type: `{weakest_task['label']}`")
+    return expected
+
+
 def verify_publication_bundle(
     *,
     repo_root: Path = REPO_ROOT,
@@ -172,6 +207,22 @@ def verify_publication_bundle(
             extract_markdown_targets(document_text)
         )
 
+    package_dir = package_manifest_path.parent
+    checked_package_surfaces: list[str] = []
+    for relative_name, expected_substrings in build_publication_package_surface_expectations(
+        package_manifest
+    ).items():
+        surface_path = package_dir / relative_name
+        if not surface_path.exists():
+            raise FileNotFoundError(f"Missing package publication surface: {surface_path}")
+        surface_text = surface_path.read_text(encoding="utf-8")
+        for substring in expected_substrings:
+            if substring not in surface_text:
+                raise RuntimeError(
+                    f"Expected substring {substring!r} in package surface {surface_path}"
+                )
+        checked_package_surfaces.append(relative_name)
+
     return {
         "package_manifest_path": str(package_manifest_path.relative_to(repo_root)),
         "train_run_dir": str(train_run_dir.relative_to(repo_root)),
@@ -192,4 +243,5 @@ def verify_publication_bundle(
         "citation_exact_gain": adapter_exact - base_exact,
         "checked_docs": checked_docs,
         "checked_doc_link_counts": checked_doc_link_counts,
+        "checked_package_surfaces": checked_package_surfaces,
     }

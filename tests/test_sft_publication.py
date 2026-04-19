@@ -35,11 +35,31 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     (train_run_dir / "config_snapshot.yaml").write_text("run_name: fixture\n", encoding="utf-8")
     _write_json(
         base_run_dir / "metrics.json",
-        {"overall": {"citation_exact_match": 0.0}},
+        {
+            "overall": {"citation_exact_match": 0.0},
+            "by_task_type": {
+                "reviewed_relation_explanation": {"citation_exact_match": 0.0, "count": 2},
+                "citation_grounded_moral_answer": {"citation_exact_match": 0.0, "count": 3},
+            },
+            "by_tract": {
+                "theological_virtues": {"citation_exact_match": 0.0, "count": 2},
+                "connected_virtues_109_120": {"citation_exact_match": 0.0, "count": 1},
+            },
+        },
     )
     _write_json(
         adapter_run_dir / "metrics.json",
-        {"overall": {"citation_exact_match": 0.2}},
+        {
+            "overall": {"citation_exact_match": 0.2},
+            "by_task_type": {
+                "reviewed_relation_explanation": {"citation_exact_match": 0.5, "count": 2},
+                "citation_grounded_moral_answer": {"citation_exact_match": 0.0, "count": 3},
+            },
+            "by_tract": {
+                "theological_virtues": {"citation_exact_match": 0.5, "count": 2},
+                "connected_virtues_109_120": {"citation_exact_match": 0.0, "count": 1},
+            },
+        },
     )
 
     written_dir = write_adapter_package(
@@ -61,7 +81,11 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert (package_dir / "release_notes.md").exists()
     manifest = json.loads((package_dir / "package_manifest.json").read_text(encoding="utf-8"))
     assert manifest["hf_repo_id"] == "JennyZhu0822/demo"
+    assert manifest["github_repo_url"] == "https://github.com/hanzhenzhujene/summa-moral-graph-fork"
     assert manifest["local_train_run_id"] == "20260418_101010"
+    assert manifest["summary"]["strongest_task"]["label"] == "Reviewed relation explanation"
+    assert manifest["summary"]["strongest_tract"]["label"] == "Theological virtues"
+    assert manifest["summary"]["weakest_task"]["label"] == "Citation-grounded moral answer"
     assert (
         manifest["published_report_path"]
         == "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md"
@@ -71,7 +95,14 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert readme.startswith("---\n")
     assert "pipeline_tag: text-generation" in readme
     assert "docs/christian_virtue_dataset_card.md" in readme
+    assert "## Executive Readout" in readme
+    assert "Strongest task slice" in readme
+    assert "Hardest task type" in readme
+    assert "github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/demo-tag" in readme
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in readme
+    assert "## Executive Readout" in release_notes
+    assert "Strongest tract slice" in release_notes
+    assert "Zero-gain tracts" in release_notes
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in release_notes
     assert str(tmp_path) not in readme
 
