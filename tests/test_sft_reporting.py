@@ -244,6 +244,8 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
         output_path=report_path,
         training_curves_asset_path=Path("./assets/training.svg"),
         comparison_asset_path=Path("./assets/comparison.svg"),
+        published_model_url="https://huggingface.co/example/model",
+        release_url="https://github.com/example/release",
     )
 
     assert written_report == report_path
@@ -253,3 +255,5 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "## Canonical Purpose" in report_text
     assert "## Goal Demo Panel" in report_text
     assert "Base citation exact match" in report_text
+    assert "https://huggingface.co/example/model" in report_text
+    assert "https://github.com/example/release" in report_text

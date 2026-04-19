@@ -514,9 +514,9 @@ def build_publishable_local_report(
         "(../../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)",
     ]
     if published_model_url is not None:
-        lines.append(f"- Published adapter: [{published_model_url}]({published_model_url})")
+        lines.append(f"- Published adapter: [Hugging Face model page]({published_model_url})")
     if release_url is not None:
-        lines.append(f"- GitHub release: [{release_url}]({release_url})")
+        lines.append(f"- GitHub release: [Release page]({release_url})")
 
     lines.extend(
         [

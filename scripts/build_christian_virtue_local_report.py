@@ -11,6 +11,14 @@ from summa_moral_graph.sft import (
 )
 from summa_moral_graph.utils.paths import REPO_ROOT
 
+DEFAULT_PUBLISHED_MODEL_URL = (
+    "https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite"
+)
+DEFAULT_RELEASE_URL = (
+    "https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/"
+    "christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038"
+)
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -49,8 +57,8 @@ def parse_args() -> argparse.Namespace:
         default=REPO_ROOT / "docs/reports/assets",
         type=Path,
     )
-    parser.add_argument("--published-model-url")
-    parser.add_argument("--release-url")
+    parser.add_argument("--published-model-url", default=DEFAULT_PUBLISHED_MODEL_URL)
+    parser.add_argument("--release-url", default=DEFAULT_RELEASE_URL)
     return parser.parse_args()
 
 

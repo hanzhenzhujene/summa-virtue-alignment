@@ -135,6 +135,30 @@ make run-christian-virtue-qwen2-5-1-5b-local-loop
 That loop now defaults to `pilot-lite`, which is the practical local rung on a 16 GB Apple-Silicon
 machine.
 
+## Current Canonical Published Artifacts
+
+The current official local publication bundle is:
+
+- Hugging Face adapter:
+  [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+- Matching GitHub release:
+  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+- Curated report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+
+Canonical published run ids:
+
+- train: `20260418_193038`
+- base test: `20260418_143349`
+- adapter test: `20260418_203546`
+- compare test: `20260418_225541`
+
+Current headline held-out `test` result:
+
+- base citation exact match: `0.000`
+- adapter citation exact match: `0.150`
+- net gain: `+0.150`
+
 ## What The Local Run Writes
 
 Runs are timestamped under:

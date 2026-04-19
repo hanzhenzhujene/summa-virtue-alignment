@@ -33,12 +33,12 @@
     - pushed branch `feat/christian-virtue-sft-v1` now tracks `origin/feat/christian-virtue-sft-v1`
     - pushed commit is `f9fd589`
     - a fresh canonical rerun from `f9fd589` is now being launched before publication
-  - the fresh canonical local loop has now completed successfully:
-    - train run `20260418_142602`
+  - the canonical local publication loop has now completed successfully:
+    - train run `20260418_193038`
     - base test run `20260418_143349`
-    - adapter test run `20260418_152723`
-    - compare run `20260418_155301`
-    - held-out citation exact moved from `0.000` on base to `0.163` on the adapter across `233`
+    - adapter test run `20260418_203546`
+    - compare run `20260418_225541`
+    - held-out citation exact moved from `0.000` on base to `0.150` on the adapter across `233`
       test prompts
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
@@ -1011,7 +1011,7 @@
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed
-    - the comparison report now records a `+0.163` absolute citation-exact gain over base on the
+    - the comparison report now records a `+0.150` absolute citation-exact gain over base on the
       `233`-example test split
 - The repo is now being refactored into a more complete public fine-tuning surface instead of only
   an internal research workspace:

@@ -28,18 +28,25 @@ What it demonstrates:
 - the LoRA adapter beats the untouched base model on the held-out benchmark
 - the repo can serve as a public fine-tuning entrypoint rather than only a private research log
 
+Published artifacts:
+
+- Hugging Face adapter:
+  [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+- Matching GitHub release:
+  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+
 Canonical run ids:
 
-- train: `20260418_142602`
+- train: `20260418_193038`
 - base test: `20260418_143349`
-- adapter test: `20260418_152723`
-- compare test: `20260418_155301`
+- adapter test: `20260418_203546`
+- compare test: `20260418_225541`
 
 Headline result on the held-out `test` split:
 
 - base citation exact match: `0.000`
-- adapter citation exact match: `0.163`
-- net gain: `+0.163`
+- adapter citation exact match: `0.150`
+- net gain: `+0.150`
 
 ## Canonical Command Surface
 

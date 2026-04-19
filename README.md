@@ -75,12 +75,16 @@ make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 
 Published public artifacts for the canonical local run:
 
+- Published adapter:
+  [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
+- Matching GitHub release:
+  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
 - Experiment index:
   [docs/reports/christian_virtue_experiments.md](./docs/reports/christian_virtue_experiments.md)
 - Latest headline result:
-  held-out `test` citation exact match moved from `0.000` on the untouched base model to `0.163`
+  held-out `test` citation exact match moved from `0.000` on the untouched base model to `0.150`
   on the `pilot-lite` adapter over `233` evaluation prompts.
 
 ## Open The Viewer
