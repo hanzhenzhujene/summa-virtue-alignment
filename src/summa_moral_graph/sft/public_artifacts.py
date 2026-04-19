@@ -11,6 +11,8 @@ DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
     REPO_ROOT
     / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/package_manifest.json"
 )
+DATASET_CARD_PATH = Path("docs/christian_virtue_dataset_card.md")
+SFT_README_PATH = Path("data/processed/sft/README.md")
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -63,6 +65,20 @@ def build_publication_doc_expectations(
             release_url,
             run_id,
             adapter_metric,
+        ],
+        DATASET_CARD_PATH: [
+            "Aquinas-grounded Christian virtue reasoning",
+            "docs/fine_tune_with_summa_moral_graph.md",
+            report_name,
+            hf_url,
+            release_url,
+            "data/processed/sft/exports/christian_virtue_v1",
+        ],
+        SFT_README_PATH: [
+            "exports/christian_virtue_v1/",
+            "docs/christian_virtue_dataset_card.md",
+            "docs/fine_tune_with_summa_moral_graph.md",
+            report_name,
         ],
         report_path: [
             hf_url,

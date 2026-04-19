@@ -55,6 +55,11 @@
       verify gate
     - public Markdown surfaces are gaining explicit internal-link validation so the repo can fail
       loudly if a polished public doc points to a missing local artifact
+  - the next coherence gap after that is the dataset surface itself:
+    - the dataset card and `data/processed/sft/README.md` are now being promoted from “present” to
+      “first-class public entry surfaces”
+    - publication verification is being widened so those data-facing docs are checked alongside the
+      README, fine-tune guide, maintainer doc, experiment index, and flagship report
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -609,6 +614,9 @@
 - Public-doc polish can fail in a quieter way than stale metrics: a README or flagship report can
   look coherent while quietly pointing at a moved or missing local artifact. That kind of breakage
   is cheap to prevent once link validation is part of the publishable verification path.
+- A dataset card can technically exist while still under-serving the public story. For this repo,
+  the dataset itself is a headline product, so the dataset card and `data/processed/sft/README.md`
+  also need to point readers toward the guide, flagship report, and canonical published baseline.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -837,6 +845,9 @@
 - Treat public-doc internal links as part of the release surface. The canonical publication check
   should fail if README, guide docs, experiment index, or the flagship report link to missing local
   files or assets.
+- Treat the dataset-facing docs as part of that same release surface. The canonical publication
+  check should also fail if the dataset card or `data/processed/sft/README.md` drift away from the
+  guide, flagship report, or committed export paths.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1055,6 +1066,13 @@
     - the flagship report's reproduction path includes the verify gate
     - publication verification now also checks internal Markdown link integrity across the public
       README/docs/report bundle
+  - the dataset-facing public surface is now tighter too:
+    - the dataset card now points readers to the guide, maintainer workflow, experiment index, and
+      flagship report
+    - `data/processed/sft/README.md` now links outward to the dataset card, fine-tuning guide, and
+      flagship local report
+    - publication verification now checks those two surfaces as part of the canonical release
+      bundle
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed

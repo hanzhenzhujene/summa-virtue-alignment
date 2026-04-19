@@ -140,6 +140,7 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "docs/fine_tune_with_summa_moral_graph.md",
         repo_root / "docs/christian_virtue_sft.md",
         repo_root / "docs/christian_virtue_dataset_card.md",
+        repo_root / "data/processed/sft/README.md",
         repo_root / "docs/reports/christian_virtue_experiments.md",
         repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/manifest.json",
@@ -158,11 +159,18 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
 def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     readme_text = (repo_root / "README.md").read_text(encoding="utf-8")
+    dataset_card_text = (repo_root / "docs/christian_virtue_dataset_card.md").read_text(
+        encoding="utf-8"
+    )
+    sft_readme_text = (repo_root / "data/processed/sft/README.md").read_text(encoding="utf-8")
     gitignore_text = (repo_root / ".gitignore").read_text(encoding="utf-8")
 
     assert "Fine-Tune Your Model With Summa Moral Graph" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in readme_text
     assert "pilot-lite" in readme_text
+    assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
+    assert "christian_virtue_qwen2_5_1_5b_pilot_lite_report.md" in dataset_card_text
+    assert "docs/christian_virtue_dataset_card.md" in sft_readme_text
     assert "!data/processed/sft/exports/christian_virtue_v1/**" in gitignore_text
     assert "!data/processed/sft/exports/christian_virtue_v1_ood/**" in gitignore_text
 
@@ -181,4 +189,6 @@ def test_repo_publication_bundle_is_coherent() -> None:
     )
 
     assert summary["adapter_citation_exact_match"] > summary["base_citation_exact_match"]
+    assert "docs/christian_virtue_dataset_card.md" in summary["checked_docs"]
+    assert "data/processed/sft/README.md" in summary["checked_docs"]
     assert "README.md" in summary["checked_doc_link_counts"]
