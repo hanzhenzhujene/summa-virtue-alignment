@@ -17,6 +17,22 @@
   - publication utilities now package the canonical adapter, write a model card and release notes,
     infer the current fork from the `origin` remote, and prepare synchronized Hugging Face / GitHub
     publication targets
+  - release publication now also resolves its GitHub release target from the training run's
+    recorded git commit instead of assuming the current `HEAD`, so a later documentation-only
+    worktree state cannot silently detach a release from the actual adapter-producing run
+  - the release-candidate branch has now been pushed to the user's fork and the next formal step is a clean rerun from that pushed commit so public artifacts point to a remote-backed state:
+  - the clean rerun has now established the committed-state training artifact, and the next-step release path has been narrowed further after observing local inference throughput:
+    - new canonical train run `20260418_193038` is tied to pushed commit `f9fd589`
+    - a fresh base rerun was started as `20260418_193542`, but the first `31` predictions matched the prior complete base run exactly
+    - because the base model and prompt path are unchanged, the repo will now reuse completed base run `20260418_143349` and spend remaining local time only on the new adapter evaluation
+    - new adapter evaluation run `20260418_203546` advanced to `223 / 233` held-out prompts before
+      bulk MPS generation stopped making forward progress
+    - instead of discarding that canonical run id, the remaining `10` prompts are now being
+      recovered through isolated single-example MPS subprocesses so the final artifact still has a
+      truthful audit trail
+    - pushed branch `feat/christian-virtue-sft-v1` now tracks `origin/feat/christian-virtue-sft-v1`
+    - pushed commit is `f9fd589`
+    - a fresh canonical rerun from `f9fd589` is now being launched before publication
   - the fresh canonical local loop has now completed successfully:
     - train run `20260418_142602`
     - base test run `20260418_143349`
@@ -559,6 +575,12 @@
 
 ## Surprises & Discoveries
 
+- The last operational edge case in the canonical local rerun was not training instability but
+  long-tail adapter inference on Apple `mps`. Bulk generation advanced cleanly through most of the
+  held-out benchmark, then stalled near completion at `223 / 233` examples. Recovering the last
+  prompts through isolated single-example subprocesses turned out to be both honest and effective:
+  the run kept its canonical id, every recovered example still completed on `mps`, and the public
+  artifact path no longer depends on pretending the original bulk process was perfectly reliable.
 - The last publishability gap was not another model feature but public artifact coherence: once the
   local pilot became stable, the missing pieces were a fixed goal-demo panel, a curated report
   generator, and a packaging path that ties a checkpoint, report, dataset card, and release tag
@@ -759,6 +781,15 @@
 
 ## Decision Log
 
+- Keep the committed-state train run `20260418_193038` as canonical, reuse the already validated
+  base test run `20260418_143349`, and finish only the new adapter evaluation against commit
+  `f9fd589` rather than burning more local time on duplicate base generations.
+- Preserve the stalled adapter-eval run id `20260418_203546` and recover its final missing rows
+  instead of discarding it and pretending the completed public artifact came from a different run.
+  Recovery should:
+  - write full recovered prediction rows to disk immediately
+  - keep a separate recovery log
+  - note the recovery method in the final run manifest
 - Keep one official public local recipe instead of documenting multiple equally blessed Mac
   training rungs:
   - `smoke` stays a debug sanity check
@@ -959,6 +990,17 @@
 
 ## Outcomes & Retrospective
 
+- The committed-state local publication path is now operationally complete:
+  - canonical train run `20260418_193038` is tied to pushed commit `f9fd589`
+  - canonical adapter eval run `20260418_203546` was recovered to a full `233 / 233` predictions
+    after bulk MPS generation stalled near the end
+  - the recovered adapter eval still beats base by `+0.150` citation-exact on the held-out test
+    split (`0.000` -> `0.150`)
+  - the refreshed comparison report now lives at
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/compare_test/20260418_225541/report.md`
+  - the refreshed public report and SVG assets have been regenerated from the canonical local run
+  - the packaged adapter now resolves its GitHub release target from the actual train-run commit
+    rather than assuming the current `HEAD`
 - The repo is now much closer to a genuinely publishable fine-tuning entrypoint instead of a
   capable-but-internal research stack:
   - the public docs now converge on one clear local demonstration recipe

@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from summa_moral_graph.sft.publication import write_adapter_package
+from summa_moral_graph.sft.publication import release_target_from_train_run, write_adapter_package
 
 
 def _write_json(path: Path, payload: dict[str, object]) -> None:
@@ -69,3 +69,17 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     readme = (package_dir / "README.md").read_text(encoding="utf-8")
     assert "docs/christian_virtue_dataset_card.md" in readme
     assert str(tmp_path) not in readme
+
+
+def test_release_target_from_train_run_uses_train_metadata_git_commit(tmp_path) -> None:
+    train_run_dir = tmp_path / "runs" / "pilot_lite" / "20260418_101010"
+    _write_json(
+        train_run_dir / "train_metadata.json",
+        {
+            "git_commit": "abc123deadbeef",
+            "model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+            "run_id": "20260418_101010",
+        },
+    )
+
+    assert release_target_from_train_run(train_run_dir) == "abc123deadbeef"

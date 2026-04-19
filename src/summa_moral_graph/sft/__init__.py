@@ -25,6 +25,7 @@ from .publication import (
     create_or_update_github_release,
     default_release_target,
     publish_adapter_package_to_hf,
+    release_target_from_train_run,
     write_adapter_package,
 )
 from .reporting import (
@@ -88,6 +89,7 @@ __all__ = [
     "python_version_ok",
     "python_version_string",
     "publish_adapter_package_to_hf",
+    "release_target_from_train_run",
     "resolve_model_runtime",
     "resolve_training_runtime",
     "run_artifacts_for_dir",

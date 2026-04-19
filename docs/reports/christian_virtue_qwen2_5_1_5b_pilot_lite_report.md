@@ -26,8 +26,8 @@ It is meant to show more than citation formatting. The real question is whether 
 | Pilot-lite eval subset | `16` |
 | Max steps | `20` |
 | Runtime device | `mps` |
-| Git commit | `215e8bf4fe3af8f723237ce7e801c42b70af77c8` |
-| Training run id | `20260418_142602` |
+| Git commit | `f9fd58981e8182dbe92ee6ed1c1a389ef2e7f1e9` |
+| Training run id | `20260418_193038` |
 
 Committed inputs:
 
@@ -70,7 +70,7 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 | PEFT | `0.19.1` |
 | TRL | `0.29.1` |
 | Accelerate | `1.13.0` |
-| Approx train wall-clock | `7.3 minutes` |
+| Approx train wall-clock | `4.7 minutes` |
 
 ## Training Trajectory
 
@@ -85,7 +85,7 @@ The training curve is healthy for a local demonstration run: loss falls sharply,
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
 | Base model | `233` | `0.000` | `0.000` | `0.000` |
-| LoRA adapter | `233` | `0.163` | `0.163` | `0.163` |
+| LoRA adapter | `233` | `0.150` | `0.150` | `0.150` |
 
 The adapter materially improves held-out citation grounding over the untouched base model, but the improvement is uneven across tasks. The open user-style moral-answer task remains the hardest failure mode.
 
@@ -113,7 +113,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, fraternal correction is an act of charity rather than a healing of a bodily infirmity or relieving of an external bodily need. The passage states this directly. The relation type is "has_act", with fraternal correction as the object. The passage cites Aquinas's categories to support this claim, using phrases like "act of charity" and "removal of evil".
+> According to the cited passage, fraternal correction is an act of charity rather than a healing of a bodily infirmity or relieving of an external bodily need. The passage states this directly. The relation type is "has_act", and the object is "Fraternal Correction". The passage cites Aquinas's own words to support this claim. Article 1 explicitly states that fraternal correction is an act of charity. Article 2 expla…
 
 ### 2. Faith as a theological virtue
 
@@ -145,7 +145,7 @@ LoRA adapter:
 - Prompt: Explain this reviewed doctrinal relation from the cited passage. Tract: Justice core Subject: Commutative Justice Relation type: has_act Object: Restitution Passage id: st.ii-ii.q062.a001.resp Passage text: To restore i…
 - Reference citations: `st.ii-ii.q062.a001.resp`
 - Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Adapter exact citation match: `True`
 
 Reference:
 
@@ -157,7 +157,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, restitution is an act of commutative justice. The passage states this directly. The relation type is "has_act" and the object is restitution. The passage explains that restitution is considered the same as reinstate a person in possession or dominion of his thing, which is part of commutative justice. The passage also provides examples of restitution occurring due to consent or agains…
+> According to the cited passage, restitution is an act of commutative justice. The passage states this directly. Restitution is considered the same as reinstate a person in possession or dominion of his thing, which is part of commutative justice. The passage explicitly links restitution to commutative justice. Citations: - st.ii-ii.q062.a001.resp
 
 ### 4. Commutative justice as a concept
 
@@ -179,7 +179,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, restitution is considered the same as reinstate a person in possession or dominion of their thing. This is explained as commutative justice, which involves equality of justice in payment of one thing for another. The passage explicitly states that restitution is an act of commutative justice. Citations: - st.ii-ii.q062.a001.resp (II-II q.62 a.1 resp)
+> According to the cited passage, restitution is considered the same as reinstate a person in possession of their thing, which is a key aspect of commutative justice. The passage states that restitution involves equality of justice in payment of one thing for another, which is part of commutative justice. It mentions restitution as occasioned by one person having what belongs to another, either with consent or against…
 
 ### 5. Regnative prudence
 
@@ -201,7 +201,7 @@ Base model:
 
 LoRA adapter:
 
-> Regnative Prudence is the special and perfect kind of prudence that governs and commands in a king governing a city or kingdom. The passage states this directly and explains it through Aquinas's categories, showing that prudence governs and commands in a king governing a city or kingdom, which is the most perfect kind of governance. The passage also mentions that this kind of prudence is called regnative prudence. C…
+> According to the cited passage, regnative prudence is a special kind of prudence that governs and commands in a king's governance of a city or kingdom. The passage states this directly and provides evidence from II-II:47:10 that prudence governs and commands in governance, and that this is a special kind of prudence. The passage also explains why regnative prudence is a special kind of prudence, citing the universal…
 
 ### 6. Military prudence as a part of prudence
 
@@ -223,7 +223,7 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that military prudence is a subjective part of prudence. The passage directly compares military prudence to political prudence and explicitly includes military prudence as a part of prudence. The cited passage explicitly states that military prudence is a part of prudence, directly supporting the relation between military prudence and pruden…
+> This passage supports the reviewed doctrinal relation by explicitly stating that military prudence is a subjective part of prudence. The passage directly compares military prudence to political prudence and explicitly includes military prudence as a part of prudence. The cited passage explicitly states that military prudence is a part of prudence, making this passage directly support the doctrinal relation between m…
 
 ### 7. Truth in self-presentation
 
@@ -267,7 +267,7 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage directly compares temperance to shamefacedness and honesty, which are explicitly called subjective parts of temperance. The cited passage explicitly states that temperance has subjective parts, and then goes on to list these subjective parts as shamefacedness and honesty.
+> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage directly compares temperance to shamefacedness and honesty, which are explicitly called subjective parts of temperance. The review correctly identifies this as subjective_part_of relation type.
 
 ### 9. Continence within temperance
 
@@ -289,7 +289,7 @@ Base model:
 
 LoRA adapter:
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has potential parts that are secondary virtues. The passage directly cites this as part of Aquinas's categorization of temperance's potential parts. The passage also provides examples of these potential parts, showing how temperance moderates various types of actions and movements.
+> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has potential parts that are secondary virtues. The passage directly cites this as part of Aquinas's explanation of temperance's potential parts. Article 1 explicitly states that temperance has potential parts, and then goes on to list these potential parts as secondary virtues. Article 2 further elaborates on this by explain…
 
 ### 10. Lust and chastity
 
@@ -311,7 +311,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, Excessive Lust is opposed by Diligence. The passage states this directly. Article 1 explicitly states this opposition. Citations: - st.ii-ii.q106.a001.resp (II-II q.106 a.1 resp)
+> According to the cited passage, Excessive Lust is opposed by Diligence. The passage states this directly. Article 1 explicitly states this opposition. Citations: - st.ii-ii.q125.a001.resp (II-II q.125 a.1 resp)
 
 ### 11. Constancy in the fortitude tract
 
@@ -333,7 +333,7 @@ Base model:
 
 LoRA adapter:
 
-> According to the cited passage, constancy differs from perseverance in that constancy deals with external hindrances rather than intrinsic difficulties of the act. Perseverance is seen as a more intrinsic virtue related to the act itself, while constancy is about overcoming external obstacles. The passage states that perseverance takes precedence over constancy in fortitude due to the greater difficulty posed by the…
+> According to the cited passage, constancy differs from perseverance in Aquinas's view. Perseverance is about persisting in good against intrinsic difficulties, while constancy is about persisting against external hindrances. Perseverance is seen as a more intrinsic virtue related to the act itself, whereas constancy deals with external obstacles. The passage states that perseverance takes precedence over constancy i…
 
 ### 12. Magnificence and great work
 
@@ -369,9 +369,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.163 | +0.163 |
-| citation_partial_match | 0.000 | 0.163 | +0.163 |
-| citation_overlap | 0.000 | 0.163 | +0.163 |
+| citation_exact_match | 0.000 | 0.150 | +0.150 |
+| citation_partial_match | 0.000 | 0.150 | +0.150 |
+| citation_overlap | 0.000 | 0.150 | +0.150 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ## By Split
@@ -381,9 +381,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.163 | +0.163 |
-| citation_partial_match | 0.000 | 0.163 | +0.163 |
-| citation_overlap | 0.000 | 0.163 | +0.163 |
+| citation_exact_match | 0.000 | 0.150 | +0.150 |
+| citation_partial_match | 0.000 | 0.150 | +0.150 |
+| citation_overlap | 0.000 | 0.150 | +0.150 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -394,9 +394,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 7 | 7 | +0 |
-| citation_exact_match | 0.000 | 0.143 | +0.143 |
-| citation_partial_match | 0.000 | 0.143 | +0.143 |
-| citation_overlap | 0.000 | 0.143 | +0.143 |
+| citation_exact_match | 0.000 | 0.000 | +0.000 |
+| citation_partial_match | 0.000 | 0.000 | +0.000 |
+| citation_overlap | 0.000 | 0.000 | +0.000 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### fortitude_closure_136_140
@@ -404,9 +404,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 17 | 17 | +0 |
-| citation_exact_match | 0.000 | 0.235 | +0.235 |
-| citation_partial_match | 0.000 | 0.235 | +0.235 |
-| citation_overlap | 0.000 | 0.235 | +0.235 |
+| citation_exact_match | 0.000 | 0.118 | +0.118 |
+| citation_partial_match | 0.000 | 0.118 | +0.118 |
+| citation_overlap | 0.000 | 0.118 | +0.118 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### fortitude_parts_129_135
@@ -414,9 +414,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 51 | 51 | +0 |
-| citation_exact_match | 0.000 | 0.137 | +0.137 |
-| citation_partial_match | 0.000 | 0.137 | +0.137 |
-| citation_overlap | 0.000 | 0.137 | +0.137 |
+| citation_exact_match | 0.000 | 0.098 | +0.098 |
+| citation_partial_match | 0.000 | 0.098 | +0.098 |
+| citation_overlap | 0.000 | 0.098 | +0.098 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### justice_core
@@ -424,9 +424,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 42 | 42 | +0 |
-| citation_exact_match | 0.000 | 0.167 | +0.167 |
-| citation_partial_match | 0.000 | 0.167 | +0.167 |
-| citation_overlap | 0.000 | 0.167 | +0.167 |
+| citation_exact_match | 0.000 | 0.238 | +0.238 |
+| citation_partial_match | 0.000 | 0.238 | +0.238 |
+| citation_overlap | 0.000 | 0.238 | +0.238 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### prudence
@@ -434,9 +434,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 40 | 40 | +0 |
-| citation_exact_match | 0.000 | 0.275 | +0.275 |
-| citation_partial_match | 0.000 | 0.275 | +0.275 |
-| citation_overlap | 0.000 | 0.275 | +0.275 |
+| citation_exact_match | 0.000 | 0.225 | +0.225 |
+| citation_partial_match | 0.000 | 0.225 | +0.225 |
+| citation_overlap | 0.000 | 0.225 | +0.225 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### temperance_141_160
@@ -444,9 +444,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 46 | 46 | +0 |
-| citation_exact_match | 0.000 | 0.065 | +0.065 |
-| citation_partial_match | 0.000 | 0.065 | +0.065 |
-| citation_overlap | 0.000 | 0.065 | +0.065 |
+| citation_exact_match | 0.000 | 0.130 | +0.130 |
+| citation_partial_match | 0.000 | 0.130 | +0.130 |
+| citation_overlap | 0.000 | 0.130 | +0.130 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### temperance_closure_161_170
@@ -454,9 +454,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 11 | 11 | +0 |
-| citation_exact_match | 0.000 | 0.091 | +0.091 |
-| citation_partial_match | 0.000 | 0.091 | +0.091 |
-| citation_overlap | 0.000 | 0.091 | +0.091 |
+| citation_exact_match | 0.000 | 0.000 | +0.000 |
+| citation_partial_match | 0.000 | 0.000 | +0.000 |
+| citation_overlap | 0.000 | 0.000 | +0.000 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### theological_virtues
@@ -464,9 +464,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 19 | 19 | +0 |
-| citation_exact_match | 0.000 | 0.211 | +0.211 |
-| citation_partial_match | 0.000 | 0.211 | +0.211 |
-| citation_overlap | 0.000 | 0.211 | +0.211 |
+| citation_exact_match | 0.000 | 0.158 | +0.158 |
+| citation_partial_match | 0.000 | 0.158 | +0.158 |
+| citation_overlap | 0.000 | 0.158 | +0.158 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -477,9 +477,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 200 | 200 | +0 |
-| citation_exact_match | 0.000 | 0.165 | +0.165 |
-| citation_partial_match | 0.000 | 0.165 | +0.165 |
-| citation_overlap | 0.000 | 0.165 | +0.165 |
+| citation_exact_match | 0.000 | 0.145 | +0.145 |
+| citation_partial_match | 0.000 | 0.145 | +0.145 |
+| citation_overlap | 0.000 | 0.145 | +0.145 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### strong_textual_inference
@@ -520,9 +520,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 67 | 67 | +0 |
-| citation_exact_match | 0.000 | 0.269 | +0.269 |
-| citation_partial_match | 0.000 | 0.269 | +0.269 |
-| citation_overlap | 0.000 | 0.269 | +0.269 |
+| citation_exact_match | 0.000 | 0.194 | +0.194 |
+| citation_partial_match | 0.000 | 0.194 | +0.194 |
+| citation_overlap | 0.000 | 0.194 | +0.194 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### virtue_concept_explanation
@@ -530,9 +530,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 32 | 32 | +0 |
-| citation_exact_match | 0.000 | 0.438 | +0.438 |
-| citation_partial_match | 0.000 | 0.438 | +0.438 |
-| citation_overlap | 0.000 | 0.438 | +0.438 |
+| citation_exact_match | 0.000 | 0.500 | +0.500 |
+| citation_partial_match | 0.000 | 0.500 | +0.500 |
+| citation_overlap | 0.000 | 0.500 | +0.500 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ## What This Demonstrates
@@ -563,5 +563,5 @@ make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ## Headline Numbers
 
 - Base citation exact match: 0.0%
-- Adapter citation exact match: 16.3%
-- Net gain: 16.3%
+- Adapter citation exact match: 15.0%
+- Net gain: 15.0%

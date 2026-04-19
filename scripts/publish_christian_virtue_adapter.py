@@ -8,8 +8,8 @@ from pathlib import Path
 
 from summa_moral_graph.sft import (
     create_or_update_github_release,
-    default_release_target,
     publish_adapter_package_to_hf,
+    release_target_from_train_run,
     write_adapter_package,
 )
 from summa_moral_graph.utils.paths import REPO_ROOT
@@ -101,6 +101,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--github-repo-url")
     parser.add_argument("--release-tag")
     parser.add_argument("--release-title")
+    parser.add_argument("--release-target")
     parser.add_argument("--skip-hf", action="store_true")
     parser.add_argument("--skip-github-release", action="store_true")
     parser.add_argument("--private", action="store_true")
@@ -121,6 +122,7 @@ def main() -> None:
     run_id = str(train_metadata["run_id"])
     release_tag = args.release_tag or f"christian-virtue-qwen2.5-1.5b-pilot-lite-{run_id}"
     release_title = args.release_title or f"Christian Virtue Qwen2.5 1.5B Pilot-Lite ({run_id})"
+    release_target = args.release_target or release_target_from_train_run(args.train_run_dir)
 
     package_dir = write_adapter_package(
         train_run_dir=args.train_run_dir,
@@ -150,7 +152,7 @@ def main() -> None:
             title=release_title,
             notes_path=package_dir / "release_notes.md",
             repo=github_repo,
-            target=default_release_target(REPO_ROOT),
+            target=release_target,
         )
 
     print(
@@ -161,6 +163,7 @@ def main() -> None:
                 "hf_url": hf_url,
                 "github_repo": github_repo,
                 "release_tag": release_tag,
+                "release_target": release_target,
                 "release_url": release_url,
             },
             indent=2,

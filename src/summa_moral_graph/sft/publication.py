@@ -42,6 +42,14 @@ def _repo_display_path(path: Path) -> str:
         return str(path)
 
 
+def release_target_from_train_run(train_run_dir: Path) -> str:
+    train_metadata = _read_json(train_run_dir / "train_metadata.json")
+    git_commit = train_metadata.get("git_commit")
+    if not isinstance(git_commit, str) or not git_commit:
+        raise RuntimeError(f"Missing git_commit in {train_run_dir / 'train_metadata.json'}")
+    return git_commit
+
+
 def build_adapter_package_manifest(
     *,
     train_run_dir: Path,
