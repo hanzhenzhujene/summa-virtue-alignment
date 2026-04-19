@@ -1,3 +1,5 @@
+"""Shared environment and filesystem checks for SFT preflight entrypoints."""
+
 from __future__ import annotations
 
 import importlib

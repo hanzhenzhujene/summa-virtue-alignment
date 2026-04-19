@@ -1,3 +1,5 @@
+"""Resolve device, dtype, and quantization behavior across CUDA, MPS, and CPU paths."""
+
 from __future__ import annotations
 
 import importlib

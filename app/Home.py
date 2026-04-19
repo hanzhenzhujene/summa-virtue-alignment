@@ -1,3 +1,5 @@
+"""Legacy multipage home entrypoint that delegates to the unified viewer shell."""
+
 from __future__ import annotations
 
 from summa_moral_graph.viewer.shell import render_dashboard

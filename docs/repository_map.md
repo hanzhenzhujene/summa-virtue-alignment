@@ -97,6 +97,9 @@ These committed exports are the public dataset entrypoint for model training and
 
 ## Script Entry Points
 
+See also [scripts/README.md](../scripts/README.md) for a grouped entrypoint guide that separates
+the public local baseline from tract-maintenance helpers and remote-model utilities.
+
 ### Dataset
 
 - `scripts/build_christian_virtue_sft_dataset.py`
@@ -123,6 +126,7 @@ The official public local path is:
 
 1. `make setup-christian-virtue-local`
 2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
+3. `make public-release-check`
 
 The setup command uses the pinned lockfile
 [requirements/local-mps-py312.lock.txt](../requirements/local-mps-py312.lock.txt).
@@ -130,6 +134,9 @@ The setup command uses the pinned lockfile
 The reproduce command rebuilds the dataset if needed, runs the local `smoke` and `pilot-lite`
 training rungs, generates base and adapter held-out predictions, writes the comparison report, and
 runs the publication verification gate.
+
+The public-release check then runs `ruff`, `mypy`, and the publication-surface verification bundle
+so the repo can be shared with one final sanity pass.
 
 ## Recommended Reading Order
 

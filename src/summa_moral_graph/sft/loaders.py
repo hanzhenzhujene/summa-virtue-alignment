@@ -1,3 +1,5 @@
+"""Load typed corpus and doctrinal annotation records for the Christian virtue pipeline."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

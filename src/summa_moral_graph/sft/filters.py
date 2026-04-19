@@ -1,3 +1,5 @@
+"""Filter reviewed doctrinal annotations into the default SFT supervision set."""
+
 from __future__ import annotations
 
 from collections import Counter

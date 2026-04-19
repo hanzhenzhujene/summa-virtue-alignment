@@ -1,3 +1,5 @@
+"""Small formatting, hashing, relation, and tract-label helpers shared across the SFT stack."""
+
 from __future__ import annotations
 
 import hashlib

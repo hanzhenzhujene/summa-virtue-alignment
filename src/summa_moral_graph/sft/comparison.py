@@ -1,3 +1,5 @@
+"""Compare baseline and candidate evaluation bundles and render markdown deltas."""
+
 from __future__ import annotations
 
 import json

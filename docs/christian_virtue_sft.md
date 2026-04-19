@@ -250,6 +250,15 @@ This is the maintainer-facing release check: it rebuilds the canonical local rep
 local adapter package, and verifies that the package manifest, run artifacts, README, guide docs,
 experiment index, and curated report still agree about the published baseline.
 
+Shorter public-release command:
+
+```bash
+make public-release-check
+```
+
+This alias adds `ruff` and `mypy` ahead of the publication-surface verification pass, so it is the
+best one-line release audit before sharing the repo externally.
+
 One-command local pilot loop:
 
 ```bash

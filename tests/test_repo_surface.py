@@ -1,0 +1,63 @@
+from __future__ import annotations
+
+import ast
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+
+PUBLIC_DOC_PATHS = [
+    REPO_ROOT / "README.md",
+    REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md",
+    REPO_ROOT / "docs" / "repository_map.md",
+    REPO_ROOT / "scripts" / "README.md",
+]
+
+DOCSTRING_PATHS = [
+    REPO_ROOT / "streamlit_app.py",
+    REPO_ROOT / "app" / "Home.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "viewer" / "shell.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "comparison.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "filters.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "loaders.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "preflight.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "runtime.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "serialization.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "splitters.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "templates.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "utils.py",
+]
+
+
+def _module_docstring(path: Path) -> str | None:
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    return ast.get_docstring(tree)
+
+
+def test_public_docs_exist() -> None:
+    for path in PUBLIC_DOC_PATHS:
+        assert path.exists(), f"Expected public doc surface to exist: {path}"
+
+
+def test_major_public_python_files_have_module_docstrings() -> None:
+    for path in DOCSTRING_PATHS:
+        docstring = _module_docstring(path)
+        assert docstring, f"Expected a top-level docstring in {path}"
+
+
+def test_public_release_check_is_documented() -> None:
+    readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8")
+    guide_text = (REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md").read_text(
+        encoding="utf-8"
+    )
+    makefile_text = (REPO_ROOT / "Makefile").read_text(encoding="utf-8")
+
+    assert "make public-release-check" in readme_text
+    assert "make public-release-check" in guide_text
+    assert "public-release-check:" in makefile_text
+
+
+def test_scripts_guide_names_canonical_local_entrypoints() -> None:
+    scripts_guide = (REPO_ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
+    assert "setup_christian_virtue_local.sh" in scripts_guide
+    assert "reproduce_christian_virtue_qwen2_5_1_5b_local.sh" in scripts_guide
+    assert "build_christian_virtue_sft_dataset.py" in scripts_guide

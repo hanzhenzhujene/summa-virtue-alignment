@@ -13,7 +13,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable
 
-import yaml  # type: ignore[import-untyped]
+import yaml
 
 
 @dataclass(frozen=True)

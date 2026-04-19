@@ -22,6 +22,7 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 
 .PHONY: \
 	install setup-christian-virtue-local reproduce-christian-virtue-qwen2-5-1-5b-local \
+	public-release-check \
 	build-interim validate-interim build-corpus validate-candidates \
 	build-pilot validate-pilot build-prudence validate-prudence \
 	build-connected-virtues-109-120 validate-connected-virtues-109-120 \
@@ -231,8 +232,13 @@ verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 	$(MAKE) build-christian-virtue-sft
 	$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 	$(MAKE) package-christian-virtue-qwen2-5-1-5b-local-adapter
-	$(BIN)/pytest tests/test_sft_public_artifacts.py tests/test_sft_publication.py tests/test_sft_reporting.py
+	$(BIN)/pytest tests/test_repo_surface.py tests/test_sft_public_artifacts.py tests/test_sft_publication.py tests/test_sft_reporting.py
 	$(BIN)/python scripts/verify_christian_virtue_publication.py
+
+public-release-check:
+	$(MAKE) lint
+	$(MAKE) typecheck
+	$(MAKE) verify-christian-virtue-qwen2-5-1-5b-local-publishable
 
 run-christian-virtue-qwen2-5-1-5b-local-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh

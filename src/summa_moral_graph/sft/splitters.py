@@ -1,3 +1,5 @@
+"""Construct leakage-safe grouped splits for train, validation, test, and OOD runs."""
+
 from __future__ import annotations
 
 from collections import defaultdict

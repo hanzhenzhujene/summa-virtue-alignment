@@ -1,3 +1,5 @@
+"""Render the unified Streamlit shell for corpus, passage, concept, map, and stats views."""
+
 from __future__ import annotations
 
 from collections.abc import MutableMapping

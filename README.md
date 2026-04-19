@@ -201,6 +201,17 @@ Expected outputs land under:
 - `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
 - `artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/`
 
+### 3. Run The Public-Release Check
+
+Before you share this repo as a research artifact, run:
+
+```bash
+make public-release-check
+```
+
+That target runs `ruff`, `mypy`, the targeted publication-surface tests, and the repo/package
+coherence verification gate for the canonical Christian virtue release.
+
 ## Public SFT Artifacts
 
 - Hugging Face adapter:
@@ -260,6 +271,7 @@ scripts/
   generate_christian_virtue_predictions.py
   eval_christian_virtue_sft.py
   run_christian_virtue_qwen2_5_1_5b_local_*.sh
+  README.md      grouped entrypoints and public-vs-maintainer guidance
 src/summa_moral_graph/
   annotations/  tract-specific reviewed overlays and specs
   ingest/       textual parsing and normalization
@@ -275,6 +287,7 @@ tests/
 ```
 
 For a fuller guided tour, see [docs/repository_map.md](./docs/repository_map.md).
+For a grouped entrypoint guide, see [scripts/README.md](./scripts/README.md).
 
 ## Open The Viewer
 

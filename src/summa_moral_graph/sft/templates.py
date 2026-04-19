@@ -1,3 +1,5 @@
+"""Render the four chat-style task families used in the Christian virtue SFT export."""
+
 from __future__ import annotations
 
 from collections.abc import Sequence

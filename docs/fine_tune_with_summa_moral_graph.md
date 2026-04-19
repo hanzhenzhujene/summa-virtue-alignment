@@ -150,6 +150,15 @@ That command rebuilds the committed dataset export if needed, regenerates the cu
 refreshes the local adapter package, and verifies that the public README/docs/report surfaces still
 match the canonical published bundle.
 
+Shorter public-release command:
+
+```bash
+make public-release-check
+```
+
+This alias adds `ruff` and `mypy` ahead of the publication-surface verification pass, so it is the
+best final command before sharing the repo publicly.
+
 The adapter eval wrapper prefers `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`.
 
 One-command local loop:
@@ -162,6 +171,7 @@ That loop is the experiment loop only. The canonical publishable path for a fres
 
 1. `make setup-christian-virtue-local`
 2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
+3. `make public-release-check`
 
 ## Current Canonical Published Artifacts
 

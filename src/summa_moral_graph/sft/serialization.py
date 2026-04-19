@@ -1,3 +1,5 @@
+"""Serialize built SFT datasets, manifests, samples, and held-out benchmark prompts."""
+
 from __future__ import annotations
 
 import json

@@ -18,6 +18,14 @@
     instead of mixing in weaker non-central slices on the main publication graphic
   - README, experiment index, and flagship report executive tables are being aligned to foreground
     virtue-goal results first and keep broader overall metrics in later detailed sections
+- The next publication-quality hardening pass is now aimed at repo readability rather than model
+  scope:
+  - several core SFT modules and viewer entrypoints are gaining missing top-level docstrings so a
+    new reviewer can infer file purpose without reverse-engineering imports
+  - `scripts/` is gaining a formal grouped README so the directory reads like an intentional entry
+    surface rather than a pile of ad hoc helpers
+  - the public reproducibility story is gaining one shorter memorable `make` target for final
+    release checks instead of relying only on the longer canonical verify command name
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many
@@ -684,6 +692,9 @@
 - “Only show the goal” is a real publication rule, not just a design preference. Once the held-out
   comparison figure and executive tables were narrowed to virtue-goal slices, the repo’s SFT story
   became sharper and more persuasive without changing a single metric.
+- “Looks documented” is not the same as “is navigable.” Even after the README improved, the lack
+  of top-level docstrings in a cluster of core SFT modules and the absence of a `scripts/README.md`
+  still made the implementation surface feel denser than it needed to for a reviewer-grade repo.
 - Making the SFT more prominent did not mainly require new metrics. The bigger usability win was
   narrative: readers needed a clearer first-action path and larger result figures more than they
   needed another paragraph about why the repo matters.
@@ -955,6 +966,12 @@
     match the stated Christian virtue assistant objective
   - broader overall metrics can remain in deeper detailed sections, but not in the first public
     comparison table or figure
+- Treat entrypoint discoverability as part of the artifact contract:
+  - major public modules and scripts should carry top-level docstrings
+  - `scripts/README.md` should explain which entrypoints are public quickstart surfaces and which
+    ones are maintenance helpers
+  - a short memorable public-release check target is worth adding even if the longer specialized
+    verify command remains available
 - Treat the Hugging Face model page as part of the review-grade publication surface, not as a
   secondary mirror. The generated model card should include:
   - a strong abstract and snapshot table
@@ -1222,6 +1239,12 @@
     directly instead of reading an unlabeled trend line
   - the held-out comparison SVG and top-line result tables now foreground only goal-aligned virtue
     slices, which makes the Christian virtue assistant objective much clearer at first glance
+- The repo surface is now being made easier to audit at code level:
+  - core SFT modules and Streamlit entrypoints now explain themselves with top-level docstrings
+  - the `scripts/` directory is gaining a grouped README so new readers can distinguish canonical
+    reproduction commands from tract-maintenance utilities
+  - a shorter `make public-release-check` alias is being introduced to make final release QA easier
+    to remember and cite in docs
 - The repo root now reads more clearly as an SFT deliverable instead of a mixed-surface codebase:
   - the README now leads with the guide/demo/proof framing for Summa Moral Graph fine-tuning
   - a `Start Here` table now reduces the number of clicks needed for a new user to choose the

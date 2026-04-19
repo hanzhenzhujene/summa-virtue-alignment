@@ -1,3 +1,5 @@
+"""Top-level Streamlit entrypoint for the unified Summa Moral Graph viewer."""
+
 from __future__ import annotations
 
 import sys
