@@ -45,6 +45,11 @@
     - a new publishable verification gate is being added to rebuild the canonical local report,
       refresh the local adapter package, and verify that README, guides, experiment index, curated
       report, and package manifest all point to the same published baseline
+  - the remaining publication-sync gap is now narrower still:
+    - the repo docs already expose the publishable verification gate
+    - the generated Hugging Face model card and GitHub release notes are now being updated so the
+      external publication surfaces show that same final verification command rather than stopping
+      one step early
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -593,6 +598,9 @@
 - Once those publication pieces existed, the next weak point turned out to be drift between them.
   The repo needed one explicit QA gate for “package manifest, docs, report, and published URLs all
   still agree,” otherwise a later doc refresh could silently desynchronize the public story.
+- Public and generated surfaces can drift independently. Even after the repo docs were corrected,
+  the generated model card and release notes still reflected the older command surface until they
+  were updated from the publication template itself.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -816,6 +824,8 @@
   - the adapter still improves on base for the headline citation metric
   - README, fine-tune guide, maintainer doc, experiment index, and curated report still point to
     the same Hugging Face adapter, GitHub release, run id, and headline metric
+- Keep the generated Hugging Face model card and GitHub release notes aligned with that same
+  command surface, so the external publication story also ends with the explicit verification step.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1027,6 +1037,9 @@
     - it refreshes the canonical local report and adapter package, runs focused publication/report
       tests, and verifies that the public README/docs/report surfaces still match the canonical
       published bundle
+  - the publication templates now also include that same final verify command, so regenerated
+    adapter packages, Hugging Face model cards, and GitHub release notes no longer lag behind the
+    repo docs
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed
