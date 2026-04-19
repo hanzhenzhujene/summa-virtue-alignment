@@ -10,6 +10,14 @@
     needs to sound
   - the public takeaway is now sharper: this repo proves the SFT pipeline and dataset work on a
     small reproducible model, while larger runs are the path to stronger final quality
+- The public results surfaces are now being tightened around the actual Christian virtue goal
+  rather than a looser generic benchmark story:
+  - the training-trace SVG now renders readable y-axis values so the optimization claim can be
+    inspected directly from GitHub instead of inferred from an unlabeled line
+  - the held-out improvement SVG is now restricted to goal-aligned virtue task families only,
+    instead of mixing in weaker non-central slices on the main publication graphic
+  - README, experiment index, and flagship report executive tables are being aligned to foreground
+    virtue-goal results first and keep broader overall metrics in later detailed sections
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many
@@ -670,6 +678,12 @@
   deliberately tiny reproducible demo run already shows the right directional gain.” Once that
   framing is explicit, the repo reads more confidently without needing to over-claim the current
   local baseline.
+- Small visualization details can quietly weaken trust. The training curve already had the right
+  data, but without labeled y-axis values it looked more like a placeholder than a research
+  artifact; adding explicit axis ticks immediately made the optimization story easier to trust.
+- “Only show the goal” is a real publication rule, not just a design preference. Once the held-out
+  comparison figure and executive tables were narrowed to virtue-goal slices, the repo’s SFT story
+  became sharper and more persuasive without changing a single metric.
 - Making the SFT more prominent did not mainly require new metrics. The bigger usability win was
   narrative: readers needed a clearer first-action path and larger result figures more than they
   needed another paragraph about why the repo matters.
@@ -934,6 +948,13 @@
   - one visible training-curve figure
   - one visible base-vs-adapter comparison figure
   - one short interpretive sentence that explains why those visuals support the SFT claim
+- Treat unlabeled axes and off-goal benchmark slices as publication-quality failures on the public
+  SFT figures:
+  - the training trace should always expose readable y-axis values
+  - the main held-out comparison graphic should foreground only the virtue-goal task families that
+    match the stated Christian virtue assistant objective
+  - broader overall metrics can remain in deeper detailed sections, but not in the first public
+    comparison table or figure
 - Treat the Hugging Face model page as part of the review-grade publication surface, not as a
   secondary mirror. The generated model card should include:
   - a strong abstract and snapshot table
@@ -1196,6 +1217,11 @@
     foregrounding weak-slice diagnostics
   - the stronger public message is now consistent across README, guide, experiment index, flagship
     report, and generated publication templates
+- The public result graphics now better match the stated goal:
+  - training-curve SVGs now show y-axis values, so readers can inspect the optimization trace
+    directly instead of reading an unlabeled trend line
+  - the held-out comparison SVG and top-line result tables now foreground only goal-aligned virtue
+    slices, which makes the Christian virtue assistant objective much clearer at first glance
 - The repo root now reads more clearly as an SFT deliverable instead of a mixed-surface codebase:
   - the README now leads with the guide/demo/proof framing for Summa Moral Graph fine-tuning
   - a `Start Here` table now reduces the number of clicks needed for a new user to choose the

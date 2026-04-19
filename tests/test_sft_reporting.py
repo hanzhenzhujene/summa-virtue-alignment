@@ -252,8 +252,18 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     )
 
     assert written_report == report_path
-    assert "<svg" in training_svg_path.read_text(encoding="utf-8")
-    assert "<svg" in comparison_svg_path.read_text(encoding="utf-8")
+    training_svg_text = training_svg_path.read_text(encoding="utf-8")
+    comparison_svg_text = comparison_svg_path.read_text(encoding="utf-8")
+    assert "<svg" in training_svg_text
+    assert ">3<" in training_svg_text
+    assert ">0.40<" in training_svg_text
+    assert "<svg" in comparison_svg_text
+    assert "Held-out virtue-goal citation exact" in comparison_svg_text
+    assert "Goal-aligned evaluation slices only" in comparison_svg_text
+    assert "Citation-grounded moral answer" not in comparison_svg_text
+    assert "Reviewed relation explanation" in comparison_svg_text
+    assert "Virtue concept explanation" not in comparison_svg_text
+    assert "Passage-grounded doctrinal QA" not in comparison_svg_text
     report_text = report_path.read_text(encoding="utf-8")
     assert "## Canonical Purpose" in report_text
     assert "## Executive Readout" in report_text
@@ -262,6 +272,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "*Figure 3." in report_text
     assert "## Why `pilot-lite` Is The Official Local Rung" in report_text
     assert "Goal-demo exact citations" in report_text
+    assert "Held-out overall citation exact" not in report_text
     assert "Clear adapter win" in report_text
     assert "## Goal Demo Panel" in report_text
     assert "Base citation exact match" in report_text
@@ -270,3 +281,4 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "# Christian Virtue Run Comparison" not in report_text
     assert "### Overall" in report_text
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in report_text
+    assert "## Why This Is A Demo Baseline" in report_text

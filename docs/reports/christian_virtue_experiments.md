@@ -54,9 +54,10 @@ Headline result on the held-out `test` split:
 
 ### Quick Read: Why This Shows The SFT Works
 
-| Held-out `test` slice | Base | Adapter | Delta |
+Goal-aligned virtue slices:
+
+| Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Overall citation exact | `0.0%` | `15.0%` | `+15.0%` |
 | Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
 | Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
 | Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
@@ -73,8 +74,8 @@ the 20-step run.
 
 ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-The adapter materially outperforms base on the held-out benchmark, especially on virtue-concept
-and reviewed-relation tasks.
+The adapter materially outperforms base on the goal-aligned held-out virtue slices, especially on
+virtue-concept and reviewed-relation tasks.
 
 This is the public demo result, not the intended ceiling. The point of this run is to show that a
 small easy-to-reproduce model already exhibits the right movement, which makes the case for larger

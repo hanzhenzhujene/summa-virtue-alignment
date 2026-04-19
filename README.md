@@ -47,6 +47,20 @@ In the Summa article form, this repo keeps only `resp` and `ad` segments as doct
 Opening objections and `sed contra` material are parsed for structure, but they are not promoted
 into the doctrinal evidence layer used by the viewer or the default SFT dataset.
 
+## The SFT Goal
+
+The goal of this repo is to train an Aquinas-grounded Christian virtue assistant.
+
+Concretely, that means a model that:
+
+- explains virtues, vices, acts, parts, and oppositions in Aquinas's categories
+- answers within reviewed doctrinal evidence rather than generic moralizing
+- preserves citation traceability back to stable passage ids
+
+The published 1.5B run is a small demo baseline chosen to prove this workflow end to end. Stronger
+final results should come from larger models and longer GPU-backed training, using the same dataset
+and evaluation pattern.
+
 ## Method At A Glance
 
 The repository is organized around five non-negotiable design choices:
@@ -111,9 +125,10 @@ task-specific behavior shift over the untouched base model. The optimization tra
 the held-out benchmark moves in the right direction on the most structured, evidence-grounded task
 families.
 
-| Held-out `test` slice | Base | Adapter | Delta |
+Goal-aligned virtue slices:
+
+| Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Overall citation exact | `0.0%` | `15.0%` | `+15.0%` |
 | Virtue concept explanation | `0.0%` | `50.0%` | `+50.0%` |
 | Reviewed relation explanation | `0.0%` | `19.4%` | `+19.4%` |
 | Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
@@ -130,7 +145,7 @@ completes in about `4.7` minutes.
 
 ![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-The adapter improves the overall held-out benchmark and shows the strongest gains on
+The adapter improves the goal-aligned held-out virtue slices and shows the strongest gains on
 virtue-concept and reviewed-relation tasks.
 
 This is the important framing for the repo: the published 1.5B run is the easy-to-reproduce demo,

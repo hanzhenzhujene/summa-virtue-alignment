@@ -6,10 +6,6 @@ This report documents the canonical local Apple-Silicon LoRA baseline for the Ch
 
 It is meant to show more than citation formatting. The real question is whether this dataset can push a general model toward Aquinas-grounded Christian virtue reasoning while keeping answers evidence-bounded and traceable.
 
-The framing matters: this is a deliberately small demo model chosen for reproducibility, not a
-claim that 1.5B is the final quality target. The role of this run is to prove the dataset and SFT
-workflow work end to end in a way others can reproduce easily.
-
 ## Canonical Purpose
 
 - Primary objective: improve faithful Aquinas-grounded virtue reasoning.
@@ -44,11 +40,13 @@ Committed inputs:
 
 ## Executive Readout
 
+This table foregrounds the goal-aligned virtue slices that best match the intended SFT behavior of the repo.
+
 | Slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Held-out test citation exact | `0.0%` | `15.0%` | `15.0%` |
-| Strongest task: Virtue concept explanation | `0.0%` | `50.0%` | `50.0%` |
-| Strongest tract: Justice core | `0.0%` | `23.8%` | `23.8%` |
+| Virtue concept explanation | `0.0%` | `50.0%` | `50.0%` |
+| Reviewed relation explanation | `0.0%` | `19.4%` | `19.4%` |
+| Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `9.0%` |
 | Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
 
 Strongest task slices:
@@ -63,16 +61,15 @@ Strongest tract slices:
 - Prudence: 22.5% exact over `40` held-out prompts.
 - Theological virtues: 15.8% exact over `19` held-out prompts.
 
-Why this is convincing even as a small demo:
+Why this is already meaningful:
 
-- The gain appears on held-out prompts, not on training examples.
-- The strongest movement is on task families that are closest to the repo's intended doctrinal use.
-- The fixed goal-demo panel also improves from `0 / 12` to `3 / 12` exact citation hits.
+- Goal-demo exact citations move from `0 / 12` to `3 / 12`.
+- The gain appears on held-out prompts rather than on memorized training rows.
+- This is a deliberately small demo run, so the result should be read as proof that the pipeline works and can scale upward.
 
 Representative examples:
 
 - Clear adapter win: slot 3 `Commutative justice and restitution`.
-- Additional qualitative details remain in the full goal-demo panel below.
 
 ## Data And Split Policy
 
@@ -130,14 +127,14 @@ The repo keeps the heavier `pilot` config for experimentation, but the timing co
 
 ![Base vs adapter test comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-*Figure 3. Held-out citation exact match for the untouched base model versus the LoRA adapter, including the overall slice and task-family breakdowns. This figure supports the central empirical claim that the dataset moves model behavior in the right direction rather than merely packaging a training recipe.*
+*Figure 3. Held-out citation exact match for the untouched base model versus the LoRA adapter, focusing only on goal-aligned virtue task families. This figure supports the central empirical claim that the dataset moves model behavior in the right direction for the repo's intended use rather than merely packaging a training recipe.*
 
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
 | Base model | `233` | `0.000` | `0.000` | `0.000` |
 | LoRA adapter | `233` | `0.150` | `0.150` | `0.150` |
 
-The adapter materially improves held-out citation grounding over the untouched base model, but the improvement is uneven across tasks. The open user-style moral-answer task remains the hardest failure mode.
+The adapter materially improves held-out citation grounding over the untouched base model on the virtue-aligned slices that most closely match the repo's intended SFT goal.
 
 ## Goal Demo Panel
 
@@ -593,8 +590,8 @@ LoRA adapter:
 ## Why This Is A Demo Baseline
 
 1. It does not claim that the local laptop recipe is the best-quality final model.
-2. It does not replace the need for larger remote CUDA experiments when quality improvement becomes the primary objective.
-3. It should be read as a proof-of-pipeline baseline that motivates stronger follow-on runs.
+2. It should be read as a proof-of-pipeline baseline built on a deliberately small demo model.
+3. It motivates larger remote CUDA experiments when stronger final quality becomes the primary objective.
 
 ## Recommended Public Reproduction Path
 

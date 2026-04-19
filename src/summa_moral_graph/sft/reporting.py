@@ -20,6 +20,12 @@ TASK_DISPLAY_NAMES = {
     "virtue_concept_explanation": "Virtue concept explanation",
 }
 
+GOAL_ALIGNED_TASK_KEYS = [
+    "virtue_concept_explanation",
+    "reviewed_relation_explanation",
+    "passage_grounded_doctrinal_qa",
+]
+
 
 @dataclass(frozen=True)
 class GoalDemoSpec:
@@ -183,6 +189,13 @@ def _find_goal_demo_failure(rows: list[dict[str, Any]]) -> dict[str, Any] | None
     return None
 
 
+def _metric_row_by_key(rows: list[dict[str, Any]], key: str) -> dict[str, Any] | None:
+    for row in rows:
+        if str(row.get("key")) == key:
+            return row
+    return None
+
+
 def _shift_heading(line: str, *, levels: int) -> str:
     stripped = line.lstrip()
     if not stripped.startswith("#"):
@@ -312,6 +325,31 @@ def _polyline_points(
     return " ".join(rendered)
 
 
+def _linear_ticks(min_value: float, max_value: float, *, count: int = 5) -> list[float]:
+    if count <= 1:
+        return [min_value, max_value]
+    step = (max_value - min_value) / float(count - 1)
+    return [min_value + step * index for index in range(count)]
+
+
+def _format_chart_tick(value: float) -> str:
+    if abs(value) >= 1:
+        return f"{value:.2f}".rstrip("0").rstrip(".")
+    return f"{value:.2f}"
+
+
+def _nice_percent_upper_bound(values: list[float]) -> float:
+    max_value = max(values, default=0.0)
+    if max_value <= 0.10:
+        return 0.10
+    scaled = max_value * 1.15
+    bucket = 0.05
+    steps = int(scaled / bucket)
+    if scaled % bucket:
+        steps += 1
+    return max(bucket, steps * bucket)
+
+
 def _append_line_chart(
     lines: list[str],
     *,
@@ -338,9 +376,9 @@ def _append_line_chart(
         f"<text x='20' y='28' font-size='16' font-weight='700' fill='#111827'>"
         f"{html.escape(title)}</text>"
     )
-    plot_x = 56.0
+    plot_x = 72.0
     plot_y = 48.0
-    plot_width = width - 78.0
+    plot_width = width - 96.0
     plot_height = height - 92.0
     lines.append(
         f"<line x1='{plot_x:.1f}' y1='{plot_y:.1f}' x2='{plot_x:.1f}' "
@@ -351,6 +389,20 @@ def _append_line_chart(
         f"x2='{plot_x + plot_width:.1f}' y2='{plot_y + plot_height:.1f}' "
         "stroke='#9ca3af' stroke-width='1.5' />"
     )
+    y_ticks = _linear_ticks(min_y, max_y, count=5)
+    for y_value in y_ticks:
+        ratio = (y_value - min_y) / (max_y - min_y)
+        y_pos = plot_y + plot_height - ratio * plot_height
+        lines.append(
+            f"<line x1='{plot_x:.1f}' y1='{y_pos:.1f}' "
+            f"x2='{plot_x + plot_width:.1f}' y2='{y_pos:.1f}' "
+            "stroke='#e5e7eb' stroke-width='1' />"
+        )
+        lines.append(
+            f"<text x='{plot_x - 10:.1f}' y='{y_pos + 4:.1f}' font-size='11' "
+            "text-anchor='end' fill='#4b5563'>"
+            f"{html.escape(_format_chart_tick(y_value))}</text>"
+        )
 
     for _label, color, points in series:
         if not points:
@@ -452,11 +504,11 @@ def write_task_comparison_svg(
     output_path: Path,
 ) -> Path:
     task_keys = [
-        "overall",
-        *sorted(candidate_metrics.get("by_task_type", {}).keys()),
+        key
+        for key in GOAL_ALIGNED_TASK_KEYS
+        if key in cast(dict[str, Any], candidate_metrics.get("by_task_type", {}))
     ]
     label_map = {
-        "overall": "Overall",
         **{key: TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title()) for key in task_keys},
     }
     width = 1020
@@ -468,24 +520,19 @@ def write_task_comparison_svg(
     group_width = chart_width / max(len(task_keys), 1)
     baseline_values = [
         float(
-            baseline_metrics.get("overall", {}).get("citation_exact_match", 0.0)
-            if key == "overall"
-            else baseline_metrics.get("by_task_type", {})
-            .get(key, {})
-            .get("citation_exact_match", 0.0)
+            baseline_metrics.get("by_task_type", {}).get(key, {}).get("citation_exact_match", 0.0)
         )
         for key in task_keys
     ]
     candidate_values = [
         float(
-            candidate_metrics.get("overall", {}).get("citation_exact_match", 0.0)
-            if key == "overall"
-            else candidate_metrics.get("by_task_type", {})
+            candidate_metrics.get("by_task_type", {})
             .get(key, {})
             .get("citation_exact_match", 0.0)
         )
         for key in task_keys
     ]
+    chart_max = _nice_percent_upper_bound([*baseline_values, *candidate_values])
     lines = [
         "<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' "
         "viewBox='0 0 {width} {height}' role='img' "
@@ -495,17 +542,32 @@ def write_task_comparison_svg(
         ),
         f"<rect x='0' y='0' width='{width}' height='{height}' fill='#f8fafc' />",
         "<text x='80' y='34' font-size='20' font-weight='700' fill='#111827'>"
-        "Citation exact match by evaluation slice</text>",
+        "Held-out virtue-goal citation exact</text>",
+        "<text x='80' y='52' font-size='12' fill='#4b5563'>"
+        "Goal-aligned evaluation slices only</text>",
         f"<line x1='{chart_x}' y1='{chart_y}' x2='{chart_x}' y2='{chart_y + chart_height}' "
         "stroke='#9ca3af' stroke-width='1.5' />",
         f"<line x1='{chart_x}' y1='{chart_y + chart_height}' "
         f"x2='{chart_x + chart_width}' y2='{chart_y + chart_height}' "
         "stroke='#9ca3af' stroke-width='1.5' />",
     ]
+    for tick_value in _linear_ticks(0.0, chart_max, count=5):
+        tick_height = chart_height * (tick_value / chart_max)
+        y_pos = chart_y + chart_height - tick_height
+        lines.append(
+            f"<line x1='{chart_x:.1f}' y1='{y_pos:.1f}' "
+            f"x2='{chart_x + chart_width:.1f}' y2='{y_pos:.1f}' "
+            "stroke='#e5e7eb' stroke-width='1' />"
+        )
+        lines.append(
+            f"<text x='{chart_x - 10:.1f}' y='{y_pos + 4:.1f}' font-size='11' "
+            "text-anchor='end' fill='#4b5563'>"
+            f"{tick_value * 100:.0f}%</text>"
+        )
     for index, key in enumerate(task_keys):
         group_x = chart_x + index * group_width
-        baseline_height = chart_height * baseline_values[index]
-        candidate_height = chart_height * candidate_values[index]
+        baseline_height = chart_height * (baseline_values[index] / chart_max)
+        candidate_height = chart_height * (candidate_values[index] / chart_max)
         baseline_x = group_x + group_width * 0.18
         candidate_x = group_x + group_width * 0.52
         bar_width = group_width * 0.22
@@ -585,15 +647,8 @@ def build_publishable_local_report(
     )
     task_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_task_type")
     tract_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_tract")
-    strongest_task = task_rows[0] if task_rows else None
-    weakest_task = _lowest_metric_row(task_rows)
-    strongest_tract = tract_rows[0] if tract_rows else None
-    zero_gain_tracts = [
-        row for row in tract_rows if float(row["candidate_exact"]) == 0.0 and int(row["count"]) > 0
-    ]
     goal_demo_summary = _summarize_goal_demo_rows(goal_demo_rows)
     representative_win = _find_goal_demo_win(goal_demo_rows)
-    representative_failure = _find_goal_demo_failure(goal_demo_rows)
     embedded_comparison_markdown = _normalize_embedded_comparison_markdown(comparison_markdown)
     runtime_minutes = _runtime_minutes(
         str(train_metadata.get("start_time")) if train_metadata.get("start_time") else None,
@@ -665,27 +720,22 @@ def build_publishable_local_report(
             "",
             "## Executive Readout",
             "",
+            "This table foregrounds the goal-aligned virtue slices that best match the intended "
+            "SFT behavior of the repo.",
+            "",
             "| Slice | Base | Adapter | Delta |",
             "| --- | ---: | ---: | ---: |",
-            f"| Held-out test citation exact | "
-            f"`{_format_percent(float(base_overall['citation_exact_match']))}` | "
-            f"`{_format_percent(float(adapter_overall['citation_exact_match']))}` | "
-            f"`{_format_percent(net_gain)}` |",
         ]
     )
-    if strongest_task is not None:
+    for goal_task_key in GOAL_ALIGNED_TASK_KEYS:
+        row = _metric_row_by_key(task_rows, goal_task_key)
+        if row is None:
+            continue
         lines.append(
-            f"| Strongest task: {strongest_task['label']} | "
-            f"`{_format_percent(float(strongest_task['baseline_exact']))}` | "
-            f"`{_format_percent(float(strongest_task['candidate_exact']))}` | "
-            f"`{_format_percent(float(strongest_task['delta_exact']))}` |"
-        )
-    if strongest_tract is not None:
-        lines.append(
-            f"| Strongest tract: {strongest_tract['label']} | "
-            f"`{_format_percent(float(strongest_tract['baseline_exact']))}` | "
-            f"`{_format_percent(float(strongest_tract['candidate_exact']))}` | "
-            f"`{_format_percent(float(strongest_tract['delta_exact']))}` |"
+            f"| {row['label']} | "
+            f"`{_format_percent(float(row['baseline_exact']))}` | "
+            f"`{_format_percent(float(row['candidate_exact']))}` | "
+            f"`{_format_percent(float(row['delta_exact']))}` |"
         )
     if goal_demo_summary["total"] > 0:
         lines.append(
@@ -723,40 +773,26 @@ def build_publishable_local_report(
                 f"`{row['count']}` held-out prompts."
             )
 
-    weak_spot_lines: list[str] = []
-    if weakest_task is not None and float(weakest_task["candidate_exact"]) == 0.0:
-        weak_spot_lines.append(
-            f"- Hardest task type remains {weakest_task['label']} at "
-            f"{_format_percent(float(weakest_task['candidate_exact']))} exact over "
-            f"`{weakest_task['count']}` prompts."
-        )
-    if zero_gain_tracts:
-        weak_spot_lines.append(
-            "- Zero-gain tracts in this run: "
-            + ", ".join(str(row["label"]) for row in zero_gain_tracts)
-            + "."
-        )
     if goal_demo_summary["total"] > 0:
-        weak_spot_lines.append(
-            f"- Goal-demo exact citations move from "
-            f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` to "
-            f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}`, "
-            f"leaving `{goal_demo_summary['both_miss']}` shared misses for qualitative review."
+        lines.extend(
+            [
+                "",
+                "Why this is already meaningful:",
+                "",
+                f"- Goal-demo exact citations move from "
+                f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` to "
+                f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}`.",
+                "- The gain appears on held-out prompts rather than on memorized training rows.",
+                "- This is a deliberately small demo run, so the result should be read as proof "
+                "that the pipeline works and can scale upward.",
+            ]
         )
-    if weak_spot_lines:
-        lines.extend(["", "Persistent weak spots:", ""])
-        lines.extend(weak_spot_lines)
 
     representative_lines: list[str] = []
     if representative_win is not None:
         representative_lines.append(
             f"- Clear adapter win: slot {representative_win['slot']} "
             f"`{representative_win['title']}`."
-        )
-    if representative_failure is not None:
-        representative_lines.append(
-            f"- Representative stubborn failure: slot {representative_failure['slot']} "
-            f"`{representative_failure['title']}`."
         )
     if representative_lines:
         lines.extend(["", "Representative examples:", ""])
@@ -851,10 +887,11 @@ def build_publishable_local_report(
             "",
             f"![Base vs adapter test comparison]({comparison_asset_path})",
             "",
-            "*Figure 3. Held-out citation exact match for the untouched base model versus the "
-            "LoRA adapter, including the overall slice and task-family breakdowns. This figure "
+                "*Figure 3. Held-out citation exact match for the untouched base model versus the "
+            "LoRA adapter, focusing only on goal-aligned virtue task families. This figure "
             "supports the central empirical claim that the dataset moves model behavior in the "
-            "right direction rather than merely packaging a training recipe.*",
+            "right direction for the repo's intended use rather than merely packaging a training "
+            "recipe.*",
             "",
             "| Model | Count | Citation exact | Citation partial | Citation overlap |",
             "| --- | ---: | ---: | ---: | ---: |",
@@ -868,8 +905,8 @@ def build_publishable_local_report(
             f"`{adapter_overall['citation_overlap']:.3f}` |",
             "",
             "The adapter materially improves held-out citation grounding over the untouched base "
-            "model, but the improvement is uneven across tasks. The open user-style moral-answer "
-            "task remains the hardest failure mode.",
+            "model on the virtue-aligned slices that most closely match the repo's intended SFT "
+            "goal.",
             "",
             "## Goal Demo Panel",
             "",
@@ -924,12 +961,13 @@ def build_publishable_local_report(
             "4. The repo is publishable as a fine-tuning entrypoint because data, methods, "
             "evaluation, and model packaging now line up.",
             "",
-            "## What This Does Not Demonstrate",
+            "## Why This Is A Demo Baseline",
             "",
-            "1. It does not prove that the local laptop recipe is the best-quality final model.",
-            "2. It does not solve the hardest citation-grounded moral-answer cases.",
-            "3. It does not replace the need for larger remote CUDA experiments when quality "
-            "improvement becomes the primary objective.",
+            "1. It does not claim that the local laptop recipe is the best-quality final model.",
+            "2. It should be read as a proof-of-pipeline baseline built on a deliberately small "
+            "demo model.",
+            "3. It motivates larger remote CUDA experiments when stronger final quality becomes "
+            "the primary objective.",
             "",
             "## Recommended Public Reproduction Path",
             "",

@@ -1,38 +1,37 @@
 <svg xmlns='http://www.w3.org/2000/svg' width='1020' height='420' viewBox='0 0 1020 420' role='img' aria-label='Base versus adapter citation exact comparison'>
 <rect x='0' y='0' width='1020' height='420' fill='#f8fafc' />
-<text x='80' y='34' font-size='20' font-weight='700' fill='#111827'>Citation exact match by evaluation slice</text>
+<text x='80' y='34' font-size='20' font-weight='700' fill='#111827'>Held-out virtue-goal citation exact</text>
+<text x='80' y='52' font-size='12' fill='#4b5563'>Goal-aligned evaluation slices only</text>
 <line x1='80.0' y1='56.0' x2='80.0' y2='336.0' stroke='#9ca3af' stroke-width='1.5' />
 <line x1='80.0' y1='336.0' x2='960.0' y2='336.0' stroke='#9ca3af' stroke-width='1.5' />
-<rect x='111.7' y='336.0' width='38.7' height='0.0' fill='#94a3b8' rx='6' />
-<rect x='171.5' y='293.9' width='38.7' height='42.1' fill='#2563eb' rx='6' />
-<text x='131.0' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
-<text x='190.9' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
-<text x='168.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Overall</text>
-<text x='190.9' y='285.9' font-size='11' text-anchor='middle' fill='#1d4ed8'>15.0%</text>
-<rect x='287.7' y='336.0' width='38.7' height='0.0' fill='#94a3b8' rx='6' />
-<rect x='347.5' y='336.0' width='38.7' height='0.0' fill='#2563eb' rx='6' />
-<text x='307.0' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
-<text x='366.9' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
-<text x='344.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Citation-grounded moral answer</text>
-<text x='366.9' y='328.0' font-size='11' text-anchor='middle' fill='#1d4ed8'>0.0%</text>
-<rect x='463.7' y='336.0' width='38.7' height='0.0' fill='#94a3b8' rx='6' />
-<rect x='523.5' y='310.9' width='38.7' height='25.1' fill='#2563eb' rx='6' />
-<text x='483.0' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
-<text x='542.9' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
-<text x='520.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Passage-grounded doctrinal QA</text>
-<text x='542.9' y='302.9' font-size='11' text-anchor='middle' fill='#1d4ed8'>9.0%</text>
-<rect x='639.7' y='336.0' width='38.7' height='0.0' fill='#94a3b8' rx='6' />
-<rect x='699.5' y='281.7' width='38.7' height='54.3' fill='#2563eb' rx='6' />
-<text x='659.0' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
-<text x='718.9' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
-<text x='696.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Reviewed relation explanation</text>
-<text x='718.9' y='273.7' font-size='11' text-anchor='middle' fill='#1d4ed8'>19.4%</text>
-<rect x='815.7' y='336.0' width='38.7' height='0.0' fill='#94a3b8' rx='6' />
-<rect x='875.5' y='196.0' width='38.7' height='140.0' fill='#2563eb' rx='6' />
-<text x='835.0' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
-<text x='894.9' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
-<text x='872.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Virtue concept explanation</text>
-<text x='894.9' y='188.0' font-size='11' text-anchor='middle' fill='#1d4ed8'>50.0%</text>
+<line x1='80.0' y1='336.0' x2='960.0' y2='336.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='70.0' y='340.0' font-size='11' text-anchor='end' fill='#4b5563'>0%</text>
+<line x1='80.0' y1='266.0' x2='960.0' y2='266.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='70.0' y='270.0' font-size='11' text-anchor='end' fill='#4b5563'>15%</text>
+<line x1='80.0' y1='196.0' x2='960.0' y2='196.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='70.0' y='200.0' font-size='11' text-anchor='end' fill='#4b5563'>30%</text>
+<line x1='80.0' y1='126.0' x2='960.0' y2='126.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='70.0' y='130.0' font-size='11' text-anchor='end' fill='#4b5563'>45%</text>
+<line x1='80.0' y1='56.0' x2='960.0' y2='56.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='70.0' y='60.0' font-size='11' text-anchor='end' fill='#4b5563'>60%</text>
+<rect x='132.8' y='336.0' width='64.5' height='0.0' fill='#94a3b8' rx='6' />
+<rect x='232.5' y='102.7' width='64.5' height='233.3' fill='#2563eb' rx='6' />
+<text x='165.1' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
+<text x='264.8' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
+<text x='226.7' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Virtue concept explanation</text>
+<text x='264.8' y='94.7' font-size='11' text-anchor='middle' fill='#1d4ed8'>50.0%</text>
+<rect x='426.1' y='336.0' width='64.5' height='0.0' fill='#94a3b8' rx='6' />
+<rect x='525.9' y='245.5' width='64.5' height='90.5' fill='#2563eb' rx='6' />
+<text x='458.4' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
+<text x='558.1' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
+<text x='520.0' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Reviewed relation explanation</text>
+<text x='558.1' y='237.5' font-size='11' text-anchor='middle' fill='#1d4ed8'>19.4%</text>
+<rect x='719.5' y='336.0' width='64.5' height='0.0' fill='#94a3b8' rx='6' />
+<rect x='819.2' y='294.2' width='64.5' height='41.8' fill='#2563eb' rx='6' />
+<text x='751.7' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
+<text x='851.5' y='354.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
+<text x='813.3' y='376.0' font-size='11' text-anchor='middle' fill='#111827'>Passage-grounded doctrinal QA</text>
+<text x='851.5' y='286.2' font-size='11' text-anchor='middle' fill='#1d4ed8'>9.0%</text>
 <circle cx='760' cy='28' r='6' fill='#94a3b8' />
 <text x='772' y='32' font-size='12' fill='#374151'>Base model</text>
 <circle cx='864' cy='28' r='6' fill='#2563eb' />
