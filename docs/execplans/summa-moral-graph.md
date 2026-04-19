@@ -32,6 +32,14 @@
   - why the committed dataset is worth trusting
   - why the public `1.5B` run is a minimal example rather than the claimed ceiling
   - what the result actually proves for a reviewer or collaborator
+  - the repo's three public purposes are now being made explicit near the top of the README so a
+    first-time reader can identify the dataset, minimal SFT demo, and evidence-audit surfaces at a
+    glance
+  - README is now also being made more theologically grounded and human-readable:
+    - representative Aquinas loci are being linked directly from the landing page
+    - top-level prose is being softened away from technical shorthand toward more prudent,
+      reviewer-facing explanation
+    - visual hierarchy is being improved through denser tables and clearer section sequencing
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many

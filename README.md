@@ -12,8 +12,7 @@ corpus in the *Summa Theologiae*.
 ![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
-> This repo is the public guide, dataset, minimal demo, and evidence package for aligning language
-> models to Thomist moral virtue.
+> This repo is a public research release for Thomist moral virtue alignment.
 >
 > Minimal example, not ceiling: the released `Qwen/Qwen2.5-1.5B-Instruct` LoRA adapter is a
 > deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
@@ -22,6 +21,37 @@ corpus in the *Summa Theologiae*.
 >
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
 > [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+
+## Three Purposes
+
+This repo has three public purposes, and each one is visible in the repository itself:
+
+| Purpose | What it means here | Why it matters |
+| --- | --- | --- |
+| Curate reviewed Thomist virtue supervision | The dataset is built from approved doctrinal annotations joined back to stable `resp` / `ad` passage ids. | The model is trained on inspectable moral-theological evidence rather than on vague religion text. |
+| Demonstrate a minimal but real SFT example | The public `Qwen/Qwen2.5-1.5B-Instruct` run is intentionally small and fully reproducible on Apple Silicon. | A new reader can verify the pipeline works end to end without needing a large GPU budget. |
+| Preserve a theological audit trail | The repo includes held-out benchmarks, a curated report, a released adapter, and a live evidence browser. | Readers can inspect what the model was taught, what improved, and what remains limited. |
+
+## Theological Grounding
+
+This repo is not grounded in generic religious language. It is grounded in Aquinas's treatment of
+the moral virtues and their relations in the *Summa Theologiae*.
+
+Representative doctrinal anchors:
+
+| Theme | Aquinas locus | Why it matters for the SFT |
+| --- | --- | --- |
+| Charity considered in itself | [II-II q.23 a.1, “Is charity friendship?”](https://www.newadvent.org/summa/3023.htm#article1) | Anchors the theological-virtue tract in Aquinas's own account of charity. |
+| Fraternal correction as an act of charity | [II-II q.33 a.1](https://www.newadvent.org/summa/3033.htm#article1) | Grounds one of the repo's representative act-of-charity relation examples. |
+| Prudence considered in itself | [II-II q.47 a.1](https://www.newadvent.org/summa/3047.htm#article1) | Anchors the prudence tract in Aquinas's account of practical reason. |
+| Justice | [II-II q.58 a.1, “What is justice?”](https://www.newadvent.org/summa/3058.htm#article1) | Grounds the justice tract in Aquinas's formal account of justice. |
+| Restitution as an act of commutative justice | [II-II q.62 a.1](https://www.newadvent.org/summa/3062.htm#article1) | Grounds one of the clearest justice-act relations in the dataset and demo panel. |
+| Fortitude | [II-II q.123 a.1](https://www.newadvent.org/summa/3123.htm#article1) | Anchors the fortitude tract in Aquinas's account of virtue under difficulty. |
+| Temperance | [II-II q.141 a.1](https://www.newadvent.org/summa/3141.htm#article1) | Anchors the temperance tract in Aquinas's account of moral moderation. |
+
+These source links are not decorative. They indicate the kind of doctrinal loci the dataset is
+trying to teach the model to handle prudently: virtue definitions, act relations, and tract-local
+distinctions that remain tethered to Aquinas's own text.
 
 ## Start Here
 
@@ -66,6 +96,9 @@ emitter.
 The goal is to align a model to Thomist moral virtue: the moral architecture Aquinas develops
 across the theological virtues, prudence, justice, fortitude, temperance, their acts, objects,
 parts, opposed vices, and tract-local doctrinal relations.
+
+In plainer terms: the model should learn to answer moral-virtue questions as Aquinas organizes
+them, not merely to sound religious or to drop medieval vocabulary.
 
 A successful model in this repo should be able to do things like:
 
@@ -167,7 +200,7 @@ What it does not prove:
 - that local Apple-Silicon training is the best path for strongest model quality
 - that citation exact match is the whole theological evaluation story
 
-## How Good Is The Minimal Example?
+## What The Minimal Example Actually Shows
 
 Automatic metric shown below: exact citation match on held-out prompts. In this repo, that metric
 is a useful guardrail for evidence-bounded Thomist answering, but it is not the whole purpose of
@@ -193,6 +226,10 @@ Why this is meaningful:
 - the adapter improves every public goal-aligned slice we foreground in the README
 - this happens in a deliberately minimal example, which makes the dataset and method more credible
   as a reusable template
+
+Read prudently, this result supports a modest but important claim: the supervision is strong enough
+to move a small general model toward better Thomist moral-virtue behavior. It does not yet settle
+the larger question of how far the same method can be pushed on larger models and longer runs.
 
 #### Training Trace
 

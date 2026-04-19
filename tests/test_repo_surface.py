@@ -58,10 +58,15 @@ def test_public_release_check_is_documented() -> None:
 
 def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
+    assert "## three purposes" in readme_text
+    assert "## theological grounding" in readme_text
+    assert "three public purposes" in readme_text
     assert "thomist moral virtue" in readme_text
     assert "minimal example" in readme_text
     assert "generic theology chatbot" in readme_text
     assert "not the strongest achievable final model" in readme_text
+    assert "newadvent.org/summa/3023.htm#article1" in readme_text
+    assert "newadvent.org/summa/3058.htm#article1" in readme_text
 
 
 def test_scripts_guide_names_canonical_local_entrypoints() -> None:
