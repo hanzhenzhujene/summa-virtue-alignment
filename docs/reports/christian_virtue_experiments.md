@@ -28,6 +28,7 @@ What it demonstrates:
 
 - the committed Christian virtue dataset can drive a real SFT loop end-to-end
 - the official local `pilot-lite` recipe is reproducible on a 16 GB Apple-Silicon laptop
+- a deliberately small 1.5B demo model is already enough to show the pipeline works
 - the LoRA adapter beats the untouched base model on the held-out benchmark
 - the repo can serve as a public fine-tuning entrypoint rather than only a private research log
 
@@ -74,6 +75,10 @@ the 20-step run.
 
 The adapter materially outperforms base on the held-out benchmark, especially on virtue-concept
 and reviewed-relation tasks.
+
+This is the public demo result, not the intended ceiling. The point of this run is to show that a
+small easy-to-reproduce model already exhibits the right movement, which makes the case for larger
+follow-on SFT runs even stronger.
 
 ## Canonical Command Surface
 

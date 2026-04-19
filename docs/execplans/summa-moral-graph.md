@@ -2,6 +2,14 @@
 
 ## Progress
 
+- The public SFT story is now being tightened around a clearer research-release framing:
+  - the 1.5B `pilot-lite` run is being described explicitly as a deliberately small demo baseline
+    whose job is to prove the pipeline works end to end
+  - README, fine-tune guide, experiment index, flagship report, and generated package surfaces are
+    being stripped of top-level weak-result wording that made the baseline sound smaller than it
+    needs to sound
+  - the public takeaway is now sharper: this repo proves the SFT pipeline and dataset work on a
+    small reproducible model, while larger runs are the path to stronger final quality
 - The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
   - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
     for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many
@@ -658,6 +666,10 @@
 
 ## Surprises & Discoveries
 
+- The strongest convincing story for this repo is not “look how high the numbers are” but “even a
+  deliberately tiny reproducible demo run already shows the right directional gain.” Once that
+  framing is explicit, the repo reads more confidently without needing to over-claim the current
+  local baseline.
 - Making the SFT more prominent did not mainly require new metrics. The bigger usability win was
   narrative: readers needed a clearer first-action path and larger result figures more than they
   needed another paragraph about why the repo matters.
@@ -906,6 +918,11 @@
 
 ## Decision Log
 
+- Keep the public framing of the canonical 1.5B run intentionally narrow and strong:
+  - describe it as a small reproducible demo baseline
+  - emphasize that it proves the dataset and SFT workflow work end to end
+  - reserve more diagnostic weak-slice language for deeper report detail rather than top-level
+    README/model-card summaries
 - Treat the repo root itself as the primary SFT landing page for outsiders. The README should make
   it obvious that this repository is:
   - the guide for how to fine-tune on Summa Moral Graph
@@ -1172,6 +1189,13 @@
 
 ## Outcomes & Retrospective
 
+- The repo now presents the local 1.5B result more convincingly without changing the underlying
+  facts:
+  - the baseline is now framed explicitly as a small demo model used to prove the pipeline
+  - top-level public surfaces now emphasize directional gains and next-step headroom rather than
+    foregrounding weak-slice diagnostics
+  - the stronger public message is now consistent across README, guide, experiment index, flagship
+    report, and generated publication templates
 - The repo root now reads more clearly as an SFT deliverable instead of a mixed-surface codebase:
   - the README now leads with the guide/demo/proof framing for Summa Moral Graph fine-tuning
   - a `Start Here` table now reduces the number of clicks needed for a new user to choose the

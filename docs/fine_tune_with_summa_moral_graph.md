@@ -76,7 +76,11 @@ This is the official local demonstration path:
 - model: `Qwen/Qwen2.5-1.5B-Instruct`
 - method: LoRA on Apple Silicon MPS
 - official rung: `pilot-lite`
-- goal: stable reproducibility and publishable demonstration, not giant local training
+- goal: stable reproducibility and a convincing proof-of-pipeline demo, not the strongest final
+  quality run
+
+This local 1.5B setup is intentionally small. It exists so users can verify the full SFT loop on a
+laptop and then carry the same dataset/method over to larger runs when they want stronger results.
 
 One-command setup:
 
@@ -182,6 +186,10 @@ Current headline held-out `test` result:
 - base citation exact match: `0.000`
 - adapter citation exact match: `0.150`
 - net gain: `+0.150`
+
+Interpret this published result as a small-model demonstration baseline. It is the public example
+showing that the Summa Moral Graph dataset can move model behavior in the right direction. The same
+pipeline is meant to scale to larger models and longer GPU runs afterward.
 
 ## What The Local Run Writes
 

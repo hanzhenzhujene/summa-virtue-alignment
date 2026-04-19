@@ -109,7 +109,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "docs/christian_virtue_dataset_card.md" in readme
     assert "## Executive Readout" in readme
     assert "Strongest task slice" in readme
-    assert "Hardest task type" in readme
+    assert "deliberately small 1.5B local demo model" in readme
     assert "![Held-out benchmark comparison]" in readme
     assert "Keep the tokenizer/chat template aligned with the listed base model" in readme
     assert "https://huggingface.co/JennyZhu0822/demo" in readme
@@ -117,7 +117,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in readme
     assert "## Executive Readout" in release_notes
     assert "Strongest tract slice" in release_notes
-    assert "Zero-gain tracts" in release_notes
+    assert "deliberately small local demo model" in release_notes
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in release_notes
     assert str(tmp_path) not in readme
 

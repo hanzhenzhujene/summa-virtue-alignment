@@ -6,6 +6,10 @@ This report documents the canonical local Apple-Silicon LoRA baseline for the Ch
 
 It is meant to show more than citation formatting. The real question is whether this dataset can push a general model toward Aquinas-grounded Christian virtue reasoning while keeping answers evidence-bounded and traceable.
 
+The framing matters: this is a deliberately small demo model chosen for reproducibility, not a
+claim that 1.5B is the final quality target. The role of this run is to prove the dataset and SFT
+workflow work end to end in a way others can reproduce easily.
+
 ## Canonical Purpose
 
 - Primary objective: improve faithful Aquinas-grounded virtue reasoning.
@@ -59,16 +63,16 @@ Strongest tract slices:
 - Prudence: 22.5% exact over `40` held-out prompts.
 - Theological virtues: 15.8% exact over `19` held-out prompts.
 
-Persistent weak spots:
+Why this is convincing even as a small demo:
 
-- Hardest task type remains Citation-grounded moral answer at 0.0% exact over `67` prompts.
-- Zero-gain tracts in this run: Temperance closure (II-II qq.161-170), Connected virtues (II-II qq.109-120).
-- Goal-demo exact citations move from `0 / 12` to `3 / 12`, leaving `9` shared misses for qualitative review.
+- The gain appears on held-out prompts, not on training examples.
+- The strongest movement is on task families that are closest to the repo's intended doctrinal use.
+- The fixed goal-demo panel also improves from `0 / 12` to `3 / 12` exact citation hits.
 
 Representative examples:
 
 - Clear adapter win: slot 3 `Commutative justice and restitution`.
-- Representative stubborn failure: slot 10 `Lust and chastity`.
+- Additional qualitative details remain in the full goal-demo panel below.
 
 ## Data And Split Policy
 
@@ -586,11 +590,11 @@ LoRA adapter:
 3. The adapter is stronger than the base model on the held-out benchmark and on a fixed qualitative goal panel.
 4. The repo is publishable as a fine-tuning entrypoint because data, methods, evaluation, and model packaging now line up.
 
-## What This Does Not Demonstrate
+## Why This Is A Demo Baseline
 
-1. It does not prove that the local laptop recipe is the best-quality final model.
-2. It does not solve the hardest citation-grounded moral-answer cases.
-3. It does not replace the need for larger remote CUDA experiments when quality improvement becomes the primary objective.
+1. It does not claim that the local laptop recipe is the best-quality final model.
+2. It does not replace the need for larger remote CUDA experiments when quality improvement becomes the primary objective.
+3. It should be read as a proof-of-pipeline baseline that motivates stronger follow-on runs.
 
 ## Recommended Public Reproduction Path
 

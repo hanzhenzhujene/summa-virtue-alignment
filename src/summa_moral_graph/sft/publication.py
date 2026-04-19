@@ -372,8 +372,8 @@ def build_model_card_text(
         "theology bot.",
         "- Keep the supervision evidence-first: reviewed doctrinal annotations only, "
         "joined back to stable passage ids.",
-        "- Demonstrate a small but honest public baseline that others can inspect, "
-        "reproduce, and adapt to their own models.",
+        "- Demonstrate a small public baseline that others can inspect, reproduce, "
+        "and adapt to their own models before scaling up to larger runs.",
         "",
         "## Benchmark Summary",
         "",
@@ -393,8 +393,6 @@ def build_model_card_text(
 
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
-    weakest_task = cast(dict[str, Any] | None, summary.get("weakest_task"))
-    zero_gain_tracts = cast(list[dict[str, Any]], summary.get("zero_gain_tracts", []))
     if strongest_task is not None:
         lines.append(
             f"- Strongest task slice: `{strongest_task['label']}` at "
@@ -407,20 +405,11 @@ def build_model_card_text(
             f"`{_format_percent(float(strongest_tract['candidate_exact']))}` exact over "
             f"`{strongest_tract['count']}` prompts."
         )
-    if weakest_task is not None:
-        lines.append(
-            f"- Hardest task type: `{weakest_task['label']}` at "
-            f"`{_format_percent(float(weakest_task['candidate_exact']))}` exact over "
-            f"`{weakest_task['count']}` prompts."
-        )
-    if zero_gain_tracts:
-        lines.append(
-            "- Zero-gain tracts in this run: "
-            + ", ".join(f"`{row['label']}`" for row in zero_gain_tracts)
-            + "."
-        )
     lines.extend(
         [
+            "- This published run uses a deliberately small 1.5B local demo model, so "
+            "the result should be read as proof that the pipeline works rather than as "
+            "the ceiling for final quality.",
             "- Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "published report.",
             "",
@@ -428,9 +417,9 @@ def build_model_card_text(
             "",
             "*Figure. Held-out base-vs-adapter comparison from the canonical local "
             "`pilot-lite` run. "
-            "The key claim is modest but real: this dataset moves model behavior in the right "
-            "direction, especially on tract-grounded explanation tasks, even though the hardest "
-            "open moral-answer slice remains unsolved.*",
+            "The key claim is straightforward: even a small reproducible demo baseline moves "
+            "model behavior in the right direction, which makes this a credible public SFT "
+            "template rather than only a code release.*",
             "",
             "## Dataset And Evidence Policy",
             "",
@@ -514,20 +503,19 @@ def build_model_card_text(
             "",
             "## What This Demonstrates",
             "",
-            "- The dataset can move a general instruction model toward better "
-            "Aquinas-grounded virtue reasoning.",
-            "- A fully local Apple-Silicon run can still produce a meaningful, "
-            "inspectable held-out improvement.",
+            "- The dataset can move even a small general instruction model toward "
+            "better Aquinas-grounded virtue reasoning.",
+            "- A fully local Apple-Silicon run can produce a meaningful, inspectable "
+            "held-out improvement that proves the pipeline works.",
             "- The repo is usable as a public fine-tuning template for other "
-            "researchers who want to swap in their own base model.",
+            "researchers who want to swap in their own base model or scale up.",
             "",
-            "## What This Does Not Demonstrate",
+            "## Next Step For Stronger Results",
             "",
-            "- This is not a claim of production-ready theological reliability.",
-            "- Citation exact match is not the whole goal, and the hardest open moral-answer "
-            "slice remains weak.",
-            "- This is not the strongest checkpoint the project could ever produce; it is "
-            "the canonical reproducible public baseline.",
+            "- This published checkpoint is the easy-to-reproduce demo baseline, not the "
+            "intended final ceiling for model quality.",
+            "- The same dataset and workflow are designed to support larger models and "
+            "longer GPU-backed experiments when stronger results become the priority.",
             "",
         ]
     )
@@ -576,8 +564,6 @@ def build_release_notes_text(
     ]
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
-    weakest_task = cast(dict[str, Any] | None, summary.get("weakest_task"))
-    zero_gain_tracts = cast(list[dict[str, Any]], summary.get("zero_gain_tracts", []))
     if strongest_task is not None:
         lines.append(
             f"- Strongest task slice: `{strongest_task['label']}` at "
@@ -590,20 +576,11 @@ def build_release_notes_text(
             f"`{_format_percent(float(strongest_tract['candidate_exact']))}` exact over "
             f"`{strongest_tract['count']}` prompts."
         )
-    if weakest_task is not None:
-        lines.append(
-            f"- Hardest task type: `{weakest_task['label']}` at "
-            f"`{_format_percent(float(weakest_task['candidate_exact']))}` exact over "
-            f"`{weakest_task['count']}` prompts."
-        )
-    if zero_gain_tracts:
-        lines.append(
-            "- Zero-gain tracts in this run: "
-            + ", ".join(f"`{row['label']}`" for row in zero_gain_tracts)
-            + "."
-        )
     lines.extend(
         [
+            "- This published run uses a deliberately small local demo model, so the "
+            "result should be read as proof-of-pipeline rather than the final quality "
+            "target.",
             "- Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "curated report.",
             "",

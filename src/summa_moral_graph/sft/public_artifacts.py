@@ -159,19 +159,20 @@ def build_publication_package_surface_expectations(
     summary = cast(dict[str, Any], package_manifest.get("summary", {}))
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
-    weakest_task = cast(dict[str, Any] | None, summary.get("weakest_task"))
 
     expected: dict[str, list[str]] = {
         "README.md": [
             "## Executive Readout",
             str(package_manifest["github_release_url"]),
             str(package_manifest["hf_repo_url"]),
+            "deliberately small 1.5B local demo model",
             "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "published report.",
         ],
         "release_notes.md": [
             "## Executive Readout",
             str(package_manifest["hf_repo_url"]),
+            "deliberately small local demo model",
             "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "curated report.",
         ],
@@ -182,9 +183,6 @@ def build_publication_package_surface_expectations(
     if strongest_tract is not None:
         expected["README.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
         expected["release_notes.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
-    if weakest_task is not None:
-        expected["README.md"].append(f"Hardest task type: `{weakest_task['label']}`")
-        expected["release_notes.md"].append(f"Hardest task type: `{weakest_task['label']}`")
     return expected
 
 

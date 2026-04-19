@@ -130,9 +130,9 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
                 "## Executive Readout",
                 str(package_manifest["github_release_url"]),
                 str(package_manifest["hf_repo_url"]),
+                "This published run uses a deliberately small 1.5B local demo model.",
                 "Strongest task slice: `Reviewed relation explanation`",
                 "Strongest tract slice: `Justice core`",
-                "Hardest task type: `Citation-grounded moral answer`",
                 "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
                 "published report.",
             ]
@@ -144,9 +144,9 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
             [
                 "## Executive Readout",
                 str(package_manifest["hf_repo_url"]),
+                "This published run uses a deliberately small local demo model.",
                 "Strongest task slice: `Reviewed relation explanation`",
                 "Strongest tract slice: `Justice core`",
-                "Hardest task type: `Citation-grounded moral answer`",
                 "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
                 "curated report.",
             ]

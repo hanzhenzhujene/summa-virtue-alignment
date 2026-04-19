@@ -55,7 +55,8 @@ The repository is organized around five non-negotiable design choices:
 - stable ids stay attached from `data/interim/` through dataset exports, reports, and model runs
 - reviewed doctrinal, structural-editorial, structural, and candidate layers remain separate
 - candidate material is never auto-promoted into approved truth
-- the local demonstration path is intentionally modest and reproducible rather than hardware-maximal
+- the public baseline is intentionally small and reproducible so the SFT loop can be verified end
+  to end before larger GPU runs
 
 For the Christian virtue SFT release, the default builder:
 
@@ -92,6 +93,7 @@ reproducibly, that Summa Moral Graph supervision can train a model in the right 
 - model: `Qwen/Qwen2.5-1.5B-Instruct`
 - method: LoRA on Apple Silicon `mps`
 - official local rung: `pilot-lite`
+- role: small demo baseline for proving the SFT pipeline
 - held-out `test` citation exact match:
   - base: `0.000`
   - adapter: `0.150`
@@ -103,10 +105,11 @@ moral categories, and preserves source traceability.
 
 ### Why This SFT Counts As A Real Win
 
-The local `pilot-lite` baseline is intentionally modest, but the result is still clear: the
-adapter learns a real task-specific behavior shift over the untouched base model. The optimization
-trace is stable, and the held-out benchmark moves in the right direction on the most structured,
-evidence-grounded task families.
+This local `pilot-lite` run uses a deliberately small 1.5B model so the repo can serve as a
+practical guide and demo. Even with that small demo baseline, the adapter learns a real
+task-specific behavior shift over the untouched base model. The optimization trace is stable, and
+the held-out benchmark moves in the right direction on the most structured, evidence-grounded task
+families.
 
 | Held-out `test` slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
@@ -130,7 +133,11 @@ completes in about `4.7` minutes.
 The adapter improves the overall held-out benchmark and shows the strongest gains on
 virtue-concept and reviewed-relation tasks.
 
-If you want the full breakdown, including tract-wise slices and qualitative successes/failures, go
+This is the important framing for the repo: the published 1.5B run is the easy-to-reproduce demo,
+not the ceiling. The same dataset and workflow are designed so larger models and longer GPU runs
+can push the result further once the proof-of-pipeline baseline is established.
+
+If you want the full breakdown, including tract-wise slices and qualitative examples, go
 straight to the flagship report:
 [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md).
 
