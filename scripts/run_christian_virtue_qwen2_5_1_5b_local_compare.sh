@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Compare the latest local base and adapter evaluation runs and write a markdown summary.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

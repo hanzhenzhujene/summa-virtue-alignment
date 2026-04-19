@@ -1,3 +1,5 @@
+"""Train Christian virtue LoRA or QLoRA adapters from a typed experiment config."""
+
 from __future__ import annotations
 
 import argparse

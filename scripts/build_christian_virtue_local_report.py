@@ -1,3 +1,5 @@
+"""Assemble the publishable local Christian virtue report, plots, and goal-demo panel."""
+
 from __future__ import annotations
 
 import argparse

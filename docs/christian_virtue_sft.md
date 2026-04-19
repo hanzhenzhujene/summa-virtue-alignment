@@ -191,11 +191,17 @@ Runtime behavior on MPS:
 Recommended local environment:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -e ".[dev,sft]"
+make setup-christian-virtue-local
 make build-christian-virtue-sft
+```
+
+The setup target uses the pinned local lockfile at
+`requirements/local-mps-py312.lock.txt`.
+
+One-command canonical reproduction:
+
+```bash
+make reproduce-christian-virtue-qwen2-5-1-5b-local
 ```
 
 Smoke train:

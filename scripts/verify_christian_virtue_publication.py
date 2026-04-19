@@ -1,3 +1,5 @@
+"""Verify that the public repo and adapter package surfaces remain internally coherent."""
+
 from __future__ import annotations
 
 import argparse

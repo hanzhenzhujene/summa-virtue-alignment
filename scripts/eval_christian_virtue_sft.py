@@ -1,3 +1,5 @@
+"""Evaluate Christian virtue predictions against held-out benchmark answers and citations."""
+
 from __future__ import annotations
 
 import argparse

@@ -78,13 +78,25 @@ This is the official local demonstration path:
 - official rung: `pilot-lite`
 - goal: stable reproducibility and publishable demonstration, not giant local training
 
-Setup:
+One-command setup:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -e ".[dev,sft]"
+make setup-christian-virtue-local
+```
+
+That command uses the pinned lockfile at
+`requirements/local-mps-py312.lock.txt` and then installs the repo in editable mode without
+re-resolving the environment.
+
+One-command canonical reproduction:
+
+```bash
+make reproduce-christian-virtue-qwen2-5-1-5b-local
+```
+
+If you want the explicit stepwise path, run:
+
+```bash
 make build-christian-virtue-sft
 ```
 
@@ -142,8 +154,10 @@ One-command local loop:
 make run-christian-virtue-qwen2-5-1-5b-local-loop
 ```
 
-That loop now defaults to `pilot-lite`, which is the practical local rung on a 16 GB Apple-Silicon
-machine.
+That loop is the experiment loop only. The canonical publishable path for a fresh machine is still:
+
+1. `make setup-christian-virtue-local`
+2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
 
 ## Current Canonical Published Artifacts
 

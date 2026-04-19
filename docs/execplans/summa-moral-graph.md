@@ -2,6 +2,18 @@
 
 ## Progress
 
+- The next public-release polish pass is now focused on first-open trust rather than adding new
+  modeling scope:
+  - README is being rewritten around a research-release narrative with a clear problem statement,
+    method overview, key results, repository map, and canonical reproduction path
+  - a new `docs/repository_map.md` is being added so reviewers and collaborators can orient
+    quickly without reverse-engineering the directory tree
+  - the canonical local Apple-Silicon path is now gaining a pinned lockfile plus explicit
+    `setup` / `reproduce` entrypoints rather than relying on ad hoc package installation
+  - stale public corpus counts are being corrected so the repo consistently reports `6032`
+    doctrinally usable `resp` / `ad` segments instead of the older all-sections figure
+  - key public scripts and SFT modules are gaining top-level docstrings or comments so new readers
+    can understand the execution surface from the file headers alone
 - The repo is being locked around one official, publishable local demonstration path rather than a
   loose set of roughly equal training recipes:
   - the canonical local model is `Qwen/Qwen2.5-1.5B-Instruct`
@@ -609,6 +621,14 @@
 
 ## Surprises & Discoveries
 
+- The next weak point after report/package polish was not another missing experiment but a basic
+  public-release issue: the top-level README still mixed older viewer copy, a stale `12,337`
+  passage count, and a less-than-explicit reproduction path. For a reviewer-facing repo, first
+  impression and factual consistency were now the real bottleneck.
+- A simple editable install is not enough for a publishable local SFT recipe on Apple Silicon. The
+  repo needed a pinned local lockfile and a dedicated setup entrypoint, because the canonical Mac
+  path intentionally avoids the CUDA-oriented `bitsandbytes` extra even though the broader package
+  still supports it on remote machines.
 - The last operational edge case in the canonical local rerun was not training instability but
   long-tail adapter inference on Apple `mps`. Bulk generation advanced cleanly through most of the
   held-out benchmark, then stalled near completion at `223 / 233` examples. Recovering the last
@@ -835,6 +855,18 @@
 
 ## Decision Log
 
+- Add one explicit setup surface for the canonical public local baseline:
+  - `make setup-christian-virtue-local`
+  - it should install the pinned Apple-Silicon lockfile and then install the repo editable without
+    re-resolving dependencies
+- Add one explicit one-command reproduction surface for the canonical public local baseline:
+  - `make reproduce-christian-virtue-qwen2-5-1-5b-local`
+  - it should run build, smoke, pilot-lite, base eval, adapter eval, comparison, report rebuild,
+    and publication verify in order
+- Treat the repository map as a first-class public document and include it in publication-surface
+  verification alongside the README, guides, dataset card, and flagship report.
+- Fix legacy public pointers that escape the repo itself. `AGENT.md` should point to local
+  `./AGENTS.md`, not an absolute path on one developer machine.
 - Keep the committed-state train run `20260418_193038` as canonical, reuse the already validated
   base test run `20260418_143349`, and finish only the new adapter evaluation against commit
   `f9fd589` rather than burning more local time on duplicate base generations.
@@ -1064,6 +1096,16 @@
 
 ## Outcomes & Retrospective
 
+- The repo's public-release surface is now being tightened around a more reviewer-friendly contract:
+  - the README is being reorganized around problem, method, results, reproduction, and repo
+    structure instead of mixing those concerns loosely
+  - the canonical local baseline now has dedicated `setup` and `reproduce` commands
+  - the Apple-Silicon baseline environment is now pinned in
+    `requirements/local-mps-py312.lock.txt`
+  - a repository map now exists as a public orientation document
+  - top-level script and module docstrings are being added so the execution surface is easier to
+    audit
+  - public-artifact tests and publication verification are being widened to cover this new surface
 - The committed-state local publication path is now operationally complete:
   - canonical train run `20260418_193038` is tied to pushed commit `f9fd589`
   - canonical adapter eval run `20260418_203546` was recovered to a full `233 / 233` predictions

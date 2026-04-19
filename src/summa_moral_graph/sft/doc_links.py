@@ -1,3 +1,5 @@
+"""Utilities for extracting and validating internal markdown links in public repo surfaces."""
+
 from __future__ import annotations
 
 import re

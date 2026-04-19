@@ -6,6 +6,7 @@ from pathlib import Path
 from summa_moral_graph.sft.doc_links import (
     extract_markdown_targets,
     resolve_internal_markdown_target,
+    validate_internal_markdown_links,
 )
 from summa_moral_graph.sft.public_artifacts import (
     build_publication_doc_expectations,
@@ -26,7 +27,7 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
         / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter"
         / "package_manifest.json"
     )
-    package_manifest = {
+    package_manifest: dict[str, object] = {
         "adapter_eval_run_dir": (
             "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/20260418_203546"
         ),
@@ -207,6 +208,7 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "docs/fine_tune_with_summa_moral_graph.md",
         repo_root / "docs/christian_virtue_sft.md",
         repo_root / "docs/christian_virtue_dataset_card.md",
+        repo_root / "docs/repository_map.md",
         repo_root / "data/processed/sft/README.md",
         repo_root / "docs/reports/christian_virtue_experiments.md",
         repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
@@ -217,6 +219,9 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "data/processed/sft/exports/christian_virtue_v1_ood/benchmarks/ood_test.jsonl",
         repo_root / "data/processed/sft/samples/christian_virtue_v1_sample.jsonl",
         repo_root / "data/processed/sft/samples/christian_virtue_goal_demo_panel.jsonl",
+        repo_root / "requirements/local-mps-py312.lock.txt",
+        repo_root / "scripts/setup_christian_virtue_local.sh",
+        repo_root / "scripts/reproduce_christian_virtue_qwen2_5_1_5b_local.sh",
     ]
 
     for path in expected_paths:
@@ -229,17 +234,42 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     dataset_card_text = (repo_root / "docs/christian_virtue_dataset_card.md").read_text(
         encoding="utf-8"
     )
+    repo_map_text = (repo_root / "docs/repository_map.md").read_text(encoding="utf-8")
+    fine_tune_text = (repo_root / "docs/fine_tune_with_summa_moral_graph.md").read_text(
+        encoding="utf-8"
+    )
     sft_readme_text = (repo_root / "data/processed/sft/README.md").read_text(encoding="utf-8")
     gitignore_text = (repo_root / ".gitignore").read_text(encoding="utf-8")
+    makefile_text = (repo_root / "Makefile").read_text(encoding="utf-8")
 
     assert "Fine-Tune Your Model With Summa Moral Graph" in readme_text
+    assert "6032" in readme_text
+    assert "doctrinally usable `resp`/`ad` segments" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in readme_text
     assert "pilot-lite" in readme_text
+    assert "make setup-christian-virtue-local" in readme_text
+    assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
+    assert "requirements/local-mps-py312.lock.txt" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
     assert "christian_virtue_qwen2_5_1_5b_pilot_lite_report.md" in dataset_card_text
+    assert "make setup-christian-virtue-local" in fine_tune_text
+    assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in fine_tune_text
+    assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
+    assert "requirements/local-mps-py312.lock.txt" in repo_map_text
     assert "docs/christian_virtue_dataset_card.md" in sft_readme_text
+    assert "setup-christian-virtue-local:" in makefile_text
+    assert "reproduce-christian-virtue-qwen2-5-1-5b-local:" in makefile_text
     assert "!data/processed/sft/exports/christian_virtue_v1/**" in gitignore_text
     assert "!data/processed/sft/exports/christian_virtue_v1_ood/**" in gitignore_text
+
+    for relative_path in [
+        Path("README.md"),
+        Path("docs/fine_tune_with_summa_moral_graph.md"),
+        Path("docs/christian_virtue_dataset_card.md"),
+        Path("docs/repository_map.md"),
+    ]:
+        missing_targets = validate_internal_markdown_links(repo_root / relative_path)
+        assert not missing_targets, (relative_path, missing_targets)
 
 
 def test_repo_publication_bundle_is_coherent() -> None:

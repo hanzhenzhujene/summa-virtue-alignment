@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Run one local Qwen2.5-1.5B training rung and archive it in a timestamped run directory.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

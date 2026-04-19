@@ -1,3 +1,5 @@
+"""Evaluation utilities for citation, task, and tract breakdowns on Christian virtue runs."""
+
 from __future__ import annotations
 
 import json

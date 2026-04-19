@@ -1,3 +1,5 @@
+"""Generate held-out Christian virtue benchmark predictions for a base model or adapter."""
+
 from __future__ import annotations
 
 import argparse

@@ -1,3 +1,5 @@
+"""Adapter packaging helpers for the canonical Christian virtue publication bundle."""
+
 from __future__ import annotations
 
 import shutil

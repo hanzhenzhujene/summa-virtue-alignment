@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Generate and evaluate held-out base-model predictions for the canonical local baseline.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

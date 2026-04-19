@@ -1,3 +1,5 @@
+"""Inference helpers for generating Christian virtue benchmark predictions from configs."""
+
 from __future__ import annotations
 
 import importlib

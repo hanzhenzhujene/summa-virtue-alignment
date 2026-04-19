@@ -1,69 +1,115 @@
 # Summa Virtutum
 
-An interactive map of Thomas Aquinas's moral corpus.
+Evidence-first graph and fine-tuning infrastructure for Thomas Aquinas's moral corpus in the
+*Summa Theologiae*.
 
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-2f5d8a?style=flat-square)
-![Streamlit](https://img.shields.io/badge/Streamlit-dashboard-b04a2f?style=flat-square)
+![Research Release](https://img.shields.io/badge/Release-publication--ready-1f4d3b?style=flat-square)
 ![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
-> Passage-grounded concept, relation, and graph navigation across Thomas Aquinas's moral corpus in the *Summa Theologiae*.
+> Passage-grounded concept, relation, and graph navigation across Aquinas's moral corpus, plus a
+> reproducible Christian virtue SFT baseline built from reviewed doctrinal annotations.
 >
-> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · Docs: [Viewer audit](./docs/dashboard_interaction_audit.md) · by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+> Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
+> [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
 
-> In the Summa article form — [obj](https://en.wikipedia.org/wiki/Summa_Theologica), [sc](https://en.wikipedia.org/wiki/Summa_Theologica), [resp](https://en.wikipedia.org/wiki/Summa_Theologica), [ad](https://en.wikipedia.org/wiki/Summa_Theologica) — this viewer keeps only `resp` and `ad`: Thomas's own answer. No opening objections are included.
+## What This Repo Is
 
-This dashboard is built to be read, not merely queried. Search Aquinas concepts, passages,
-reviewed doctrinal relations, and tract maps across the moral corpus of the *Summa Theologiae*,
-then move between concept, relation, passage, and graph without losing the segment-level evidence
-underneath.
+This repository has two tightly connected research products:
 
-Reviewed doctrine, editorial correspondences, structural links, and candidate proposals stay
-visibly separate throughout the app.
+1. an interactive evidence-first viewer for Aquinas's moral corpus
+2. a reproducible fine-tuning pipeline for an Aquinas-grounded Christian virtue assistant
 
-## Fine-Tune Your Model With Summa Moral Graph
+The core research problem is the same in both surfaces: how to move from concept to relation to
+passage to model behavior without losing textual grounding.
 
-This repo is also the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
+In the Summa article form, this repo keeps only `resp` and `ad` segments as doctrinal evidence.
+Opening objections and `sed contra` material are parsed for structure, but they are not promoted
+into the doctrinal evidence layer used by the viewer or the default SFT dataset.
 
-The purpose of this SFT is not merely to teach citation formatting. The purpose is to train an
-Aquinas-grounded Christian virtue assistant that:
+## Method At A Glance
 
-- answers within reviewed evidence
-- uses Aquinas's moral categories rather than generic self-help language
-- preserves source traceability through stable passage ids
-- gives other model trainers a concrete, inspectable fine-tuning recipe
+The repository is organized around five non-negotiable design choices:
 
-- Training data lives directly in the repo under
-  [`data/processed/sft/exports/christian_virtue_v1`](./data/processed/sft/exports/christian_virtue_v1)
-  and
-  [`data/processed/sft/exports/christian_virtue_v1_ood`](./data/processed/sft/exports/christian_virtue_v1_ood).
-- The dataset is evidence-first: every example keeps stable passage ids, citation labels, tract
-  metadata, and reviewed doctrinal supervision traceable back to `data/interim/` and selected
-  approved doctrinal annotations in `data/gold/`.
-- The official local demonstration path is `Qwen/Qwen2.5-1.5B-Instruct` with `pilot-lite` LoRA on
-  Apple Silicon `mps`.
-- The remote CUDA path remains available for larger QLoRA experiments.
+- the canonical evidence unit is the segment id, not the whole article
+- stable ids stay attached from `data/interim/` through dataset exports, reports, and model runs
+- reviewed doctrinal, structural-editorial, structural, and candidate layers remain separate
+- candidate material is never auto-promoted into approved truth
+- the local demonstration path is intentionally modest and reproducible rather than hardware-maximal
 
-Start here:
+For the Christian virtue SFT release, the default builder:
 
-- Public fine-tuning guide:
-  [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
-- Maintainer and research workflow:
-  [docs/christian_virtue_sft.md](./docs/christian_virtue_sft.md)
-- Dataset card:
-  [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
-- Experiment index:
-  [docs/reports/christian_virtue_experiments.md](./docs/reports/christian_virtue_experiments.md)
+- reads the canonical textual spine from `data/interim/`
+- joins only approved doctrinal annotations from selected virtue tracts in `data/gold/`
+- filters to `explicit_textual` and `strong_textual_inference`
+- emits four instruction families with stable passage ids and citation labels
+- evaluates base and adapter models on held-out prompt-only benchmarks
 
-Quick local path on an Apple-Silicon laptop:
+## Key Results
+
+### Corpus Surface
+
+- `296` questions
+- `1482` articles
+- `6032` doctrinally usable `resp`/`ad` segments
+
+### Christian Virtue Dataset
+
+- `555` approved doctrinal source annotations
+- `1883` SFT examples
+- split sizes: `1475` train, `175` val, `233` test
+- task families:
+  - `555` passage-grounded doctrinal QA
+  - `555` reviewed relation explanation
+  - `555` citation-grounded moral answer
+  - `218` virtue concept explanation
+
+### Canonical Local Baseline
+
+- model: `Qwen/Qwen2.5-1.5B-Instruct`
+- method: LoRA on Apple Silicon `mps`
+- official local rung: `pilot-lite`
+- held-out `test` citation exact match:
+  - base: `0.000`
+  - adapter: `0.150`
+  - gain: `+0.150`
+
+The purpose of this SFT is not merely to copy citation strings. The target behavior is an
+Aquinas-grounded Christian virtue assistant that answers within reviewed evidence, uses Aquinas's
+moral categories, and preserves source traceability.
+
+## Reproduce The Canonical Local Result
+
+The official public reproduction path is the local Apple-Silicon `pilot-lite` baseline.
+
+### 1. Setup
+
+This command creates `.venv`, installs the pinned local lockfile, and then installs the repo in
+editable mode without re-resolving dependencies:
 
 ```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -e ".[dev,sft]"
+make setup-christian-virtue-local
+```
+
+The canonical lockfile lives at
+[requirements/local-mps-py312.lock.txt](./requirements/local-mps-py312.lock.txt).
+
+### 2. Run The Full Local Research Loop
+
+This command rebuilds the dataset if needed, runs `smoke`, runs the canonical `pilot-lite` train,
+generates base and adapter predictions on held-out `test`, compares them, rebuilds the curated
+report, and runs the publication verification gate:
+
+```bash
+make reproduce-christian-virtue-qwen2-5-1-5b-local
+```
+
+If you want the stepwise path instead of the one-command path:
+
+```bash
 make build-christian-virtue-sft
 make train-christian-virtue-qwen2-5-1-5b-local-smoke
 make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
@@ -74,143 +120,114 @@ make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 make verify-christian-virtue-qwen2-5-1-5b-local-publishable
 ```
 
-Published public artifacts for the canonical local run:
+Expected outputs land under:
 
-- Published adapter:
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
+- `artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/`
+
+## Public Artifacts
+
+- Hugging Face adapter:
   [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
-- Experiment index:
-  [docs/reports/christian_virtue_experiments.md](./docs/reports/christian_virtue_experiments.md)
-- Latest headline result:
-  held-out `test` citation exact match moved from `0.000` on the untouched base model to `0.150`
-  on the `pilot-lite` adapter over `233` evaluation prompts.
+- Fine-tuning guide:
+  [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
+- Maintainer workflow:
+  [docs/christian_virtue_sft.md](./docs/christian_virtue_sft.md)
+- Dataset card:
+  [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
+- Repository map:
+  [docs/repository_map.md](./docs/repository_map.md)
+
+## Repository Structure
+
+```text
+configs/
+  sft/          dataset-build configs
+  train/        local and remote training configs
+  inference/    base and adapter generation configs
+docs/
+  fine_tune_with_summa_moral_graph.md
+  christian_virtue_sft.md
+  christian_virtue_dataset_card.md
+  repository_map.md
+  reports/
+scripts/
+  build_christian_virtue_sft_dataset.py
+  train_christian_virtue_qlora.py
+  generate_christian_virtue_predictions.py
+  eval_christian_virtue_sft.py
+  run_christian_virtue_qwen2_5_1_5b_local_*.sh
+src/summa_moral_graph/
+  annotations/  tract-specific reviewed overlays and specs
+  ingest/       textual parsing and normalization
+  sft/          dataset, runtime, evaluation, reporting, publication
+  viewer/       unified Streamlit shell
+data/
+  interim/      canonical segment/article/question spine
+  gold/         reviewed doctrinal and structural-editorial annotations
+  processed/sft/exports/
+  candidate/    review material kept separate from approved doctrine
+tests/
+  test_sft_*    SFT builder/runtime/report/publication coverage
+```
+
+For a fuller guided tour, see [docs/repository_map.md](./docs/repository_map.md).
+
+## Fine-Tune Your Model With Summa Moral Graph
+
+This repo is the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
+
+The intended outcome is not a generic theology chatbot. It is a model that can:
+
+- explain virtue, vice, act, object, part, and opposition in Aquinas's categories
+- answer within reviewed doctrinal evidence
+- preserve stable passage-id traceability
+- give other researchers a concrete, inspectable adaptation recipe
+
+The committed public dataset exports live directly in the repo:
+
+- [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1)
+- [data/processed/sft/exports/christian_virtue_v1_ood](./data/processed/sft/exports/christian_virtue_v1_ood)
+
+Start here:
+
+- public guide: [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
+- dataset card: [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
+- flagship report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
 
 ## Open The Viewer
 
 **Live app:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 
-The Streamlit entrypoint is [`streamlit_app.py`](./streamlit_app.py).
+The Streamlit entrypoint is [streamlit_app.py](./streamlit_app.py).
 
 | Dashboard home | Overall map |
 | --- | --- |
 | ![Dashboard home](docs/assets/dashboard-home.png) | ![Overall map](docs/assets/dashboard-overall-map.png) |
 | _Landing view with concept, passage, tract, and map entry routes._ | _Graph view with doctrinal edges, evidence panel, and current-slice controls._ |
 
-## What This Viewer Does
+The viewer is built to be read, not merely queried. It lets a user move from concept to relation to
+segment to graph while keeping the underlying evidence visible.
 
-| Read one concept closely | Start from the text | Move through the graph |
-| --- | --- | --- |
-| Open a concept page, read distinction notes, inspect reviewed doctrinal edges, and open the supporting passages. | Search passages directly, read segment text first, then inspect reviewed and candidate material attached to that passage. | Switch between local concept maps and the overall doctrinal map without losing relation labels, evidence, or layer distinctions. |
+Run it locally with:
 
-## Try This First
+```bash
+make app
+```
 
-1. Launch the dashboard locally.
-2. Open `Concept Explorer` and start from a tract-centered concept such as `prudence`, `justice`, `religion`, or `temperance`.
-3. Read the supporting passage cards before opening the wider map.
-4. Use the local concept map to move to a neighboring concept.
-5. Open `Overall Map` when you want the wider doctrinal slice.
-
-## What This Project Is
-
-`summa-moral-graph` is an evidence-first research workspace and Streamlit dashboard for the
-moral-philosophical corpus of Thomas Aquinas's *Summa Theologiae*.
-
-It is built to help a reader move through four connected layers without losing textual grounding:
-
-1. concept
-2. relation
-3. passage
-4. graph
-
-The project is not a vague summary graph. It preserves segment-level evidence, stable ids, and
-clear separation between reviewed doctrine, editorial correspondences, structural links, and
-candidate review material.
-
-## What You Can Do Here
-
-The unified Streamlit app lets you:
-
-- start from a concept, passage, tract scope, or graph view
-- move from concept pages to supporting passages and back again
-- inspect reviewed doctrinal edges first, with editorial and candidate layers kept visibly separate
-- open local concept maps and broader overall maps
-- browse tract overlays without losing evidence traceability
-- export the current graph slice or dashboard data directly from the UI
-
-Primary views in the app:
-
-- `Home`
-- `Concept Explorer`
-- `Passage Explorer`
-- `Overall Map`
-- `Stats / Audit`
-
-## Run The Dashboard
-
-Use Python `3.12` if possible.
+or:
 
 ```bash
 python3.12 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 PYTHONPATH=src ./.venv/bin/streamlit run streamlit_app.py
-```
-
-Or:
-
-```bash
-make app
-```
-
-Then open:
-
-- [http://localhost:8501](http://localhost:8501)
-
-The Streamlit entrypoint is:
-
-- [`streamlit_app.py`](./streamlit_app.py)
-
-If you just want the app and not the full maintainer workflow, this is the only command path you
-need.
-
-## Deploy From GitHub With Streamlit
-
-If you want the app hosted publicly from GitHub, the right target is **Streamlit Community Cloud**,
-not GitHub Pages.
-
-Why:
-
-- GitHub Pages is for static sites
-- this dashboard is a Python Streamlit app
-- it needs a live Python runtime, package install, and server-side execution
-
-Recommended deployment path:
-
-1. Push this repository to GitHub.
-2. Go to [Streamlit Community Cloud](https://share.streamlit.io/).
-3. Click **New app**.
-4. Choose:
-   - repository: `hanzhenzhujene/summa-moral-graph-fork`
-   - branch: `main`
-   - main file path: `streamlit_app.py`
-5. Deploy.
-
-Once deployed, Streamlit gives you a fixed app URL like:
-
-- `https://<your-app-name>.streamlit.app`
-
-Streamlit's sharing docs:
-
-- [Run your Streamlit app](https://docs.streamlit.io/develop/concepts/architecture/run-your-app)
-- [Share your app](https://docs.streamlit.io/deploy/streamlit-community-cloud/share-your-app)
-
-After it is live, add the Streamlit badge to the top of this README:
-
-```md
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://<your-app-name>.streamlit.app)
 ```
 
 ## Corpus Scope
@@ -227,15 +244,9 @@ Explicit exclusions:
 - `Part III`
 - `Supplement`
 
-Current structural corpus size:
-
-- `296` questions
-- `1482` articles
-- `12,337` segment-level passages
-
 ## Current Reviewed Coverage
 
-The repo does **not** claim the whole corpus is doctrinally reviewed.
+The repo does not claim the whole corpus is doctrinally reviewed.
 
 It currently includes reviewed overlays for:
 
@@ -249,15 +260,8 @@ It currently includes reviewed overlays for:
 - fortitude parts and closure: `II-II, qq. 129–140`
 - temperance: `II-II, qq. 141–170`
 
-The repo also keeps a full-corpus candidate workflow for:
-
-- structural coverage audit
-- candidate concept mentions
-- candidate relation proposals
-- review packets and review queues
-
-Questions `II-II, qq. 121–128` remain structurally available in the corpus but do not yet have
-their own dedicated reviewed doctrinal block.
+Questions `II-II, qq. 121–128` remain structurally present in the corpus but do not yet have their
+own dedicated reviewed doctrinal block.
 
 ## Evidence Discipline
 
@@ -271,116 +275,14 @@ This repository is designed around a few non-negotiable rules:
 - alias handling is conservative, especially where one English label could hide multiple Thomistic
   concepts
 
-In practice, that means the app defaults to reviewed doctrinal graph material, and users opt into
-editorial, structural, or candidate overlays only when they want them.
+In practice, the app defaults to reviewed doctrinal graph material, and the SFT pipeline defaults
+to approved doctrinal supervision only.
 
-## Quickstart
+## Where To Go Next
 
-If you want the full repo in editable local mode first:
-
-```bash
-python3.12 -m venv .venv
-source .venv/bin/activate
-pip install -e ".[dev]"
-```
-
-## Build And Validate
-
-If you want the full structural and candidate workflow:
-
-```bash
-make build-interim
-make validate-interim
-make build-corpus
-make validate-candidates
-make review-corpus
-```
-
-If you want the dashboard and reviewed overlays in a ready-to-use local state:
-
-```bash
-make build-interim
-make build-corpus
-make validate-candidates
-make build-pilot
-make validate-pilot
-make build-prudence
-make build-theological-virtues
-make test
-```
-
-Useful direct commands:
-
-```bash
-summa-moral-graph build-interim
-summa-moral-graph validate-interim
-summa-moral-graph build-corpus
-summa-moral-graph validate-candidates
-summa-moral-graph build-pilot
-summa-moral-graph validate-pilot
-summa-moral-graph build-prudence
-summa-moral-graph validate-prudence
-summa-moral-graph build-theological-virtues
-summa-moral-graph validate-theological-virtues
-python scripts/build_corpus_workflow.py
-python scripts/build_corpus_review_queue.py
-```
-
-## Most Useful Docs
-
-- Schema: [docs/schema.md](./docs/schema.md)
-- Annotation guide: [docs/annotation_guide.md](./docs/annotation_guide.md)
-- Normalization guide: [docs/normalization.md](./docs/normalization.md)
-- Full-corpus workflow: [docs/full_corpus_workflow.md](./docs/full_corpus_workflow.md)
-- Review queue guide: [docs/review_queue_guide.md](./docs/review_queue_guide.md)
-- Coverage summary: [docs/coverage_summary.md](./docs/coverage_summary.md)
-- Dashboard interaction audit: [docs/dashboard_interaction_audit.md](./docs/dashboard_interaction_audit.md)
-
-## Important Outputs
-
-The most important generated material lives under:
-
-- `data/interim/` for parsed textual structure
-- `data/gold/` for reviewed concepts and annotations
-- `data/candidate/` for unreviewed concept and relation proposals
-- `data/processed/` for coverage, validation, graph exports, and synthesis artifacts
-
-Examples:
-
-- `data/processed/corpus_manifest.json`
-- `data/processed/coverage_report.json`
-- `data/processed/candidate_validation_report.json`
-- `data/processed/fortitude_tract_synthesis.graphml`
-- `data/processed/temperance_full_synthesis.graphml`
-
-## Dashboard Architecture
-
-The current app is a unified Streamlit shell rooted at [`streamlit_app.py`](./streamlit_app.py).
-
-The newer viewer layer lives under:
-
-- `src/summa_moral_graph/viewer/`
-
-That shared layer now drives:
-
-- shared session state
-- cross-view navigation
-- concept, passage, and map transitions
-- tract adapter registration
-- reusable UI rendering helpers
-
-Legacy files in `app/Home.py` and `app/pages/*` remain as compatibility wrappers rather than the
-main dashboard architecture.
-
-## Status
-
-This repository is in active research use, but the dashboard and evidence model are now organized
-as a polished, reader-facing product rather than a loose prototype.
-
-The right way to read the current state is:
-
-- the structural corpus is broad
-- the reviewed doctrinal layer is substantial but partial
-- the candidate layer is there to support human review, not to pretend to be finished doctrine
-
-That separation is deliberate, and it is one of the main guarantees of the project.
+- schema and data model: [docs/schema.md](./docs/schema.md)
+- annotation guide: [docs/annotation_guide.md](./docs/annotation_guide.md)
+- full-corpus workflow: [docs/full_corpus_workflow.md](./docs/full_corpus_workflow.md)
+- review queue guide: [docs/review_queue_guide.md](./docs/review_queue_guide.md)
+- dashboard interaction audit:
+  [docs/dashboard_interaction_audit.md](./docs/dashboard_interaction_audit.md)

@@ -1,3 +1,5 @@
+"""Package and optionally publish the canonical Christian virtue adapter and release metadata."""
+
 from __future__ import annotations
 
 import argparse

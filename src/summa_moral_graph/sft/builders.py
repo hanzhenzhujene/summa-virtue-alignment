@@ -1,3 +1,5 @@
+"""Assemble Christian virtue SFT examples, manifests, and benchmark exports."""
+
 from __future__ import annotations
 
 from collections import Counter, defaultdict

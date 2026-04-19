@@ -1,3 +1,5 @@
+"""Build reproducible Christian virtue SFT exports from reviewed doctrinal annotations."""
+
 from __future__ import annotations
 
 import argparse

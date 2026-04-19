@@ -21,7 +21,8 @@ SMALL_COMPARE_TEST_REPORT := $(SMALL_MODEL_ROOT)/compare_test/report.md
 SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 
 .PHONY: \
-	install build-interim validate-interim build-corpus validate-candidates \
+	install setup-christian-virtue-local reproduce-christian-virtue-qwen2-5-1-5b-local \
+	build-interim validate-interim build-corpus validate-candidates \
 	build-pilot validate-pilot build-prudence validate-prudence \
 	build-connected-virtues-109-120 validate-connected-virtues-109-120 \
 	build-fortitude-parts-129-135 validate-fortitude-parts-129-135 \
@@ -62,6 +63,9 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 install:
 	$(PYTHON) -m venv $(VENV)
 	$(BIN)/pip install -e ".[dev]"
+
+setup-christian-virtue-local:
+	bash scripts/setup_christian_virtue_local.sh
 
 build-interim:
 	$(BIN)/summa-moral-graph build-interim
@@ -232,6 +236,9 @@ verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 
 run-christian-virtue-qwen2-5-1-5b-local-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
+
+reproduce-christian-virtue-qwen2-5-1-5b-local:
+	bash scripts/reproduce_christian_virtue_qwen2_5_1_5b_local.sh
 
 $(SMALL_SMOKE_METADATA): $(SMALL_DATASET) configs/train/qwen3_0_6b_qlora_smoke.yaml scripts/run_christian_virtue_small_train.sh scripts/christian_virtue_small_common.sh scripts/preflight_christian_virtue_gpu.py scripts/train_christian_virtue_qlora.py
 	bash scripts/run_christian_virtue_small_train.sh smoke

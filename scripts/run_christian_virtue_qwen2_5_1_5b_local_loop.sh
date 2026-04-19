@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Run the core local experiment loop from train through base-vs-adapter comparison.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

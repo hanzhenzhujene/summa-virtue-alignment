@@ -1,3 +1,5 @@
+"""Timestamped run-directory and environment-manifest helpers for SFT experiments."""
+
 from __future__ import annotations
 
 import importlib.metadata

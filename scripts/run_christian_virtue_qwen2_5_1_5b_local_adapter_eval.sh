@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Generate and evaluate held-out adapter predictions for the latest local training artifact.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

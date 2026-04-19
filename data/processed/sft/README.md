@@ -11,5 +11,8 @@
 - public docs for using those exports live at:
   - [Dataset card](../../../docs/christian_virtue_dataset_card.md)
   - [Fine-tuning guide](../../../docs/fine_tune_with_summa_moral_graph.md)
+  - [Repository map](../../../docs/repository_map.md)
   - [Flagship local report](../../../docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+- the canonical local environment is pinned in:
+  - `../../../requirements/local-mps-py312.lock.txt`
 - raw run logs and checkpoints still belong in `runs/` and remain gitignored.

@@ -1,3 +1,5 @@
+"""Check whether a machine is ready for the CUDA Christian virtue training and eval loop."""
+
 from __future__ import annotations
 
 import argparse

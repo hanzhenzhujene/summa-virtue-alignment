@@ -25,6 +25,8 @@ The committed public dataset exports live in:
   [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
 - Experiment index:
   [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md)
+- Repository map:
+  [docs/repository_map.md](./repository_map.md)
 
 ## Source Data
 

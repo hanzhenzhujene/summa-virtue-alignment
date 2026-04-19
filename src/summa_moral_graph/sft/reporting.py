@@ -1,3 +1,5 @@
+"""Curated-report and figure builders for Christian virtue local experiment releases."""
+
 from __future__ import annotations
 
 import html

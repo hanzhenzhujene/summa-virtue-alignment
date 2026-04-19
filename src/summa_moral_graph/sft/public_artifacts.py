@@ -1,3 +1,5 @@
+"""Verification helpers for keeping public docs and packaged adapter surfaces in sync."""
+
 from __future__ import annotations
 
 import json
@@ -12,6 +14,7 @@ DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
     / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/package_manifest.json"
 )
 DATASET_CARD_PATH = Path("docs/christian_virtue_dataset_card.md")
+REPOSITORY_MAP_PATH = Path("docs/repository_map.md")
 SFT_README_PATH = Path("data/processed/sft/README.md")
 
 
@@ -65,6 +68,11 @@ def build_publication_doc_expectations(
             release_url,
             run_id,
             adapter_metric,
+        ],
+        REPOSITORY_MAP_PATH: [
+            "requirements/local-mps-py312.lock.txt",
+            "scripts/setup_christian_virtue_local.sh",
+            "make reproduce-christian-virtue-qwen2-5-1-5b-local",
         ],
         DATASET_CARD_PATH: [
             "Aquinas-grounded Christian virtue reasoning",

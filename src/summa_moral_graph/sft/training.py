@@ -1,3 +1,5 @@
+"""Runtime resolution and trainer wiring for Christian virtue LoRA and QLoRA experiments."""
+
 from __future__ import annotations
 
 import importlib

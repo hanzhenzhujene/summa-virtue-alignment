@@ -10,8 +10,9 @@ from summa_moral_graph.viewer.load import load_viewer_data
 from summa_moral_graph.viewer.navigation import (
     ACTIVE_PRESET_KEY,
     ACTIVE_VIEW_KEY,
-    CONCEPT_VIEW,
     CONCEPT_ID_KEY,
+    CONCEPT_VIEW,
+    DEFAULT_MAP_RANGE,
     MAP_MODE_KEY,
     MAP_PENDING_ACTION_KEY,
     MAP_RANGE_KEY,
@@ -19,7 +20,6 @@ from summa_moral_graph.viewer.navigation import (
     MAP_VIEW,
     PASSAGE_ID_KEY,
     STATS_TAB_KEY,
-    DEFAULT_MAP_RANGE,
     consume_pending_map_action,
     consume_widget_updates,
     ensure_session_state,
@@ -562,12 +562,14 @@ def test_home_open_interactive_map_renders_graph_instead_of_blank_slice(monkeypa
 
     from summa_moral_graph.viewer import shell
 
+    def _capture_graph(edges, **kwargs: object) -> str:
+        rendered_edges.append(list(edges))
+        return "<html><body>graph</body></html>"
+
     monkeypatch.setattr(
         shell,
         "_graph_html_for_edges",
-        lambda edges, **kwargs: (
-            rendered_edges.append(list(edges)) or "<html><body>graph</body></html>"
-        ),
+        _capture_graph,
     )
 
     app = AppTest.from_file("streamlit_app.py")
@@ -753,12 +755,14 @@ def test_overall_map_center_concept_changes_rendered_edges(monkeypatch) -> None:
 
     from summa_moral_graph.viewer import shell
 
+    def _capture_graph(edges, **kwargs: object) -> str:
+        rendered_edges.append(list(edges))
+        return "<html><body>graph</body></html>"
+
     monkeypatch.setattr(
         shell,
         "_graph_html_for_edges",
-        lambda edges, **kwargs: (
-            rendered_edges.append(list(edges)) or "<html><body>graph</body></html>"
-        ),
+        _capture_graph,
     )
 
     app = AppTest.from_file("streamlit_app.py")
