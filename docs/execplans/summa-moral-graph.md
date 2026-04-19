@@ -6,10 +6,16 @@
   - the canonical public slugs have now been renamed to cleaner artifact names:
     - GitHub repo: `summa-virtue-alignment`
     - Hugging Face model: `summa-virtue-qwen2.5-1.5b`
+  - the local 1.5B training surface is now also being normalized so the public repo no longer
+    exposes weak-sounding rung names on the SFT path:
+    - the official rung remains `local-baseline`
+    - the heavier experimental rung is now `extended`
+    - the old `pilot-lite` naming has been removed from public-facing configs, docs, assets,
+      reports, packaged adapter surfaces, and the live local run-directory layout
   - first-screen public surfaces are being aligned to those names so the repo slug, README title,
     citation metadata, and release links read coherently instead of mixing polished prose with old
     fork-era identifiers
-  - the 1.5B `pilot-lite` run is being described explicitly as a deliberately small demo baseline
+  - the 1.5B `local-baseline` run is being described explicitly as a deliberately small demo baseline
     whose job is to prove the pipeline works end to end
   - README, fine-tune guide, experiment index, flagship report, and generated package surfaces are
     being stripped of top-level weak-result wording that made the baseline sound smaller than it
@@ -103,7 +109,7 @@
 - The repo is being locked around one official, publishable local demonstration path rather than a
   loose set of roughly equal training recipes:
   - the canonical local model is `Qwen/Qwen2.5-1.5B-Instruct`
-  - the canonical local rung is `pilot-lite`
+  - the canonical local rung is `local-baseline`
   - the public story is now organized around one clean rerun, one base-vs-adapter comparison, one
     curated report, and one publication package
   - reporting utilities now generate:
@@ -176,11 +182,11 @@
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
   - the first full local `pilot` config has now proven too slow on the user's 16 GB Mac, so a
-    smaller `pilot-lite` rung is being added as the default practical local step between `smoke`
+    smaller `local-baseline` rung is being added as the default practical local step between `smoke`
     and any heavier experiment
-  - local adapter evaluation now resolves `pilot_lite/latest` first and only falls back to
-    `pilot/latest`, so the default Mac path no longer breaks after a successful `pilot-lite` run
-  - the first successful `pilot-lite` training + base-test + adapter-test loop is now being written
+  - local adapter evaluation now resolves `local_baseline/latest` first and only falls back to
+    `pilot/latest`, so the default Mac path no longer breaks after a successful `local-baseline` run
+  - the first successful `local-baseline` training + base-test + adapter-test loop is now being written
     up as a full curated experiment report with method, data, training curves, result plots, and
     qualitative analysis under `docs/reports/`
   - the repo docs are now being tightened around the real SFT purpose:
@@ -758,6 +764,9 @@
 - Once those publication pieces existed, the next weak point turned out to be drift between them.
   The repo needed one explicit QA gate for “package manifest, docs, report, and published URLs all
   still agree,” otherwise a later doc refresh could silently desynchronize the public story.
+- Public naming drift can hide in more places than prose. Even after docs were renamed, the live
+  local run folders and copied package metadata were still carrying `pilot_lite`, which meant the
+  repo only looked polished until someone inspected the actual artifact bundle.
 - Public and generated surfaces can drift independently. Even after the repo docs were corrected,
   the generated model card and release notes still reflected the older command surface until they
   were updated from the publication template itself.
@@ -790,15 +799,15 @@
   run directories, config snapshots, environment captures, and train-log histories are the
   difference between “it ran once on my laptop” and a reusable pilot baseline.
 - The latest operational bug on the Mac path was not model loading but adapter-path drift:
-  `pilot-lite` became the practical default, but one wrapper and one inference config were still
-  wired to `pilot/latest`, so adapter evaluation failed even after a successful `pilot-lite` run.
-- Comparing the finished `pilot-lite` run against the earlier interrupted full `pilot` showed that
+  `local-baseline` became the practical default, but one wrapper and one inference config were still
+  wired to `pilot/latest`, so adapter evaluation failed even after a successful `local-baseline` run.
+- Comparing the finished `local-baseline` run against the earlier interrupted full `pilot` showed that
   the main failure mode was runtime pathology, not optimization collapse:
   - both runs showed a healthy downward loss curve through step 20
   - the heavier full `pilot` even reached slightly better step-20 eval loss on its larger eval
     slice
   - but its per-step wall time became wildly unstable on MPS, with multi-hour jumps appearing by
-    steps 17 and 20, while `pilot-lite` stayed in a consistent seconds-per-step regime
+    steps 17 and 20, while `local-baseline` stayed in a consistent seconds-per-step regime
 - The last mile for research reproducibility was not the model code itself but the operator path:
   without standardized run directories, preflight failure messages, and an explicit base-vs-adapter
   comparison report, it is too easy for a “successful” experiment to remain hard to rerun or hard
@@ -976,6 +985,12 @@
   - emphasize that it proves the dataset and SFT workflow work end to end
   - reserve more diagnostic weak-slice language for deeper report detail rather than top-level
     README/model-card summaries
+- Reserve `pilot` terminology for the older corpus/review overlay where it is historically
+  meaningful, but remove it from the public 1.5B SFT recipe surface:
+  - the official local rung is `local-baseline`
+  - the heavier experimental rung is `extended`
+  - package metadata and copied run artifacts should be sanitized so those names remain coherent
+    even when the original training run was created under older local naming
 - Treat the repo root itself as the primary SFT landing page for outsiders. The README should make
   it obvious that this repository is:
   - the guide for how to fine-tune on Summa Moral Graph
@@ -1024,7 +1039,7 @@
     re-resolving dependencies
 - Add one explicit one-command reproduction surface for the canonical public local baseline:
   - `make reproduce-christian-virtue-qwen2-5-1-5b-local`
-  - it should run build, smoke, pilot-lite, base eval, adapter eval, comparison, report rebuild,
+  - it should run build, smoke, local-baseline, base eval, adapter eval, comparison, report rebuild,
     and publication verify in order
 - Treat the repository map as a first-class public document and include it in publication-surface
   verification alongside the README, guides, dataset card, and flagship report.
@@ -1042,7 +1057,7 @@
 - Keep one official public local recipe instead of documenting multiple equally blessed Mac
   training rungs:
   - `smoke` stays a debug sanity check
-  - `pilot-lite` is the only canonical local training rung in README, guides, and report index
+  - `local-baseline` is the only canonical local training rung in README, guides, and report index
   - heavier local `pilot` remains in-repo but is explicitly experimental
 - Keep the public purpose statement consistent across README, guides, reports, and model packaging:
   train an Aquinas-grounded Christian virtue assistant that answers within reviewed evidence, uses
@@ -1076,7 +1091,7 @@
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
   and carve them out of `.gitignore`, while continuing to ignore raw run logs under `runs/`.
 - Add a first-class local pilot route around `Qwen/Qwen2.5-1.5B-Instruct` on Apple Silicon MPS.
-- Treat `pilot-lite` as the default local adapter source and make adapter evaluation fall back
+- Treat `local-baseline` as the default local adapter source and make adapter evaluation fall back
   through `pilot` and then `smoke` rather than assuming the heaviest local rung always exists.
 - Extend the training stack to support two explicit runtime families:
   - CUDA + 4-bit QLoRA when the backend is truly CUDA
@@ -1266,6 +1281,11 @@
     foregrounding weak-slice diagnostics
   - the stronger public message is now consistent across README, guide, experiment index, flagship
     report, and generated publication templates
+- The public SFT artifact surface is now more coherent at the filename and package level too:
+  - the canonical local rung is visible everywhere as `local-baseline`
+  - the heavier experimental local rung is visible everywhere as `extended`
+  - the public adapter package now rewrites legacy `pilot_lite` run metadata when copying
+    provenance files, so the artifact bundle no longer leaks an older weaker naming scheme
 - The public result graphics now better match the stated goal:
   - training-curve SVGs now show y-axis values, so readers can inspect the optimization trace
     directly instead of reading an unlabeled trend line
@@ -1376,7 +1396,7 @@
     - publication verification now checks package `README.md` and `release_notes.md` as first-class
       publication surfaces
   - the canonical local loop has now been executed end to end on the user's Mac:
-    - `pilot-lite` training completed successfully
+    - `local-baseline` training completed successfully
     - base and adapter held-out test runs both completed
     - the comparison report now records a `+0.150` absolute citation-exact gain over base on the
       `233`-example test split
@@ -1396,18 +1416,18 @@
     always required
   - timestamped wrapper scripts are being added so each local smoke/pilot/eval run writes a clean
     artifact folder with logs and manifests
-  - local adapter evaluation no longer hard-fails after a successful `pilot-lite` run:
-    - the adapter config now points at `pilot_lite/latest` by default
-    - the wrapper resolves `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`
+  - local adapter evaluation no longer hard-fails after a successful `local-baseline` run:
+    - the adapter config now points at `local_baseline/latest` by default
+    - the wrapper resolves `local_baseline/latest`, then `pilot/latest`, then `smoke/latest`
     - the generation CLI now accepts an explicit `--adapter-path` override so wrappers can choose
       the correct adapter without rewriting configs on disk
   - the first side-by-side local training comparison now clarifies the next-step policy:
-    - keep `pilot-lite` as the default Mac baseline
+    - keep `local-baseline` as the default Mac baseline
     - do not treat the interrupted full `pilot` as evidence of a bad optimization setup
     - treat it instead as evidence that the heavier `1024 / 512 / 64 / grad_accum=16` rung is not
       operationally well-matched to this 16 GB MPS machine
   - the run now has a first-class curated write-up rather than only raw logs:
-    - `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
+    - `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
     - generated SVG plots for training curves, base-vs-adapter results, and local timing
       comparison
 - The Christian virtue small-model path is now much closer to an operational research loop than a

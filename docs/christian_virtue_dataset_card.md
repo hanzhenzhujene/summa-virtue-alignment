@@ -22,7 +22,7 @@ The committed public dataset exports live in:
 - Maintainer workflow:
   [docs/christian_virtue_sft.md](./christian_virtue_sft.md)
 - Flagship local report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Experiment index:
   [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md)
 - Repository map:
@@ -95,7 +95,7 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - supervised fine-tuning for Aquinas-grounded Christian virtue assistance
 - qualitative evaluation of doctrinal faithfulness and citation behavior
 - tract-aware doctrinal QA prototypes grounded in Aquinas
-- local Apple-Silicon LoRA pilot runs with `Qwen/Qwen2.5-1.5B-Instruct`
+- local Apple-Silicon LoRA baseline runs with `Qwen/Qwen2.5-1.5B-Instruct`
 - remote CUDA QLoRA baselines for larger models
 
 ## Canonical Published Baseline Using This Dataset
@@ -103,9 +103,9 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Curated report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Public quickstart and command path:
   [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
 

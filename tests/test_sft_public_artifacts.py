@@ -22,10 +22,10 @@ def _write_json(path: Path, payload: dict[str, object]) -> None:
 
 def test_verify_publication_bundle_fixture(tmp_path) -> None:
     repo_root = tmp_path / "repo"
-    report_path = Path("docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md")
+    report_path = Path("docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md")
     package_manifest_path = (
         repo_root
-        / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter"
+        / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter"
         / "package_manifest.json"
     )
     package_manifest: dict[str, object] = {
@@ -92,7 +92,9 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
                 }
             ],
         },
-        "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/20260418_193038",
+        "train_run_dir": (
+            "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/20260418_193038"
+        ),
     }
 
     _write_json(package_manifest_path, package_manifest)
@@ -214,7 +216,7 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "docs/reports/assets/README.md",
         repo_root / "data/processed/sft/README.md",
         repo_root / "docs/reports/christian_virtue_experiments.md",
-        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
+        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/manifest.json",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/train.jsonl",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/benchmarks/test.jsonl",
@@ -253,18 +255,18 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "6032" in readme_text
     assert "doctrinally usable `resp`/`ad` segments" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in readme_text
-    assert "pilot-lite" in readme_text
+    assert "local-baseline" in readme_text
     assert "make setup-christian-virtue-local" in readme_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
     assert "requirements/local-mps-py312.lock.txt" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
-    assert "christian_virtue_qwen2_5_1_5b_pilot_lite_report.md" in dataset_card_text
+    assert "christian_virtue_qwen2_5_1_5b_local_baseline_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in fine_tune_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in report_index_text
     assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
     assert "requirements/local-mps-py312.lock.txt" in repo_map_text
-    assert "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg" in assets_readme_text
+    assert "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg" in assets_readme_text
     assert "docs/christian_virtue_dataset_card.md" in sft_readme_text
     assert "setup-christian-virtue-local:" in makefile_text
     assert "reproduce-christian-virtue-qwen2-5-1-5b-local:" in makefile_text
@@ -294,7 +296,7 @@ def test_report_assets_are_documented_and_linked() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     assets_dir = repo_root / "docs/reports/assets"
     report_text = (
-        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md"
+        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md"
     ).read_text(encoding="utf-8")
     assets_readme_text = (assets_dir / "README.md").read_text(encoding="utf-8")
 
@@ -313,7 +315,7 @@ def test_repo_publication_bundle_is_coherent() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     package_manifest_path = (
         repo_root
-        / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter"
+        / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter"
         / "package_manifest.json"
     )
 

@@ -70,7 +70,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--train-run-dir",
-        default=REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/latest",
+        default=REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest",
         type=Path,
     )
     parser.add_argument(
@@ -85,7 +85,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--report-path",
-        default=REPO_ROOT / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
+        default=REPO_ROOT / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
         type=Path,
     )
     parser.add_argument(
@@ -95,7 +95,10 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--package-dir",
-        default=REPO_ROOT / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter",
+        default=(
+            REPO_ROOT
+            / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter"
+        ),
         type=Path,
     )
     parser.add_argument("--hf-repo-id", default=DEFAULT_HF_REPO_ID)
@@ -122,8 +125,8 @@ def main() -> None:
         (args.train_run_dir / "train_metadata.json").read_text(encoding="utf-8")
     )
     run_id = str(train_metadata["run_id"])
-    release_tag = args.release_tag or f"christian-virtue-qwen2.5-1.5b-pilot-lite-{run_id}"
-    release_title = args.release_title or f"Christian Virtue Qwen2.5 1.5B Pilot-Lite ({run_id})"
+    release_tag = args.release_tag or f"christian-virtue-qwen2.5-1.5b-local-baseline-{run_id}"
+    release_title = args.release_title or f"Christian Virtue Qwen2.5 1.5B Local Baseline ({run_id})"
     release_target = args.release_target or release_target_from_train_run(args.train_run_dir)
 
     package_dir = write_adapter_package(
@@ -143,7 +146,7 @@ def main() -> None:
         hf_url = publish_adapter_package_to_hf(
             package_dir=package_dir,
             repo_id=args.hf_repo_id,
-            commit_message=f"Publish Christian virtue pilot-lite adapter ({run_id})",
+            commit_message=f"Publish Christian virtue local-baseline adapter ({run_id})",
             private=args.private,
         )
 

@@ -35,7 +35,7 @@ text, built on the evidence model and corpus work of Summa Moral Graph.
 | Theological target | A Thomist moral virtue assistant that reasons within Aquinas's categories rather than generic religion chat |
 | Canonical local demo | `Qwen/Qwen2.5-1.5B-Instruct` LoRA on Apple Silicon `mps`, published as a minimal example rather than a final ceiling |
 | What a reviewer can inspect | Dataset exports, held-out benchmarks, curated report, released adapter, and live evidence browser |
-| Where to start | [Fine-tuning guide](./docs/fine_tune_with_summa_moral_graph.md) · [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) · [Repository map](./docs/repository_map.md) |
+| Where to start | [Fine-tuning guide](./docs/fine_tune_with_summa_moral_graph.md) · [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) · [Repository map](./docs/repository_map.md) |
 
 ## Three Purposes
 
@@ -74,8 +74,8 @@ distinctions that remain tethered to Aquinas's own text.
 | --- | --- |
 | Reproduce the minimal public baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
 | Understand the training goal and method | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
-| Inspect the strongest research evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) |
-| Inspect the published model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
+| Inspect the strongest research evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
+| Inspect the published model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038) |
 | Audit the underlying passages and graph | [Live viewer](https://summa-moral-graph.streamlit.app/) |
 
 ## Why This Repo Exists
@@ -193,7 +193,7 @@ The canonical public baseline is a minimal example.
 | --- | --- |
 | Base model | `Qwen/Qwen2.5-1.5B-Instruct` |
 | Training method | LoRA on Apple Silicon `mps`, `float16`, no quantization |
-| Public rung | `pilot-lite` |
+| Public rung | `local-baseline` |
 | Train subset | `128` examples |
 | Eval subset | `16` examples |
 | Max steps | `20` |
@@ -248,9 +248,9 @@ the larger question of how far the same method can be pushed on larger models an
 
 #### Training Trace
 
-![Pilot-lite training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
+![Local-baseline training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg)
 
-*Figure 1. Loss and mean token accuracy across the canonical `pilot-lite` local run. The point of
+*Figure 1. Loss and mean token accuracy across the canonical `local-baseline` local run. The point of
 this figure is not state-of-the-art scale; it is to show a stable, inspectable optimization trace
 for the minimal public example.*
 
@@ -264,7 +264,7 @@ repo: even a minimal example can align model behavior toward Thomist moral virtu
 
 If you want the full breakdown, including tract-wise slices and qualitative examples, go directly
 to the
-[flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md).
+[flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md).
 
 ## Reproduce The Minimal Example
 
@@ -285,7 +285,7 @@ What these commands do:
 - `make reproduce-christian-virtue-qwen2-5-1-5b-local`
   - rebuilds the dataset if needed
   - runs `smoke`
-  - runs the canonical `pilot-lite` train
+  - runs the canonical `local-baseline` train
   - generates base and adapter held-out predictions
   - compares them and rebuilds the curated report
 - `make public-release-check`
@@ -297,8 +297,8 @@ What these commands do:
 Expected outputs land under:
 
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/`
-- `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
-- `artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
+- `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
 
 For the full stepwise path, model swapping guide, and remote CUDA path, see
 [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md).
@@ -308,9 +308,9 @@ For the full stepwise path, model swapping guide, and remote CUDA path, see
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Curated experiment report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Dataset card:
   [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
 - Fine-tuning guide:
@@ -440,7 +440,7 @@ The repo does not claim the whole corpus is doctrinally reviewed.
 
 It currently includes reviewed overlays for:
 
-- pilot vertical slice across selected `I-II` and `II-II` questions
+- initial reviewed vertical slice across selected `I-II` and `II-II` questions
 - theological virtues: `II-II, qq. 1–46`
 - prudence: `II-II, qq. 47–56`
 - justice core: `II-II, qq. 57–79`

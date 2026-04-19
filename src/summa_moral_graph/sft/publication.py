@@ -70,13 +70,26 @@ def _repo_display_path(path: Path) -> str:
         return str(path)
 
 
+def _normalize_public_demo_string(value: str) -> str:
+    return (
+        value.replace(
+            "christian-virtue-qwen2.5-1.5b-instruct-lora-mps-pilot-lite",
+            "christian-virtue-qwen2.5-1.5b-instruct-lora-mps-local-baseline",
+        )
+        .replace(
+            "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite",
+            "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline",
+        )
+    )
+
+
 def _sanitize_public_path_string(value: str) -> str:
     if value.startswith(("http://", "https://")):
         return value
     candidate = Path(value)
     if not candidate.is_absolute():
-        return value
-    return _repo_display_path(candidate)
+        return _normalize_public_demo_string(value)
+    return _normalize_public_demo_string(_repo_display_path(candidate))
 
 
 def _sanitize_public_json_payload(value: Any) -> Any:
@@ -97,6 +110,17 @@ def _copy_sanitized_json_if_present(source_dir: Path, destination_dir: Path, fil
         return
     payload = _sanitize_public_json_payload(_read_json(source_path))
     write_json(destination_dir / filename, cast(dict[str, Any], payload))
+
+
+def _copy_sanitized_text_if_present(source_dir: Path, destination_dir: Path, filename: str) -> None:
+    source_path = source_dir / filename
+    if not source_path.exists():
+        return
+    text = source_path.read_text(encoding="utf-8")
+    (destination_dir / filename).write_text(
+        _normalize_public_demo_string(text),
+        encoding="utf-8",
+    )
 
 
 def _format_percent(value: float) -> str:
@@ -252,12 +276,14 @@ def build_adapter_package_manifest(
     dataset_manifest_path = (
         REPO_ROOT / "data/processed/sft/exports/christian_virtue_v1/manifest.json"
     )
+    publication_git_commit = current_git_commit(REPO_ROOT) or str(train_metadata["git_commit"])
     return {
         "base_model": train_metadata["model_name_or_path"],
         "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
         "dataset_manifest_path": "data/processed/sft/exports/christian_virtue_v1/manifest.json",
         "dataset_summary": _load_dataset_summary(dataset_manifest_path),
         "git_commit": train_metadata["git_commit"],
+        "publication_git_commit": publication_git_commit,
         "github_repo_url": github_repo_url,
         "github_release_url": f"{github_repo_url}/releases/tag/{release_tag}",
         "hf_repo_id": hf_repo_id,
@@ -294,9 +320,13 @@ def build_model_card_text(
     dataset_card_display = _repo_display_path(dataset_card_path)
     report_display = _repo_display_path(report_path)
     github_repo_url = str(package_manifest["github_repo_url"])
-    git_commit = str(package_manifest["git_commit"])
-    report_url = _github_blob_url(github_repo_url, git_commit, report_display)
-    dataset_card_url = _github_blob_url(github_repo_url, git_commit, dataset_card_display)
+    publication_git_commit = str(
+        package_manifest.get("publication_git_commit", package_manifest["git_commit"])
+    )
+    report_url = _github_blob_url(github_repo_url, publication_git_commit, report_display)
+    dataset_card_url = _github_blob_url(
+        github_repo_url, publication_git_commit, dataset_card_display
+    )
     repo_url = str(package_manifest["github_repo_url"])
     release_url = str(package_manifest["github_release_url"])
     hf_url = str(package_manifest["hf_repo_url"])
@@ -416,7 +446,7 @@ def build_model_card_text(
             f"![Held-out benchmark comparison]({benchmark_figure})",
             "",
             "*Figure. Held-out base-vs-adapter comparison from the canonical local "
-            "`pilot-lite` run. "
+            "`local-baseline` run. "
             "The key claim is straightforward: even a small reproducible demo baseline moves "
             "model behavior in the right direction, which makes this a credible public SFT "
             "template rather than only a code release.*",
@@ -534,14 +564,18 @@ def build_release_notes_text(
     report_display = _repo_display_path(report_path)
     dataset_card_display = _repo_display_path(dataset_card_path)
     github_repo_url = str(package_manifest["github_repo_url"])
-    git_commit = str(package_manifest["git_commit"])
-    report_url = _github_blob_url(github_repo_url, git_commit, report_display)
-    dataset_card_url = _github_blob_url(github_repo_url, git_commit, dataset_card_display)
+    publication_git_commit = str(
+        package_manifest.get("publication_git_commit", package_manifest["git_commit"])
+    )
+    report_url = _github_blob_url(github_repo_url, publication_git_commit, report_display)
+    dataset_card_url = _github_blob_url(
+        github_repo_url, publication_git_commit, dataset_card_display
+    )
 
     lines = [
-        "# Christian Virtue Qwen2.5 1.5B Local Pilot-Lite",
+        "# Christian Virtue Qwen2.5 1.5B Local Baseline",
         "",
-        "This release mirrors the canonical local `pilot-lite` adapter publication for the "
+        "This release mirrors the canonical local `local-baseline` adapter publication for the "
         "`summa-moral-graph` Christian virtue SFT pipeline.",
         "",
         "## Included here",
@@ -596,11 +630,11 @@ def build_release_notes_text(
             "```bash",
             "make build-christian-virtue-sft",
             "make train-christian-virtue-qwen2-5-1-5b-local-smoke",
-            "make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
+            "make train-christian-virtue-qwen2-5-1-5b-local-baseline",
             "make eval-christian-virtue-qwen2-5-1-5b-local-base-test",
             "make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test",
             "make compare-christian-virtue-qwen2-5-1-5b-local-test",
-            "make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
+            "make report-christian-virtue-qwen2-5-1-5b-local-baseline",
             "make verify-christian-virtue-qwen2-5-1-5b-local-publishable",
             "```",
             "",
@@ -634,10 +668,8 @@ def write_adapter_package(
     for source_path, destination_path in PACKAGE_REPORT_ASSETS.items():
         _copy_repo_asset_if_present(source_path, package_dir, destination_path)
 
-    for filename in [
-        "config_snapshot.yaml",
-    ]:
-        _copy_if_present(train_run_dir, package_dir, filename)
+    for filename in ["config_snapshot.yaml"]:
+        _copy_sanitized_text_if_present(train_run_dir, package_dir, filename)
     for filename in [
         "environment.json",
         "run_manifest.json",

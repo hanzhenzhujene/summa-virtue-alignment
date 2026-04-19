@@ -12,11 +12,11 @@ def _write_json(path: Path, payload: dict[str, object]) -> None:
 
 
 def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> None:
-    train_run_dir = tmp_path / "runs" / "pilot_lite" / "20260418_101010"
+    train_run_dir = tmp_path / "runs" / "local_baseline" / "20260418_101010"
     base_run_dir = tmp_path / "runs" / "base_test" / "20260418_111111"
     adapter_run_dir = tmp_path / "runs" / "adapter_test" / "20260418_121212"
     package_dir = tmp_path / "artifacts" / "package"
-    report_path = Path("docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md")
+    report_path = Path("docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md")
     dataset_card_path = Path("docs/christian_virtue_dataset_card.md")
 
     train_run_dir.mkdir(parents=True, exist_ok=True)
@@ -27,12 +27,38 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
         {
             "git_commit": "abc123",
             "model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
+            "output_dir": (
+                "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/20260418_101010"
+            ),
             "run_id": "20260418_101010",
+            "run_name": (
+                "christian-virtue-qwen2.5-1.5b-instruct-lora-mps-pilot-lite-20260418_101010"
+            ),
         },
     )
-    _write_json(train_run_dir / "run_manifest.json", {"run_id": "20260418_101010"})
+    _write_json(
+        train_run_dir / "run_manifest.json",
+        {
+            "output_dir": (
+                "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/20260418_101010"
+            ),
+            "run_id": "20260418_101010",
+            "run_name": (
+                "christian-virtue-qwen2.5-1.5b-instruct-lora-mps-pilot-lite-20260418_101010"
+            ),
+        },
+    )
     _write_json(train_run_dir / "environment.json", {"python": "3.12.2"})
-    (train_run_dir / "config_snapshot.yaml").write_text("run_name: fixture\n", encoding="utf-8")
+    (train_run_dir / "config_snapshot.yaml").write_text(
+        "\n".join(
+            [
+                "run_name: christian-virtue-qwen2.5-1.5b-instruct-lora-mps-pilot-lite",
+                "output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite",
+            ]
+        )
+        + "\n",
+        encoding="utf-8",
+    )
     _write_json(
         base_run_dir / "metrics.json",
         {
@@ -99,7 +125,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert manifest["summary"]["weakest_task"]["label"] == "Citation-grounded moral answer"
     assert (
         manifest["published_report_path"]
-        == "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md"
+        == "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md"
     )
     readme = (package_dir / "README.md").read_text(encoding="utf-8")
     release_notes = (package_dir / "release_notes.md").read_text(encoding="utf-8")
@@ -119,11 +145,13 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "Strongest tract slice" in release_notes
     assert "deliberately small local demo model" in release_notes
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in release_notes
+    assert "pilot_lite" not in (package_dir / "train_metadata.json").read_text(encoding="utf-8")
+    assert "pilot-lite" not in (package_dir / "config_snapshot.yaml").read_text(encoding="utf-8")
     assert str(tmp_path) not in readme
 
 
 def test_release_target_from_train_run_uses_train_metadata_git_commit(tmp_path) -> None:
-    train_run_dir = tmp_path / "runs" / "pilot_lite" / "20260418_101010"
+    train_run_dir = tmp_path / "runs" / "local_baseline" / "20260418_101010"
     _write_json(
         train_run_dir / "train_metadata.json",
         {

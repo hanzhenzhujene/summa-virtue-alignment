@@ -2,8 +2,8 @@ PYTHON ?= python3.12
 VENV ?= .venv
 BIN := $(VENV)/bin
 LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
-LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md
-LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter
+LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -41,12 +41,12 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	build-christian-virtue-sft-ood smoke-test-christian-virtue-sft \
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
-	train-christian-virtue-qwen2-5-1-5b-local-pilot-lite \
-	train-christian-virtue-qwen2-5-1-5b-local-pilot \
+	train-christian-virtue-qwen2-5-1-5b-local-baseline \
+	train-christian-virtue-qwen2-5-1-5b-local-extended \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
-	report-christian-virtue-qwen2-5-1-5b-local-pilot-lite \
+	report-christian-virtue-qwen2-5-1-5b-local-baseline \
 	package-christian-virtue-qwen2-5-1-5b-local-adapter \
 	publish-christian-virtue-qwen2-5-1-5b-local-adapter \
 	verify-christian-virtue-qwen2-5-1-5b-local-publishable \
@@ -204,11 +204,11 @@ train-christian-virtue-proto:
 train-christian-virtue-qwen2-5-1-5b-local-smoke:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh smoke
 
-train-christian-virtue-qwen2-5-1-5b-local-pilot-lite:
-	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot-lite
+train-christian-virtue-qwen2-5-1-5b-local-baseline:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh local-baseline
 
-train-christian-virtue-qwen2-5-1-5b-local-pilot:
-	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh pilot
+train-christian-virtue-qwen2-5-1-5b-local-extended:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh extended
 
 eval-christian-virtue-qwen2-5-1-5b-local-base-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh
@@ -219,7 +219,7 @@ eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
 
-report-christian-virtue-qwen2-5-1-5b-local-pilot-lite:
+report-christian-virtue-qwen2-5-1-5b-local-baseline:
 	$(BIN)/python scripts/build_christian_virtue_local_report.py
 
 package-christian-virtue-qwen2-5-1-5b-local-adapter:
@@ -230,7 +230,7 @@ publish-christian-virtue-qwen2-5-1-5b-local-adapter:
 
 verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 	$(MAKE) build-christian-virtue-sft
-	$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+	$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-baseline
 	$(MAKE) package-christian-virtue-qwen2-5-1-5b-local-adapter
 	$(BIN)/pytest tests/test_repo_surface.py tests/test_sft_public_artifacts.py tests/test_sft_publication.py tests/test_sft_reporting.py
 	$(BIN)/python scripts/verify_christian_virtue_publication.py

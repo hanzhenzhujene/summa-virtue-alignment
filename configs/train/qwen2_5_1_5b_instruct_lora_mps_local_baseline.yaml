@@ -1,9 +1,9 @@
-run_name: christian-virtue-qwen2.5-1.5b-instruct-lora-mps-pilot-lite
+run_name: christian-virtue-qwen2.5-1.5b-instruct-lora-mps-local-baseline
 model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
 dataset_dir: data/processed/sft/exports/christian_virtue_v1
 train_split: train
 eval_split: val
-output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite
+output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline
 learning_rate: 0.0002
 num_train_epochs: 1.0
 max_seq_length: 768

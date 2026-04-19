@@ -12,7 +12,7 @@ model trainer.
 - [docs/christian_virtue_sft.md](./christian_virtue_sft.md): maintainer and research workflow
 - [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md): dataset scope,
   intended use, and limits
-- [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md):
+- [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
   flagship local experiment report
 
 ## Top-Level Layout
@@ -132,7 +132,7 @@ The official public local path is:
 The setup command uses the pinned lockfile
 [requirements/local-mps-py312.lock.txt](../requirements/local-mps-py312.lock.txt).
 
-The reproduce command rebuilds the dataset if needed, runs the local `smoke` and `pilot-lite`
+The reproduce command rebuilds the dataset if needed, runs the local `smoke` and `local-baseline`
 training rungs, generates base and adapter held-out predictions, writes the comparison report, and
 runs the publication verification gate.
 

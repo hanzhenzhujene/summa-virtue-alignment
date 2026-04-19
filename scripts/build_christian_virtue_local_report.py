@@ -18,7 +18,7 @@ DEFAULT_PUBLISHED_MODEL_URL = (
 )
 DEFAULT_RELEASE_URL = (
     "https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/"
-    "christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038"
+    "christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038"
 )
 
 
@@ -31,7 +31,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--train-run-dir",
-        default=REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/latest",
+        default=REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest",
         type=Path,
     )
     parser.add_argument(
@@ -51,7 +51,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--output",
-        default=REPO_ROOT / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
+        default=REPO_ROOT / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
         type=Path,
     )
     parser.add_argument(
@@ -67,11 +67,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     training_curves_path = (
-        args.assets_dir / "christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg"
+        args.assets_dir / "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg"
     )
     comparison_path = args.assets_dir / "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
     timing_comparison_path = (
-        args.assets_dir / "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg"
+        args.assets_dir / "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg"
     )
 
     write_training_curves_svg(args.train_run_dir / "train_log_history.jsonl", training_curves_path)

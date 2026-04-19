@@ -655,13 +655,13 @@ def build_publishable_local_report(
         str(train_metadata.get("end_time")) if train_metadata.get("end_time") else None,
     )
     lines = [
-        "# Christian Virtue Qwen2.5 1.5B Local Pilot-Lite Report",
+        "# Christian Virtue Qwen2.5 1.5B Local Baseline Report",
         "",
         "## Scope",
         "",
         "This report documents the canonical local Apple-Silicon LoRA baseline for the Christian "
         "virtue SFT pipeline. It is the official reproducible `Qwen/Qwen2.5-1.5B-Instruct` "
-        "`pilot-lite` demonstration path for this repo.",
+        "`local-baseline` demonstration path for this repo.",
         "",
         "It is meant to show more than citation formatting. The real question is whether this "
         "dataset can push a general model toward Aquinas-grounded Christian virtue reasoning while "
@@ -688,8 +688,8 @@ def build_publishable_local_report(
             f"{dataset_manifest['split_sizes']['val']} / "
             f"{dataset_manifest['split_sizes']['test']}` |"
         ),
-        f"| Pilot-lite train subset | `{train_metadata['train_examples']}` |",
-        f"| Pilot-lite eval subset | `{train_metadata['eval_examples']}` |",
+        f"| Local-baseline train subset | `{train_metadata['train_examples']}` |",
+        f"| Local-baseline eval subset | `{train_metadata['eval_examples']}` |",
         f"| Max steps | `{train_metadata['global_step']}` |",
         f"| Runtime device | `{train_metadata['resolved_device']}` |",
         f"| Git commit | `{train_metadata['git_commit']}` |",
@@ -701,8 +701,8 @@ def build_publishable_local_report(
         "[data/processed/sft/exports/christian_virtue_v1/manifest.json]"
         "(../../data/processed/sft/exports/christian_virtue_v1/manifest.json)",
         "- Training config: "
-        "[configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml]"
-        "(../../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml)",
+        "[configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml]"
+        "(../../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)",
         "- Base inference config: "
         "[configs/inference/qwen2_5_1_5b_instruct_base_test.yaml]"
         "(../../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)",
@@ -849,9 +849,9 @@ def build_publishable_local_report(
             "",
             "## Training Trajectory",
             "",
-            f"![Pilot-lite training curves]({training_curves_asset_path})",
+            f"![Local-baseline training curves]({training_curves_asset_path})",
             "",
-            "*Figure 1. Loss and mean token accuracy across the canonical 20-step `pilot-lite` "
+            "*Figure 1. Loss and mean token accuracy across the canonical 20-step `local-baseline` "
             "local run. For this public baseline, the claim is not state-of-the-art quality but "
             "a stable, inspectable local optimization trace.*",
             "",
@@ -864,16 +864,17 @@ def build_publishable_local_report(
     if timing_comparison_asset_path is not None:
         lines.extend(
             [
-                "## Why `pilot-lite` Is The Official Local Rung",
+                "## Why `local-baseline` Is The Official Local Rung",
                 "",
-                f"![Local pilot timing comparison]({timing_comparison_asset_path})",
+                f"![Local recipe timing comparison]({timing_comparison_asset_path})",
                 "",
                 "*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the "
-                "interrupted heavier `pilot` and the canonical `pilot-lite` recipe. This figure "
-                "supports the operational decision to bless `pilot-lite` as the public local path: "
-                "it is the rung that remains reproducible on a 16 GB laptop.*",
+                "interrupted heavier `extended` recipe and the canonical `local-baseline` recipe. "
+                "This figure "
+                "supports the operational decision to bless `local-baseline` as the public local "
+                "path: it is the rung that remains reproducible on a 16 GB laptop.*",
                 "",
-                "The repo keeps the heavier `pilot` config for experimentation, but the timing "
+                "The repo keeps the heavier `extended` config for experimentation, but the timing "
                 "comparison shows why it is not the public quickstart path. On this hardware, the "
                 "heavier rung becomes operationally unstable long before it becomes the right "
                 "publication baseline.",
@@ -977,8 +978,8 @@ def build_publishable_local_report(
             "```",
             "",
             "The one-command reproduce target runs the dataset build, `smoke`, canonical "
-            "`pilot-lite` train, base test eval, adapter test eval, comparison, report rebuild, "
-            "and publication verification gate in order.",
+            "`local-baseline` train, base test eval, adapter test eval, comparison, report "
+            "rebuild, and publication verification gate in order.",
             "The final verification step is still exposed directly as "
             "`make verify-christian-virtue-qwen2-5-1-5b-local-publishable` when you want to run "
             "the public-surface QA gate on its own.",

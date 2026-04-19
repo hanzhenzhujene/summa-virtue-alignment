@@ -13,12 +13,12 @@ the full flagship report: it tells you which run matters, what it proves, and wh
 
 ## Flagship Local Baseline
 
-### Qwen2.5 1.5B Local Pilot-Lite
+### Qwen2.5 1.5B Local Baseline
 
 This is the canonical Apple-Silicon local demonstration run for the repo.
 
 - Report:
-  [christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Dataset card:
   [../christian_virtue_dataset_card.md](../christian_virtue_dataset_card.md)
 - Public fine-tune guide:
@@ -27,7 +27,7 @@ This is the canonical Apple-Silicon local demonstration run for the repo.
 What it demonstrates:
 
 - the committed Christian virtue dataset can drive a real SFT loop end-to-end
-- the official local `pilot-lite` recipe is reproducible on a 16 GB Apple-Silicon laptop
+- the official local `local-baseline` recipe is reproducible on a 16 GB Apple-Silicon laptop
 - a deliberately small 1.5B demo model is already enough to show the pipeline works
 - the LoRA adapter beats the untouched base model on the held-out benchmark
 - the repo can serve as a public fine-tuning entrypoint rather than only a private research log
@@ -37,7 +37,7 @@ Published artifacts:
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 
 Canonical run ids:
 
@@ -65,7 +65,7 @@ Goal-aligned virtue slices:
 
 #### Training Trace
 
-![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
+![Local-baseline training curves](assets/christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg)
 
 A clean local optimization trace on Apple `mps`: loss falls sharply and token accuracy rises over
 the 20-step run.
@@ -94,6 +94,6 @@ each stage separately.
 
 ## Policy
 
-- `pilot-lite` is the only official local rung for public docs and quickstart paths.
-- Heavier local `pilot` runs remain experimental.
+- `local-baseline` is the only official local rung for public docs and quickstart paths.
+- Heavier local `extended` runs remain experimental.
 - Larger CUDA experiments remain important, but they are not the public baseline for this repo.

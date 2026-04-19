@@ -7,16 +7,16 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/christian_virtue_small_common.sh"
 resolve_python_bin
 
-PILOT_LITE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite"
-PILOT_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/pilot"
+LOCAL_BASELINE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
+EXTENDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/extended"
 SMOKE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/smoke"
-if ! ADAPTER_DIR="$(resolve_first_existing_path "${PILOT_LITE_ROOT}/latest" "${PILOT_ROOT}/latest" "${SMOKE_ROOT}/latest")"; then
+if ! ADAPTER_DIR="$(resolve_first_existing_path "${LOCAL_BASELINE_ROOT}/latest" "${EXTENDED_ROOT}/latest" "${SMOKE_ROOT}/latest")"; then
   echo "Adapter directory not found." >&2
   echo "Expected one of:" >&2
-  echo "  ${PILOT_LITE_ROOT}/latest" >&2
-  echo "  ${PILOT_ROOT}/latest" >&2
+  echo "  ${LOCAL_BASELINE_ROOT}/latest" >&2
+  echo "  ${EXTENDED_ROOT}/latest" >&2
   echo "  ${SMOKE_ROOT}/latest" >&2
-  echo "Run the smoke or pilot-lite training first." >&2
+  echo "Run the smoke or local-baseline training first." >&2
   exit 1
 fi
 

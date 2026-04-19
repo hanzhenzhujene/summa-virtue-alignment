@@ -40,7 +40,7 @@ run_logged \
   --baseline-label \
   "qwen2.5-1.5b-base-test" \
   --candidate-label \
-  "qwen2.5-1.5b-pilot-lite-adapter-test" \
+  "qwen2.5-1.5b-local-baseline-adapter-test" \
   --output \
   "${RUN_DIR}/report.md"
 

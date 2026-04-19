@@ -210,10 +210,10 @@ Smoke train:
 make train-christian-virtue-qwen2-5-1-5b-local-smoke
 ```
 
-Mac-safe pilot-lite train:
+Mac-safe local-baseline train:
 
 ```bash
-make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make train-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
 
 Base-model held-out test:
@@ -237,7 +237,7 @@ make compare-christian-virtue-qwen2-5-1-5b-local-test
 Curated local report:
 
 ```bash
-make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make report-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
 
 Final publishable QA gate:
@@ -259,17 +259,17 @@ make public-release-check
 This alias adds `ruff` and `mypy` ahead of the publication-surface verification pass, so it is the
 best one-line release audit before sharing the repo externally.
 
-One-command local pilot loop:
+One-command local experiment loop:
 
 ```bash
 make run-christian-virtue-qwen2-5-1-5b-local-loop
 ```
 
-The local adapter eval wrapper now looks for `pilot_lite/latest` first and falls back to
-`pilot/latest` if you have a heavier full pilot run.
+The local adapter eval wrapper now looks for `local_baseline/latest` first and falls back to
+`extended/latest` if you have a heavier full local run.
 
-The heavier full `pilot` config remains in the repo as an experimental path, but it is no longer
-the public default because `pilot-lite` is the reliable rung on the current 16 GB Mac.
+The heavier full `extended` config remains in the repo as an experimental path, but it is no longer
+the public default because `local-baseline` is the reliable rung on the current 16 GB Mac.
 
 ## Publication Workflow
 
@@ -294,7 +294,7 @@ Current published canonical artifacts:
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Canonical train run id: `20260418_193038`
 - Canonical adapter eval run id: `20260418_203546`
 - Current held-out `test` citation exact: `0.150`
@@ -345,7 +345,7 @@ runs/christian_virtue/qwen2_5_1_5b_instruct/
 Expected step roots:
 
 - `smoke/<run_id>/`
-- `pilot/<run_id>/`
+- `extended/<run_id>/`
 - `base_test/<run_id>/`
 - `adapter_test/<run_id>/`
 
@@ -403,8 +403,8 @@ Useful training config fields to swap when using your own model:
 New local MPS configs:
 
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml)
-- [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml)
-- [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
 
@@ -437,17 +437,17 @@ Direct evaluation command:
 - If `runtime_backend: mps` is set on a non-Apple-Silicon machine, runtime resolution should fail
   loudly instead of silently falling back.
 - Adapter evaluation now prefers
-  `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite/latest` and falls back to
-  `runs/christian_virtue/qwen2_5_1_5b_instruct/pilot/latest`, then to
+  `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest` and falls back to
+  `runs/christian_virtue/qwen2_5_1_5b_instruct/extended/latest`, then to
   `runs/christian_virtue/qwen2_5_1_5b_instruct/smoke/latest`.
 - A successful smoke train proves wiring, not model quality.
-- A 16 GB MacBook can run the local pilot path, but it is not the right target for long,
+- A 16 GB MacBook can run the local extended path, but it is not the right target for long,
   full-scale experiments.
 
 ## Known Limitations
 
 - The current evaluation scaffold still measures traceability better than doctrinal adequacy.
-- The local 1.5B path is meant to be a stable pilot baseline, not the final quality ceiling.
+- The local 1.5B path is meant to be a stable local baseline, not the final quality ceiling.
 - The dataset is templated from reviewed doctrine, so stylistic diversity is intentionally bounded.
 - Sequential generation is slower than high-throughput inference backends, but easier to audit.
 

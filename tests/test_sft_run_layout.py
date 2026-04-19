@@ -48,7 +48,7 @@ def test_default_evaluation_paths_fall_back_to_dataset_dir(tmp_path) -> None:
 
 
 def test_create_timestamped_run_dir_uses_timestamp_and_suffix(tmp_path) -> None:
-    root_dir = tmp_path / "runs" / "pilot"
+    root_dir = tmp_path / "runs" / "local_baseline"
 
     first = create_timestamped_run_dir(root_dir, now=datetime(2026, 4, 17, 9, 30, 15))
     second = create_timestamped_run_dir(root_dir, now=datetime(2026, 4, 17, 9, 30, 15))

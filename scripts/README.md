@@ -14,7 +14,7 @@ These are the scripts behind the canonical Christian virtue local baseline:
 - `reproduce_christian_virtue_qwen2_5_1_5b_local.sh`
   - runs the full canonical local loop from dataset build through verification
 - `run_christian_virtue_qwen2_5_1_5b_local_train.sh`
-  - launches `smoke`, `pilot-lite`, or the heavier experimental `pilot` local training
+  - launches `smoke`, `local-baseline`, or the heavier experimental `extended` local training
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`

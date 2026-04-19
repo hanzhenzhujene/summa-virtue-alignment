@@ -75,7 +75,7 @@ This is the official local demonstration path:
 
 - model: `Qwen/Qwen2.5-1.5B-Instruct`
 - method: LoRA on Apple Silicon MPS
-- official rung: `pilot-lite`
+- official rung: `local-baseline`
 - goal: stable reproducibility and a convincing proof-of-pipeline demo, not the strongest final
   quality run
 
@@ -110,10 +110,10 @@ Smoke train:
 make train-christian-virtue-qwen2-5-1-5b-local-smoke
 ```
 
-Mac-safe pilot-lite train:
+Mac-safe local-baseline train:
 
 ```bash
-make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make train-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
 
 Base-model test predictions and evaluation:
@@ -137,7 +137,7 @@ make compare-christian-virtue-qwen2-5-1-5b-local-test
 Curated publishable report:
 
 ```bash
-make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make report-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
 
 Final publishable QA gate:
@@ -159,7 +159,7 @@ make public-release-check
 This alias adds `ruff` and `mypy` ahead of the publication-surface verification pass, so it is the
 best final command before sharing the repo publicly.
 
-The adapter eval wrapper prefers `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`.
+The adapter eval wrapper prefers `local_baseline/latest`, then `extended/latest`, then `smoke/latest`.
 
 One-command local loop:
 
@@ -180,9 +180,9 @@ The current official local publication bundle is:
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 - Matching GitHub release:
-  [christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+  [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Curated report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 
 Canonical published run ids:
 
@@ -212,7 +212,7 @@ runs/christian_virtue/qwen2_5_1_5b_instruct/
 Examples:
 
 - `smoke/20260417_141530/`
-- `pilot_lite/20260417_142245/`
+- `local_baseline/20260417_142245/`
 - `base_test/20260417_143012/`
 - `adapter_test/20260417_144108/`
 
@@ -233,13 +233,13 @@ Each run directory is designed to contain:
 Recommended local order on a 16 GB Apple-Silicon laptop:
 
 1. `smoke`
-2. `pilot-lite`
+2. `local-baseline`
 3. `base_test`
 4. `adapter_test`
 5. `compare_test`
 6. curated report generation
 
-The full `pilot` config is still available, but it is intentionally heavier and may be too slow for
+The full `extended` config is still available, but it is intentionally heavier and may be too slow for
 routine local use on this hardware. It is an experimental stretch path, not the public default.
 
 ## Remote CUDA Path
@@ -323,7 +323,7 @@ Look at:
 - `run_manifest.json` for device, dtype, model, git commit, and dataset linkage
 - `environment.json` for package versions and execution context
 - the curated report in
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
   for the publishable research summary
 
 Key evaluation fields:
@@ -337,7 +337,7 @@ Key evaluation fields:
 
 ## Packaging And Publication
 
-Once the canonical `pilot-lite`, `base_test`, and `adapter_test` runs exist, package the adapter:
+Once the canonical `local-baseline`, `base_test`, and `adapter_test` runs exist, package the adapter:
 
 ```bash
 make package-christian-virtue-qwen2-5-1-5b-local-adapter

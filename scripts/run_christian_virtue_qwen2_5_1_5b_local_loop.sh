@@ -4,9 +4,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-MODE="${1:-pilot-lite}"
-if [[ "${MODE}" != "pilot-lite" && "${MODE}" != "pilot" ]]; then
-  echo "The full local loop supports 'pilot-lite' and 'pilot'." >&2
+MODE="${1:-local-baseline}"
+if [[ "${MODE}" != "local-baseline" && "${MODE}" != "extended" ]]; then
+  echo "The full local loop supports 'local-baseline' and 'extended'." >&2
   exit 1
 fi
 

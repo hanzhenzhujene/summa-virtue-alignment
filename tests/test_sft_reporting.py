@@ -26,7 +26,7 @@ def _write_jsonl(path: Path, rows: list[dict[str, object]]) -> None:
 
 def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     dataset_dir = tmp_path / "dataset"
-    train_run_dir = tmp_path / "runs" / "pilot_lite" / "20260418_101010"
+    train_run_dir = tmp_path / "runs" / "local_baseline" / "20260418_101010"
     base_run_dir = tmp_path / "runs" / "base_test" / "20260418_111111"
     adapter_run_dir = tmp_path / "runs" / "adapter_test" / "20260418_121212"
     panel_path = tmp_path / "panel.jsonl"
@@ -270,7 +270,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "*Figure 1." in report_text
     assert "*Figure 2." in report_text
     assert "*Figure 3." in report_text
-    assert "## Why `pilot-lite` Is The Official Local Rung" in report_text
+    assert "## Why `local-baseline` Is The Official Local Rung" in report_text
     assert "Goal-demo exact citations" in report_text
     assert "Held-out overall citation exact" not in report_text
     assert "Clear adapter win" in report_text

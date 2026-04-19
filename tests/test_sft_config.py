@@ -38,8 +38,10 @@ def test_load_qwen2_5_local_mps_training_config() -> None:
     assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_smoke.yaml"
 
 
-def test_load_qwen2_5_local_mps_pilot_lite_training_config() -> None:
-    config = load_training_config("configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml")
+def test_load_qwen2_5_local_mps_local_baseline_training_config() -> None:
+    config = load_training_config(
+        "configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml"
+    )
 
     assert config.model_name_or_path == "Qwen/Qwen2.5-1.5B-Instruct"
     assert config.runtime_backend == "mps"
@@ -49,7 +51,21 @@ def test_load_qwen2_5_local_mps_pilot_lite_training_config() -> None:
     assert config.max_train_examples == 128
     assert config.max_eval_examples == 16
     assert config.config_path is not None
-    assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml"
+    assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml"
+
+
+def test_load_qwen2_5_local_mps_extended_training_config() -> None:
+    config = load_training_config("configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml")
+
+    assert config.model_name_or_path == "Qwen/Qwen2.5-1.5B-Instruct"
+    assert config.runtime_backend == "mps"
+    assert config.torch_dtype == "float16"
+    assert config.load_in_4bit is False
+    assert config.max_steps == 100
+    assert config.max_train_examples == 512
+    assert config.max_eval_examples == 64
+    assert config.config_path is not None
+    assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_extended.yaml"
 
 
 def test_load_qwen2_5_local_adapter_inference_config() -> None:
@@ -60,6 +76,6 @@ def test_load_qwen2_5_local_adapter_inference_config() -> None:
     assert config.torch_dtype == "float16"
     assert config.load_in_4bit is False
     assert config.adapter_path is not None
-    assert config.adapter_path.parent.name == "pilot_lite"
+    assert config.adapter_path.parent.name == "local_baseline"
     assert config.config_path is not None
     assert config.config_path.name == "qwen2_5_1_5b_instruct_adapter_test.yaml"

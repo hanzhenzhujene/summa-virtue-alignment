@@ -12,7 +12,10 @@ from .doc_links import extract_markdown_targets, validate_internal_markdown_link
 
 DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
     REPO_ROOT
-    / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/package_manifest.json"
+    / (
+        "artifacts/christian_virtue/qwen2_5_1_5b_instruct/"
+        "local_baseline_adapter/package_manifest.json"
+    )
 )
 DATASET_CARD_PATH = Path("docs/christian_virtue_dataset_card.md")
 REPOSITORY_MAP_PATH = Path("docs/repository_map.md")
@@ -121,8 +124,8 @@ def build_publication_doc_expectations(
             "make reproduce-christian-virtue-qwen2-5-1-5b-local",
         ],
         REPORT_ASSETS_README_PATH: [
-            "christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg",
-            "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg",
+            "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg",
+            "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg",
             "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg",
             "Flagship report",
         ],

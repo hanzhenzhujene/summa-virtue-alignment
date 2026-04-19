@@ -1,8 +1,8 @@
-# Christian Virtue Qwen2.5 1.5B Local Pilot-Lite Report
+# Christian Virtue Qwen2.5 1.5B Local Baseline Report
 
 ## Scope
 
-This report documents the canonical local Apple-Silicon LoRA baseline for the Christian virtue SFT pipeline. It is the official reproducible `Qwen/Qwen2.5-1.5B-Instruct` `pilot-lite` demonstration path for this repo.
+This report documents the canonical local Apple-Silicon LoRA baseline for the Christian virtue SFT pipeline. It is the official reproducible `Qwen/Qwen2.5-1.5B-Instruct` `local-baseline` demonstration path for this repo.
 
 It is meant to show more than citation formatting. The real question is whether this dataset can push a general model toward Aquinas-grounded Christian virtue reasoning while keeping answers evidence-bounded and traceable.
 
@@ -22,8 +22,8 @@ It is meant to show more than citation formatting. The real question is whether 
 | Reviewed source annotations | `555` |
 | Total SFT examples | `1883` |
 | Train / val / test sizes | `1475 / 175 / 233` |
-| Pilot-lite train subset | `128` |
-| Pilot-lite eval subset | `16` |
+| Local-baseline train subset | `128` |
+| Local-baseline eval subset | `16` |
 | Max steps | `20` |
 | Runtime device | `mps` |
 | Git commit | `f9fd58981e8182dbe92ee6ed1c1a389ef2e7f1e9` |
@@ -32,11 +32,11 @@ It is meant to show more than citation formatting. The real question is whether 
 Committed inputs:
 
 - Dataset manifest: [data/processed/sft/exports/christian_virtue_v1/manifest.json](../../data/processed/sft/exports/christian_virtue_v1/manifest.json)
-- Training config: [configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml](../../configs/train/qwen2_5_1_5b_instruct_lora_mps_pilot_lite.yaml)
+- Training config: [configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml](../../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)
 - Base inference config: [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - Adapter inference config: [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
 - Published adapter: [Hugging Face model page](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
-- GitHub release: [Release page](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038)
+- GitHub release: [Release page](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 
 ## Executive Readout
 
@@ -109,19 +109,19 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 
 ## Training Trajectory
 
-![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
+![Local-baseline training curves](assets/christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg)
 
-*Figure 1. Loss and mean token accuracy across the canonical 20-step `pilot-lite` local run. For this public baseline, the claim is not state-of-the-art quality but a stable, inspectable local optimization trace.*
+*Figure 1. Loss and mean token accuracy across the canonical 20-step `local-baseline` local run. For this public baseline, the claim is not state-of-the-art quality but a stable, inspectable local optimization trace.*
 
 The training curve is healthy for a local demonstration run: loss falls sharply, token accuracy rises, and the small eval slice stays close to the training signal.
 
-## Why `pilot-lite` Is The Official Local Rung
+## Why `local-baseline` Is The Official Local Rung
 
-![Local pilot timing comparison](assets/christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg)
+![Local recipe timing comparison](assets/christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg)
 
-*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the interrupted heavier `pilot` and the canonical `pilot-lite` recipe. This figure supports the operational decision to bless `pilot-lite` as the public local path: it is the rung that remains reproducible on a 16 GB laptop.*
+*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the interrupted heavier `extended` recipe and the canonical `local-baseline` recipe. This figure supports the operational decision to bless `local-baseline` as the public local path: it is the rung that remains reproducible on a 16 GB laptop.*
 
-The repo keeps the heavier `pilot` config for experimentation, but the timing comparison shows why it is not the public quickstart path. On this hardware, the heavier rung becomes operationally unstable long before it becomes the right publication baseline.
+The repo keeps the heavier `extended` config for experimentation, but the timing comparison shows why it is not the public quickstart path. On this hardware, the heavier rung becomes operationally unstable long before it becomes the right publication baseline.
 
 ## Held-Out Test Comparison
 
@@ -600,7 +600,7 @@ make setup-christian-virtue-local
 make reproduce-christian-virtue-qwen2-5-1-5b-local
 ```
 
-The one-command reproduce target runs the dataset build, `smoke`, canonical `pilot-lite` train, base test eval, adapter test eval, comparison, report rebuild, and publication verification gate in order.
+The one-command reproduce target runs the dataset build, `smoke`, canonical `local-baseline` train, base test eval, adapter test eval, comparison, report rebuild, and publication verification gate in order.
 The final verification step is still exposed directly as `make verify-christian-virtue-qwen2-5-1-5b-local-publishable` when you want to run the public-surface QA gate on its own.
 
 ## Headline Numbers

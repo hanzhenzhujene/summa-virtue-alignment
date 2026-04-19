@@ -16,7 +16,7 @@ def _build_training_config(tmp_path: Path, **overrides: object) -> TrainingConfi
         "run_name": "fixture-training",
         "model_name_or_path": "Qwen/Qwen2.5-1.5B-Instruct",
         "dataset_dir": str(tmp_path / "dataset"),
-        "output_dir": str(tmp_path / "runs" / "pilot"),
+        "output_dir": str(tmp_path / "runs" / "local_baseline"),
         "load_in_4bit": True,
         "runtime_backend": "auto",
         "torch_dtype": "auto",

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="520" viewBox="0 0 980 520" role="img">
 <rect x="0" y="0" width="980" height="520" fill="#ffffff" stroke="none" rx="4" />
-<text x="40" y="38" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#111827" text-anchor="start">Local MPS training timing: pilot-lite vs interrupted pilot</text>
-<text x="40" y="62" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="13" font-weight="normal" fill="#4b5563" text-anchor="start">Cumulative wall-clock time to logged steps, showing why pilot-lite became the default local rung</text>
+<text x="40" y="38" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" fill="#111827" text-anchor="start">Local MPS training timing: local-baseline vs interrupted extended run</text>
+<text x="40" y="62" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="13" font-weight="normal" fill="#4b5563" text-anchor="start">Cumulative wall-clock time to logged steps, showing why local-baseline became the default local rung</text>
 <line x1="90" y1="420.0" x2="920" y2="420.0" stroke="#e5e7eb" stroke-width="1" />
 <text x="78" y="424.0" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="normal" fill="#6b7280" text-anchor="end">0.0h</text>
 <line x1="90" y1="358.0" x2="920" y2="358.0" stroke="#e5e7eb" stroke-width="1" />
@@ -41,8 +41,8 @@
 <circle cx="920.0" cy="415.3484196814464" r="4" fill="#2563eb" />
 <text x="920.0" y="405.3484196814464" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="11" font-weight="600" fill="#1d4ed8" text-anchor="middle">3.8m</text>
 <rect x="650" y="78" width="18" height="18" fill="#dc2626" stroke="none" rx="4" />
-<text x="678" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="normal" fill="#374151" text-anchor="start">Interrupted full pilot</text>
+<text x="678" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="normal" fill="#374151" text-anchor="start">Interrupted extended run</text>
 <rect x="820" y="78" width="18" height="18" fill="#2563eb" stroke="none" rx="4" />
-<text x="848" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="normal" fill="#374151" text-anchor="start">pilot-lite</text>
+<text x="848" y="92" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="normal" fill="#374151" text-anchor="start">local-baseline</text>
 <text x="505.0" y="464" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="normal" fill="#374151" text-anchor="middle">Logged training step</text>
 </svg>
