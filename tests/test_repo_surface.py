@@ -58,6 +58,8 @@ def test_public_release_check_is_documented() -> None:
 
 def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
+    assert "# summa moral graph: thomist moral virtue alignment" in readme_text
+    assert "evidence-first dataset, minimal sft demonstration, and audit surface" in readme_text
     assert "## three purposes" in readme_text
     assert "## theological grounding" in readme_text
     assert "three public purposes" in readme_text

@@ -1,7 +1,12 @@
-# Summa Virtutum
+# Summa Moral Graph: Thomist Moral Virtue Alignment
 
-Evidence-first Thomist moral virtue SFT and evidence browser built from Thomas Aquinas's moral
-corpus in the *Summa Theologiae*.
+Evidence-first dataset, minimal SFT demonstration, and audit surface for training
+Aquinas-grounded Christian virtue assistants from reviewed passage-level supervision in the moral
+corpus of Thomas Aquinas's *Summa Theologiae*.
+
+This public release is organized around three things: a reviewed Christian virtue dataset, a
+reproducible local fine-tuning path, and an inspectable theological evidence trail back to Aquinas's
+text.
 
 [![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
 [![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
