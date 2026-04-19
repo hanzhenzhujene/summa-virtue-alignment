@@ -18,6 +18,11 @@ from .preflight import (
     workspace_free_gb,
     writable_directory_status,
 )
+from .public_artifacts import (
+    DEFAULT_PUBLICATION_PACKAGE_MANIFEST,
+    build_publication_doc_expectations,
+    verify_publication_bundle,
+)
 from .publication import (
     build_adapter_package_manifest,
     build_model_card_text,
@@ -71,6 +76,7 @@ __all__ = [
     "create_timestamped_run_dir",
     "current_git_commit",
     "dataset_manifest_path",
+    "DEFAULT_PUBLICATION_PACKAGE_MANIFEST",
     "default_release_target",
     "detect_torch_availability",
     "describe_inference_plan",
@@ -96,6 +102,8 @@ __all__ = [
     "run_generation_inference",
     "run_qlora_training",
     "serialize_built_dataset",
+    "build_publication_doc_expectations",
+    "verify_publication_bundle",
     "workspace_free_gb",
     "writable_directory_status",
     "write_adapter_package",

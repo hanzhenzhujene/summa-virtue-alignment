@@ -234,6 +234,16 @@ Curated local report:
 make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
 
+Final publishable QA gate:
+
+```bash
+make verify-christian-virtue-qwen2-5-1-5b-local-publishable
+```
+
+This is the maintainer-facing release check: it rebuilds the canonical local report, refreshes the
+local adapter package, and verifies that the package manifest, run artifacts, README, guide docs,
+experiment index, and curated report still agree about the published baseline.
+
 One-command local pilot loop:
 
 ```bash

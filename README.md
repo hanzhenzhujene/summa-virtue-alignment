@@ -71,6 +71,7 @@ make eval-christian-virtue-qwen2-5-1-5b-local-base-test
 make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
 make compare-christian-virtue-qwen2-5-1-5b-local-test
 make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
+make verify-christian-virtue-qwen2-5-1-5b-local-publishable
 ```
 
 Published public artifacts for the canonical local run:

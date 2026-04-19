@@ -40,6 +40,11 @@
     - compare run `20260418_225541`
     - held-out citation exact moved from `0.000` on base to `0.150` on the adapter across `233`
       test prompts
+  - the next polish step is now being treated as a public-artifact QA problem rather than a model
+    problem:
+    - a new publishable verification gate is being added to rebuild the canonical local report,
+      refresh the local adapter package, and verify that README, guides, experiment index, curated
+      report, and package manifest all point to the same published baseline
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -585,6 +590,9 @@
   local pilot became stable, the missing pieces were a fixed goal-demo panel, a curated report
   generator, and a packaging path that ties a checkpoint, report, dataset card, and release tag
   back to the same run id.
+- Once those publication pieces existed, the next weak point turned out to be drift between them.
+  The repo needed one explicit QA gate for “package manifest, docs, report, and published URLs all
+  still agree,” otherwise a later doc refresh could silently desynchronize the public story.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -802,6 +810,12 @@
   training set and use it only for held-out manual review and publication-facing comparison.
 - Treat Hugging Face Hub as the primary adapter host and GitHub releases as the public mirror layer,
   with both pointing back to the same run id, commit hash, dataset export, and report.
+- Add a first-class publishable verification gate for the canonical local baseline instead of
+  relying on manual eyeballing before release. That gate should verify:
+  - the package manifest still matches the canonical run artifacts
+  - the adapter still improves on base for the headline citation metric
+  - README, fine-tune guide, maintainer doc, experiment index, and curated report still point to
+    the same Hugging Face adapter, GitHub release, run id, and headline metric
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1008,6 +1022,11 @@
   - packaging and publication scripts now exist for the canonical local adapter
   - the canonical report pipeline can regenerate the public markdown and SVG assets directly from
     run artifacts
+  - the repo now also has an explicit publishable QA gate:
+    - `make verify-christian-virtue-qwen2-5-1-5b-local-publishable`
+    - it refreshes the canonical local report and adapter package, runs focused publication/report
+      tests, and verifies that the public README/docs/report surfaces still match the canonical
+      published bundle
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed

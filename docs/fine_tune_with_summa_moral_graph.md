@@ -124,6 +124,16 @@ Curated publishable report:
 make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
 ```
 
+Final publishable QA gate:
+
+```bash
+make verify-christian-virtue-qwen2-5-1-5b-local-publishable
+```
+
+That command rebuilds the committed dataset export if needed, regenerates the curated report,
+refreshes the local adapter package, and verifies that the public README/docs/report surfaces still
+match the canonical published bundle.
+
 The adapter eval wrapper prefers `pilot_lite/latest`, then `pilot/latest`, then `smoke/latest`.
 
 One-command local loop:
