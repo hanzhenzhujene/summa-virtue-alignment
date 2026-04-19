@@ -66,7 +66,7 @@
     "temperance_closure_161_170": 41,
     "theological_virtues": 53
   },
-  "config_path": "/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/sft/christian_virtue_v1.yaml",
+  "config_path": "configs/sft/christian_virtue_v1.yaml",
   "dataset_name": "christian_virtue_v1",
   "description": "Virtue-centered instruction-tuning dataset grounded in reviewed doctrinal annotations from Aquinas's moral corpus.",
   "dropped_rows": {},

@@ -114,7 +114,7 @@
     "vice": 213,
     "virtue": 7531
   },
-  "packet_path": "/Users/hanzhenzhu/Desktop/aquinas/data/processed/review_packets/st_i-ii_q100_corpus_review_packet.md",
+  "packet_path": "data/processed/review_packets/st_i-ii_q100_corpus_review_packet.md",
   "questions": [
     {
       "ambiguity_count": 2,

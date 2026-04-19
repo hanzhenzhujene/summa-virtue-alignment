@@ -9,6 +9,7 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ..utils.paths import repo_relative_path_str
 from .config import DatasetBuildConfig
 from .filters import apply_annotation_filters
 from .loaders import (
@@ -353,7 +354,9 @@ def _build_manifest(
     task_counts = Counter(example.task_type for example in examples)
 
     return {
-        "config_path": str(config.config_path) if config.config_path is not None else None,
+        "config_path": (
+            repo_relative_path_str(config.config_path) if config.config_path is not None else None
+        ),
         "dataset_name": config.dataset_name,
         "description": config.description,
         "source_annotation_count": source_annotation_count,

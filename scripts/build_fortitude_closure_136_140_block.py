@@ -1,3 +1,5 @@
+"""Build the reviewed fortitude-closure tract artifacts for II-II questions 136-140."""
+
 from __future__ import annotations
 
 import json

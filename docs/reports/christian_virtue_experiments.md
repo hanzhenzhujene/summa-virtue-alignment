@@ -51,15 +51,13 @@ Headline result on the held-out `test` split:
 ## Canonical Command Surface
 
 ```bash
-make build-christian-virtue-sft
-make train-christian-virtue-qwen2-5-1-5b-local-smoke
-make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make eval-christian-virtue-qwen2-5-1-5b-local-base-test
-make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
-make compare-christian-virtue-qwen2-5-1-5b-local-test
-make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make verify-christian-virtue-qwen2-5-1-5b-local-publishable
+make setup-christian-virtue-local
+make reproduce-christian-virtue-qwen2-5-1-5b-local
 ```
+
+The one-command reproduction target runs the full local publication loop end to end. The longer
+stepwise command path remains documented in the fine-tuning guide for readers who want to inspect
+each stage separately.
 
 ## Policy
 

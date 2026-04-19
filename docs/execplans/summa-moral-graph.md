@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The final public-release polish pass is now closing portability and presentation gaps instead of
+  widening scope:
+  - committed docs, dataset manifests, review queues, and packaged adapter metadata are being
+    normalized to repo-relative paths instead of leaking one local machine's filesystem layout
+  - the publication verifier now scans public Markdown and JSON surfaces for machine-specific path
+    leaks, so future release drift fails loudly rather than slipping into a publishable bundle
+  - the adapter packaging path now sanitizes copied `environment.json`, `run_manifest.json`, and
+    `train_metadata.json` before they become public-facing artifacts
+  - the repository map now explicitly names the archival top-level implementation-plan memo so the
+    root layout reads as intentional rather than leaving that file unexplained
 - The next public-release polish pass is now focused on first-open trust rather than adding new
   modeling scope:
   - README is being rewritten around a research-release narrative with a clear problem statement,
@@ -621,6 +631,9 @@
 
 ## Surprises & Discoveries
 
+- The last portability leak was not in the README or dataset docs. It lived inside copied package
+  metadata, where absolute run paths and venv details looked harmless locally but would have made
+  the public adapter bundle feel machine-bound and less reproducible.
 - The next weak point after report/package polish was not another missing experiment but a basic
   public-release issue: the top-level README still mixed older viewer copy, a stale `12,337`
   passage count, and a less-than-explicit reproduction path. For a reviewer-facing repo, first
@@ -855,6 +868,12 @@
 
 ## Decision Log
 
+- Treat machine-specific filesystem paths as a release-quality failure, not a cosmetic annoyance.
+  Public docs, committed manifests, review queues, and packaged adapter metadata should all prefer
+  repo-relative paths where possible, and the publication gate should verify that contract.
+- Treat the top-level `aquinas_summa_moral_graph_implementation_plan.md` file as archival project
+  context rather than silent clutter by naming it explicitly in `docs/repository_map.md` and
+  keeping the live execution history in `docs/execplans/summa-moral-graph.md`.
 - Add one explicit setup surface for the canonical public local baseline:
   - `make setup-christian-virtue-local`
   - it should install the pinned Apple-Silicon lockfile and then install the repo editable without
@@ -1096,6 +1115,15 @@
 
 ## Outcomes & Retrospective
 
+- The repo's public release now reads as more portable and deliberate:
+  - public docs, processed manifests, review queues, and packaged adapter metadata no longer leak
+    local absolute paths
+  - publication verification now scans the broader public Markdown/JSON surface for machine-path
+    leaks in addition to checking content, links, and package/report coherence
+  - the packaged adapter metadata copies now preserve runtime provenance without exposing a
+    machine-specific filesystem layout
+  - the repository map now explains the archival top-level implementation-plan memo instead of
+    leaving it as an unexplained root-level artifact
 - The repo's public-release surface is now being tightened around a more reviewer-friendly contract:
   - the README is being reorganized around problem, method, results, reproduction, and repo
     structure instead of mixing those concerns loosely

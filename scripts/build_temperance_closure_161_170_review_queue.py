@@ -1,3 +1,5 @@
+"""Build the temperance-closure review queue and packet artifacts for II-II questions 161-170."""
+
 from __future__ import annotations
 
 import json

@@ -1,3 +1,5 @@
+"""Compare two Christian virtue evaluation runs and write a concise markdown delta report."""
+
 from __future__ import annotations
 
 import argparse

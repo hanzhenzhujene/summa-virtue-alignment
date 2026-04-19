@@ -1,3 +1,5 @@
+"""Build the original pilot reviewed slice artifacts used by the legacy pilot workflow."""
+
 from summa_moral_graph.annotations.pilot import build_pilot_annotation_artifacts
 from summa_moral_graph.annotations.pilot_review import build_pilot_review_artifacts
 from summa_moral_graph.graph.pilot import build_pilot_graph_artifacts

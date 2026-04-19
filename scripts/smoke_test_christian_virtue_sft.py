@@ -1,3 +1,5 @@
+"""Run a lightweight end-to-end smoke test over the Christian virtue SFT pipeline."""
+
 from __future__ import annotations
 
 import json

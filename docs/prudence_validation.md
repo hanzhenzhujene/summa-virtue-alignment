@@ -2,7 +2,7 @@
 
 Validation report artifact:
 
-- [prudence_validation_report.json](/Users/hanzhenzhu/Desktop/aquinas/data/processed/prudence_validation_report.json)
+- [prudence_validation_report.json](../data/processed/prudence_validation_report.json)
 
 Current status:
 

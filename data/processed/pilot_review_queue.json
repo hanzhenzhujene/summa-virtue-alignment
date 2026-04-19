@@ -67,7 +67,7 @@
       "support_type": "strong_textual_inference"
     }
   ],
-  "packet_path": "/Users/hanzhenzhu/Desktop/aquinas/data/processed/review_packets/st_ii-ii_q171_review_packet.md",
+  "packet_path": "data/processed/review_packets/st_ii-ii_q171_review_packet.md",
   "suggested_question_packet": "st.ii-ii.q171",
   "under_annotated_passages": [
     {

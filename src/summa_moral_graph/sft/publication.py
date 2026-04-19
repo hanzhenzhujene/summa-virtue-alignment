@@ -45,11 +45,41 @@ def _copy_if_present(source_dir: Path, destination_dir: Path, filename: str) -> 
 
 
 def _repo_display_path(path: Path) -> str:
-    resolved = path.resolve()
+    candidate = path if path.is_absolute() else REPO_ROOT / path
     try:
-        return str(resolved.relative_to(REPO_ROOT))
+        relative = candidate.relative_to(REPO_ROOT)
+        return relative.as_posix() if str(relative) != "." else "."
     except ValueError:
         return str(path)
+
+
+def _sanitize_public_path_string(value: str) -> str:
+    if value.startswith(("http://", "https://")):
+        return value
+    candidate = Path(value)
+    if not candidate.is_absolute():
+        return value
+    return _repo_display_path(candidate)
+
+
+def _sanitize_public_json_payload(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {
+            str(key): _sanitize_public_json_payload(item_value) for key, item_value in value.items()
+        }
+    if isinstance(value, list):
+        return [_sanitize_public_json_payload(item) for item in value]
+    if isinstance(value, str):
+        return _sanitize_public_path_string(value)
+    return value
+
+
+def _copy_sanitized_json_if_present(source_dir: Path, destination_dir: Path, filename: str) -> None:
+    source_path = source_dir / filename
+    if not source_path.exists():
+        return
+    payload = _sanitize_public_json_payload(_read_json(source_path))
+    write_json(destination_dir / filename, cast(dict[str, Any], payload))
 
 
 def _format_percent(value: float) -> str:
@@ -465,11 +495,14 @@ def write_adapter_package(
 
     for filename in [
         "config_snapshot.yaml",
+    ]:
+        _copy_if_present(train_run_dir, package_dir, filename)
+    for filename in [
         "environment.json",
         "run_manifest.json",
         "train_metadata.json",
     ]:
-        _copy_if_present(train_run_dir, package_dir, filename)
+        _copy_sanitized_json_if_present(train_run_dir, package_dir, filename)
 
     manifest = build_adapter_package_manifest(
         train_run_dir=train_run_dir,

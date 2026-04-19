@@ -5,7 +5,7 @@ from collections import Counter
 from pathlib import Path
 
 from ..app.pilot import PilotAppBundle, load_pilot_bundle
-from ..utils.paths import PROCESSED_DIR
+from ..utils.paths import PROCESSED_DIR, repo_relative_path_str
 
 
 def build_pilot_review_artifacts(question_id: str | None = None) -> dict[str, str]:
@@ -59,14 +59,17 @@ def build_pilot_review_artifacts(question_id: str | None = None) -> dict[str, st
         "concepts_with_many_aliases": concepts_with_many_aliases,
         "low_confidence_annotations": low_confidence_annotations,
         "suggested_question_packet": target_question_id,
-        "packet_path": str(packet_path),
+        "packet_path": repo_relative_path_str(packet_path),
     }
     queue_path = PROCESSED_DIR / "pilot_review_queue.json"
     queue_path.write_text(
         json.dumps(queue_payload, indent=2, ensure_ascii=False, sort_keys=True),
         encoding="utf-8",
     )
-    return {"queue_path": str(queue_path), "packet_path": str(packet_path)}
+    return {
+        "queue_path": repo_relative_path_str(queue_path),
+        "packet_path": repo_relative_path_str(packet_path),
+    }
 
 
 def choose_review_question(bundle: PilotAppBundle) -> str:

@@ -1,3 +1,5 @@
+"""Generate and inspect pilot-slice review helpers for legacy reviewed annotation workflows."""
+
 from __future__ import annotations
 
 import argparse

@@ -110,11 +110,23 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 
 ![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
 
+*Figure 1. Loss and mean token accuracy across the canonical 20-step `pilot-lite` local run. For this public baseline, the claim is not state-of-the-art quality but a stable, inspectable local optimization trace.*
+
 The training curve is healthy for a local demonstration run: loss falls sharply, token accuracy rises, and the small eval slice stays close to the training signal.
+
+## Why `pilot-lite` Is The Official Local Rung
+
+![Local pilot timing comparison](assets/christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg)
+
+*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the interrupted heavier `pilot` and the canonical `pilot-lite` recipe. This figure supports the operational decision to bless `pilot-lite` as the public local path: it is the rung that remains reproducible on a 16 GB laptop.*
+
+The repo keeps the heavier `pilot` config for experimentation, but the timing comparison shows why it is not the public quickstart path. On this hardware, the heavier rung becomes operationally unstable long before it becomes the right publication baseline.
 
 ## Held-Out Test Comparison
 
 ![Base vs adapter test comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
+
+*Figure 3. Held-out citation exact match for the untouched base model versus the LoRA adapter, including the overall slice and task-family breakdowns. This figure supports the central empirical claim that the dataset moves model behavior in the right direction rather than merely packaging a training recipe.*
 
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
@@ -583,15 +595,12 @@ LoRA adapter:
 ## Recommended Public Reproduction Path
 
 ```bash
-make build-christian-virtue-sft
-make train-christian-virtue-qwen2-5-1-5b-local-smoke
-make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make eval-christian-virtue-qwen2-5-1-5b-local-base-test
-make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
-make compare-christian-virtue-qwen2-5-1-5b-local-test
-make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite
-make verify-christian-virtue-qwen2-5-1-5b-local-publishable
+make setup-christian-virtue-local
+make reproduce-christian-virtue-qwen2-5-1-5b-local
 ```
+
+The one-command reproduce target runs the dataset build, `smoke`, canonical `pilot-lite` train, base test eval, adapter test eval, comparison, report rebuild, and publication verification gate in order.
+The final verification step is still exposed directly as `make verify-christian-virtue-qwen2-5-1-5b-local-publishable` when you want to run the public-surface QA gate on its own.
 
 ## Headline Numbers
 

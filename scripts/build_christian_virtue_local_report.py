@@ -70,6 +70,9 @@ def main() -> None:
         args.assets_dir / "christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg"
     )
     comparison_path = args.assets_dir / "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
+    timing_comparison_path = (
+        args.assets_dir / "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg"
+    )
 
     write_training_curves_svg(args.train_run_dir / "train_log_history.jsonl", training_curves_path)
     base_metrics_path = args.base_run_dir / "metrics.json"
@@ -88,6 +91,11 @@ def main() -> None:
         output_path=args.output,
         training_curves_asset_path=Path(f"./assets/{training_curves_path.name}"),
         comparison_asset_path=Path(f"./assets/{comparison_path.name}"),
+        timing_comparison_asset_path=(
+            Path(f"./assets/{timing_comparison_path.name}")
+            if timing_comparison_path.exists()
+            else None
+        ),
         published_model_url=args.published_model_url,
         release_url=args.release_url,
     )
@@ -97,6 +105,9 @@ def main() -> None:
                 "output_path": str(report_path),
                 "training_curves_path": str(training_curves_path),
                 "comparison_path": str(comparison_path),
+                "timing_comparison_path": (
+                    str(timing_comparison_path) if timing_comparison_path.exists() else None
+                ),
             },
             indent=2,
             sort_keys=True,

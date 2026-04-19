@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 from typing import Any, cast
 
@@ -15,7 +16,13 @@ DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
 )
 DATASET_CARD_PATH = Path("docs/christian_virtue_dataset_card.md")
 REPOSITORY_MAP_PATH = Path("docs/repository_map.md")
+REPORT_ASSETS_README_PATH = Path("docs/reports/assets/README.md")
 SFT_README_PATH = Path("data/processed/sft/README.md")
+MACHINE_PATH_PATTERNS = (
+    re.compile(r"/Users/[^\s)\]\"']+"),
+    re.compile(r"/home/[^\s)\]\"']+"),
+    re.compile(r"[A-Za-z]:\\\\Users\\\\[^\s)\]\"']+"),
+)
 
 
 def _read_json(path: Path) -> dict[str, Any]:
@@ -24,6 +31,45 @@ def _read_json(path: Path) -> dict[str, Any]:
 
 def _format_metric(value: Any) -> str:
     return f"{float(value):.3f}"
+
+
+def iter_public_surface_paths(repo_root: Path) -> list[Path]:
+    """List public repo surfaces that should never leak local absolute filesystem paths."""
+
+    paths: list[Path] = []
+
+    readme_path = repo_root / "README.md"
+    if readme_path.exists():
+        paths.append(readme_path)
+
+    docs_root = repo_root / "docs"
+    if docs_root.exists():
+        paths.extend(sorted(docs_root.rglob("*.md")))
+
+    processed_root = repo_root / "data" / "processed"
+    if processed_root.exists():
+        paths.extend(sorted(processed_root.rglob("*.json")))
+
+    artifacts_root = repo_root / "artifacts"
+    if artifacts_root.exists():
+        paths.extend(sorted(artifacts_root.rglob("*.md")))
+        paths.extend(sorted(artifacts_root.rglob("*.json")))
+
+    return paths
+
+
+def find_machine_path_leaks(repo_root: Path) -> dict[str, list[str]]:
+    """Return any machine-specific absolute paths embedded in public repo surfaces."""
+
+    leaks: dict[str, list[str]] = {}
+    for path in iter_public_surface_paths(repo_root):
+        text = path.read_text(encoding="utf-8")
+        matches: set[str] = set()
+        for pattern in MACHINE_PATH_PATTERNS:
+            matches.update(pattern.findall(text))
+        if matches:
+            leaks[str(path.relative_to(repo_root))] = sorted(matches)
+    return dict(sorted(leaks.items()))
 
 
 def build_publication_doc_expectations(
@@ -73,6 +119,12 @@ def build_publication_doc_expectations(
             "requirements/local-mps-py312.lock.txt",
             "scripts/setup_christian_virtue_local.sh",
             "make reproduce-christian-virtue-qwen2-5-1-5b-local",
+        ],
+        REPORT_ASSETS_README_PATH: [
+            "christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg",
+            "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg",
+            "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg",
+            "Flagship report",
         ],
         DATASET_CARD_PATH: [
             "Aquinas-grounded Christian virtue reasoning",
@@ -231,6 +283,16 @@ def verify_publication_bundle(
                 )
         checked_package_surfaces.append(relative_name)
 
+    machine_path_leaks = find_machine_path_leaks(repo_root)
+    if machine_path_leaks:
+        formatted_leaks = "; ".join(
+            f"{path}: {', '.join(matches)}" for path, matches in machine_path_leaks.items()
+        )
+        raise RuntimeError(
+            "Machine-specific absolute paths leaked into public repo surfaces: "
+            f"{formatted_leaks}"
+        )
+
     return {
         "package_manifest_path": str(package_manifest_path.relative_to(repo_root)),
         "train_run_dir": str(train_run_dir.relative_to(repo_root)),
@@ -251,5 +313,8 @@ def verify_publication_bundle(
         "citation_exact_gain": adapter_exact - base_exact,
         "checked_docs": checked_docs,
         "checked_doc_link_counts": checked_doc_link_counts,
+        "checked_path_leak_surfaces": [
+            str(path.relative_to(repo_root)) for path in iter_public_surface_paths(repo_root)
+        ],
         "checked_package_surfaces": checked_package_surfaces,
     }

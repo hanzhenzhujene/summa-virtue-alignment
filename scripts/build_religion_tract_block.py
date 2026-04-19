@@ -1,3 +1,5 @@
+"""Build the reviewed religion tract artifacts for II-II questions 80-100."""
+
 from __future__ import annotations
 
 import json

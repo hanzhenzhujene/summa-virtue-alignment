@@ -33,6 +33,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     report_path = tmp_path / "docs" / "report.md"
     training_svg_path = tmp_path / "docs" / "assets" / "training.svg"
     comparison_svg_path = tmp_path / "docs" / "assets" / "comparison.svg"
+    timing_svg_path = tmp_path / "docs" / "assets" / "timing.svg"
 
     example = {
         "example_id": "demo.example",
@@ -235,6 +236,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
         json.loads((adapter_run_dir / "metrics.json").read_text(encoding="utf-8")),
         comparison_svg_path,
     )
+    timing_svg_path.write_text("<svg />\n", encoding="utf-8")
     written_report = write_publishable_local_report(
         dataset_dir=dataset_dir,
         train_run_dir=train_run_dir,
@@ -244,6 +246,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
         output_path=report_path,
         training_curves_asset_path=Path("./assets/training.svg"),
         comparison_asset_path=Path("./assets/comparison.svg"),
+        timing_comparison_asset_path=Path("./assets/timing.svg"),
         published_model_url="https://huggingface.co/example/model",
         release_url="https://github.com/example/release",
     )
@@ -254,6 +257,10 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     report_text = report_path.read_text(encoding="utf-8")
     assert "## Canonical Purpose" in report_text
     assert "## Executive Readout" in report_text
+    assert "*Figure 1." in report_text
+    assert "*Figure 2." in report_text
+    assert "*Figure 3." in report_text
+    assert "## Why `pilot-lite` Is The Official Local Rung" in report_text
     assert "Goal-demo exact citations" in report_text
     assert "Clear adapter win" in report_text
     assert "## Goal Demo Panel" in report_text

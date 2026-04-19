@@ -1,3 +1,5 @@
+"""Public exports for the Christian virtue SFT dataset, runtime, evaluation, and publication API."""
+
 from .builders import BenchmarkExample, BuiltDataset, SFTExample, build_dataset
 from .comparison import build_comparison_report, load_metrics_file, write_comparison_report
 from .config import (

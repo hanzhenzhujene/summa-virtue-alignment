@@ -12,7 +12,13 @@ from ..models import (
     SegmentRecord,
 )
 from ..utils.jsonl import load_jsonl
-from ..utils.paths import CANDIDATE_DIR, GOLD_DIR, INTERIM_DIR, PROCESSED_DIR
+from ..utils.paths import (
+    CANDIDATE_DIR,
+    GOLD_DIR,
+    INTERIM_DIR,
+    PROCESSED_DIR,
+    repo_relative_path_str,
+)
 
 
 def build_corpus_review_artifacts(question_id: str | None = None) -> dict[str, str]:
@@ -104,14 +110,17 @@ def build_corpus_review_artifacts(question_id: str | None = None) -> dict[str, s
         "ambiguous_mentions": ambiguous_mentions,
         "under_annotated_questions": under_annotated_questions,
         "suggested_question_packet": target_question_id,
-        "packet_path": str(packet_path),
+        "packet_path": repo_relative_path_str(packet_path),
     }
     queue_path = PROCESSED_DIR / "corpus_review_queue.json"
     queue_path.write_text(
         json.dumps(queue_payload, indent=2, ensure_ascii=False, sort_keys=True),
         encoding="utf-8",
     )
-    return {"queue_path": str(queue_path), "packet_path": str(packet_path)}
+    return {
+        "queue_path": repo_relative_path_str(queue_path),
+        "packet_path": repo_relative_path_str(packet_path),
+    }
 
 
 def choose_review_question(question_rows: list[dict[str, int | str]]) -> str:

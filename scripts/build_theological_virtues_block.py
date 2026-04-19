@@ -1,3 +1,5 @@
+"""Build the reviewed theological-virtues tract artifacts for II-II questions 1-46."""
+
 from summa_moral_graph.annotations.theological_virtues import (
     build_theological_virtues_annotation_artifacts,
 )

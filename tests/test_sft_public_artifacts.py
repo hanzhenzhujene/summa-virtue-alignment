@@ -10,6 +10,7 @@ from summa_moral_graph.sft.doc_links import (
 )
 from summa_moral_graph.sft.public_artifacts import (
     build_publication_doc_expectations,
+    find_machine_path_leaks,
     verify_publication_bundle,
 )
 
@@ -162,6 +163,7 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
     assert abs(summary["citation_exact_gain"] - 0.15) < 1e-9
     assert "README.md" in summary["checked_package_surfaces"]
     assert "release_notes.md" in summary["checked_package_surfaces"]
+    assert "README.md" in summary["checked_path_leak_surfaces"]
 
 
 def test_markdown_link_resolution_handles_internal_and_external_targets(tmp_path) -> None:
@@ -209,6 +211,7 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "docs/christian_virtue_sft.md",
         repo_root / "docs/christian_virtue_dataset_card.md",
         repo_root / "docs/repository_map.md",
+        repo_root / "docs/reports/assets/README.md",
         repo_root / "data/processed/sft/README.md",
         repo_root / "docs/reports/christian_virtue_experiments.md",
         repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md",
@@ -235,6 +238,10 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
         encoding="utf-8"
     )
     repo_map_text = (repo_root / "docs/repository_map.md").read_text(encoding="utf-8")
+    report_index_text = (repo_root / "docs/reports/christian_virtue_experiments.md").read_text(
+        encoding="utf-8"
+    )
+    assets_readme_text = (repo_root / "docs/reports/assets/README.md").read_text(encoding="utf-8")
     fine_tune_text = (repo_root / "docs/fine_tune_with_summa_moral_graph.md").read_text(
         encoding="utf-8"
     )
@@ -254,8 +261,10 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "christian_virtue_qwen2_5_1_5b_pilot_lite_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in fine_tune_text
+    assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in report_index_text
     assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
     assert "requirements/local-mps-py312.lock.txt" in repo_map_text
+    assert "christian_virtue_qwen2_5_1_5b_pilot_timing_comparison.svg" in assets_readme_text
     assert "docs/christian_virtue_dataset_card.md" in sft_readme_text
     assert "setup-christian-virtue-local:" in makefile_text
     assert "reproduce-christian-virtue-qwen2-5-1-5b-local:" in makefile_text
@@ -267,9 +276,37 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
         Path("docs/fine_tune_with_summa_moral_graph.md"),
         Path("docs/christian_virtue_dataset_card.md"),
         Path("docs/repository_map.md"),
+        Path("docs/reports/assets/README.md"),
     ]:
         missing_targets = validate_internal_markdown_links(repo_root / relative_path)
         assert not missing_targets, (relative_path, missing_targets)
+
+
+def test_python_script_entrypoints_start_with_docstrings() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    for script_path in sorted((repo_root / "scripts").glob("*.py")):
+        lines = script_path.read_text(encoding="utf-8").splitlines()
+        first_nonempty = next((line for line in lines if line.strip()), "")
+        assert first_nonempty.startswith(('"""', "'''")), script_path
+
+
+def test_report_assets_are_documented_and_linked() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    assets_dir = repo_root / "docs/reports/assets"
+    report_text = (
+        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md"
+    ).read_text(encoding="utf-8")
+    assets_readme_text = (assets_dir / "README.md").read_text(encoding="utf-8")
+
+    for asset_path in sorted(assets_dir.glob("*.svg")):
+        asset_name = asset_path.name
+        assert asset_name in assets_readme_text, asset_name
+        assert asset_name in report_text, asset_name
+
+
+def test_public_repo_surfaces_do_not_embed_machine_absolute_paths() -> None:
+    repo_root = Path(__file__).resolve().parents[1]
+    assert not find_machine_path_leaks(repo_root)
 
 
 def test_repo_publication_bundle_is_coherent() -> None:

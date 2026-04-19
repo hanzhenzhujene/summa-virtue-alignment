@@ -41,8 +41,11 @@ def _load_root_streamlit_module():
 
 def test_streamlit_root_entry_points_at_repo_shell() -> None:
     streamlit_app = _load_root_streamlit_module()
+    repo_root = Path(__file__).resolve().parent.parent
 
-    assert Path(streamlit_app.REPO_ROOT).name == "aquinas"
+    assert Path(streamlit_app.REPO_ROOT) == repo_root
+    assert (Path(streamlit_app.REPO_ROOT) / "README.md").exists()
+    assert (Path(streamlit_app.REPO_ROOT) / "streamlit_app.py").exists()
     assert streamlit_app.SRC_DIR == Path(streamlit_app.REPO_ROOT) / "src"
 
 

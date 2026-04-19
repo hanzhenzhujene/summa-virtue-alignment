@@ -66,7 +66,7 @@
     "temperance_closure_161_170": 41,
     "theological_virtues": 53
   },
-  "config_path": "/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/configs/sft/christian_virtue_v1_ood.yaml",
+  "config_path": "configs/sft/christian_virtue_v1_ood.yaml",
   "dataset_name": "christian_virtue_v1_ood",
   "description": "Virtue-centered instruction-tuning dataset with an out-of-domain temperance-closure holdout for harder evaluation.",
   "dropped_rows": {},

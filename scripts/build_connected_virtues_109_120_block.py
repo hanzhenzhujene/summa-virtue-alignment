@@ -1,3 +1,5 @@
+"""Build the reviewed connected-virtues tract artifacts for II-II questions 109-120."""
+
 from __future__ import annotations
 
 import json

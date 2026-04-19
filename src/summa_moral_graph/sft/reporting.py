@@ -574,6 +574,7 @@ def build_publishable_local_report(
     comparison_markdown: str,
     training_curves_asset_path: str,
     comparison_asset_path: str,
+    timing_comparison_asset_path: str | None = None,
     published_model_url: str | None = None,
     release_url: str | None = None,
 ) -> str:
@@ -814,12 +815,46 @@ def build_publishable_local_report(
             "",
             f"![Pilot-lite training curves]({training_curves_asset_path})",
             "",
+            "*Figure 1. Loss and mean token accuracy across the canonical 20-step `pilot-lite` "
+            "local run. For this public baseline, the claim is not state-of-the-art quality but "
+            "a stable, inspectable local optimization trace.*",
+            "",
             "The training curve is healthy for a local demonstration run: loss falls sharply, "
             "token accuracy rises, and the small eval slice stays close to the training signal.",
             "",
+        ]
+    )
+
+    if timing_comparison_asset_path is not None:
+        lines.extend(
+            [
+                "## Why `pilot-lite` Is The Official Local Rung",
+                "",
+                f"![Local pilot timing comparison]({timing_comparison_asset_path})",
+                "",
+                "*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the "
+                "interrupted heavier `pilot` and the canonical `pilot-lite` recipe. This figure "
+                "supports the operational decision to bless `pilot-lite` as the public local path: "
+                "it is the rung that remains reproducible on a 16 GB laptop.*",
+                "",
+                "The repo keeps the heavier `pilot` config for experimentation, but the timing "
+                "comparison shows why it is not the public quickstart path. On this hardware, the "
+                "heavier rung becomes operationally unstable long before it becomes the right "
+                "publication baseline.",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
             "## Held-Out Test Comparison",
             "",
             f"![Base vs adapter test comparison]({comparison_asset_path})",
+            "",
+            "*Figure 3. Held-out citation exact match for the untouched base model versus the "
+            "LoRA adapter, including the overall slice and task-family breakdowns. This figure "
+            "supports the central empirical claim that the dataset moves model behavior in the "
+            "right direction rather than merely packaging a training recipe.*",
             "",
             "| Model | Count | Citation exact | Citation partial | Citation overlap |",
             "| --- | ---: | ---: | ---: | ---: |",
@@ -899,15 +934,16 @@ def build_publishable_local_report(
             "## Recommended Public Reproduction Path",
             "",
             "```bash",
-            "make build-christian-virtue-sft",
-            "make train-christian-virtue-qwen2-5-1-5b-local-smoke",
-            "make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
-            "make eval-christian-virtue-qwen2-5-1-5b-local-base-test",
-            "make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test",
-            "make compare-christian-virtue-qwen2-5-1-5b-local-test",
-            "make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
-            "make verify-christian-virtue-qwen2-5-1-5b-local-publishable",
+            "make setup-christian-virtue-local",
+            "make reproduce-christian-virtue-qwen2-5-1-5b-local",
             "```",
+            "",
+            "The one-command reproduce target runs the dataset build, `smoke`, canonical "
+            "`pilot-lite` train, base test eval, adapter test eval, comparison, report rebuild, "
+            "and publication verification gate in order.",
+            "The final verification step is still exposed directly as "
+            "`make verify-christian-virtue-qwen2-5-1-5b-local-publishable` when you want to run "
+            "the public-surface QA gate on its own.",
             "",
             "## Headline Numbers",
             "",
@@ -931,6 +967,7 @@ def write_publishable_local_report(
     output_path: Path,
     training_curves_asset_path: Path,
     comparison_asset_path: Path,
+    timing_comparison_asset_path: Path | None = None,
     published_model_url: str | None = None,
     release_url: str | None = None,
 ) -> Path:
@@ -959,6 +996,9 @@ def write_publishable_local_report(
         comparison_markdown=comparison_markdown,
         training_curves_asset_path=str(training_curves_asset_path),
         comparison_asset_path=str(comparison_asset_path),
+        timing_comparison_asset_path=(
+            None if timing_comparison_asset_path is None else str(timing_comparison_asset_path)
+        ),
         published_model_url=published_model_url,
         release_url=release_url,
     )
