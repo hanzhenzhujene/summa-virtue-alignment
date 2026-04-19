@@ -2,6 +2,14 @@
 
 ## Progress
 
+- The repo's public GitHub surface is now being pushed harder toward an SFT-first story:
+  - the README now presents the repo explicitly as the canonical guide, demo, and proof-of-work
+    for Summa Moral Graph fine-tuning rather than treating SFT as only one section among many
+  - a new `Start Here` table now points readers directly to the guide, reproduction path,
+    published adapter, flagship report, and viewer depending on what they want to do
+  - the held-out improvement figure is no longer squeezed beside the training curve on the README
+    and experiment index; both figures now appear as full-width stacked visuals so the benchmark
+    story is easier to see on GitHub
 - The GitHub-facing results story is now being tightened so a reviewer can see the SFT success
   case without digging through the long report:
   - the README now foregrounds a compact held-out benchmark table instead of only listing the
@@ -650,6 +658,9 @@
 
 ## Surprises & Discoveries
 
+- Making the SFT more prominent did not mainly require new metrics. The bigger usability win was
+  narrative: readers needed a clearer first-action path and larger result figures more than they
+  needed another paragraph about why the repo matters.
 - For the GitHub repo page, “good results” were already present but not yet legible at first
   glance. The missing ingredient was not more experiments; it was a tighter visual/results summary
   that puts the training curve and base-vs-adapter improvement directly on the public landing
@@ -895,6 +906,11 @@
 
 ## Decision Log
 
+- Treat the repo root itself as the primary SFT landing page for outsiders. The README should make
+  it obvious that this repository is:
+  - the guide for how to fine-tune on Summa Moral Graph
+  - the demo showing that the pipeline runs end to end
+  - the proof surface showing held-out gains, training curves, and public artifacts
 - Treat the GitHub README and experiment index as results surfaces, not only navigation docs. They
   should show:
   - one compact held-out benchmark table
@@ -1156,6 +1172,12 @@
 
 ## Outcomes & Retrospective
 
+- The repo root now reads more clearly as an SFT deliverable instead of a mixed-surface codebase:
+  - the README now leads with the guide/demo/proof framing for Summa Moral Graph fine-tuning
+  - a `Start Here` table now reduces the number of clicks needed for a new user to choose the
+    right path
+  - the two key result figures now stack vertically on GitHub-facing pages, so both the training
+    trace and the held-out improvement read at a reviewer-friendly size
 - The GitHub repo now makes the local SFT result legible much faster:
   - the README now shows both the training curve and held-out improvement figure inside the key
     results section

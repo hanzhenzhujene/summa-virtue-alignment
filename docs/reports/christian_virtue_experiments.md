@@ -8,6 +8,9 @@ Raw `runs/` artifacts stay out of the committed repo by default. The entries her
 publishable, reader-facing checkpoints that matter for reproducing the dataset, method, and model
 behavior.
 
+If you are new to the repo, use this page as the shortest bridge between the top-level README and
+the full flagship report: it tells you which run matters, what it proves, and where to click next.
+
 ## Flagship Local Baseline
 
 ### Qwen2.5 1.5B Local Pilot-Lite
@@ -58,10 +61,19 @@ Headline result on the held-out `test` split:
 | Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
 | Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
 
-| Training trace | Benchmark improvement |
-| --- | --- |
-| ![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg) | ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg) |
-| A clean local optimization trace on Apple `mps`: loss falls sharply and token accuracy rises over the 20-step run. | The adapter materially outperforms base on the held-out benchmark, especially on virtue-concept and reviewed-relation tasks. |
+#### Training Trace
+
+![Pilot-lite training curves](assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
+
+A clean local optimization trace on Apple `mps`: loss falls sharply and token accuracy rises over
+the 20-step run.
+
+#### Held-Out Improvement
+
+![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
+
+The adapter materially outperforms base on the held-out benchmark, especially on virtue-concept
+and reviewed-relation tasks.
 
 ## Canonical Command Surface
 

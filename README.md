@@ -1,8 +1,10 @@
 # Summa Virtutum
 
-Evidence-first graph and fine-tuning infrastructure for Thomas Aquinas's moral corpus in the
-*Summa Theologiae*.
+Canonical SFT guide, demo, and evidence package for fine-tuning on Summa Moral Graph, built from
+Thomas Aquinas's moral corpus in the *Summa Theologiae*.
 
+[![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
+[![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 
 ![Python](https://img.shields.io/badge/Python-3.11%2B-2f5d8a?style=flat-square)
@@ -10,21 +12,36 @@ Evidence-first graph and fine-tuning infrastructure for Thomas Aquinas's moral c
 ![Evidence](https://img.shields.io/badge/Evidence-segment--grounded-596b4f?style=flat-square)
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 
-> Passage-grounded concept, relation, and graph navigation across Aquinas's moral corpus, plus a
-> reproducible Christian virtue SFT baseline built from reviewed doctrinal annotations.
+> This repo is the public guide, demo, and proof-of-work for fine-tuning on Summa Moral Graph.
+> It gives you the committed Christian virtue dataset, the exact training/eval commands, the
+> released adapter, and the held-out evidence that the SFT actually moves model behavior.
 >
 > Source: [GitHub](https://github.com/hanzhenzhujene/summa-moral-graph-fork) · by
 > [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/)
+
+## Start Here
+
+If your goal is to use this repo for SFT, start with this path:
+
+| I want to... | Start here |
+| --- | --- |
+| Reproduce the canonical local baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
+| Train my own model on the same dataset | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
+| Inspect the released adapter and public run artifacts | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite) · [GitHub release](https://github.com/hanzhenzhujene/summa-moral-graph-fork/releases/tag/christian-virtue-qwen2.5-1.5b-pilot-lite-20260418_193038) |
+| Read the strongest evidence that the SFT works | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md) |
+| Inspect the underlying corpus and graph | [Live viewer](https://summa-moral-graph.streamlit.app/) |
 
 ## What This Repo Is
 
 This repository has two tightly connected research products:
 
-1. an interactive evidence-first viewer for Aquinas's moral corpus
-2. a reproducible fine-tuning pipeline for an Aquinas-grounded Christian virtue assistant
+1. a reproducible fine-tuning pipeline for an Aquinas-grounded Christian virtue assistant
+2. an interactive evidence-first viewer for Aquinas's moral corpus
 
 The core research problem is the same in both surfaces: how to move from concept to relation to
-passage to model behavior without losing textual grounding.
+passage to model behavior without losing textual grounding. In public-facing terms, the SFT path is
+the main demo, and the viewer is the evidence surface that lets you inspect what the model is being
+trained from.
 
 In the Summa article form, this repo keeps only `resp` and `ad` segments as doctrinal evidence.
 Opening objections and `sed contra` material are parsed for structure, but they are not promoted
@@ -49,6 +66,9 @@ For the Christian virtue SFT release, the default builder:
 - evaluates base and adapter models on held-out prompt-only benchmarks
 
 ## Key Results
+
+This repo is meant to do more than host a dataset. It is meant to show, publicly and
+reproducibly, that Summa Moral Graph supervision can train a model in the right direction.
 
 ### Corpus Surface
 
@@ -96,10 +116,19 @@ evidence-grounded task families.
 | Passage-grounded doctrinal QA | `0.0%` | `9.0%` | `+9.0%` |
 | Goal-demo exact citations | `0 / 12` | `3 / 12` | `+3` |
 
-| Training trace | Held-out improvement |
-| --- | --- |
-| ![Pilot-lite training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg) | ![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg) |
-| Stable local optimization on `mps`: loss falls, token accuracy rises, and the run completes in about `4.7` minutes. | The adapter improves the overall held-out benchmark and shows the strongest gains on virtue-concept and reviewed-relation tasks. |
+#### Training Trace
+
+![Pilot-lite training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_pilot_lite_training_curves.svg)
+
+Stable local optimization on `mps`: loss falls, token accuracy rises, and the canonical run
+completes in about `4.7` minutes.
+
+#### Held-Out Improvement
+
+![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
+
+The adapter improves the overall held-out benchmark and shows the strongest gains on
+virtue-concept and reviewed-relation tasks.
 
 If you want the full breakdown, including tract-wise slices and qualitative successes/failures, go
 straight to the flagship report:
@@ -150,7 +179,7 @@ Expected outputs land under:
 - `docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md`
 - `artifacts/christian_virtue/qwen2_5_1_5b_instruct/pilot_lite_adapter/`
 
-## Public Artifacts
+## Public SFT Artifacts
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
@@ -166,6 +195,29 @@ Expected outputs land under:
   [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
 - Repository map:
   [docs/repository_map.md](./docs/repository_map.md)
+
+## Fine-Tune Your Model With Summa Moral Graph
+
+This repo is the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
+
+The intended outcome is not a generic theology chatbot. It is a model that can:
+
+- explain virtue, vice, act, object, part, and opposition in Aquinas's categories
+- answer within reviewed doctrinal evidence
+- preserve stable passage-id traceability
+- give other researchers a concrete, inspectable adaptation recipe
+
+The committed public dataset exports live directly in the repo:
+
+- [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1)
+- [data/processed/sft/exports/christian_virtue_v1_ood](./data/processed/sft/exports/christian_virtue_v1_ood)
+
+Recommended reading order for a new user:
+
+1. [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
+2. [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
+3. [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
+4. [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-moral-graph-qwen2.5-1.5b-pilot-lite)
 
 ## Repository Structure
 
@@ -201,29 +253,6 @@ tests/
 ```
 
 For a fuller guided tour, see [docs/repository_map.md](./docs/repository_map.md).
-
-## Fine-Tune Your Model With Summa Moral Graph
-
-This repo is the public fine-tuning entrypoint for the Christian virtue SFT pipeline.
-
-The intended outcome is not a generic theology chatbot. It is a model that can:
-
-- explain virtue, vice, act, object, part, and opposition in Aquinas's categories
-- answer within reviewed doctrinal evidence
-- preserve stable passage-id traceability
-- give other researchers a concrete, inspectable adaptation recipe
-
-The committed public dataset exports live directly in the repo:
-
-- [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1)
-- [data/processed/sft/exports/christian_virtue_v1_ood](./data/processed/sft/exports/christian_virtue_v1_ood)
-
-Start here:
-
-- public guide: [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md)
-- dataset card: [docs/christian_virtue_dataset_card.md](./docs/christian_virtue_dataset_card.md)
-- flagship report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md)
 
 ## Open The Viewer
 

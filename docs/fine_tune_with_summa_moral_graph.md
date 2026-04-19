@@ -2,8 +2,8 @@
 
 ## What This Repo Gives You
 
-This repo is a ready-to-use fine-tuning entrypoint for an evidence-first Christian virtue dataset
-grounded in Thomas Aquinas's moral corpus.
+This repo is the canonical public guide, demo, and proof-of-work for fine-tuning on an
+evidence-first Christian virtue dataset grounded in Thomas Aquinas's moral corpus.
 
 The purpose of this SFT is not only to make a model emit aligned citations. The purpose is to help
 the model internalize Aquinas's virtue structure well enough to answer faithfully in Aquinas's
