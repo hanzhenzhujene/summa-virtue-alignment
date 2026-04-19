@@ -2,6 +2,17 @@
 
 ## Progress
 
+- The external adapter page is now being treated as a first-class research surface instead of a
+  thin post-hoc upload:
+  - the Hugging Face model card template now emits a stronger abstract, snapshot table, benchmark
+    summary, executive readout, usage snippet, reproducibility block, and explicit limitations
+  - the canonical package now bundles the base-vs-adapter benchmark SVG directly into the adapter
+    artifact so the public model page can show an actual figure rather than only headline text
+  - the published Hugging Face README now includes the adapter URL, matching GitHub release,
+    dataset/report links, and the final publication-verify command instead of stopping one step
+    short of the full reproducibility contract
+  - package tests and publication verification now cover those stronger package-surface contracts,
+    so future model-card drift will fail locally before the public page regresses
 - The final public-release polish pass is now closing portability and presentation gaps instead of
   widening scope:
   - committed docs, dataset manifests, review queues, and packaged adapter metadata are being
@@ -631,6 +642,10 @@
 
 ## Surprises & Discoveries
 
+- The weakest remaining public surface was not another missing experiment or repo doc. It was the
+  live Hugging Face model page itself: even after the local package improved, the published README
+  still undersold the project until the publication template, package tests, and actual Hub upload
+  were all tightened together.
 - The last portability leak was not in the README or dataset docs. It lived inside copied package
   metadata, where absolute run paths and venv details looked harmless locally but would have made
   the public adapter bundle feel machine-bound and less reproducible.
@@ -868,6 +883,14 @@
 
 ## Decision Log
 
+- Treat the Hugging Face model page as part of the review-grade publication surface, not as a
+  secondary mirror. The generated model card should include:
+  - a strong abstract and snapshot table
+  - direct dataset/report/release links
+  - an embedded benchmark figure when available
+  - a concrete usage snippet
+  - the final publication-verify command
+  - explicit limits so the page does not over-claim what the adapter proves
 - Treat machine-specific filesystem paths as a release-quality failure, not a cosmetic annoyance.
   Public docs, committed manifests, review queues, and packaged adapter metadata should all prefer
   repo-relative paths where possible, and the publication gate should verify that contract.
@@ -1115,6 +1138,12 @@
 
 ## Outcomes & Retrospective
 
+- The live external adapter page now reads much closer to a reviewer-grade research artifact:
+  - the Hugging Face model card now exposes the run snapshot, benchmark figure, usage code,
+    direct GitHub/dataset/report links, and the final verify command on the page itself
+  - model-card frontmatter now carries explicit license metadata
+  - package tests now check for the figure asset, richer dataset summary payload, Hugging Face
+    link, and stronger README guidance so the page cannot quietly degrade back to a thin stub
 - The repo's public release now reads as more portable and deliberate:
   - public docs, processed manifests, review queues, and packaged adapter metadata no longer leak
     local absolute paths

@@ -23,6 +23,12 @@ ADAPTER_PACKAGE_FILES = [
     "vocab.json",
 ]
 
+PACKAGE_REPORT_ASSETS = {
+    "docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg": (
+        "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
+    ),
+}
+
 TASK_DISPLAY_NAMES = {
     "citation_grounded_moral_answer": "Citation-grounded moral answer",
     "passage_grounded_doctrinal_qa": "Passage-grounded doctrinal QA",
@@ -42,6 +48,17 @@ def _copy_if_present(source_dir: Path, destination_dir: Path, filename: str) -> 
     if not source_path.exists():
         return
     shutil.copy2(source_path, destination_dir / filename)
+
+
+def _copy_repo_asset_if_present(
+    source_relative_path: str, destination_dir: Path, destination_relative_path: str
+) -> None:
+    source_path = REPO_ROOT / source_relative_path
+    if not source_path.exists():
+        return
+    destination_path = destination_dir / destination_relative_path
+    destination_path.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source_path, destination_path)
 
 
 def _repo_display_path(path: Path) -> str:
@@ -192,6 +209,25 @@ def _github_blob_url(github_repo_url: str, git_commit: str, repo_path: str) -> s
     return f"{github_repo_url}/blob/{git_commit}/{repo_path}"
 
 
+def _load_dataset_summary(dataset_manifest_path: Path) -> dict[str, Any] | None:
+    if not dataset_manifest_path.exists():
+        return None
+    manifest = _read_json(dataset_manifest_path)
+    split_sizes = cast(dict[str, Any], manifest.get("split_sizes", {}))
+    total_examples = sum(int(value) for value in split_sizes.values() if value is not None)
+    return {
+        "dataset_name": manifest.get("dataset_name"),
+        "source_annotations_used": manifest.get("source_annotations_used"),
+        "grouping_key": manifest.get("grouping_key"),
+        "split_sizes": split_sizes,
+        "task_template_counts": manifest.get("task_template_counts", {}),
+        "annotation_counts_by_support_type": manifest.get(
+            "annotation_counts_by_support_type", {}
+        ),
+        "total_examples": total_examples,
+    }
+
+
 def release_target_from_train_run(train_run_dir: Path) -> str:
     train_metadata = _read_json(train_run_dir / "train_metadata.json")
     git_commit = train_metadata.get("git_commit")
@@ -213,10 +249,14 @@ def build_adapter_package_manifest(
     train_metadata = _read_json(train_run_dir / "train_metadata.json")
     base_metrics = _read_json(base_eval_run_dir / "metrics.json")
     adapter_metrics = _read_json(adapter_eval_run_dir / "metrics.json")
+    dataset_manifest_path = (
+        REPO_ROOT / "data/processed/sft/exports/christian_virtue_v1/manifest.json"
+    )
     return {
         "base_model": train_metadata["model_name_or_path"],
         "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
         "dataset_manifest_path": "data/processed/sft/exports/christian_virtue_v1/manifest.json",
+        "dataset_summary": _load_dataset_summary(dataset_manifest_path),
         "git_commit": train_metadata["git_commit"],
         "github_repo_url": github_repo_url,
         "github_release_url": f"{github_repo_url}/releases/tag/{release_tag}",
@@ -224,6 +264,11 @@ def build_adapter_package_manifest(
         "hf_repo_url": f"https://huggingface.co/{hf_repo_id}",
         "local_train_run_id": train_metadata["run_id"],
         "published_report_path": _repo_display_path(report_path),
+        "published_report_assets": {
+            destination_path: _repo_display_path(REPO_ROOT / source_path)
+            for source_path, destination_path in PACKAGE_REPORT_ASSETS.items()
+            if (REPO_ROOT / source_path).exists()
+        },
         "train_run_dir": _repo_display_path(train_run_dir),
         "base_eval_run_dir": _repo_display_path(base_eval_run_dir),
         "adapter_eval_run_dir": _repo_display_path(adapter_eval_run_dir),
@@ -245,16 +290,38 @@ def build_model_card_text(
     base_metrics = package_manifest["base_metrics"]
     adapter_metrics = package_manifest["adapter_metrics"]
     summary = cast(dict[str, Any], package_manifest.get("summary", {}))
+    dataset_summary = cast(dict[str, Any] | None, package_manifest.get("dataset_summary"))
     dataset_card_display = _repo_display_path(dataset_card_path)
     report_display = _repo_display_path(report_path)
     github_repo_url = str(package_manifest["github_repo_url"])
     git_commit = str(package_manifest["git_commit"])
     report_url = _github_blob_url(github_repo_url, git_commit, report_display)
     dataset_card_url = _github_blob_url(github_repo_url, git_commit, dataset_card_display)
+    repo_url = str(package_manifest["github_repo_url"])
+    release_url = str(package_manifest["github_release_url"])
+    hf_url = str(package_manifest["hf_repo_url"])
+    benchmark_figure = "./assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
+    split_sizes = cast(dict[str, Any], (dataset_summary or {}).get("split_sizes", {}))
+    task_template_counts = cast(
+        dict[str, Any], (dataset_summary or {}).get("task_template_counts", {})
+    )
+    source_annotations_used = (dataset_summary or {}).get("source_annotations_used")
+    total_examples = (dataset_summary or {}).get("total_examples")
+    grouping_key = (dataset_summary or {}).get("grouping_key")
+    source_annotations_text = (
+        source_annotations_used if source_annotations_used is not None else "n/a"
+    )
+    total_examples_text = total_examples if total_examples is not None else "n/a"
+    grouping_key_text = grouping_key if grouping_key is not None else "question_id"
+    base_exact = float(base_metrics["citation_exact_match"])
+    adapter_exact = float(adapter_metrics["citation_exact_match"])
+    exact_delta = adapter_exact - base_exact
 
     lines = [
         "---",
         f"base_model: {package_manifest['base_model']}",
+        "base_model_relation: adapter",
+        "license: mit",
         "library_name: peft",
         "pipeline_tag: text-generation",
         "language:",
@@ -265,44 +332,63 @@ def build_model_card_text(
         "- christian-virtue",
         "- aquinas",
         "- summa-moral-graph",
+        "- evidence-grounded",
+        "- citation-aware",
         "---",
         "",
         "# Summa Moral Graph Christian Virtue LoRA Adapter",
         "",
-        "This adapter is the canonical local `pilot-lite` demonstration checkpoint for the "
-        "Christian virtue SFT pipeline in `summa-moral-graph`.",
+        "This is the canonical reproducible LoRA adapter for the `summa-moral-graph` Christian "
+        "virtue SFT baseline. It fine-tunes `Qwen/Qwen2.5-1.5B-Instruct` toward "
+        "Aquinas-grounded Christian virtue reasoning while preserving explicit passage-level "
+        "traceability to reviewed evidence.",
         "",
-        "## Purpose",
+        "## Abstract",
         "",
-        "This model is meant to move a general instruction model toward Aquinas-grounded "
-        "Christian virtue reasoning. Citation traceability is included as a guardrail, not as "
-        "the whole purpose of the fine-tune.",
+        "The purpose of this model is not to produce generic theological chat or to memorize "
+        "citation strings. The goal is to show, in a compact and reproducible public baseline, "
+        "that reviewed Summa Moral Graph supervision can measurably move a general model toward "
+        "Aquinas's virtue categories, evidence-bounded answers, and citation-aware outputs.",
         "",
-        "## Base Model",
+        "## Snapshot",
         "",
-        f"- `{package_manifest['base_model']}`",
-        "- LoRA adapter trained on Apple Silicon `mps`",
-        "- `float16`, no 4-bit quantization",
+        "| Item | Value |",
+        "| --- | --- |",
+        f"| Base model | `{package_manifest['base_model']}` |",
+        "| Training mode | LoRA on Apple Silicon `mps`, `float16`, no quantization |",
+        f"| Reviewed source annotations | `{source_annotations_text}` |",
+        f"| Total SFT examples | `{total_examples_text}` |",
+        (
+            f"| Train / val / test | `{split_sizes.get('train', 'n/a')} / "
+            f"{split_sizes.get('val', 'n/a')} / {split_sizes.get('test', 'n/a')}` |"
+        ),
+        f"| Held-out citation exact | `{base_exact:.3f}` -> `{adapter_exact:.3f}` |",
+        f"| Canonical run id | `{package_manifest['local_train_run_id']}` |",
+        f"| Git commit | `{package_manifest['git_commit']}` |",
         "",
-        "## Dataset",
+        "## Why This Adapter Exists",
         "",
-        "- Training export: `data/processed/sft/exports/christian_virtue_v1`",
-        "- Dataset manifest: `data/processed/sft/exports/christian_virtue_v1/manifest.json`",
-        f"- Dataset card: [GitHub link]({dataset_card_url})",
+        "- Train an Aquinas-grounded Christian virtue assistant rather than a generic "
+        "theology bot.",
+        "- Keep the supervision evidence-first: reviewed doctrinal annotations only, "
+        "joined back to stable passage ids.",
+        "- Demonstrate a small but honest public baseline that others can inspect, "
+        "reproduce, and adapt to their own models.",
         "",
-        "## Canonical Run",
+        "## Benchmark Summary",
         "",
-        f"- Train run id: `{package_manifest['local_train_run_id']}`",
-        f"- Git commit: `{package_manifest['git_commit']}`",
-        f"- Hugging Face model page: {package_manifest['hf_repo_url']}",
-        f"- Matching GitHub release: {package_manifest['github_release_url']}",
-        f"- Published report: [GitHub link]({report_url})",
+        "| Slice | Base | Adapter | Delta |",
+        "| --- | ---: | ---: | ---: |",
+        (
+            f"| Held-out citation exact | `{_format_percent(base_exact)}` | "
+            f"`{_format_percent(adapter_exact)}` | "
+            f"`{_format_percent(exact_delta)}` |"
+        ),
         "",
         "## Executive Readout",
         "",
-        f"- Held-out test citation exact moved from "
-        f"`{_format_percent(float(base_metrics['citation_exact_match']))}` to "
-        f"`{_format_percent(float(adapter_metrics['citation_exact_match']))}`.",
+        f"- Held-out test citation exact moved from `{_format_percent(base_exact)}` to "
+        f"`{_format_percent(adapter_exact)}`.",
     ]
 
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
@@ -338,35 +424,110 @@ def build_model_card_text(
             "- Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "published report.",
             "",
-            "## Headline Held-Out Test Result",
+            f"![Held-out benchmark comparison]({benchmark_figure})",
             "",
-            f"- Base citation exact match: `{base_metrics['citation_exact_match']:.3f}`",
-            f"- Adapter citation exact match: `{adapter_metrics['citation_exact_match']:.3f}`",
+            "*Figure. Held-out base-vs-adapter comparison from the canonical local "
+            "`pilot-lite` run. "
+            "The key claim is modest but real: this dataset moves model behavior in the right "
+            "direction, especially on tract-grounded explanation tasks, even though the hardest "
+            "open moral-answer slice remains unsolved.*",
             "",
-            "## Intended Use",
+            "## Dataset And Evidence Policy",
             "",
-            "- Aquinas-grounded Christian virtue QA and doctrinal explanation",
-            "- Demonstrating how to fine-tune on the Summa Moral Graph dataset",
-            "- Reproducible adapter publication tied to a documented run",
+            "- Training export: `data/processed/sft/exports/christian_virtue_v1`",
+            "- Dataset manifest: `data/processed/sft/exports/christian_virtue_v1/manifest.json`",
+            f"- Dataset card: [GitHub link]({dataset_card_url})",
+            f"- Full report: [GitHub link]({report_url})",
+            f"- GitHub release: {release_url}",
+            f"- Hugging Face adapter: {hf_url}",
+            "- Supervision source: approved reviewed doctrinal annotations only",
+            "- Excluded from default training truth: structural-editorial review, "
+            "candidate material, and processed edge exports",
+            f"- Leakage-safe grouping key: `{grouping_key_text}`",
             "",
-            "## Reproduce The Canonical Local Baseline",
+            "Task families in this export:",
+            "",
+            (
+                "- Passage-grounded doctrinal QA: "
+                f"`{task_template_counts.get('passage_grounded_doctrinal_qa', 'n/a')}`"
+            ),
+            (
+                "- Reviewed relation explanation: "
+                f"`{task_template_counts.get('reviewed_relation_explanation', 'n/a')}`"
+            ),
+            (
+                "- Citation-grounded moral answer: "
+                f"`{task_template_counts.get('citation_grounded_moral_answer', 'n/a')}`"
+            ),
+            (
+                "- Virtue concept explanation: "
+                f"`{task_template_counts.get('virtue_concept_explanation', 'n/a')}`"
+            ),
+            "",
+            "## How To Use This Adapter",
+            "",
+            "```python",
+            "import torch",
+            "from peft import PeftModel",
+            "from transformers import AutoModelForCausalLM, AutoTokenizer",
+            "",
+            f"base_model_id = \"{package_manifest['base_model']}\"",
+            f"adapter_id = \"{package_manifest['hf_repo_id']}\"",
+            "",
+            "tokenizer = AutoTokenizer.from_pretrained(base_model_id)",
+            "base_model = AutoModelForCausalLM.from_pretrained(",
+            "    base_model_id,",
+            "    torch_dtype=torch.float16,",
+            "    device_map=\"auto\",",
+            ")",
+            "model = PeftModel.from_pretrained(base_model, adapter_id)",
+            "```",
+            "",
+            "Recommended use pattern:",
+            "",
+            "- Ask for Aquinas-grounded explanations of virtues, vices, acts, or relations.",
+            "- Ask the model to stay within cited support and to preserve stable passage "
+            "ids when possible.",
+            "- Keep the tokenizer/chat template aligned with the listed base model so the "
+            "canonical prompt format is preserved.",
+            "- Use exactly the listed base model; this adapter is not meant to be merged "
+            "into a different backbone without retesting.",
+            "",
+            "## Reproduce This Exact Artifact",
+            "",
+            f"- Hugging Face adapter: {hf_url}",
+            f"- GitHub repo: {repo_url}",
+            f"- Matching GitHub release: {release_url}",
+            f"- Curated experiment report: [GitHub link]({report_url})",
+            f"- Dataset card: [GitHub link]({dataset_card_url})",
+            "",
+            "The shortest canonical reproduction path is:",
             "",
             "```bash",
-            "make build-christian-virtue-sft",
-            "make train-christian-virtue-qwen2-5-1-5b-local-smoke",
-            "make train-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
-            "make eval-christian-virtue-qwen2-5-1-5b-local-base-test",
-            "make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test",
-            "make compare-christian-virtue-qwen2-5-1-5b-local-test",
-            "make report-christian-virtue-qwen2-5-1-5b-local-pilot-lite",
+            "make setup-christian-virtue-local",
+            "make reproduce-christian-virtue-qwen2-5-1-5b-local",
             "make verify-christian-virtue-qwen2-5-1-5b-local-publishable",
             "```",
             "",
-            "## Limits",
+            "The repo also keeps the stepwise train/eval/report commands and the full "
+            "report if you need a more granular audit trail.",
             "",
-            "- This is a local pilot baseline, not the final best-quality checkpoint",
-            "- The hardest citation-grounded moral-answer cases remain unsolved",
-            "- The adapter should be used with the listed base model only",
+            "## What This Demonstrates",
+            "",
+            "- The dataset can move a general instruction model toward better "
+            "Aquinas-grounded virtue reasoning.",
+            "- A fully local Apple-Silicon run can still produce a meaningful, "
+            "inspectable held-out improvement.",
+            "- The repo is usable as a public fine-tuning template for other "
+            "researchers who want to swap in their own base model.",
+            "",
+            "## What This Does Not Demonstrate",
+            "",
+            "- This is not a claim of production-ready theological reliability.",
+            "- Citation exact match is not the whole goal, and the hardest open moral-answer "
+            "slice remains weak.",
+            "- This is not the strongest checkpoint the project could ever produce; it is "
+            "the canonical reproducible public baseline.",
             "",
         ]
     )
@@ -492,6 +653,9 @@ def write_adapter_package(
 
     for filename in ADAPTER_PACKAGE_FILES:
         _copy_if_present(train_run_dir, package_dir, filename)
+
+    for source_path, destination_path in PACKAGE_REPORT_ASSETS.items():
+        _copy_repo_asset_if_present(source_path, package_dir, destination_path)
 
     for filename in [
         "config_snapshot.yaml",
