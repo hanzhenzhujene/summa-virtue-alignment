@@ -92,6 +92,19 @@ def build_model_card_text(
     dataset_card_display = _repo_display_path(dataset_card_path)
     report_display = _repo_display_path(report_path)
     return (
+        "---\n"
+        f"base_model: {package_manifest['base_model']}\n"
+        "library_name: peft\n"
+        "pipeline_tag: text-generation\n"
+        "language:\n"
+        "- en\n"
+        "tags:\n"
+        "- lora\n"
+        "- text-generation\n"
+        "- christian-virtue\n"
+        "- aquinas\n"
+        "- summa-moral-graph\n"
+        "---\n\n"
         "# Summa Moral Graph Christian Virtue LoRA Adapter\n\n"
         "This adapter is the canonical local `pilot-lite` demonstration checkpoint for the "
         "Christian virtue SFT pipeline in `summa-moral-graph`.\n\n"

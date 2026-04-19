@@ -67,6 +67,8 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
         == "docs/reports/christian_virtue_qwen2_5_1_5b_pilot_lite_report.md"
     )
     readme = (package_dir / "README.md").read_text(encoding="utf-8")
+    assert readme.startswith("---\n")
+    assert "pipeline_tag: text-generation" in readme
     assert "docs/christian_virtue_dataset_card.md" in readme
     assert str(tmp_path) not in readme
 
