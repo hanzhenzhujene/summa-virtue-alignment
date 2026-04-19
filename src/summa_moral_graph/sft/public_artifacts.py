@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Any, cast
 
 from ..utils.paths import REPO_ROOT
+from .doc_links import extract_markdown_targets, validate_internal_markdown_links
 
 DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
     REPO_ROOT
@@ -128,6 +129,7 @@ def verify_publication_bundle(
         )
 
     checked_docs: list[str] = []
+    checked_doc_link_counts: dict[str, int] = {}
     for relative_doc_path, expected_substrings in build_publication_doc_expectations(
         package_manifest
     ).items():
@@ -140,7 +142,17 @@ def verify_publication_bundle(
                 raise RuntimeError(
                     f"Expected substring {substring!r} in public surface {document_path}"
                 )
+        missing_targets = validate_internal_markdown_links(document_path)
+        if missing_targets:
+            missing_display = ", ".join(sorted(missing_targets))
+            raise RuntimeError(
+                f"Broken internal markdown links in public surface {document_path}: "
+                f"{missing_display}"
+            )
         checked_docs.append(str(relative_doc_path))
+        checked_doc_link_counts[str(relative_doc_path)] = len(
+            extract_markdown_targets(document_text)
+        )
 
     return {
         "package_manifest_path": str(package_manifest_path.relative_to(repo_root)),
@@ -161,4 +173,5 @@ def verify_publication_bundle(
         "adapter_citation_exact_match": adapter_exact,
         "citation_exact_gain": adapter_exact - base_exact,
         "checked_docs": checked_docs,
+        "checked_doc_link_counts": checked_doc_link_counts,
     }

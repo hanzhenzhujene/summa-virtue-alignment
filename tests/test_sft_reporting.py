@@ -257,3 +257,4 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "Base citation exact match" in report_text
     assert "https://huggingface.co/example/model" in report_text
     assert "https://github.com/example/release" in report_text
+    assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in report_text

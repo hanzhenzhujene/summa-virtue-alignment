@@ -8,6 +8,7 @@ from .config import (
     load_inference_config,
     load_training_config,
 )
+from .doc_links import extract_markdown_targets, resolve_internal_markdown_target
 from .evaluation import evaluate_predictions, write_markdown_report, write_metrics_json
 from .inference import describe_inference_plan, load_benchmark_inputs, run_generation_inference
 from .preflight import (
@@ -83,6 +84,7 @@ __all__ = [
     "describe_training_plan",
     "default_evaluation_paths",
     "evaluate_predictions",
+    "extract_markdown_targets",
     "generate_run_id",
     "iso_timestamp",
     "load_benchmark_inputs",
@@ -96,6 +98,7 @@ __all__ = [
     "python_version_string",
     "publish_adapter_package_to_hf",
     "release_target_from_train_run",
+    "resolve_internal_markdown_target",
     "resolve_model_runtime",
     "resolve_training_runtime",
     "run_artifacts_for_dir",

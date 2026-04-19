@@ -3,6 +3,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from summa_moral_graph.sft.doc_links import (
+    extract_markdown_targets,
+    resolve_internal_markdown_target,
+)
 from summa_moral_graph.sft.public_artifacts import (
     build_publication_doc_expectations,
     verify_publication_bundle,
@@ -92,6 +96,43 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
     assert abs(summary["citation_exact_gain"] - 0.15) < 1e-9
 
 
+def test_markdown_link_resolution_handles_internal_and_external_targets(tmp_path) -> None:
+    repo_root = tmp_path / "repo"
+    document_path = repo_root / "docs" / "guide.md"
+    linked_doc = repo_root / "docs" / "other.md"
+    linked_image = repo_root / "docs" / "assets" / "chart.svg"
+
+    linked_doc.parent.mkdir(parents=True, exist_ok=True)
+    linked_image.parent.mkdir(parents=True, exist_ok=True)
+    linked_doc.write_text("# Other\n", encoding="utf-8")
+    linked_image.write_text("<svg />\n", encoding="utf-8")
+    document_path.write_text(
+        "\n".join(
+            [
+                "[Doc](./other.md)",
+                "![Chart](./assets/chart.svg)",
+                "[External](https://example.com)",
+                "[Section](#local-anchor)",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    targets = extract_markdown_targets(document_path.read_text(encoding="utf-8"))
+    assert "./other.md" in targets
+    assert "./assets/chart.svg" in targets
+    assert "https://example.com" in targets
+    assert "#local-anchor" in targets
+
+    assert resolve_internal_markdown_target(document_path, "./other.md") == linked_doc.resolve()
+    assert (
+        resolve_internal_markdown_target(document_path, "./assets/chart.svg")
+        == linked_image.resolve()
+    )
+    assert resolve_internal_markdown_target(document_path, "https://example.com") is None
+    assert resolve_internal_markdown_target(document_path, "#local-anchor") is None
+
+
 def test_public_fine_tune_docs_and_exports_exist() -> None:
     repo_root = Path(__file__).resolve().parents[1]
 
@@ -140,3 +181,4 @@ def test_repo_publication_bundle_is_coherent() -> None:
     )
 
     assert summary["adapter_citation_exact_match"] > summary["base_citation_exact_match"]
+    assert "README.md" in summary["checked_doc_link_counts"]

@@ -50,6 +50,11 @@
     - the generated Hugging Face model card and GitHub release notes are now being updated so the
       external publication surfaces show that same final verification command rather than stopping
       one step early
+  - the next polish target is now document integrity itself:
+    - the flagship report is being updated so its recommended reproduction path also ends at the
+      verify gate
+    - public Markdown surfaces are gaining explicit internal-link validation so the repo can fail
+      loudly if a polished public doc points to a missing local artifact
 - The Christian virtue fine-tuning repo is now being reshaped around a local Apple-Silicon pilot in
   addition to the existing remote CUDA loop:
   - `Qwen/Qwen2.5-1.5B-Instruct` is being added as the first Mac MPS LoRA training path
@@ -601,6 +606,9 @@
 - Public and generated surfaces can drift independently. Even after the repo docs were corrected,
   the generated model card and release notes still reflected the older command surface until they
   were updated from the publication template itself.
+- Public-doc polish can fail in a quieter way than stale metrics: a README or flagship report can
+  look coherent while quietly pointing at a moved or missing local artifact. That kind of breakage
+  is cheap to prevent once link validation is part of the publishable verification path.
 - GitHub repo detection is trickier than it looks in a forked research workflow. `gh repo view`
   can resolve to the upstream repository in a way that is fine for browsing but wrong for release
   creation, so the publication path now trusts `git remote get-url origin` first and uses `gh` only
@@ -826,6 +834,9 @@
     the same Hugging Face adapter, GitHub release, run id, and headline metric
 - Keep the generated Hugging Face model card and GitHub release notes aligned with that same
   command surface, so the external publication story also ends with the explicit verification step.
+- Treat public-doc internal links as part of the release surface. The canonical publication check
+  should fail if README, guide docs, experiment index, or the flagship report link to missing local
+  files or assets.
 - Keep the current repo as the single canonical public fine-tuning repo. Do not split out a second
   companion training repo for the Christian virtue dataset.
 - Commit the full `christian_virtue_v1` and `christian_virtue_v1_ood` dataset exports into the repo
@@ -1040,6 +1051,10 @@
   - the publication templates now also include that same final verify command, so regenerated
     adapter packages, Hugging Face model cards, and GitHub release notes no longer lag behind the
     repo docs
+  - the public-doc surface is now tighter as well:
+    - the flagship report's reproduction path includes the verify gate
+    - publication verification now also checks internal Markdown link integrity across the public
+      README/docs/report bundle
   - the canonical local loop has now been executed end to end on the user's Mac:
     - `pilot-lite` training completed successfully
     - base and adapter held-out test runs both completed
