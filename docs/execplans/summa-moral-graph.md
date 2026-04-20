@@ -2,6 +2,12 @@
 
 ## Progress
 
+- The release workflow is now updated to current GitHub-hosted action majors after the successful
+  clean-checkout recovery:
+  - `.github/workflows/public-release-check.yml` now uses `actions/checkout@v6` and
+    `actions/setup-python@v6`
+  - repo-surface tests now lock those versions in so the workflow does not silently drift back to
+    a Node-20-based action pair that GitHub has already marked for deprecation
 - The clean-checkout publication surface now includes a committed minimal adapter package instead
   of only local ignored files:
   - `.gitignore` now selectively admits the canonical package `README.md`, `package_manifest.json`,
@@ -803,6 +809,11 @@
 
 ## Surprises & Discoveries
 
+- Passing CI can still hide the next break if the workflow itself is on a deprecating runtime:
+  - once the public-release check finally went green, GitHub immediately surfaced the next real
+    issue as a Node 20 deprecation annotation on core marketplace actions
+  - that made it clear the right endpoint is not merely “green today” but “green without an
+    already-scheduled platform warning”
 - Internal-link validation turned out to be strong enough to catch a subtle Git hygiene bug:
   - the repo already had the correct package files on one machine
   - because `artifacts/` was globally ignored, those files silently disappeared on GitHub Actions
@@ -1112,6 +1123,14 @@
 
 ## Decision Log
 
+- Upgrade the release workflow to the current stable `actions/checkout@v6` and
+  `actions/setup-python@v6` pair once the clean-checkout gate is green.
+  Reason:
+  - GitHub Actions now warns that the older Node 20 based action majors are on a deprecation path
+  - the public release workflow should be forward-stable, not merely currently passing
+  Consequence:
+  - the workflow no longer carries an avoidable platform-warning annotation
+  - repo-surface tests now treat the current action majors as part of the release-quality contract
 - Commit a minimal repo-visible adapter package surface instead of requiring CI to infer it from
   ignored local files.
   Reason:
@@ -1481,6 +1500,11 @@
 
 ## Outcomes & Retrospective
 
+- The public-release gate is now green without immediate platform-deprecation debt:
+  - the clean-checkout publication fix landed first
+  - the workflow was then moved onto the current GitHub action majors before the warning could turn
+    into the next avoidable CI failure
+  - this leaves the release gate both passing and operationally current
 - The repo's public package claim is now materially true on a fresh checkout:
   - GitHub-visible docs point to a committed canonical package surface rather than a local-only
     ignored directory

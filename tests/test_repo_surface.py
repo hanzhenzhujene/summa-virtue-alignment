@@ -68,6 +68,8 @@ def test_public_release_check_is_documented() -> None:
     assert "make public-release-check" in guide_text
     assert "public-release-check:" in makefile_text
     assert "make public-release-check" in workflow_text
+    assert "actions/checkout@v6" in workflow_text
+    assert "actions/setup-python@v6" in workflow_text
 
 
 def test_makefile_pins_canonical_local_publication_identity() -> None:
