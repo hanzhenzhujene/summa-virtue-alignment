@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The clean-checkout publication surface now includes a committed minimal adapter package instead
+  of only local ignored files:
+  - `.gitignore` now selectively admits the canonical package `README.md`, `package_manifest.json`,
+    `release_notes.md`, and the held-out comparison SVG under
+    `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
+  - README and the core SFT docs now link to that package `README.md` directly instead of assuming
+    a local directory exists on every checkout
+  - local `pytest` publication-surface checks and `make public-release-check` are green again after
+    the package-surface fix, so the next GitHub Actions run should be testing the real release
+    contract rather than a local-only illusion
 - The public release gate now supports both local rebuild mode and clean-checkout verification mode:
   - when canonical local run artifacts are present, `make public-release-check` still rebuilds the
     flagship report and local adapter package before verifying them
@@ -793,6 +803,11 @@
 
 ## Surprises & Discoveries
 
+- Internal-link validation turned out to be strong enough to catch a subtle Git hygiene bug:
+  - the repo already had the correct package files on one machine
+  - because `artifacts/` was globally ignored, those files silently disappeared on GitHub Actions
+  - the right fix was not to weaken validation but to version the smallest honest public package
+    surface that the docs already claimed existed
 - The real boundary in this repo is not “local vs CI” but “run artifacts vs public artifacts”:
   - `runs/` is correctly uncommitted
   - the public release gate therefore cannot require raw local run directories on GitHub Actions
@@ -1097,6 +1112,18 @@
 
 ## Decision Log
 
+- Commit a minimal repo-visible adapter package surface instead of requiring CI to infer it from
+  ignored local files.
+  Reason:
+  - the public docs already point readers to a canonical local adapter package
+  - clean-checkout CI can only verify what the repo truly versions
+  - committing the whole local package would add unnecessary binary/tokenizer weight to the repo
+  Consequence:
+  - the canonical package now has a stable repo-visible `README.md`, `package_manifest.json`,
+    `release_notes.md`, and held-out comparison SVG
+  - heavy adapter binaries remain local/Hugging Face concerns rather than bloating the Git repo
+  - public docs now link to the package README file directly, which is both clearer for readers and
+    safer for link validation
 - Make the publication verifier two-mode instead of all-or-nothing.
   Reason:
   - local maintainers still need a strong rebuild-and-verify path when canonical run artifacts are
@@ -1454,6 +1481,13 @@
 
 ## Outcomes & Retrospective
 
+- The repo's public package claim is now materially true on a fresh checkout:
+  - GitHub-visible docs point to a committed canonical package surface rather than a local-only
+    ignored directory
+  - the adapter package metadata now participates in release QA the same way the README, guides,
+    dataset card, and flagship report already do
+  - this closes the last major gap between what the repo says is public and what CI can actually
+    verify
 - The public-release check is now aligned with the repo's actual publication model:
   - local canonical runs remain the source of truth for rebuilds
   - committed report/package/docs remain the source of truth for clean-checkout CI verification

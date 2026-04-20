@@ -247,8 +247,8 @@ Why this is meaningful:
 Repo note:
 
 - the flagship report reflects the corrected rerun tied to commit `662c9d3`
-- the local package at
-  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
+- the local package README at
+  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
   now reflects the corrected rerun
 - the Hugging Face repo and GitHub release remain the public distribution endpoints, but the GitHub
   release keeps its original tag slug `20260418_193038` for continuity
@@ -328,7 +328,7 @@ For the full stepwise path, model swapping guide, and remote CUDA path, see
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Local adapter package:
-  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
+  [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
 - Curated experiment report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - Dataset card:

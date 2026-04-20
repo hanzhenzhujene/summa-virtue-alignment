@@ -20,4 +20,16 @@ data/processed/sft/exports/*
 data/processed/sft/eval/
 outputs/
 runs/
-artifacts/
+artifacts/*
+!artifacts/christian_virtue/
+artifacts/christian_virtue/*
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/
+artifacts/christian_virtue/qwen2_5_1_5b_instruct/*
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/
+artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/*
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/package_manifest.json
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/release_notes.md
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/assets/
+artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/assets/*
+!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg

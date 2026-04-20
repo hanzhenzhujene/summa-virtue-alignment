@@ -391,6 +391,10 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "make setup-christian-virtue-local" in readme_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
     assert "requirements/local-mps-py312.lock.txt" in readme_text
+    assert (
+        "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md"
+        in readme_text
+    )
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
     assert "christian_virtue_qwen2_5_1_5b_local_baseline_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
@@ -404,6 +408,22 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "reproduce-christian-virtue-qwen2-5-1-5b-local:" in makefile_text
     assert "!data/processed/sft/exports/christian_virtue_v1/**" in gitignore_text
     assert "!data/processed/sft/exports/christian_virtue_v1_ood/**" in gitignore_text
+    assert (
+        "!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md"
+        in gitignore_text
+    )
+    assert (
+        "!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/package_manifest.json"
+        in gitignore_text
+    )
+    assert (
+        "!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/release_notes.md"
+        in gitignore_text
+    )
+    assert (
+        "!artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
+        in gitignore_text
+    )
 
     for relative_path in [
         Path("README.md"),
@@ -411,6 +431,8 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
         Path("docs/christian_virtue_dataset_card.md"),
         Path("docs/repository_map.md"),
         Path("docs/reports/assets/README.md"),
+        Path("docs/christian_virtue_sft.md"),
+        Path("docs/reports/christian_virtue_experiments.md"),
     ]:
         missing_targets = validate_internal_markdown_links(repo_root / relative_path)
         assert not missing_targets, (relative_path, missing_targets)

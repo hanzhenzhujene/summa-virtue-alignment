@@ -183,7 +183,7 @@ endpoints:
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Local adapter package:
-  [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter)
+  [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
 - Curated report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 
