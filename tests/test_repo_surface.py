@@ -106,9 +106,16 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "# summa virtue alignment" in readme_text
     assert "evidence-first dataset, minimal sft demonstration, and audit surface" in readme_text
     assert "built on the evidence model and corpus work of summa moral graph" in readme_text
-    assert "## public result" in readme_text
+    assert "## dataset merit" in readme_text
+    assert "## training demo" in readme_text
     assert "## why this dataset is unusual" in readme_text
     assert "## theological grounding" in readme_text
+    assert (
+        "the dataset exists to train models toward aquinas-grounded christian virtue reasoning"
+        in readme_text
+    )
+    assert "reviewed, passage-grounded" in readme_text
+    assert "relational, and auditable" in readme_text
     assert "teaches structure, not just vocabulary" in readme_text
     assert "keeps the training truth unusually clean" in readme_text
     assert "thomist moral virtue" in readme_text

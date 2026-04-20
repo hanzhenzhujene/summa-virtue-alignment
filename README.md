@@ -6,6 +6,10 @@ alignment, built on the evidence model and corpus work of Summa Moral Graph.
 This repo packages one public research release: a reviewed Christian virtue dataset, a reproducible
 local fine-tuning path, and an inspectable theological trail back to Aquinas's text.
 
+The dataset exists to train models toward Aquinas-grounded Christian virtue reasoning rather than
+generic religion chat, and its main merit is that the supervision stays reviewed, passage-grounded,
+relational, and auditable end to end.
+
 [![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
 [![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
@@ -25,16 +29,16 @@ local fine-tuning path, and an inspectable theological trail back to Aquinas's t
 > deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
 > evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final model.
 
-## At A Glance
+## Dataset Merit
 
-| Dataset | Baseline run | Audit trail |
+| Purpose | Main merit | Public proof |
 | --- | --- | --- |
-| `555` reviewed annotations turned into `1883` SFT examples. | Reproducible local LoRA on `Qwen/Qwen2.5-1.5B-Instruct`. | Every task row stays linked to passage ids, citations, and tract metadata. |
+| Train Thomist moral virtue reasoning from reviewed doctrinal evidence | Stable passage ids, reviewed doctrinal relations, Aquinas-specific moral categories, and strict separation from candidate material | A reproducible local SFT demo and an auditable evidence trail back to Aquinas's text |
 
-## Public Result
+## Training Demo
 
-The public claim is narrow and testable: reviewed Christian virtue supervision can move a small
-general model toward better Thomist moral virtue behavior on held-out prompts.
+This training demo asks a direct question: can reviewed Christian virtue supervision move a small
+general model toward better Thomist moral virtue behavior on held-out prompts?
 
 | Public highlight | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |

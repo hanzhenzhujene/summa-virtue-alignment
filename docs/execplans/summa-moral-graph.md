@@ -2,6 +2,12 @@
 
 ## Progress
 
+- The SFT README opening is being tightened one step further around the dataset itself:
+  - the dataset's purpose and merit are now being stated explicitly at the top instead of being
+    inferred only from later sections
+  - the former `Public Result` block is being renamed toward a clearer `Training Demo` framing
+  - wording that understated the public claim, such as `narrow`, is being removed from the main
+    README result surface
 - The two public repo fronts are being polished so they feel more like a matched project pair:
   - the SFT README top now uses a compact `Start here / Companion graph` table instead of a plain
     cross-link quote
