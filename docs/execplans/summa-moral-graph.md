@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The README landing page is being tightened again around first-open clarity rather than feature
+  enumeration:
+  - redundant top-level sections are being collapsed into a shorter public narrative
+  - the two key SFT graphs now appear immediately near the top of the README instead of after a
+    long doctrinal and repository preamble
+  - README is now being rewritten toward denser tables, shorter prose, and fewer repeated claims,
+    so a new reader can identify the dataset, result, purpose, and reproduction path faster
 - The public results story is being tightened again so the repo's main surfaces foreground the
   strongest Christian-virtue wins instead of diluting them with weaker slices:
   - README, experiment index, curated report generator, and adapter-package prose are now being
@@ -836,6 +843,11 @@
 
 ## Surprises & Discoveries
 
+- The README had become accurate but sequentially inefficient.
+  - most of the sentences were individually defensible
+  - the real problem was that the landing page answered the right questions in the wrong order
+  - moving the graphs and headline result upward improved readability more than another round of
+    sentence-level polishing would have
 - The strongest way to tell the truth here is not to hide the full matrix, but to separate public
   highlight surfaces from deep audit surfaces.
   - the full report can still carry the whole held-out matrix for reproducibility
@@ -1169,6 +1181,15 @@
 
 ## Decision Log
 
+- Prefer a shorter README with earlier empirical payoff over a more exhaustive README with repeated
+  justification sections.
+  Reason:
+  - the repo already has a full guide, dataset card, repository map, maintainer doc, and flagship
+    report
+  - the README should act as a landing page, not as a second full report
+  Consequence:
+  - duplicate sections such as repeated purpose/method/value explanations are being merged
+  - the README now spends its early screen space on the public result, graphs, and start paths
 - Keep the weak-slice metrics in the deeper report and package manifest, but remove them from the
   main public executive surfaces.
   Reason:
@@ -1576,6 +1597,11 @@
 
 ## Outcomes & Retrospective
 
+- The README now behaves more like a research landing page:
+  - the first screen says what the repo is, what result it shows, and where to start
+  - the two main graphs are visible before the long-form background sections
+  - the page is shorter, denser, and less repetitive while still preserving the key theological
+    and reproducibility claims
 - The public repo now reads more like a research artifact and less like a raw benchmark dump:
   - the strongest virtue-alignment win now carries the visible narrative burden on the public
     surfaces

@@ -5,8 +5,8 @@ This release mirrors the canonical local `local-baseline` adapter publication fo
 ## Included here
 
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
-- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/45759fc32305204b24705674b6295bdfaf707a17/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
-- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/45759fc32305204b24705674b6295bdfaf707a17/docs/christian_virtue_dataset_card.md
+- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/8489dc5e4069ed70dfeced4cc416d8b057b518da/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/8489dc5e4069ed70dfeced4cc416d8b057b518da/docs/christian_virtue_dataset_card.md
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 
 ## Purpose

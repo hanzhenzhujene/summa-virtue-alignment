@@ -106,7 +106,7 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "# summa virtue alignment" in readme_text
     assert "evidence-first dataset, minimal sft demonstration, and audit surface" in readme_text
     assert "built on the evidence model and corpus work of summa moral graph" in readme_text
-    assert "## repository at a glance" in readme_text
+    assert "## public result" in readme_text
     assert "## three purposes" in readme_text
     assert "## theological grounding" in readme_text
     assert "three public purposes" in readme_text
@@ -114,6 +114,8 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "minimal example" in readme_text
     assert "generic theology chatbot" in readme_text
     assert "not the strongest achievable final model" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg" in readme_text
     assert "newadvent.org/summa/3023.htm#article1" in readme_text
     assert "newadvent.org/summa/3058.htm#article1" in readme_text
     assert "actions/workflows/public-release-check.yml/badge.svg" in readme_text
