@@ -16,6 +16,8 @@ local fine-tuning path, and an inspectable theological trail back to Aquinas's t
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
 
+> Related project: [summa-moral-graph](https://github.com/hanzhenzhujene/summa-moral-graph) — the interactive Aquinas dashboard and evidence-first knowledge graph behind this release, also by [Jenny Zhu](https://www.linkedin.com/in/hanzhen-zhu/). [Live viewer](https://summa-moral-graph.streamlit.app/)
+
 > Minimal example, not ceiling: the released `Qwen/Qwen2.5-1.5B-Instruct` LoRA adapter is a
 > deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
 > evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final model.
