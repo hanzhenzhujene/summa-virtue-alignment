@@ -2,6 +2,22 @@
 
 ## Progress
 
+- The two public repo fronts are being polished so they feel more like a matched project pair:
+  - the SFT README top now uses a compact `Start here / Companion graph` table instead of a plain
+    cross-link quote
+  - a small `At A Glance` block now gives the dataset, baseline-run, and audit-trail story in one
+    quick scan
+  - the effect is intentionally a bit cuter and more public-facing, but still compact enough to
+    avoid turning the README into a wall of marketing copy
+- The fine-tuning repo README is being tightened again around the dataset's unique intellectual
+  contribution, not just its reproducibility surface:
+  - the former `Three Purposes` block is being replaced with a denser five-point section that
+    explains why the dataset is philosophically and technically unusual
+  - the new numbered block foregrounds relational supervision, Aquinas-specific ontology,
+    evidence-first grounding, inspectability, and clean reviewed-vs-candidate separation
+  - this framing is intentionally being added only to the SFT repo surface, not mirrored into the
+    main graph repo, so the downstream training story stays distinct from the primary dashboard
+    story
 - The README landing page is being tightened again around first-open clarity rather than feature
   enumeration:
   - redundant top-level sections are being collapsed into a shorter public narrative

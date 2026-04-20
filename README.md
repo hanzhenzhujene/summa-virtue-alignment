@@ -16,12 +16,20 @@ local fine-tuning path, and an inspectable theological trail back to Aquinas's t
 ![Layers](https://img.shields.io/badge/Layers-reviewed%20%7C%20editorial%20%7C%20structural%20%7C%20candidate-6d5a7a?style=flat-square)
 [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
 
-> **BUILT FROM THE MAIN GRAPH**  
-> [**Summa Moral Graph**](https://github.com/hanzhenzhujene/summa-moral-graph) · Jenny Zhu's interactive Aquinas dashboard and evidence-first knowledge graph. [Live viewer](https://summa-moral-graph.streamlit.app/)
+| Start here | Companion graph |
+| --- | --- |
+| [**SFT guide**](./docs/fine_tune_with_summa_moral_graph.md) · [**Published adapter**](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) | [**Summa Moral Graph**](https://github.com/hanzhenzhujene/summa-moral-graph) · [**Live viewer**](https://summa-moral-graph.streamlit.app/) |
+| Reproduce the public baseline or reuse the committed dataset export. | Audit the same passages, concepts, and reviewed relations in the companion dashboard. |
 
 > Minimal example, not ceiling: the released `Qwen/Qwen2.5-1.5B-Instruct` LoRA adapter is a
 > deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
 > evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final model.
+
+## At A Glance
+
+| Dataset | Baseline run | Audit trail |
+| --- | --- | --- |
+| `555` reviewed annotations turned into `1883` SFT examples. | Reproducible local LoRA on `Qwen/Qwen2.5-1.5B-Instruct`. | Every task row stays linked to passage ids, citations, and tract metadata. |
 
 ## Public Result
 
@@ -48,15 +56,15 @@ central empirical claim of the repo.*
 The full breakdown, qualitative panel, and method details live in the
 [flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md).
 
-## Three Purposes
+## Why This Dataset Is Unusual
 
-This repo has three public purposes.
-
-| Purpose | What is public here | Why it matters |
-| --- | --- | --- |
-| Curate reviewed Thomist virtue supervision | `555` approved doctrinal annotations turned into `1883` training examples, joined back to stable passage ids | The training signal is inspectable moral-theological evidence, not vague religion text |
-| Demonstrate a real minimal SFT path | A reproducible `Qwen/Qwen2.5-1.5B-Instruct` LoRA run on Apple Silicon `mps` | A new reader can rerun the full loop without renting a large GPU |
-| Preserve an audit trail | Held-out benchmarks, curated report, released adapter, and live evidence browser | A reviewer can inspect what was trained, what improved, and what remains limited |
+| # | Core strength | Why it is distinctive |
+| ---: | --- | --- |
+| 1 | Teaches structure, not just vocabulary | The model does not only see words like `charity`, `justice`, or `temperance`; it sees reviewed relations such as `species_of`, `opposed_by`, `act_of`, `subjective_part_of`, and `precept_of`. |
+| 2 | Preserves Aquinas's moral ontology | Virtue, vice, act, object, part, gift, precept, and domain stay distinct instead of being flattened into generic religious themes. |
+| 3 | Uses evidence-first supervision | Every training target is tied back to stable `resp` / `ad` passage ids, so the supervision comes from Aquinas's own answer rather than loose paraphrase. |
+| 4 | Makes alignment inspectable | Each example keeps doctrinal metadata, citation labels, source passage ids, relation type, and tract context, so you can audit what the model was actually taught. |
+| 5 | Keeps the training truth unusually clean | Reviewed doctrinal supervision is kept separate from candidate material, structural links, and editorial synthesis, which makes this much more disciplined than a typical scraped religion dataset. |
 
 ## Start Here
 
