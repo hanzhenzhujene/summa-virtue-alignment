@@ -82,6 +82,21 @@ def test_makefile_pins_canonical_local_publication_identity() -> None:
     assert "--release-url $(LOCAL_15B_RELEASE_URL)" in makefile_text
     assert "--hf-repo-id $(LOCAL_15B_HF_REPO_ID)" in makefile_text
     assert "--release-tag $(LOCAL_15B_RELEASE_TAG)" in makefile_text
+    assert (
+        "LOCAL_15B_TRAIN_METADATA := "
+        "$(LOCAL_15B_ROOT)/local_baseline/latest/train_metadata.json"
+    ) in makefile_text
+    assert (
+        "LOCAL_15B_BASE_METRICS := $(LOCAL_15B_ROOT)/base_test/latest/metrics.json"
+    ) in makefile_text
+    assert (
+        "LOCAL_15B_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/adapter_test/latest/metrics.json"
+        in makefile_text
+    )
+    assert (
+        "Canonical local run artifacts not present; "
+        "verifying committed public surfaces only."
+    ) in makefile_text
 
 
 def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:

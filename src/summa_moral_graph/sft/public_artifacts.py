@@ -196,43 +196,65 @@ def verify_publication_bundle(
 ) -> dict[str, Any]:
     package_manifest = _read_json(package_manifest_path)
 
-    expected_paths = {
-        "train_run_dir": repo_root / str(package_manifest["train_run_dir"]),
-        "base_eval_run_dir": repo_root / str(package_manifest["base_eval_run_dir"]),
-        "adapter_eval_run_dir": repo_root / str(package_manifest["adapter_eval_run_dir"]),
+    required_repo_paths = {
         "published_report_path": repo_root / str(package_manifest["published_report_path"]),
         "dataset_manifest_path": repo_root / str(package_manifest["dataset_manifest_path"]),
         "package_manifest_path": package_manifest_path,
     }
 
-    for label, path in expected_paths.items():
+    for label, path in required_repo_paths.items():
         if not path.exists():
             raise FileNotFoundError(f"Missing {label}: {path}")
 
-    train_run_dir = expected_paths["train_run_dir"]
-    base_eval_run_dir = expected_paths["base_eval_run_dir"]
-    adapter_eval_run_dir = expected_paths["adapter_eval_run_dir"]
+    train_run_dir = repo_root / str(package_manifest["train_run_dir"])
+    base_eval_run_dir = repo_root / str(package_manifest["base_eval_run_dir"])
+    adapter_eval_run_dir = repo_root / str(package_manifest["adapter_eval_run_dir"])
+    run_artifact_paths = {
+        "train_run_dir": train_run_dir,
+        "base_eval_run_dir": base_eval_run_dir,
+        "adapter_eval_run_dir": adapter_eval_run_dir,
+    }
+    missing_run_artifact_paths = [
+        label for label, path in run_artifact_paths.items() if not path.exists()
+    ]
 
-    train_metadata = _read_json(train_run_dir / "train_metadata.json")
-    base_metrics = _read_json(base_eval_run_dir / "metrics.json")["overall"]
-    adapter_metrics = _read_json(adapter_eval_run_dir / "metrics.json")["overall"]
+    if not isinstance(package_manifest.get("base_metrics"), dict):
+        raise RuntimeError("Package manifest is missing structured base_metrics.")
+    if not isinstance(package_manifest.get("adapter_metrics"), dict):
+        raise RuntimeError("Package manifest is missing structured adapter_metrics.")
 
-    if str(train_metadata["run_id"]) != str(package_manifest["local_train_run_id"]):
-        raise RuntimeError(
-            "Train run id mismatch between package manifest and train metadata: "
-            f"{package_manifest['local_train_run_id']} vs {train_metadata['run_id']}"
-        )
-    if str(train_metadata["git_commit"]) != str(package_manifest["git_commit"]):
-        raise RuntimeError(
-            "Git commit mismatch between package manifest and train metadata: "
-            f"{package_manifest['git_commit']} vs {train_metadata['git_commit']}"
-        )
-    if package_manifest["base_metrics"] != base_metrics:
-        raise RuntimeError("Base metrics in package manifest do not match base evaluation metrics.")
-    if package_manifest["adapter_metrics"] != adapter_metrics:
-        raise RuntimeError(
-            "Adapter metrics in package manifest do not match adapter evaluation metrics."
-        )
+    if not missing_run_artifact_paths:
+        train_metadata = _read_json(train_run_dir / "train_metadata.json")
+        base_metrics = _read_json(base_eval_run_dir / "metrics.json")["overall"]
+        adapter_metrics = _read_json(adapter_eval_run_dir / "metrics.json")["overall"]
+
+        if str(train_metadata["run_id"]) != str(package_manifest["local_train_run_id"]):
+            raise RuntimeError(
+                "Train run id mismatch between package manifest and train metadata: "
+                f"{package_manifest['local_train_run_id']} vs {train_metadata['run_id']}"
+            )
+        if str(train_metadata["git_commit"]) != str(package_manifest["git_commit"]):
+            raise RuntimeError(
+                "Git commit mismatch between package manifest and train metadata: "
+                f"{package_manifest['git_commit']} vs {train_metadata['git_commit']}"
+            )
+        if package_manifest["base_metrics"] != base_metrics:
+            raise RuntimeError(
+                "Base metrics in package manifest do not match base evaluation metrics."
+            )
+        if package_manifest["adapter_metrics"] != adapter_metrics:
+            raise RuntimeError(
+                "Adapter metrics in package manifest do not match adapter evaluation metrics."
+            )
+        run_artifact_verification_mode = "full"
+    else:
+        if not str(package_manifest.get("local_train_run_id", "")).strip():
+            raise RuntimeError("Package manifest is missing local_train_run_id.")
+        if not str(package_manifest.get("git_commit", "")).strip():
+            raise RuntimeError("Package manifest is missing git_commit.")
+        base_metrics = cast(dict[str, Any], package_manifest["base_metrics"])
+        adapter_metrics = cast(dict[str, Any], package_manifest["adapter_metrics"])
+        run_artifact_verification_mode = "package_manifest_only"
 
     base_exact = float(base_metrics["citation_exact_match"])
     adapter_exact = float(adapter_metrics["citation_exact_match"])
@@ -300,10 +322,10 @@ def verify_publication_bundle(
         "base_eval_run_dir": str(base_eval_run_dir.relative_to(repo_root)),
         "adapter_eval_run_dir": str(adapter_eval_run_dir.relative_to(repo_root)),
         "published_report_path": str(
-            expected_paths["published_report_path"].relative_to(repo_root)
+            required_repo_paths["published_report_path"].relative_to(repo_root)
         ),
         "dataset_manifest_path": str(
-            expected_paths["dataset_manifest_path"].relative_to(repo_root)
+            required_repo_paths["dataset_manifest_path"].relative_to(repo_root)
         ),
         "local_train_run_id": str(package_manifest["local_train_run_id"]),
         "git_commit": str(package_manifest["git_commit"]),
@@ -318,4 +340,6 @@ def verify_publication_bundle(
             str(path.relative_to(repo_root)) for path in iter_public_surface_paths(repo_root)
         ],
         "checked_package_surfaces": checked_package_surfaces,
+        "run_artifact_verification_mode": run_artifact_verification_mode,
+        "missing_run_artifact_paths": missing_run_artifact_paths,
     }

@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The public release gate now supports both local rebuild mode and clean-checkout verification mode:
+  - when canonical local run artifacts are present, `make public-release-check` still rebuilds the
+    flagship report and local adapter package before verifying them
+  - when `runs/` is absent, the same gate now verifies the committed public surfaces directly
+    instead of pretending a fresh CI checkout can reconstruct unpublished local training outputs
+  - `verify_publication_bundle` now records whether it verified against full local run artifacts or
+    against the committed package manifest alone
 - The first real post-release CI regression has now been fixed at the source:
   - GitHub Actions surfaced a stricter `mypy` environment than the local interactive loop had
     exposed for `importlib.util.find_spec(...)`
@@ -786,6 +793,11 @@
 
 ## Surprises & Discoveries
 
+- The real boundary in this repo is not “local vs CI” but “run artifacts vs public artifacts”:
+  - `runs/` is correctly uncommitted
+  - the public release gate therefore cannot require raw local run directories on GitHub Actions
+  - the right CI contract is to verify committed public surfaces unless canonical local artifacts
+    are actually present
 - The first CI break after publication was not a logic bug but a type-stub mismatch:
   - local runtime behavior was fine
   - GitHub Actions caught that `mypy` does not reliably accept `importlib.util` as an attribute on
@@ -1085,6 +1097,18 @@
 
 ## Decision Log
 
+- Make the publication verifier two-mode instead of all-or-nothing.
+  Reason:
+  - local maintainers still need a strong rebuild-and-verify path when canonical run artifacts are
+    available
+  - GitHub Actions runs on a clean checkout where `runs/` is intentionally absent
+  - requiring uncommitted run directories in CI would make the public-release gate structurally
+    impossible to satisfy
+  Consequence:
+  - the Makefile now rebuilds report/package only when canonical run artifacts are present
+  - the public-artifact verifier now falls back to package-manifest verification when run dirs are
+    absent
+  - focused tests now lock that repo-only verification mode in place
 - Prefer explicit `from importlib.util import find_spec` imports in the SFT execution surface.
   Reason:
   - it preserves identical runtime behavior
@@ -1430,6 +1454,11 @@
 
 ## Outcomes & Retrospective
 
+- The public-release check is now aligned with the repo's actual publication model:
+  - local canonical runs remain the source of truth for rebuilds
+  - committed report/package/docs remain the source of truth for clean-checkout CI verification
+  - this makes the Actions gate strict without making it depend on artifacts the repo explicitly
+    chooses not to version
 - The release gate has now survived its first real post-publication correction:
   - GitHub Actions found a cross-environment typing issue quickly
   - the fix was small, source-level, and reproducible

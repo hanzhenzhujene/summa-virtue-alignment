@@ -9,6 +9,9 @@ LOCAL_15B_HF_URL := https://huggingface.co/$(LOCAL_15B_HF_REPO_ID)
 LOCAL_15B_GITHUB_REPO_URL := https://github.com/hanzhenzhujene/summa-virtue-alignment
 LOCAL_15B_RELEASE_TAG := christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
 LOCAL_15B_RELEASE_URL := $(LOCAL_15B_GITHUB_REPO_URL)/releases/tag/$(LOCAL_15B_RELEASE_TAG)
+LOCAL_15B_TRAIN_METADATA := $(LOCAL_15B_ROOT)/local_baseline/latest/train_metadata.json
+LOCAL_15B_BASE_METRICS := $(LOCAL_15B_ROOT)/base_test/latest/metrics.json
+LOCAL_15B_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/adapter_test/latest/metrics.json
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -242,8 +245,13 @@ publish-christian-virtue-qwen2-5-1-5b-local-adapter:
 
 verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 	$(MAKE) build-christian-virtue-sft
-	$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-baseline
-	$(MAKE) package-christian-virtue-qwen2-5-1-5b-local-adapter
+	@if [ -f "$(LOCAL_15B_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_BASE_METRICS)" ] && [ -f "$(LOCAL_15B_ADAPTER_METRICS)" ]; then \
+		echo "Canonical local run artifacts found; rebuilding report and package."; \
+		$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-baseline; \
+		$(MAKE) package-christian-virtue-qwen2-5-1-5b-local-adapter; \
+	else \
+		echo "Canonical local run artifacts not present; verifying committed public surfaces only."; \
+	fi
 	$(BIN)/pytest tests/test_repo_surface.py tests/test_sft_public_artifacts.py tests/test_sft_publication.py tests/test_sft_reporting.py
 	$(BIN)/python scripts/verify_christian_virtue_publication.py
 

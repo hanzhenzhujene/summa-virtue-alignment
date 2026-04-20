@@ -168,6 +168,138 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
     assert "README.md" in summary["checked_path_leak_surfaces"]
 
 
+def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
+    repo_root = tmp_path / "repo"
+    report_path = Path("docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md")
+    package_manifest_path = (
+        repo_root
+        / "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter"
+        / "package_manifest.json"
+    )
+    package_manifest: dict[str, object] = {
+        "adapter_eval_run_dir": (
+            "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest"
+        ),
+        "adapter_metrics": {
+            "citation_exact_match": 0.137,
+            "citation_overlap": 0.137,
+            "citation_partial_match": 0.137,
+            "count": 233,
+            "relation_type_accuracy": None,
+        },
+        "base_eval_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest",
+        "base_metrics": {
+            "citation_exact_match": 0.0,
+            "citation_overlap": 0.0,
+            "citation_partial_match": 0.0,
+            "count": 233,
+            "relation_type_accuracy": None,
+        },
+        "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
+        "dataset_manifest_path": "data/processed/sft/exports/christian_virtue_v1/manifest.json",
+        "git_commit": "abc123",
+        "github_repo_url": "https://github.com/example/repo",
+        "github_release_url": "https://github.com/example/repo/releases/tag/demo-tag",
+        "hf_repo_id": "example/repo",
+        "hf_repo_url": "https://huggingface.co/example/repo",
+        "local_train_run_id": "20260419_154300",
+        "published_report_path": str(report_path),
+        "summary": {
+            "strongest_task": {
+                "key": "virtue_concept_explanation",
+                "label": "Virtue concept explanation",
+                "count": 32,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.406,
+                "delta_exact": 0.406,
+            },
+            "strongest_tract": {
+                "key": "theological_virtues",
+                "label": "Theological virtues",
+                "count": 19,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.211,
+                "delta_exact": 0.211,
+            },
+            "weakest_task": {
+                "key": "citation_grounded_moral_answer",
+                "label": "Citation-grounded moral answer",
+                "count": 67,
+                "baseline_exact": 0.0,
+                "candidate_exact": 0.0,
+                "delta_exact": 0.0,
+            },
+            "zero_gain_tracts": [
+                {
+                    "key": "connected_virtues_109_120",
+                    "label": "Connected virtues (II-II qq.109-120)",
+                    "count": 7,
+                }
+            ],
+        },
+        "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest",
+    }
+
+    _write_json(package_manifest_path, package_manifest)
+    _write_json(
+        repo_root / package_manifest["dataset_manifest_path"],
+        {"dataset_name": "christian_virtue_v1"},
+    )
+
+    for relative_doc_path, expected_substrings in build_publication_doc_expectations(
+        package_manifest
+    ).items():
+        document_path = repo_root / relative_doc_path
+        document_path.parent.mkdir(parents=True, exist_ok=True)
+        document_path.write_text("\n".join(expected_substrings), encoding="utf-8")
+
+    package_dir = package_manifest_path.parent
+    package_dir.mkdir(parents=True, exist_ok=True)
+    (package_dir / "README.md").write_text(
+        "\n".join(
+            [
+                "## Executive Readout",
+                str(package_manifest["github_release_url"]),
+                str(package_manifest["hf_repo_url"]),
+                "This published run uses a deliberately small 1.5B local demo model.",
+                "Strongest task slice: `Virtue concept explanation`",
+                "Strongest tract slice: `Theological virtues`",
+                "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+                "published report.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (package_dir / "release_notes.md").write_text(
+        "\n".join(
+            [
+                "## Executive Readout",
+                str(package_manifest["hf_repo_url"]),
+                "This published run uses a deliberately small local demo model.",
+                "Strongest task slice: `Virtue concept explanation`",
+                "Strongest tract slice: `Theological virtues`",
+                "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
+                "curated report.",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    summary = verify_publication_bundle(
+        repo_root=repo_root,
+        package_manifest_path=package_manifest_path,
+    )
+
+    assert summary["run_artifact_verification_mode"] == "package_manifest_only"
+    assert summary["missing_run_artifact_paths"] == [
+        "train_run_dir",
+        "base_eval_run_dir",
+        "adapter_eval_run_dir",
+    ]
+    assert abs(summary["citation_exact_gain"] - 0.137) < 1e-9
+
+
 def test_markdown_link_resolution_handles_internal_and_external_targets(tmp_path) -> None:
     repo_root = tmp_path / "repo"
     document_path = repo_root / "docs" / "guide.md"
