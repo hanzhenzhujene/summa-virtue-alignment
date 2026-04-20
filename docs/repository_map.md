@@ -29,7 +29,7 @@ tests/       regression coverage for corpus, viewer, and SFT/publication surface
 
 ## Archival Planning Context
 
-- [aquinas_summa_moral_graph_implementation_plan.md](../aquinas_summa_moral_graph_implementation_plan.md):
+- [docs/archive/aquinas_summa_moral_graph_implementation_plan.md](./archive/aquinas_summa_moral_graph_implementation_plan.md):
   early project scoping memo retained as historical context
 - [docs/execplans/summa-moral-graph.md](./execplans/summa-moral-graph.md): live execution log
   and decision history for the current workflow

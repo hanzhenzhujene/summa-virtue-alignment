@@ -9,6 +9,12 @@
     quick scan
   - the effect is intentionally a bit cuter and more public-facing, but still compact enough to
     avoid turning the README into a wall of marketing copy
+- The top-level repo surface is being decluttered so GitHub root reads less like a workbench:
+  - the archival `aquinas_summa_moral_graph_implementation_plan.md` file has been moved under
+    `docs/archive/`
+  - `docs/repository_map.md` now points at the archived location
+  - the aim is to keep public entry files visible at the top while still preserving historical
+    planning context inside the docs tree
 - The fine-tuning repo README is being tightened again around the dataset's unique intellectual
   contribution, not just its reproducibility surface:
   - the former `Three Purposes` block is being replaced with a denser five-point section that
@@ -859,6 +865,12 @@
 
 ## Surprises & Discoveries
 
+- The first CI failure after the latest README polish was not a real publication-surface break but a
+  stale repo-surface assertion:
+  - the README had already been updated from `Three Purposes` to `Why This Dataset Is Unusual`
+  - GitHub Actions failed because one test still expected the old heading string
+  - reproducing the exact `make public-release-check` target locally made the fix path trivial and
+    confirmed that the rest of the release gate was still healthy
 - The README had become accurate but sequentially inefficient.
   - most of the sentences were individually defensible
   - the real problem was that the landing page answered the right questions in the wrong order
@@ -1197,6 +1209,15 @@
 
 ## Decision Log
 
+- When a public README heading is intentionally renamed, update the repo-surface assertions in the
+  same change rather than treating them as follow-up cleanup.
+  Reason:
+  - this repo uses publication-surface tests as part of the actual release contract
+  - leaving a stale string assertion behind creates a noisy CI failure even when the public surface
+    itself is correct
+  Consequence:
+  - the repo-surface test now checks the new `Why This Dataset Is Unusual` section and its key
+    phrases instead of the retired `Three Purposes` label
 - Prefer a shorter README with earlier empirical payoff over a more exhaustive README with repeated
   justification sections.
   Reason:
@@ -1369,9 +1390,9 @@
 - Treat machine-specific filesystem paths as a release-quality failure, not a cosmetic annoyance.
   Public docs, committed manifests, review queues, and packaged adapter metadata should all prefer
   repo-relative paths where possible, and the publication gate should verify that contract.
-- Treat the top-level `aquinas_summa_moral_graph_implementation_plan.md` file as archival project
-  context rather than silent clutter by naming it explicitly in `docs/repository_map.md` and
-  keeping the live execution history in `docs/execplans/summa-moral-graph.md`.
+- Treat the archived `docs/archive/aquinas_summa_moral_graph_implementation_plan.md` file as
+  historical project context rather than root-level clutter, and keep the live execution history
+  in `docs/execplans/summa-moral-graph.md`.
 - Add one explicit setup surface for the canonical public local baseline:
   - `make setup-christian-virtue-local`
   - it should install the pinned Apple-Silicon lockfile and then install the repo editable without
@@ -1613,6 +1634,11 @@
 
 ## Outcomes & Retrospective
 
+- The public-release gate is back in sync with the current SFT README wording:
+  - the failing GitHub Actions run was traced to one stale heading assertion
+  - the local repo-surface suite now passes with the new public phrasing
+  - the full `make public-release-check` path also passes again, so the repo is back to one
+    coherent publication surface
 - The README now behaves more like a research landing page:
   - the first screen says what the repo is, what result it shows, and where to start
   - the two main graphs are visible before the long-form background sections
