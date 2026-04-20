@@ -2,6 +2,18 @@
 
 ## Progress
 
+- The Hugging Face adapter page has now been resynced to the updated held-out comparison graphic
+  without breaking the established public release identity:
+  - the canonical adapter package was republished to
+    `JennyZhu0822/summa-virtue-qwen2.5-1.5b` after the figure-layout polish
+  - the first upload exposed a subtle publication trap: leaving `--release-tag` unset caused the
+    generated package to point at a run-id-based GitHub release slug that the repo does not
+    actually publish
+  - the package was immediately republished with the canonical continuity tag
+    `christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038`, so the HF page now has both
+    the improved figure and the correct public release link
+  - the repo-tracked package `README.md`, `package_manifest.json`, and `release_notes.md` are now
+    being advanced to the current GitHub commit as well so the repo and HF surfaces stay in sync
 - The held-out improvement graphic now states the small-model framing inside the figure itself and
   visualizes the gain direction explicitly:
   - the SVG now labels the benchmark as a `Qwen/Qwen2.5-1.5B-Instruct (1.5B)` small-model demo
@@ -816,6 +828,13 @@
 
 ## Surprises & Discoveries
 
+- Publication defaults can quietly diverge from the intentionally curated public story:
+  - the packaging script defaults its release tag from the training run id
+  - that is sensible for generic runs, but this repo deliberately preserves an older canonical
+    release slug for continuity
+  - HF publication therefore needed the explicit release tag passed through again, otherwise the
+    model card would start pointing to a GitHub release URL that looks plausible but is not the
+    repo's advertised public endpoint
 - The figure itself needed to carry more of the interpretive burden:
   - a caption saying “small demo model” elsewhere in the repo was not enough
   - reviewers looking only at the chart could still miss that this was a 1.5B demonstration run
@@ -1135,6 +1154,16 @@
 
 ## Decision Log
 
+- Keep passing the canonical continuity release tag when republishing the HF adapter, even after
+  purely presentational updates.
+  Reason:
+  - the public HF page should inherit the improved package surfaces
+  - the repo still intentionally uses the older GitHub release slug as its stable external release
+    endpoint
+  Consequence:
+  - HF can be updated incrementally without fragmenting the publication story
+  - the tracked package metadata must be committed after HF republish so GitHub and HF keep the
+    same provenance links
 - Put the small-model framing and improvement direction inside the held-out SVG instead of leaving
   both points only to surrounding prose.
   Reason:
@@ -1521,6 +1550,11 @@
 
 ## Outcomes & Retrospective
 
+- The HF publication surface is now aligned again with the repo's polished visual story:
+  - the model card package now carries the improved held-out figure
+  - the model card still points to the canonical GitHub release slug rather than a transient
+    run-derived tag
+  - repo and HF package metadata are now converging back onto one coherent public provenance chain
 - The held-out benchmark graphic is now more publication-competent:
   - readers no longer need to infer from surrounding prose that the result comes from a small 1.5B
     demonstration model
