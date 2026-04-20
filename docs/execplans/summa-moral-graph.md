@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The held-out improvement graphic now states the small-model framing inside the figure itself and
+  visualizes the gain direction explicitly:
+  - the SVG now labels the benchmark as a `Qwen/Qwen2.5-1.5B-Instruct (1.5B)` small-model demo
+  - each goal-aligned task slice now includes an improvement arrow from base to adapter plus a
+    delta-in-points label
+  - the regenerated report asset and packaged adapter asset now carry the same updated comparison
+    figure, so GitHub and package-facing surfaces stay visually aligned
 - The release workflow is now updated to current GitHub-hosted action majors after the successful
   clean-checkout recovery:
   - `.github/workflows/public-release-check.yml` now uses `actions/checkout@v6` and
@@ -809,6 +816,11 @@
 
 ## Surprises & Discoveries
 
+- The figure itself needed to carry more of the interpretive burden:
+  - a caption saying “small demo model” elsewhere in the repo was not enough
+  - reviewers looking only at the chart could still miss that this was a 1.5B demonstration run
+  - adding the model-size label and explicit gain arrows directly into the SVG makes the empirical
+    claim much faster to read without changing any underlying metric
 - Passing CI can still hide the next break if the workflow itself is on a deprecating runtime:
   - once the public-release check finally went green, GitHub immediately surfaced the next real
     issue as a Node 20 deprecation annotation on core marketplace actions
@@ -1123,6 +1135,15 @@
 
 ## Decision Log
 
+- Put the small-model framing and improvement direction inside the held-out SVG instead of leaving
+  both points only to surrounding prose.
+  Reason:
+  - the chart is reused across README, report, and adapter package surfaces
+  - the public claim is specifically that a small 1.5B demo model still improves in the right
+    virtue-aligned direction
+  Consequence:
+  - the comparison figure now self-identifies as a small-model demo
+  - per-slice arrows and delta labels now make the base-to-adapter movement legible at a glance
 - Upgrade the release workflow to the current stable `actions/checkout@v6` and
   `actions/setup-python@v6` pair once the clean-checkout gate is green.
   Reason:
@@ -1500,6 +1521,11 @@
 
 ## Outcomes & Retrospective
 
+- The held-out benchmark graphic is now more publication-competent:
+  - readers no longer need to infer from surrounding prose that the result comes from a small 1.5B
+    demonstration model
+  - readers also no longer need to compare bar heights mentally to see the base-to-adapter gain
+  - this improves communicative clarity without changing the benchmark definition or widening scope
 - The public-release gate is now green without immediate platform-deprecation debt:
   - the clean-checkout publication fix landed first
   - the workflow was then moved onto the current GitHub action majors before the warning could turn

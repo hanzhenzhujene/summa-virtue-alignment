@@ -260,6 +260,9 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "<svg" in comparison_svg_text
     assert "Held-out virtue-goal citation exact" in comparison_svg_text
     assert "Goal-aligned evaluation slices only" in comparison_svg_text
+    assert "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)" in comparison_svg_text
+    assert "marker-end='url(#improvement-arrowhead)'" in comparison_svg_text
+    assert "+100.0 pts" in comparison_svg_text
     assert "Citation-grounded moral answer" not in comparison_svg_text
     assert "Reviewed relation explanation" in comparison_svg_text
     assert "Virtue concept explanation" not in comparison_svg_text

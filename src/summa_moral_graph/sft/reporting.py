@@ -524,6 +524,8 @@ def write_task_comparison_svg(
     baseline_metrics: dict[str, Any],
     candidate_metrics: dict[str, Any],
     output_path: Path,
+    *,
+    model_label: str = "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)",
 ) -> Path:
     task_keys = [
         key
@@ -533,12 +535,12 @@ def write_task_comparison_svg(
     label_map = {
         **{key: TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title()) for key in task_keys},
     }
-    width = 1020
-    height = 420
+    width = 1080
+    height = 470
     chart_x = 80.0
-    chart_y = 56.0
-    chart_width = 880.0
-    chart_height = 280.0
+    chart_y = 88.0
+    chart_width = 940.0
+    chart_height = 276.0
     group_width = chart_width / max(len(task_keys), 1)
     baseline_values = [
         float(
@@ -558,15 +560,21 @@ def write_task_comparison_svg(
     lines = [
         "<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' "
         "viewBox='0 0 {width} {height}' role='img' "
-        "aria-label='Base versus adapter citation exact comparison'>".format(
-            width=width,
-            height=height,
-        ),
+        "aria-label='Base versus adapter citation exact comparison for a small 1.5B "
+        "model demo'>".format(width=width, height=height),
+        "<defs>"
+        "<marker id='improvement-arrowhead' markerWidth='8' markerHeight='8' "
+        "refX='7' refY='4' orient='auto' markerUnits='strokeWidth'>"
+        "<path d='M0,0 L8,4 L0,8 Z' fill='#b45309' />"
+        "</marker>"
+        "</defs>",
         f"<rect x='0' y='0' width='{width}' height='{height}' fill='#f8fafc' />",
         "<text x='80' y='34' font-size='20' font-weight='700' fill='#111827'>"
         "Held-out virtue-goal citation exact</text>",
         "<text x='80' y='52' font-size='12' fill='#4b5563'>"
         "Goal-aligned evaluation slices only</text>",
+        f"<text x='80' y='70' font-size='12' font-weight='600' fill='#1d4ed8'>"
+        f"{html.escape(model_label)}</text>",
         f"<line x1='{chart_x}' y1='{chart_y}' x2='{chart_x}' y2='{chart_y + chart_height}' "
         "stroke='#9ca3af' stroke-width='1.5' />",
         f"<line x1='{chart_x}' y1='{chart_y + chart_height}' "
@@ -593,14 +601,80 @@ def write_task_comparison_svg(
         baseline_x = group_x + group_width * 0.18
         candidate_x = group_x + group_width * 0.52
         bar_width = group_width * 0.22
+        baseline_top_y = chart_y + chart_height - baseline_height
+        candidate_top_y = chart_y + chart_height - candidate_height
+        delta_points = (candidate_values[index] - baseline_values[index]) * 100
         lines.append(
-            f"<rect x='{baseline_x:.1f}' y='{chart_y + chart_height - baseline_height:.1f}' "
+            f"<rect x='{baseline_x:.1f}' y='{baseline_top_y:.1f}' "
             f"width='{bar_width:.1f}' height='{baseline_height:.1f}' fill='#94a3b8' rx='6' />"
         )
         lines.append(
-            f"<rect x='{candidate_x:.1f}' y='{chart_y + chart_height - candidate_height:.1f}' "
+            f"<rect x='{candidate_x:.1f}' y='{candidate_top_y:.1f}' "
             f"width='{bar_width:.1f}' height='{candidate_height:.1f}' fill='#2563eb' rx='6' />"
         )
+        arrow_x = min(candidate_x + bar_width + 18.0, group_x + group_width - 20.0)
+        arrow_start_y = baseline_top_y - 4.0
+        arrow_end_y = candidate_top_y - 4.0
+        if arrow_end_y < arrow_start_y - 1.0:
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{baseline_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{baseline_top_y:.1f}' "
+                "stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{candidate_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{candidate_top_y:.1f}' "
+                "stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{arrow_x:.1f}' y1='{arrow_start_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{arrow_end_y:.1f}' "
+                "stroke='#b45309' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' "
+                "stroke-linecap='round' />"
+            )
+            delta_label_x = arrow_x + 8.0
+            delta_label_y = ((arrow_start_y + arrow_end_y) / 2) + 4.0
+            lines.append(
+                f"<text x='{delta_label_x:.1f}' y='{delta_label_y:.1f}' font-size='11' "
+                "text-anchor='start' fill='#92400e' font-weight='600'>"
+                f"+{delta_points:.1f} pts</text>"
+            )
+        elif arrow_end_y > arrow_start_y + 1.0:
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{baseline_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{baseline_top_y:.1f}' "
+                "stroke='#fecaca' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{candidate_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{candidate_top_y:.1f}' "
+                "stroke='#fecaca' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{arrow_x:.1f}' y1='{arrow_start_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{arrow_end_y:.1f}' "
+                "stroke='#b91c1c' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' "
+                "stroke-linecap='round' />"
+            )
+            delta_label_x = arrow_x + 8.0
+            delta_label_y = ((arrow_start_y + arrow_end_y) / 2) + 4.0
+            lines.append(
+                f"<text x='{delta_label_x:.1f}' y='{delta_label_y:.1f}' font-size='11' "
+                "text-anchor='start' fill='#991b1b' font-weight='600'>"
+                f"{delta_points:.1f} pts</text>"
+            )
+        else:
+            plateau_y = min(arrow_start_y, arrow_end_y)
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{plateau_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{plateau_y:.1f}' "
+                "stroke='#6b7280' stroke-width='2' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<text x='{arrow_x + 8.0:.1f}' "
+                f"y='{plateau_y + 4.0:.1f}' font-size='11' text-anchor='start' "
+                "fill='#4b5563' font-weight='600'>0.0 pts</text>"
+            )
         lines.append(
             f"<text x='{baseline_x + (bar_width / 2):.1f}' y='{chart_y + chart_height + 18:.1f}' "
             "font-size='11' text-anchor='middle' fill='#374151'>Base</text>"
@@ -622,10 +696,13 @@ def write_task_comparison_svg(
         )
     lines.extend(
         [
-            "<circle cx='760' cy='28' r='6' fill='#94a3b8' />",
-            "<text x='772' y='32' font-size='12' fill='#374151'>Base model</text>",
-            "<circle cx='864' cy='28' r='6' fill='#2563eb' />",
-            "<text x='876' y='32' font-size='12' fill='#374151'>LoRA adapter</text>",
+            "<circle cx='740' cy='28' r='6' fill='#94a3b8' />",
+            "<text x='752' y='32' font-size='12' fill='#374151'>Base model</text>",
+            "<circle cx='844' cy='28' r='6' fill='#2563eb' />",
+            "<text x='856' y='32' font-size='12' fill='#374151'>LoRA adapter</text>",
+            "<line x1='958' y1='28' x2='988' y2='28' stroke='#b45309' stroke-width='2.5' "
+            "marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />",
+            "<text x='996' y='32' font-size='12' fill='#92400e'>Improvement</text>",
             "</svg>",
         ]
     )
