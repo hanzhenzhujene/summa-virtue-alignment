@@ -36,6 +36,10 @@ def _format_metric(value: Any) -> str:
     return f"{float(value):.3f}"
 
 
+def _format_percent(value: Any) -> str:
+    return f"{float(value) * 100:.1f}%"
+
+
 def iter_public_surface_paths(repo_root: Path) -> list[Path]:
     """List public repo surfaces that should never leak local absolute filesystem paths."""
 
@@ -87,6 +91,20 @@ def build_publication_doc_expectations(
     release_tag = release_url.rstrip("/").rsplit("/", maxsplit=1)[-1]
     base_metric = _format_metric(package_manifest["base_metrics"]["citation_exact_match"])
     adapter_metric = _format_metric(package_manifest["adapter_metrics"]["citation_exact_match"])
+    summary = cast(dict[str, Any], package_manifest.get("summary", {}))
+    strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
+    strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
+    strongest_task_label = (
+        str(strongest_task["label"]) if strongest_task is not None else "Strongest task slice"
+    )
+    strongest_task_metric = (
+        _format_percent(float(strongest_task["candidate_exact"]))
+        if strongest_task is not None
+        else adapter_metric
+    )
+    strongest_tract_label = (
+        str(strongest_tract["label"]) if strongest_tract is not None else "Strongest tract slice"
+    )
 
     return {
         Path("README.md"): [
@@ -95,8 +113,9 @@ def build_publication_doc_expectations(
             release_url,
             str(report_path),
             release_tag,
-            base_metric,
-            adapter_metric,
+            strongest_task_label,
+            strongest_task_metric,
+            strongest_tract_label,
         ],
         Path("docs/fine_tune_with_summa_moral_graph.md"): [
             hf_url,
@@ -116,7 +135,9 @@ def build_publication_doc_expectations(
             hf_url,
             release_url,
             run_id,
-            adapter_metric,
+            strongest_task_label,
+            strongest_task_metric,
+            strongest_tract_label,
         ],
         REPOSITORY_MAP_PATH: [
             "requirements/local-mps-py312.lock.txt",
@@ -181,11 +202,11 @@ def build_publication_package_surface_expectations(
         ],
     }
     if strongest_task is not None:
-        expected["README.md"].append(f"Strongest task slice: `{strongest_task['label']}`")
-        expected["release_notes.md"].append(f"Strongest task slice: `{strongest_task['label']}`")
+        expected["README.md"].append(f"`{strongest_task['label']}`")
+        expected["release_notes.md"].append(f"`{strongest_task['label']}`")
     if strongest_tract is not None:
-        expected["README.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
-        expected["release_notes.md"].append(f"Strongest tract slice: `{strongest_tract['label']}`")
+        expected["README.md"].append(f"`{strongest_tract['label']}`")
+        expected["release_notes.md"].append(f"`{strongest_tract['label']}`")
     return expected
 
 

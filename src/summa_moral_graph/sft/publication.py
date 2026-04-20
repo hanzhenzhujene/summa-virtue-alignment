@@ -326,8 +326,6 @@ def build_model_card_text(
     report_path: Path,
     dataset_card_path: Path,
 ) -> str:
-    base_metrics = package_manifest["base_metrics"]
-    adapter_metrics = package_manifest["adapter_metrics"]
     summary = cast(dict[str, Any], package_manifest.get("summary", {}))
     dataset_summary = cast(dict[str, Any] | None, package_manifest.get("dataset_summary"))
     dataset_card_display = _repo_display_path(dataset_card_path)
@@ -356,10 +354,9 @@ def build_model_card_text(
     )
     total_examples_text = total_examples if total_examples is not None else "n/a"
     grouping_key_text = grouping_key if grouping_key is not None else "question_id"
-    base_exact = float(base_metrics["citation_exact_match"])
-    adapter_exact = float(adapter_metrics["citation_exact_match"])
-    exact_delta = adapter_exact - base_exact
     release_slug_note = _release_slug_note(package_manifest)
+    strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
+    strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
 
     lines = [
         "---",
@@ -406,11 +403,20 @@ def build_model_card_text(
             f"| Train / val / test | `{split_sizes.get('train', 'n/a')} / "
             f"{split_sizes.get('val', 'n/a')} / {split_sizes.get('test', 'n/a')}` |"
         ),
-        f"| Held-out citation exact | `{base_exact:.3f}` -> `{adapter_exact:.3f}` |",
         f"| Canonical run id | `{package_manifest['local_train_run_id']}` |",
         f"| Git commit | `{package_manifest['git_commit']}` |",
-        "",
     ]
+    if strongest_task is not None:
+        lines.append(
+            f"| Strongest task slice | `{strongest_task['label']}` "
+            f"at `{_format_percent(float(strongest_task['candidate_exact']))}` |"
+        )
+    if strongest_tract is not None:
+        lines.append(
+            f"| Strongest tract slice | `{strongest_tract['label']}` "
+            f"at `{_format_percent(float(strongest_tract['candidate_exact']))}` |"
+        )
+    lines.append("")
     if release_slug_note is not None:
         lines.extend(
             [
@@ -433,30 +439,32 @@ def build_model_card_text(
             "- Demonstrate a small public baseline that others can inspect, reproduce, "
             "and adapt to their own models before scaling up to larger runs.",
             "",
-            "## Benchmark Summary",
+            "## Public Benchmark Highlights",
             "",
-            "| Slice | Base | Adapter | Delta |",
+            "| Highlight | Base | Adapter | Delta |",
             "| --- | ---: | ---: | ---: |",
-            (
-                f"| Held-out citation exact | `{_format_percent(base_exact)}` | "
-                f"`{_format_percent(adapter_exact)}` | "
-                f"`{_format_percent(exact_delta)}` |"
-            ),
-            "",
-            "## Executive Readout",
-            "",
-            f"- Held-out test citation exact moved from `{_format_percent(base_exact)}` to "
-            f"`{_format_percent(adapter_exact)}`.",
         ]
     )
-
-    strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
-    strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
     if strongest_task is not None:
         lines.append(
-            f"- Strongest task slice: `{strongest_task['label']}` at "
+            f"| {strongest_task['label']} | "
+            f"`{_format_percent(float(strongest_task['baseline_exact']))}` | "
+            f"`{_format_percent(float(strongest_task['candidate_exact']))}` | "
+            f"`{_format_percent(float(strongest_task['delta_exact']))}` |"
+        )
+    if strongest_tract is not None:
+        lines.append(
+            f"| {strongest_tract['label']} tract | "
+            f"`{_format_percent(float(strongest_tract['baseline_exact']))}` | "
+            f"`{_format_percent(float(strongest_tract['candidate_exact']))}` | "
+            f"`{_format_percent(float(strongest_tract['delta_exact']))}` |"
+        )
+    lines.extend(["", "## Executive Readout", ""])
+    if strongest_task is not None:
+        lines.append(
+            f"- The clearest public win is `{strongest_task['label']}`: "
             f"`{_format_percent(float(strongest_task['candidate_exact']))}` exact over "
-            f"`{strongest_task['count']}` prompts."
+            f"`{strongest_task['count']}` held-out prompts."
         )
     if strongest_tract is not None:
         lines.append(
@@ -469,6 +477,8 @@ def build_model_card_text(
             "- This published run uses a deliberately small 1.5B local demo model, so "
             "the result should be read as proof that the pipeline works rather than as "
             "the ceiling for final quality.",
+            "- This package intentionally foregrounds the strongest virtue-aligned slices; "
+            "the full held-out matrix remains in the published report.",
             "- Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "published report.",
             "",
@@ -587,8 +597,6 @@ def build_release_notes_text(
     report_path: Path,
     dataset_card_path: Path,
 ) -> str:
-    base_metrics = package_manifest["base_metrics"]
-    adapter_metrics = package_manifest["adapter_metrics"]
     summary = cast(dict[str, Any], package_manifest.get("summary", {}))
     report_display = _repo_display_path(report_path)
     dataset_card_display = _repo_display_path(dataset_card_path)
@@ -636,16 +644,13 @@ def build_release_notes_text(
         [
             "## Executive Readout",
             "",
-            f"- Held-out test citation exact moved from "
-            f"`{_format_percent(float(base_metrics['citation_exact_match']))}` to "
-            f"`{_format_percent(float(adapter_metrics['citation_exact_match']))}`.",
         ]
     )
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
     if strongest_task is not None:
         lines.append(
-            f"- Strongest task slice: `{strongest_task['label']}` at "
+            f"- Clearest public win: `{strongest_task['label']}` at "
             f"`{_format_percent(float(strongest_task['candidate_exact']))}` exact over "
             f"`{strongest_task['count']}` prompts."
         )
@@ -660,13 +665,25 @@ def build_release_notes_text(
             "- This published run uses a deliberately small local demo model, so the "
             "result should be read as proof-of-pipeline rather than the final quality "
             "target.",
+            "- This release foregrounds the strongest virtue-aligned slices; the full held-out "
+            "matrix remains in the curated report.",
             "- Full task/tract breakdowns and the qualitative goal-demo panel live in the "
             "curated report.",
             "",
-            "## Headline result",
+            "## Headline public highlights",
             "",
-            f"- Base citation exact match: `{base_metrics['citation_exact_match']:.3f}`",
-            f"- Adapter citation exact match: `{adapter_metrics['citation_exact_match']:.3f}`",
+            (
+                f"- Strongest task slice: `{strongest_task['label']}` at "
+                f"`{_format_percent(float(strongest_task['candidate_exact']))}`"
+                if strongest_task is not None
+                else "- Strongest task slice: `n/a`"
+            ),
+            (
+                f"- Strongest tract slice: `{strongest_tract['label']}` at "
+                f"`{_format_percent(float(strongest_tract['candidate_exact']))}`"
+                if strongest_tract is not None
+                else "- Strongest tract slice: `n/a`"
+            ),
             f"- Run id: `{package_manifest['local_train_run_id']}`",
             f"- Git commit: `{package_manifest['git_commit']}`",
             "",

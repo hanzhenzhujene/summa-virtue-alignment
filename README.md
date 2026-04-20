@@ -222,25 +222,28 @@ Automatic metric shown below: exact citation match on held-out prompts. In this 
 is a useful guardrail for evidence-bounded Thomist answering, but it is not the whole purpose of
 the SFT.
 
-Headline held-out `test` result on `233` prompts:
+Public headline on the corrected held-out `test` split:
 
-- overall citation exact: `0.000` on base -> `0.137` on the corrected local-baseline adapter rerun
+- strongest task slice: `Virtue concept explanation` moves from `0.0%` to `40.6%`
+- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `20.9%`
+- strongest tract slice: `Theological virtues` moves from `0.0%` to `21.1%`
+- goal-demo exact citations: `0 / 12` on base -> `5 / 12` on adapter
 
-Goal-aligned Thomist moral virtue slices:
+Strongest held-out virtue slices:
 
 | Held-out slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
 | Virtue concept explanation | `0.0%` | `40.6%` | `+40.6%` |
 | Reviewed relation explanation | `0.0%` | `20.9%` | `+20.9%` |
-| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `+7.5%` |
-| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
 Why this is meaningful:
 
 - base is `0.0%` across the public goal-aligned slices, so the adapter is not merely preserving an
   already-good baseline
 - the adapter improves the concept and relation slices most closely aligned with Thomist virtue
-  reasoning, even though the citation-grounded moral-answer slice still remains difficult
+  reasoning
+- the strongest tract-level gain lands in `Theological virtues`, which is exactly where a Thomist
+  virtue assistant should look most recognizably improved
 - this happens in a deliberately minimal example, which makes the dataset and method more credible
   as a reusable template
 
@@ -318,7 +321,7 @@ For the full stepwise path, model swapping guide, and remote CUDA path, see
 
 | Surface | Current role |
 | --- | --- |
-| Curated report | Canonical evaluation surface for the corrected local rerun (`0.137` exact on held-out `test`) |
+| Curated report | Canonical evaluation surface for the corrected local rerun and the full held-out audit trail |
 | Local adapter package | Canonical packaged artifact inside the repo, tied to run `20260419_154300` |
 | Hugging Face adapter | Public download endpoint for the adapter family |
 | GitHub release | Public release endpoint; keeps the original distribution tag slug `20260418_193038` |

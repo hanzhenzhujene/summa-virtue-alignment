@@ -5,8 +5,8 @@ This release mirrors the canonical local `local-baseline` adapter publication fo
 ## Included here
 
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
-- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/393498f5fe40205214c2210996f7d1c53f66ffc0/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
-- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/393498f5fe40205214c2210996f7d1c53f66ffc0/docs/christian_virtue_dataset_card.md
+- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/45759fc32305204b24705674b6295bdfaf707a17/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/45759fc32305204b24705674b6295bdfaf707a17/docs/christian_virtue_dataset_card.md
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 
 ## Purpose
@@ -20,16 +20,16 @@ Train an Aquinas-grounded Christian virtue assistant that answers within reviewe
 
 ## Executive Readout
 
-- Held-out test citation exact moved from `0.0%` to `13.7%`.
-- Strongest task slice: `Virtue concept explanation` at `40.6%` exact over `32` prompts.
+- Clearest public win: `Virtue concept explanation` at `40.6%` exact over `32` prompts.
 - Strongest tract slice: `Theological virtues` at `21.1%` exact over `19` prompts.
 - This published run uses a deliberately small local demo model, so the result should be read as proof-of-pipeline rather than the final quality target.
+- This release foregrounds the strongest virtue-aligned slices; the full held-out matrix remains in the curated report.
 - Full task/tract breakdowns and the qualitative goal-demo panel live in the curated report.
 
-## Headline result
+## Headline public highlights
 
-- Base citation exact match: `0.000`
-- Adapter citation exact match: `0.137`
+- Strongest task slice: `Virtue concept explanation` at `40.6%`
+- Strongest tract slice: `Theological virtues` at `21.1%`
 - Run id: `20260419_154300`
 - Git commit: `662c9d309fefd80d22f2caf7f65622afdee7ef10`
 

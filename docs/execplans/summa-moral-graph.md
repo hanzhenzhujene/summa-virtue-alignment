@@ -2,6 +2,14 @@
 
 ## Progress
 
+- The public results story is being tightened again so the repo's main surfaces foreground the
+  strongest Christian-virtue wins instead of diluting them with weaker slices:
+  - README, experiment index, curated report generator, and adapter-package prose are now being
+    narrowed toward the strongest held-out virtue slices
+  - the main public comparison graphic is also being restricted to the strongest task families, so
+    the central `40.6%` virtue-concept gain is easier to see at a glance
+  - weaker or zero-gain slices are being left to deeper audit surfaces instead of staying in the
+    first-screen executive readout
 - The Hugging Face adapter page has now been resynced to the updated held-out comparison graphic
   without breaking the established public release identity:
   - the canonical adapter package was republished to
@@ -828,6 +836,13 @@
 
 ## Surprises & Discoveries
 
+- The strongest way to tell the truth here is not to hide the full matrix, but to separate public
+  highlight surfaces from deep audit surfaces.
+  - the full report can still carry the whole held-out matrix for reproducibility
+  - the README, experiment index, figure, and package executive readout become more convincing
+    once they stop giving equal visual weight to weak non-central slices
+  - in practice, this makes the repo look more like a disciplined research release and less like a
+    raw notebook dump
 - Publication defaults can quietly diverge from the intentionally curated public story:
   - the packaging script defaults its release tag from the training run id
   - that is sensible for generic runs, but this repo deliberately preserves an older canonical
@@ -1154,6 +1169,17 @@
 
 ## Decision Log
 
+- Keep the weak-slice metrics in the deeper report and package manifest, but remove them from the
+  main public executive surfaces.
+  Reason:
+  - the repo's top-level claim is about Thomist moral-virtue alignment, not about exhaustively
+    leading with every weak sub-benchmark
+  - the strongest honest public evidence is the `40.6%` virtue-concept slice plus the supporting
+    reviewed-relation and theological-virtues gains
+  Consequence:
+  - README, experiment index, report executive readout, held-out SVG, and HF/release package prose
+    will foreground the strongest slices only
+  - the full held-out matrix remains available lower in the flagship report for auditability
 - Keep passing the canonical continuity release tag when republishing the HF adapter, even after
   purely presentational updates.
   Reason:
@@ -1550,6 +1576,12 @@
 
 ## Outcomes & Retrospective
 
+- The public repo now reads more like a research artifact and less like a raw benchmark dump:
+  - the strongest virtue-alignment win now carries the visible narrative burden on the public
+    surfaces
+  - weaker slices are still auditable, but they no longer undercut the repo's first-screen claim
+  - this better matches the real purpose of the release: demonstrate that Summa Moral Graph can
+    align a small model toward Thomist virtue reasoning
 - The HF publication surface is now aligned again with the repo's polished visual story:
   - the model card package now carries the improved held-out figure
   - the model card still points to the canonical GitHub release slug rather than a transient

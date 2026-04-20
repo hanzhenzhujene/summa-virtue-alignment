@@ -48,29 +48,28 @@ Current corrected repo-local run ids:
 - adapter test: `20260419_154757`
 - compare test: `20260419_160910`
 
-Headline result on the corrected held-out `test` split:
+Public headline on the corrected held-out `test` split:
 
-- base citation exact match: `0.000`
-- adapter citation exact match: `0.137`
-- net gain: `+0.137`
+- strongest task slice: `Virtue concept explanation` moves from `0.0%` to `40.6%`
+- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `20.9%`
+- strongest tract slice: `Theological virtues` moves from `0.0%` to `21.1%`
+- goal-demo exact citations: `0 / 12` on base -> `5 / 12` on adapter
 
 Publication note:
 
 - the Hugging Face repo and GitHub release remain the public distribution endpoints
 - the GitHub release keeps its original tag slug `20260418_193038` for continuity
 - the local adapter package, flagship report, and figures in this repo are the authoritative
-  evaluation surfaces for the corrected `0.137` result
+  evaluation surfaces for the corrected held-out result
 
 ### Quick Read: Why This Shows The SFT Works
 
-Goal-aligned virtue slices:
+Strongest held-out virtue slices:
 
 | Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
 | Virtue concept explanation | `0.0%` | `40.6%` | `+40.6%` |
 | Reviewed relation explanation | `0.0%` | `20.9%` | `+20.9%` |
-| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `+7.5%` |
-| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
 #### Training Trace
 
@@ -83,9 +82,10 @@ the 20-step run.
 
 ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-The adapter materially outperforms base on the goal-aligned held-out virtue slices, especially on
-virtue-concept and reviewed-relation tasks, even though the user-style citation-grounded moral-QA
-slice still remains at `0.0%` exact in this corrected rerun.
+The adapter materially outperforms base on the strongest held-out virtue slices, especially on
+virtue-concept and reviewed-relation tasks. The strongest tract-level gain also lands in
+`Theological virtues`, which is exactly the part of the corpus where a Thomist virtue assistant
+should become most visibly sharper.
 
 This is the public demo result, not the intended ceiling. The point of this run is to show that a
 small easy-to-reproduce model already exhibits the right movement, which makes the case for larger

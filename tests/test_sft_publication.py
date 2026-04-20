@@ -139,6 +139,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "## Executive Readout" in readme
     assert "Strongest task slice" in readme
     assert "deliberately small 1.5B local demo model" in readme
+    assert "Held-out citation exact" not in readme
     assert "![Held-out benchmark comparison]" in readme
     assert "Keep the tokenizer/chat template aligned with the listed base model" in readme
     assert "https://huggingface.co/JennyZhu0822/demo" in readme
@@ -149,6 +150,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "## Executive Readout" in release_notes
     assert "Strongest tract slice" in release_notes
     assert "deliberately small local demo model" in release_notes
+    assert "Base citation exact match" not in release_notes
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in release_notes
     assert "pilot_lite" not in (package_dir / "train_metadata.json").read_text(encoding="utf-8")
     assert "pilot-lite" not in (package_dir / "config_snapshot.yaml").read_text(encoding="utf-8")

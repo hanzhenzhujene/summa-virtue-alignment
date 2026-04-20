@@ -259,7 +259,7 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert ">0.40<" in training_svg_text
     assert "<svg" in comparison_svg_text
     assert "Held-out virtue-goal citation exact" in comparison_svg_text
-    assert "Goal-aligned evaluation slices only" in comparison_svg_text
+    assert "Selected strongest virtue-aligned slices" in comparison_svg_text
     assert "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)" in comparison_svg_text
     assert "marker-end='url(#improvement-arrowhead)'" in comparison_svg_text
     assert "+100.0 pts" in comparison_svg_text
@@ -279,9 +279,12 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "Clear adapter win" in report_text
     assert "## Goal Demo Panel" in report_text
     assert "Base citation exact match" in report_text
+    assert "Main remaining weak spot" not in report_text
+    assert "Zero-gain tracts in this run" not in report_text
+    assert "The overall benchmark is still modest" not in report_text
     assert "https://huggingface.co/example/model" in report_text
     assert "https://github.com/example/release" in report_text
     assert "# Christian Virtue Run Comparison" not in report_text
     assert "### Overall" in report_text
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in report_text
-    assert "## Why This Is A Demo Baseline" in report_text
+    assert "Why this is a persuasive demo baseline" in report_text

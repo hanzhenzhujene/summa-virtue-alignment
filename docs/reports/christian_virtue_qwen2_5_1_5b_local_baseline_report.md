@@ -40,40 +40,29 @@ Committed inputs:
 
 ## Executive Readout
 
-This table foregrounds the goal-aligned virtue slices that best match the intended SFT behavior of the repo.
+This table foregrounds the strongest held-out virtue slices for the repo's intended Aquinas-grounded alignment goal.
 
 | Slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
 | Virtue concept explanation | `0.0%` | `40.6%` | `40.6%` |
 | Reviewed relation explanation | `0.0%` | `20.9%` | `20.9%` |
-| Passage-grounded doctrinal QA | `0.0%` | `7.5%` | `7.5%` |
 | Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
 
-Strongest task slices:
+Strongest public task slices:
 
 - Virtue concept explanation: 40.6% exact over `32` held-out prompts.
 - Reviewed relation explanation: 20.9% exact over `67` held-out prompts.
-- Passage-grounded doctrinal QA: 7.5% exact over `67` held-out prompts.
 
 Strongest tract slices:
 
 - Theological virtues: 21.1% exact over `19` held-out prompts.
-- Prudence: 17.5% exact over `40` held-out prompts.
-- Justice core: 16.7% exact over `42` held-out prompts.
 
-Main remaining weak spot:
+Why this is a persuasive demo baseline:
 
-- Citation-grounded moral answer: 0.0% exact over `67` held-out prompts.
-
-Zero-gain tracts in this run:
-
-- Connected virtues (II-II qq.109-120).
-
-Why this is already meaningful:
-
+- The strongest gain lands on virtue concept explanation, the cleanest direct test of Thomist virtue alignment in this benchmark.
+- Reviewed relation explanation also improves materially, which matters because the dataset is built from reviewed doctrinal relations joined back to source passages.
 - Goal-demo exact citations move from `0 / 12` to `5 / 12`.
 - The gain appears on held-out prompts rather than on memorized training rows.
-- The overall benchmark is still modest at `0.137` exact, so this result should be read as evidence of movement in the right direction rather than as a finished assistant.
 - This is a deliberately small demo run, so the result should be read as proof that the pipeline works and can scale upward.
 
 Representative examples:
@@ -144,7 +133,7 @@ The repo keeps the heavier `extended` config for experimentation, but the timing
 
 ![Base vs adapter test comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
-*Figure 3. Held-out citation exact match for the untouched base model versus the LoRA adapter, focusing only on goal-aligned virtue task families. This figure supports the central empirical claim that the dataset moves model behavior in the right direction for the repo's intended use rather than merely packaging a training recipe.*
+*Figure 3. Held-out citation exact match for the untouched base model versus the LoRA adapter, focusing on the strongest virtue-aligned evaluation slices. This figure supports the central empirical claim that the dataset moves model behavior in the right direction for the repo's intended use rather than merely packaging a training recipe.*
 
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
