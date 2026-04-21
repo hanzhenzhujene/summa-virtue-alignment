@@ -111,11 +111,11 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - Public quickstart and command path:
   [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
 
-The current report reflects the canonical local rerun (`20260420_160727` train,
-`20260420_190542` adapter eval). The local adapter package in
+The current report reflects the canonical local rerun (`20260421_134712` train,
+`20260421_141053` adapter eval). The local adapter package in
 `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/` is the authoritative
 packaged evaluation surface for that result, while the public GitHub release keeps its original tag
-slug for continuity. The current canonical held-out benchmark reaches `0.356` exact citation
+slug for continuity. The current canonical held-out benchmark reaches `0.365` exact citation
 overall, with strongest gains on `Virtue concept explanation` and `Reviewed relation explanation`.
 
 ## Out of Scope

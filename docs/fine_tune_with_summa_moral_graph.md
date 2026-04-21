@@ -82,6 +82,13 @@ This is the official local demonstration path:
 This local 1.5B setup is intentionally small. It exists so users can verify the full SFT loop on a
 laptop and then carry the same dataset/method over to larger runs when they want stronger results.
 
+Current repo note:
+
+- the live `smoke` and `local-baseline` configs now use `32` train-time eval examples so the
+  round-robin validation slice covers all four task families
+- the already-published baseline report still reflects the earlier `16`-example monitoring slice,
+  which affected train-time diagnostics rather than the held-out base-vs-adapter benchmark itself
+
 One-command setup:
 
 ```bash
@@ -115,6 +122,9 @@ Mac-safe local-baseline train:
 ```bash
 make train-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
+
+That rung now keeps the same `128` train examples and `20` steps, but uses a `32`-example
+train-time eval slice so loss monitoring is less biased toward only the first two task families.
 
 Base-model test predictions and evaluation:
 
@@ -187,7 +197,7 @@ make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
 
 Completed result:
 
-- overall held-out exact citation improved from `0.356` to `0.386`
+- overall held-out exact citation improved from `0.365` to `0.386`
 - `citation_grounded_moral_answer` exact stable-id recovery improved from `0.000` to `0.030`
 - any citation signal on that hard slice improved from `0.403` to `0.836`
 - the run also introduced real tradeoffs, especially on `justice_core` and
@@ -261,19 +271,19 @@ endpoints:
 
 Canonical repo-local run ids:
 
-- train: `20260420_160727`
+- train: `20260421_134712`
 - base test: `20260420_162346`
-- adapter test: `20260420_190542`
-- compare test: `20260420_193654`
+- adapter test: `20260421_141053`
+- compare test: `20260421_145439`
 
 Current canonical headline held-out `test` result:
 
 - base citation exact match: `0.000`
-- adapter citation exact match: `0.356`
-- net gain: `+0.356`
+- adapter citation exact match: `0.365`
+- net gain: `+0.365`
 - strongest task slice: `Virtue concept explanation` at `65.6%`
-- second strongest task slice: `Reviewed relation explanation` at `58.2%`
-- strongest tract slice: `Justice core` at `45.2%`
+- second strongest task slice: `Reviewed relation explanation` at `62.7%`
+- strongest tract slice: `Justice core` at `50.0%`
 
 Interpret this published result as a small-model demonstration baseline. It is the public example
 showing that the Summa Moral Graph dataset can move model behavior in the right direction. The same
@@ -281,7 +291,7 @@ pipeline is meant to scale to larger models and longer GPU runs afterward.
 
 The Hugging Face repo and GitHub release remain the public distribution endpoints. The GitHub
 release keeps its original tag slug `20260418_193038` for continuity, while the curated report and
-local adapter package are the authoritative evaluation surfaces for the canonical `0.356` result.
+local adapter package are the authoritative evaluation surfaces for the canonical `0.365` result.
 
 ## What The Local Run Writes
 

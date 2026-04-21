@@ -8,7 +8,7 @@ learning_rate: 0.0002
 num_train_epochs: 1.0
 max_seq_length: 768
 max_train_examples: 128
-max_eval_examples: 16
+max_eval_examples: 32
 train_subset_strategy: task_tract_round_robin
 eval_subset_strategy: task_tract_round_robin
 per_device_train_batch_size: 1

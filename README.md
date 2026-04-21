@@ -48,13 +48,13 @@ through the pipeline:
 
 ## Method Overview
 
-| Stage | What the repo does | Main surface |
+| Stage | What the repo does | Surface |
 | --- | --- | --- |
-| Evidence | Joins approved doctrinal annotations back to stable `resp` / `ad` passage ids instead of flattening Aquinas into unlabeled text blobs | [data/processed/sft/exports/christian_virtue_v1](./data/processed/sft/exports/christian_virtue_v1) |
-| Supervision | Builds four instruction families: doctrinal QA, reviewed relation explanation, virtue concept explanation, and citation-grounded moral answer | [src/summa_moral_graph/sft/templates.py](./src/summa_moral_graph/sft/templates.py) |
-| Training | Runs a deliberately small local LoRA baseline on `Qwen/Qwen2.5-1.5B-Instruct` to prove the pipeline works end to end on reviewed evidence | [configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml](./configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml) |
-| Evaluation | Compares untouched base vs adapter on held-out prompts, then reports tract and task-family behavior | [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
-| Audit | Preserves stable ids, reports, package metadata, and the companion viewer so claims can be checked back against Aquinas's text | [docs/reports/christian_virtue_citation_frontier_audit.md](./docs/reports/christian_virtue_citation_frontier_audit.md) |
+| Evidence | Joins approved doctrinal annotations back to stable `resp` / `ad` passage ids instead of flattening Aquinas into unlabeled text blobs | [dataset export](./data/processed/sft/exports/christian_virtue_v1) |
+| Supervision | Builds four instruction families: doctrinal QA, reviewed relation explanation, virtue concept explanation, and citation-grounded moral answer | [templates](./src/summa_moral_graph/sft/templates.py) |
+| Training | Runs a deliberately small local LoRA baseline on `Qwen/Qwen2.5-1.5B-Instruct` to prove the pipeline works end to end on reviewed evidence | [train config](./configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml) |
+| Evaluation | Compares untouched base vs adapter on held-out prompts, then reports tract and task-family behavior | [baseline report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
+| Audit | Preserves stable ids, reports, package metadata, and the companion viewer so claims can be checked back against Aquinas's text | [frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md) |
 
 ## Repository Structure
 
@@ -75,10 +75,10 @@ general model toward better Thomist moral virtue behavior on held-out prompts?
 
 | Public highlight | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Held-out benchmark exact citation | `0.0%` | `35.6%` | `+35.6%` |
+| Held-out benchmark exact citation | `0.0%` | `36.5%` | `+36.5%` |
 | Virtue concept explanation | `0.0%` | `65.6%` | `+65.6%` |
-| Reviewed relation explanation | `0.0%` | `58.2%` | `+58.2%` |
-| Justice core tract | `0.0%` | `45.2%` | `+45.2%` |
+| Reviewed relation explanation | `0.0%` | `62.7%` | `+62.7%` |
+| Justice core tract | `0.0%` | `50.0%` | `+50.0%` |
 
 ![Local-baseline training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg)
 
@@ -97,7 +97,7 @@ The completed citation-focused follow-up is documented in the
 [citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md).
 The original hard-slice diagnostic that motivated this line of work remains in the
 [citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md).
-That same-budget follow-up raised overall held-out exact citation from `35.6%` to `38.6%` and
+That same-budget follow-up raised overall held-out exact citation from `36.5%` to `38.6%` and
 lifted held-out `citation_grounded_moral_answer` exact stable-id recovery from `0.0%` to `3.0%`,
 while also exposing a real tradeoff on `justice_core` and `strong_textual_inference`.
 

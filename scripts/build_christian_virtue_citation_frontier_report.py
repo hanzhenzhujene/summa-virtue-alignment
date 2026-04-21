@@ -448,7 +448,8 @@ def main() -> None:
             "## Interpretation",
             "",
             "1. The same-budget local recipe is steerable: changing only the train mixture moved "
-            "the held-out test set from `35.6%` to `38.6%` exact citation overall.",
+            f"the held-out test set from `{_pct(task_rows[0][1])}` to `{_pct(task_rows[0][2])}` "
+            "exact citation overall.",
             "2. The hardest user-style task is no longer completely flat: exact stable-id recovery "
             "on `citation_grounded_moral_answer` rose from `0.0%` to `3.0%`.",
             "3. The run is not yet a better public baseline, because the gains came with a severe "

@@ -65,6 +65,55 @@ def test_select_subset_task_tract_round_robin_balances_groups() -> None:
     ]
 
 
+def test_select_subset_task_tract_round_robin_with_32_examples_covers_all_task_families() -> None:
+    task_types = [
+        "citation_grounded_moral_answer",
+        "passage_grounded_doctrinal_qa",
+        "reviewed_relation_explanation",
+        "virtue_concept_explanation",
+    ]
+    tracts = [
+        "connected_virtues_109_120",
+        "fortitude_closure_136_140",
+        "fortitude_parts_129_135",
+        "justice_core",
+        "prudence",
+        "temperance_141_160",
+        "temperance_closure_161_170",
+        "theological_virtues",
+    ]
+    rows = [
+        _row(task_type, tract, 0)
+        for task_type in task_types
+        for tract in tracts
+    ]
+
+    selection = select_subset(
+        rows,
+        max_examples=32,
+        strategy="task_tract_round_robin",
+        split_name="val",
+    )
+
+    assert selection.summary["selected_examples"] == 32
+    assert selection.summary["selected_counts_by_task_type"] == {
+        "citation_grounded_moral_answer": 8,
+        "passage_grounded_doctrinal_qa": 8,
+        "reviewed_relation_explanation": 8,
+        "virtue_concept_explanation": 8,
+    }
+    assert selection.summary["selected_counts_by_tract"] == {
+        "connected_virtues_109_120": 4,
+        "fortitude_closure_136_140": 4,
+        "fortitude_parts_129_135": 4,
+        "justice_core": 4,
+        "prudence": 4,
+        "temperance_141_160": 4,
+        "temperance_closure_161_170": 4,
+        "theological_virtues": 4,
+    }
+
+
 def test_select_subset_without_cap_uses_full_dataset() -> None:
     rows = [_row("reviewed_relation_explanation", "prudence", idx) for idx in range(2)]
 

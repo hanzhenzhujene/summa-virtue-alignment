@@ -5,8 +5,8 @@ This release mirrors the canonical local `local-baseline` adapter publication fo
 ## Included here
 
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
-- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/f512fbdce23396c2692080b8af75f5f7b404b112/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
-- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/f512fbdce23396c2692080b8af75f5f7b404b112/docs/christian_virtue_dataset_card.md
+- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/christian_virtue_dataset_card.md
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 
 ## Purpose
@@ -15,14 +15,14 @@ Train an Aquinas-grounded Christian virtue assistant that answers within reviewe
 
 ## Artifact Status
 
-- The public GitHub release keeps the earlier distribution tag `christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038` for continuity, but the authoritative benchmark numbers in this package and curated report come from the corrected run `20260420_160727`.
+- The public GitHub release keeps the earlier distribution tag `christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038` for continuity, but the authoritative benchmark numbers in this package and curated report come from the corrected run `20260421_134712`.
 - Treat the curated report and local package manifest as the canonical evaluation surface for the current repo numbers.
 - `subset_summary.json` records the exact balanced `(task_type, tract)` composition of the local training and eval subsets used for this run.
 
 ## Executive Readout
 
 - Clearest public win: `Virtue concept explanation` at `65.6%` exact over `32` prompts.
-- Strongest tract slice: `Justice core` at `45.2%` exact over `42` prompts.
+- Strongest tract slice: `Justice core` at `50.0%` exact over `42` prompts.
 - This published run uses a deliberately small local demo model, so the result should be read as proof-of-pipeline rather than the final quality target.
 - This release foregrounds the strongest virtue-aligned slices; the full held-out matrix remains in the curated report.
 - Full task/tract breakdowns and the qualitative goal-demo panel live in the curated report.
@@ -30,9 +30,9 @@ Train an Aquinas-grounded Christian virtue assistant that answers within reviewe
 ## Headline public highlights
 
 - Strongest task slice: `Virtue concept explanation` at `65.6%`
-- Strongest tract slice: `Justice core` at `45.2%`
-- Run id: `20260420_160727`
-- Git commit: `f512fbdce23396c2692080b8af75f5f7b404b112`
+- Strongest tract slice: `Justice core` at `50.0%`
+- Run id: `20260421_134712`
+- Git commit: `40c724d0aaab5cdedc25110a1b4545157e9dcea3`
 
 ## Canonical command path
 

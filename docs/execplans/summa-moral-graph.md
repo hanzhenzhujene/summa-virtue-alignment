@@ -2,6 +2,43 @@
 
 ## Progress
 
+- The repo-level release surface and the manuscript-style report surface have now been audited
+  together for the final push:
+  - there is no separate standalone paper draft under version control in this repo
+  - the authoritative paper-like public surfaces are the curated reports in `docs/reports/`,
+    together with README, the fine-tune guide, the dataset card, and the public claim map
+  - those surfaces are now synchronized to the corrected canonical baseline run
+    `20260421_134712` / `20260421_141053` / `20260421_145439`
+  - the full release gate has been rerun after that synchronization so the pushed repo state and
+    the paper-like report state are aligned
+- The canonical local baseline has now been fully rerun and resynchronized to the widened `32`
+  example train-time eval slice:
+  - new train run: `20260421_134712`
+  - new adapter eval run: `20260421_141053`
+  - new compare run: `20260421_145439`
+  - the canonical held-out exact citation now lands at `36.5%`
+  - the strongest public slices are now `62.7%` on reviewed relation explanation and `50.0%` on
+    justice core, while virtue concept explanation remains `65.6%`
+  - README, claim map, guides, experiment index, dataset card, and verifier expectations are being
+    advanced to that new canonical baseline so the public release contract stays coherent
+- The widened local eval cap is now backed by an explicit regression test and public recipe note:
+  - `tests/test_sft_sampling.py` now proves that `task_tract_round_robin` with `32` examples spans
+    all four task families and all eight tracts
+  - the fine-tune guide and maintainer-facing SFT doc now explain why the current configs use `32`
+    eval examples even though the already-published baseline report was logged under the older
+    `16`-example monitoring slice
+- The local Apple-Silicon train-time eval cap has now been raised from `16` to `32` examples in
+  the `smoke` and `local-baseline` recipes:
+  - this fixes the most obvious blind spot in the tiny `task_tract_round_robin` eval subset
+  - with only `16` eval examples, train-time eval covered all eight tracts but only the first two
+    task families in bucket order
+  - moving to `32` does not change the published baseline artifact, but it makes future reruns'
+    train/eval diagnostics more representative
+- The README `Method Overview` table has now been compacted for GitHub readability:
+  - the old `Main surface` column used long path-like link labels that forced the table too wide
+  - the visible labels are now shortened to publication-facing link text such as `dataset export`,
+    `templates`, and `baseline report`
+  - this keeps the same navigation targets while reducing horizontal sprawl on the main page
 - The public release surface now has an explicit claim-to-artifact contract:
   - a new `docs/public_claim_map.md` now states the current public claims, the exact artifacts
     that support them, the reproduction commands, and the claim boundaries
@@ -113,8 +150,10 @@
     hardcoding the old first-rows behavior
 - The current local `Qwen/Qwen2.5-1.5B-Instruct` baseline is being re-audited as a training recipe
   rather than treated as a fixed quality ceiling:
-  - the public `local-baseline` rung is confirmed to be intentionally tiny at `128` train examples,
+  - the published `local-baseline` run was intentionally tiny at `128` train examples,
     `16` eval examples, and `20` optimizer steps
+  - the current repo config now raises the train-time eval cap to `32` so future reruns get a more
+    representative train/eval signal without changing the core local budget
   - the strongest corrected gain now lands on virtue concept explanation (`65.6%` exact), with
     reviewed relation explanation also reaching `58.2%`
   - the weakest family remains `citation_grounded_moral_answer`
@@ -1011,6 +1050,24 @@
 
 ## Surprises & Discoveries
 
+- The important follow-up after the config bump was not another numeric tweak but making the new
+  invariant inspectable:
+  - without a regression test, the `32`-example coverage property would remain an informal
+    assumption about bucket order
+  - without a doc note, a careful reader could reasonably wonder why the live config and the
+    published baseline artifact disagree on train-time eval size
+- The eval-loss oddity really was partly a recipe artifact rather than only a modeling effect:
+  - the MPS `local-baseline` and `smoke` configs were still capping eval at `16` examples even
+    after the balanced subset selector landed
+  - with `task_tract_round_robin`, that means train-time eval spans all tracts but not all task
+    families
+  - raising the cap to `32` is a small but high-leverage fix because it improves diagnostics
+    without adding meaningful conceptual complexity
+- The `Method Overview` layout problem was caused more by visible link text than by the number of
+  columns:
+  - GitHub Markdown auto-sized the third column around path-shaped labels
+  - shortening those labels fixed the width without needing to remove the table or weaken the
+    information architecture
 - After the structure cleanup, the remaining trust gap was not more explanation but clearer claim
   boundaries:
   - the repo already had good evidence, reports, and commands
@@ -1454,6 +1511,43 @@
 
 ## Decision Log
 
+- Treat the in-repo curated report bundle as the authoritative “paper” surface for this release.
+  Reason:
+  - there is no separate LaTeX/Typst manuscript draft checked into this repository
+  - the user-facing research narrative already lives in the curated reports, claim map, dataset
+    card, and fine-tune guide
+  Consequence:
+  - the final synchronization pass now updates and verifies those report/docs surfaces together
+    rather than pretending there is a second manuscript source of truth
+- After raising the eval cap, add both a regression test and a public note rather than only
+  changing YAML.
+  Reason:
+  - the change is valuable precisely because it is supposed to guarantee broader task-family
+    coverage during train-time evaluation
+  - if that intended coverage is not tested and explained, the repo remains slightly too implicit
+    for a polished research release
+  Consequence:
+  - the new local recipe is now both mechanically guarded and narratively coherent
+- Raise `max_eval_examples` from `16` to `32` in the Apple-Silicon `smoke` and `local-baseline`
+  configs.
+  Reason:
+  - the current balanced eval selector needs `32` examples to cover all four task families across
+    the tiny local diagnostic subset
+  - the user-visible problem was specifically that eval loss looked misleadingly better than train
+    loss, and the undersized eval cap was part of the cause
+  Consequence:
+  - future local reruns will get a more representative train-time eval slice
+  - the already-published baseline report remains historically accurate because it still reflects
+    the earlier `16`-example run artifact
+- Keep the `Method Overview` table, but replace path-like visible link text with short
+  publication-facing labels.
+  Reason:
+  - the table itself is useful because it shows the evidence-to-audit pipeline in one scan
+  - the real presentation bug was that the third column displayed long path names instead of short
+    human-readable anchors
+  Consequence:
+  - the README keeps the same information and link destinations while fitting more cleanly in the
+    GitHub layout
 - Add a public claim map and make it part of the checked publication bundle.
   Reason:
   - the repo is already strong enough that the next gain comes from explicit claim discipline, not
@@ -2020,6 +2114,23 @@
 
 ## Outcomes & Retrospective
 
+- The release now has one honest public source of truth instead of an implied split between “repo”
+  and “paper”:
+  - the README/docs/report bundle now clearly serves as the paper-like research surface
+  - the final sync pass verified that those narrative surfaces and the canonical run artifacts are
+    aligned before push
+- The widened eval slice is now a real release-quality change instead of a silent config tweak:
+  - tests protect the intended four-task coverage property
+  - the main local-run docs explain why the live config is slightly stricter than the historical
+    monitoring setup behind the published baseline report
+- The local recipe is now slightly more honest during training:
+  - train-time eval loss for future Apple-Silicon reruns will be based on a broader slice of the
+    validation set
+  - this will not replace held-out benchmark evaluation, but it should reduce one misleading
+    source of train-vs-eval loss inversion
+- The README method table now reads more cleanly on first open:
+  - the evidence, supervision, training, evaluation, and audit stages are still visible together
+  - but the third column no longer dominates the layout with oversized path labels
 - The repo’s public story is now more explicit about epistemic scope:
   - readers can see exactly what the dataset proves, what the baseline proves, what the
     citation-frontier follow-up proves, and what is still not being claimed

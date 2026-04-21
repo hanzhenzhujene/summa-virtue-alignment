@@ -132,7 +132,7 @@ def build_publication_doc_expectations(
         ],
         PUBLIC_CLAIM_MAP_PATH: [
             "# Public Claim Map",
-            "35.6%",
+            "36.5%",
             "38.6%",
             "3.0%",
             "make public-release-check",
@@ -170,12 +170,12 @@ def build_publication_doc_expectations(
             "citation_grounded_moral_answer",
             "configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml",
             "make audit-christian-virtue-qwen2-5-1-5b-citation-frontier",
-            "40.3%",
+            "47.8%",
         ],
         FRONTIER_FOLLOWUP_REPORT_PATH: [
             "# Christian Virtue Citation-Frontier Follow-Up",
             "Citation-grounded moral answer",
-            "35.6%",
+            "36.5%",
             "38.6%",
             "3.0%",
             "justice_core",

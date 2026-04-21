@@ -34,6 +34,7 @@ def test_load_qwen2_5_local_mps_training_config() -> None:
     assert config.torch_dtype == "float16"
     assert config.load_in_4bit is False
     assert config.max_steps == 8
+    assert config.max_eval_examples == 32
     assert config.train_subset_strategy == "task_tract_round_robin"
     assert config.eval_subset_strategy == "task_tract_round_robin"
     assert config.config_path is not None
@@ -51,7 +52,7 @@ def test_load_qwen2_5_local_mps_local_baseline_training_config() -> None:
     assert config.load_in_4bit is False
     assert config.max_steps == 20
     assert config.max_train_examples == 128
-    assert config.max_eval_examples == 16
+    assert config.max_eval_examples == 32
     assert config.train_subset_strategy == "task_tract_round_robin"
     assert config.eval_subset_strategy == "task_tract_round_robin"
     assert config.config_path is not None

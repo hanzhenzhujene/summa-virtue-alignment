@@ -43,17 +43,17 @@ Published artifacts:
 
 Current canonical repo-local run ids:
 
-- train: `20260420_160727`
+- train: `20260421_134712`
 - base test: `20260420_162346`
-- adapter test: `20260420_190542`
-- compare test: `20260420_193654`
+- adapter test: `20260421_141053`
+- compare test: `20260421_145439`
 
 Public headline on the canonical held-out `test` split:
 
-- overall held-out exact citation moves from `0.0%` to `35.6%`
+- overall held-out exact citation moves from `0.0%` to `36.5%`
 - strongest task slice: `Virtue concept explanation` moves from `0.0%` to `65.6%`
-- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `58.2%`
-- strongest tract slice: `Justice core` moves from `0.0%` to `45.2%`
+- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `62.7%`
+- strongest tract slice: `Justice core` moves from `0.0%` to `50.0%`
 
 Publication note:
 
@@ -68,9 +68,9 @@ Strongest held-out virtue slices:
 
 | Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Held-out benchmark exact citation | `0.0%` | `35.6%` | `+35.6%` |
+| Held-out benchmark exact citation | `0.0%` | `36.5%` | `+36.5%` |
 | Virtue concept explanation | `0.0%` | `65.6%` | `+65.6%` |
-| Reviewed relation explanation | `0.0%` | `58.2%` | `+58.2%` |
+| Reviewed relation explanation | `0.0%` | `62.7%` | `+62.7%` |
 
 #### Training Trace
 
@@ -110,11 +110,11 @@ Completed repo-local run ids:
 
 What changed relative to `local-baseline`:
 
-- overall held-out exact citation improved from `35.6%` to `38.6%`
+- overall held-out exact citation improved from `36.5%` to `38.6%`
 - the hardest user-style slice `citation_grounded_moral_answer` moved from `0.0%` to `3.0%`
   exact stable-id recovery
-- any citation signal on that hard slice rose from `40.3%` to `83.6%`
-- the run also exposed a real tradeoff: `justice_core` fell from `45.2%` to `19.0%`, and
+- any citation signal on that hard slice rose from `47.8%` to `83.6%`
+- the run also exposed a real tradeoff: `justice_core` fell from `50.0%` to `19.0%`, and
   `strong_textual_inference` fell from `48.6%` to `20.0%`
 
 This means the citation-heavy mixture is a genuine research result, but not yet a replacement for

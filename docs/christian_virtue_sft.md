@@ -198,6 +198,13 @@ make build-christian-virtue-sft
 The setup target uses the pinned local lockfile at
 `requirements/local-mps-py312.lock.txt`.
 
+Current repo note:
+
+- the live `smoke` and `local-baseline` configs now use `32` train-time eval examples so the
+  round-robin validation slice covers all four task families
+- the already-published baseline report still reflects the earlier `16`-example monitoring slice,
+  which affected train-time diagnostics rather than the held-out benchmark comparison itself
+
 One-command canonical reproduction:
 
 ```bash
@@ -215,6 +222,9 @@ Mac-safe local-baseline train:
 ```bash
 make train-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
+
+That rung keeps the same public `128`-example / `20`-step local budget, but now evaluates on a
+`32`-example train-time validation slice so the diagnostic loss is more representative.
 
 Next-step citation-frontier train:
 
@@ -319,9 +329,9 @@ Current public distribution endpoints:
 
 Current canonical repo-local rerun used by the flagship report:
 
-- Train run id: `20260420_160727`
-- Adapter eval run id: `20260420_190542`
-- Held-out `test` citation exact: `0.356`
+- Train run id: `20260421_134712`
+- Adapter eval run id: `20260421_141053`
+- Held-out `test` citation exact: `0.365`
 - Strongest task slice: `Virtue concept explanation` at `65.6%`
 
 Treat the flagship report and the local adapter package as the canonical evaluation surfaces for
