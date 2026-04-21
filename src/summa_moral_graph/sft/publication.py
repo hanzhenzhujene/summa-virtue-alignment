@@ -227,6 +227,12 @@ def _build_metric_summary(
     ]
     return {
         "strongest_task": _serialize_summary_row(task_rows[0] if task_rows else None),
+        "second_strongest_task": _serialize_summary_row(
+            task_rows[1]
+            if len(task_rows) > 1
+            and float(task_rows[1]["candidate_exact"]) > float(task_rows[1]["baseline_exact"])
+            else None
+        ),
         "strongest_tract": _serialize_summary_row(tract_rows[0] if tract_rows else None),
         "weakest_task": _serialize_summary_row(_lowest_metric_row(task_rows)),
         "zero_gain_tracts": zero_gain_tracts,
@@ -360,7 +366,14 @@ def build_model_card_text(
     grouping_key_text = grouping_key if grouping_key is not None else "question_id"
     release_slug_note = _release_slug_note(package_manifest)
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
+    second_strongest_task = cast(dict[str, Any] | None, summary.get("second_strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
+    base_metrics = cast(dict[str, Any], package_manifest.get("base_metrics", {}))
+    adapter_metrics = cast(dict[str, Any], package_manifest.get("adapter_metrics", {}))
+    overall_base_exact = _metric_value(base_metrics, "citation_exact_match")
+    overall_adapter_exact = _metric_value(adapter_metrics, "citation_exact_match")
+    overall_delta_exact = overall_adapter_exact - overall_base_exact
+    overall_count = adapter_metrics.get("count", "n/a")
 
     lines = [
         "---",
@@ -409,6 +422,7 @@ def build_model_card_text(
         ),
         f"| Canonical run id | `{package_manifest['local_train_run_id']}` |",
         f"| Git commit | `{package_manifest['git_commit']}` |",
+        f"| Held-out exact citation | `{_format_percent(overall_adapter_exact)}` |",
     ]
     if strongest_task is not None:
         lines.append(
@@ -449,6 +463,9 @@ def build_model_card_text(
             "",
             "| Highlight | Base | Adapter | Delta |",
             "| --- | ---: | ---: | ---: |",
+            f"| Held-out benchmark exact citation | `{_format_percent(overall_base_exact)}` | "
+            f"`{_format_percent(overall_adapter_exact)}` | "
+            f"`{_format_percent(overall_delta_exact)}` |",
         ]
     )
     if strongest_task is not None:
@@ -458,6 +475,13 @@ def build_model_card_text(
             f"`{_format_percent(float(strongest_task['candidate_exact']))}` | "
             f"`{_format_percent(float(strongest_task['delta_exact']))}` |"
         )
+    if second_strongest_task is not None:
+        lines.append(
+            f"| {second_strongest_task['label']} | "
+            f"`{_format_percent(float(second_strongest_task['baseline_exact']))}` | "
+            f"`{_format_percent(float(second_strongest_task['candidate_exact']))}` | "
+            f"`{_format_percent(float(second_strongest_task['delta_exact']))}` |"
+        )
     if strongest_tract is not None:
         lines.append(
             f"| {strongest_tract['label']} tract | "
@@ -466,11 +490,21 @@ def build_model_card_text(
             f"`{_format_percent(float(strongest_tract['delta_exact']))}` |"
         )
     lines.extend(["", "## Executive Readout", ""])
+    lines.append(
+        f"- Held-out benchmark exact citation reaches "
+        f"`{_format_percent(overall_adapter_exact)}` over `{overall_count}` prompts."
+    )
     if strongest_task is not None:
         lines.append(
             f"- The clearest public win is `{strongest_task['label']}`: "
             f"`{_format_percent(float(strongest_task['candidate_exact']))}` exact over "
             f"`{strongest_task['count']}` held-out prompts."
+        )
+    if second_strongest_task is not None:
+        lines.append(
+            f"- Second strongest task slice: `{second_strongest_task['label']}` at "
+            f"`{_format_percent(float(second_strongest_task['candidate_exact']))}` exact over "
+            f"`{second_strongest_task['count']}` prompts."
         )
     if strongest_tract is not None:
         lines.append(
@@ -615,6 +649,11 @@ def build_release_notes_text(
         github_repo_url, publication_git_commit, dataset_card_display
     )
     release_slug_note = _release_slug_note(package_manifest)
+    base_metrics = cast(dict[str, Any], package_manifest.get("base_metrics", {}))
+    adapter_metrics = cast(dict[str, Any], package_manifest.get("adapter_metrics", {}))
+    overall_base_exact = _metric_value(base_metrics, "citation_exact_match")
+    overall_adapter_exact = _metric_value(adapter_metrics, "citation_exact_match")
+    overall_delta_exact = overall_adapter_exact - overall_base_exact
 
     lines = [
         "# Christian Virtue Qwen2.5 1.5B Local Baseline",
@@ -655,12 +694,23 @@ def build_release_notes_text(
         ]
     )
     strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
+    second_strongest_task = cast(dict[str, Any] | None, summary.get("second_strongest_task"))
     strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
     if strongest_task is not None:
         lines.append(
             f"- Clearest public win: `{strongest_task['label']}` at "
             f"`{_format_percent(float(strongest_task['candidate_exact']))}` exact over "
             f"`{strongest_task['count']}` prompts."
+        )
+    lines.append(
+        f"- Held-out benchmark exact citation: `{_format_percent(overall_adapter_exact)}` "
+        f"(delta `{_format_percent(overall_delta_exact)}`)."
+    )
+    if second_strongest_task is not None:
+        lines.append(
+            f"- Second strongest task slice: `{second_strongest_task['label']}` at "
+            f"`{_format_percent(float(second_strongest_task['candidate_exact']))}` exact over "
+            f"`{second_strongest_task['count']}` prompts."
         )
     if strongest_tract is not None:
         lines.append(
@@ -686,6 +736,13 @@ def build_release_notes_text(
                 if strongest_task is not None
                 else "- Strongest task slice: `n/a`"
             ),
+            (
+                f"- Second strongest task slice: `{second_strongest_task['label']}` at "
+                f"`{_format_percent(float(second_strongest_task['candidate_exact']))}`"
+                if second_strongest_task is not None
+                else "- Second strongest task slice: `n/a`"
+            ),
+            f"- Held-out benchmark exact citation: `{_format_percent(overall_adapter_exact)}`",
             (
                 f"- Strongest tract slice: `{strongest_tract['label']}` at "
                 f"`{_format_percent(float(strongest_tract['candidate_exact']))}`"
