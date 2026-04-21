@@ -57,6 +57,14 @@ def describe_training_plan(config: TrainingConfig) -> dict[str, Any]:
         "eval_subset_strategy": config.eval_subset_strategy,
         "train_task_type_quotas": config.train_task_type_quotas,
         "eval_task_type_quotas": config.eval_task_type_quotas,
+        "train_protected_buckets": [
+            bucket.model_dump(mode="json", exclude_none=True)
+            for bucket in config.train_protected_buckets or []
+        ],
+        "eval_protected_buckets": [
+            bucket.model_dump(mode="json", exclude_none=True)
+            for bucket in config.eval_protected_buckets or []
+        ],
         "requested_runtime_backend": config.runtime_backend,
         "requested_torch_dtype": config.torch_dtype,
         "lora_target_modules": config.lora_target_modules or list(DEFAULT_LORA_TARGET_MODULES),
@@ -210,6 +218,7 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         strategy=config.train_subset_strategy,
         split_name=config.train_split,
         task_type_quotas=config.train_task_type_quotas,
+        protected_buckets=config.train_protected_buckets,
     )
     eval_selection = select_subset(
         _load_jsonl_dataset(eval_path),
@@ -217,6 +226,7 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         strategy=config.eval_subset_strategy,
         split_name=config.eval_split,
         task_type_quotas=config.eval_task_type_quotas,
+        protected_buckets=config.eval_protected_buckets,
     )
     train_rows = train_selection.rows
     eval_rows = eval_selection.rows
@@ -372,6 +382,14 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         "eval_subset_strategy": config.eval_subset_strategy,
         "train_task_type_quotas": config.train_task_type_quotas,
         "eval_task_type_quotas": config.eval_task_type_quotas,
+        "train_protected_buckets": [
+            bucket.model_dump(mode="json", exclude_none=True)
+            for bucket in config.train_protected_buckets or []
+        ],
+        "eval_protected_buckets": [
+            bucket.model_dump(mode="json", exclude_none=True)
+            for bucket in config.eval_protected_buckets or []
+        ],
         "train_subset_summary": train_selection.summary,
         "eval_subset_summary": eval_selection.summary,
         "best_model_checkpoint": trainer.state.best_model_checkpoint,

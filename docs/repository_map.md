@@ -18,6 +18,10 @@ model trainer.
   flagship local experiment report
 - [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md):
   completed same-budget citation-focused follow-up report
+- [docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md):
+  completed same-budget justice-guarded follow-up report
+- [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md):
+  completed same-budget accuracy-first follow-up report
 
 ## Canonical Public Bundle
 
@@ -30,6 +34,8 @@ If you want the smallest set of files that define the public release, start here
   [docs/reports/christian_virtue_citation_frontier_audit.md](./reports/christian_virtue_citation_frontier_audit.md)
 - follow-up citation-frontier report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+- justice-guarded follow-up report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
 - local adapter package:
   [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
 - external model page:
@@ -138,9 +144,14 @@ the public local baseline from tract-maintenance helpers and remote-model utilit
 ### Citation-Frontier Experiment
 
 - `configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml`
+- `configs/train/qwen2_5_1_5b_instruct_lora_mps_accuracy_first_hybrid.yaml`
+- `configs/train/qwen2_5_1_5b_instruct_lora_mps_justice_guarded_citation_repair.yaml`
 - `configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml`
+- `configs/inference/qwen2_5_1_5b_instruct_accuracy_first_adapter_test.yaml`
+- `configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml`
 - `scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
 - `scripts/build_christian_virtue_citation_frontier_report.py`
+- `scripts/build_christian_virtue_justice_guarded_report.py`
 
 This is the completed next research increment after `local-baseline`: same small local budget,
 same dataset, but a more citation-heavy deterministic subset intended to test stable-id recovery on
@@ -188,6 +199,29 @@ mixture so half of the train budget goes to `citation_grounded_moral_answer`.
 The finished follow-up report now lives at:
 
 6. [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+
+The next completed same-budget doctrinal-guard follow-up is:
+
+7. `make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop`
+
+Its curated report now lives at:
+
+8. [docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
+
+The official justice-guarded wrappers now export the required MPS safety env overrides
+automatically for training and adapter evaluation.
+
+The completed highest-accuracy same-budget follow-up is:
+
+9. `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop`
+
+It keeps the same budget, keeps the justice/STI guards, and restores a little more
+`citation_grounded_moral_answer` pressure, yielding the repo's strongest same-budget overall exact
+citation result so far (`41.2%`).
+
+The completed result now lives at:
+
+10. [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)
 
 ## Recommended Reading Order
 

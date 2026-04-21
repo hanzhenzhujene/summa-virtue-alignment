@@ -4,6 +4,7 @@ BIN := $(VENV)/bin
 LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
 LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
 LOCAL_15B_CITATION_FRONTIER_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md
+LOCAL_15B_JUSTICE_GUARDED_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md
 LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter
 LOCAL_15B_HF_REPO_ID := JennyZhu0822/summa-virtue-qwen2.5-1.5b
 LOCAL_15B_HF_URL := https://huggingface.co/$(LOCAL_15B_HF_REPO_ID)
@@ -18,6 +19,12 @@ LOCAL_15B_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/adapter_test/latest/predictio
 LOCAL_15B_CITATION_FRONTIER_TRAIN_METADATA := $(LOCAL_15B_ROOT)/citation_frontier/latest/train_metadata.json
 LOCAL_15B_CITATION_FRONTIER_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/metrics.json
 LOCAL_15B_CITATION_FRONTIER_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/predictions.jsonl
+LOCAL_15B_ACCURACY_FIRST_TRAIN_METADATA := $(LOCAL_15B_ROOT)/accuracy_first_hybrid/latest/train_metadata.json
+LOCAL_15B_ACCURACY_FIRST_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/accuracy_first_hybrid_adapter_test/latest/metrics.json
+LOCAL_15B_ACCURACY_FIRST_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/accuracy_first_hybrid_adapter_test/latest/predictions.jsonl
+LOCAL_15B_JUSTICE_GUARDED_TRAIN_METADATA := $(LOCAL_15B_ROOT)/justice_guarded_citation_repair/latest/train_metadata.json
+LOCAL_15B_JUSTICE_GUARDED_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/justice_guarded_citation_repair_adapter_test/latest/metrics.json
+LOCAL_15B_JUSTICE_GUARDED_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/justice_guarded_citation_repair_adapter_test/latest/predictions.jsonl
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -57,21 +64,30 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
 	train-christian-virtue-qwen2-5-1-5b-citation-frontier \
+	train-christian-virtue-qwen2-5-1-5b-accuracy-first \
+	train-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	train-christian-virtue-qwen2-5-1-5b-local-extended \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
 	eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test \
+	eval-christian-virtue-qwen2-5-1-5b-accuracy-first-test \
+	eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
 	compare-christian-virtue-qwen2-5-1-5b-citation-frontier \
+	compare-christian-virtue-qwen2-5-1-5b-accuracy-first \
+	compare-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	audit-christian-virtue-qwen2-5-1-5b-local-frontier \
 	audit-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	report-christian-virtue-qwen2-5-1-5b-local-baseline \
 	report-christian-virtue-qwen2-5-1-5b-citation-frontier \
+	report-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	package-christian-virtue-qwen2-5-1-5b-local-adapter \
 	publish-christian-virtue-qwen2-5-1-5b-local-adapter \
 	verify-christian-virtue-qwen2-5-1-5b-local-publishable \
 	run-christian-virtue-qwen2-5-1-5b-local-loop \
 	run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop \
+	run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop \
+	run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop \
 	train-christian-virtue-small-smoke train-christian-virtue-small \
 	generate-christian-virtue-predictions generate-christian-virtue-small-predictions \
 	generate-christian-virtue-small-base-test generate-christian-virtue-small-adapter-test \
@@ -231,6 +247,12 @@ train-christian-virtue-qwen2-5-1-5b-local-baseline:
 train-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh citation-frontier
 
+train-christian-virtue-qwen2-5-1-5b-accuracy-first:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh accuracy-first
+
+train-christian-virtue-qwen2-5-1-5b-justice-guarded:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh justice-guarded
+
 train-christian-virtue-qwen2-5-1-5b-local-extended:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh extended
 
@@ -243,11 +265,23 @@ eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
 eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh citation-frontier
 
+eval-christian-virtue-qwen2-5-1-5b-accuracy-first-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh accuracy-first
+
+eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh justice-guarded
+
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
 
 compare-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh citation-frontier
+
+compare-christian-virtue-qwen2-5-1-5b-accuracy-first:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh accuracy-first
+
+compare-christian-virtue-qwen2-5-1-5b-justice-guarded:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh justice-guarded
 
 audit-christian-virtue-qwen2-5-1-5b-local-frontier:
 	$(BIN)/python scripts/audit_christian_virtue_frontier.py
@@ -263,6 +297,10 @@ report-christian-virtue-qwen2-5-1-5b-local-baseline:
 report-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	$(BIN)/python scripts/build_christian_virtue_citation_frontier_report.py \
 		--output $(LOCAL_15B_CITATION_FRONTIER_REPORT)
+
+report-christian-virtue-qwen2-5-1-5b-justice-guarded:
+	$(BIN)/python scripts/build_christian_virtue_justice_guarded_report.py \
+		--output $(LOCAL_15B_JUSTICE_GUARDED_REPORT)
 
 package-christian-virtue-qwen2-5-1-5b-local-adapter:
 	$(BIN)/python scripts/publish_christian_virtue_adapter.py \
@@ -302,6 +340,12 @@ run-christian-virtue-qwen2-5-1-5b-local-loop:
 
 run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh citation-frontier
+
+run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh accuracy-first
+
+run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh justice-guarded
 
 reproduce-christian-virtue-qwen2-5-1-5b-local:
 	bash scripts/reproduce_christian_virtue_qwen2_5_1_5b_local.sh

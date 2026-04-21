@@ -459,7 +459,11 @@ def main() -> None:
             "",
             "## Next Step After Citation-Frontier",
             "",
-            "The highest-leverage next experiment is a justice-guarded citation-repair recipe:",
+            "That follow-up has now been completed in "
+            "[`christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md`]"
+            "(./christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md).",
+            "From the perspective of this frontier report, the next experiment was a "
+            "justice-guarded citation-repair recipe:",
             "",
             "- keep the Christian virtue dataset fixed",
             "- keep the same small Apple-Silicon budget",

@@ -1,0 +1,109 @@
+run_name: christian-virtue-qwen2.5-1.5b-instruct-lora-mps-accuracy-first-hybrid
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
+dataset_dir: data/processed/sft/exports/christian_virtue_v1
+train_split: train
+eval_split: val
+output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/accuracy_first_hybrid
+learning_rate: 0.0002
+num_train_epochs: 1.0
+max_seq_length: 768
+max_train_examples: 128
+max_eval_examples: 32
+train_subset_strategy: task_tract_quota_round_robin
+eval_subset_strategy: task_tract_quota_round_robin
+train_task_type_quotas:
+  citation_grounded_moral_answer: 56
+  reviewed_relation_explanation: 26
+  virtue_concept_explanation: 22
+  passage_grounded_doctrinal_qa: 24
+eval_task_type_quotas:
+  citation_grounded_moral_answer: 10
+  reviewed_relation_explanation: 8
+  virtue_concept_explanation: 6
+  passage_grounded_doctrinal_qa: 8
+train_protected_buckets:
+  - label: justice-passage-sti
+    quota: 1
+    task_type: passage_grounded_doctrinal_qa
+    tract: justice_core
+    support_type: strong_textual_inference
+  - label: justice-relation-sti
+    quota: 1
+    task_type: reviewed_relation_explanation
+    tract: justice_core
+    support_type: strong_textual_inference
+  - label: justice-passage-explicit
+    quota: 1
+    task_type: passage_grounded_doctrinal_qa
+    tract: justice_core
+    support_type: explicit_textual
+  - label: justice-relation-explicit
+    quota: 1
+    task_type: reviewed_relation_explanation
+    tract: justice_core
+    support_type: explicit_textual
+  - label: moral-qa-sti
+    quota: 2
+    task_type: citation_grounded_moral_answer
+    support_type: strong_textual_inference
+  - label: moral-qa-explicit
+    quota: 2
+    task_type: citation_grounded_moral_answer
+    support_type: explicit_textual
+eval_protected_buckets:
+  - label: justice-passage-sti
+    quota: 1
+    task_type: passage_grounded_doctrinal_qa
+    tract: justice_core
+    support_type: strong_textual_inference
+  - label: justice-relation-sti
+    quota: 1
+    task_type: reviewed_relation_explanation
+    tract: justice_core
+    support_type: strong_textual_inference
+  - label: justice-passage-explicit
+    quota: 1
+    task_type: passage_grounded_doctrinal_qa
+    tract: justice_core
+    support_type: explicit_textual
+  - label: justice-relation-explicit
+    quota: 1
+    task_type: reviewed_relation_explanation
+    tract: justice_core
+    support_type: explicit_textual
+  - label: moral-qa-sti
+    quota: 1
+    task_type: citation_grounded_moral_answer
+    support_type: strong_textual_inference
+  - label: moral-qa-explicit
+    quota: 1
+    task_type: citation_grounded_moral_answer
+    support_type: explicit_textual
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 8
+warmup_ratio: 0.0
+weight_decay: 0.0
+logging_steps: 5
+eval_steps: 20
+save_steps: 20
+save_total_limit: 1
+max_steps: 20
+seed: 17
+gradient_checkpointing: true
+runtime_backend: mps
+torch_dtype: float16
+load_in_4bit: false
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+report_to: []
+trust_remote_code: false

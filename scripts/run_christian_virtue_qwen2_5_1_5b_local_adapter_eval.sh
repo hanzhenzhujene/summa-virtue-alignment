@@ -8,10 +8,13 @@ source "${SCRIPT_DIR}/christian_virtue_small_common.sh"
 resolve_python_bin
 
 MODE="${1:-local-baseline}"
+ENV_PREFIX=()
 LOCAL_BASELINE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
 EXTENDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/extended"
 SMOKE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/smoke"
 CITATION_FRONTIER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier"
+ACCURACY_FIRST_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/accuracy_first_hybrid"
+JUSTICE_GUARDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/justice_guarded_citation_repair"
 
 case "${MODE}" in
   local-baseline)
@@ -37,8 +40,38 @@ case "${MODE}" in
     INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml"
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test"
     ;;
+  accuracy-first)
+    if [[ ! -e "${ACCURACY_FIRST_ROOT}/latest" ]]; then
+      echo "Accuracy-first adapter directory not found: ${ACCURACY_FIRST_ROOT}/latest" >&2
+      echo "Run the accuracy-first training first." >&2
+      exit 1
+    fi
+    ADAPTER_DIR="${ACCURACY_FIRST_ROOT}/latest"
+    INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_accuracy_first_adapter_test.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/accuracy_first_hybrid_adapter_test"
+    ENV_PREFIX=(
+      env
+      "PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}"
+      "PYTORCH_MPS_HIGH_WATERMARK_RATIO=${PYTORCH_MPS_HIGH_WATERMARK_RATIO:-0.0}"
+    )
+    ;;
+  justice-guarded)
+    if [[ ! -e "${JUSTICE_GUARDED_ROOT}/latest" ]]; then
+      echo "Justice-guarded adapter directory not found: ${JUSTICE_GUARDED_ROOT}/latest" >&2
+      echo "Run the justice-guarded training first." >&2
+      exit 1
+    fi
+    ADAPTER_DIR="${JUSTICE_GUARDED_ROOT}/latest"
+    INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/justice_guarded_citation_repair_adapter_test"
+    ENV_PREFIX=(
+      env
+      "PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}"
+      "PYTORCH_MPS_HIGH_WATERMARK_RATIO=${PYTORCH_MPS_HIGH_WATERMARK_RATIO:-0.0}"
+    )
+    ;;
   *)
-    echo "Unknown mode: ${MODE}. Expected 'local-baseline' or 'citation-frontier'." >&2
+    echo "Unknown mode: ${MODE}. Expected 'local-baseline', 'citation-frontier', 'accuracy-first', or 'justice-guarded'." >&2
     exit 1
     ;;
 esac
@@ -53,6 +86,7 @@ ensure_dataset "${DATASET_CONFIG}" "${DATASET_SENTINEL}" "${RUN_DIR}"
 
 run_logged \
   "${RUN_DIR}" \
+  "${ENV_PREFIX[@]}" \
   "${PYTHON_BIN}" \
   "${ROOT_DIR}/scripts/generate_christian_virtue_predictions.py" \
   --config \
@@ -64,6 +98,7 @@ run_logged \
 
 run_logged \
   "${RUN_DIR}" \
+  "${ENV_PREFIX[@]}" \
   "${PYTHON_BIN}" \
   "${ROOT_DIR}/scripts/eval_christian_virtue_sft.py" \
   --dataset-dir \

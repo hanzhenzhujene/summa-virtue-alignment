@@ -153,6 +153,32 @@ class DatasetBuildConfig(BaseModel):
     config_path: Path | None = None
 
 
+class ProtectedBucketQuota(BaseModel):
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    label: str | None = None
+    quota: int = Field(ge=1)
+    task_type: str | None = None
+    tract: str | None = None
+    support_type: str | None = None
+
+    @field_validator("label", "task_type", "tract", "support_type", mode="before")
+    @classmethod
+    def normalize_optional_text(cls, value: str | None) -> str | None:
+        if value is None:
+            return None
+        cleaned = str(value).strip()
+        return cleaned or None
+
+    @model_validator(mode="after")
+    def validate_filter_presence(self) -> "ProtectedBucketQuota":
+        if self.task_type is None and self.tract is None and self.support_type is None:
+            raise ValueError(
+                "protected bucket quotas must set at least one of task_type, tract, or support_type"
+            )
+        return self
+
+
 class TrainingConfig(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
@@ -171,6 +197,8 @@ class TrainingConfig(BaseModel):
     eval_subset_strategy: TrainingSubsetStrategy = "first_rows"
     train_task_type_quotas: dict[str, int] | None = None
     eval_task_type_quotas: dict[str, int] | None = None
+    train_protected_buckets: list[ProtectedBucketQuota] | None = None
+    eval_protected_buckets: list[ProtectedBucketQuota] | None = None
     per_device_train_batch_size: int = Field(default=1, ge=1)
     per_device_eval_batch_size: int = Field(default=1, ge=1)
     gradient_accumulation_steps: int = Field(default=16, ge=1)
@@ -221,17 +249,30 @@ class TrainingConfig(BaseModel):
             cleaned[cleaned_key] = cleaned_count
         return cleaned
 
+    @field_validator("train_protected_buckets", "eval_protected_buckets")
+    @classmethod
+    def validate_protected_buckets(
+        cls, value: list[ProtectedBucketQuota] | None
+    ) -> list[ProtectedBucketQuota] | None:
+        if value is None:
+            return None
+        if not value:
+            raise ValueError("protected bucket quota lists must not be empty")
+        return value
+
     @model_validator(mode="after")
     def validate_subset_strategy_requirements(self) -> "TrainingConfig":
         _validate_quota_subset_config(
             strategy=self.train_subset_strategy,
             task_type_quotas=self.train_task_type_quotas,
+            protected_buckets=self.train_protected_buckets,
             max_examples=self.max_train_examples,
             split_label="train",
         )
         _validate_quota_subset_config(
             strategy=self.eval_subset_strategy,
             task_type_quotas=self.eval_task_type_quotas,
+            protected_buckets=self.eval_protected_buckets,
             max_examples=self.max_eval_examples,
             split_label="eval",
         )
@@ -300,6 +341,7 @@ def _validate_quota_subset_config(
     *,
     strategy: TrainingSubsetStrategy,
     task_type_quotas: dict[str, int] | None,
+    protected_buckets: list[ProtectedBucketQuota] | None,
     max_examples: int | None,
     split_label: str,
 ) -> None:
@@ -314,9 +356,10 @@ def _validate_quota_subset_config(
                 f"{split_label}_max_examples is required when using "
                 "task_tract_quota_round_robin"
             )
-    elif task_type_quotas is not None:
+    elif task_type_quotas is not None or protected_buckets is not None:
         raise ValueError(
-            f"{split_label}_task_type_quotas can only be set when using "
+            f"{split_label}_task_type_quotas and "
+            f"{split_label}_protected_buckets can only be set when using "
             "task_tract_quota_round_robin"
         )
 
@@ -324,4 +367,9 @@ def _validate_quota_subset_config(
         if sum(task_type_quotas.values()) > max_examples:
             raise ValueError(
                 f"{split_label}_task_type_quotas must not sum above {split_label}_max_examples"
+            )
+    if protected_buckets is not None and max_examples is not None:
+        if sum(bucket.quota for bucket in protected_buckets) > max_examples:
+            raise ValueError(
+                f"{split_label}_protected_buckets must not sum above {split_label}_max_examples"
             )

@@ -15,13 +15,18 @@ These are the scripts behind the canonical Christian virtue local baseline:
   - runs the full canonical local loop from dataset build through verification
   - prints the key output paths for the curated report, local adapter package, and latest run dirs
 - `run_christian_virtue_qwen2_5_1_5b_local_train.sh`
-  - launches `smoke`, `local-baseline`, `citation-frontier`, or the heavier experimental `extended` local training
+  - launches `smoke`, `local-baseline`, `citation-frontier`, `accuracy-first`,
+    `justice-guarded`, or the heavier experimental `extended` local training
+  - the `accuracy-first` and `justice-guarded` modes automatically export the MPS safety env overrides that were
+    required for the successful rerun
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
-  - generates and evaluates held-out adapter predictions for either the canonical baseline or the citation-frontier experiment
+  - generates and evaluates held-out adapter predictions for the canonical baseline, the citation-frontier experiment, the accuracy-first hybrid, or the justice-guarded follow-up
+  - the `accuracy-first` and `justice-guarded` modes also reuse those MPS safety env overrides during generation and
+    evaluation
 - `run_christian_virtue_qwen2_5_1_5b_local_compare.sh`
-  - compares the canonical local base and adapter runs, or compares local-baseline against the citation-frontier adapter
+  - compares the canonical local base and adapter runs, or compares local-baseline against the citation-frontier, accuracy-first, or justice-guarded adapters
 - `run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
   - audits the hardest `citation_grounded_moral_answer` slice for the latest citation-frontier adapter
 - `audit_christian_virtue_frontier.py`
@@ -30,6 +35,9 @@ These are the scripts behind the canonical Christian virtue local baseline:
 - `build_christian_virtue_citation_frontier_report.py`
   - assembles the curated markdown report for the completed citation-frontier follow-up
   - summarizes both the real gain and the remaining doctrinal tradeoffs from that run
+- `build_christian_virtue_justice_guarded_report.py`
+  - assembles the curated markdown report for the justice-guarded follow-up
+  - captures the recovery in `justice_core` / `strong_textual_inference` together with the remaining moral-QA gap
 
 The preferred public commands remain:
 
@@ -40,12 +48,17 @@ make public-release-check
 make audit-christian-virtue-qwen2-5-1-5b-local-frontier
 make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
 make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop
+make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
+make report-christian-virtue-qwen2-5-1-5b-justice-guarded
 ```
 
 After the reproduction command completes, the most important outputs are:
 
 - `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md`
 - `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest`
 
@@ -64,6 +77,7 @@ your own model or adapt the method:
 - `compare_christian_virtue_runs.py`
 - `build_christian_virtue_local_report.py`
 - `build_christian_virtue_citation_frontier_report.py`
+- `build_christian_virtue_justice_guarded_report.py`
 - `publish_christian_virtue_adapter.py`
 - `verify_christian_virtue_publication.py`
 - `audit_christian_virtue_frontier.py`

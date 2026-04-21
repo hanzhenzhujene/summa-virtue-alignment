@@ -139,3 +139,66 @@ def test_describe_training_plan_includes_task_type_quotas(tmp_path, monkeypatch)
 
     assert plan["train_task_type_quotas"] == {"citation_grounded_moral_answer": 64}
     assert plan["eval_task_type_quotas"] == {"citation_grounded_moral_answer": 16}
+
+
+def test_describe_training_plan_includes_protected_buckets(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(
+        training_module,
+        "_detect_runtime",
+        lambda config: ModelRuntime(
+            device_type="mps",
+            effective_load_in_4bit=False,
+            torch_dtype_name="float16",
+            warnings=(),
+        ),
+    )
+    config = _build_training_config(
+        tmp_path,
+        runtime_backend="mps",
+        torch_dtype="float16",
+        max_train_examples=128,
+        max_eval_examples=32,
+        train_subset_strategy="task_tract_quota_round_robin",
+        eval_subset_strategy="task_tract_quota_round_robin",
+        train_task_type_quotas={"citation_grounded_moral_answer": 48},
+        eval_task_type_quotas={"citation_grounded_moral_answer": 12},
+        train_protected_buckets=[
+            {
+                "label": "justice-relation-sti",
+                "quota": 2,
+                "task_type": "reviewed_relation_explanation",
+                "tract": "justice_core",
+                "support_type": "strong_textual_inference",
+            }
+        ],
+        eval_protected_buckets=[
+            {
+                "label": "justice-passage-sti",
+                "quota": 1,
+                "task_type": "passage_grounded_doctrinal_qa",
+                "tract": "justice_core",
+                "support_type": "strong_textual_inference",
+            }
+        ],
+    )
+
+    plan = describe_training_plan(config)
+
+    assert plan["train_protected_buckets"] == [
+        {
+            "label": "justice-relation-sti",
+            "quota": 2,
+            "task_type": "reviewed_relation_explanation",
+            "tract": "justice_core",
+            "support_type": "strong_textual_inference",
+        }
+    ]
+    assert plan["eval_protected_buckets"] == [
+        {
+            "label": "justice-passage-sti",
+            "quota": 1,
+            "task_type": "passage_grounded_doctrinal_qa",
+            "tract": "justice_core",
+            "support_type": "strong_textual_inference",
+        }
+    ]

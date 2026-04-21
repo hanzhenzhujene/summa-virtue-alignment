@@ -26,6 +26,12 @@ FRONTIER_AUDIT_PATH = Path("docs/reports/christian_virtue_citation_frontier_audi
 FRONTIER_FOLLOWUP_REPORT_PATH = (
     Path("docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md")
 )
+JUSTICE_GUARDED_REPORT_PATH = (
+    Path("docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md")
+)
+ACCURACY_FIRST_REPORT_PATH = (
+    Path("docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md")
+)
 MACHINE_PATH_PATTERNS = (
     re.compile(r"/Users/[^\s)\]\"']+"),
     re.compile(r"/home/[^\s)\]\"']+"),
@@ -134,8 +140,10 @@ def build_publication_doc_expectations(
             "# Public Claim Map",
             "36.5%",
             "38.6%",
+            "41.2%",
             "3.0%",
             "make public-release-check",
+            "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop",
             "not a general theology chatbot",
             "not a replacement public baseline",
         ],
@@ -180,8 +188,26 @@ def build_publication_doc_expectations(
             "3.0%",
             "justice_core",
             "strong_textual_inference",
-            "justice-guarded citation-repair recipe",
+            "christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md",
             "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
+        ],
+        JUSTICE_GUARDED_REPORT_PATH: [
+            "# Justice-Guarded Citation-Repair Report",
+            "39.1%",
+            "42.9%",
+            "justice_core",
+            "strong_textual_inference",
+            "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md",
+        ],
+        ACCURACY_FIRST_REPORT_PATH: [
+            "# Accuracy-First Hybrid Report",
+            "41.2%",
+            "50.7%",
+            "64.2%",
+            "citation_grounded_moral_answer",
+            "justice_core",
+            "strong_textual_inference",
+            "strongest same-budget overall result",
         ],
         DATASET_CARD_PATH: [
             "Aquinas-grounded Christian virtue reasoning",

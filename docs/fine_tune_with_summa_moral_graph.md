@@ -245,8 +245,8 @@ Current conclusion:
 - yes, the same-budget citation-heavy recipe does improve the hard user-style citation task
 - no, it is not yet the new public baseline, because it trades away too much on some doctrinal
   slices
-- the next step after this follow-up is a justice-guarded citation-repair recipe rather than more
-  dataset scope
+- that follow-up has now been completed as a justice-guarded citation-repair recipe rather than a
+  dataset-scope expansion
 
 Expected output roots:
 
@@ -254,6 +254,91 @@ Expected output roots:
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test/latest/`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_compare_test/latest/`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_audit/latest/`
+
+## Justice-Guarded Citation-Repair Follow-Up
+
+The next completed same-budget follow-up protects a few justice-specific rows inside the subset
+selector while keeping the tiny local 1.5B budget fixed:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
+make report-christian-virtue-qwen2-5-1-5b-justice-guarded
+```
+
+Completed result:
+
+- overall held-out exact citation improved again, from `0.386` to `0.391`
+- `justice_core` recovered from `0.190` to `0.429`
+- `strong_textual_inference` recovered from `0.200` to `0.429`
+- `passage_grounded_doctrinal_qa` rose to `0.463`
+- `virtue_concept_explanation` rose to `0.719`
+- but `citation_grounded_moral_answer` fell back from `0.030` to `0.000`
+
+Read the finished follow-up analysis here:
+
+- [docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
+
+What changed relative to `citation-frontier`:
+
+- same backbone: `Qwen/Qwen2.5-1.5B-Instruct`
+- same Apple Silicon `mps` target
+- same `128` train examples and `20` optimizer steps
+- same `task_tract_quota_round_robin` selector
+- four protected justice/STI buckets reserved before the main quota fill
+- official justice-guarded wrappers now export the required MPS safety env overrides
+  automatically during training and adapter evaluation
+
+Current conclusion:
+
+- yes, the repo can recover most of the justice/STI collapse while still nudging the overall
+  benchmark upward
+- no, this is still not the new public baseline, because it gives back the frontier's small
+  `citation_grounded_moral_answer` gain
+- the next research question after this run is no longer whether an accuracy-first hybrid helps;
+  it is whether we can keep this `41.2%` overall result while recovering the hard moral-QA slice
+
+## Accuracy-First Hybrid Follow-Up
+
+This accuracy-first hybrid has now been completed if the goal is higher held-out exact citation
+rather than a cleaner single tradeoff:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop
+```
+
+Design rationale:
+
+- start from the justice-guarded recipe because it currently gives the strongest same-budget
+  overall exact citation result (`39.1%`)
+- restore more `citation_grounded_moral_answer` budget than justice-guarded used
+- keep the justice/STI protected buckets that recovered doctrinal accuracy
+- add small protected moral-QA buckets so the run cannot silently lose that hard slice entirely
+
+Completed same-budget train mix:
+
+- `citation_grounded_moral_answer=56`
+- `reviewed_relation_explanation=26`
+- `virtue_concept_explanation=22`
+- `passage_grounded_doctrinal_qa=24`
+
+Protected buckets:
+
+- the same four justice/STI reservations used by `justice-guarded`
+- two additional `citation_grounded_moral_answer` reservations:
+  - `support_type=strong_textual_inference`
+  - `support_type=explicit_textual`
+
+Completed result:
+
+- overall exact citation reached `0.412`
+- `passage_grounded_doctrinal_qa` reached `0.507`
+- `reviewed_relation_explanation` reached `0.642`
+- but `citation_grounded_moral_answer` stayed at `0.000`
+- `justice_core` and `strong_textual_inference` recovered only partially
+
+Read the run summary here:
+
+- [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)
 
 ## Current Artifact Status
 

@@ -141,6 +141,11 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in readme_text
+    assert "run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in readme_text
+    assert "accuracy-first" in readme_text
+    assert "same-budget accuracy ladder" in readme_text
+    assert "41.2%" in readme_text
     assert "newadvent.org/summa/3023.htm#article1" in readme_text
     assert "newadvent.org/summa/3058.htm#article1" in readme_text
     assert "actions/workflows/public-release-check.yml/badge.svg" in readme_text
@@ -160,9 +165,13 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
     assert "audit_christian_virtue_frontier.py" in scripts_guide
     assert "build_christian_virtue_citation_frontier_report.py" in scripts_guide
+    assert "build_christian_virtue_justice_guarded_report.py" in scripts_guide
     assert "run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh" in scripts_guide
     assert "make audit-christian-virtue-qwen2-5-1-5b-local-frontier" in scripts_guide
     assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in scripts_guide
+    assert "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in scripts_guide
+    assert "make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop" in scripts_guide
+    assert "MPS safety env overrides" in scripts_guide
     assert "prints the key output paths" in scripts_guide
 
 
@@ -172,4 +181,37 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "christian_virtue_v1" in repository_map
     assert "christian_virtue_citation_frontier_audit.md" in repository_map
     assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in repository_map
+    assert (
+        "christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md"
+        in repository_map
+    )
+    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in repository_map
+    assert "qwen2_5_1_5b_instruct_lora_mps_accuracy_first_hybrid.yaml" in repository_map
+    assert "qwen2_5_1_5b_instruct_accuracy_first_adapter_test.yaml" in repository_map
+    assert "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in repository_map
+    assert "make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop" in repository_map
     assert "local_baseline_adapter/README.md" in repository_map
+
+
+def test_fine_tune_guide_names_completed_justice_guarded_follow_up() -> None:
+    guide_text = (
+        REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md"
+    ).read_text(encoding="utf-8")
+    assert "## Justice-Guarded Citation-Repair Follow-Up" in guide_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop" in guide_text
+    assert (
+        "christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md"
+        in guide_text
+    )
+    assert "## Accuracy-First Hybrid Follow-Up" in guide_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in guide_text
+    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in guide_text
+    assert "MPS safety env overrides" in guide_text
+    assert "41.2%" in guide_text
+
+
+def test_public_claim_map_mentions_accuracy_first_result() -> None:
+    claim_map_text = (REPO_ROOT / "docs" / "public_claim_map.md").read_text(encoding="utf-8")
+    assert "41.2%" in claim_map_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in claim_map_text
+    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in claim_map_text

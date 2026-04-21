@@ -22,10 +22,16 @@ citation-focused follow-up.
   - supports the claim that the completed citation-frontier follow-up materially raises citation
     signal and achieves the first non-zero exact stable-id recovery on held-out moral QA
   - used in the citation-frontier follow-up report
+- `christian_virtue_qwen2_5_1_5b_justice_guarded_tradeoffs.svg`
+  - supports the claim that the justice-guarded same-budget follow-up is the strongest overall
+    exact-citation local result so far while recovering most of the `justice_core` /
+    `strong_textual_inference` drop from citation-frontier
+  - used in the justice-guarded follow-up report
 
 The canonical narrative for these assets lives in:
 
 - [Flagship report](../christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - [Citation-frontier follow-up report](../christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+- [Justice-guarded follow-up report](../christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
 - [Citation frontier audit](../christian_virtue_citation_frontier_audit.md)
 - [Experiment index](../christian_virtue_experiments.md)

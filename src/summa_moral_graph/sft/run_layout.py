@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.metadata
 import json
+import os
 import platform
 import subprocess
 import sys
@@ -161,8 +162,18 @@ def build_environment_snapshot(
     package_versions = installed_package_versions(
         ["torch", "transformers", "peft", "trl", "accelerate"]
     )
+    tracked_env_vars = [
+        "PYTORCH_ENABLE_MPS_FALLBACK",
+        "PYTORCH_MPS_HIGH_WATERMARK_RATIO",
+        "TOKENIZERS_PARALLELISM",
+    ]
     return {
         "cwd": str(Path.cwd()),
+        "environment_overrides": {
+            name: value
+            for name in tracked_env_vars
+            if (value := os.environ.get(name)) is not None
+        },
         "git_commit": current_git_commit(workspace_root),
         "platform": {
             "machine": platform.machine(),

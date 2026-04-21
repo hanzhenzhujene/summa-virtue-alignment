@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from datetime import datetime
 
+import pytest
+
 from summa_moral_graph.sft.run_layout import (
+    build_environment_snapshot,
     create_timestamped_run_dir,
     default_evaluation_paths,
     run_artifacts_for_dir,
@@ -56,3 +59,22 @@ def test_create_timestamped_run_dir_uses_timestamp_and_suffix(tmp_path) -> None:
 
     assert first.name == "20260417_093015"
     assert second.name == "20260417_093015_01"
+
+
+def test_build_environment_snapshot_records_selected_env_overrides(
+    tmp_path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setenv("PYTORCH_ENABLE_MPS_FALLBACK", "1")
+    monkeypatch.setenv("PYTORCH_MPS_HIGH_WATERMARK_RATIO", "0.0")
+    monkeypatch.delenv("TOKENIZERS_PARALLELISM", raising=False)
+
+    snapshot = build_environment_snapshot(
+        workspace_root=tmp_path,
+        resolved_device="mps",
+        torch_dtype="float16",
+    )
+
+    assert snapshot["environment_overrides"] == {
+        "PYTORCH_ENABLE_MPS_FALLBACK": "1",
+        "PYTORCH_MPS_HIGH_WATERMARK_RATIO": "0.0",
+    }

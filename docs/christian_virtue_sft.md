@@ -460,15 +460,21 @@ The next research expansion now has a second deterministic local recipe:
 task family, and lets a small run spend more of its budget on the still-hard
 `citation_grounded_moral_answer` frontier without becoming a single-task experiment.
 
+That quota path now also supports small protected-bucket reservations on top of the task quotas.
+This is how the justice-guarded follow-up protects a few `justice_core` passage/relation rows,
+including `strong_textual_inference`, before filling the rest of the same 128-example budget.
+
 New local MPS configs:
 
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_justice_guarded_citation_repair.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_justice_guarded_citation_repair.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml)
+- [configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml)
 
 Citation-frontier local recipe:
 
@@ -486,6 +492,48 @@ Citation-frontier local recipe:
 
 This is the cleanest next local experiment because it changes the mixture, not the dataset scope,
 the backbone, or the runtime envelope.
+
+Justice-guarded local recipe:
+
+- keeps the same `128`-example / `20`-step local envelope as `local-baseline` and
+  `citation-frontier`
+- moderates the citation-heavy task budget to:
+  - `citation_grounded_moral_answer=50`
+  - `reviewed_relation_explanation=28`
+  - `virtue_concept_explanation=24`
+  - `passage_grounded_doctrinal_qa=26`
+- reserves four protected justice buckets before normal quota selection:
+  - `justice_core + passage_grounded_doctrinal_qa + strong_textual_inference`
+  - `justice_core + reviewed_relation_explanation + strong_textual_inference`
+  - `justice_core + passage_grounded_doctrinal_qa + explicit_textual`
+  - `justice_core + reviewed_relation_explanation + explicit_textual`
+- uses a balanced `8/8/8/8` eval quota mix while keeping those same four protected justice buckets
+
+This follow-up is useful because it tests whether the subset selector can protect doctrinally
+fragile justice/STI slices without changing the dataset, model, or step budget. In the completed
+run, it produced the best same-budget overall exact citation score (`39.1%`), but it did not keep
+the frontier's small gain on `citation_grounded_moral_answer`.
+
+Accuracy-first hybrid completed recipe:
+
+- keeps the same `128`-example / `20`-step envelope again, because the goal is higher held-out
+  accuracy rather than a larger compute budget
+- raises the hard moral-QA share relative to `justice-guarded`, but not all the way back to
+  `citation-frontier`:
+  - `citation_grounded_moral_answer=56`
+  - `reviewed_relation_explanation=26`
+  - `virtue_concept_explanation=22`
+  - `passage_grounded_doctrinal_qa=24`
+- keeps the four justice/STI protected buckets from `justice-guarded`
+- adds two moral-QA protected buckets:
+  - `citation_grounded_moral_answer + strong_textual_inference`
+  - `citation_grounded_moral_answer + explicit_textual`
+- slightly overweights train-time eval toward the hard slice with a `10/8/6/8` eval quota mix
+
+This completed follow-up is the repo's current highest-accuracy same-budget recipe because it is
+the smallest recipe change that improved overall held-out exact citation to `41.2%`. It still does
+not solve the hardest user-style moral-QA slice, so it is a strong accuracy result rather than a
+final doctrinally balanced endpoint.
 
 ## Evaluation
 
