@@ -5,8 +5,8 @@ This release mirrors the canonical local `local-baseline` adapter publication fo
 ## Included here
 
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
-- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
-- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/christian_virtue_dataset_card.md
+- Curated experiment report: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+- Dataset card: https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/christian_virtue_dataset_card.md
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 
 ## Purpose
@@ -22,6 +22,8 @@ Train an Aquinas-grounded Christian virtue assistant that answers within reviewe
 ## Executive Readout
 
 - Clearest public win: `Virtue concept explanation` at `65.6%` exact over `32` prompts.
+- Held-out benchmark exact citation: `36.5%` (delta `36.5%`).
+- Second strongest task slice: `Reviewed relation explanation` at `62.7%` exact over `67` prompts.
 - Strongest tract slice: `Justice core` at `50.0%` exact over `42` prompts.
 - This published run uses a deliberately small local demo model, so the result should be read as proof-of-pipeline rather than the final quality target.
 - This release foregrounds the strongest virtue-aligned slices; the full held-out matrix remains in the curated report.
@@ -30,6 +32,8 @@ Train an Aquinas-grounded Christian virtue assistant that answers within reviewe
 ## Headline public highlights
 
 - Strongest task slice: `Virtue concept explanation` at `65.6%`
+- Second strongest task slice: `Reviewed relation explanation` at `62.7%`
+- Held-out benchmark exact citation: `36.5%`
 - Strongest tract slice: `Justice core` at `50.0%`
 - Run id: `20260421_134712`
 - Git commit: `40c724d0aaab5cdedc25110a1b4545157e9dcea3`

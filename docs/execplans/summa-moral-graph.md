@@ -2,6 +2,25 @@
 
 ## Progress
 
+- The external publication surfaces have now been republished to the corrected canonical local
+  baseline:
+  - the Hugging Face adapter page at
+    `JennyZhu0822/summa-virtue-qwen2.5-1.5b` now visibly carries run `20260421_134712`
+  - the matching GitHub release at
+    `christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038` now targets commit
+    `5936a2c9e57a2e25b8b6d93a23d78829c717b083`
+  - both external pages now surface the canonical `36.5%` held-out exact citation, `62.7%`
+    reviewed-relation slice, and `50.0%` justice-core slice instead of burying those numbers
+  - the local package README / release notes / manifest have been regenerated from the same
+    committed publication state so the repo mirror and the external mirror stay aligned
+- The GitHub release publisher is now hardened against missing local CLI tooling:
+  - `create_or_update_github_release()` now falls back to the GitHub REST API when `gh` is
+    unavailable or fails
+  - the fallback resolves credentials from the environment first and then from `git credential
+    fill`, which matches this workstation's actual auth setup
+  - `scripts/publish_christian_virtue_adapter.py` now defaults the release target to the current
+    publication commit rather than only the historical training commit
+  - regression coverage now protects both the create and update fallback paths
 - The repo-level release surface and the manuscript-style report surface have now been audited
   together for the final push:
   - there is no separate standalone paper draft under version control in this repo
@@ -1511,6 +1530,23 @@
 
 ## Decision Log
 
+- Republish the existing public release tag rather than minting a brand-new GitHub release slug.
+  Reason:
+  - the README, guides, and package notes already treat
+    `christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038` as the continuity endpoint
+  - the real problem was stale release content, not an insufficiently specific public URL
+  Consequence:
+  - public links stay stable while the release title, notes, target commit, and HF model card now
+    reflect the corrected canonical baseline
+- Add a GitHub API fallback instead of treating missing `gh` as a local-machine quirk.
+  Reason:
+  - this workstation had a valid GitHub credential in `git credential store`, but no `gh` binary
+    on `PATH`
+  - the existing publish helper was therefore one missing CLI away from failing an otherwise
+    valid release workflow
+  Consequence:
+  - the repo can now publish the GitHub release from Python alone when local GitHub credentials
+    exist, which is a more robust release path for future use
 - Treat the in-repo curated report bundle as the authoritative “paper” surface for this release.
   Reason:
   - there is no separate LaTeX/Typst manuscript draft checked into this repository
@@ -2114,6 +2150,15 @@
 
 ## Outcomes & Retrospective
 
+- The external publication story is now genuinely clean:
+  - the GitHub release and Hugging Face model card both point to the corrected canonical run
+  - their first-screen summary now makes the key benchmark numbers legible instead of requiring a
+    reader to click through into the full report
+  - the public continuity tag was preserved, so existing external links remain valid
+- The release tooling is now stronger than before this publication pass:
+  - GitHub release creation no longer depends entirely on `gh`
+  - the release target now follows the current publication commit by default, which is a better
+    match for a curated public release than blindly reusing the training commit
 - The release now has one honest public source of truth instead of an implied split between “repo”
   and “paper”:
   - the README/docs/report bundle now clearly serves as the paper-like research surface

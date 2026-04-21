@@ -35,6 +35,7 @@ The purpose of this model is not to produce generic theological chat or to memor
 | Train / val / test | `1475 / 175 / 233` |
 | Canonical run id | `20260421_134712` |
 | Git commit | `40c724d0aaab5cdedc25110a1b4545157e9dcea3` |
+| Held-out exact citation | `36.5%` |
 | Strongest task slice | `Virtue concept explanation` at `65.6%` |
 | Strongest tract slice | `Justice core` at `50.0%` |
 
@@ -54,12 +55,16 @@ The purpose of this model is not to produce generic theological chat or to memor
 
 | Highlight | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
+| Held-out benchmark exact citation | `0.0%` | `36.5%` | `36.5%` |
 | Virtue concept explanation | `0.0%` | `65.6%` | `65.6%` |
+| Reviewed relation explanation | `0.0%` | `62.7%` | `62.7%` |
 | Justice core tract | `0.0%` | `50.0%` | `50.0%` |
 
 ## Executive Readout
 
+- Held-out benchmark exact citation reaches `36.5%` over `233` prompts.
 - The clearest public win is `Virtue concept explanation`: `65.6%` exact over `32` held-out prompts.
+- Second strongest task slice: `Reviewed relation explanation` at `62.7%` exact over `67` prompts.
 - Strongest tract slice: `Justice core` at `50.0%` exact over `42` prompts.
 - This published run uses a deliberately small 1.5B local demo model, so the result should be read as proof that the pipeline works rather than as the ceiling for final quality.
 - This package intentionally foregrounds the strongest virtue-aligned slices; the full held-out matrix remains in the published report.
@@ -73,8 +78,8 @@ The purpose of this model is not to produce generic theological chat or to memor
 
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 - Dataset manifest: `data/processed/sft/exports/christian_virtue_v1/manifest.json`
-- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/christian_virtue_dataset_card.md)
-- Full report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/christian_virtue_dataset_card.md)
+- Full report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - GitHub release: https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
 - Supervision source: approved reviewed doctrinal annotations only
@@ -119,8 +124,8 @@ Recommended use pattern:
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
 - GitHub repo: https://github.com/hanzhenzhujene/summa-virtue-alignment
 - Matching GitHub release: https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
-- Curated experiment report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
-- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/40c724d0aaab5cdedc25110a1b4545157e9dcea3/docs/christian_virtue_dataset_card.md)
+- Curated experiment report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/5936a2c9e57a2e25b8b6d93a23d78829c717b083/docs/christian_virtue_dataset_card.md)
 
 The shortest canonical reproduction path is:
 

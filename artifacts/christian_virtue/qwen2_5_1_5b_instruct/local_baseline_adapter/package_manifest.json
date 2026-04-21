@@ -45,13 +45,21 @@
   "hf_repo_id": "JennyZhu0822/summa-virtue-qwen2.5-1.5b",
   "hf_repo_url": "https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b",
   "local_train_run_id": "20260421_134712",
-  "publication_git_commit": "40c724d0aaab5cdedc25110a1b4545157e9dcea3",
+  "publication_git_commit": "5936a2c9e57a2e25b8b6d93a23d78829c717b083",
   "published_report_assets": {
     "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg": "docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
   },
   "published_report_path": "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
   "release_tag": "christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038",
   "summary": {
+    "second_strongest_task": {
+      "baseline_exact": 0.0,
+      "candidate_exact": 0.6268656716417911,
+      "count": 67,
+      "delta_exact": 0.6268656716417911,
+      "key": "reviewed_relation_explanation",
+      "label": "Reviewed relation explanation"
+    },
     "strongest_task": {
       "baseline_exact": 0.0,
       "candidate_exact": 0.65625,
