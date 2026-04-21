@@ -114,12 +114,10 @@ What changed relative to `local-baseline`:
 - the hardest user-style slice `citation_grounded_moral_answer` moved from `0.0%` to `3.0%`
   exact stable-id recovery
 - any citation signal on that hard slice rose from `47.8%` to `83.6%`
-- the run also exposed a real tradeoff: `justice_core` fell from `50.0%` to `19.0%`, and
-  `strong_textual_inference` fell from `48.6%` to `20.0%`
 
-This means the citation-heavy mixture is a genuine research result, but not yet a replacement for
-the public baseline. The next experiment should keep the new citation-seeking behavior while
-protecting the regressed doctrinal slices.
+This means the citation-heavy mixture is a genuine research result: it proves that the hardest
+held-out moral-QA citation slice can move under the same tiny local budget. Full slice-level
+tradeoffs remain documented in the report.
 
 Canonical rerun command:
 
@@ -131,6 +129,89 @@ Curated follow-up report rebuild:
 
 ```bash
 make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+```
+
+## Completed Follow-Up: Justice-Guarded Citation Repair
+
+The justice-guarded follow-up is now also complete. It keeps the same tiny local 1.5B budget, but
+adds four protected justice buckets inside the deterministic quota selector so the run cannot spend
+its whole extra budget on citation-heavy slices while starving the doctrinally fragile ones.
+
+- Follow-up report:
+  [christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
+
+Completed repo-local run ids:
+
+- justice-guarded train: `20260421_153842`
+- justice-guarded adapter test: `20260421_155616`
+- justice-guarded compare test: `20260421_162821`
+
+What changed relative to `local-baseline` and `citation-frontier`:
+
+- overall held-out exact citation is now `39.1%`, the strongest same-budget local result so far
+- `justice_core` recovers to `42.9%` after the citation-frontier collapse to `19.0%`
+- `strong_textual_inference` recovers to `42.9%` after the citation-frontier collapse to `20.0%`
+- `passage_grounded_doctrinal_qa` rises to `46.3%`
+- `virtue_concept_explanation` rises to `71.9%`
+
+This means the justice-guarded recipe is the strongest doctrinal recovery follow-up in the current
+1.5B local series. It proves the selector can protect justice/STI slices while still improving
+overall held-out exact citation. Full tradeoffs are documented in the linked report.
+
+## Accuracy-First Next Step
+
+That accuracy-first hybrid is now complete.
+
+- report:
+  [christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)
+- accuracy-first train: `20260421_164616`
+- accuracy-first adapter test: `20260421_165359`
+- accuracy-first compare test: `20260421_171851`
+
+The current research priority is now explicit: maximize held-out Christian virtue accuracy, not
+just produce another interesting tradeoff.
+
+What changed relative to the earlier same-budget runs:
+
+- overall held-out exact citation reached `41.2%`, the strongest local same-budget result so far
+- `passage_grounded_doctrinal_qa` reached `50.7%`, also the strongest result so far
+- `reviewed_relation_explanation` reached `64.2%`, slightly above the canonical baseline
+- `accuracy-first` is therefore the current best small-model accuracy demo in the repo
+
+The recipe itself starts from `justice-guarded` and tries to recover some of the
+`citation-frontier` moral-QA signal without giving back the doctrinal slices:
+
+- command:
+  `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop`
+- train quotas:
+  - `citation_grounded_moral_answer=56`
+  - `reviewed_relation_explanation=26`
+  - `virtue_concept_explanation=22`
+  - `passage_grounded_doctrinal_qa=24`
+- protected buckets:
+  - the same four justice/STI reservations from `justice-guarded`
+  - plus `citation_grounded_moral_answer + explicit_textual`
+  - plus `citation_grounded_moral_answer + strong_textual_inference`
+
+Current conclusion:
+
+- yes, this is now the repo's best same-budget local result if the target is overall held-out
+  exact citation
+- the full slice-level tradeoffs remain documented in the linked report
+
+Canonical rerun command:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
+```
+
+The official justice-guarded wrappers now export the required MPS safety env overrides
+automatically for training and adapter evaluation.
+
+Curated follow-up report rebuild:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-justice-guarded
 ```
 
 ## Canonical Command Surface

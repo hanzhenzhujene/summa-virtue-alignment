@@ -2,6 +2,73 @@
 
 ## Progress
 
+- The main public surfaces now foreground the strongest validated results more cleanly:
+  - README now summarizes the same-budget run family with a signature-strength ladder instead of a
+    tradeoff-heavy table
+  - the experiment index now leads each follow-up with its strongest positive result and points to
+    the linked report for full slice-level tradeoffs
+  - the `accuracy-first` report now opens with a short executive readout before the deeper
+    diagnostic section
+- The repo's public release surface is now explicitly accuracy-focused instead of leaving the new
+  best result implicit:
+  - README now includes a compact same-budget accuracy ladder that situates `local-baseline`,
+    `citation-frontier`, `justice-guarded`, and `accuracy-first` in one table
+  - `docs/public_claim_map.md` now treats the completed `accuracy-first` hybrid as a first-class
+    public claim with its own evidence, command surface, and claim boundary
+  - `docs/repository_map.md`, `docs/christian_virtue_sft.md`, and the fine-tune guide no longer
+    describe `accuracy-first` as a future step; they now describe it as the current highest
+    same-budget accuracy result
+  - the publication verifier now checks the justice-guarded and accuracy-first report surfaces, so
+    the release gate covers the repo's strongest current accuracy result as well as the canonical
+    baseline
+- The new `accuracy-first` hybrid has now completed as the strongest same-budget local result so
+  far:
+  - train run `20260421_164616`, adapter eval run `20260421_165359`, compare run
+    `20260421_171851`
+  - overall held-out exact citation reached `41.2%`, which beats the canonical baseline
+    (`36.5%`), `citation-frontier` (`38.6%`), and `justice-guarded` (`39.1%`)
+  - `passage_grounded_doctrinal_qa` reached `50.7%` and `reviewed_relation_explanation` reached
+    `64.2%`, both stronger than the earlier same-budget runs
+  - but `citation_grounded_moral_answer` stayed at `0.0%`, and `justice_core` /
+    `strong_textual_inference` only partially recovered (`31.0%` / `25.7%`)
+  - the repo docs now surface this result as the current highest-accuracy same-budget follow-up,
+    while still keeping the more balanced doctrinal tradeoffs explicit
+- The repo now has an explicit accuracy-first next experiment instead of a vague “hybrid later”
+  note:
+  - a new `accuracy_first_hybrid` config and adapter-eval config now define the next same-budget
+    1.5B local run
+  - the train recipe keeps the justice/STI protected buckets, but restores more
+    `citation_grounded_moral_answer` budget and adds small moral-QA protected buckets
+  - the official wrapper surface and `Makefile` now expose this as
+    `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop`
+  - the docs now state the success criterion clearly: beat or preserve the `39.1%` overall
+    justice-guarded result while recovering non-zero exact stable-id behavior on the hard moral-QA
+    slice
+- The justice-guarded citation-repair follow-up is now a completed, reproducible same-budget
+  experiment rather than a planned next step:
+  - new config surfaces now define a protected-bucket quota mechanism for capped local runs
+  - the completed justice-guarded run is `20260421_153842` train /
+    `20260421_155616` adapter eval / `20260421_162821` compare
+  - overall held-out exact citation reached `39.1%`, which is now the best same-budget local
+    result in this 1.5B series
+  - `justice_core` and `strong_textual_inference` both recovered to `42.9%` after the sharper
+    citation-frontier collapse
+  - `citation_grounded_moral_answer` fell back to `0.0%`, so the experiment is a meaningful
+    doctrinal guard but not yet the new public baseline
+- The justice-guarded wrapper path is now genuinely one-command reproducible:
+  - the successful rerun required `PYTORCH_ENABLE_MPS_FALLBACK=1` and
+    `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0` after an earlier MPS kernel stall
+  - those safety overrides are now exported automatically by the official
+    `justice-guarded` train and adapter-eval wrappers
+  - the report, experiment index, repository map, and script guide now describe the wrapper
+    command without hidden terminal-state assumptions
+- The justice-guarded follow-up now has its own curated report surface:
+  - `scripts/build_christian_virtue_justice_guarded_report.py` assembles the markdown report and
+    SVG summary figure from the completed run artifacts
+  - the figure now compares baseline, citation-frontier, and justice-guarded results across the
+    most important same-budget slices
+  - the report states the actual tradeoff clearly: stronger overall and much better justice/STI
+    recovery, but no retained gain on user-style moral-QA exact stable-id recovery
 - The external publication surfaces have now been republished to the corrected canonical local
   baseline:
   - the Hugging Face adapter page at
@@ -1069,6 +1136,52 @@
 
 ## Surprises & Discoveries
 
+- The cleanest way to “emphasize the good results” without damaging research integrity was not to
+  delete limitations from the repo:
+  - the trustworthy move is to keep the audit trail, but move the strongest validated outcomes
+    onto the first screen
+  - that means top-level surfaces should highlight wins, while deeper linked reports keep the full
+    slice-level story
+- The remaining drift after the successful `accuracy-first` run was mostly narrative, not
+  numerical:
+  - some core docs still called `accuracy-first` a “next step” even though the run had already
+    completed
+  - the public claim map still jumped from `citation-frontier` to the canonical baseline contract
+    without naming the new `41.2%` best same-budget result
+  - the release verifier was still checking the baseline and citation-frontier surfaces, but not
+    the new accuracy-first report
+- The accuracy-first hybrid really did maximize the aggregate benchmark, but not in the most
+  obvious way:
+  - the biggest gains came from `passage_grounded_doctrinal_qa` and
+    `reviewed_relation_explanation`, not from reviving the hard moral-QA exact-id slice
+  - `citation_grounded_moral_answer` stayed at `0.0%`, which means the added hard-slice quota
+    pressure was still not enough to recover the frontier's small exact-id win
+  - so “best overall accuracy” and “best hardest-slice behavior” are now clearly separate
+    achievements in this repo
+- Once the justice-guarded run existed, the real “high accuracy” question became much narrower:
+  - the repo no longer needs a generic next experiment
+  - it needs a recipe that can keep the current best overall same-budget score while recovering a
+    very specific missing behavior on `citation_grounded_moral_answer`
+  - that makes a small hybrid quota change more valuable than any broader dataset or model-scope
+    expansion
+- The justice-repair problem needed a finer control surface than plain task quotas:
+  - the citation-frontier recipe already kept tract counts broadly balanced, so the biggest
+    regressions were not caused by simply “forgetting justice” at the tract level
+  - protecting a few justice/STI buckets inside the subset selector was a cleaner intervention
+    than hardcoding one more experiment-specific data path
+  - that also keeps the fix reusable for later small-run recipe work
+- The successful justice-guarded rerun exposed an operational lesson, not just a modeling one:
+  - the first attempt stalled inside an MPS attention kernel rather than failing in Python-space
+    training logic
+  - the rerun succeeded only after enabling the MPS fallback/high-watermark overrides
+  - the real robustness win was therefore to encode those overrides into the official wrapper
+    surface instead of leaving them as an undocumented shell incantation
+- The justice-guarded follow-up improved the overall benchmark exactly where the frontier report
+  suggested, but not in the way one might first hope:
+  - it did become the strongest same-budget overall run at `39.1%`
+  - it did recover most of the `justice_core` / `strong_textual_inference` collapse
+  - but it also erased the frontier's small `citation_grounded_moral_answer` exact-id gain
+  - that means the next step is not “pick the better follow-up,” but design a true hybrid recipe
 - The important follow-up after the config bump was not another numeric tweak but making the new
   invariant inspectable:
   - without a regression test, the `32`-example coverage property would remain an informal
@@ -1530,6 +1643,62 @@
 
 ## Decision Log
 
+- Keep the audit trail honest, but make the first-read surfaces more selective about what they
+  emphasize.
+  Reason:
+  - the user wants the repo to center the strongest results
+  - removing limitations from the underlying research record would make the release less credible
+  Consequence:
+  - README and experiment index now foreground strongest wins
+  - the detailed reports still retain the deeper slice-level record
+- Treat the `accuracy-first` hybrid as a first-class public artifact, not just a run note.
+  Reason:
+  - the user's stated priority is high accuracy, so the repo's strongest same-budget result should
+    be visible and mechanically checked
+  - leaving it only in experiment notes would make the repo understate its current best result
+  Consequence:
+  - README now shows a same-budget accuracy ladder
+  - the public claim map now names the `41.2%` result explicitly
+  - release verification now checks the accuracy-first and justice-guarded reports alongside the
+    older public surfaces
+- Make the next experiment explicitly accuracy-first rather than merely “hybrid.”
+  Reason:
+  - the user goal is now clear: maximize held-out Christian virtue accuracy, not just explore
+    another tradeoff curve
+  - the justice-guarded follow-up already gave the best same-budget overall score, so the next
+    recipe should be judged against that benchmark explicitly
+  Consequence:
+  - the repo now defines one named next-step recipe, `accuracy_first_hybrid`
+  - its quotas and protected buckets are chosen to preserve justice/STI strength while adding back
+    some hard moral-QA pressure
+- Implement justice protection as generic protected-bucket quotas inside the subset selector.
+  Reason:
+  - the real experiment need was to reserve a few justice/STI examples without baking one more
+    one-off recipe into the training code
+  - a generic quota mechanism is easier to inspect, test, and reuse than a justice-only branch
+  Consequence:
+  - the training config can now express protected task/tract/support buckets directly
+  - training metadata and subset summaries now record exactly how those reservations were applied
+- Encode the required MPS safety overrides in the official justice-guarded wrappers.
+  Reason:
+  - the successful rerun depended on `PYTORCH_ENABLE_MPS_FALLBACK=1` and
+    `PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0`
+  - leaving those values as undocumented terminal state would make the completed experiment less
+    reproducible than the rest of the local research loop
+  Consequence:
+  - `make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop` is now the honest canonical
+    command for that follow-up
+  - the wrapper logs also show the env-prefixed command explicitly via `command.log`
+- Treat the justice-guarded result as a completed follow-up artifact, but not as the new public
+  baseline.
+  Reason:
+  - it is the strongest same-budget overall run, but it does not preserve the frontier's small
+    `citation_grounded_moral_answer` exact-id gain
+  - the canonical public baseline still needs the cleaner operational path and more balanced slice
+    profile
+  Consequence:
+  - the repo now documents justice-guarded as a real completed experiment with its own report
+  - the next true research target is a hybrid recipe rather than a baseline swap
 - Republish the existing public release tag rather than minting a brand-new GitHub release slug.
   Reason:
   - the README, guides, and package notes already treat
@@ -2150,6 +2319,44 @@
 
 ## Outcomes & Retrospective
 
+- The repo now presents its strongest results more like a serious research release:
+  - first-read surfaces emphasize the best validated numbers
+  - linked follow-up reports retain the deeper diagnostic trail instead of pretending the weaker
+    slices never happened
+- The repo now tells a cleaner high-accuracy story:
+  - the canonical public baseline remains the stable release artifact
+  - `citation-frontier` remains the proof that the hard moral-QA slice can move at all
+  - `justice-guarded` remains the clearest doctrinal recovery recipe
+  - `accuracy-first` is now clearly presented as the strongest same-budget overall result
+    (`41.2%`) and is enforced by the same release-verification layer as the older public surfaces
+- The repo now has a clean “highest same-budget accuracy” artifact in addition to the earlier
+  frontier analyses:
+  - `accuracy-first` is now the strongest aggregate held-out exact-citation run in the local 1.5B
+    family
+  - the docs now say that plainly, instead of leaving the best result implicit in `runs/`
+  - at the same time, the write-up keeps the important caveat visible: the moral-QA exact-id
+    bottleneck is still unresolved
+- The research loop is now sharper about what “better” means:
+  - the repo no longer treats any measurable movement as equally valuable
+  - the next experiment surface is now anchored to an accuracy target: keep or beat `39.1%`
+    overall exact citation while recovering non-zero exact-id behavior on the hard moral-QA slice
+  - that makes the next run easier to interpret and easier to explain to an outside reader
+- The justice-guarded follow-up is now a real repo artifact rather than an oral next-step idea:
+  - the code path, configs, wrapper commands, run metadata, compare output, curated report, and
+    SVG figure are all committed and cross-linked
+  - the experiment can now be rerun from the documented one-command surface without remembering
+    hidden MPS environment settings
+- The repo now supports a more mature kind of small-run research iteration:
+  - `citation-frontier` proved the recipe could move the moral-QA citation bottleneck
+  - `justice-guarded` proved the selector could recover doctrinally important slices while still
+    improving the overall same-budget benchmark
+  - those two follow-ups now define a concrete experimental frontier instead of a vague ambition
+- The remaining gap is now empirically sharp:
+  - the repo has one clean public baseline, one citation-seeking follow-up, and one doctrinal
+    guard follow-up
+  - none of them simultaneously gives the repo both the frontier's small moral-QA exact-id gain
+    and the justice-guarded recovery on `justice_core` / `strong_textual_inference`
+  - the next research step is therefore clearly a hybrid recipe, not more repo-surface cleanup
 - The external publication story is now genuinely clean:
   - the GitHub release and Hugging Face model card both point to the corrected canonical run
   - their first-screen summary now makes the key benchmark numbers legible instead of requiring a

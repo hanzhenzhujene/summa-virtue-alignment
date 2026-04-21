@@ -98,8 +98,24 @@ The completed citation-focused follow-up is documented in the
 The original hard-slice diagnostic that motivated this line of work remains in the
 [citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md).
 That same-budget follow-up raised overall held-out exact citation from `36.5%` to `38.6%` and
-lifted held-out `citation_grounded_moral_answer` exact stable-id recovery from `0.0%` to `3.0%`,
-while also exposing a real tradeoff on `justice_core` and `strong_textual_inference`.
+proved that the hardest moral-QA citation slice can move at all, lifting held-out
+`citation_grounded_moral_answer` exact stable-id recovery from `0.0%` to `3.0%`.
+The repo's current research priority is accuracy-first: preserve those citation gains while
+recovering doctrinal slices such as `justice_core` and `strong_textual_inference`.
+The completed `accuracy-first` hybrid now reaches `41.2%` overall held-out exact citation, which
+is the strongest same-budget local result so far, with `50.7%` on
+`passage_grounded_doctrinal_qa` and `64.2%` on `reviewed_relation_explanation`.
+
+### Same-Budget Accuracy Ladder
+
+| Recipe | Overall exact citation | Signature strength |
+| --- | ---: | --- |
+| `local-baseline` | `36.5%` | Stable minimal public baseline and strongest clean release surface |
+| `citation-frontier` | `38.6%` | First non-zero exact stable-id recovery on `citation_grounded_moral_answer` (`3.0%`) |
+| `justice-guarded` | `39.1%` | Best doctrinal recovery on `justice_core`, `strong_textual_inference`, and `virtue_concept_explanation` |
+| `accuracy-first` | `41.2%` | Best same-budget overall result, with strongest `passage_grounded_doctrinal_qa` and `reviewed_relation_explanation` |
+
+Full slice-level tradeoffs remain documented in the linked follow-up reports.
 
 ## Why This Dataset Is Unusual
 
@@ -120,6 +136,8 @@ while also exposing a real tradeoff on `justice_core` and `strong_textual_infere
 | Audit the remaining hard slice quickly | `make audit-christian-virtue-qwen2-5-1-5b-local-frontier` |
 | Audit the exact public claims and boundaries | [docs/public_claim_map.md](./docs/public_claim_map.md) |
 | Inspect the completed citation-focused follow-up | [Citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md) · [Citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md) |
+| Inspect the highest-accuracy same-budget follow-up | [Accuracy-first report](./docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md) |
+| Rerun the highest-accuracy same-budget follow-up | `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop` |
 | Rerun the citation-focused follow-up | `make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop` |
 | Fine-tune my own model on the same dataset | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
 | Inspect the released model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038) |
