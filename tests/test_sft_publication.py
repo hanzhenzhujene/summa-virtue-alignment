@@ -2,8 +2,14 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
-from summa_moral_graph.sft.publication import release_target_from_train_run, write_adapter_package
+from summa_moral_graph.sft import publication
+from summa_moral_graph.sft.publication import (
+    create_or_update_github_release,
+    release_target_from_train_run,
+    write_adapter_package,
+)
 
 
 def _write_json(path: Path, payload: dict[str, object]) -> None:
@@ -192,3 +198,139 @@ def test_release_target_from_train_run_uses_train_metadata_git_commit(tmp_path) 
     )
 
     assert release_target_from_train_run(train_run_dir) == "abc123deadbeef"
+
+
+def test_create_or_update_github_release_uses_api_fallback_when_gh_missing(
+    monkeypatch, tmp_path: Path
+) -> None:
+    notes_path = tmp_path / "release_notes.md"
+    notes_path.write_text("release notes", encoding="utf-8")
+    api_calls: list[dict[str, Any]] = []
+
+    monkeypatch.setattr(
+        publication.shutil,
+        "which",
+        lambda name: None if name == "gh" else "/bin/true",
+    )
+    monkeypatch.setattr(publication, "_github_token", lambda: "token")
+    monkeypatch.setattr(
+        publication,
+        "_github_release_for_tag",
+        lambda *, repo, tag, token: None,
+    )
+
+    def _fake_request(
+        *,
+        method: str,
+        url: str,
+        token: str,
+        payload: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        api_calls.append(
+            {
+                "method": method,
+                "url": url,
+                "token": token,
+                "payload": payload,
+            }
+        )
+        return {"html_url": "https://github.com/example/repo/releases/tag/demo-tag"}
+
+    monkeypatch.setattr(publication, "_github_api_json_request", _fake_request)
+
+    url = create_or_update_github_release(
+        tag="demo-tag",
+        title="Demo release",
+        notes_path=notes_path,
+        repo="example/repo",
+        target="abc123",
+    )
+
+    assert url == "https://github.com/example/repo/releases/tag/demo-tag"
+    assert api_calls == [
+        {
+            "method": "POST",
+            "url": "https://api.github.com/repos/example/repo/releases",
+            "token": "token",
+            "payload": {
+                "tag_name": "demo-tag",
+                "name": "Demo release",
+                "body": "release notes",
+                "draft": False,
+                "prerelease": False,
+                "target_commitish": "abc123",
+            },
+        }
+    ]
+
+
+def test_create_or_update_github_release_uses_api_fallback_when_gh_edit_fails(
+    monkeypatch, tmp_path: Path
+) -> None:
+    notes_path = tmp_path / "release_notes.md"
+    notes_path.write_text("updated notes", encoding="utf-8")
+    api_calls: list[dict[str, Any]] = []
+
+    monkeypatch.setattr(
+        publication.shutil,
+        "which",
+        lambda name: "/usr/bin/gh" if name == "gh" else "/bin/true",
+    )
+
+    def _fake_run(*args: Any, **kwargs: Any):
+        command = args[0]
+        if command[:3] == ["gh", "--repo", "example/repo"]:
+            raise publication.subprocess.CalledProcessError(returncode=1, cmd=command)
+        raise AssertionError(f"Unexpected subprocess.run call: {command}")
+
+    monkeypatch.setattr(publication.subprocess, "run", _fake_run)
+    monkeypatch.setattr(publication, "_github_token", lambda: "token")
+    monkeypatch.setattr(
+        publication,
+        "_github_release_for_tag",
+        lambda *, repo, tag, token: {"id": 42, "html_url": "https://old.example/release"},
+    )
+
+    def _fake_request(
+        *,
+        method: str,
+        url: str,
+        token: str,
+        payload: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        api_calls.append(
+            {
+                "method": method,
+                "url": url,
+                "token": token,
+                "payload": payload,
+            }
+        )
+        return {"html_url": "https://github.com/example/repo/releases/tag/demo-tag"}
+
+    monkeypatch.setattr(publication, "_github_api_json_request", _fake_request)
+
+    url = create_or_update_github_release(
+        tag="demo-tag",
+        title="Demo release",
+        notes_path=notes_path,
+        repo="example/repo",
+        target="def456",
+    )
+
+    assert url == "https://github.com/example/repo/releases/tag/demo-tag"
+    assert api_calls == [
+        {
+            "method": "PATCH",
+            "url": "https://api.github.com/repos/example/repo/releases/42",
+            "token": "token",
+            "payload": {
+                "tag_name": "demo-tag",
+                "name": "Demo release",
+                "body": "updated notes",
+                "draft": False,
+                "prerelease": False,
+                "target_commitish": "def456",
+            },
+        }
+    ]

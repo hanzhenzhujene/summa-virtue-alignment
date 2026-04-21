@@ -14,6 +14,7 @@ from summa_moral_graph.sft import (
     release_target_from_train_run,
     write_adapter_package,
 )
+from summa_moral_graph.sft.run_layout import current_git_commit
 from summa_moral_graph.utils.paths import REPO_ROOT
 
 DEFAULT_HF_REPO_ID = "JennyZhu0822/summa-virtue-qwen2.5-1.5b"
@@ -127,7 +128,11 @@ def main() -> None:
     run_id = str(train_metadata["run_id"])
     release_tag = args.release_tag or f"christian-virtue-qwen2.5-1.5b-local-baseline-{run_id}"
     release_title = args.release_title or f"Christian Virtue Qwen2.5 1.5B Local Baseline ({run_id})"
-    release_target = args.release_target or release_target_from_train_run(args.train_run_dir)
+    release_target = (
+        args.release_target
+        or current_git_commit(REPO_ROOT)
+        or release_target_from_train_run(args.train_run_dir)
+    )
 
     package_dir = write_adapter_package(
         train_run_dir=args.train_run_dir,

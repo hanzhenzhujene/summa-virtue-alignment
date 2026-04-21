@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
+import json
+import os
 import shutil
 import subprocess
+import urllib.error
+import urllib.request
 from pathlib import Path
 from typing import Any, cast
 
@@ -801,51 +805,196 @@ def create_or_update_github_release(
     repo: str | None = None,
     target: str | None = None,
 ) -> str:
+    if shutil.which("gh") is None:
+        if repo is None:
+            raise RuntimeError("A GitHub repo is required when the gh CLI is unavailable.")
+        return _create_or_update_github_release_via_api(
+            tag=tag,
+            title=title,
+            notes_path=notes_path,
+            repo=repo,
+            target=target,
+        )
+
     common_args = ["gh"]
     if repo is not None:
         common_args.extend(["--repo", repo])
 
-    view_command = [*common_args, "release", "view", tag]
-    exists = (
-        subprocess.run(
-            view_command,
-            capture_output=True,
-            text=True,
-            check=False,
-        ).returncode
-        == 0
+    try:
+        view_command = [*common_args, "release", "view", tag]
+        exists = (
+            subprocess.run(
+                view_command,
+                capture_output=True,
+                text=True,
+                check=False,
+            ).returncode
+            == 0
+        )
+
+        if exists:
+            edit_command = [
+                *common_args,
+                "release",
+                "edit",
+                tag,
+                "--title",
+                title,
+                "--notes-file",
+                str(notes_path),
+            ]
+            subprocess.run(edit_command, check=True)
+        else:
+            create_command = [
+                *common_args,
+                "release",
+                "create",
+                tag,
+                "--title",
+                title,
+                "--notes-file",
+                str(notes_path),
+            ]
+            if target is not None:
+                create_command.extend(["--target", target])
+            subprocess.run(create_command, check=True)
+
+        view_url_command = [*common_args, "release", "view", tag, "--json", "url", "--jq", ".url"]
+        completed = subprocess.run(view_url_command, capture_output=True, text=True, check=True)
+        return completed.stdout.strip()
+    except subprocess.CalledProcessError:
+        if repo is None:
+            raise
+        return _create_or_update_github_release_via_api(
+            tag=tag,
+            title=title,
+            notes_path=notes_path,
+            repo=repo,
+            target=target,
+        )
+
+
+def _github_token() -> str:
+    for key in ("GH_TOKEN", "GITHUB_TOKEN"):
+        token = os.environ.get(key)
+        if token:
+            return token
+
+    completed = subprocess.run(
+        ["git", "credential", "fill"],
+        input="protocol=https\nhost=github.com\n\n",
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode == 0:
+        for line in completed.stdout.splitlines():
+            if line.startswith("password="):
+                token = line.partition("=")[2].strip()
+                if token:
+                    return token
+
+    raise RuntimeError(
+        "Could not resolve a GitHub API token from the environment or git credential store."
     )
 
-    if exists:
-        edit_command = [
-            *common_args,
-            "release",
-            "edit",
-            tag,
-            "--title",
-            title,
-            "--notes-file",
-            str(notes_path),
-        ]
-        subprocess.run(edit_command, check=True)
-    else:
-        create_command = [
-            *common_args,
-            "release",
-            "create",
-            tag,
-            "--title",
-            title,
-            "--notes-file",
-            str(notes_path),
-        ]
-        if target is not None:
-            create_command.extend(["--target", target])
-        subprocess.run(create_command, check=True)
 
-    view_url_command = [*common_args, "release", "view", tag, "--json", "url", "--jq", ".url"]
-    completed = subprocess.run(view_url_command, capture_output=True, text=True, check=True)
-    return completed.stdout.strip()
+def _github_api_json_request(
+    *,
+    method: str,
+    url: str,
+    token: str,
+    payload: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    data = None if payload is None else json.dumps(payload).encode("utf-8")
+    request = urllib.request.Request(
+        url,
+        data=data,
+        method=method,
+        headers={
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+            "User-Agent": "summa-moral-graph-release-publisher",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            body = response.read().decode("utf-8")
+            return cast(dict[str, Any], json.loads(body)) if body else {}
+    except urllib.error.HTTPError as exc:
+        response_body = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"GitHub API request failed ({exc.code}) for {url}: {response_body}"
+        ) from exc
+
+
+def _github_release_for_tag(*, repo: str, tag: str, token: str) -> dict[str, Any] | None:
+    url = f"https://api.github.com/repos/{repo}/releases/tags/{tag}"
+    request = urllib.request.Request(
+        url,
+        method="GET",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {token}",
+            "User-Agent": "summa-moral-graph-release-publisher",
+        },
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return cast(dict[str, Any], json.loads(response.read().decode("utf-8")))
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return None
+        response_body = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(
+            f"GitHub release lookup failed ({exc.code}) for {url}: {response_body}"
+        ) from exc
+
+
+def _create_or_update_github_release_via_api(
+    *,
+    tag: str,
+    title: str,
+    notes_path: Path,
+    repo: str,
+    target: str | None = None,
+) -> str:
+    token = _github_token()
+    notes = notes_path.read_text(encoding="utf-8")
+    payload: dict[str, Any] = {
+        "tag_name": tag,
+        "name": title,
+        "body": notes,
+        "draft": False,
+        "prerelease": False,
+    }
+    if target is not None:
+        payload["target_commitish"] = target
+
+    existing_release = _github_release_for_tag(repo=repo, tag=tag, token=token)
+    if existing_release is None:
+        release = _github_api_json_request(
+            method="POST",
+            url=f"https://api.github.com/repos/{repo}/releases",
+            token=token,
+            payload=payload,
+        )
+    else:
+        release_id = existing_release.get("id")
+        if not isinstance(release_id, int):
+            raise RuntimeError(f"GitHub release lookup for tag {tag} did not return a numeric id.")
+        release = _github_api_json_request(
+            method="PATCH",
+            url=f"https://api.github.com/repos/{repo}/releases/{release_id}",
+            token=token,
+            payload=payload,
+        )
+
+    html_url = release.get("html_url")
+    if not isinstance(html_url, str) or not html_url:
+        raise RuntimeError(f"GitHub API release response for tag {tag} did not include html_url.")
+    return html_url
 
 
 def default_release_target(cwd: Path) -> str:
