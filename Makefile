@@ -3,6 +3,7 @@ VENV ?= .venv
 BIN := $(VENV)/bin
 LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
 LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+LOCAL_15B_CITATION_FRONTIER_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md
 LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter
 LOCAL_15B_HF_REPO_ID := JennyZhu0822/summa-virtue-qwen2.5-1.5b
 LOCAL_15B_HF_URL := https://huggingface.co/$(LOCAL_15B_HF_REPO_ID)
@@ -12,6 +13,11 @@ LOCAL_15B_RELEASE_URL := $(LOCAL_15B_GITHUB_REPO_URL)/releases/tag/$(LOCAL_15B_R
 LOCAL_15B_TRAIN_METADATA := $(LOCAL_15B_ROOT)/local_baseline/latest/train_metadata.json
 LOCAL_15B_BASE_METRICS := $(LOCAL_15B_ROOT)/base_test/latest/metrics.json
 LOCAL_15B_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/adapter_test/latest/metrics.json
+LOCAL_15B_BASE_PREDICTIONS := $(LOCAL_15B_ROOT)/base_test/latest/predictions.jsonl
+LOCAL_15B_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/adapter_test/latest/predictions.jsonl
+LOCAL_15B_CITATION_FRONTIER_TRAIN_METADATA := $(LOCAL_15B_ROOT)/citation_frontier/latest/train_metadata.json
+LOCAL_15B_CITATION_FRONTIER_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/metrics.json
+LOCAL_15B_CITATION_FRONTIER_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/predictions.jsonl
 SMALL_MODEL_ROOT := runs/christian_virtue/qwen3_0_6b
 SMALL_DATASET := data/processed/sft/exports/christian_virtue_v1/all.jsonl
 SMALL_OOD_DATASET := data/processed/sft/exports/christian_virtue_v1_ood/all.jsonl
@@ -50,15 +56,22 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
+	train-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	train-christian-virtue-qwen2-5-1-5b-local-extended \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
+	eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
+	compare-christian-virtue-qwen2-5-1-5b-citation-frontier \
+	audit-christian-virtue-qwen2-5-1-5b-local-frontier \
+	audit-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	report-christian-virtue-qwen2-5-1-5b-local-baseline \
+	report-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	package-christian-virtue-qwen2-5-1-5b-local-adapter \
 	publish-christian-virtue-qwen2-5-1-5b-local-adapter \
 	verify-christian-virtue-qwen2-5-1-5b-local-publishable \
 	run-christian-virtue-qwen2-5-1-5b-local-loop \
+	run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop \
 	train-christian-virtue-small-smoke train-christian-virtue-small \
 	generate-christian-virtue-predictions generate-christian-virtue-small-predictions \
 	generate-christian-virtue-small-base-test generate-christian-virtue-small-adapter-test \
@@ -215,6 +228,9 @@ train-christian-virtue-qwen2-5-1-5b-local-smoke:
 train-christian-virtue-qwen2-5-1-5b-local-baseline:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh local-baseline
 
+train-christian-virtue-qwen2-5-1-5b-citation-frontier:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh citation-frontier
+
 train-christian-virtue-qwen2-5-1-5b-local-extended:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh extended
 
@@ -224,13 +240,29 @@ eval-christian-virtue-qwen2-5-1-5b-local-base-test:
 eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
 
+eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh citation-frontier
+
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
+
+compare-christian-virtue-qwen2-5-1-5b-citation-frontier:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh citation-frontier
+
+audit-christian-virtue-qwen2-5-1-5b-local-frontier:
+	$(BIN)/python scripts/audit_christian_virtue_frontier.py
+
+audit-christian-virtue-qwen2-5-1-5b-citation-frontier:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh
 
 report-christian-virtue-qwen2-5-1-5b-local-baseline:
 	$(BIN)/python scripts/build_christian_virtue_local_report.py \
 		--published-model-url $(LOCAL_15B_HF_URL) \
 		--release-url $(LOCAL_15B_RELEASE_URL)
+
+report-christian-virtue-qwen2-5-1-5b-citation-frontier:
+	$(BIN)/python scripts/build_christian_virtue_citation_frontier_report.py \
+		--output $(LOCAL_15B_CITATION_FRONTIER_REPORT)
 
 package-christian-virtue-qwen2-5-1-5b-local-adapter:
 	$(BIN)/python scripts/publish_christian_virtue_adapter.py \
@@ -245,9 +277,14 @@ publish-christian-virtue-qwen2-5-1-5b-local-adapter:
 
 verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 	$(MAKE) build-christian-virtue-sft
-	@if [ -f "$(LOCAL_15B_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_BASE_METRICS)" ] && [ -f "$(LOCAL_15B_ADAPTER_METRICS)" ]; then \
+	@if [ -f "$(LOCAL_15B_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_BASE_METRICS)" ] && [ -f "$(LOCAL_15B_ADAPTER_METRICS)" ] && [ -f "$(LOCAL_15B_BASE_PREDICTIONS)" ] && [ -f "$(LOCAL_15B_ADAPTER_PREDICTIONS)" ]; then \
 		echo "Canonical local run artifacts found; rebuilding report and package."; \
 		$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-baseline; \
+		$(MAKE) audit-christian-virtue-qwen2-5-1-5b-local-frontier; \
+		if [ -f "$(LOCAL_15B_CITATION_FRONTIER_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_CITATION_FRONTIER_ADAPTER_METRICS)" ] && [ -f "$(LOCAL_15B_CITATION_FRONTIER_ADAPTER_PREDICTIONS)" ]; then \
+			echo "Citation-frontier follow-up artifacts found; rebuilding follow-up report."; \
+			$(MAKE) report-christian-virtue-qwen2-5-1-5b-citation-frontier; \
+		fi; \
 		$(MAKE) package-christian-virtue-qwen2-5-1-5b-local-adapter; \
 	else \
 		echo "Canonical local run artifacts not present; verifying committed public surfaces only."; \
@@ -262,6 +299,9 @@ public-release-check:
 
 run-christian-virtue-qwen2-5-1-5b-local-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
+
+run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh citation-frontier
 
 reproduce-christian-virtue-qwen2-5-1-5b-local:
 	bash scripts/reproduce_christian_virtue_qwen2_5_1_5b_local.sh

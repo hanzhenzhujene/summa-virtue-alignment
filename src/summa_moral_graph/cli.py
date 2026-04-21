@@ -1,3 +1,5 @@
+"""Typer CLI entrypoints for building and validating Summa Moral Graph artifacts."""
+
 from __future__ import annotations
 
 import json

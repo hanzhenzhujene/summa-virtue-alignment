@@ -26,8 +26,8 @@ It is meant to show more than citation formatting. The real question is whether 
 | Local-baseline eval subset | `16` |
 | Max steps | `20` |
 | Runtime device | `mps` |
-| Git commit | `662c9d309fefd80d22f2caf7f65622afdee7ef10` |
-| Training run id | `20260419_154300` |
+| Git commit | `f512fbdce23396c2692080b8af75f5f7b404b112` |
+| Training run id | `20260420_160727` |
 
 Committed inputs:
 
@@ -44,30 +44,30 @@ This table foregrounds the strongest held-out virtue slices for the repo's inten
 
 | Slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Virtue concept explanation | `0.0%` | `40.6%` | `40.6%` |
-| Reviewed relation explanation | `0.0%` | `20.9%` | `20.9%` |
-| Goal-demo exact citations | `0 / 12` | `5 / 12` | `+5` |
+| Virtue concept explanation | `0.0%` | `65.6%` | `65.6%` |
+| Reviewed relation explanation | `0.0%` | `58.2%` | `58.2%` |
+| Goal-demo exact citations | `0 / 12` | `4 / 12` | `+4` |
 
 Strongest public task slices:
 
-- Virtue concept explanation: 40.6% exact over `32` held-out prompts.
-- Reviewed relation explanation: 20.9% exact over `67` held-out prompts.
+- Virtue concept explanation: 65.6% exact over `32` held-out prompts.
+- Reviewed relation explanation: 58.2% exact over `67` held-out prompts.
 
 Strongest tract slices:
 
-- Theological virtues: 21.1% exact over `19` held-out prompts.
+- Justice core: 45.2% exact over `42` held-out prompts.
 
 Why this is a persuasive demo baseline:
 
 - The strongest gain lands on virtue concept explanation, the cleanest direct test of Thomist virtue alignment in this benchmark.
 - Reviewed relation explanation also improves materially, which matters because the dataset is built from reviewed doctrinal relations joined back to source passages.
-- Goal-demo exact citations move from `0 / 12` to `5 / 12`.
+- Goal-demo exact citations move from `0 / 12` to `4 / 12`.
 - The gain appears on held-out prompts rather than on memorized training rows.
 - This is a deliberately small demo run, so the result should be read as proof that the pipeline works and can scale upward.
 
 Representative examples:
 
-- Clear adapter win: slot 2 `Faith as a theological virtue`.
+- Clear adapter win: slot 4 `Commutative justice as a concept`.
 
 ## Data And Split Policy
 
@@ -93,7 +93,13 @@ The dataset remains segment-grounded and grouped by `question_id` for leakage-sa
 | LoRA dropout | `0.05` |
 | Seed | `17` |
 
-The local-baseline subset policy is deterministic rather than random: the trainer uses the first `max_train_examples` rows from the committed `train.jsonl` export and the first `max_eval_examples` rows from `val.jsonl`, preserving the dataset's stable ordering.
+The local-baseline subset policy is deterministic and balanced rather than random: the trainer selects a round-robin subset across `(task_type, tract)` buckets from the committed `train.jsonl` export, preserving stable within-bucket order while avoiding the first-rows bias of a tiny local run.
+
+- Train subset strategy: `task_tract_round_robin`
+- Eval subset strategy: `task_tract_round_robin`
+- Train subset task mix: `citation_grounded_moral_answer=32, passage_grounded_doctrinal_qa=32, reviewed_relation_explanation=32, virtue_concept_explanation=32`
+- Train subset tract mix: `connected_virtues_109_120=16, fortitude_closure_136_140=16, fortitude_parts_129_135=16, justice_core=16, prudence=16, temperance_141_160=16, temperance_closure_161_170=16, theological_virtues=16`
+- Eval subset task mix: `citation_grounded_moral_answer=8, passage_grounded_doctrinal_qa=8`
 
 This corrected local-baseline rerun also uses the repaired vice-opposition prompt wording in the `citation_grounded_moral_answer` family: `excess_opposed_to` and `deficiency_opposed_to` questions now ask for the vice opposed to the virtue object, which matches the underlying reviewed `vice -> virtue` annotations.
 
@@ -111,7 +117,7 @@ Citation metrics are computed by extracting passage ids from free-form model out
 | PEFT | `0.19.1` |
 | TRL | `0.29.1` |
 | Accelerate | `1.13.0` |
-| Approx train wall-clock | `3.1 minutes` |
+| Approx train wall-clock | `16.2 minutes` |
 
 ## Training Trajectory
 
@@ -138,7 +144,7 @@ The repo keeps the heavier `extended` config for experimentation, but the timing
 | Model | Count | Citation exact | Citation partial | Citation overlap |
 | --- | ---: | ---: | ---: | ---: |
 | Base model | `233` | `0.000` | `0.000` | `0.000` |
-| LoRA adapter | `233` | `0.137` | `0.137` | `0.137` |
+| LoRA adapter | `233` | `0.356` | `0.356` | `0.356` |
 
 The adapter materially improves held-out citation grounding over the untouched base model on the virtue-aligned slices that most closely match the repo's intended SFT goal. At the same time, the `citation_grounded_moral_answer` slice remains at `0.000` exact in this corrected run, so the present baseline is strongest on concept and relation tasks rather than on fully user-style moral QA.
 
@@ -146,269 +152,303 @@ The adapter materially improves held-out citation grounding over the untouched b
 
 This fixed panel uses held-out examples chosen to reflect the real SFT goal: virtue definition, part distinctions, act relations, vice opposition, and tract-local explanation.
 
-### 1. Charity and fraternal correction
+| Panel summary | Value |
+| --- | --- |
+| Held-out slots | `12` |
+| Adapter exact citations | `4 / 12` |
+| Adapter-only wins | `4` |
+| Both miss | `8` |
+| Clearest adapter win | `slot 4 - Commutative justice as a concept` |
+
+The examples below stay fully visible in the repo, but they are collapsed by default so the report reads like a curated release artifact instead of a raw log.
+
+<details>
+<summary><strong>1. Charity and fraternal correction</strong> - Reviewed relation explanation - Theological virtues - base miss -> adapter miss</summary>
 
 - Focus: Act/virtue relation inside the theological virtues
 - Task type: Reviewed relation explanation
 - Tract: Theological virtues
-- Prompt: Explain this reviewed doctrinal relation from the cited passage. Tract: Theological virtues Subject: Charity Relation type: has_act Object: Fraternal Correction Passage id: st.ii-ii.q033.a001.resp Passage text: The corr…
+- Prompt: Explain this reviewed doctrinal relation from the cited passage. Tract: Theological virtues Subject: Charity Relation type: has_act Object: Fraternal Correctio…
 - Reference citations: `st.ii-ii.q033.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > The reviewed relation is that Charity has Fraternal Correction as an act. The passage states this directly. Question 33 explicitly says that fraternal correction is an act of charity. Citations: - st.ii-ii.q033.a001.resp (II-II q.33 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > The relation "has_act" between the theological virtue of charity and the act of fraternal correction is explained in the passage as follows: 1. **Relation Type**: The relation is "has_act" which indicates that the theological virtue of charity has the act of fraternal correction as one of its manifestations. 2. **Object**: The object of this relation is the act of fraternal correction. 3. **Passage Context**: The pa…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, fraternal correction is an act of charity rather than a healing of a bodily infirmity or relieving of an external bodily need. The passage states this directly. The relation type is "has_act", and the object is "Fraternal Correction". The passage cites Aquinas's categories to support this claim, using phrases like "the contrary good of virtue" and "the good of the body or of external…
+> The reviewed relation is that Charity has the act of Fraternal Correction. This is stated directly in the cited passage: - The passage states that fraternal correction is an act of charity. - It then states that fraternal correction is directed to the amendment of the sinner. - It then states that the amendment of the sinner pertains to charity rather than the removal of an external loss or bodily injury. The cited…
 
-### 2. Faith as a theological virtue
+</details>
+
+<details>
+<summary><strong>2. Faith as a theological virtue</strong> - Virtue concept explanation - Theological virtues - base miss -> adapter miss</summary>
 
 - Focus: Virtue explanation in Aquinas's own categories
 - Task type: Virtue concept explanation
 - Tract: Theological virtues
-- Prompt: Explain this concept using only the supporting passages below. Concept: Faith Tract: Theological virtues Question context: The act of faith Supporting passages: - st.ii-ii.q002.a002.resp (II-II q.2 a.2 resp) The act of…
+- Prompt: Explain this concept using only the supporting passages below. Concept: Faith Tract: Theological virtues Question context: The act of faith Supporting passages…
 - Reference citations: `st.ii-ii.q002.a002.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `True`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > Aquinas presents Faith as one that has Act of Faith as an act. Citations: - st.ii-ii.q002.a002.resp (II-II q.2 a.2 resp)
 
-Base model:
+**Base model excerpt**
 
 > The concept of faith, as discussed in the context of the theological virtues, is fundamentally tied to the relationship between the intellect and the will. According to Aquinas, the object of faith can be understood in three ways: 1. **On the Part of the Intellect**: The object of faith is primarily considered on the part of the intellect, which is the source of the act of faith. This aspect of faith involves believ…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, faith is an act of the intellect on the part of the will. The object of faith is considered on three aspects: material, formal, and formal on account of the will. The formal aspect is the medium for assent to a point of faith. The passage states that faith is to believe in God on these three aspects. Citations: - st.ii-ii.q002.a002.resp (II-II q.2 a.2 resp)
+> The act of faith is considered on three aspects in relation to its object: 1. On the part of the intellect: The object of faith is considered as a material object of faith, which is the formal object of faith. This is the aspect of faith as belief in God as a material object. 2. On the part of the will: The object of faith is considered as a formal object of faith, which is the medium on account of which we assent t…
 
-### 3. Commutative justice and restitution
+</details>
+
+<details>
+<summary><strong>3. Commutative justice and restitution</strong> - Reviewed relation explanation - Justice core - base miss -> adapter miss</summary>
 
 - Focus: Justice and its proper act
 - Task type: Reviewed relation explanation
 - Tract: Justice core
-- Prompt: Explain this reviewed doctrinal relation from the cited passage. Tract: Justice core Subject: Commutative Justice Relation type: has_act Object: Restitution Passage id: st.ii-ii.q062.a001.resp Passage text: To restore i…
+- Prompt: Explain this reviewed doctrinal relation from the cited passage. Tract: Justice core Subject: Commutative Justice Relation type: has_act Object: Restitution Pa…
 - Reference citations: `st.ii-ii.q062.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `True`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > The reviewed relation is that Commutative Justice has Restitution as an act. The passage states this directly. Article 1 explicitly states that restitution is an act of commutative justice. Citations: - st.ii-ii.q062.a001.resp (II-II q.62 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > The relation "has_act" between "Restitution" and "Commutative Justice" in the cited passage is explained as follows: Restitution is an act of commutative justice. According to Aquinas, restitution involves restoring a person to the possession or dominion of their thing, which is a fundamental aspect of commutative justice. This act of restitution is considered equal in justice to the payment of one thing for another…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, restitution is an act of commutative justice. The passage states this directly. The relation type is has_act, with restitution as the object. The passage cites Aquinas's review of the definition of restitution in the cited passage. Key passage: st.ii-ii.q062.a001.resp Citations: - st.ii-ii.q062.a001.resp
+> The reviewed relation is that of has_act. The cited passage states this directly in the first sentence: "To restore is seemingly the same as to reinstate a person in the possession or dominion of his thing, so that in restitution we consider the equality of justice attending the payment of one thing for another, and this belongs to commutative justice . Hence restitution is an act of commutative justice , occasioned…
 
-### 4. Commutative justice as a concept
+</details>
+
+<details>
+<summary><strong>4. Commutative justice as a concept</strong> - Virtue concept explanation - Justice core - base miss -> adapter hit</summary>
 
 - Focus: Virtue definition with tract-local grounding
 - Task type: Virtue concept explanation
 - Tract: Justice core
-- Prompt: Explain this concept using only the supporting passages below. Concept: Commutative Justice Tract: Justice core Question context: Restitution Supporting passages: - st.ii-ii.q062.a001.resp (II-II q.62 a.1 resp) To resto…
+- Prompt: Explain this concept using only the supporting passages below. Concept: Commutative Justice Tract: Justice core Question context: Restitution Supporting passag…
 - Reference citations: `st.ii-ii.q062.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `True`
+- Citation outcome: `base miss -> adapter hit`
 
-Reference:
+**Reference answer**
 
 > Aquinas presents Commutative Justice as one that has Restitution as an act. Citations: - st.ii-ii.q062.a001.resp (II-II q.62 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > Commutative justice, as explained in the supporting passage, involves restoring a person to the possession or dominion of their thing. This concept is central to restitution, which is an act of commutative justice. Restitution is considered when one person has what belongs to another, either with or without the other's consent. The passage specifically mentions restitution in the context of robbery or theft, where t…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, restitution is considered the same as reinstate a person in possession or dominion of their thing, which is a key aspect of commutative justice. The passage explicitly states that restitution involves equality of justice in payment of one thing for another, which is directly related to commutative justice. The passage also provides examples of restitution occurring due to consent or a…
+> Commutative Justice Supporting passage: - st.ii-ii.q062.a001.resp (II-II q.62 a.1 resp) Explanation: Restitution is the same as reinstate a person in the possession or dominion of his thing. This is an act of commutative justice, which is concerned with equality of justice in the payment of one thing for another. Restitution can occur when one person has what belongs to another with consent (e.g. on loan or deposit)…
 
-### 5. Regnative prudence
+</details>
+
+<details>
+<summary><strong>5. Regnative prudence</strong> - Virtue concept explanation - Prudence - base miss -> adapter hit</summary>
 
 - Focus: Prudence species and political ordering
 - Task type: Virtue concept explanation
 - Tract: Prudence
-- Prompt: Explain this concept using only the supporting passages below. Concept: Regnative Prudence Tract: Prudence Question context: The subjective parts of prudence Supporting passages: - st.ii-ii.q050.a001.resp (II-II q.50 a.…
+- Prompt: Explain this concept using only the supporting passages below. Concept: Regnative Prudence Tract: Prudence Question context: The subjective parts of prudence S…
 - Reference citations: `st.ii-ii.q050.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `True`
+- Citation outcome: `base miss -> adapter hit`
 
-Reference:
+**Reference answer**
 
 > Aquinas presents Regnative Prudence as one that is a subjective part of Prudence. Citations: - st.ii-ii.q050.a001.resp (II-II q.50 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > Regnative prudence is a specific form of prudence that applies to rulers who govern both themselves and the perfect community of a city or kingdom. It is the most perfect kind of prudence because it involves governing not just an individual but a larger, more universal community. This prudence is considered a species of prudence because it is a distinct and specialized form of prudence that is uniquely applicable to…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> Regnative Prudence is the special and perfect kind of prudence that governs and commands in a king's governance of a city or kingdom. The passage states this directly and provides evidence from II-II:47:10 that prudence governs and commands in governance, and that this is the most perfect kind of governance. The passage concludes by stating that regnative prudence is a species of prudence that belongs to kings. Cita…
+> Regnative Prudence is a special kind of prudence that governs and commands in a city or kingdom. It is the most perfect kind of prudence. Supporting passage: - st.ii-ii.q050.a001.resp (II-II q.50 a.1 resp) As stated above ( II-II:47:10 ), it belongs to prudence to govern and command, so that wherever in human acts we find a special kind of governance and command, there must be a special kind of prudence . Now it is…
 
-### 6. Military prudence as a part of prudence
+</details>
+
+<details>
+<summary><strong>6. Military prudence as a part of prudence</strong> - Reviewed relation explanation - Prudence - base miss -> adapter miss</summary>
 
 - Focus: Subjective-part classification within prudence
 - Task type: Reviewed relation explanation
 - Tract: Prudence
-- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Prudence Subject: Military Prudence Relation type: subjective_part_of Object: Prudence Passage id: st.ii-ii.q050.a004.resp Passage text: Whatev…
+- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Prudence Subject: Military Prudence Relation type: subjective_part_of Object: Prude…
 - Reference citations: `st.ii-ii.q050.a004.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `True`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > The reviewed relation is that Military Prudence is a subjective part of Prudence. The passage states this directly. Q50.4 explicitly says there should be military prudence alongside political prudence. Citations: - st.ii-ii.q050.a004.resp (II-II q.50 a.4 resp)
 
-Base model:
+**Base model excerpt**
 
 > This passage supports the reviewed doctrinal relation between "Military Prudence" and "Prudence" by explicitly stating that military prudence is a necessary complement to prudence. Specifically, it asserts that prudence should conform to nature, which includes both the natural tendency to govern oneself and the natural defense against external threats. The passage then explains that this natural defense includes the…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that military prudence is a subjective part of prudence. The passage directly cites this relation in Aquinas's text. Citations: - st.ii-ii.q050.a004.resp (II-II q.50 a.4 resp)
+> The passage supports the reviewed relation by explicitly stating that military prudence is a part of prudence. The passage directly states this in the last sentence, linking military prudence to prudence. The cited passage is from ST II-II q.50 a.4 resp, which explicitly states that military prudence is a part of prudence. The passage supports this relation directly by providing this explicit statement.
 
-### 7. Truth in self-presentation
+</details>
+
+<details>
+<summary><strong>7. Truth in self-presentation</strong> - Virtue concept explanation - Connected virtues (II-II qq.109-120) - base miss -> adapter hit</summary>
 
 - Focus: Connected virtue outside the four cardinal/theological headline labels
 - Task type: Virtue concept explanation
 - Tract: Connected virtues (II-II qq.109-120)
-- Prompt: Explain this concept using only the supporting passages below. Concept: Truth Tract: Connected virtues (II-II qq.109-120) Question context: Truth Supporting passages: - st.ii-ii.q109.a002.resp (II-II q.109 a.2 resp) The…
+- Prompt: Explain this concept using only the supporting passages below. Concept: Truth Tract: Connected virtues (II-II qq.109-120) Question context: Truth Supporting pa…
 - Reference citations: `st.ii-ii.q109.a002.resp, st.ii-ii.q109.a003.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter hit`
 
-Reference:
+**Reference answer**
 
 > Aquinas presents Truth as one that concerns self-presentation in relation to Self-Presentation. It also is annexed to Justice. Citations: - st.ii-ii.q109.a002.resp (II-II q.109 a.2 resp) - st.ii-ii.q109.a003.resp (II-II q.109 a.3 resp)
 
-Base model:
+**Base model excerpt**
 
 > The concept of truth, as explained in the supporting passages, is a special virtue that is connected to justice. According to Aquinas, truth is a virtue that is annexed to justice, meaning it is a secondary virtue that falls short of the perfect virtue of justice but shares certain characteristics with it. Truth is directed to another, manifesting the things that concern the person who is being addressed. It also se…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passages, truth is a special virtue connected to justice. Truth is related to justice as a secondary virtue, having two aspects in common with it. It is directed to another person and sets up equality between things, but it falls short of justice in the notion of debt. Truth is considered a part of justice, annexed to it as a secondary virtue. The passage explicitly states that truth is a spec…
+> Truth is a special virtue connected to justice. It is related to justice as a secondary virtue to its principal. Truth is directed to another, as a manifestation of the truth is directed to another person. Truth also equals signs to the things that concern man himself, as justice does. Truth falls short of the proper aspect of justice in relation to moral debt, rather than legal debt. Truth is a part of justice, bei…
 
-### 8. Abstinence within temperance
+</details>
+
+<details>
+<summary><strong>8. Abstinence within temperance</strong> - Reviewed relation explanation - Temperance (II-II qq.141-160) - base miss -> adapter miss</summary>
 
 - Focus: Subjective-part classification in temperance
 - Task type: Reviewed relation explanation
 - Tract: Temperance (II-II qq.141-160)
-- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Temperance (II-II qq.141-160) Subject: Abstinence Relation type: subjective_part_of Object: Temperance Passage id: st.ii-ii.q143.a001.resp Pass…
+- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Temperance (II-II qq.141-160) Subject: Abstinence Relation type: subjective_part_of…
 - Reference citations: `st.ii-ii.q143.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > The reviewed relation is that Abstinence is a subjective part of Temperance. The passage states this directly. Question 143 explicitly assigns abstinence among temperance's subjective parts. Citations: - st.ii-ii.q143.a001.resp (II-II q.143 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > This passage supports the reviewed doctrinal relation between Temperance and Abstinence by explaining how temperance has subjective parts, specifically "shamefacedness" and "honesty." These subjective parts are integral to temperance and are related to abstinence. The passage states that temperance more than any other virtue lays claim to a certain comeliness, and the vices of intemperance excel others in disgrace.…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage directly mentions "subjective parts of a virtue are its species" and provides examples of subjective parts of temperance, such as "shamefacedness" and "honesty".
+> The passage supports the reviewed doctrinal relation by explicitly stating that temperance has subjective parts. The passage states: - Temperance has three kinds of parts: integral, subjective, and potential. - The integral parts of temperance are "shamefacedness" and "honesty." - The subjective parts of temperance are its species, which are differentiated according to the difference of matter or object. The passage…
 
-### 9. Continence within temperance
+</details>
+
+<details>
+<summary><strong>9. Continence within temperance</strong> - Reviewed relation explanation - Temperance (II-II qq.141-160) - base miss -> adapter hit</summary>
 
 - Focus: Potential-part distinction in temperance
 - Task type: Reviewed relation explanation
 - Tract: Temperance (II-II qq.141-160)
-- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Temperance (II-II qq.141-160) Subject: Continence Relation type: potential_part_of Object: Temperance Passage id: st.ii-ii.q143.a001.resp Passa…
+- Prompt: Why does this passage support the reviewed doctrinal relation below? Tract: Temperance (II-II qq.141-160) Subject: Continence Relation type: potential_part_of…
 - Reference citations: `st.ii-ii.q143.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter hit`
 
-Reference:
+**Reference answer**
 
 > The reviewed relation is that Continence is a potential part of Temperance. The passage states this directly. Question 143 explicitly assigns continence among temperance's potential parts. Citations: - st.ii-ii.q143.a001.resp (II-II q.143 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > This passage supports the reviewed doctrinal relation between Temperance and Continence by explaining how Continence is a potential part of Temperance. Specifically, the passage states that Continence is one of the potential parts of Temperance, which is a cardinal virtue. It distinguishes Continence as a potential part from the integral parts of Temperance, which include "shamefacedness" and "honesty." The passage…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> This passage supports the reviewed doctrinal relation by explicitly stating that temperance has potential parts that are secondary virtues. The passage directly cites this as part of Aquinas's categorization of temperance's potential parts.
+> The passage supports the reviewed relation by citing the passage id st.ii-ii.q143.a001.resp. The passage states that temperance has three kinds of parts: integral, subjective, and potential. It then lists the potential parts of temperance as "continence" and "modesty." The passage explicitly states that continence is a potential part of temperance, and that modesty is a potential part of continence. This directly su…
 
-### 10. Lust and chastity
+</details>
+
+<details>
+<summary><strong>10. Lust and chastity</strong> - Citation-grounded moral answer - Temperance (II-II qq.141-160) - base miss -> adapter miss</summary>
 
 - Focus: Vice opposition rather than generic moral paraphrase
 - Task type: Citation-grounded moral answer
 - Tract: Temperance (II-II qq.141-160)
 - Prompt: According to Aquinas, what vice is opposed to Chastity by excess?
 - Reference citations: `st.ii-ii.q153.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > According to the cited passage, Lust is opposed to Chastity by excess. The passage states this directly. Lust is the disordered contrary of chastity in venereal matter. Citations: - st.ii-ii.q153.a001.resp (II-II q.153 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
-> According to Aquinas, the excessive vice opposed to Lust is Gluttony. Aquinas identifies Gluttony as the vice that is "excessive" in relation to Lust. He explains that while Lust involves excessive desire for sensual pleasures, Gluttony involves excessive desire for food and drink. Aquinas argues that while Lust is a vice that involves excessive desire for sensual pleasures, Gluttony is a vice that involves excessiv…
+> According to Aquinas, the vice opposed to chastity by excess is lust. This can be found in his discussion in the Summa Theologica, specifically in the Second Part of the Second Part, Question 82, Article 2, where he states: "The vice opposed to chastity by excess is lust."
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, Chastity by excess is Lust. The passage states this directly. Article 1 explicitly states this opposition. Citations: - st.ii-ii.q165.a001.resp (II-II q.165 a.1 resp)
+> According to Aquinas, the vice opposed to Chastity by excess is Lust. The passage states this directly: CITATION ST.ii-ii.q005.a001.resp (II-II q.5 a.1 resp) Aquinas explains this opposition as follows: CITATION ST.ii-ii.q005.a001.resp (II-II q.5 a.1 resp) The passage states this directly: CITATION ST.ii-ii.q005.a001.resp (II-II q.5 a.1 resp) Aquinas explains this opposition as follows: CITATION ST.ii-ii.q005.a001.r…
 
-### 11. Constancy in the fortitude tract
+</details>
+
+<details>
+<summary><strong>11. Constancy in the fortitude tract</strong> - Virtue concept explanation - Fortitude closure (II-II qq.136-140) - base miss -> adapter miss</summary>
 
 - Focus: Fortitude-part explanation without collapsing nearby concepts
 - Task type: Virtue concept explanation
 - Tract: Fortitude closure (II-II qq.136-140)
-- Prompt: Explain this concept using only the supporting passages below. Concept: Constancy Tract: Fortitude closure (II-II qq.136-140) Question context: Perseverance Supporting passages: - st.ii-ii.q137.a003.resp (II-II q.137 a.…
+- Prompt: Explain this concept using only the supporting passages below. Concept: Constancy Tract: Fortitude closure (II-II qq.136-140) Question context: Perseverance Su…
 - Reference citations: `st.ii-ii.q137.a003.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > Aquinas presents Constancy as one that is part of fortitude through Fortitude. Citations: - st.ii-ii.q137.a003.resp (II-II q.137 a.3 resp)
 
-Base model:
+**Base model excerpt**
 
 > In the context of perseverance and constancy, as discussed in the passage from St. Thomas Aquinas's "Summa Theologica," these virtues are distinguished by their approach to maintaining virtue in the face of challenges. Perseverance is concerned with the intrinsic difficulty of maintaining a good action over time, which is inherent to the act itself. Constancy, on the other hand, addresses external hindrances that ma…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, constancy differs from perseverance in that constancy deals with external hindrances rather than intrinsic difficulties of the act. Perseverance is seen as a more intrinsic virtue related to the act itself, while constancy is about overcoming external obstacles. The passage states that perseverance takes precedence over constancy in fortitude due to the greater difficulty posed by the…
+> Constancy is a virtue that Aquinas associates with perseverance. The passage states that perseverance and constancy both aim at persisting firmly in good, but they differ in the nature of the difficulties they face. Perseverance faces difficulties arising from the continuance of the act, while constancy faces difficulties arising from external hindrances. The passage explicitly states that perseverance takes precede…
 
-### 12. Magnificence and great work
+</details>
+
+<details>
+<summary><strong>12. Magnificence and great work</strong> - Citation-grounded moral answer - Fortitude parts (II-II qq.129-135) - base miss -> adapter miss</summary>
 
 - Focus: Tract-local object relation in annexed virtues
 - Task type: Citation-grounded moral answer
 - Tract: Fortitude parts (II-II qq.129-135)
 - Prompt: What does Aquinas teach about the relation between Magnificence and Great Work?
 - Reference citations: `st.ii-ii.q135.a001.resp`
-- Base exact citation match: `False`
-- Adapter exact citation match: `False`
+- Citation outcome: `base miss -> adapter miss`
 
-Reference:
+**Reference answer**
 
 > According to the cited passage, Magnificence concerns great work in relation to Great Work. The passage states this directly. Article 1 explicitly says the magnificent man intends principally the greatness of his work. Citations: - st.ii-ii.q135.a001.resp (II-II q.135 a.1 resp)
 
-Base model:
+**Base model excerpt**
 
 > Aquinas teaches that Magnificence and Great Work are closely related in his moral philosophy. According to Aquinas, Magnificence is a virtue that involves magnanimity and generosity, characterized by a sense of nobility and a desire to do good. Great Work, on the other hand, refers to the fulfillment of one's duties and responsibilities in life. Aquinas argues that Magnificence is essential for Great Work. He states…
 
-LoRA adapter:
+**LoRA adapter excerpt**
 
-> According to the cited passage, Magnificence is the perfection of Great Work. The passage states this directly. Article 1 explicitly states this relation. Citations: - st.ii-ii.q125.a001.resp (II-II q.125 a.1 resp)
+> According to passage ST I-II qq.0001 a.0001 resp.0001, magnificence is a virtue of the will. The relation between magnificence and great work is that magnificence is a virtue of the will, and a virtue of the will is a virtue of the intellect. The relation between the will and the intellect is that the will is the object of the intellect. The relation between the intellect and the great work is that the great work is…
+
+</details>
 
 ## Comparison Summary
 
@@ -420,9 +460,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.137 | +0.137 |
-| citation_partial_match | 0.000 | 0.137 | +0.137 |
-| citation_overlap | 0.000 | 0.137 | +0.137 |
+| citation_exact_match | 0.000 | 0.356 | +0.356 |
+| citation_partial_match | 0.000 | 0.356 | +0.356 |
+| citation_overlap | 0.000 | 0.356 | +0.356 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ### By Split
@@ -432,9 +472,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 233 | 233 | +0 |
-| citation_exact_match | 0.000 | 0.137 | +0.137 |
-| citation_partial_match | 0.000 | 0.137 | +0.137 |
-| citation_overlap | 0.000 | 0.137 | +0.137 |
+| citation_exact_match | 0.000 | 0.356 | +0.356 |
+| citation_partial_match | 0.000 | 0.356 | +0.356 |
+| citation_overlap | 0.000 | 0.356 | +0.356 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -445,9 +485,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 7 | 7 | +0 |
-| citation_exact_match | 0.000 | 0.000 | +0.000 |
-| citation_partial_match | 0.000 | 0.000 | +0.000 |
-| citation_overlap | 0.000 | 0.000 | +0.000 |
+| citation_exact_match | 0.000 | 0.429 | +0.429 |
+| citation_partial_match | 0.000 | 0.429 | +0.429 |
+| citation_overlap | 0.000 | 0.429 | +0.429 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### fortitude_closure_136_140
@@ -455,9 +495,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 17 | 17 | +0 |
-| citation_exact_match | 0.000 | 0.118 | +0.118 |
-| citation_partial_match | 0.000 | 0.118 | +0.118 |
-| citation_overlap | 0.000 | 0.118 | +0.118 |
+| citation_exact_match | 0.000 | 0.294 | +0.294 |
+| citation_partial_match | 0.000 | 0.294 | +0.294 |
+| citation_overlap | 0.000 | 0.294 | +0.294 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### fortitude_parts_129_135
@@ -465,9 +505,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 51 | 51 | +0 |
-| citation_exact_match | 0.000 | 0.118 | +0.118 |
-| citation_partial_match | 0.000 | 0.118 | +0.118 |
-| citation_overlap | 0.000 | 0.118 | +0.118 |
+| citation_exact_match | 0.000 | 0.353 | +0.353 |
+| citation_partial_match | 0.000 | 0.353 | +0.353 |
+| citation_overlap | 0.000 | 0.353 | +0.353 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### justice_core
@@ -475,9 +515,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 42 | 42 | +0 |
-| citation_exact_match | 0.000 | 0.167 | +0.167 |
-| citation_partial_match | 0.000 | 0.167 | +0.167 |
-| citation_overlap | 0.000 | 0.167 | +0.167 |
+| citation_exact_match | 0.000 | 0.452 | +0.452 |
+| citation_partial_match | 0.000 | 0.452 | +0.452 |
+| citation_overlap | 0.000 | 0.452 | +0.452 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### prudence
@@ -485,9 +525,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 40 | 40 | +0 |
-| citation_exact_match | 0.000 | 0.175 | +0.175 |
-| citation_partial_match | 0.000 | 0.175 | +0.175 |
-| citation_overlap | 0.000 | 0.175 | +0.175 |
+| citation_exact_match | 0.000 | 0.425 | +0.425 |
+| citation_partial_match | 0.000 | 0.425 | +0.425 |
+| citation_overlap | 0.000 | 0.425 | +0.425 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### temperance_141_160
@@ -495,9 +535,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 46 | 46 | +0 |
-| citation_exact_match | 0.000 | 0.109 | +0.109 |
-| citation_partial_match | 0.000 | 0.109 | +0.109 |
-| citation_overlap | 0.000 | 0.109 | +0.109 |
+| citation_exact_match | 0.000 | 0.239 | +0.239 |
+| citation_partial_match | 0.000 | 0.239 | +0.239 |
+| citation_overlap | 0.000 | 0.239 | +0.239 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### temperance_closure_161_170
@@ -505,9 +545,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 11 | 11 | +0 |
-| citation_exact_match | 0.000 | 0.091 | +0.091 |
-| citation_partial_match | 0.000 | 0.091 | +0.091 |
-| citation_overlap | 0.000 | 0.091 | +0.091 |
+| citation_exact_match | 0.000 | 0.273 | +0.273 |
+| citation_partial_match | 0.000 | 0.273 | +0.273 |
+| citation_overlap | 0.000 | 0.273 | +0.273 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### theological_virtues
@@ -515,9 +555,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 19 | 19 | +0 |
-| citation_exact_match | 0.000 | 0.211 | +0.211 |
-| citation_partial_match | 0.000 | 0.211 | +0.211 |
-| citation_overlap | 0.000 | 0.211 | +0.211 |
+| citation_exact_match | 0.000 | 0.368 | +0.368 |
+| citation_partial_match | 0.000 | 0.368 | +0.368 |
+| citation_overlap | 0.000 | 0.368 | +0.368 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -528,9 +568,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 200 | 200 | +0 |
-| citation_exact_match | 0.000 | 0.130 | +0.130 |
-| citation_partial_match | 0.000 | 0.130 | +0.130 |
-| citation_overlap | 0.000 | 0.130 | +0.130 |
+| citation_exact_match | 0.000 | 0.335 | +0.335 |
+| citation_partial_match | 0.000 | 0.335 | +0.335 |
+| citation_overlap | 0.000 | 0.335 | +0.335 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### strong_textual_inference
@@ -538,9 +578,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 35 | 35 | +0 |
-| citation_exact_match | 0.000 | 0.171 | +0.171 |
-| citation_partial_match | 0.000 | 0.171 | +0.171 |
-| citation_overlap | 0.000 | 0.171 | +0.171 |
+| citation_exact_match | 0.000 | 0.486 | +0.486 |
+| citation_partial_match | 0.000 | 0.486 | +0.486 |
+| citation_overlap | 0.000 | 0.486 | +0.486 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 
@@ -561,9 +601,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 67 | 67 | +0 |
-| citation_exact_match | 0.000 | 0.075 | +0.075 |
-| citation_partial_match | 0.000 | 0.075 | +0.075 |
-| citation_overlap | 0.000 | 0.075 | +0.075 |
+| citation_exact_match | 0.000 | 0.343 | +0.343 |
+| citation_partial_match | 0.000 | 0.343 | +0.343 |
+| citation_overlap | 0.000 | 0.343 | +0.343 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### reviewed_relation_explanation
@@ -571,9 +611,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 67 | 67 | +0 |
-| citation_exact_match | 0.000 | 0.209 | +0.209 |
-| citation_partial_match | 0.000 | 0.209 | +0.209 |
-| citation_overlap | 0.000 | 0.209 | +0.209 |
+| citation_exact_match | 0.000 | 0.582 | +0.582 |
+| citation_partial_match | 0.000 | 0.582 | +0.582 |
+| citation_overlap | 0.000 | 0.582 | +0.582 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 #### virtue_concept_explanation
@@ -581,9 +621,9 @@ LoRA adapter:
 | Metric | Baseline | Candidate | Delta |
 | --- | ---: | ---: | ---: |
 | count | 32 | 32 | +0 |
-| citation_exact_match | 0.000 | 0.406 | +0.406 |
-| citation_partial_match | 0.000 | 0.406 | +0.406 |
-| citation_overlap | 0.000 | 0.406 | +0.406 |
+| citation_exact_match | 0.000 | 0.656 | +0.656 |
+| citation_partial_match | 0.000 | 0.656 | +0.656 |
+| citation_overlap | 0.000 | 0.656 | +0.656 |
 | relation_type_accuracy | n/a | n/a | n/a |
 
 ## What This Demonstrates
@@ -612,5 +652,5 @@ The final verification step is still exposed directly as `make verify-christian-
 ## Headline Numbers
 
 - Base citation exact match: 0.0%
-- Adapter citation exact match: 13.7%
-- Net gain: 13.7%
+- Adapter citation exact match: 35.6%
+- Net gain: 35.6%

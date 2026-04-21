@@ -19,13 +19,18 @@ case "${MODE}" in
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
     RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-local-baseline"
     ;;
+  citation-frontier)
+    TRAIN_CONFIG="configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier"
+    RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-citation-frontier"
+    ;;
   extended)
     TRAIN_CONFIG="configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml"
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/extended"
     RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-extended"
     ;;
   *)
-    echo "Unknown mode: ${MODE}. Expected 'smoke', 'local-baseline', or 'extended'." >&2
+    echo "Unknown mode: ${MODE}. Expected 'smoke', 'local-baseline', 'citation-frontier', or 'extended'." >&2
     exit 1
     ;;
 esac

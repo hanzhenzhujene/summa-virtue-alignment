@@ -11,6 +11,12 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator, model_valida
 from ..utils.paths import REPO_ROOT
 from .runtime import RuntimeBackend, TorchDtypeSetting
 
+TrainingSubsetStrategy = Literal[
+    "first_rows",
+    "task_tract_round_robin",
+    "task_tract_quota_round_robin",
+]
+
 DEFAULT_ALLOWED_SUBJECT_TYPES = [
     "virtue",
     "vice",
@@ -161,6 +167,10 @@ class TrainingConfig(BaseModel):
     max_seq_length: int = Field(default=2048, ge=128)
     max_train_examples: int | None = Field(default=None, ge=1)
     max_eval_examples: int | None = Field(default=None, ge=1)
+    train_subset_strategy: TrainingSubsetStrategy = "first_rows"
+    eval_subset_strategy: TrainingSubsetStrategy = "first_rows"
+    train_task_type_quotas: dict[str, int] | None = None
+    eval_task_type_quotas: dict[str, int] | None = None
     per_device_train_batch_size: int = Field(default=1, ge=1)
     per_device_eval_batch_size: int = Field(default=1, ge=1)
     gradient_accumulation_steps: int = Field(default=16, ge=1)
@@ -190,6 +200,42 @@ class TrainingConfig(BaseModel):
     @classmethod
     def resolve_training_paths(cls, value: str | Path) -> Path:
         return _resolve_repo_path(value)
+
+    @field_validator("train_task_type_quotas", "eval_task_type_quotas")
+    @classmethod
+    def validate_task_type_quotas(
+        cls, value: dict[str, int] | None
+    ) -> dict[str, int] | None:
+        if value is None:
+            return None
+        if not value:
+            raise ValueError("task type quotas must not be empty")
+        cleaned: dict[str, int] = {}
+        for key, count in value.items():
+            cleaned_key = str(key).strip()
+            if not cleaned_key:
+                raise ValueError("task type quota keys must not be empty")
+            cleaned_count = int(count)
+            if cleaned_count < 1:
+                raise ValueError("task type quota counts must be >= 1")
+            cleaned[cleaned_key] = cleaned_count
+        return cleaned
+
+    @model_validator(mode="after")
+    def validate_subset_strategy_requirements(self) -> "TrainingConfig":
+        _validate_quota_subset_config(
+            strategy=self.train_subset_strategy,
+            task_type_quotas=self.train_task_type_quotas,
+            max_examples=self.max_train_examples,
+            split_label="train",
+        )
+        _validate_quota_subset_config(
+            strategy=self.eval_subset_strategy,
+            task_type_quotas=self.eval_task_type_quotas,
+            max_examples=self.max_eval_examples,
+            split_label="eval",
+        )
+        return self
 
 
 class InferenceConfig(BaseModel):
@@ -248,3 +294,34 @@ def load_inference_config(path: str | Path) -> InferenceConfig:
         raise ValueError(f"Inference config must parse to an object: {config_path}")
     config = InferenceConfig.model_validate(payload)
     return config.model_copy(update={"config_path": config_path})
+
+
+def _validate_quota_subset_config(
+    *,
+    strategy: TrainingSubsetStrategy,
+    task_type_quotas: dict[str, int] | None,
+    max_examples: int | None,
+    split_label: str,
+) -> None:
+    if strategy == "task_tract_quota_round_robin":
+        if task_type_quotas is None:
+            raise ValueError(
+                f"{split_label}_task_type_quotas is required when using "
+                "task_tract_quota_round_robin"
+            )
+        if max_examples is None:
+            raise ValueError(
+                f"{split_label}_max_examples is required when using "
+                "task_tract_quota_round_robin"
+            )
+    elif task_type_quotas is not None:
+        raise ValueError(
+            f"{split_label}_task_type_quotas can only be set when using "
+            "task_tract_quota_round_robin"
+        )
+
+    if task_type_quotas is not None and max_examples is not None:
+        if sum(task_type_quotas.values()) > max_examples:
+            raise ValueError(
+                f"{split_label}_task_type_quotas must not sum above {split_label}_max_examples"
+            )

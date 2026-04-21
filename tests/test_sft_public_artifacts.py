@@ -181,9 +181,9 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
             "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest"
         ),
         "adapter_metrics": {
-            "citation_exact_match": 0.137,
-            "citation_overlap": 0.137,
-            "citation_partial_match": 0.137,
+            "citation_exact_match": 0.3562231759656652,
+            "citation_overlap": 0.3562231759656652,
+            "citation_partial_match": 0.3562231759656652,
             "count": 233,
             "relation_type_accuracy": None,
         },
@@ -203,7 +203,7 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
         "github_release_url": "https://github.com/example/repo/releases/tag/demo-tag",
         "hf_repo_id": "example/repo",
         "hf_repo_url": "https://huggingface.co/example/repo",
-        "local_train_run_id": "20260419_154300",
+        "local_train_run_id": "20260420_160727",
         "published_report_path": str(report_path),
         "summary": {
             "strongest_task": {
@@ -211,16 +211,16 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
                 "label": "Virtue concept explanation",
                 "count": 32,
                 "baseline_exact": 0.0,
-                "candidate_exact": 0.406,
-                "delta_exact": 0.406,
+                "candidate_exact": 0.65625,
+                "delta_exact": 0.65625,
             },
             "strongest_tract": {
-                "key": "theological_virtues",
-                "label": "Theological virtues",
-                "count": 19,
+                "key": "justice_core",
+                "label": "Justice core",
+                "count": 42,
                 "baseline_exact": 0.0,
-                "candidate_exact": 0.211,
-                "delta_exact": 0.211,
+                "candidate_exact": 0.4523809523809524,
+                "delta_exact": 0.4523809523809524,
             },
             "weakest_task": {
                 "key": "citation_grounded_moral_answer",
@@ -230,13 +230,7 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
                 "candidate_exact": 0.0,
                 "delta_exact": 0.0,
             },
-            "zero_gain_tracts": [
-                {
-                    "key": "connected_virtues_109_120",
-                    "label": "Connected virtues (II-II qq.109-120)",
-                    "count": 7,
-                }
-            ],
+            "zero_gain_tracts": [],
         },
         "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest",
     }
@@ -264,7 +258,7 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
                 str(package_manifest["hf_repo_url"]),
                 "This published run uses a deliberately small 1.5B local demo model.",
                 "Strongest task slice: `Virtue concept explanation`",
-                "Strongest tract slice: `Theological virtues`",
+                "Strongest tract slice: `Justice core`",
                 "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
                 "published report.",
             ]
@@ -278,7 +272,7 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
                 str(package_manifest["hf_repo_url"]),
                 "This published run uses a deliberately small local demo model.",
                 "Strongest task slice: `Virtue concept explanation`",
-                "Strongest tract slice: `Theological virtues`",
+                "Strongest tract slice: `Justice core`",
                 "Full task/tract breakdowns and the qualitative goal-demo panel live in the "
                 "curated report.",
             ]
@@ -297,7 +291,7 @@ def test_verify_publication_bundle_supports_repo_only_mode(tmp_path) -> None:
         "base_eval_run_dir",
         "adapter_eval_run_dir",
     ]
-    assert abs(summary["citation_exact_gain"] - 0.137) < 1e-9
+    assert abs(summary["citation_exact_gain"] - 0.3562231759656652) < 1e-9
 
 
 def test_markdown_link_resolution_handles_internal_and_external_targets(tmp_path) -> None:
@@ -349,6 +343,12 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "data/processed/sft/README.md",
         repo_root / "docs/reports/christian_virtue_experiments.md",
         repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
+        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md",
+        repo_root / "docs/reports/christian_virtue_citation_frontier_audit.md",
+        repo_root / "docs/reports/christian_virtue_citation_frontier_audit.json",
+        repo_root / "docs/reports/assets/christian_virtue_citation_frontier_modes.svg",
+        repo_root
+        / "docs/reports/assets/christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/manifest.json",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/train.jsonl",
         repo_root / "data/processed/sft/exports/christian_virtue_v1/benchmarks/test.jsonl",
@@ -359,6 +359,8 @@ def test_public_fine_tune_docs_and_exports_exist() -> None:
         repo_root / "requirements/local-mps-py312.lock.txt",
         repo_root / "scripts/setup_christian_virtue_local.sh",
         repo_root / "scripts/reproduce_christian_virtue_qwen2_5_1_5b_local.sh",
+        repo_root / "scripts/audit_christian_virtue_frontier.py",
+        repo_root / "scripts/build_christian_virtue_citation_frontier_report.py",
     ]
 
     for path in expected_paths:
@@ -390,19 +392,39 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "local-baseline" in readme_text
     assert "make setup-christian-virtue-local" in readme_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
+    assert "make audit-christian-virtue-qwen2-5-1-5b-local-frontier" in readme_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in readme_text
     assert "requirements/local-mps-py312.lock.txt" in readme_text
     assert (
         "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md"
         in readme_text
     )
+    assert "docs/reports/christian_virtue_citation_frontier_audit.md" in readme_text
+    assert "docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
     assert "christian_virtue_qwen2_5_1_5b_local_baseline_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in fine_tune_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in fine_tune_text
+    assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in fine_tune_text
+    assert "task_tract_quota_round_robin" in fine_tune_text
+    assert "citation_grounded_moral_answer=64" in fine_tune_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in report_index_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in report_index_text
+    assert "christian_virtue_citation_frontier_audit.md" in report_index_text
+    assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in report_index_text
     assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
+    assert "scripts/audit_christian_virtue_frontier.py" in repo_map_text
+    assert "scripts/build_christian_virtue_citation_frontier_report.py" in repo_map_text
+    assert "scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh" in repo_map_text
+    assert "configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml" in repo_map_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in repo_map_text
     assert "requirements/local-mps-py312.lock.txt" in repo_map_text
     assert "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg" in assets_readme_text
+    assert (
+        "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg"
+        in assets_readme_text
+    )
     assert "docs/christian_virtue_dataset_card.md" in sft_readme_text
     assert "setup-christian-virtue-local:" in makefile_text
     assert "reproduce-christian-virtue-qwen2-5-1-5b-local:" in makefile_text
@@ -449,15 +471,16 @@ def test_python_script_entrypoints_start_with_docstrings() -> None:
 def test_report_assets_are_documented_and_linked() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     assets_dir = repo_root / "docs/reports/assets"
-    report_text = (
-        repo_root / "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md"
-    ).read_text(encoding="utf-8")
     assets_readme_text = (assets_dir / "README.md").read_text(encoding="utf-8")
+    report_texts = [
+        path.read_text(encoding="utf-8")
+        for path in sorted((repo_root / "docs/reports").glob("*.md"))
+    ]
 
     for asset_path in sorted(assets_dir.glob("*.svg")):
         asset_name = asset_path.name
         assert asset_name in assets_readme_text, asset_name
-        assert asset_name in report_text, asset_name
+        assert any(asset_name in report_text for report_text in report_texts), asset_name
 
 
 def test_public_repo_surfaces_do_not_embed_machine_absolute_paths() -> None:
@@ -480,7 +503,18 @@ def test_repo_publication_bundle_is_coherent() -> None:
 
     assert summary["adapter_citation_exact_match"] > summary["base_citation_exact_match"]
     assert "docs/christian_virtue_dataset_card.md" in summary["checked_docs"]
+    assert "docs/public_claim_map.md" in summary["checked_docs"]
     assert "data/processed/sft/README.md" in summary["checked_docs"]
+    assert "docs/reports/christian_virtue_citation_frontier_audit.md" in summary["checked_docs"]
+    assert (
+        "docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md"
+        in summary["checked_docs"]
+    )
     assert "README.md" in summary["checked_doc_link_counts"]
+    assert "docs/public_claim_map.md" in summary["checked_doc_link_counts"]
+    assert (
+        "docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md"
+        in summary["checked_doc_link_counts"]
+    )
     assert "README.md" in summary["checked_package_surfaces"]
     assert "release_notes.md" in summary["checked_package_surfaces"]

@@ -1,3 +1,5 @@
+"""Build corpus-wide structural manifests and diagnostics from the parsed Summa spine."""
+
 from __future__ import annotations
 
 import csv

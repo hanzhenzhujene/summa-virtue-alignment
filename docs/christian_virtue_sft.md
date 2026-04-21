@@ -216,6 +216,12 @@ Mac-safe local-baseline train:
 make train-christian-virtue-qwen2-5-1-5b-local-baseline
 ```
 
+Next-step citation-frontier train:
+
+```bash
+make train-christian-virtue-qwen2-5-1-5b-citation-frontier
+```
+
 Base-model held-out test:
 
 ```bash
@@ -228,10 +234,23 @@ Adapter held-out test:
 make eval-christian-virtue-qwen2-5-1-5b-local-adapter-test
 ```
 
+Citation-frontier held-out test:
+
+```bash
+make eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test
+```
+
 Base-vs-adapter comparison:
 
 ```bash
 make compare-christian-virtue-qwen2-5-1-5b-local-test
+```
+
+Local-baseline-vs-citation-frontier comparison:
+
+```bash
+make compare-christian-virtue-qwen2-5-1-5b-citation-frontier
+make audit-christian-virtue-qwen2-5-1-5b-citation-frontier
 ```
 
 Curated local report:
@@ -298,14 +317,15 @@ Current public distribution endpoints:
 - Local adapter package:
   [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
 
-Current corrected repo-local rerun used by the flagship report:
+Current canonical repo-local rerun used by the flagship report:
 
-- Train run id: `20260419_154300`
-- Adapter eval run id: `20260419_154757`
-- Held-out `test` citation exact: `0.137`
+- Train run id: `20260420_160727`
+- Adapter eval run id: `20260420_190542`
+- Held-out `test` citation exact: `0.356`
+- Strongest task slice: `Virtue concept explanation` at `65.6%`
 
 Treat the flagship report and the local adapter package as the canonical evaluation surfaces for
-the corrected benchmark numbers. The Hugging Face repo and GitHub release remain the public
+the current benchmark numbers. The Hugging Face repo and GitHub release remain the public
 distribution endpoints, and the GitHub release keeps its original tag slug `20260418_193038` for
 continuity.
 
@@ -379,6 +399,7 @@ Every timestamped local run directory is designed to hold:
 - `predictions.partial.jsonl` during in-progress generation
 - `train_metadata.json` for training runs
 - `train_log_history.jsonl` for training runs
+- `subset_summary.json` for training runs
 
 `run_manifest.json` records:
 
@@ -393,6 +414,14 @@ Every timestamped local run directory is designed to hold:
 - `dataset_manifest_path`
 - `config_snapshot_path`
 - package versions for `python`, `torch`, `transformers`, `peft`, `trl`, and `accelerate`
+
+`subset_summary.json` records:
+
+- the deterministic subset strategy used for train and eval
+- requested vs selected example counts
+- selected counts by task type
+- selected counts by tract
+- selected counts by `(task_type, tract)` bucket
 
 ## Config Surface
 
@@ -409,14 +438,44 @@ Useful training config fields to swap when using your own model:
 - `runtime_backend`
 - `torch_dtype`
 - `load_in_4bit`
+- `train_subset_strategy`
+- `eval_subset_strategy`
+
+For the local 1.5B MPS configs, the blessed subset strategy is now
+`task_tract_round_robin`. This gives small local runs a deterministic but balanced mix across task
+families and virtue tracts instead of taking only the first rows of the export.
+
+The next research expansion now has a second deterministic local recipe:
+`task_tract_quota_round_robin`. It keeps the dataset fixed, preserves tract balance inside each
+task family, and lets a small run spend more of its budget on the still-hard
+`citation_grounded_moral_answer` frontier without becoming a single-task experiment.
 
 New local MPS configs:
 
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_smoke.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)
+- [configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml)
 - [configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml](../configs/train/qwen2_5_1_5b_instruct_lora_mps_extended.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_base_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)
 - [configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)
+- [configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml](../configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml)
+
+Citation-frontier local recipe:
+
+- same model and same `20`-step local budget as the canonical `local-baseline`
+- train subset size stays at `128`, but the task mix becomes:
+  - `citation_grounded_moral_answer=64`
+  - `reviewed_relation_explanation=24`
+  - `virtue_concept_explanation=24`
+  - `passage_grounded_doctrinal_qa=16`
+- eval subset size becomes `32`, with:
+  - `citation_grounded_moral_answer=16`
+  - `reviewed_relation_explanation=8`
+  - `virtue_concept_explanation=4`
+  - `passage_grounded_doctrinal_qa=4`
+
+This is the cleanest next local experiment because it changes the mixture, not the dataset scope,
+the backbone, or the runtime envelope.
 
 ## Evaluation
 

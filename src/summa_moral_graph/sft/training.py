@@ -19,6 +19,7 @@ from .run_layout import (
     write_jsonl,
 )
 from .runtime import ModelRuntime, detect_torch_availability, resolve_model_runtime
+from .sampling import select_subset
 
 REQUIRED_TRAINING_PACKAGES = [
     "accelerate",
@@ -52,6 +53,10 @@ def describe_training_plan(config: TrainingConfig) -> dict[str, Any]:
         "max_seq_length": config.max_seq_length,
         "max_train_examples": config.max_train_examples,
         "max_eval_examples": config.max_eval_examples,
+        "train_subset_strategy": config.train_subset_strategy,
+        "eval_subset_strategy": config.eval_subset_strategy,
+        "train_task_type_quotas": config.train_task_type_quotas,
+        "eval_task_type_quotas": config.eval_task_type_quotas,
         "requested_runtime_backend": config.runtime_backend,
         "requested_torch_dtype": config.torch_dtype,
         "lora_target_modules": config.lora_target_modules or list(DEFAULT_LORA_TARGET_MODULES),
@@ -134,14 +139,6 @@ def _load_jsonl_dataset(path: Path) -> list[dict[str, Any]]:
                 continue
             rows.append(json.loads(stripped))
     return rows
-
-
-def _slice_rows(rows: list[dict[str, Any]], max_examples: int | None) -> list[dict[str, Any]]:
-    if max_examples is None:
-        return rows
-    return rows[:max_examples]
-
-
 def _write_training_report(metadata: dict[str, Any], output_path: Path) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
@@ -207,8 +204,29 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
     )
     write_json(artifacts.environment_path, environment)
 
-    train_rows = _slice_rows(_load_jsonl_dataset(train_path), config.max_train_examples)
-    eval_rows = _slice_rows(_load_jsonl_dataset(eval_path), config.max_eval_examples)
+    train_selection = select_subset(
+        _load_jsonl_dataset(train_path),
+        max_examples=config.max_train_examples,
+        strategy=config.train_subset_strategy,
+        split_name=config.train_split,
+        task_type_quotas=config.train_task_type_quotas,
+    )
+    eval_selection = select_subset(
+        _load_jsonl_dataset(eval_path),
+        max_examples=config.max_eval_examples,
+        strategy=config.eval_subset_strategy,
+        split_name=config.eval_split,
+        task_type_quotas=config.eval_task_type_quotas,
+    )
+    train_rows = train_selection.rows
+    eval_rows = eval_selection.rows
+    write_json(
+        artifacts.subset_summary_path,
+        {
+            config.train_split: train_selection.summary,
+            config.eval_split: eval_selection.summary,
+        },
+    )
 
     tokenizer = AutoTokenizer.from_pretrained(
         config.model_name_or_path,
@@ -350,6 +368,12 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         "eval_examples": len(eval_dataset),
         "max_train_examples": config.max_train_examples,
         "max_eval_examples": config.max_eval_examples,
+        "train_subset_strategy": config.train_subset_strategy,
+        "eval_subset_strategy": config.eval_subset_strategy,
+        "train_task_type_quotas": config.train_task_type_quotas,
+        "eval_task_type_quotas": config.eval_task_type_quotas,
+        "train_subset_summary": train_selection.summary,
+        "eval_subset_summary": eval_selection.summary,
         "best_model_checkpoint": trainer.state.best_model_checkpoint,
         "global_step": trainer.state.global_step,
         "peft_version": package_versions["peft"],
@@ -360,6 +384,7 @@ def run_qlora_training(config: TrainingConfig) -> dict[str, Any]:
         "torch_dtype": runtime.torch_dtype_name,
         "torch_version": package_versions["torch"],
         "train_log_history_path": str(artifacts.train_log_history_path),
+        "subset_summary_path": str(artifacts.subset_summary_path),
         "transformers_version": package_versions["transformers"],
         "trl_version": package_versions["trl"],
     }

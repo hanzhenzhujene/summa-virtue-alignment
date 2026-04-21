@@ -1,9 +1,9 @@
 {
   "adapter_eval_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest",
   "adapter_metrics": {
-    "citation_exact_match": 0.13733905579399142,
-    "citation_overlap": 0.13733905579399142,
-    "citation_partial_match": 0.13733905579399142,
+    "citation_exact_match": 0.3562231759656652,
+    "citation_overlap": 0.3562231759656652,
+    "citation_partial_match": 0.3562231759656652,
     "count": 233,
     "relation_type_accuracy": null
   },
@@ -39,13 +39,13 @@
     },
     "total_examples": 1883
   },
-  "git_commit": "662c9d309fefd80d22f2caf7f65622afdee7ef10",
+  "git_commit": "f512fbdce23396c2692080b8af75f5f7b404b112",
   "github_release_url": "https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038",
   "github_repo_url": "https://github.com/hanzhenzhujene/summa-virtue-alignment",
   "hf_repo_id": "JennyZhu0822/summa-virtue-qwen2.5-1.5b",
   "hf_repo_url": "https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b",
-  "local_train_run_id": "20260419_154300",
-  "publication_git_commit": "8489dc5e4069ed70dfeced4cc416d8b057b518da",
+  "local_train_run_id": "20260420_160727",
+  "publication_git_commit": "f512fbdce23396c2692080b8af75f5f7b404b112",
   "published_report_assets": {
     "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg": "docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
   },
@@ -54,19 +54,19 @@
   "summary": {
     "strongest_task": {
       "baseline_exact": 0.0,
-      "candidate_exact": 0.40625,
+      "candidate_exact": 0.65625,
       "count": 32,
-      "delta_exact": 0.40625,
+      "delta_exact": 0.65625,
       "key": "virtue_concept_explanation",
       "label": "Virtue concept explanation"
     },
     "strongest_tract": {
       "baseline_exact": 0.0,
-      "candidate_exact": 0.21052631578947367,
-      "count": 19,
-      "delta_exact": 0.21052631578947367,
-      "key": "theological_virtues",
-      "label": "Theological virtues"
+      "candidate_exact": 0.4523809523809524,
+      "count": 42,
+      "delta_exact": 0.4523809523809524,
+      "key": "justice_core",
+      "label": "Justice core"
     },
     "weakest_task": {
       "baseline_exact": 0.0,
@@ -76,13 +76,7 @@
       "key": "citation_grounded_moral_answer",
       "label": "Citation-grounded moral answer"
     },
-    "zero_gain_tracts": [
-      {
-        "count": 7,
-        "key": "connected_virtues_109_120",
-        "label": "Connected virtues (II-II qq.109-120)"
-      }
-    ]
+    "zero_gain_tracts": []
   },
   "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest"
 }

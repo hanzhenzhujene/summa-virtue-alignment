@@ -1,3 +1,5 @@
+"""Shared tract preset registry for route-aware viewer and dashboard navigation."""
+
 from __future__ import annotations
 
 from typing import TypedDict

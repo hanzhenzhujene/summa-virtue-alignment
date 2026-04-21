@@ -173,6 +173,78 @@ That loop is the experiment loop only. The canonical publishable path for a fres
 2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
 3. `make public-release-check`
 
+## Citation-Frontier Follow-Up
+
+Once the canonical `local-baseline` run exists, the highest-leverage follow-up is not broader
+dataset scope. It is a same-budget mixture change aimed at the remaining
+`citation_grounded_moral_answer` bottleneck.
+
+That follow-up has now been run successfully in this repo:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
+```
+
+Completed result:
+
+- overall held-out exact citation improved from `0.356` to `0.386`
+- `citation_grounded_moral_answer` exact stable-id recovery improved from `0.000` to `0.030`
+- any citation signal on that hard slice improved from `0.403` to `0.836`
+- the run also introduced real tradeoffs, especially on `justice_core` and
+  `strong_textual_inference`
+
+Read the finished follow-up analysis here:
+
+- [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+- [docs/reports/christian_virtue_citation_frontier_audit.md](./reports/christian_virtue_citation_frontier_audit.md)
+
+The first link is the completed same-budget follow-up result. The second is the original hard-slice
+audit that motivated the experiment.
+
+Stepwise path:
+
+```bash
+make train-christian-virtue-qwen2-5-1-5b-citation-frontier
+make eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test
+make compare-christian-virtue-qwen2-5-1-5b-citation-frontier
+make audit-christian-virtue-qwen2-5-1-5b-citation-frontier
+make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+```
+
+What changes relative to `local-baseline`:
+
+- same backbone: `Qwen/Qwen2.5-1.5B-Instruct`
+- same local runtime target: Apple Silicon `mps`
+- same small public budget: `128` train examples, `20` steps
+- different subset policy: `task_tract_quota_round_robin`
+- different train mix:
+  - `citation_grounded_moral_answer=64`
+  - `reviewed_relation_explanation=24`
+  - `virtue_concept_explanation=24`
+  - `passage_grounded_doctrinal_qa=16`
+
+What this experiment is for:
+
+- keep the Christian virtue dataset fixed
+- keep the public `local-baseline` demo unchanged
+- test whether a more citation-heavy small-run mixture improves stable-id recovery on held-out
+  user-style moral prompts
+
+Current conclusion:
+
+- yes, the same-budget citation-heavy recipe does improve the hard user-style citation task
+- no, it is not yet the new public baseline, because it trades away too much on some doctrinal
+  slices
+- the next step after this follow-up is a justice-guarded citation-repair recipe rather than more
+  dataset scope
+
+Expected output roots:
+
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier/latest/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test/latest/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_compare_test/latest/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_audit/latest/`
+
 ## Current Artifact Status
 
 The repo now keeps one corrected canonical local package and two stable public distribution
@@ -187,18 +259,21 @@ endpoints:
 - Curated report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 
-Canonical corrected repo-local run ids:
+Canonical repo-local run ids:
 
-- train: `20260419_154300`
-- base test: `20260418_143349`
-- adapter test: `20260419_154757`
-- compare test: `20260419_160910`
+- train: `20260420_160727`
+- base test: `20260420_162346`
+- adapter test: `20260420_190542`
+- compare test: `20260420_193654`
 
-Current corrected headline held-out `test` result:
+Current canonical headline held-out `test` result:
 
 - base citation exact match: `0.000`
-- adapter citation exact match: `0.137`
-- net gain: `+0.137`
+- adapter citation exact match: `0.356`
+- net gain: `+0.356`
+- strongest task slice: `Virtue concept explanation` at `65.6%`
+- second strongest task slice: `Reviewed relation explanation` at `58.2%`
+- strongest tract slice: `Justice core` at `45.2%`
 
 Interpret this published result as a small-model demonstration baseline. It is the public example
 showing that the Summa Moral Graph dataset can move model behavior in the right direction. The same
@@ -206,7 +281,7 @@ pipeline is meant to scale to larger models and longer GPU runs afterward.
 
 The Hugging Face repo and GitHub release remain the public distribution endpoints. The GitHub
 release keeps its original tag slug `20260418_193038` for continuity, while the curated report and
-local adapter package are the authoritative evaluation surfaces for the corrected `0.137` result.
+local adapter package are the authoritative evaluation surfaces for the canonical `0.356` result.
 
 ## What The Local Run Writes
 
@@ -235,6 +310,7 @@ Each run directory is designed to contain:
 - `report.md`
 - `train_metadata.json` for training runs
 - `train_log_history.jsonl` for training runs
+- `subset_summary.json` for training runs
 - `predictions.jsonl` for inference runs
 
 Recommended local order on a 16 GB Apple-Silicon laptop:
@@ -248,6 +324,22 @@ Recommended local order on a 16 GB Apple-Silicon laptop:
 
 The full `extended` config is still available, but it is intentionally heavier and may be too slow for
 routine local use on this hardware. It is an experimental stretch path, not the public default.
+
+The local training configs now expose two deterministic subset policies for small capped runs:
+
+- `task_tract_round_robin`
+  - the canonical `local-baseline` policy
+  - balances across task families and virtue tracts
+- `task_tract_quota_round_robin`
+  - the citation-frontier policy
+  - keeps tract balancing inside each task family while letting a small run emphasize one task type
+
+That means local runs no longer depend on the accidental order of the first rows in `train.jsonl`.
+
+The local `16`-example eval subset is intentionally tiny and currently covers only the first two
+task families under that deterministic round-robin ordering. Treat it as a training-time stability
+signal, not as the main public benchmark. The authoritative public claim comes from the full
+held-out `233`-example `test` split.
 
 ## Remote CUDA Path
 
@@ -329,6 +421,7 @@ Look at:
 - `report.md` for a readable summary plus qualitative samples
 - `run_manifest.json` for device, dtype, model, git commit, and dataset linkage
 - `environment.json` for package versions and execution context
+- `subset_summary.json` for the exact train/eval subset strategy and selected task/tract mix
 - the curated report in
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
   for the publishable research summary

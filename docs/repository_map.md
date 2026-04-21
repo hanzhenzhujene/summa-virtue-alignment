@@ -7,6 +7,8 @@ model trainer.
 
 - [CITATION.cff](../CITATION.cff): citation metadata for the public software and dataset release
 - [README.md](../README.md): first-stop overview, headline results, and canonical reproduction path
+- [docs/public_claim_map.md](./public_claim_map.md): explicit map from public claim to artifact,
+  command, and claim boundary
 - [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md): external
   user guide for training or swapping in another model
 - [docs/christian_virtue_sft.md](./christian_virtue_sft.md): maintainer and research workflow
@@ -14,6 +16,24 @@ model trainer.
   intended use, and limits
 - [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
   flagship local experiment report
+- [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md):
+  completed same-budget citation-focused follow-up report
+
+## Canonical Public Bundle
+
+If you want the smallest set of files that define the public release, start here:
+
+- dataset export: `data/processed/sft/exports/christian_virtue_v1/`
+- flagship report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- frontier audit:
+  [docs/reports/christian_virtue_citation_frontier_audit.md](./reports/christian_virtue_citation_frontier_audit.md)
+- follow-up citation-frontier report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+- local adapter package:
+  [../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
+- external model page:
+  [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 
 ## Top-Level Layout
 
@@ -115,9 +135,21 @@ the public local baseline from tract-maintenance helpers and remote-model utilit
 - `scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
 - `scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh`
 
+### Citation-Frontier Experiment
+
+- `configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml`
+- `configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml`
+- `scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
+- `scripts/build_christian_virtue_citation_frontier_report.py`
+
+This is the completed next research increment after `local-baseline`: same small local budget,
+same dataset, but a more citation-heavy deterministic subset intended to test stable-id recovery on
+user-style moral QA.
+
 ### Reporting And Publication
 
 - `scripts/build_christian_virtue_local_report.py`
+- `scripts/audit_christian_virtue_frontier.py`
 - `scripts/publish_christian_virtue_adapter.py`
 - `scripts/verify_christian_virtue_publication.py`
 
@@ -139,10 +171,29 @@ runs the publication verification gate.
 The public-release check then runs `ruff`, `mypy`, and the publication-surface verification bundle
 so the repo can be shared with one final sanity pass.
 
+For the fastest post-baseline audit, run:
+
+4. `make audit-christian-virtue-qwen2-5-1-5b-local-frontier`
+
+That audit reuses the canonical held-out predictions and writes a focused report on the remaining
+user-style citation frontier, so the next experiment can be chosen without another long local run.
+
+The completed citation-frontier follow-up is:
+
+5. `make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop`
+
+That loop keeps the same `Qwen/Qwen2.5-1.5B-Instruct` local envelope but changes the tiny subset
+mixture so half of the train budget goes to `citation_grounded_moral_answer`.
+
+The finished follow-up report now lives at:
+
+6. [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+
 ## Recommended Reading Order
 
 1. [README.md](../README.md)
-2. [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
-3. [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md)
-4. [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md)
-5. [docs/christian_virtue_sft.md](./christian_virtue_sft.md)
+2. [docs/public_claim_map.md](./public_claim_map.md)
+3. [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
+4. [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md)
+5. [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md)
+6. [docs/christian_virtue_sft.md](./christian_virtue_sft.md)

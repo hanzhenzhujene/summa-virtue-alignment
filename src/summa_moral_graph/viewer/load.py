@@ -1,3 +1,5 @@
+"""Load and cache the reviewed corpus payloads that back the unified Streamlit viewer."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass

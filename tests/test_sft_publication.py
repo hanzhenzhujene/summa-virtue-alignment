@@ -49,6 +49,20 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
         },
     )
     _write_json(train_run_dir / "environment.json", {"python": "3.12.2"})
+    _write_json(
+        train_run_dir / "subset_summary.json",
+        {
+            "train": {
+                "selection_strategy": "task_tract_round_robin",
+                "selected_counts_by_task_type": {
+                    "citation_grounded_moral_answer": 32,
+                    "passage_grounded_doctrinal_qa": 32,
+                    "reviewed_relation_explanation": 32,
+                    "virtue_concept_explanation": 32,
+                },
+            }
+        },
+    )
     (train_run_dir / "config_snapshot.yaml").write_text(
         "\n".join(
             [
@@ -105,6 +119,7 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert (package_dir / "adapter_config.json").exists()
     assert (package_dir / "README.md").exists()
     assert (package_dir / "release_notes.md").exists()
+    assert (package_dir / "subset_summary.json").exists()
     assert (
         package_dir / "assets" / "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
     ).exists()
@@ -136,6 +151,10 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "docs/christian_virtue_dataset_card.md" in readme
     assert "## Artifact Status" in readme
     assert "earlier distribution tag `demo-tag`" in readme
+    assert (
+        "`subset_summary.json` records the exact balanced `(task_type, tract)` composition"
+        in readme
+    )
     assert "## Executive Readout" in readme
     assert "Strongest task slice" in readme
     assert "deliberately small 1.5B local demo model" in readme
@@ -147,6 +166,10 @@ def test_write_adapter_package_copies_files_and_writes_metadata(tmp_path) -> Non
     assert "make verify-christian-virtue-qwen2-5-1-5b-local-publishable" in readme
     assert "## Artifact Status" in release_notes
     assert "earlier distribution tag `demo-tag`" in release_notes
+    assert (
+        "`subset_summary.json` records the exact balanced `(task_type, tract)` composition"
+        in release_notes
+    )
     assert "## Executive Readout" in release_notes
     assert "Strongest tract slice" in release_notes
     assert "deliberately small local demo model" in release_notes

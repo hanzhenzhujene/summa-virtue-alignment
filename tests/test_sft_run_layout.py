@@ -23,6 +23,7 @@ def test_run_artifacts_for_dir_uses_standard_names(tmp_path) -> None:
     assert artifacts.run_manifest_path == run_dir / "run_manifest.json"
     assert artifacts.train_metadata_path == run_dir / "train_metadata.json"
     assert artifacts.train_log_history_path == run_dir / "train_log_history.jsonl"
+    assert artifacts.subset_summary_path == run_dir / "subset_summary.json"
     assert artifacts.stdout_log_path == run_dir / "stdout.log"
     assert artifacts.stderr_log_path == run_dir / "stderr.log"
     assert artifacts.command_log_path == run_dir / "command.log"

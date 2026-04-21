@@ -18,9 +18,14 @@ DEFAULT_PUBLICATION_PACKAGE_MANIFEST = (
     )
 )
 DATASET_CARD_PATH = Path("docs/christian_virtue_dataset_card.md")
+PUBLIC_CLAIM_MAP_PATH = Path("docs/public_claim_map.md")
 REPOSITORY_MAP_PATH = Path("docs/repository_map.md")
 REPORT_ASSETS_README_PATH = Path("docs/reports/assets/README.md")
 SFT_README_PATH = Path("data/processed/sft/README.md")
+FRONTIER_AUDIT_PATH = Path("docs/reports/christian_virtue_citation_frontier_audit.md")
+FRONTIER_FOLLOWUP_REPORT_PATH = (
+    Path("docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md")
+)
 MACHINE_PATH_PATTERNS = (
     re.compile(r"/Users/[^\s)\]\"']+"),
     re.compile(r"/home/[^\s)\]\"']+"),
@@ -125,6 +130,15 @@ def build_publication_doc_expectations(
             base_metric,
             adapter_metric,
         ],
+        PUBLIC_CLAIM_MAP_PATH: [
+            "# Public Claim Map",
+            "35.6%",
+            "38.6%",
+            "3.0%",
+            "make public-release-check",
+            "not a general theology chatbot",
+            "not a replacement public baseline",
+        ],
         Path("docs/christian_virtue_sft.md"): [
             hf_url,
             release_url,
@@ -148,7 +162,26 @@ def build_publication_doc_expectations(
             "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg",
             "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg",
             "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg",
+            "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
             "Flagship report",
+        ],
+        FRONTIER_AUDIT_PATH: [
+            "# Christian Virtue Citation Frontier Audit",
+            "citation_grounded_moral_answer",
+            "configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml",
+            "make audit-christian-virtue-qwen2-5-1-5b-citation-frontier",
+            "40.3%",
+        ],
+        FRONTIER_FOLLOWUP_REPORT_PATH: [
+            "# Christian Virtue Citation-Frontier Follow-Up",
+            "Citation-grounded moral answer",
+            "35.6%",
+            "38.6%",
+            "3.0%",
+            "justice_core",
+            "strong_textual_inference",
+            "justice-guarded citation-repair recipe",
+            "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
         ],
         DATASET_CARD_PATH: [
             "Aquinas-grounded Christian virtue reasoning",

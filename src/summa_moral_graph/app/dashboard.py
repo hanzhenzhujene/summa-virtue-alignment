@@ -1,3 +1,5 @@
+"""Load the summary data that powers the top-level dashboard and tract overview surfaces."""
+
 from __future__ import annotations
 
 import csv

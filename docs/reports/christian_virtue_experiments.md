@@ -41,19 +41,19 @@ Published artifacts:
 - Local adapter package:
   [../../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md)
 
-Current corrected repo-local run ids:
+Current canonical repo-local run ids:
 
-- train: `20260419_154300`
-- base test: `20260418_143349`
-- adapter test: `20260419_154757`
-- compare test: `20260419_160910`
+- train: `20260420_160727`
+- base test: `20260420_162346`
+- adapter test: `20260420_190542`
+- compare test: `20260420_193654`
 
-Public headline on the corrected held-out `test` split:
+Public headline on the canonical held-out `test` split:
 
-- strongest task slice: `Virtue concept explanation` moves from `0.0%` to `40.6%`
-- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `20.9%`
-- strongest tract slice: `Theological virtues` moves from `0.0%` to `21.1%`
-- goal-demo exact citations: `0 / 12` on base -> `5 / 12` on adapter
+- overall held-out exact citation moves from `0.0%` to `35.6%`
+- strongest task slice: `Virtue concept explanation` moves from `0.0%` to `65.6%`
+- second strongest task slice: `Reviewed relation explanation` moves from `0.0%` to `58.2%`
+- strongest tract slice: `Justice core` moves from `0.0%` to `45.2%`
 
 Publication note:
 
@@ -68,8 +68,9 @@ Strongest held-out virtue slices:
 
 | Held-out virtue slice | Base | Adapter | Delta |
 | --- | ---: | ---: | ---: |
-| Virtue concept explanation | `0.0%` | `40.6%` | `+40.6%` |
-| Reviewed relation explanation | `0.0%` | `20.9%` | `+20.9%` |
+| Held-out benchmark exact citation | `0.0%` | `35.6%` | `+35.6%` |
+| Virtue concept explanation | `0.0%` | `65.6%` | `+65.6%` |
+| Reviewed relation explanation | `0.0%` | `58.2%` | `+58.2%` |
 
 #### Training Trace
 
@@ -83,13 +84,54 @@ the 20-step run.
 ![Base vs adapter held-out comparison](assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
 
 The adapter materially outperforms base on the strongest held-out virtue slices, especially on
-virtue-concept and reviewed-relation tasks. The strongest tract-level gain also lands in
-`Theological virtues`, which is exactly the part of the corpus where a Thomist virtue assistant
-should become most visibly sharper.
+virtue-concept and reviewed-relation tasks. The strongest tract-level gain now lands in
+`Justice core`, while the overall held-out benchmark also moves sharply upward.
 
 This is the public demo result, not the intended ceiling. The point of this run is to show that a
 small easy-to-reproduce model already exhibits the right movement, which makes the case for larger
 follow-on SFT runs even stronger.
+
+## Completed Follow-Up: Citation Frontier
+
+The citation-frontier follow-up is now complete. It keeps the same small local 1.5B budget as the
+canonical `local-baseline`, but shifts half of the tiny train subset toward
+`citation_grounded_moral_answer` while preserving relation, concept, and passage-grounded anchors.
+
+- Follow-up report:
+  [christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+- Original hard-slice audit:
+  [christian_virtue_citation_frontier_audit.md](./christian_virtue_citation_frontier_audit.md)
+
+Completed repo-local run ids:
+
+- frontier train: `20260421_005543`
+- frontier adapter test: `20260421_010240`
+- frontier audit: `20260421_012610`
+
+What changed relative to `local-baseline`:
+
+- overall held-out exact citation improved from `35.6%` to `38.6%`
+- the hardest user-style slice `citation_grounded_moral_answer` moved from `0.0%` to `3.0%`
+  exact stable-id recovery
+- any citation signal on that hard slice rose from `40.3%` to `83.6%`
+- the run also exposed a real tradeoff: `justice_core` fell from `45.2%` to `19.0%`, and
+  `strong_textual_inference` fell from `48.6%` to `20.0%`
+
+This means the citation-heavy mixture is a genuine research result, but not yet a replacement for
+the public baseline. The next experiment should keep the new citation-seeking behavior while
+protecting the regressed doctrinal slices.
+
+Canonical rerun command:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
+```
+
+Curated follow-up report rebuild:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+```
 
 ## Canonical Command Surface
 

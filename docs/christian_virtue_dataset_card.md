@@ -19,6 +19,8 @@ The committed public dataset exports live in:
 
 - Fine-tuning guide:
   [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
+- Public claim map:
+  [docs/public_claim_map.md](./public_claim_map.md)
 - Maintainer workflow:
   [docs/christian_virtue_sft.md](./christian_virtue_sft.md)
 - Flagship local report:
@@ -109,11 +111,12 @@ held-out prompts without shipping the gold assistant answer in the generation in
 - Public quickstart and command path:
   [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
 
-The current report reflects the corrected local rerun (`20260419_154300` train,
-`20260419_154757` adapter eval). The local adapter package in
+The current report reflects the canonical local rerun (`20260420_160727` train,
+`20260420_190542` adapter eval). The local adapter package in
 `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/` is the authoritative
-packaged evaluation surface for that corrected result, while the public GitHub release keeps its
-original tag slug for continuity.
+packaged evaluation surface for that result, while the public GitHub release keeps its original tag
+slug for continuity. The current canonical held-out benchmark reaches `0.356` exact citation
+overall, with strongest gains on `Virtue concept explanation` and `Reviewed relation explanation`.
 
 ## Out of Scope
 

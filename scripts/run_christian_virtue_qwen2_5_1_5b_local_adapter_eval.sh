@@ -7,24 +7,45 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/christian_virtue_small_common.sh"
 resolve_python_bin
 
+MODE="${1:-local-baseline}"
 LOCAL_BASELINE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
 EXTENDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/extended"
 SMOKE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/smoke"
-if ! ADAPTER_DIR="$(resolve_first_existing_path "${LOCAL_BASELINE_ROOT}/latest" "${EXTENDED_ROOT}/latest" "${SMOKE_ROOT}/latest")"; then
-  echo "Adapter directory not found." >&2
-  echo "Expected one of:" >&2
-  echo "  ${LOCAL_BASELINE_ROOT}/latest" >&2
-  echo "  ${EXTENDED_ROOT}/latest" >&2
-  echo "  ${SMOKE_ROOT}/latest" >&2
-  echo "Run the smoke or local-baseline training first." >&2
-  exit 1
-fi
+CITATION_FRONTIER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier"
+
+case "${MODE}" in
+  local-baseline)
+    if ! ADAPTER_DIR="$(resolve_first_existing_path "${LOCAL_BASELINE_ROOT}/latest" "${EXTENDED_ROOT}/latest" "${SMOKE_ROOT}/latest")"; then
+      echo "Adapter directory not found." >&2
+      echo "Expected one of:" >&2
+      echo "  ${LOCAL_BASELINE_ROOT}/latest" >&2
+      echo "  ${EXTENDED_ROOT}/latest" >&2
+      echo "  ${SMOKE_ROOT}/latest" >&2
+      echo "Run the smoke or local-baseline training first." >&2
+      exit 1
+    fi
+    INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test"
+    ;;
+  citation-frontier)
+    if [[ ! -e "${CITATION_FRONTIER_ROOT}/latest" ]]; then
+      echo "Citation-frontier adapter directory not found: ${CITATION_FRONTIER_ROOT}/latest" >&2
+      echo "Run the citation-frontier training first." >&2
+      exit 1
+    fi
+    ADAPTER_DIR="${CITATION_FRONTIER_ROOT}/latest"
+    INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test"
+    ;;
+  *)
+    echo "Unknown mode: ${MODE}. Expected 'local-baseline' or 'citation-frontier'." >&2
+    exit 1
+    ;;
+esac
 
 DATASET_CONFIG="configs/sft/christian_virtue_v1.yaml"
 DATASET_DIR="${ROOT_DIR}/data/processed/sft/exports/christian_virtue_v1"
 DATASET_SENTINEL="${DATASET_DIR}/all.jsonl"
-INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml"
-RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test"
 RUN_DIR="$(create_timestamped_run_dir "${RUN_ROOT}")"
 
 init_run_dir "${RUN_DIR}"

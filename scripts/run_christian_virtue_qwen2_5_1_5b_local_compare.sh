@@ -7,24 +7,48 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/christian_virtue_small_common.sh"
 resolve_python_bin
 
+MODE="${1:-local-baseline}"
 BASE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/base_test"
 ADAPTER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test"
-BASE_METRICS="${BASE_ROOT}/latest/metrics.json"
-ADAPTER_METRICS="${ADAPTER_ROOT}/latest/metrics.json"
+CITATION_FRONTIER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test"
+
+case "${MODE}" in
+  local-baseline)
+    BASE_METRICS="${BASE_ROOT}/latest/metrics.json"
+    CANDIDATE_METRICS="${ADAPTER_ROOT}/latest/metrics.json"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/compare_test"
+    BASELINE_LABEL="qwen2.5-1.5b-base-test"
+    CANDIDATE_LABEL="qwen2.5-1.5b-local-baseline-adapter-test"
+    BASELINE_HINT="Run the base evaluation first."
+    CANDIDATE_HINT="Run the adapter evaluation first."
+    ;;
+  citation-frontier)
+    BASE_METRICS="${ADAPTER_ROOT}/latest/metrics.json"
+    CANDIDATE_METRICS="${CITATION_FRONTIER_ROOT}/latest/metrics.json"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_compare_test"
+    BASELINE_LABEL="qwen2.5-1.5b-local-baseline-adapter-test"
+    CANDIDATE_LABEL="qwen2.5-1.5b-citation-frontier-adapter-test"
+    BASELINE_HINT="Run the canonical local-baseline adapter evaluation first."
+    CANDIDATE_HINT="Run the citation-frontier adapter evaluation first."
+    ;;
+  *)
+    echo "Unknown mode: ${MODE}. Expected 'local-baseline' or 'citation-frontier'." >&2
+    exit 1
+    ;;
+esac
 
 if [[ ! -f "${BASE_METRICS}" ]]; then
-  echo "Base metrics not found: ${BASE_METRICS}" >&2
-  echo "Run the base evaluation first." >&2
+  echo "Baseline metrics not found: ${BASE_METRICS}" >&2
+  echo "${BASELINE_HINT}" >&2
   exit 1
 fi
 
-if [[ ! -f "${ADAPTER_METRICS}" ]]; then
-  echo "Adapter metrics not found: ${ADAPTER_METRICS}" >&2
-  echo "Run the adapter evaluation first." >&2
+if [[ ! -f "${CANDIDATE_METRICS}" ]]; then
+  echo "Candidate metrics not found: ${CANDIDATE_METRICS}" >&2
+  echo "${CANDIDATE_HINT}" >&2
   exit 1
 fi
 
-RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/compare_test"
 RUN_DIR="$(create_timestamped_run_dir "${RUN_ROOT}")"
 
 init_run_dir "${RUN_DIR}"
@@ -36,11 +60,11 @@ run_logged \
   --baseline-metrics \
   "${BASE_METRICS}" \
   --candidate-metrics \
-  "${ADAPTER_METRICS}" \
+  "${CANDIDATE_METRICS}" \
   --baseline-label \
-  "qwen2.5-1.5b-base-test" \
+  "${BASELINE_LABEL}" \
   --candidate-label \
-  "qwen2.5-1.5b-local-baseline-adapter-test" \
+  "${CANDIDATE_LABEL}" \
   --output \
   "${RUN_DIR}/report.md"
 

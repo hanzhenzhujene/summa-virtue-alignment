@@ -255,13 +255,19 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     training_svg_text = training_svg_path.read_text(encoding="utf-8")
     comparison_svg_text = comparison_svg_path.read_text(encoding="utf-8")
     assert "<svg" in training_svg_text
+    assert "Canonical local-baseline training trace" in training_svg_text
+    assert "Cross-entropy loss" in training_svg_text
+    assert "Training step" in training_svg_text
     assert ">3<" in training_svg_text
     assert ">0.40<" in training_svg_text
     assert "<svg" in comparison_svg_text
     assert "Held-out virtue-goal citation exact" in comparison_svg_text
-    assert "Selected strongest virtue-aligned slices" in comparison_svg_text
+    assert "Selected strongest virtue-aligned held-out slices" in comparison_svg_text
     assert "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)" in comparison_svg_text
     assert "marker-end='url(#improvement-arrowhead)'" in comparison_svg_text
+    assert "Strongest public slice" in comparison_svg_text
+    assert "Exact citation match" in comparison_svg_text
+    assert "n=1" in comparison_svg_text
     assert "+100.0 pts" in comparison_svg_text
     assert "Citation-grounded moral answer" not in comparison_svg_text
     assert "Reviewed relation explanation" in comparison_svg_text
@@ -278,7 +284,10 @@ def test_build_goal_demo_panel_and_report_outputs(tmp_path) -> None:
     assert "Held-out overall citation exact" not in report_text
     assert "Clear adapter win" in report_text
     assert "## Goal Demo Panel" in report_text
-    assert "Base citation exact match" in report_text
+    assert "| Panel summary | Value |" in report_text
+    assert "<details>" in report_text
+    assert "Citation outcome" in report_text
+    assert "**Reference answer**" in report_text
     assert "Main remaining weak spot" not in report_text
     assert "Zero-gain tracts in this run" not in report_text
     assert "The overall benchmark is still modest" not in report_text

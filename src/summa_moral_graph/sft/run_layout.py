@@ -28,6 +28,7 @@ class RunArtifacts:
     run_manifest_path: Path
     train_metadata_path: Path
     train_log_history_path: Path
+    subset_summary_path: Path
     stdout_log_path: Path
     stderr_log_path: Path
     command_log_path: Path
@@ -45,6 +46,7 @@ def run_artifacts_for_dir(run_dir: Path) -> RunArtifacts:
         run_manifest_path=run_dir / "run_manifest.json",
         train_metadata_path=run_dir / "train_metadata.json",
         train_log_history_path=run_dir / "train_log_history.jsonl",
+        subset_summary_path=run_dir / "subset_summary.json",
         stdout_log_path=run_dir / "stdout.log",
         stderr_log_path=run_dir / "stderr.log",
         command_log_path=run_dir / "command.log",

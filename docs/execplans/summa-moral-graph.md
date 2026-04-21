@@ -2,6 +2,146 @@
 
 ## Progress
 
+- The public release surface now has an explicit claim-to-artifact contract:
+  - a new `docs/public_claim_map.md` now states the current public claims, the exact artifacts
+    that support them, the reproduction commands, and the claim boundaries
+  - README now links that claim map directly from both `Repository Structure` and `Start Here`
+  - `docs/repository_map.md`, the dataset card, and the publication verifier now treat the claim
+    map as a first-class public surface rather than an optional extra
+- The README is now being tightened around repo anatomy and reproducibility, not just results:
+  - a new `Repository Structure` section now tells a first-time reader where the dataset, SFT
+    package, scripts, reports, and release artifacts live
+  - the canonical command path is now framed explicitly as a `Reproducibility Contract`
+  - this makes the repo read more like a serious paper companion and less like a collection of
+    good artifacts without one explicit top-level map
+- The public visual pass is now being pushed from “good enough” to release-grade consistency:
+  - the README landing zone has been decluttered by removing low-value badge noise and replacing
+    the first two table-heavy sections with denser prose bullets
+  - the flagship `local-baseline` report now keeps the goal-demo panel in collapsible
+    `<details>` blocks with a small panel-summary table, so the report scans like a paper artifact
+    instead of a raw transcript dump
+  - the completed citation-frontier follow-up report now uses human-readable slice labels and a
+    proper figure caption, and its SVG subtitle now states that it is a completed same-budget
+    follow-up rather than a generic audit
+- The public-release gate is now being tightened around the new citation-frontier artifacts instead
+  of only the canonical baseline bundle:
+  - `verify_publication_bundle` now validates
+    `docs/reports/christian_virtue_citation_frontier_audit.md`
+  - it also now validates
+    `docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md`
+  - the release verifier therefore covers both the public baseline and the completed follow-up
+    result instead of leaving the latter outside the contract
+- The citation-frontier follow-up has now completed as a real local run rather than a planned
+  recipe:
+  - train run `20260421_005543` completed on Apple `mps` in about `6.8` minutes
+  - adapter eval run `20260421_010240` completed and writes the new held-out metrics
+  - overall held-out exact citation improved from `0.356` to `0.386`
+  - the hardest user-style task `citation_grounded_moral_answer` moved from `0.000` to `0.030`
+    exact stable-id recovery
+  - the same run also surfaced real tradeoffs, especially `justice_core` (`0.452` to `0.190`) and
+    `strong_textual_inference` (`0.486` to `0.200`)
+- The repo is now being updated so this completed follow-up is represented as a first-class
+  research artifact instead of staying buried under `runs/`:
+  - the committed frontier audit has been refreshed to the finished `citation_frontier` adapter
+  - a new curated follow-up report now summarizes the completed same-budget citation-heavy run
+  - README, fine-tune guide, repository map, scripts guide, and experiment index now distinguish
+    clearly between the public `local-baseline` demo and the finished citation-frontier follow-up
+- The main public guide surfaces are now being synchronized to the new citation-frontier recipe so
+  the code and the docs no longer diverge:
+  - `docs/fine_tune_with_summa_moral_graph.md` now explains the citation-frontier experiment as
+    the next concrete local step after the canonical baseline
+  - the fine-tune guide now names the exact quota-based task mix and expected run directories
+  - `docs/repository_map.md` now lists the citation-frontier configs and audit wrapper directly
+  - repo-surface tests now assert that the fine-tune guide and repository map keep exposing that
+    path
+- The next research expansion is now implemented as a concrete same-budget local recipe instead of
+  only a prose recommendation:
+  - `TrainingConfig` now supports `task_tract_quota_round_robin` plus explicit
+    `train_task_type_quotas` / `eval_task_type_quotas`
+  - the new config
+    `configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml` keeps the same `128`
+    examples / `20` steps / `Qwen/Qwen2.5-1.5B-Instruct` local budget as `local-baseline`
+  - that recipe shifts the tiny train subset to `64` citation-grounded moral answers, `24`
+    reviewed relation explanations, `24` virtue concept explanations, and `16`
+    passage-grounded doctrinal QA examples
+  - the matching eval subset is now `32` examples with a citation-heavy but still mixed task
+    distribution
+  - wrapper scripts, Make targets, and docs now expose a one-command path:
+    `make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop`
+  - the frontier audit now names this recipe explicitly as the next under-five-hour local
+    experiment instead of stopping at a generic recommendation
+- The next public-release hardening pass is now tightening orientation and first-open trust rather
+  than changing the dataset or model claim:
+  - README now includes an explicit method overview instead of leaving the workflow implied across
+    later sections
+  - README now also names the expected outputs of the canonical local path, so reproducibility is
+    defined in concrete artifacts rather than only in commands
+  - `docs/repository_map.md` now exposes a small canonical public bundle section for reviewers who
+    want the minimum set of files that define the release
+  - key public-facing modules (`cli`, dashboard loader, tract registry, corpus ingest builder, and
+    viewer loader) now carry top-level docstrings so a new reader can infer their role at file open
+  - local `.DS_Store` files and `__pycache__` directories have been cleaned so the worktree reads
+    more like a research release and less like a casual local workspace
+- The public visual system is being tightened into one consistent research-release style instead of
+  a mix of older and newer chart treatments:
+  - the shared report renderers now add explicit axis titles, cleaner spacing, stronger hierarchy,
+    and more legible legends
+  - the training trace now labels actual logged steps rather than interpolated pseudo-steps like
+    `8.8` or `12.5`
+  - the citation-frontier figure now states its takeaway directly in the figure and uses a clearer
+    0–100% scale for failure-mode interpretation
+  - the timing-comparison asset has been restyled to match the same card, axis, and legend system
+    as the other public SVGs
+- The balanced-subset local rerun has now been inspected against its full held-out test results:
+  - the new `local-baseline` train run is `20260420_160727`
+  - the matching base and adapter eval runs are `20260420_162346` and `20260420_190542`
+  - the matching comparison run is `20260420_193654`
+  - overall held-out citation exact match improved from `0.137` on the older first-rows run to
+    `0.356` on the balanced-subset rerun
+  - the strongest new gains are now `0.656` on virtue concept explanation and `0.582` on reviewed
+    relation explanation
+  - the remaining major weakness is unchanged: `citation_grounded_moral_answer` stays at `0.000`
+- The local 1.5B recipe now has an explicit, structured fix for its small-run subset bias:
+  - `TrainingConfig` now exposes `train_subset_strategy` and `eval_subset_strategy`
+  - the new deterministic `task_tract_round_robin` strategy is implemented in
+    `src/summa_moral_graph/sft/sampling.py`
+  - the Apple-Silicon `smoke`, `local-baseline`, and `extended` configs now opt into that
+    balanced strategy by default
+  - training runs now emit `subset_summary.json` plus matching subset metadata inside
+    `train_metadata.json` and `run_manifest.json`
+  - docs and report-generation logic now describe subset policy from run metadata instead of
+    hardcoding the old first-rows behavior
+- The current local `Qwen/Qwen2.5-1.5B-Instruct` baseline is being re-audited as a training recipe
+  rather than treated as a fixed quality ceiling:
+  - the public `local-baseline` rung is confirmed to be intentionally tiny at `128` train examples,
+    `16` eval examples, and `20` optimizer steps
+  - the strongest corrected gain now lands on virtue concept explanation (`65.6%` exact), with
+    reviewed relation explanation also reaching `58.2%`
+  - the weakest family remains `citation_grounded_moral_answer`
+  - the immediate next optimization questions are therefore about recipe strength, task-balance,
+    and trainer loss geometry rather than about expanding dataset scope
+- The next-step research frontier is now implemented as a first-class fast audit instead of a vague
+  note:
+  - `src/summa_moral_graph/sft/frontier.py` now analyzes the held-out
+    `citation_grounded_moral_answer` slice as the remaining bottleneck
+  - `scripts/audit_christian_virtue_frontier.py` turns that analysis into a one-command local
+    report and SVG figure
+  - `make audit-christian-virtue-qwen2-5-1-5b-local-frontier` now runs the audit in seconds
+  - the committed frontier report states the current local thesis clearly: keep the virtue dataset
+    fixed, and target stable-id recovery on user-style moral QA as the next expansion
+- The committed public surfaces are now synchronized to the stronger `20260420` canonical local
+  baseline rather than the older `0.137` first-rows run:
+  - README, fine-tune guide, dataset card, maintainer doc, experiment index, and flagship report
+    now point to `20260420_160727` / `20260420_190542`
+  - the top-level public result table now foregrounds the current `0.356` overall held-out exact
+    plus the strongest virtue-aligned slices instead of the weaker older highlights
+  - repo-surface tests were updated so they verify the new wording and numbers instead of pinning
+    stale phrasing
+- The canonical adapter package is now a better audit artifact in its own right:
+  - `subset_summary.json` is copied into the published local adapter package alongside
+    `train_metadata.json` and `run_manifest.json`
+  - the package README and release notes now tell readers that they can inspect the exact balanced
+    `(task_type, tract)` subset composition directly from the packaged files
 - The SFT README opening is being tightened one step further around the dataset itself:
   - the dataset's purpose and merit are now being stated explicitly at the top instead of being
     inferred only from later sections
@@ -871,6 +1011,105 @@
 
 ## Surprises & Discoveries
 
+- After the structure cleanup, the remaining trust gap was not more explanation but clearer claim
+  boundaries:
+  - the repo already had good evidence, reports, and commands
+  - what it still lacked was one page that separated “what is currently proven” from “what is the
+    broader project goal” and from “what is not yet claimed”
+  - making that distinction explicit is especially valuable here because the baseline and the
+    citation-frontier follow-up are both real results, but they support different public claims
+- After the visual cleanup, the next weakest link was not figures or prose density but repo
+  topology visibility:
+  - the README already stated the goal, method, and result
+  - but it still made a new reader infer where the code, data, reports, and package surfaces were
+  - adding one concise structure table was higher-leverage than another paragraph of narrative
+- The biggest remaining visual weakness was not the SVG charts themselves but markdown density:
+  - the README still had too many signals competing at the top of the page
+  - the flagship report's goal-demo panel was accurate but visually exhausting because every
+    example was expanded inline
+  - collapsing examples while keeping them committed preserves transparency without forcing the
+    first reader through a wall of excerpts
+- Once the citation-frontier report became a real public artifact, the main remaining weakness was
+  not the report itself but the release contract around it:
+  - repo-surface tests already checked that the new report exists and is linked
+  - but `verify_publication_bundle` still treated only the baseline report as a first-class
+    checked document
+  - that would have allowed quiet drift in the new follow-up artifact even while
+    `make public-release-check` stayed green
+- The completed citation-frontier run improved exactly where the earlier audit said it should, but
+  with a sharper tradeoff than the benchmark summary alone would suggest:
+  - overall exact citation rose by about three points and every task family improved
+  - the hard frontier moved off zero, which confirms the recipe change is causally meaningful
+  - but the gains were not free, because `justice_core` and `strong_textual_inference` dropped
+    substantially
+  - that means the repo should present this as a completed follow-up result, not silently promote
+    it to the new public baseline
+- The biggest remaining gap after the code landed was not implementation but discoverability:
+  - README and the frontier audit already named the new `citation-frontier` recipe
+  - but the main fine-tune guide and repository map still read as if the frontier stopped at a
+    static audit report
+  - synchronizing those guide surfaces is therefore more valuable right now than adding another new
+    helper or another new config
+- The cleanest next experiment turned out not to require a new dataset slice or longer local run:
+  - the existing train split already contains `435` `citation_grounded_moral_answer` examples, so
+    the frontier can be targeted entirely by changing subset mixture
+  - a quota-based selector is therefore a cleaner intervention than adding new prompt families or
+    expanding doctrinal scope
+  - keeping the same `128` examples and `20` steps makes the next run interpretable as a recipe
+    change rather than a compute-budget change
+- The remaining trust gap after the figure cleanup was not another missing chart but a missing
+  contract:
+  - the repo already had the right commands, outputs, and public artifacts
+  - what it lacked was a sufficiently explicit statement near the top of the README about how those
+    pieces fit together as one method and one release bundle
+  - adding that contract improved first-open clarity more than another round of cosmetic edits
+- The most visually misleading chart bug was not color or typography but axis semantics:
+  - the training-trace renderer was linearly interpolating x-axis ticks between logged steps
+  - on a four-point local run, that produced labels such as `8.8`, `12.5`, and `16.2`, which made
+    a discrete optimization trace look more continuous than it really was
+  - switching the x-axis to actual logged steps made the chart both clearer and more faithful to
+    the underlying run artifact
+- The balanced local rerun improved the real benchmark even though its tiny train-time eval looked
+  worse than the earlier first-rows run:
+  - the earlier run reported lower loss and higher token accuracy because it was effectively
+    training and validating on a narrow easier slice
+  - the new run has higher train/eval loss because it is solving a more diverse subset
+  - the held-out full-test comparison is therefore the trustworthy decision surface here, and that
+    surface improved sharply
+- The current `eval_subset_strategy` still leaves one subtle blind spot at `max_eval_examples = 16`:
+  - with `task_tract_round_robin` over `(task_type, tract)` buckets, a `16`-example cap covers all
+    eight tracts but only the first two task families in bucket order
+  - the new train subset is well balanced, but the tiny train-time eval subset is still not fully
+    representative of all four task families
+  - this does not invalidate the held-out `test` benchmark, but it does weaken the usefulness of
+    train-time eval loss as a model-selection signal
+- The stubborn `citation_grounded_moral_answer` failure mode is not simple theological ignorance:
+  - many failing answers still produce doctrine-shaped prose
+  - the common errors are wrong passage retrieval, unstable non-canonical citation formats, or
+    drifting to plausible but uncited generalizations
+  - this means the next improvement pass should target answer-format supervision and retrieval-like
+    grounding behavior, not only more generic training steps
+- The local-baseline cap was more biased than it first looked:
+  - the first `128` rows of the committed `train.jsonl` export are all
+    `citation_grounded_moral_answer`
+  - the first `16` rows of `val.jsonl` are also all `citation_grounded_moral_answer`
+  - this means the previous tiny local recipe was not merely small; it was effectively
+    single-task for both train and eval
+  - after switching to deterministic task/tract round-robin, the same `128`-example cap becomes a
+    clean `4 task types × 8 tracts × 4 examples` balanced sample
+- The present 1.5B local result is more capacity-limited by the blessed recipe than by the dataset
+  itself:
+  - the public local run only trains on the first `128` rows of the committed training split and
+    stops after `20` steps
+  - that makes the current baseline a proof-of-pipeline artifact, not a serious upper bound on
+    what the Christian virtue supervision can teach the model
+  - the strongest gain appearing anyway on virtue concept explanation is therefore evidence that the
+    dataset signal is real even under a deliberately modest local recipe
+- The trainer currently relies on TRL's default SFT path over a rendered full chat transcript:
+  - the code does not yet add any repo-local assistant-only label masking or task-specific loss
+    weighting
+  - that means there is still realistic headroom from training mechanics alone, especially for the
+    harder citation-grounded answer family
 - The first CI failure after the latest README polish was not a real publication-surface break but a
   stale repo-surface assertion:
   - the README had already been updated from `Three Purposes` to `Why This Dataset Is Unusual`
@@ -1215,6 +1454,147 @@
 
 ## Decision Log
 
+- Add a public claim map and make it part of the checked publication bundle.
+  Reason:
+  - the repo is already strong enough that the next gain comes from explicit claim discipline, not
+    another cosmetic tweak
+  - reviewers should not have to infer the difference between the canonical baseline claim, the
+    citation-frontier follow-up claim, and the project’s longer-term ambition
+  Consequence:
+  - the release now has one public page that maps claims to artifacts, commands, and boundaries
+  - `make public-release-check` now verifies that this page remains present and internally linked
+- Add repo-structure and reproducibility-contract sections to the README rather than pushing all
+  topology guidance into `docs/repository_map.md`.
+  Reason:
+  - a reviewer should understand the public artifact layout before they leave the main page
+  - `docs/repository_map.md` is still valuable, but it should deepen orientation rather than carry
+    the whole burden
+  Consequence:
+  - the README now covers problem, method, result, structure, and exact reproduction contract in
+    one public surface
+- Favor collapsible qualitative examples over deleting them from the flagship report.
+  Reason:
+  - the goal-demo panel is genuinely useful evidence for reviewers and collaborators
+  - the problem was layout density, not the underlying examples
+  Consequence:
+  - the report now stays auditable in full while reading much more cleanly on first open
+- Replace code-style labels with publication labels in the citation-frontier follow-up report.
+  Reason:
+  - tables such as `temperance_141_160` and `strong_textual_inference` are technically correct but
+    visually weaker for public reading
+  Consequence:
+  - the follow-up report now uses tract-display labels and readable support-type labels while
+    preserving the same metrics
+- Extend the publication verifier to cover the citation-frontier audit and follow-up report.
+  Reason:
+  - the repo now presents those artifacts as part of its public research story
+  - leaving them outside the verification bundle would create an avoidable trust gap
+  Consequence:
+  - `make public-release-check` now enforces the completed follow-up surfaces as well as the
+    canonical baseline ones
+- Keep the canonical public baseline unchanged even after the completed citation-frontier win.
+  Reason:
+  - the follow-up is genuinely better on the overall held-out benchmark and on the hard citation
+    slice
+  - but it also introduces regressions large enough that replacing the public baseline would blur
+    the real empirical picture
+  Consequence:
+  - the baseline remains the public distribution artifact
+  - the citation-frontier run is now documented as a completed follow-up report with its own
+    strengths, costs, and next-step thesis
+- Prioritize documentation coherence for the new citation-frontier path before launching another
+  round of implementation.
+  Reason:
+  - the repo already had the core code, configs, wrappers, and Make targets
+  - the most likely next failure mode for a new reader was choosing the old baseline path and never
+    seeing the formalized next-step experiment
+  Consequence:
+  - the main guide and repository map now make the research frontier discoverable from first-open
+    documentation, not only from the audit report or Makefile grep
+- Implement the next citation-frontier step as a quota-based same-budget recipe rather than as a
+  heavier run or a broader dataset.
+  Reason:
+  - the remaining weakness is concentrated in one task family, not in overall virtue scope
+  - a same-budget mixture change makes causal interpretation cleaner on the current laptop
+  - the user explicitly asked for a logical next step that stays within a bounded local runtime
+  Consequence:
+  - the repo now has a dedicated `citation-frontier` training rung, adapter-eval path, comparison
+    path, and audit path
+  - the next research claim can be “does a more citation-heavy small-run mixture improve stable-id
+    recovery?” instead of “does more total compute help?”
+- Prioritize explicit public-surface contracts over further decorative polish once the figures are
+  already readable.
+  Reason:
+  - reviewers and collaborators decide trust quickly from whether a repo states its method,
+    outputs, and artifact boundaries clearly
+  - by this stage, missing structure cues were a larger problem than missing visual tweaks
+  Consequence:
+  - the README now names the pipeline stages and expected outputs directly
+  - the repository map now names the canonical public bundle directly
+  - the next audit pass can focus on any truly missing public surface rather than on layout guesswork
+- Standardize all public SFT figures around one shared visual language rather than leaving one-off
+  assets in older styles.
+  Reason:
+  - mixed chart treatments weaken first-open trust even when the underlying results are solid
+  - public readers should not have to infer which figures are current or canonical from styling
+    differences
+  Consequence:
+  - the training trace, held-out comparison, citation-frontier audit, and timing comparison now
+    present as one coherent release bundle
+- Trust the full held-out benchmark more than the tiny train-time eval slice when auditing local
+  recipe changes.
+  Reason:
+  - the current `16`-example eval cap is too small to represent all four task families under the
+    new balanced bucket strategy
+  - the held-out `test` split is the only surface here that fully reflects the repo's public SFT
+    goal
+  Consequence:
+  - report-level conclusions should be drawn from `base_test` / `adapter_test` / `compare_test`
+    rather than from training loss alone
+- Treat `citation_grounded_moral_answer` as the next targeted optimization frontier.
+  Reason:
+  - the balanced rerun already proves strong gains on virtue concept explanation,
+    reviewed relation explanation, and passage-grounded doctrinal QA
+  - the remaining ceiling is now concentrated in one task family with clear formatting and passage
+    selection failures
+  Consequence:
+  - the next recipe improvement should likely add stronger answer-shape supervision for user-style
+    moral QA rather than broadening doctrinal scope
+- Fix the local small-run bias at the training-recipe layer instead of changing dataset order.
+  Reason:
+  - the committed export order is part of the reproducible dataset artifact and should remain
+    stable
+  - the real bug was the trainer assuming that “first N rows” was a harmless small-run cap
+  Consequence:
+  - future small runs can be more representative without mutating the dataset export itself
+- Make subset selection an explicit config field and a first-class run artifact.
+  Reason:
+  - hidden sampling behavior is hard to audit and easy to forget when reading old reports or new
+    configs
+  - the user explicitly wanted structured logging for the training path
+  Consequence:
+  - dry-run output now shows subset strategy
+  - training metadata now records the exact selected task/tract mix
+  - docs can point readers to `subset_summary.json` instead of relying on prose alone
+- Treat the current `local-baseline` result as a minimum viable public demonstration, not as the
+  recipe to optimize against indefinitely.
+  Reason:
+  - the blessed local rung is intentionally constrained for reproducibility on a `16 GB` Apple
+    Silicon laptop
+  - its `128`-example / `20`-step budget is too small to answer the question “how good can this
+    dataset make the model?” in any strong sense
+  Consequence:
+  - future quality-improvement work should first strengthen the recipe itself before drawing
+    negative conclusions about the dataset or the theological supervision design
+- Prioritize three improvement levers before any dataset-scope expansion: stronger local recipe,
+  better task balancing, and closer inspection of loss masking / supervision geometry.
+  Reason:
+  - the corrected report already shows which task family is strongest and which remains weak
+  - those levers preserve the repo's evidence-first scope while directly targeting the current
+    bottlenecks
+  Consequence:
+  - the next serious optimization pass can remain within the same `christian_virtue_v1` export
+    while still plausibly improving held-out Thomist virtue behavior
 - When a public README heading is intentionally renamed, update the repo-surface assertions in the
   same change rather than treating them as follow-up cleanup.
   Reason:
@@ -1640,11 +2020,108 @@
 
 ## Outcomes & Retrospective
 
+- The repo’s public story is now more explicit about epistemic scope:
+  - readers can see exactly what the dataset proves, what the baseline proves, what the
+    citation-frontier follow-up proves, and what is still not being claimed
+  - that is a better fit for a research release than leaving those boundaries distributed only
+    across README prose and experiment reports
+- The main page now does a better job of earning trust quickly:
+  - a new reader can see not just what the repo claims, but where each major artifact class lives
+  - the canonical local run now reads as a formal contract with expected outputs, not just a list
+    of commands
+- The repo's main public surfaces now do a better job of matching the quality of the underlying
+  research loop:
+  - the README is lighter at the top and faster to scan
+  - the flagship report no longer overwhelms the reader with an always-expanded qualitative panel
+  - the citation-frontier follow-up now looks more like a finished report than a raw experiment note
+- The public release contract now matches the actual repo surface more closely:
+  - the baseline report is still the anchor for the public package and Hugging Face adapter
+  - the citation-frontier audit and follow-up report are now also checked as first-class public
+    docs
+  - that makes it harder for the repo's most recent research result to drift out of sync with the
+    rest of the release bundle
+- The completed citation-frontier run is now a real research artifact instead of an ephemeral local
+  success:
+  - the refreshed frontier audit now points at the finished `citation_frontier` adapter outputs
+  - the new follow-up report records the exact run ids, quota mix, runtime budget, gains, and
+    regressions
+  - the public docs now tell one coherent story: `local-baseline` is the public demo, and
+    `citation-frontier` is the completed next experiment
+- The next research step is now more specific than “push harder on citation recovery”:
+  - the follow-up proved that same-budget mixture steering can move stable-id behavior
+  - the remaining problem is no longer whether citation-focused training helps at all
+  - it is whether the repo can recover those citation gains without giving up too much on
+    `justice_core` and `strong_textual_inference`
+- The new citation-frontier recipe is now visible where an outside reader actually looks for it:
+  - the fine-tune guide names the rationale, commands, quota mix, and expected output roots
+  - the repository map shows the exact config files and wrapper script that define the experiment
+  - tests now guard those surfaces so the next cleanup pass does not quietly hide the frontier path
+- The next-step research idea is now operational instead of aspirational:
+  - the repo can now run a focused citation-frontier loop without touching dataset scope,
+    publication surfaces, or the canonical local-baseline demo
+  - the new recipe is transparent enough to audit from config alone because the quotas, strategy,
+    and command surface are all explicit
+  - dry-run validation confirms that the selected train mix is exactly `64 / 24 / 24 / 16` across
+    the four task families with no fallback fill rows required
+- The repo now reads more like a paper companion and less like a development log:
+  - the README explicitly states the method, the canonical commands, and the artifacts a successful
+    run should produce
+  - the repository map now gives reviewers a shortest-path view of the public release bundle
+  - key public modules now explain themselves at the top of the file instead of assuming codebase
+    familiarity
+  - removing local cache clutter also made the workspace itself less distracting during repo-wide review
+- The public release visuals are now materially clearer without changing any metric or claim:
+  - training curves now show real logged-step ticks, explicit axis titles, and less cramped panel
+    layouts
+  - the held-out comparison chart now has stronger hierarchy, readable wrapped task labels, and a
+    clear strongest-slice callout
+  - the citation-frontier chart now communicates its actual message at a glance: more citation
+    signal, but still no exact stable-id recovery
+  - the timing chart no longer looks like an unrelated older artifact beside the newer report
+    figures
+- The balanced local rerun is a real empirical upgrade, not just a cleaner training story:
+  - overall held-out citation exact match moved from `0.137` to `0.356`
+  - `passage_grounded_doctrinal_qa` improved from `0.075` to `0.343`
+  - `reviewed_relation_explanation` improved from `0.209` to `0.582`
+  - `virtue_concept_explanation` improved from `0.406` to `0.656`
+  - every tract improved over the older published local-baseline run
+- The local training trace now has to be interpreted with more care:
+  - the older first-rows run looked numerically cleaner in train/eval loss only because it was
+    much narrower
+  - the new balanced run is slower and harder, but its benchmark behavior is much better
+  - in other words, the held-out benchmark improved while the easy-proxy training metrics became
+    less flattering, which is exactly the sort of tradeoff an evidence-first repo should record
+- The local 1.5B training path is now materially stronger without expanding dataset scope:
+  - the old capped local recipe silently trained and validated on a one-task slice
+  - the new capped local recipe uses deterministic task/tract round-robin sampling instead
+  - on the real committed train export, the same `128`-example cap now yields an even `32 / 32 /
+    32 / 32` split across the four task families and `16` examples per tract across the eight
+    virtue tracts
+- The change is fully audited rather than heuristic:
+  - `pytest tests/test_sft_*` passes
+  - `ruff check .` passes
+  - `mypy src/summa_moral_graph/sft tests app` passes
+  - the local training dry-run now exposes the new subset strategy directly
 - The public-release gate is back in sync with the current SFT README wording:
   - the failing GitHub Actions run was traced to one stale heading assertion
   - the local repo-surface suite now passes with the new public phrasing
   - the full `make public-release-check` path also passes again, so the repo is back to one
     coherent publication surface
+- The public repo now says the strongest current story more clearly and more honestly:
+  - the canonical local numbers on first-screen surfaces are now `35.6%` overall held-out exact,
+    `65.6%` on virtue concept explanation, `58.2%` on reviewed relation explanation, and `45.2%`
+    on the justice-core tract
+  - the README no longer mixes those current numbers with older `0.137` / `40.6%` era claims
+  - the flagship report now explicitly warns that the tiny `16`-example local eval slice is only
+    a training-time stability signal, while the real public claim rests on the full held-out
+    `233`-example benchmark
+- The fast frontier audit makes the next experiment choice much more precise:
+  - on the held-out `citation_grounded_moral_answer` slice, the adapter still has `0.0%` exact
+    stable-id recovery
+  - but it now shows `40.3%` citation signal, and all of that signal currently takes the form of
+    wrong stable-id retrieval rather than exact recovery
+  - that means the next local research step should not be broader virtue coverage; it should be a
+    narrow retrieval-and-citation repair loop inside the same committed Christian virtue dataset
 - The README now behaves more like a research landing page:
   - the first screen says what the repo is, what result it shows, and where to start
   - the two main graphs are visible before the long-form background sections

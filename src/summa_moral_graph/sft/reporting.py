@@ -216,6 +216,13 @@ def _find_goal_demo_failure(rows: list[dict[str, Any]]) -> dict[str, Any] | None
     return None
 
 
+def _goal_demo_outcome_phrase(*, base_exact_match: bool, adapter_exact_match: bool) -> str:
+    def _label(value: bool) -> str:
+        return "hit" if value else "miss"
+
+    return f"base {_label(base_exact_match)} -> adapter {_label(adapter_exact_match)}"
+
+
 def _metric_row_by_key(rows: list[dict[str, Any]], key: str) -> dict[str, Any] | None:
     for row in rows:
         if str(row.get("key")) == key:
@@ -365,6 +372,13 @@ def _format_chart_tick(value: float) -> str:
     return f"{value:.2f}"
 
 
+def _format_step_tick(value: float) -> str:
+    rounded = round(value)
+    if abs(value - rounded) < 1e-9:
+        return str(int(rounded))
+    return f"{value:.1f}".rstrip("0").rstrip(".")
+
+
 def _nice_percent_upper_bound(values: list[float]) -> float:
     max_value = max(values, default=0.0)
     if max_value <= 0.10:
@@ -377,6 +391,33 @@ def _nice_percent_upper_bound(values: list[float]) -> float:
     return max(bucket, steps * bucket)
 
 
+def _wrap_svg_label(label: str, *, line_width: int = 24) -> list[str]:
+    words = label.split()
+    if not words:
+        return [label]
+
+    lines: list[str] = []
+    current = words[0]
+    for word in words[1:]:
+        candidate = f"{current} {word}"
+        if len(candidate) <= line_width:
+            current = candidate
+            continue
+        lines.append(current)
+        current = word
+    lines.append(current)
+    return lines
+
+
+def _dedupe_series_points(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    deduped: list[tuple[float, float]] = []
+    for point in points:
+        if deduped and deduped[-1] == point:
+            continue
+        deduped.append(point)
+    return deduped
+
+
 def _append_line_chart(
     lines: list[str],
     *,
@@ -385,9 +426,17 @@ def _append_line_chart(
     width: float,
     height: float,
     title: str,
+    subtitle: str,
+    y_axis_label: str,
+    x_axis_label: str,
     series: list[tuple[str, str, list[tuple[float, float]]]],
 ) -> None:
-    series_points = [points for _, _, points in series if points]
+    normalized_series = [
+        (label, color, _dedupe_series_points(points))
+        for label, color, points in series
+        if points
+    ]
+    series_points = [points for _, _, points in normalized_series if points]
     if not series_points:
         return
     min_x, max_x, min_y, max_y = _series_bounds(series_points)
@@ -403,10 +452,28 @@ def _append_line_chart(
         f"<text x='20' y='28' font-size='16' font-weight='700' fill='#111827'>"
         f"{html.escape(title)}</text>"
     )
-    plot_x = 72.0
-    plot_y = 48.0
-    plot_width = width - 96.0
-    plot_height = height - 92.0
+    lines.append(
+        f"<text x='20' y='46' font-size='12' fill='#4b5563'>"
+        f"{html.escape(subtitle)}</text>"
+    )
+    legend_y = 28.0
+    active_series = [(label, color, points) for label, color, points in normalized_series if points]
+    legend_step = 114.0
+    legend_x = max(20.0, width - 22.0 - (legend_step * len(active_series)))
+    for label, color, _points in active_series:
+        lines.append(
+            f"<circle cx='{legend_x:.1f}' cy='{legend_y - 4:.1f}' r='4.5' fill='{color}' />"
+        )
+        lines.append(
+            f"<text x='{legend_x + 10:.1f}' y='{legend_y:.1f}' font-size='11' "
+            f"fill='#374151'>{html.escape(label)}</text>"
+        )
+        legend_x += legend_step
+
+    plot_x = 86.0
+    plot_y = 70.0
+    plot_width = width - 118.0
+    plot_height = height - 138.0
     lines.append(
         f"<line x1='{plot_x:.1f}' y1='{plot_y:.1f}' x2='{plot_x:.1f}' "
         f"y2='{plot_y + plot_height:.1f}' stroke='#9ca3af' stroke-width='1.5' />"
@@ -431,39 +498,74 @@ def _append_line_chart(
             f"{html.escape(_format_chart_tick(y_value))}</text>"
         )
 
-    for _label, color, points in series:
-        if not points:
-            continue
-        polyline = _polyline_points(
-            points,
-            x0=plot_x,
-            y0=plot_y,
-            width=plot_width,
-            height=plot_height,
-            min_x=min_x,
-            max_x=max_x,
-            min_y=min_y,
-            max_y=max_y,
+    unique_x_values = sorted({point_x for points in series_points for point_x, _ in points})
+    if len(unique_x_values) <= 5:
+        x_ticks = unique_x_values
+    else:
+        x_tick_count = min(5, max(2, int(round(max_x - min_x)) + 1))
+        x_ticks = _linear_ticks(min_x, max_x, count=x_tick_count)
+    for x_value in x_ticks:
+        x_ratio = (x_value - min_x) / (max_x - min_x)
+        x_pos = plot_x + x_ratio * plot_width
+        lines.append(
+            f"<line x1='{x_pos:.1f}' y1='{plot_y:.1f}' "
+            f"x2='{x_pos:.1f}' y2='{plot_y + plot_height:.1f}' "
+            "stroke='#eef2f7' stroke-width='1' />"
         )
         lines.append(
-            f"<polyline fill='none' stroke='{color}' stroke-width='2.5' points='{polyline}' />"
+            f"<text x='{x_pos:.1f}' y='{plot_y + plot_height + 18:.1f}' font-size='11' "
+            "text-anchor='middle' fill='#4b5563'>"
+            f"{_format_step_tick(x_value)}</text>"
         )
+
+    lines.append(
+        f"<text x='{plot_x + (plot_width / 2):.1f}' y='{height - 18:.1f}' "
+        "font-size='12' text-anchor='middle' fill='#374151'>"
+        f"{html.escape(x_axis_label)}</text>"
+    )
+    y_label_x = 24.0
+    y_label_y = plot_y + (plot_height / 2)
+    lines.append(
+        f"<text x='{y_label_x:.1f}' y='{y_label_y:.1f}' font-size='12' fill='#374151' "
+        f"text-anchor='middle' transform='rotate(-90 {y_label_x:.1f} {y_label_y:.1f})'>"
+        f"{html.escape(y_axis_label)}</text>"
+    )
+
+    for _label, color, points in active_series:
+        if not points:
+            continue
+        if len(points) >= 2:
+            polyline = _polyline_points(
+                points,
+                x0=plot_x,
+                y0=plot_y,
+                width=plot_width,
+                height=plot_height,
+                min_x=min_x,
+                max_x=max_x,
+                min_y=min_y,
+                max_y=max_y,
+            )
+            lines.append(
+                f"<polyline fill='none' stroke='{color}' stroke-width='2.5' "
+                f"stroke-linecap='round' stroke-linejoin='round' points='{polyline}' />"
+            )
+        for point_x, point_y in points:
+            point_plot_x = plot_x + ((point_x - min_x) / (max_x - min_x)) * plot_width
+            point_plot_y = plot_y + plot_height - (
+                ((point_y - min_y) / (max_y - min_y)) * plot_height
+            )
+            lines.append(
+                f"<circle cx='{point_plot_x:.1f}' cy='{point_plot_y:.1f}' r='3.5' fill='{color}' "
+                "stroke='white' stroke-width='1.5' />"
+            )
         last_x, last_y = points[-1]
         label_x = plot_x + ((last_x - min_x) / (max_x - min_x)) * plot_width
         label_y = plot_y + plot_height - ((last_y - min_y) / (max_y - min_y)) * plot_height
-        lines.append(f"<circle cx='{label_x:.1f}' cy='{label_y:.1f}' r='3.5' fill='{color}' />")
-
-    legend_y = height - 24.0
-    legend_x = 18.0
-    for label, color, points in series:
-        if not points:
-            continue
-        lines.append(f"<circle cx='{legend_x:.1f}' cy='{legend_y:.1f}' r='5' fill='{color}' />")
         lines.append(
-            f"<text x='{legend_x + 10:.1f}' y='{legend_y + 4:.1f}' font-size='12' "
-            f"fill='#374151'>{html.escape(label)}</text>"
+            f"<circle cx='{label_x:.1f}' cy='{label_y:.1f}' r='4.5' fill='{color}' "
+            "stroke='white' stroke-width='1.5' />"
         )
-        legend_x += 132.0
     lines.append("</g>")
 
 
@@ -491,17 +593,24 @@ def write_training_curves_svg(train_log_history_path: Path, output_path: Path) -
     ]
 
     lines = [
-        "<svg xmlns='http://www.w3.org/2000/svg' width='980' height='420' "
-        "viewBox='0 0 980 420' role='img' aria-label='Christian virtue training curves'>",
-        "<rect x='0' y='0' width='980' height='420' fill='#f8fafc' />",
+        "<svg xmlns='http://www.w3.org/2000/svg' width='1040' height='510' "
+        "viewBox='0 0 1040 510' role='img' aria-label='Christian virtue training curves'>",
+        "<rect x='0' y='0' width='1040' height='510' fill='#f8fafc' />",
+        "<text x='24' y='34' font-size='20' font-weight='700' fill='#111827'>"
+        "Canonical local-baseline training trace</text>",
+        "<text x='24' y='54' font-size='12' fill='#4b5563'>"
+        "Twenty-step Apple Silicon MPS run for the minimal public 1.5B Thomist virtue demo</text>",
     ]
     _append_line_chart(
         lines,
-        x=20,
-        y=24,
-        width=450,
-        height=360,
-        title="Loss by step",
+        x=24,
+        y=80,
+        width=486,
+        height=404,
+        title="Loss",
+        subtitle="Train and eval loss across logged steps",
+        y_axis_label="Cross-entropy loss",
+        x_axis_label="Training step",
         series=[
             ("Train loss", "#b45309", train_loss),
             ("Eval loss", "#1d4ed8", eval_loss),
@@ -509,11 +618,14 @@ def write_training_curves_svg(train_log_history_path: Path, output_path: Path) -
     )
     _append_line_chart(
         lines,
-        x=500,
-        y=24,
-        width=450,
-        height=360,
-        title="Mean token accuracy by step",
+        x=530,
+        y=80,
+        width=486,
+        height=404,
+        title="Mean token accuracy",
+        subtitle="Train and eval token accuracy across logged steps",
+        y_axis_label="Token accuracy",
+        x_axis_label="Training step",
         series=[
             ("Train accuracy", "#15803d", train_accuracy),
             ("Eval accuracy", "#7c3aed", eval_accuracy),
@@ -541,11 +653,15 @@ def write_task_comparison_svg(
         **{key: TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title()) for key in task_keys},
     }
     width = 1080
-    height = 470
-    chart_x = 80.0
-    chart_y = 88.0
-    chart_width = 940.0
-    chart_height = 276.0
+    height = 540
+    card_x = 24.0
+    card_y = 18.0
+    card_width = 1032.0
+    card_height = 500.0
+    chart_x = 128.0
+    chart_y = 168.0
+    chart_width = 864.0
+    chart_height = 236.0
     group_width = chart_width / max(len(task_keys), 1)
     baseline_values = [
         float(
@@ -562,6 +678,16 @@ def write_task_comparison_svg(
         for key in task_keys
     ]
     chart_max = _nice_percent_upper_bound([*baseline_values, *candidate_values])
+    strongest_public_row = None
+    if task_keys:
+        strongest_key = max(
+            task_keys,
+            key=lambda key: candidate_metrics["by_task_type"][key]["citation_exact_match"],
+        )
+        strongest_public_row = candidate_metrics["by_task_type"][strongest_key]
+        strongest_public_label = label_map[strongest_key]
+    else:
+        strongest_public_label = ""
     lines = [
         "<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' "
         "viewBox='0 0 {width} {height}' role='img' "
@@ -574,18 +700,49 @@ def write_task_comparison_svg(
         "</marker>"
         "</defs>",
         f"<rect x='0' y='0' width='{width}' height='{height}' fill='#f8fafc' />",
-        "<text x='80' y='34' font-size='20' font-weight='700' fill='#111827'>"
+        f"<rect x='{card_x:.1f}' y='{card_y:.1f}' width='{card_width:.1f}' "
+        f"height='{card_height:.1f}' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='18' />",
+        "<text x='72' y='46' font-size='20' font-weight='700' fill='#111827'>"
         "Held-out virtue-goal citation exact</text>",
-        "<text x='80' y='52' font-size='12' fill='#4b5563'>"
-        "Selected strongest virtue-aligned slices</text>",
-        f"<text x='80' y='70' font-size='12' font-weight='600' fill='#1d4ed8'>"
+        "<text x='72' y='66' font-size='12' fill='#4b5563'>"
+        "Selected strongest virtue-aligned held-out slices for the minimal public SFT demo</text>",
+        f"<text x='72' y='86' font-size='12' font-weight='600' fill='#1d4ed8'>"
         f"{html.escape(model_label)}</text>",
+    ]
+    if strongest_public_row is not None:
+        lines.extend(
+            [
+                "<rect x='764' y='34' width='244' height='52' fill='#eff6ff' stroke='#bfdbfe' "
+                "stroke-width='1' rx='12' />",
+                "<text x='780' y='54' font-size='11' font-weight='700' fill='#1d4ed8'>"
+                "Strongest public slice</text>",
+                f"<text x='780' y='72' font-size='12' fill='#1f2937'>"
+                f"{html.escape(strongest_public_label)} · "
+                f"{float(strongest_public_row['citation_exact_match']) * 100:.1f}% exact</text>",
+            ]
+        )
+    lines.extend(
+        [
+        "<circle cx='760' cy='110' r='6' fill='#94a3b8' />",
+        "<text x='772' y='114' font-size='12' fill='#374151'>Base model</text>",
+        "<circle cx='864' cy='110' r='6' fill='#2563eb' />",
+        "<text x='876' y='114' font-size='12' fill='#374151'>LoRA adapter</text>",
+        "<line x1='972' y1='110' x2='1002' y2='110' stroke='#b45309' stroke-width='2.5' "
+        "marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />",
+        "<text x='1010' y='114' font-size='12' fill='#92400e'>Improvement</text>",
         f"<line x1='{chart_x}' y1='{chart_y}' x2='{chart_x}' y2='{chart_y + chart_height}' "
         "stroke='#9ca3af' stroke-width='1.5' />",
         f"<line x1='{chart_x}' y1='{chart_y + chart_height}' "
         f"x2='{chart_x + chart_width}' y2='{chart_y + chart_height}' "
         "stroke='#9ca3af' stroke-width='1.5' />",
+        f"<text x='38' y='{chart_y + chart_height / 2:.1f}' font-size='12' fill='#374151' "
+        f"text-anchor='middle' transform='rotate(-90 38 {chart_y + chart_height / 2:.1f})'>"
+        "Exact citation match</text>",
+        f"<text x='{chart_x + chart_width / 2:.1f}' y='{chart_y + chart_height + 92:.1f}' "
+        "font-size='12' text-anchor='middle' fill='#374151'>"
+        "Held-out virtue evaluation slice</text>",
     ]
+    )
     for tick_value in _linear_ticks(0.0, chart_max, count=5):
         tick_height = chart_height * (tick_value / chart_max)
         y_pos = chart_y + chart_height - tick_height
@@ -680,6 +837,13 @@ def write_task_comparison_svg(
                 f"y='{plateau_y + 4.0:.1f}' font-size='11' text-anchor='start' "
                 "fill='#4b5563' font-weight='600'>0.0 pts</text>"
             )
+        if baseline_values[index] > 0:
+            lines.append(
+                f"<text x='{baseline_x + (bar_width / 2):.1f}' "
+                f"y='{max(chart_y + 14, baseline_top_y - 8):.1f}' font-size='11' "
+                "text-anchor='middle' fill='#475569'>"
+                f"{baseline_values[index] * 100:.1f}%</text>"
+            )
         lines.append(
             f"<text x='{baseline_x + (bar_width / 2):.1f}' y='{chart_y + chart_height + 18:.1f}' "
             "font-size='11' text-anchor='middle' fill='#374151'>Base</text>"
@@ -688,10 +852,20 @@ def write_task_comparison_svg(
             f"<text x='{candidate_x + (bar_width / 2):.1f}' y='{chart_y + chart_height + 18:.1f}' "
             "font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>"
         )
+        wrapped_label = _wrap_svg_label(label_map[key], line_width=26)
+        for line_index, line_text in enumerate(wrapped_label):
+            lines.append(
+                f"<text x='{group_x + group_width / 2:.1f}' "
+                f"y='{chart_y + chart_height + 42 + (line_index * 14):.1f}' "
+                "font-size='11' text-anchor='middle' fill='#111827'>"
+                f"{html.escape(line_text)}</text>"
+            )
+        count_value = int(candidate_metrics.get("by_task_type", {}).get(key, {}).get("count", 0))
         lines.append(
-            f"<text x='{group_x + group_width / 2:.1f}' y='{chart_y + chart_height + 40:.1f}' "
-            "font-size='11' text-anchor='middle' fill='#111827'>"
-            f"{html.escape(label_map[key])}</text>"
+            f"<text x='{group_x + group_width / 2:.1f}' "
+            f"y='{chart_y + chart_height + 42 + (len(wrapped_label) * 14):.1f}' "
+            "font-size='10' text-anchor='middle' fill='#64748b'>"
+            f"n={count_value}</text>"
         )
         lines.append(
             f"<text x='{candidate_x + (bar_width / 2):.1f}' "
@@ -699,18 +873,7 @@ def write_task_comparison_svg(
             "text-anchor='middle' fill='#1d4ed8'>"
             f"{candidate_values[index] * 100:.1f}%</text>"
         )
-    lines.extend(
-        [
-            "<circle cx='740' cy='28' r='6' fill='#94a3b8' />",
-            "<text x='752' y='32' font-size='12' fill='#374151'>Base model</text>",
-            "<circle cx='844' cy='28' r='6' fill='#2563eb' />",
-            "<text x='856' y='32' font-size='12' fill='#374151'>LoRA adapter</text>",
-            "<line x1='958' y1='28' x2='988' y2='28' stroke='#b45309' stroke-width='2.5' "
-            "marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />",
-            "<text x='996' y='32' font-size='12' fill='#92400e'>Improvement</text>",
-            "</svg>",
-        ]
-    )
+    lines.append("</svg>")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return output_path
@@ -728,6 +891,73 @@ def _runtime_minutes(start_time: str | None, end_time: str | None) -> float | No
     if start is None or end is None:
         return None
     return (end - start).total_seconds() / 60.0
+
+
+def _format_subset_counts(counts: dict[str, Any] | None) -> str | None:
+    if not isinstance(counts, dict) or not counts:
+        return None
+    return ", ".join(f"{key}={counts[key]}" for key in sorted(counts))
+
+
+def _subset_policy_lines(train_metadata: dict[str, Any]) -> list[str]:
+    train_strategy = str(train_metadata.get("train_subset_strategy") or "first_rows")
+    eval_strategy = str(train_metadata.get("eval_subset_strategy") or "first_rows")
+    train_summary = train_metadata.get("train_subset_summary")
+    eval_summary = train_metadata.get("eval_subset_summary")
+
+    if train_strategy == "task_tract_round_robin":
+        lines = [
+            "The local-baseline subset policy is deterministic and balanced rather than random: "
+            "the trainer selects a round-robin subset across `(task_type, tract)` buckets from "
+            "the committed `train.jsonl` export, preserving stable within-bucket order while "
+            "avoiding the first-rows bias of a tiny local run.",
+            "",
+        ]
+    else:
+        lines = [
+            "The local-baseline subset policy is deterministic rather than random: "
+            "the trainer uses the first `max_train_examples` rows from the committed "
+            "`train.jsonl` export and the first `max_eval_examples` rows from "
+            "`val.jsonl`, preserving the dataset's stable ordering.",
+            "",
+        ]
+
+    lines.extend(
+        [
+            f"- Train subset strategy: `{train_strategy}`",
+            f"- Eval subset strategy: `{eval_strategy}`",
+        ]
+    )
+
+    train_task_mix = _format_subset_counts(
+        (
+            train_summary.get("selected_counts_by_task_type")
+            if isinstance(train_summary, dict)
+            else None
+        )
+    )
+    train_tract_mix = _format_subset_counts(
+        train_summary.get("selected_counts_by_tract")
+        if isinstance(train_summary, dict)
+        else None
+    )
+    eval_task_mix = _format_subset_counts(
+        (
+            eval_summary.get("selected_counts_by_task_type")
+            if isinstance(eval_summary, dict)
+            else None
+        )
+    )
+
+    if train_task_mix is not None:
+        lines.append(f"- Train subset task mix: `{train_task_mix}`")
+    if train_tract_mix is not None:
+        lines.append(f"- Train subset tract mix: `{train_tract_mix}`")
+    if eval_task_mix is not None:
+        lines.append(f"- Eval subset task mix: `{eval_task_mix}`")
+
+    lines.append("")
+    return lines
 
 
 def build_publishable_local_report(
@@ -947,11 +1177,7 @@ def build_publishable_local_report(
             f"| LoRA dropout | `{_config_value(train_config, 'lora_dropout')}` |",
             f"| Seed | `{_config_value(train_config, 'seed')}` |",
             "",
-            "The local-baseline subset policy is deterministic rather than random: "
-            "the trainer uses the first `max_train_examples` rows from the committed "
-            "`train.jsonl` export and the first `max_eval_examples` rows from "
-            "`val.jsonl`, preserving the dataset's stable ordering.",
-            "",
+            *_subset_policy_lines(train_metadata),
             "This corrected local-baseline rerun also uses the repaired vice-opposition prompt "
             "wording in the `citation_grounded_moral_answer` family: `excess_opposed_to` and "
             "`deficiency_opposed_to` questions now ask for the vice opposed to the virtue object, "
@@ -1060,30 +1286,73 @@ def build_publishable_local_report(
             "",
         ]
     )
-    for row in goal_demo_rows:
+    if goal_demo_summary["total"] > 0:
         lines.extend(
             [
-                f"### {row['slot']}. {row['title']}",
+                "| Panel summary | Value |",
+                "| --- | --- |",
+                f"| Held-out slots | `{goal_demo_summary['total']}` |",
+                (
+                    "| Adapter exact citations | "
+                    f"`{goal_demo_summary['adapter_exact_count']} / "
+                    f"{goal_demo_summary['total']}` |"
+                ),
+                (
+                    "| Adapter-only wins | "
+                    f"`{goal_demo_summary['adapter_only_wins']}` |"
+                ),
+                f"| Both miss | `{goal_demo_summary['both_miss']}` |",
+            ]
+        )
+        if representative_win is not None:
+            lines.append(
+                "| Clearest adapter win | "
+                f"`slot {representative_win['slot']} - {representative_win['title']}` |"
+            )
+        lines.extend(
+            [
+                "",
+                "The examples below stay fully visible in the repo, but they are collapsed by "
+                "default so the report reads like a curated release artifact instead of a raw log.",
+                "",
+            ]
+        )
+    for row in goal_demo_rows:
+        outcome_phrase = _goal_demo_outcome_phrase(
+            base_exact_match=bool(row["base_exact_match"]),
+            adapter_exact_match=bool(row["adapter_exact_match"]),
+        )
+        lines.extend(
+            [
+                "<details>",
+                (
+                    "<summary><strong>"
+                    f"{row['slot']}. {row['title']}"
+                    "</strong> - "
+                    f"{row['task_type_display']} - {row['tract_display']} - {outcome_phrase}"
+                    "</summary>"
+                ),
                 "",
                 f"- Focus: {row['focus']}",
                 f"- Task type: {row['task_type_display']}",
                 f"- Tract: {row['tract_display']}",
-                f"- Prompt: {_truncate_text(row['prompt'], limit=220)}",
+                f"- Prompt: {_truncate_text(row['prompt'], limit=160)}",
                 f"- Reference citations: `{', '.join(row['reference_passage_ids'])}`",
-                f"- Base exact citation match: `{row['base_exact_match']}`",
-                f"- Adapter exact citation match: `{row['adapter_exact_match']}`",
+                f"- Citation outcome: `{outcome_phrase}`",
                 "",
-                "Reference:",
+                "**Reference answer**",
                 "",
                 f"> {row['reference_excerpt']}",
                 "",
-                "Base model:",
+                "**Base model excerpt**",
                 "",
                 f"> {row['base_excerpt']}",
                 "",
-                "LoRA adapter:",
+                "**LoRA adapter excerpt**",
                 "",
                 f"> {row['adapter_excerpt']}",
+                "",
+                "</details>",
                 "",
             ]
         )

@@ -425,6 +425,8 @@ def build_model_card_text(
                 f"- {release_slug_note}",
                 "- Treat the curated report and local package manifest as the canonical evaluation "
                 "surface for the current repo numbers.",
+                "- `subset_summary.json` records the exact balanced `(task_type, tract)` "
+                "composition of the local training and eval subsets used for this run.",
                 "",
             ]
         )
@@ -637,6 +639,8 @@ def build_release_notes_text(
                 f"- {release_slug_note}",
                 "- Treat the curated report and local package manifest as the canonical evaluation "
                 "surface for the current repo numbers.",
+                "- `subset_summary.json` records the exact balanced `(task_type, tract)` "
+                "composition of the local training and eval subsets used for this run.",
                 "",
             ]
         )
@@ -736,6 +740,7 @@ def write_adapter_package(
         "environment.json",
         "run_manifest.json",
         "train_metadata.json",
+        "subset_summary.json",
     ]:
         _copy_sanitized_json_if_present(train_run_dir, package_dir, filename)
 
