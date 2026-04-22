@@ -270,21 +270,17 @@ virtues, fortitude parts and closure, and temperance parts and closure.
 | Training method | LoRA on Apple Silicon `mps`, `float16`, no quantization |
 | Public rung | `local-baseline` |
 | Train subset | `128` examples |
-| Eval subset | `16` examples |
+| Train-time eval subset | `32` examples |
 | Max steps | `20` |
 | Runtime goal | Honest end-to-end reproducibility on a 16 GB laptop |
 
-This minimal example proves three things:
+This minimal example proves that the reviewed dataset can move model behavior in the right Thomist
+direction, that the train / infer / eval / report / package loop is real, and that the repo is
+usable as a public fine-tuning template.
 
-- the reviewed dataset can move model behavior in the right Thomist direction
-- the train / infer / eval / report / package loop is real
-- the repo is usable as a public fine-tuning template
-
-It does not prove:
-
-- that `1.5B` is the intended final deployment size
-- that local Apple-Silicon training is the strongest path for final model quality
-- that citation exact match is the whole theological evaluation story
+It does not claim that `1.5B` is the intended final deployment size, that local Apple-Silicon
+training is the strongest path for final model quality, or that citation exact match is the whole
+theological evaluation story.
 
 ## Evidence Browser
 
@@ -301,7 +297,7 @@ make app
 
 The entrypoint is [streamlit_app.py](./streamlit_app.py).
 
-## Repository Structure
+## Core Paths
 
 | Path | Role |
 | --- | --- |

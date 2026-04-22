@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The README is now slightly tighter and more internally consistent:
+  - the duplicated lower `Repository Structure` section is now renamed `Core Paths`, so the page
+    no longer repeats the same heading
+  - the minimal local example now reflects the current `32`-example train-time eval subset instead
+    of the older `16`-example value
+  - the minimal-example interpretation is now two short prose paragraphs instead of two longer
+    bullet blocks
 - The last stale public experiment-index mismatch is now fixed:
   - `docs/reports/christian_virtue_experiments.md` no longer labels `accuracy-first` as a next
     step after the run already completed
@@ -1141,6 +1148,10 @@
 
 ## Surprises & Discoveries
 
+- One of the remaining “scroll” problems was not sheer length but avoidable duplication:
+  - README had two separate `Repository Structure` headings
+  - the lower section was useful, but the repeated heading made the page feel more repetitive than
+    it really was
 - The final polish bug was a classic public-doc drift issue:
   - the repo had the completed `accuracy-first` report and command surface already
   - but the experiment index still carried a future-facing section title and one stale rerun
@@ -1654,6 +1665,13 @@
 
 ## Decision Log
 
+- Condense the lower README surface by removing duplication before cutting substance.
+  Reason:
+  - the user asked for less unnecessary scrolling, not for thinner documentation
+  - fixing repeated structure and stale numbers is a higher-value cleanup than deleting material
+  Consequence:
+  - the lower README section is now `Core Paths`
+  - the local-example table now reflects the live `32`-example eval configuration
 - Fix the experiment index to match the actual completed `accuracy-first` artifact.
   Reason:
   - the repo should not describe a completed best-result run as a future step
@@ -2337,6 +2355,9 @@
 
 ## Outcomes & Retrospective
 
+- The README now feels slightly tighter without losing substance:
+  - the first-read surface is still information-dense
+  - but one duplicated heading and one stale config number are now gone
 - The public docs are now tighter at the small but important command-surface level:
   - a reader can move from README to experiment index to rerun command without hitting a stale
     `justice-guarded` pointer inside the `accuracy-first` section
