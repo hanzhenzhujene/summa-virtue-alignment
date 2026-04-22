@@ -2,6 +2,11 @@
 
 ## Progress
 
+- The last stale public experiment-index mismatch is now fixed:
+  - `docs/reports/christian_virtue_experiments.md` no longer labels `accuracy-first` as a next
+    step after the run already completed
+  - the same page now points its canonical rerun and report-rebuild commands to the actual
+    `accuracy-first` targets instead of the older `justice-guarded` commands
 - The main public surfaces now foreground the strongest validated results more cleanly:
   - README now summarizes the same-budget run family with a signature-strength ladder instead of a
     tradeoff-heavy table
@@ -1136,6 +1141,12 @@
 
 ## Surprises & Discoveries
 
+- The final polish bug was a classic public-doc drift issue:
+  - the repo had the completed `accuracy-first` report and command surface already
+  - but the experiment index still carried a future-facing section title and one stale rerun
+    command copied from `justice-guarded`
+  - that kind of mismatch is small, but it is exactly the kind of thing that makes a release feel
+    less trustworthy on close reading
 - The cleanest way to “emphasize the good results” without damaging research integrity was not to
   delete limitations from the repo:
   - the trustworthy move is to keep the audit trail, but move the strongest validated outcomes
@@ -1643,6 +1654,13 @@
 
 ## Decision Log
 
+- Fix the experiment index to match the actual completed `accuracy-first` artifact.
+  Reason:
+  - the repo should not describe a completed best-result run as a future step
+  - the canonical rerun command should always point to the matching recipe
+  Consequence:
+  - `docs/reports/christian_virtue_experiments.md` now names the section as a completed follow-up
+  - the rerun and report-build commands now point to the `accuracy-first` targets
 - Keep the audit trail honest, but make the first-read surfaces more selective about what they
   emphasize.
   Reason:
@@ -2319,6 +2337,9 @@
 
 ## Outcomes & Retrospective
 
+- The public docs are now tighter at the small but important command-surface level:
+  - a reader can move from README to experiment index to rerun command without hitting a stale
+    `justice-guarded` pointer inside the `accuracy-first` section
 - The repo now presents its strongest results more like a serious research release:
   - first-read surfaces emphasize the best validated numbers
   - linked follow-up reports retain the deeper diagnostic trail instead of pretending the weaker

@@ -158,7 +158,7 @@ This means the justice-guarded recipe is the strongest doctrinal recovery follow
 1.5B local series. It proves the selector can protect justice/STI slices while still improving
 overall held-out exact citation. Full tradeoffs are documented in the linked report.
 
-## Accuracy-First Next Step
+## Completed Follow-Up: Accuracy-First Hybrid
 
 That accuracy-first hybrid is now complete.
 
@@ -202,16 +202,16 @@ Current conclusion:
 Canonical rerun command:
 
 ```bash
-make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
+make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop
 ```
 
-The official justice-guarded wrappers now export the required MPS safety env overrides
-automatically for training and adapter evaluation.
+The official accuracy-first wrappers inherit the required MPS safety env overrides automatically
+for training and adapter evaluation.
 
 Curated follow-up report rebuild:
 
 ```bash
-make report-christian-virtue-qwen2-5-1-5b-justice-guarded
+make report-christian-virtue-qwen2-5-1-5b-accuracy-first
 ```
 
 ## Canonical Command Surface
