@@ -99,9 +99,6 @@ def _write_progress_svg(
     rows: list[dict[str, Any]],
     output_path: Path,
     *,
-    overall_base: float,
-    overall_baseline: float,
-    overall_candidate: float,
     baseline_budget_label: str,
     full_budget_label: str,
 ) -> None:
@@ -123,12 +120,6 @@ def _write_progress_svg(
     def x_for(value: float) -> float:
         return chart_left + (value * chart_width)
 
-    overall_progress_label = (
-        f"{_pct(overall_base)} &#8594; {_pct(overall_baseline)} &#8594; "
-        f"{_pct(overall_candidate)}"
-    )
-    overall_gain_vs_baseline = f"+{(overall_candidate - overall_baseline) * 100:.1f} pts"
-
     svg_lines = [
         (
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
@@ -136,16 +127,18 @@ def _write_progress_svg(
         ),
         "<defs>",
         (
-            '<marker id="baseline-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" '
+            '<marker id="baseline-arrow" markerWidth="5.5" markerHeight="5.5" '
+            'refX="4.9" refY="2.75" '
             'orient="auto" markerUnits="strokeWidth">'
         ),
-        f'<path d="M0,0 L7,3.5 L0,7 z" fill="{BASELINE_COLOR}"/>',
+        f'<path d="M0,0 L5.5,2.75 L0,5.5 z" fill="{BASELINE_COLOR}"/>',
         "</marker>",
         (
-            '<marker id="full-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" '
+            '<marker id="full-arrow" markerWidth="5.5" markerHeight="5.5" '
+            'refX="4.9" refY="2.75" '
             'orient="auto" markerUnits="strokeWidth">'
         ),
-        f'<path d="M0,0 L7,3.5 L0,7 z" fill="{FULL_COLOR}"/>',
+        f'<path d="M0,0 L5.5,2.75 L0,5.5 z" fill="{FULL_COLOR}"/>',
         "</marker>",
         "</defs>",
         (
@@ -163,49 +156,32 @@ def _write_progress_svg(
             'rx="18" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>'
         ),
         (
-            f'<text x="72" y="52" font-size="28" font-family="{SERIF_STACK}" '
+            f'<text x="72" y="54" font-size="32" font-family="{SERIF_STACK}" '
             f'fill="{TEXT_DARK}">Held-Out Progress to Full-Corpus LoRA</text>'
         ),
         (
-            f'<text x="72" y="78" font-size="13" font-family="{SANS_STACK}" fill="{TEXT_MID}">'
+            f'<text x="72" y="82" font-size="14" font-family="{SANS_STACK}" fill="{TEXT_MID}">'
             "The same 1.5B backbone moves from an untuned starting point to the earlier small-data "
             "LoRA rung, then to the completed full-corpus result on 233 untouched test prompts."
             "</text>"
         ),
         (
-            '<rect x="934" y="28" width="340" height="96" rx="16" fill="#ecfdf5" '
-            'stroke="#10b981" stroke-width="1.5"/>'
-        ),
-        (
-            f'<text x="958" y="54" font-size="11" font-family="{SANS_STACK}" '
-            'font-weight="700" fill="#047857">Strong LoRA gain</text>'
-        ),
-        (
-            f'<text x="958" y="82" font-size="26" font-family="{SANS_STACK}" '
-            f'font-weight="700" fill="#065f46">{overall_progress_label}</text>'
-        ),
-        (
-            f'<text x="958" y="102" font-size="12" font-family="{SANS_STACK}" '
-            f'font-weight="700" fill="{GAIN_COLOR}">'
-            f"{overall_gain_vs_baseline} over earlier LoRA</text>"
-        ),
-        (
-            f'<text x="72" y="130" font-size="13" font-family="{SANS_STACK}" '
+            f'<text x="72" y="132" font-size="15" font-family="{SANS_STACK}" '
             f'fill="{TEXT_MID}">Legend:</text>'
         ),
-        f'<circle cx="130" cy="126" r="6" fill="{UNTUNED_COLOR}"/>',
+        f'<circle cx="132" cy="127" r="6.5" fill="{UNTUNED_COLOR}"/>',
         (
-            f'<text x="144" y="131" font-size="13" font-family="{SANS_STACK}" '
+            f'<text x="148" y="133" font-size="15" font-family="{SANS_STACK}" '
             f'fill="{TEXT_MID}">Untuned model</text>'
         ),
-        f'<circle cx="272" cy="126" r="6" fill="{BASELINE_COLOR}"/>',
+        f'<circle cx="282" cy="127" r="6.5" fill="{BASELINE_COLOR}"/>',
         (
-            f'<text x="286" y="131" font-size="13" font-family="{SANS_STACK}" '
+            f'<text x="298" y="133" font-size="15" font-family="{SANS_STACK}" '
             f'fill="{TEXT_MID}">Earlier small-data LoRA ({baseline_budget_label})</text>'
         ),
-        f'<circle cx="650" cy="126" r="6" fill="{FULL_COLOR}"/>',
+        f'<circle cx="690" cy="127" r="6.5" fill="{FULL_COLOR}"/>',
         (
-            f'<text x="664" y="131" font-size="13" font-family="{SANS_STACK}" '
+            f'<text x="706" y="133" font-size="15" font-family="{SANS_STACK}" '
             f'fill="{TEXT_MID}">Full-corpus LoRA ({full_budget_label})</text>'
         ),
         (
@@ -628,9 +604,6 @@ def main() -> None:
     _write_progress_svg(
         summary_rows,
         progress_figure_path,
-        overall_base=overall_base,
-        overall_baseline=overall_baseline,
-        overall_candidate=overall_candidate,
         baseline_budget_label=baseline_budget_label,
         full_budget_label=full_budget_label,
     )

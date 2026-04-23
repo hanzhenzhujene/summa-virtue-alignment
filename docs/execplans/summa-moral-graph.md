@@ -15,6 +15,10 @@
     untouched model to earlier small-data LoRA to full-corpus LoRA
   - the arrowheads on that flagship progress figure are now being scaled down slightly so the
     direction cue stays visible without overpowering the metric bars
+  - the title and legend typography on that same figure are also being enlarged so the top public
+    chart reads more comfortably at first glance on GitHub
+  - the right-side summary box on that chart is now being removed so the figure reads as one clean
+    comparison panel instead of a chart plus a competing callout card
   - the tract-profile figure is also being cleaned so labels like `closure` disappear from the
     first-read chart surface in favor of simpler range-based tract names
 - The release surface is getting one final visual-quality tightening pass aimed at first-open trust:
@@ -1272,6 +1276,10 @@
     from connected points rather than seeing an explicit directional cue
   - once the arrows were added, the remaining polish issue was that the arrowheads were still a
     little too visually dominant relative to the bar geometry
+  - the same figure also still had slightly undersized title and legend typography, which made the
+    first-read hierarchy weaker than the underlying result deserved
+  - the top-right summary box also kept pulling the eye away from the actual comparison rows, even
+    though the main claim was already visible in the chart body
   - the tract chart also still exposed internal naming like `closure`, which is precise enough for
     maintainers but not ideal for a first-pass public figure
   - adding visible arrows and simpler tract labels improves the same public claim without changing
@@ -1908,6 +1916,20 @@
     connector itself instead of the metric gains
   Consequence:
   - the chart keeps the same progression story while reading a bit cleaner at first glance
+- Increase the flagship full-corpus chart title and legend typography.
+  Reason:
+  - the user correctly pointed out that the current title and legend were still a bit small for
+    the repo's main public chart
+  Consequence:
+  - the first-open visual hierarchy is stronger and the meaning of the three-rung comparison is
+    easier to absorb without zooming
+- Remove the top-right summary box from the flagship full-corpus chart.
+  Reason:
+  - the chart already communicates the gain directly through the three-rung comparison rows
+  - the extra callout card was visually redundant and split attention at the top of the figure
+  Consequence:
+  - the chart header is cleaner and the eye goes straight to the title, legend, and comparison
+    rows
 - Put the flagship README figures ahead of the summary table and replace the old `Method Overview`
   table with a staged bullet list.
   Reason:
@@ -2737,6 +2759,10 @@
     directional story from plain connecting segments
   - the arrowheads are now slightly smaller, so the movement reads clearly without crowding the
     metric bars
+  - the title and legend now read more comfortably at first glance, which gives the chart a
+    cleaner flagship feel on the GitHub landing surface
+  - the old right-side summary card is gone, so the header no longer competes with the actual
+    comparison rows for attention
   - the tract figure no longer asks first-time readers to parse internal labels like `closure`
   - the public result therefore reads faster without any change to the underlying experiment or
     claims
