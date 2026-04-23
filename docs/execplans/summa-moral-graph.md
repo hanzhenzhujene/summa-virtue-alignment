@@ -13,6 +13,8 @@
   instantly:
   - the main progress figure is now being upgraded with explicit arrowed progression from
     untouched model to earlier small-data LoRA to full-corpus LoRA
+  - the arrowheads on that flagship progress figure are now being scaled down slightly so the
+    direction cue stays visible without overpowering the metric bars
   - the tract-profile figure is also being cleaned so labels like `closure` disappear from the
     first-read chart surface in favor of simpler range-based tract names
 - The release surface is getting one final visual-quality tightening pass aimed at first-open trust:
@@ -1268,6 +1270,8 @@
   cleanup:
   - the numeric ladder was clearer than before, but it still relied on readers inferring motion
     from connected points rather than seeing an explicit directional cue
+  - once the arrows were added, the remaining polish issue was that the arrowheads were still a
+    little too visually dominant relative to the bar geometry
   - the tract chart also still exposed internal naming like `closure`, which is precise enough for
     maintainers but not ideal for a first-pass public figure
   - adding visible arrows and simpler tract labels improves the same public claim without changing
@@ -1898,6 +1902,12 @@
   Consequence:
   - the progress figure now communicates directional gain more directly
   - the tract chart keeps the same data but uses cleaner range-based labels for public reading
+- Keep the progress arrows, but shrink the arrowheads slightly on the flagship full-corpus chart.
+  Reason:
+  - the direction cue is useful, but the larger heads were drawing too much attention to the
+    connector itself instead of the metric gains
+  Consequence:
+  - the chart keeps the same progression story while reading a bit cleaner at first glance
 - Put the flagship README figures ahead of the summary table and replace the old `Method Overview`
   table with a staged bullet list.
   Reason:
@@ -2725,6 +2735,8 @@
 - The flagship full-corpus visuals now communicate the main result more directly:
   - the progress chart shows visible arrowed movement instead of making the reader infer the
     directional story from plain connecting segments
+  - the arrowheads are now slightly smaller, so the movement reads clearly without crowding the
+    metric bars
   - the tract figure no longer asks first-time readers to parse internal labels like `closure`
   - the public result therefore reads faster without any change to the underlying experiment or
     claims

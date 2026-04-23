@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1320" height="772" viewBox="0 0 1320 772" role="img" aria-labelledby="title desc">
 <defs>
-<marker id="baseline-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-<path d="M0,0 L10,5 L0,10 z" fill="#2563eb"/>
+<marker id="baseline-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L7,3.5 L0,7 z" fill="#2563eb"/>
 </marker>
-<marker id="full-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-<path d="M0,0 L10,5 L0,10 z" fill="#0f766e"/>
+<marker id="full-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+<path d="M0,0 L7,3.5 L0,7 z" fill="#0f766e"/>
 </marker>
 </defs>
 <title id='title'>Christian virtue held-out progress from untuned model to small-data LoRA to full-corpus LoRA</title>

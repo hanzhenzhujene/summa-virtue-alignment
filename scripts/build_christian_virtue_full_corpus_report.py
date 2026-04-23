@@ -136,16 +136,16 @@ def _write_progress_svg(
         ),
         "<defs>",
         (
-            '<marker id="baseline-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" '
+            '<marker id="baseline-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" '
             'orient="auto" markerUnits="strokeWidth">'
         ),
-        f'<path d="M0,0 L10,5 L0,10 z" fill="{BASELINE_COLOR}"/>',
+        f'<path d="M0,0 L7,3.5 L0,7 z" fill="{BASELINE_COLOR}"/>',
         "</marker>",
         (
-            '<marker id="full-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" '
+            '<marker id="full-arrow" markerWidth="7" markerHeight="7" refX="6.2" refY="3.5" '
             'orient="auto" markerUnits="strokeWidth">'
         ),
-        f'<path d="M0,0 L10,5 L0,10 z" fill="{FULL_COLOR}"/>',
+        f'<path d="M0,0 L7,3.5 L0,7 z" fill="{FULL_COLOR}"/>',
         "</marker>",
         "</defs>",
         (
