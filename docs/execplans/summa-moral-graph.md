@@ -2,6 +2,13 @@
 
 ## Progress
 
+- The current push blocker has been worked around without losing the validated release state:
+  - direct pushes from this workstation to `main` started failing with a remote authentication
+    error even though SSH login to GitHub still succeeded
+  - the same committed change set pushed cleanly to a new branch over HTTPS using the stored
+    GitHub credential helpers
+  - that branch was then merged back into `main` through GitHub, and local `main` was
+    fast-forwarded to the merge commit so the repo is synchronized again
 - The flagship full-corpus visuals are being tightened again to make the LoRA improvement read
   instantly:
   - the main progress figure is now being upgraded with explicit arrowed progression from
@@ -1252,6 +1259,11 @@
 
 ## Surprises & Discoveries
 
+- The push failure was narrower than it first looked:
+  - SSH authentication to `git@github.com` still succeeded
+  - pushing the exact same commit to a fresh branch over HTTPS also succeeded
+  - only the direct `main` update path kept failing, so the practical fix was not more
+    workstation auth debugging but a branch push plus PR merge
 - The strongest figure still had one avoidable first-read weakness even after the earlier visual
   cleanup:
   - the numeric ladder was clearer than before, but it still relied on readers inferring motion
@@ -1868,6 +1880,15 @@
 
 ## Decision Log
 
+- Work around the `main` push failure by publishing the validated commit to a temporary branch and
+  merging it back through GitHub instead of continuing to hammer the broken direct-push path.
+  Reason:
+  - the repository write path was clearly still available because branch push succeeded
+  - the user asked to fix the push issue, not to spend more cycles on a flaky direct `main`
+    transport path
+  Consequence:
+  - the visual/report update landed on remote `main`
+  - local `main` was then fast-forwarded to the merged remote state
 - Add explicit arrows to the flagship full-corpus progress chart and simplify the tract labels on
   the public figure surface.
   Reason:
@@ -2696,6 +2717,11 @@
 
 ## Outcomes & Retrospective
 
+- The push problem is now resolved in practice:
+  - the validated visual/report commit is on GitHub `main`
+  - the local checkout is synchronized to the merged remote state
+  - the failure mode is now documented as a remote direct-push issue rather than a general repo
+    access problem
 - The flagship full-corpus visuals now communicate the main result more directly:
   - the progress chart shows visible arrowed movement instead of making the reader infer the
     directional story from plain connecting segments
