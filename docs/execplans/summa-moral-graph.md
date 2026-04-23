@@ -21,6 +21,12 @@
     comparison panel instead of a chart plus a competing callout card
   - the tract-profile figure is also being cleaned so labels like `closure` disappear from the
     first-read chart surface in favor of simpler range-based tract names
+- The repo is now gaining a direct chat surface for the strongest local adapter instead of forcing
+  users to infer model behavior only from benchmark reports:
+  - a dedicated chat entrypoint is being added for the completed `full-corpus` LoRA adapter
+  - the chat path is being wired through `Makefile`, README, the scripts guide, and the repository
+    map so a new reader can actually talk to the model immediately
+  - each chat session is being logged to a timestamped run directory under `runs/`
 - The release surface is getting one final visual-quality tightening pass aimed at first-open trust:
   - README now surfaces the flagship figures before the denser summary table, so the strongest
     result lands visually before the inventory
@@ -1284,6 +1290,12 @@
     maintainers but not ideal for a first-pass public figure
   - adding visible arrows and simpler tract labels improves the same public claim without changing
     any underlying data
+- The repo had a real usability gap despite the strong SFT results:
+  - the full-corpus adapter existed, but there was still no first-class way to talk to it directly
+  - the existing inference path was benchmark-oriented batch generation, not an interactive user
+    surface
+  - the right fix is a tiny chat CLI that reuses the same runtime and adapter-loading path rather
+    than a separate experimental UI stack
 - The remaining visually weak follow-up surface also exposed a correctness bug:
   - the citation-frontier chart was still obviously from an older visual generation path even
     after the flagship figures had been unified
@@ -1930,6 +1942,16 @@
   Consequence:
   - the chart header is cleaner and the eye goes straight to the title, legend, and comparison
     rows
+- Add a first-class interactive chat entrypoint for the completed `full-corpus` local adapter.
+  Reason:
+  - the user explicitly asked to talk to the model directly
+  - the repo already had the model, adapter, and runtime plumbing, but not the final interactive
+    surface
+  Consequence:
+  - `make chat-christian-virtue-qwen2-5-1-5b-full-corpus` will open a local chat session against
+    the strongest repo-local adapter
+  - each session will write a transcript and manifest under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
 - Put the flagship README figures ahead of the summary table and replace the old `Method Overview`
   table with a staged bullet list.
   Reason:
@@ -2766,6 +2788,12 @@
   - the tract figure no longer asks first-time readers to parse internal labels like `closure`
   - the public result therefore reads faster without any change to the underlying experiment or
     claims
+- The strongest local adapter is no longer just a report artifact:
+  - the repo now exposes a direct chat surface for the completed `full-corpus` LoRA run
+  - the interactive path reuses the same adapter and runtime logic as the benchmark inference code
+    instead of inventing a second model-serving stack
+  - this closes a practical trust gap: readers can now compare the public report to a real local
+    conversation with the model
 - The public-facing bundle now looks more internally coherent exactly where a reviewer first forms
   trust:
   - README reveals the flagship result through figures before the denser summary table

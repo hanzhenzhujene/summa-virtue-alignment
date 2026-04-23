@@ -1,6 +1,14 @@
 """Public exports for the Christian virtue SFT dataset, runtime, evaluation, and publication API."""
 
 from .builders import BenchmarkExample, BuiltDataset, SFTExample, build_dataset
+from .chat import (
+    DEFAULT_CHAT_OUTPUT_ROOT,
+    DEFAULT_CHAT_SYSTEM_PROMPT,
+    chat_session_paths,
+    describe_chat_plan,
+    render_chat_transcript_markdown,
+    run_interactive_chat,
+)
 from .comparison import build_comparison_report, load_metrics_file, write_comparison_report
 from .config import (
     DatasetBuildConfig,
@@ -63,6 +71,8 @@ from .training import describe_training_plan, resolve_training_runtime, run_qlor
 __all__ = [
     "BenchmarkExample",
     "BuiltDataset",
+    "DEFAULT_CHAT_OUTPUT_ROOT",
+    "DEFAULT_CHAT_SYSTEM_PROMPT",
     "DatasetBuildConfig",
     "InferenceConfig",
     "SFTExample",
@@ -78,10 +88,12 @@ __all__ = [
     "create_or_update_github_release",
     "create_timestamped_run_dir",
     "current_git_commit",
+    "chat_session_paths",
     "dataset_manifest_path",
     "DEFAULT_PUBLICATION_PACKAGE_MANIFEST",
     "default_release_target",
     "detect_torch_availability",
+    "describe_chat_plan",
     "describe_inference_plan",
     "describe_training_plan",
     "default_evaluation_paths",
@@ -105,7 +117,9 @@ __all__ = [
     "resolve_training_runtime",
     "run_artifacts_for_dir",
     "run_generation_inference",
+    "run_interactive_chat",
     "run_qlora_training",
+    "render_chat_transcript_markdown",
     "serialize_built_dataset",
     "build_publication_doc_expectations",
     "verify_publication_bundle",

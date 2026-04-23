@@ -158,6 +158,7 @@ and remote-model utilities.
 - `configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml`
 - `configs/inference/qwen2_5_1_5b_instruct_accuracy_first_adapter_test.yaml`
 - `configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml`
+- `scripts/chat_christian_virtue_model.py`
 - `scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
 - `scripts/build_christian_virtue_full_corpus_report.py`
 - `scripts/build_christian_virtue_citation_frontier_report.py`

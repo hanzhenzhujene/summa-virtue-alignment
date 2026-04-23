@@ -269,6 +269,25 @@ It does not claim that `1.5B` is the intended final deployment size, that local 
 training is the strongest path for final model quality, or that citation exact match is the whole
 theological evaluation story.
 
+## Chat With The Model
+
+You can talk directly to the completed `full-corpus` adapter:
+
+```bash
+make chat-christian-virtue-qwen2-5-1-5b-full-corpus
+```
+
+That command loads `Qwen/Qwen2.5-1.5B-Instruct` plus the strongest repo-local LoRA adapter and
+writes each timestamped chat session under:
+
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+
+Inside the chat:
+
+- ask a normal question about virtue, vice, acts, or doctrinal relation
+- `/reset` clears conversation history
+- `/exit` ends the session
+
 ## Evidence Browser
 
 **Live app:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)

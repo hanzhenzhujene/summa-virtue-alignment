@@ -24,6 +24,10 @@ These are the scripts behind those public entrypoints:
     `justice-guarded`, or the heavier experimental `extended` local training
   - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes automatically export the MPS safety env overrides that were
     required for the successful rerun
+- `chat_christian_virtue_model.py`
+  - opens an interactive local chat session against a base model or adapter
+  - the default path talks directly to the completed `full-corpus` LoRA adapter and writes
+    timestamped transcripts under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
@@ -54,6 +58,7 @@ The preferred public commands are:
 
 ```bash
 make setup-christian-virtue-local
+make chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make report-christian-virtue-qwen2-5-1-5b-full-corpus
