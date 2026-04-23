@@ -400,15 +400,15 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "local-baseline" in readme_text
     assert "make setup-christian-virtue-local" in readme_text
     assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
-    assert "make audit-christian-virtue-qwen2-5-1-5b-local-frontier" in readme_text
-    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in readme_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in readme_text
+    assert "make report-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
     assert "requirements/local-mps-py312.lock.txt" in readme_text
     assert (
         "artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md"
         in readme_text
     )
-    assert "docs/reports/christian_virtue_citation_frontier_audit.md" in readme_text
-    assert "docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in readme_text
+    assert "docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
     assert "christian_virtue_qwen2_5_1_5b_local_baseline_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
@@ -417,10 +417,10 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in fine_tune_text
     assert "task_tract_quota_round_robin" in fine_tune_text
     assert "citation_grounded_moral_answer=64" in fine_tune_text
-    assert "make reproduce-christian-virtue-qwen2-5-1-5b-local" in report_index_text
-    assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in report_index_text
-    assert "christian_virtue_citation_frontier_audit.md" in report_index_text
-    assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in report_index_text
+    assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in report_index_text
+    assert "make report-christian-virtue-qwen2-5-1-5b-full-corpus" in report_index_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in report_index_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in report_index_text
     assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
     assert "scripts/audit_christian_virtue_frontier.py" in repo_map_text
     assert "scripts/build_christian_virtue_citation_frontier_report.py" in repo_map_text
@@ -429,6 +429,7 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in repo_map_text
     assert "requirements/local-mps-py312.lock.txt" in repo_map_text
     assert "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg" in assets_readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in assets_readme_text
     assert (
         "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg"
         in assets_readme_text

@@ -103,32 +103,14 @@ def build_publication_doc_expectations(
     release_tag = release_url.rstrip("/").rsplit("/", maxsplit=1)[-1]
     base_metric = _format_metric(package_manifest["base_metrics"]["citation_exact_match"])
     adapter_metric = _format_metric(package_manifest["adapter_metrics"]["citation_exact_match"])
-    summary = cast(dict[str, Any], package_manifest.get("summary", {}))
-    strongest_task = cast(dict[str, Any] | None, summary.get("strongest_task"))
-    strongest_tract = cast(dict[str, Any] | None, summary.get("strongest_tract"))
-    strongest_task_label = (
-        str(strongest_task["label"]) if strongest_task is not None else "Strongest task slice"
-    )
-    strongest_task_metric = (
-        _format_percent(float(strongest_task["candidate_exact"]))
-        if strongest_task is not None
-        else adapter_metric
-    )
-    strongest_tract_label = (
-        str(strongest_tract["label"]) if strongest_tract is not None else "Strongest tract slice"
-    )
-
     return {
         Path("README.md"): [
             "Fine-Tune Your Model With Summa Moral Graph",
             hf_url,
             release_url,
-            str(report_path),
             str(FULL_CORPUS_REPORT_PATH),
             release_tag,
-            strongest_task_label,
-            strongest_task_metric,
-            strongest_tract_label,
+            "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg",
             "71.2%",
             "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
         ],
@@ -142,16 +124,11 @@ def build_publication_doc_expectations(
         ],
         PUBLIC_CLAIM_MAP_PATH: [
             "# Public Claim Map",
-            "36.5%",
             "71.2%",
-            "38.6%",
-            "41.2%",
-            "3.0%",
             "make public-release-check",
             "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
-            "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop",
-            "not a general theology chatbot",
-            "not a replacement public baseline",
+            "published small-model adapter",
+            "general theology chatbot",
         ],
         Path("docs/christian_virtue_sft.md"): [
             hf_url,
@@ -162,13 +139,11 @@ def build_publication_doc_expectations(
         Path("docs/reports/christian_virtue_experiments.md"): [
             hf_url,
             release_url,
-            run_id,
             "71.2%",
             "100.0%",
             "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
-            strongest_task_label,
-            strongest_task_metric,
-            strongest_tract_label,
+            "Full-Corpus LoRA",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg",
         ],
         REPOSITORY_MAP_PATH: [
             "requirements/local-mps-py312.lock.txt",
@@ -178,23 +153,21 @@ def build_publication_doc_expectations(
             "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
         ],
         REPORT_ASSETS_README_PATH: [
-            "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg",
-            "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg",
-            "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg",
-            "christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg",
             "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg",
             "christian_virtue_qwen2_5_1_5b_full_corpus_training_curves.svg",
-            "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
-            "Flagship report",
+            "README.md",
+            "smaller public release package",
         ],
         FULL_CORPUS_REPORT_PATH: [
-            "# Full-Corpus Local Christian Virtue Report",
+            "# Full-Corpus Christian Virtue LoRA Report",
             "71.2%",
             "100.0%",
             "71.4%",
             "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
             "make report-christian-virtue-qwen2-5-1-5b-full-corpus",
-            "strongest full-data local result",
+            "strongest repo-local Christian virtue result",
+            "Untuned model",
         ],
         FRONTIER_AUDIT_PATH: [
             "# Christian Virtue Citation Frontier Audit",

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="740" viewBox="0 0 1180 740" role="img" aria-labelledby="title desc">
+<title id='title'>Untuned model to full-corpus LoRA on held-out Christian virtue evaluation</title>
+<desc id='desc'>Before-and-after view of the strongest held-out doctrinal virtue surfaces, comparing the untouched Qwen2.5-1.5B-Instruct model with the completed full-corpus LoRA adapter.</desc>
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<rect x="24" y="18" width="1132" height="704" rx="18" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+<text x="72" y="52" font-size="28" font-family="Georgia, serif" fill="#0f172a">From Untuned Model to Full-Corpus LoRA</text>
+<text x="72" y="78" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Held-out Christian virtue evaluation on 233 untouched test prompts after full-corpus LoRA training on the reviewed split.</text>
+<rect x="824" y="28" width="276" height="94" rx="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<text x="848" y="54" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#047857">Headline result</text>
+<text x="848" y="82" font-size="28" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">0.0% → 71.2%</text>
+<text x="848" y="103" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+71.2 pts</text>
+<text x="72" y="130" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Legend:</text>
+<circle cx="130" cy="126" r="6" fill="#94a3b8"/>
+<text x="144" y="131" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Untuned model</text>
+<circle cx="276" cy="126" r="6" fill="#0f766e"/>
+<text x="290" y="131" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Full-corpus LoRA</text>
+<text x="370" y="172" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#64748b">Untuned</text>
+<text x="922" y="172" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">LoRA</text>
+<text x="1032" y="172" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">Gain</text>
+<line x1="904" y1="158" x2="904" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="1014" y1="158" x2="1014" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="426.0" y1="188" x2="426.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="426.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">0%</text>
+<line x1="469.0" y1="188" x2="469.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="469.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">10%</text>
+<line x1="512.0" y1="188" x2="512.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="512.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">20%</text>
+<line x1="555.0" y1="188" x2="555.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="555.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">30%</text>
+<line x1="598.0" y1="188" x2="598.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="598.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">40%</text>
+<line x1="641.0" y1="188" x2="641.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="641.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">50%</text>
+<line x1="684.0" y1="188" x2="684.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="684.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">60%</text>
+<line x1="727.0" y1="188" x2="727.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="727.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">70%</text>
+<line x1="770.0" y1="188" x2="770.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="770.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">80%</text>
+<line x1="813.0" y1="188" x2="813.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="813.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">90%</text>
+<line x1="856.0" y1="188" x2="856.0" y2="700" stroke="#e2e8f0" stroke-width="1"/>
+<text x="856.0" y="178" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">100%</text>
+<text x="72" y="224" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Overall held-out exact citation</text>
+<text x="72" y="242" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=233</text>
+<line x1="426" y1="234" x2="856" y2="234" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="234" x2="732.4" y2="234" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="234" r="7" fill="#94a3b8"/>
+<circle cx="732.4" cy="234" r="8" fill="#0f766e"/>
+<polygon points="740.3519313304721,234 728.3519313304721,227 728.3519313304721,241" fill="#0f766e"/>
+<text x="370" y="239" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="239" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">71.2%</text>
+<text x="1032" y="239" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+71.2 pts</text>
+<text x="72" y="300" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Passage-grounded doctrinal QA</text>
+<text x="72" y="318" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=67</text>
+<line x1="426" y1="310" x2="856" y2="310" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="310" x2="856.0" y2="310" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="310" r="7" fill="#94a3b8"/>
+<circle cx="856.0" cy="310" r="8" fill="#0f766e"/>
+<polygon points="864.0,310 852.0,303 852.0,317" fill="#0f766e"/>
+<text x="370" y="315" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="315" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">100.0%</text>
+<text x="1032" y="315" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+100.0 pts</text>
+<text x="72" y="376" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Reviewed relation explanation</text>
+<text x="72" y="394" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=67</text>
+<line x1="426" y1="386" x2="856" y2="386" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="386" x2="856.0" y2="386" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="386" r="7" fill="#94a3b8"/>
+<circle cx="856.0" cy="386" r="8" fill="#0f766e"/>
+<polygon points="864.0,386 852.0,379 852.0,393" fill="#0f766e"/>
+<text x="370" y="391" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="391" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">100.0%</text>
+<text x="1032" y="391" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+100.0 pts</text>
+<text x="72" y="452" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Virtue concept explanation</text>
+<text x="72" y="470" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=32</text>
+<line x1="426" y1="462" x2="856" y2="462" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="462" x2="856.0" y2="462" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="462" r="7" fill="#94a3b8"/>
+<circle cx="856.0" cy="462" r="8" fill="#0f766e"/>
+<polygon points="864.0,462 852.0,455 852.0,469" fill="#0f766e"/>
+<text x="370" y="467" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="467" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">100.0%</text>
+<text x="1032" y="467" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+100.0 pts</text>
+<text x="72" y="528" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Justice core tract</text>
+<text x="72" y="546" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=42</text>
+<line x1="426" y1="538" x2="856" y2="538" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="538" x2="733.1" y2="538" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="538" r="7" fill="#94a3b8"/>
+<circle cx="733.1" cy="538" r="8" fill="#0f766e"/>
+<polygon points="741.1428571428571,538 729.1428571428571,531 729.1428571428571,545" fill="#0f766e"/>
+<text x="370" y="543" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="543" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">71.4%</text>
+<text x="1032" y="543" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+71.4 pts</text>
+<text x="72" y="604" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Strong textual inference</text>
+<text x="72" y="622" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=35</text>
+<line x1="426" y1="614" x2="856" y2="614" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="426" y1="614" x2="733.1" y2="614" stroke="#0f766e" stroke-width="8" stroke-linecap="round"/>
+<circle cx="426" cy="614" r="7" fill="#94a3b8"/>
+<circle cx="733.1" cy="614" r="8" fill="#0f766e"/>
+<polygon points="741.1428571428571,614 729.1428571428571,607 729.1428571428571,621" fill="#0f766e"/>
+<text x="370" y="619" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="922" y="619" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">71.4%</text>
+<text x="1032" y="619" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+71.4 pts</text>
+<text x="641.0" y="720" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#475569">Held-out exact citation match</text>
+</svg>

@@ -1,6 +1,6 @@
 # Summa Virtue Alignment
 
-Evidence-first Christian virtue dataset, minimal SFT demonstration, and audit surface for Thomist
+Evidence-first Christian virtue dataset, full-corpus LoRA result, and audit surface for Thomist
 moral virtue alignment, built on the corpus and evidence model of Summa Moral Graph.
 
 This repo packages one public research release: a reviewed Christian virtue dataset, a reproducible
@@ -15,14 +15,44 @@ relational, and auditable end to end.
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
 
-| Start here | Companion graph |
-| --- | --- |
-| [**SFT guide**](./docs/fine_tune_with_summa_moral_graph.md) · [**Published adapter**](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) | [**Summa Moral Graph**](https://github.com/hanzhenzhujene/summa-moral-graph) · [**Live viewer**](https://summa-moral-graph.streamlit.app/) |
-| Reproduce the public baseline or reuse the committed dataset export. | Audit the same passages, concepts, and reviewed relations in the companion dashboard. |
+> The published Hugging Face adapter is the smallest public release artifact in the repo. The
+> strongest repo-local result is the completed `full-corpus` LoRA run shown below.
 
-> Minimal example, not ceiling: the released `Qwen/Qwen2.5-1.5B-Instruct` LoRA adapter is a
-> deliberately small Apple-Silicon run. Its job is to prove that the dataset, training loop, and
-> evaluation surface work end to end on reviewed evidence. It is not the strongest achievable final model.
+## At A Glance
+
+| Surface | Current answer |
+| --- | --- |
+| Goal | Train a model toward Aquinas-grounded Christian virtue reasoning with reviewed, passage-grounded supervision rather than generic religion chat |
+| Dataset | `1883` Christian virtue SFT examples built from approved doctrinal annotations with stable passage ids |
+| Model | `Qwen/Qwen2.5-1.5B-Instruct` with local Apple-Silicon LoRA |
+| Strongest repo-local result | `71.2%` held-out exact citation on the untouched `233`-row test split |
+| Strongest held-out slices | `100.0%` on doctrinal QA, `100.0%` on reviewed relation explanation, `100.0%` on virtue concept explanation |
+| Main report | [Full-Corpus Christian Virtue LoRA Report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+
+## Latest Result
+
+| Held-out slice | Untuned model | Full-corpus LoRA | Gain |
+| --- | ---: | ---: | ---: |
+| Overall exact citation | `0.0%` | `71.2%` | `+71.2 pts` |
+| Passage-grounded doctrinal QA | `0.0%` | `100.0%` | `+100.0 pts` |
+| Reviewed relation explanation | `0.0%` | `100.0%` | `+100.0 pts` |
+| Virtue concept explanation | `0.0%` | `100.0%` | `+100.0 pts` |
+| Justice core tract | `0.0%` | `71.4%` | `+71.4 pts` |
+
+![From untuned model to full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg)
+
+*Figure 1. First-glance view of what the latest LoRA run achieves on the repo's strongest held-out
+Christian virtue surfaces.*
+
+![Held-out tract profile after full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg)
+
+*Figure 2. Held-out tract profile after full-corpus LoRA. All eight tracked virtue tracts land in
+the high-60s to low-70s on untouched test prompts.*
+
+This is the clearest result in the repo so far: once the same 1.5B backbone sees the full reviewed
+Christian virtue training split, it becomes a strong doctrinal and explanatory model on held-out
+virtue evaluation. The full write-up, run metadata, and training trace live in the
+[full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
 
 ## What This Repo Is For
 
@@ -30,8 +60,8 @@ This repo serves three linked purposes:
 
 - **Dataset:** a reviewed Christian virtue SFT export built from approved doctrinal annotations
   joined back to stable Aquinas passage ids.
-- **Training demo:** a reproducible local `Qwen/Qwen2.5-1.5B-Instruct` LoRA baseline showing that
-  the dataset can move model behavior in the right Thomist direction.
+- **Training demo:** a reproducible local LoRA path that scales from a small release package to
+  the strongest full-corpus result now documented in the repo.
 - **Audit surface:** reports, figures, package artifacts, and the companion graph viewer so a
   reader can inspect claims back to the text.
 
@@ -52,9 +82,9 @@ through the pipeline:
 | --- | --- | --- |
 | Evidence | Joins approved doctrinal annotations back to stable `resp` / `ad` passage ids instead of flattening Aquinas into unlabeled text blobs | [dataset export](./data/processed/sft/exports/christian_virtue_v1) |
 | Supervision | Builds four instruction families: doctrinal QA, reviewed relation explanation, virtue concept explanation, and citation-grounded moral answer | [templates](./src/summa_moral_graph/sft/templates.py) |
-| Training | Runs a deliberately small local LoRA baseline on `Qwen/Qwen2.5-1.5B-Instruct` to prove the pipeline works end to end on reviewed evidence | [train config](./configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml) |
-| Evaluation | Compares untouched base vs adapter on held-out prompts, then reports tract and task-family behavior | [baseline report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
-| Audit | Preserves stable ids, reports, package metadata, and the companion viewer so claims can be checked back against Aquinas's text | [frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md) |
+| Training | Runs local Apple-Silicon LoRA on `Qwen/Qwen2.5-1.5B-Instruct`, including a completed full-corpus rung on all reviewed `train` and `val` rows | [full-corpus config](./configs/train/qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml) |
+| Evaluation | Compares the untouched model to the full-corpus LoRA adapter on held-out prompts and reports task-family and tract behavior | [full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Audit | Preserves stable ids, reports, package metadata, and the companion viewer so claims can be checked back against Aquinas's text | [public claim map](./docs/public_claim_map.md) |
 
 ## Repository Structure
 
@@ -64,83 +94,9 @@ through the pipeline:
 | [src/summa_moral_graph/sft/](./src/summa_moral_graph/sft/) | Dataset building, training, inference, evaluation, reporting, and publication logic |
 | [scripts/](./scripts/) | Public entrypoints for setup, local training, evaluation, reporting, and publication checks |
 | [docs/reports/](./docs/reports/) | Curated experiment reports, audit notes, and publication figures |
-| [artifacts/christian_virtue/](./artifacts/christian_virtue/) | Packaged adapter surface mirrored to the public release |
+| [artifacts/christian_virtue/](./artifacts/christian_virtue/) | Packaged small-model adapter surface mirrored to the public release |
 | [docs/public_claim_map.md](./docs/public_claim_map.md) | Explicit map from public claim to artifact, command, and claim boundary |
 | [docs/repository_map.md](./docs/repository_map.md) | Shortest full orientation guide for reviewers and collaborators |
-
-## Training Demo
-
-This training demo asks a direct question: can reviewed Christian virtue supervision move a small
-general model toward better Thomist moral virtue behavior on held-out prompts?
-
-| Public highlight | Base | Adapter | Delta |
-| --- | ---: | ---: | ---: |
-| Held-out benchmark exact citation | `0.0%` | `36.5%` | `+36.5%` |
-| Virtue concept explanation | `0.0%` | `65.6%` | `+65.6%` |
-| Reviewed relation explanation | `0.0%` | `62.7%` | `+62.7%` |
-| Justice core tract | `0.0%` | `50.0%` | `+50.0%` |
-
-![Local-baseline training curves](docs/reports/assets/christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg)
-
-*Figure 1. Training trace for the canonical `local-baseline` run on Apple Silicon `mps`. The point
-is not scale; it is a stable, inspectable local optimization path.*
-
-![Base vs adapter held-out comparison](docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg)
-
-*Figure 2. Held-out exact citation match on the strongest virtue-aligned slices. This is the
-central measurable claim of the repo, while the theological goal is broader Thomist virtue
-alignment rather than citation copying alone.*
-
-The full breakdown, qualitative panel, and method details live in the
-[flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md).
-
-### Strongest Full-Data Local Result
-
-The same `Qwen/Qwen2.5-1.5B-Instruct` backbone becomes much stronger when it sees the full
-reviewed `train` split (`1475` rows) and the full reviewed `val` split (`175` rows), while the
-held-out `233`-row `test` split remains untouched. That completed `full-corpus` local run is now
-the strongest local doctrinal-virtue result in the repo.
-
-| Full-data local highlight | Local baseline | Full-corpus | Delta |
-| --- | ---: | ---: | ---: |
-| Held-out benchmark exact citation | `36.5%` | `71.2%` | `+34.8 pts` |
-| Passage-grounded doctrinal QA | `32.8%` | `100.0%` | `+67.2 pts` |
-| Reviewed relation explanation | `62.7%` | `100.0%` | `+37.3 pts` |
-| Virtue concept explanation | `65.6%` | `100.0%` | `+34.4 pts` |
-| Justice core tract | `50.0%` | `71.4%` | `+21.4 pts` |
-
-![Full-corpus held-out gains](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg)
-
-*Figure 3. Full-data local result on held-out doctrinal virtue evaluation. The strongest public
-gain is not just a same-budget follow-up; it comes from letting the same 1.5B backbone learn from
-the whole reviewed Christian virtue training surface.*
-
-The full write-up lives in the
-[full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
-
-The completed citation-focused follow-up is documented in the
-[citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md).
-The original hard-slice diagnostic that motivated this line of work remains in the
-[citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md).
-That same-budget follow-up raised overall held-out exact citation from `36.5%` to `38.6%` and
-proved that the hardest moral-QA citation slice can move at all, lifting held-out
-`citation_grounded_moral_answer` exact stable-id recovery from `0.0%` to `3.0%`.
-The repo's current research priority is accuracy-first: preserve those citation gains while
-recovering doctrinal slices such as `justice_core` and `strong_textual_inference`.
-The completed `accuracy-first` hybrid now reaches `41.2%` overall held-out exact citation, which
-is the strongest same-budget local result so far, with `50.7%` on
-`passage_grounded_doctrinal_qa` and `64.2%` on `reviewed_relation_explanation`.
-
-### Same-Budget Accuracy Ladder
-
-| Recipe | Overall exact citation | Signature strength |
-| --- | ---: | --- |
-| `local-baseline` | `36.5%` | Stable minimal public baseline and strongest clean release surface |
-| `citation-frontier` | `38.6%` | First non-zero exact stable-id recovery on `citation_grounded_moral_answer` (`3.0%`) |
-| `justice-guarded` | `39.1%` | Best doctrinal recovery on `justice_core`, `strong_textual_inference`, and `virtue_concept_explanation` |
-| `accuracy-first` | `41.2%` | Best same-budget overall result, with strongest `passage_grounded_doctrinal_qa` and `reviewed_relation_explanation` |
-
-Full slice-level tradeoffs remain documented in the linked follow-up reports.
 
 ## Why This Dataset Is Unusual
 
@@ -156,27 +112,22 @@ Full slice-level tradeoffs remain documented in the linked follow-up reports.
 
 | I want to... | Start here |
 | --- | --- |
-| Reproduce the minimal public baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
-| Inspect the strongest evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
-| Inspect the strongest full-data local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Inspect the strongest repo-local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
 | Rerun the strongest full-data local result | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` |
-| Audit the remaining hard slice quickly | `make audit-christian-virtue-qwen2-5-1-5b-local-frontier` |
+| Run the smallest release-grade local check | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
 | Audit the exact public claims and boundaries | [docs/public_claim_map.md](./docs/public_claim_map.md) |
-| Inspect the completed citation-focused follow-up | [Citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md) · [Citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md) |
-| Inspect the highest-accuracy same-budget follow-up | [Accuracy-first report](./docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md) |
-| Rerun the highest-accuracy same-budget follow-up | `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop` |
-| Rerun the citation-focused follow-up | `make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop` |
 | Fine-tune my own model on the same dataset | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
-| Inspect the released model artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038) |
+| Inspect the small published release artifact | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) · [GitHub release](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038) |
 | Audit the passages and graph directly | [Live viewer](https://summa-moral-graph.streamlit.app/) |
 
 ## Reproducibility Contract
 
-Canonical local path:
+Strongest repo-local path:
 
 ```bash
 make setup-christian-virtue-local
-make reproduce-christian-virtue-qwen2-5-1-5b-local
+make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+make report-christian-virtue-qwen2-5-1-5b-full-corpus
 make public-release-check
 ```
 
@@ -187,12 +138,11 @@ Expected outputs from a successful canonical run:
 
 | Output | Path |
 | --- | --- |
-| Curated report | [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
-| Frontier audit | [docs/reports/christian_virtue_citation_frontier_audit.md](./docs/reports/christian_virtue_citation_frontier_audit.md) |
-| Local adapter package | [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md) |
-| Latest local training run | `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest/` |
-| Latest base-model test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/` |
-| Latest adapter test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest/` |
+| Full-corpus report | [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Full-corpus training run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/` |
+| Full-corpus adapter test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test/latest/` |
+| Untuned-model test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/` |
+| Published small-model adapter package | [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](./artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md) |
 
 ## Fine-Tune Your Model With Summa Moral Graph
 

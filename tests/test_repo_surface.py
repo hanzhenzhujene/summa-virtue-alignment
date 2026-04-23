@@ -139,15 +139,16 @@ def test_makefile_pins_canonical_local_publication_identity() -> None:
     ) in makefile_text
 
 
-def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
+def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     readme_text = (REPO_ROOT / "README.md").read_text(encoding="utf-8").lower()
     assert "# summa virtue alignment" in readme_text
     assert "evidence-first christian virtue dataset" in readme_text
-    assert "minimal sft demonstration" in readme_text
+    assert "audit surface" in readme_text
     assert "audit surface" in readme_text
     assert "built on the corpus and evidence model of summa moral graph" in readme_text
     assert "## dataset merit" in readme_text
-    assert "## training demo" in readme_text
+    assert "## at a glance" in readme_text
+    assert "## latest result" in readme_text
     assert "## method overview" in readme_text
     assert "## repository structure" in readme_text
     assert "## reproducibility contract" in readme_text
@@ -163,25 +164,21 @@ def test_readme_states_thomist_goal_and_minimal_example_framing() -> None:
     assert "teaches structure, not just vocabulary" in readme_text
     assert "keeps the training truth unusually clean" in readme_text
     assert "thomist moral virtue" in readme_text
-    assert "minimal example" in readme_text
     assert "generic theology chatbot" in readme_text
-    assert "not the strongest achievable final model" in readme_text
+    assert "strongest repo-local result" in readme_text
     assert "expected outputs from a successful canonical run" in readme_text
     assert "docs/repository_map.md" in readme_text
     assert "artifacts/christian_virtue/" in readme_text
-    assert "latest local training run" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg" in readme_text
+    assert "full-corpus training run" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in readme_text
     assert "71.2%" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_citation_frontier_report.md" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in readme_text
-    assert "run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in readme_text
-    assert "accuracy-first" in readme_text
-    assert "same-budget accuracy ladder" in readme_text
-    assert "41.2%" in readme_text
+    assert "0.0%" in readme_text
+    assert "100.0%" in readme_text
+    assert "small published release artifact" in readme_text
+    assert "reproduce-christian-virtue-qwen2-5-1-5b-local" in readme_text
     assert "newadvent.org/summa/3023.htm#article1" in readme_text
     assert "newadvent.org/summa/3058.htm#article1" in readme_text
     assert "actions/workflows/public-release-check.yml/badge.svg" in readme_text
@@ -256,11 +253,10 @@ def test_fine_tune_guide_names_completed_justice_guarded_follow_up() -> None:
     assert "41.2%" in guide_text
 
 
-def test_public_claim_map_mentions_accuracy_first_result() -> None:
+def test_public_claim_map_mentions_full_corpus_result() -> None:
     claim_map_text = (REPO_ROOT / "docs" / "public_claim_map.md").read_text(encoding="utf-8")
     assert "71.2%" in claim_map_text
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in claim_map_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in claim_map_text
-    assert "41.2%" in claim_map_text
-    assert "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop" in claim_map_text
-    assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in claim_map_text
+    assert "published small-model adapter" in claim_map_text
+    assert "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in claim_map_text

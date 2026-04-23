@@ -2,6 +2,18 @@
 
 ## Progress
 
+- The public full-corpus result surface is now being refocused around the latest result rather
+  than the older capped local storyline:
+  - README now opens with the completed `full-corpus` Christian virtue result instead of the older
+    `local-baseline` section
+  - the new main SVG now compares the untouched model directly to the completed full-corpus LoRA
+    adapter, using a before/after slope-style layout instead of baseline markers
+  - the tract profile is now a clean single-series ranked bar chart, so the strongest tract
+    picture reads instantly without old comparison clutter
+  - the public claim map and experiment index now foreground the strongest repo-local full-corpus
+    result while keeping the smaller released adapter package as a secondary publication surface
+  - the stale `full_corpus_vs_baseline.svg` asset has been removed so the public figure library no
+    longer carries an outdated top-surface graph
 - The public-entrypoint documentation standard is now being tightened across the repo:
   - the legacy Streamlit multipage entrypoints under `app/pages/` now each carry a short module
     docstring instead of opening with bare imports
@@ -1213,6 +1225,22 @@
 
 ## Surprises & Discoveries
 
+- The user complaint about “the graphs still are not updated” was directionally right even though
+  the raw report data already existed:
+  - the latest full-corpus numbers were present in the repo
+  - but the README still centered the older `local-baseline` story and the main full-corpus figure
+    still framed itself as `vs baseline`
+  - so the real bug was public-story drift, not missing experiment output
+- The better graph for the strongest current result was not another bar-vs-bar comparison:
+  - because the untouched model is `0.0%` across the held-out benchmark slices, the key visual
+    message is “from zero to strong held-out performance”
+  - a before/after slope-style chart communicates that jump much more cleanly than a chart with
+    baseline markers and repeated two-series legends
+- The tract figure also became clearer once the older comparison was removed:
+  - for the newest full-corpus story, the reader mostly needs to know whether the strength is
+    broad or narrow
+  - a single-series ranked tract profile answers that immediately, while the older comparative
+    chart forced the eye to decode a reference series that was no longer the main story
 - The remaining “this still feels internal” weakness was not in the flagship reports anymore; it
   was in a handful of public entrypoint files:
   - several legacy `app/pages/*` launchers opened with no explanation at all
@@ -1882,6 +1910,20 @@
   - the public claim map now names the `41.2%` result explicitly
   - release verification now checks the accuracy-first and justice-guarded reports alongside the
     older public surfaces
+- Treat the newest `full-corpus` result as the main public landing narrative and demote older
+  capped local comparisons from first-read surfaces.
+  Reason:
+  - the user explicitly wants the repo to show the newest result first and make the improvement
+    visually obvious at first glance
+  - the strongest current repo-local result is the completed full-corpus run, not the earlier
+    capped local demo
+  - for this public story, comparing against the untouched model is clearer than retaining
+    `baseline` markers from an older internal iteration
+  Consequence:
+  - README now opens with the full-corpus result table and two full-corpus figures
+  - the full-corpus report now compares `Untuned model` to `Full-corpus LoRA`
+  - the public claim map and experiment index now foreground the newest result and keep the
+    smaller released adapter as secondary context
 - Make the next experiment explicitly accuracy-first rather than merely “hybrid.”
   Reason:
   - the user goal is now clear: maximize held-out Christian virtue accuracy, not just explore
@@ -2540,6 +2582,17 @@
 
 ## Outcomes & Retrospective
 
+- The public landing story is now much closer to what the repo actually achieved most recently:
+  - a first-time reader now sees the strongest current full-corpus result immediately
+  - the key graphs now tell a simple `0.0%` to `71.2%` story instead of reusing an older
+    baseline-comparison framing
+  - the public claim map and experiment index now reinforce that same result instead of splitting
+    attention across several older capped-local follow-ups
+- The newest full-corpus figures are now better matched to the actual data geometry:
+  - the before/after chart is designed for a zero-to-strong movement and reads faster than the
+    older dual-series layout
+  - the tract profile now answers the real first-order question, namely whether the gain is broad
+    across tracts, without making the reader decode a secondary comparison series
 - The repo now reads as more intentionally maintained at the edges:
   - public reports were already strong, but now the surrounding launch surfaces also explain
     themselves
