@@ -361,7 +361,8 @@ def main() -> None:
     lines.extend(
         [
             "",
-            "All four held-out task families moved upward by roughly three points, which means the "
+            "Three of the four held-out task families moved upward, while `reviewed_relation_"
+            "explanation` slipped only slightly. That pattern still supports the main point: the "
             "mixture change did more than merely overfit the target task.",
             "",
             "## Strongest Gains",
@@ -437,9 +438,14 @@ def main() -> None:
             "",
             f"![Citation frontier failure modes]({figure_asset_path.as_posix()})",
             "",
-            "*Figure 1. Failure-mode breakdown after the completed same-budget "
-            "`citation-frontier` follow-up. The gain is mostly citation-seeking behavior; the "
-            "main remaining error is wrong-id selection rather than total citation silence.*",
+            "*Figure 1. Failure-mode breakdown from the untuned model to the completed same-budget "
+            "`citation-frontier` adapter on the hardest held-out moral-QA slice. The gain is "
+            "mostly citation-seeking behavior; the main remaining error is wrong-id selection "
+            "rather than total citation silence.*",
+            "",
+            "The headline tables above compare `local-baseline` against `citation-frontier`. "
+            "Figure 1 isolates the narrower shift from the untouched model to the "
+            "`citation-frontier` adapter so the failure-mode story is visually easier to read.",
             "",
             "The follow-up did achieve the first non-zero exact stable-id recovery on this hard "
             "slice. But the dominant remaining error is now clear: the model usually tries to "

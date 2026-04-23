@@ -170,11 +170,12 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "docs/repository_map.md" in readme_text
     assert "artifacts/christian_virtue/" in readme_text
     assert "full-corpus training run" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in readme_text
     assert "71.2%" in readme_text
+    assert "36.5%" in readme_text
     assert "0.0%" in readme_text
     assert "100.0%" in readme_text
     assert "small published release artifact" in readme_text
@@ -193,6 +194,8 @@ def test_citation_file_states_public_release_identity() -> None:
 
 def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     scripts_guide = (REPO_ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
+    assert "strongest repo-local result" in scripts_guide
+    assert "smallest published package" in scripts_guide
     assert "setup_christian_virtue_local.sh" in scripts_guide
     assert "reproduce_christian_virtue_qwen2_5_1_5b_local.sh" in scripts_guide
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
@@ -216,6 +219,8 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
 def test_repository_map_names_canonical_public_bundle() -> None:
     repository_map = (REPO_ROOT / "docs" / "repository_map.md").read_text(encoding="utf-8")
     assert "## Canonical Public Bundle" in repository_map
+    assert "strongest repo-local result" in repository_map.lower()
+    assert "smallest published package" in repository_map.lower()
     assert "christian_virtue_v1" in repository_map
     assert "christian_virtue_citation_frontier_audit.md" in repository_map
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in repository_map

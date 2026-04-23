@@ -2,14 +2,35 @@
 
 ## Progress
 
+- The release surface is getting one final visual-quality tightening pass aimed at first-open trust:
+  - README now surfaces the flagship figures before the denser summary table, so the strongest
+    result lands visually before the inventory
+  - the old wide `Method Overview` table is now a staged bullet list, which reduces GitHub
+    horizontal sprawl without losing the pipeline story
+  - the citation-frontier follow-up figure is being rebuilt onto the same card-framed visual
+    system as the newer full-corpus and justice-guarded assets
+  - the citation-frontier report is also being corrected where its prose overstated the table by
+    saying all four task families improved when one actually slipped slightly
+- The repo's secondary navigation surfaces are now being brought into line with the main README
+  story:
+  - `docs/repository_map.md` now distinguishes the strongest repo-local result from the smallest
+    published package instead of implying that the smaller `local-baseline` artifact is still the
+    flagship story
+  - `scripts/README.md` now introduces those same two public surfaces before listing commands, so a
+    new reader can tell which path is the strongest result and which path is the lightest release
+    artifact
+  - `tests/test_repo_surface.py` is being tightened so that distinction stays explicit
 - The public full-corpus result surface is now being refocused around the latest result rather
   than the older capped local storyline:
   - README now opens with the completed `full-corpus` Christian virtue result instead of the older
     `local-baseline` section
-  - the new main SVG now compares the untouched model directly to the completed full-corpus LoRA
-    adapter, using a before/after slope-style layout instead of baseline markers
-  - the tract profile is now a clean single-series ranked bar chart, so the strongest tract
-    picture reads instantly without old comparison clutter
+  - the virtue tract figure now leads the story, because the user wanted the broad virtue picture
+    first rather than the progress graphic first
+  - the main progress SVG now shows the full three-step ladder:
+    untouched model -> earlier small-data LoRA (`train 128 / val 32`) -> full-corpus LoRA
+    (`train 1475 / val 175`)
+  - the tract profile is now a clean single-series ranked bar chart with the old `8/8` coverage
+    callout removed, so the strongest tract picture reads instantly without old comparison clutter
   - the public claim map and experiment index now foreground the strongest repo-local full-corpus
     result while keeping the smaller released adapter package as a secondary publication surface
   - the stale `full_corpus_vs_baseline.svg` asset has been removed so the public figure library no
@@ -26,8 +47,8 @@
   - the two new full-corpus SVGs now use the same card-based framing as the flagship report assets
   - full-corpus value and delta labels now live in fixed right-side columns instead of riding the
     bar edge
-  - the tract profile now adds a compact tract-coverage callout and baseline marker labels for
-    quicker reading
+  - the tract profile now stays visually cleaner by dropping the old tract-coverage badge that was
+    adding clutter without helping the current public story
   - the justice-guarded tradeoff SVG now uses the same card container, cleaner axis framing, and
     a fixed right-side score column
   - the full-corpus report markdown no longer has the awkward wrapped `whole` orphan in `Why This
@@ -1225,6 +1246,28 @@
 
 ## Surprises & Discoveries
 
+- The remaining visually weak follow-up surface also exposed a correctness bug:
+  - the citation-frontier chart was still obviously from an older visual generation path even
+    after the flagship figures had been unified
+  - while rebuilding that chart, the surrounding report text turned out to claim that all four
+    held-out task families improved, even though the table showed a small drop in
+    `reviewed_relation_explanation`
+  - the right fix was therefore not just prettier styling, but a combined visual-and-prose cleanup
+    that improves trust on both fronts
+- Even after the main README was cleaned up, a reviewer could still get a subtly wrong picture by
+  opening the secondary navigation docs first:
+  - `docs/repository_map.md` and `scripts/README.md` were still shaped around the older smaller
+    release artifact
+  - so the remaining weakness was not the flagship result page itself, but the “where do I go
+    next?” layer right behind it
+- The user’s “put the virtue picture first and show the earlier LoRA rung inside the same visual”
+  request was directionally better than the previous top-surface layout:
+  - the tract profile is the right first image because it answers the broad-strength question in
+    one glance
+  - the progress story becomes clearer, not weaker, when it shows all three states:
+    untuned -> earlier small-data LoRA -> full-corpus LoRA
+  - the real visual bug was not missing data but the wrong ordering and the wrong amount of
+    explanatory context in the top graph
 - The user complaint about “the graphs still are not updated” was directionally right even though
   the raw report data already existed:
   - the latest full-corpus numbers were present in the repo
@@ -1811,6 +1854,54 @@
 
 ## Decision Log
 
+- Put the flagship README figures ahead of the summary table and replace the old `Method Overview`
+  table with a staged bullet list.
+  Reason:
+  - the user explicitly wanted the repo to read more visually at first glance
+  - the main remaining README weakness was not missing information but wide, dense tables sitting
+    too close to the top of the page
+  Consequence:
+  - the strongest result now lands faster on first open
+  - the method explanation is still complete, but it no longer contributes unnecessary horizontal
+    sprawl
+- Rebuild the citation-frontier follow-up chart in the same visual language as the newer public
+  figures and correct the one overclaimed headline sentence in the report.
+  Reason:
+  - that figure was the last obvious outlier in the public asset family
+  - the surrounding prose also needed to match the numbers exactly, or the stronger styling would
+    simply spotlight the inconsistency
+  Consequence:
+  - the follow-up figure now reads like a deliberate release artifact instead of an internal chart
+  - the report keeps the same result but communicates it more honestly and more clearly
+- Treat secondary navigation docs as part of the public result surface, not as lower-priority
+  reference notes.
+  Reason:
+  - a reviewer often opens `repository_map.md` or `scripts/README.md` immediately after the main
+    README
+  - if those docs still foreground the older smaller release artifact, the repo feels internally
+    inconsistent even when the flagship result page is correct
+  Consequence:
+  - those docs now distinguish the strongest repo-local result from the smallest published package
+  - repo-surface tests now enforce that distinction
+- Put the virtue tract profile ahead of the progress graphic on the public full-corpus surfaces.
+  Reason:
+  - the user wanted the virtue picture first
+  - the tract figure answers the most important first-read question: whether the gain is broad
+    across the Christian virtue surface
+  Consequence:
+  - README, the full-corpus report, and the experiment index now all open that result section with
+    the tract profile first
+- Keep the earlier small-data LoRA rung inside the main full-corpus progress graphic, but stop
+  using it as a separate competing story.
+  Reason:
+  - the user wanted the newest run treated as the main experiment while still making the improvement
+    over the earlier smaller LoRA rung obvious
+  - the strongest public graph therefore needs one clean improvement ladder, not several separate
+    experiment panels
+  Consequence:
+  - the new progress graphic now shows:
+    untouched model -> earlier small-data LoRA (`128 / 32`) -> full-corpus LoRA (`1475 / 175`)
+  - the older `full_corpus_before_after.svg` surface is being retired
 - Treat missing docstrings and header comments on public entrypoints as a release-surface bug, not
   a cosmetic nicety.
   Reason:
@@ -2582,10 +2673,30 @@
 
 ## Outcomes & Retrospective
 
+- The public-facing bundle now looks more internally coherent exactly where a reviewer first forms
+  trust:
+  - README reveals the flagship result through figures before the denser summary table
+  - the top-level method explanation is easier to scan because it no longer depends on one wide
+    three-column table
+  - the last older-style follow-up figure now belongs to the same card-framed visual family as the
+    rest of the release assets
+  - the citation-frontier follow-up report is stronger because its headline prose now matches the
+    actual table instead of slightly overstating it
+- The repo now tells one cleaner hierarchy of artifacts:
+  - strongest repo-local result: the full-corpus report and figures
+  - smallest published package: the lighter local-baseline adapter surface
+  - that distinction is now visible not just in README, but also in the repository map and scripts
+    guide
+- The full-corpus public surface now reads much closer to the way a first-time reviewer actually
+  wants to understand it:
+  - first see that the virtue result is broad across tracts
+  - then see the concrete improvement ladder from untouched model to earlier small-data LoRA to
+    full-corpus LoRA
+  - then read the compact slice table
 - The public landing story is now much closer to what the repo actually achieved most recently:
   - a first-time reader now sees the strongest current full-corpus result immediately
-  - the key graphs now tell a simple `0.0%` to `71.2%` story instead of reusing an older
-    baseline-comparison framing
+  - the key graphs now tell a clearer `0.0%` -> `36.5%` -> `71.2%` story instead of jumping
+    straight from untouched model to the final run
   - the public claim map and experiment index now reinforce that same result instead of splitting
     attention across several older capped-local follow-ups
 - The newest full-corpus figures are now better matched to the actual data geometry:

@@ -367,25 +367,29 @@ def _write_citation_frontier_svg(
 
     base_summary = cast(dict[str, Any], analysis["overall"]["base"])
     adapter_summary = cast(dict[str, Any], analysis["overall"]["adapter"])
-    width = 1040
-    height = 384
+    width = 1220
+    height = 462
     card_x = 24.0
     card_y = 18.0
-    card_width = 992.0
-    card_height = 344.0
-    chart_x = 290.0
-    chart_width = 660.0
-    bar_height = 38.0
-    top_y = 156.0
-    gap = 82.0
+    card_width = width - (card_x * 2)
+    card_height = height - 36.0
+    chart_x = 316.0
+    chart_width = 600.0
+    bar_height = 28.0
+    top_y = 194.0
+    gap = 104.0
+    exact_x = 968.0
+    signal_x = 1088.0
     base_signal = _format_percent(float(base_summary["any_citation_signal_rate"]))
     adapter_signal = _format_percent(float(adapter_summary["any_citation_signal_rate"]))
+    adapter_exact = _format_percent(float(adapter_summary["exact_stable_id_match_rate"]))
     if summary_text is None:
         summary_text = (
             f"Adapter citation signal rises from {base_signal} to {adapter_signal} on the hardest "
             "held-out moral QA slice, while exact stable-id recovery remains "
-            f"{_format_percent(float(adapter_summary['exact_stable_id_match_rate']))}."
+            f"{adapter_exact}."
         )
+    signal_progress = f"{base_signal} -> {adapter_signal}"
     lines = [
         "<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' "
         "viewBox='0 0 {width} {height}' role='img' "
@@ -395,52 +399,99 @@ def _write_citation_frontier_svg(
         f"<rect x='0' y='0' width='{width}' height='{height}' fill='#f8fafc' />",
         f"<rect x='{card_x:.1f}' y='{card_y:.1f}' width='{card_width:.1f}' "
         f"height='{card_height:.1f}' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='18' />",
-        "<text x='56' y='44' font-size='20' font-weight='700' fill='#111827'>"
+        "<text x='56' y='52' font-size='28' font-family='Georgia, serif' "
+        "fill='#0f172a'>"
         "Citation frontier on user-style moral QA</text>",
-        "<text x='56' y='64' font-size='12' fill='#4b5563'>"
+        "<text x='56' y='78' font-size='13' font-family='Helvetica, Arial, sans-serif' "
+        "fill='#475569'>"
         f"{html.escape(subtitle)}</text>",
-        "<text x='56' y='84' font-size='12' font-weight='600' fill='#1d4ed8'>"
+        "<text x='56' y='100' font-size='12' font-family='Helvetica, Arial, sans-serif' "
+        "font-weight='700' fill='#1d4ed8'>"
         "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)</text>",
-        "<rect x='56' y='102' width='928' height='36' fill='#f8fafc' stroke='#e2e8f0' "
-        "stroke-width='1' rx='10' />",
-        "<text x='72' y='124' font-size='12' fill='#334155'>"
+        "<rect x='56' y='118' width='676' height='52' fill='#f8fafc' stroke='#e2e8f0' "
+        "stroke-width='1' rx='12' />",
+        "<text x='74' y='140' font-size='11' font-family='Helvetica, Arial, sans-serif' "
+        "font-weight='700' fill='#334155'>What this figure isolates</text>",
+        "<text x='74' y='158' font-size='12' font-family='Helvetica, Arial, sans-serif' "
+        "fill='#334155'>"
         f"{html.escape(summary_text)}</text>",
-        f"<line x1='{chart_x:.1f}' y1='{top_y - 20:.1f}' "
-        f"x2='{chart_x + chart_width:.1f}' y2='{top_y - 20:.1f}' "
-        "stroke='#cbd5e1' stroke-width='1.5' />",
-        f"<text x='{chart_x + chart_width / 2:.1f}' y='{top_y - 30:.1f}' font-size='12' "
-        "text-anchor='middle' fill='#374151'>"
-        "Share of held-out `citation_grounded_moral_answer` prompts</text>",
+        "<rect x='760' y='112' width='404' height='58' rx='14' fill='#ecfdf5' "
+        "stroke='#10b981' stroke-width='1.5' />",
+        "<text x='784' y='136' font-size='11' font-family='Helvetica, Arial, sans-serif' "
+        "font-weight='700' fill='#047857'>Headline shift</text>",
+        "<text x='784' y='160' font-size='22' font-family='Helvetica, Arial, sans-serif' "
+        "font-weight='700' fill='#065f46'>"
+        f"{signal_progress}</text>",
+        f"<text x='940' y='160' font-size='11' font-family='Helvetica, Arial, sans-serif' "
+        "fill='#334155'>any citation signal, with "
+        f"{adapter_exact} exact stable-id recovery</text>",
+        "<text x='56' y='186' font-size='13' font-family='Helvetica, Arial, sans-serif' "
+        "fill='#475569'>Failure-mode legend:</text>",
     ]
+    legend_x = 176.0
+    legend_y = 182.0
+    for index, category in enumerate(CATEGORY_ORDER):
+        x = legend_x + index * 190.0
+        lines.append(
+            f"<rect x='{x:.1f}' y='{legend_y - 11:.1f}' width='16' height='16' "
+            f"fill='{CATEGORY_COLORS[category]}' rx='4' />"
+        )
+        lines.append(
+            f"<text x='{x + 24:.1f}' y='{legend_y + 2:.1f}' font-size='12' "
+            "font-family='Helvetica, Arial, sans-serif' fill='#374151'>"
+            f"{html.escape(CATEGORY_DISPLAY_NAMES[category])}</text>"
+        )
+    lines.extend(
+        [
+            f"<text x='{exact_x:.1f}' y='{top_y - 34:.1f}' font-size='11' "
+            "font-family='Helvetica, Arial, sans-serif' font-weight='700' "
+            "fill='#334155'>exact stable id</text>",
+            f"<text x='{signal_x:.1f}' y='{top_y - 34:.1f}' font-size='11' "
+            "font-family='Helvetica, Arial, sans-serif' font-weight='700' "
+            "fill='#334155'>Any citation signal</text>",
+            f"<line x1='{exact_x - 18:.1f}' y1='{top_y - 46:.1f}' "
+            f"x2='{exact_x - 18:.1f}' y2='{height - 54:.1f}' stroke='#e2e8f0' stroke-width='1' />",
+            f"<line x1='{signal_x - 18:.1f}' y1='{top_y - 46:.1f}' "
+            f"x2='{signal_x - 18:.1f}' y2='{height - 54:.1f}' stroke='#e2e8f0' stroke-width='1' />",
+            f"<line x1='{chart_x:.1f}' y1='{top_y - 22:.1f}' "
+            f"x2='{chart_x + chart_width:.1f}' y2='{top_y - 22:.1f}' "
+            "stroke='#cbd5e1' stroke-width='1.5' />",
+        ]
+    )
     for tick_ratio in [0.0, 0.25, 0.5, 0.75, 1.0]:
         tick_x = chart_x + chart_width * tick_ratio
         lines.append(
-            f"<line x1='{tick_x:.1f}' y1='{top_y - 20:.1f}' x2='{tick_x:.1f}' "
-            f"y2='{top_y + gap + bar_height + 8:.1f}' "
+            f"<line x1='{tick_x:.1f}' y1='{top_y - 22:.1f}' x2='{tick_x:.1f}' "
+            f"y2='{top_y + gap + bar_height + 32:.1f}' "
             "stroke='#eef2f7' stroke-width='1' />"
         )
         lines.append(
-            f"<text x='{tick_x:.1f}' y='{top_y + gap + bar_height + 28:.1f}' font-size='11' "
-            "text-anchor='middle' fill='#64748b'>"
+            f"<text x='{tick_x:.1f}' y='{top_y + gap + bar_height + 52:.1f}' font-size='11' "
+            "font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>"
             f"{tick_ratio * 100:.0f}%</text>"
         )
     for index, model_key in enumerate(["base", "adapter"]):
         summary = cast(dict[str, Any], analysis["overall"][model_key])
         y = top_y + index * gap
-        model_name = "Base model" if model_key == "base" else "LoRA adapter"
+        model_name = "Untuned model" if model_key == "base" else "Citation-frontier adapter"
         exact_rate = _format_percent(float(summary["exact_stable_id_match_rate"]))
         signal_rate = _format_percent(float(summary["any_citation_signal_rate"]))
+        count = int(summary["count"])
         lines.append(
-            f"<text x='56' y='{y + 10:.1f}' font-size='13' font-weight='700' fill='#111827'>"
+            f"<text x='56' y='{y + 6:.1f}' font-size='15' "
+            "font-family='Helvetica, Arial, sans-serif' "
+            "font-weight='700' fill='#111827'>"
             f"{model_name}</text>"
         )
         lines.append(
-            f"<text x='56' y='{y + 29:.1f}' font-size='11' fill='#475569'>"
-            f"{exact_rate} exact stable id · {signal_rate} any citation signal</text>"
+            f"<text x='56' y='{y + 26:.1f}' font-size='12' "
+            "font-family='Helvetica, Arial, sans-serif' "
+            "fill='#64748b'>"
+            f"n={count} held-out moral-QA prompts</text>"
         )
         lines.append(
             f"<rect x='{chart_x:.1f}' y='{y:.1f}' width='{chart_width:.1f}' "
-            f"height='{bar_height:.1f}' fill='#e5e7eb' rx='10' />"
+            f"height='{bar_height:.1f}' fill='#e5e7eb' rx='14' />"
         )
         cursor_x = chart_x
         for category in CATEGORY_ORDER:
@@ -450,31 +501,33 @@ def _write_citation_frontier_svg(
                 continue
             lines.append(
                 f"<rect x='{cursor_x:.1f}' y='{y:.1f}' width='{segment_width:.1f}' "
-                f"height='{bar_height:.1f}' fill='{CATEGORY_COLORS[category]}' rx='10' />"
+                f"height='{bar_height:.1f}' fill='{CATEGORY_COLORS[category]}' rx='0' />"
             )
-            if segment_width >= 58.0:
+            if segment_width >= 70.0:
                 lines.append(
-                    f"<text x='{cursor_x + segment_width / 2:.1f}' y='{y + 22:.1f}' "
-                    "font-size='11' text-anchor='middle' fill='white' font-weight='600'>"
+                    f"<text x='{cursor_x + segment_width / 2:.1f}' y='{y + 18:.1f}' "
+                    "font-size='11' font-family='Helvetica, Arial, sans-serif' "
+                    "text-anchor='middle' fill='white' font-weight='700'>"
                     f"{fraction * 100:.1f}%</text>"
                 )
             cursor_x += segment_width
-    legend_x = 56.0
-    legend_y = 316.0
-    for index, category in enumerate(CATEGORY_ORDER):
-        row = index // 3
-        column = index % 3
-        x = legend_x + column * 304.0
-        y = legend_y + row * 28.0
         lines.append(
-            f"<rect x='{x:.1f}' y='{y - 11:.1f}' width='16' height='16' "
-            f"fill='{CATEGORY_COLORS[category]}' rx='4' />"
+            f"<text x='{exact_x:.1f}' y='{y + 18:.1f}' font-size='12' "
+            "font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#2563eb'>"
+            f"{exact_rate}</text>"
         )
         lines.append(
-            f"<text x='{x + 24:.1f}' y='{y + 2:.1f}' font-size='12' fill='#374151'>"
-            f"{html.escape(CATEGORY_DISPLAY_NAMES[category])}</text>"
+            f"<text x='{signal_x:.1f}' y='{y + 18:.1f}' font-size='12' "
+            "font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#0f766e'>"
+            f"{signal_rate}</text>"
         )
     lines.append("</svg>")
+    lines.insert(
+        len(lines) - 1,
+        f"<text x='{chart_x + chart_width / 2:.1f}' y='{height - 24:.1f}' font-size='12' "
+        "font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#475569'>"
+        "Share of held-out `citation_grounded_moral_answer` prompts</text>",
+    )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
     return output_path

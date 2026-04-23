@@ -14,10 +14,10 @@ model trainer.
 - [docs/christian_virtue_sft.md](./christian_virtue_sft.md): maintainer and research workflow
 - [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md): dataset scope,
   intended use, and limits
-- [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
-  flagship local experiment report
 - [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md):
-  strongest full-data local report on the full reviewed Christian virtue split
+  flagship repo-local report for the full reviewed Christian virtue split
+- [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
+  smaller published local package report mirrored to the release artifact
 - [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md):
   completed same-budget citation-focused follow-up report
 - [docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md](./reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md):
@@ -30,12 +30,14 @@ model trainer.
 If you want the smallest set of files that define the public release, start here:
 
 - dataset export: `data/processed/sft/exports/christian_virtue_v1/`
-- flagship report:
+- full-corpus report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+- public claim map:
+  [docs/public_claim_map.md](./public_claim_map.md)
+- smaller published package report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - frontier audit:
   [docs/reports/christian_virtue_citation_frontier_audit.md](./reports/christian_virtue_citation_frontier_audit.md)
-- full-corpus report:
-  [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
 - follow-up citation-frontier report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
 - justice-guarded follow-up report:
@@ -129,7 +131,8 @@ These committed exports are the public dataset entrypoint for model training and
 ## Script Entry Points
 
 See also [scripts/README.md](../scripts/README.md) for a grouped entrypoint guide that separates
-the public local baseline from tract-maintenance helpers and remote-model utilities.
+the strongest repo-local path from the smaller published package path, tract-maintenance helpers,
+and remote-model utilities.
 
 ### Dataset
 
@@ -175,18 +178,28 @@ These are the main post-baseline experiment surfaces:
 
 ## Reproducibility Contract
 
-The official public local path is:
+There are two public reproduction surfaces, and they serve different purposes:
+
+### Strongest repo-local result
+
+1. `make setup-christian-virtue-local`
+2. `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop`
+3. `make report-christian-virtue-qwen2-5-1-5b-full-corpus`
+4. `make public-release-check`
+
+This is the path for reproducing the strongest repo-local Christian virtue result.
+
+### Smallest published package
 
 1. `make setup-christian-virtue-local`
 2. `make reproduce-christian-virtue-qwen2-5-1-5b-local`
 3. `make public-release-check`
 
-The setup command uses the pinned lockfile
-[requirements/local-mps-py312.lock.txt](../requirements/local-mps-py312.lock.txt).
+This is the lightest release-grade path mirrored to the published Hugging Face adapter and GitHub
+release.
 
-The reproduce command rebuilds the dataset if needed, runs the local `smoke` and `local-baseline`
-training rungs, generates base and adapter held-out predictions, writes the comparison report, and
-runs the publication verification gate.
+Both paths use the pinned lockfile
+[requirements/local-mps-py312.lock.txt](../requirements/local-mps-py312.lock.txt).
 
 The public-release check then runs `ruff`, `mypy`, and the publication-surface verification bundle
 so the repo can be shared with one final sanity pass.

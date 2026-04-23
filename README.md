@@ -18,6 +18,33 @@ relational, and auditable end to end.
 > The published Hugging Face adapter is the smallest public release artifact in the repo. The
 > strongest repo-local result is the completed `full-corpus` LoRA run shown below.
 
+## Latest Result
+
+![Held-out tract profile after full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg)
+
+*Figure 1. The virtue picture comes first: after full-corpus LoRA, all eight tracked virtue tracts
+land in a tight high-performance band on untouched test prompts.*
+
+![From untuned model to earlier small-data LoRA to full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg)
+
+*Figure 2. The same 1.5B model improves from `0.0%` untuned, to `36.5%` after the earlier
+small-data LoRA rung (`train 128 / val 32`), to `71.2%` after the full-corpus LoRA run
+(`train 1475 / val 175`).*
+
+| Held-out slice | Untuned model | Earlier small-data LoRA | Full-corpus LoRA | Gain over earlier LoRA |
+| --- | ---: | ---: | ---: | ---: |
+| Overall exact citation | `0.0%` | `36.5%` | `71.2%` | `+34.8 pts` |
+| Passage-grounded doctrinal QA | `0.0%` | `32.8%` | `100.0%` | `+67.2 pts` |
+| Reviewed relation explanation | `0.0%` | `62.7%` | `100.0%` | `+37.3 pts` |
+| Virtue concept explanation | `0.0%` | `65.6%` | `100.0%` | `+34.4 pts` |
+| Justice core tract | `0.0%` | `50.0%` | `71.4%` | `+21.4 pts` |
+
+This is the clearest result in the repo so far: once the same 1.5B backbone sees the full reviewed
+Christian virtue training split, it becomes a strong doctrinal and explanatory model on held-out
+virtue evaluation, and it clearly surpasses the earlier small-data LoRA rung rather than merely
+beating an untuned starting point. The full write-up, run metadata, and training trace live in the
+[full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
+
 ## At A Glance
 
 | Surface | Current answer |
@@ -28,31 +55,6 @@ relational, and auditable end to end.
 | Strongest repo-local result | `71.2%` held-out exact citation on the untouched `233`-row test split |
 | Strongest held-out slices | `100.0%` on doctrinal QA, `100.0%` on reviewed relation explanation, `100.0%` on virtue concept explanation |
 | Main report | [Full-Corpus Christian Virtue LoRA Report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
-
-## Latest Result
-
-| Held-out slice | Untuned model | Full-corpus LoRA | Gain |
-| --- | ---: | ---: | ---: |
-| Overall exact citation | `0.0%` | `71.2%` | `+71.2 pts` |
-| Passage-grounded doctrinal QA | `0.0%` | `100.0%` | `+100.0 pts` |
-| Reviewed relation explanation | `0.0%` | `100.0%` | `+100.0 pts` |
-| Virtue concept explanation | `0.0%` | `100.0%` | `+100.0 pts` |
-| Justice core tract | `0.0%` | `71.4%` | `+71.4 pts` |
-
-![From untuned model to full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg)
-
-*Figure 1. First-glance view of what the latest LoRA run achieves on the repo's strongest held-out
-Christian virtue surfaces.*
-
-![Held-out tract profile after full-corpus LoRA](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg)
-
-*Figure 2. Held-out tract profile after full-corpus LoRA. All eight tracked virtue tracts land in
-the high-60s to low-70s on untouched test prompts.*
-
-This is the clearest result in the repo so far: once the same 1.5B backbone sees the full reviewed
-Christian virtue training split, it becomes a strong doctrinal and explanatory model on held-out
-virtue evaluation. The full write-up, run metadata, and training trace live in the
-[full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
 
 ## What This Repo Is For
 
@@ -78,13 +80,21 @@ through the pipeline:
 
 ## Method Overview
 
-| Stage | What the repo does | Surface |
-| --- | --- | --- |
-| Evidence | Joins approved doctrinal annotations back to stable `resp` / `ad` passage ids instead of flattening Aquinas into unlabeled text blobs | [dataset export](./data/processed/sft/exports/christian_virtue_v1) |
-| Supervision | Builds four instruction families: doctrinal QA, reviewed relation explanation, virtue concept explanation, and citation-grounded moral answer | [templates](./src/summa_moral_graph/sft/templates.py) |
-| Training | Runs local Apple-Silicon LoRA on `Qwen/Qwen2.5-1.5B-Instruct`, including a completed full-corpus rung on all reviewed `train` and `val` rows | [full-corpus config](./configs/train/qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml) |
-| Evaluation | Compares the untouched model to the full-corpus LoRA adapter on held-out prompts and reports task-family and tract behavior | [full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
-| Audit | Preserves stable ids, reports, package metadata, and the companion viewer so claims can be checked back against Aquinas's text | [public claim map](./docs/public_claim_map.md) |
+- **Evidence:** joins approved doctrinal annotations back to stable `resp` / `ad` passage ids
+  instead of flattening Aquinas into unlabeled text blobs.
+  Surface: [dataset export](./data/processed/sft/exports/christian_virtue_v1)
+- **Supervision:** builds four instruction families: doctrinal QA, reviewed relation explanation,
+  virtue concept explanation, and citation-grounded moral answer.
+  Surface: [templates](./src/summa_moral_graph/sft/templates.py)
+- **Training:** runs local Apple-Silicon LoRA on `Qwen/Qwen2.5-1.5B-Instruct`, including the
+  completed full-corpus rung on all reviewed `train` and `val` rows.
+  Surface: [full-corpus config](./configs/train/qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml)
+- **Evaluation:** compares the untouched model to the full-corpus LoRA adapter on held-out prompts
+  and reports task-family and tract behavior.
+  Surface: [full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+- **Audit:** preserves stable ids, reports, package metadata, and the companion viewer so claims
+  can be checked back against Aquinas's text.
+  Surface: [public claim map](./docs/public_claim_map.md)
 
 ## Repository Structure
 

@@ -2,15 +2,15 @@
 
 These figures are the committed public assets for the current Christian virtue release surface.
 
-- `christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg`
-  - supports the repo's main public result by showing how the untouched `Qwen/Qwen2.5-1.5B-Instruct`
-    model moves to the completed full-corpus LoRA result on the strongest held-out Christian virtue
-    slices
-  - used in the README, the full-corpus report, and the curated experiment index
 - `christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg`
   - supports the claim that the completed full-corpus run is strong across the full virtue tract
     surface rather than on one narrow tract only
-  - used in the README and the full-corpus report
+  - used in the README, the full-corpus report, and the curated experiment index
+- `christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg`
+  - supports the repo's main public result by showing the full progression from the untouched
+    `Qwen/Qwen2.5-1.5B-Instruct` model to the earlier small-data LoRA rung and then to the
+    completed full-corpus LoRA result
+  - used in the README, the full-corpus report, and the curated experiment index
 - `christian_virtue_qwen2_5_1_5b_full_corpus_training_curves.svg`
   - supports the claim that the longer Apple-Silicon full-corpus run stays stable across the
     larger two-epoch training budget
@@ -29,7 +29,8 @@ These figures are the committed public assets for the current Christian virtue r
   - preserves the original hard-slice citation-frontier audit figure
   - used in the citation frontier audit report
 - `christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg`
-  - preserves the completed citation-frontier follow-up figure
+  - preserves the completed citation-frontier follow-up figure as a card-framed failure-mode
+    breakdown from the untuned model to the citation-frontier adapter
   - used in the citation-frontier follow-up report
 - `christian_virtue_qwen2_5_1_5b_justice_guarded_tradeoffs.svg`
   - preserves the justice-guarded follow-up figure

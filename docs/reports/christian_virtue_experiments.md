@@ -41,24 +41,24 @@ sees the full reviewed training surface.
 
 ### Quick Read
 
-| Held-out virtue slice | Untuned model | Full-corpus LoRA | Gain |
-| --- | ---: | ---: | ---: |
-| Overall exact citation | `0.0%` | `71.2%` | `+71.2 pts` |
-| Passage-grounded doctrinal QA | `0.0%` | `100.0%` | `+100.0 pts` |
-| Reviewed relation explanation | `0.0%` | `100.0%` | `+100.0 pts` |
-| Virtue concept explanation | `0.0%` | `100.0%` | `+100.0 pts` |
-| Justice core tract | `0.0%` | `71.4%` | `+71.4 pts` |
-
-![From untuned model to full-corpus LoRA](assets/christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg)
-
-The newest public figure is intentionally simple: it shows the repo's main claim at a glance by
-comparing the untouched model to the completed full-corpus LoRA result on the strongest held-out
-Christian virtue slices.
-
 ![Held-out tract profile after full-corpus LoRA](assets/christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg)
 
-The tract profile shows that this is not a one-tract fluke. All eight tracked virtue tracts now
-sit in a narrow, strong band on the held-out test split.
+The tract profile comes first because it is the fastest way to see that the result is broad rather
+than concentrated in one tract. All eight tracked virtue tracts now sit in a narrow, strong band
+on the held-out test split.
+
+![From untuned model to earlier small-data LoRA to full-corpus LoRA](assets/christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg)
+
+The second public figure shows the full improvement ladder: untouched model, earlier small-data
+LoRA rung (`train 128 / val 32`), and the completed full-corpus LoRA run (`train 1475 / val 175`).
+
+| Held-out virtue slice | Untuned model | Earlier small-data LoRA | Full-corpus LoRA | Gain over earlier LoRA |
+| --- | ---: | ---: | ---: | ---: |
+| Overall exact citation | `0.0%` | `36.5%` | `71.2%` | `+34.8 pts` |
+| Passage-grounded doctrinal QA | `0.0%` | `32.8%` | `100.0%` | `+67.2 pts` |
+| Reviewed relation explanation | `0.0%` | `62.7%` | `100.0%` | `+37.3 pts` |
+| Virtue concept explanation | `0.0%` | `65.6%` | `100.0%` | `+34.4 pts` |
+| Justice core tract | `0.0%` | `50.0%` | `71.4%` | `+21.4 pts` |
 
 Canonical rerun command:
 

@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="772" viewBox="0 0 1320 772" role="img" aria-labelledby="title desc">
+<title id='title'>Christian virtue held-out progress from untuned model to small-data LoRA to full-corpus LoRA</title>
+<desc id='desc'>Three-stage held-out comparison showing the untouched Qwen2.5-1.5B-Instruct model, the earlier small-data LoRA rung, and the completed full-corpus LoRA run on the strongest Christian virtue slices.</desc>
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<rect x="24" y="18" width="1272" height="736" rx="18" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+<text x="72" y="52" font-size="28" font-family="Georgia, serif" fill="#0f172a">Held-Out Progress to Full-Corpus LoRA</text>
+<text x="72" y="78" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">The same 1.5B backbone moves from an untuned starting point to the earlier small-data LoRA rung, then to the completed full-corpus result on 233 untouched test prompts.</text>
+<rect x="934" y="28" width="340" height="96" rx="16" fill="#ecfdf5" stroke="#10b981" stroke-width="1.5"/>
+<text x="958" y="54" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#047857">Headline progression</text>
+<text x="958" y="82" font-size="26" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">0.0% -> 36.5% -> 71.2%</text>
+<text x="958" y="102" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+34.8 pts over earlier LoRA</text>
+<text x="72" y="130" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Legend:</text>
+<circle cx="130" cy="126" r="6" fill="#94a3b8"/>
+<text x="144" y="131" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Untuned model</text>
+<circle cx="272" cy="126" r="6" fill="#2563eb"/>
+<text x="286" y="131" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Earlier small-data LoRA (train 128 / val 32)</text>
+<circle cx="650" cy="126" r="6" fill="#0f766e"/>
+<text x="664" y="131" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Full-corpus LoRA (train 1475 / val 175)</text>
+<text x="366" y="182" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" text-anchor="middle" fill="#64748b">Untuned</text>
+<text x="956" y="182" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">Earlier LoRA</text>
+<text x="1064" y="182" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">Full-corpus</text>
+<text x="1188" y="182" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">Gain over earlier LoRA</text>
+<line x1="936" y1="168" x2="936" y2="728" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="1044" y1="168" x2="1044" y2="728" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="1168" y1="168" x2="1168" y2="728" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="432.0" y1="200" x2="432.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="432.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">0%</text>
+<line x1="479.0" y1="200" x2="479.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="479.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">10%</text>
+<line x1="526.0" y1="200" x2="526.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="526.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">20%</text>
+<line x1="573.0" y1="200" x2="573.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="573.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">30%</text>
+<line x1="620.0" y1="200" x2="620.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="620.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">40%</text>
+<line x1="667.0" y1="200" x2="667.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="667.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">50%</text>
+<line x1="714.0" y1="200" x2="714.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="714.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">60%</text>
+<line x1="761.0" y1="200" x2="761.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="761.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">70%</text>
+<line x1="808.0" y1="200" x2="808.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="808.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">80%</text>
+<line x1="855.0" y1="200" x2="855.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="855.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">90%</text>
+<line x1="902.0" y1="200" x2="902.0" y2="730" stroke="#e2e8f0" stroke-width="1"/>
+<text x="902.0" y="190" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">100%</text>
+<text x="72" y="238" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Overall held-out exact citation</text>
+<text x="72" y="256" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=233</text>
+<line x1="432" y1="248" x2="902" y2="248" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="248" x2="603.5" y2="248" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="603.5" y1="248" x2="766.8" y2="248" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="248" r="7" fill="#94a3b8"/>
+<circle cx="603.5" cy="248" r="7" fill="#2563eb"/>
+<circle cx="766.8" cy="248" r="8" fill="#0f766e"/>
+<text x="366" y="253" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="253" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">36.5%</text>
+<text x="1064" y="253" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">71.2%</text>
+<text x="1188" y="253" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+34.8 pts</text>
+<text x="72" y="316" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Passage-grounded doctrinal QA</text>
+<text x="72" y="334" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=67</text>
+<line x1="432" y1="326" x2="902" y2="326" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="326" x2="586.3" y2="326" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="586.3" y1="326" x2="902.0" y2="326" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="326" r="7" fill="#94a3b8"/>
+<circle cx="586.3" cy="326" r="7" fill="#2563eb"/>
+<circle cx="902.0" cy="326" r="8" fill="#0f766e"/>
+<text x="366" y="331" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="331" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">32.8%</text>
+<text x="1064" y="331" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">100.0%</text>
+<text x="1188" y="331" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+67.2 pts</text>
+<text x="72" y="394" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Reviewed relation explanation</text>
+<text x="72" y="412" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=67</text>
+<line x1="432" y1="404" x2="902" y2="404" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="404" x2="726.6" y2="404" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="726.6" y1="404" x2="902.0" y2="404" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="404" r="7" fill="#94a3b8"/>
+<circle cx="726.6" cy="404" r="7" fill="#2563eb"/>
+<circle cx="902.0" cy="404" r="8" fill="#0f766e"/>
+<text x="366" y="409" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="409" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">62.7%</text>
+<text x="1064" y="409" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">100.0%</text>
+<text x="1188" y="409" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+37.3 pts</text>
+<text x="72" y="472" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Virtue concept explanation</text>
+<text x="72" y="490" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=32</text>
+<line x1="432" y1="482" x2="902" y2="482" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="482" x2="740.4" y2="482" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="740.4" y1="482" x2="902.0" y2="482" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="482" r="7" fill="#94a3b8"/>
+<circle cx="740.4" cy="482" r="7" fill="#2563eb"/>
+<circle cx="902.0" cy="482" r="8" fill="#0f766e"/>
+<text x="366" y="487" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="487" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">65.6%</text>
+<text x="1064" y="487" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">100.0%</text>
+<text x="1188" y="487" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+34.4 pts</text>
+<text x="72" y="550" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Justice core tract</text>
+<text x="72" y="568" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=42</text>
+<line x1="432" y1="560" x2="902" y2="560" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="560" x2="667.0" y2="560" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="667.0" y1="560" x2="767.7" y2="560" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="560" r="7" fill="#94a3b8"/>
+<circle cx="667.0" cy="560" r="7" fill="#2563eb"/>
+<circle cx="767.7" cy="560" r="8" fill="#0f766e"/>
+<text x="366" y="565" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="565" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">50.0%</text>
+<text x="1064" y="565" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">71.4%</text>
+<text x="1188" y="565" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+21.4 pts</text>
+<text x="72" y="628" font-size="15" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Strong textual inference</text>
+<text x="72" y="646" font-size="12" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=35</text>
+<line x1="432" y1="638" x2="902" y2="638" stroke="#e5e7eb" stroke-width="8" stroke-linecap="round"/>
+<line x1="432.0" y1="638" x2="660.3" y2="638" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+<line x1="660.3" y1="638" x2="767.7" y2="638" stroke="#0f766e" stroke-width="6" stroke-linecap="round"/>
+<circle cx="432.0" cy="638" r="7" fill="#94a3b8"/>
+<circle cx="660.3" cy="638" r="7" fill="#2563eb"/>
+<circle cx="767.7" cy="638" r="8" fill="#0f766e"/>
+<text x="366" y="643" text-anchor="middle" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#64748b">0.0%</text>
+<text x="956" y="643" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#2563eb">48.6%</text>
+<text x="1064" y="643" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">71.4%</text>
+<text x="1188" y="643" font-size="12" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+22.9 pts</text>
+<text x="667.0" y="752" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#475569">Held-out exact citation match</text>
+</svg>

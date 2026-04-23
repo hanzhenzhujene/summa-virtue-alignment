@@ -6,7 +6,12 @@ calling random scripts directly.
 
 ## Public Quickstart Surface
 
-These are the scripts behind the canonical Christian virtue local baseline:
+This repo exposes two public script surfaces:
+
+- the strongest repo-local result: the completed `full-corpus` Christian virtue run
+- the smallest published package: the lighter `local-baseline` release artifact
+
+These are the scripts behind those public entrypoints:
 
 - `setup_christian_virtue_local.sh`
   - creates the pinned Apple-Silicon virtual environment from
@@ -45,15 +50,15 @@ These are the scripts behind the canonical Christian virtue local baseline:
   - assembles the curated markdown report for the justice-guarded follow-up
   - captures the recovery in `justice_core` / `strong_textual_inference` together with the remaining moral-QA gap
 
-The preferred public commands remain:
+The preferred public commands are:
 
 ```bash
 make setup-christian-virtue-local
-make reproduce-christian-virtue-qwen2-5-1-5b-local
-make public-release-check
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make report-christian-virtue-qwen2-5-1-5b-full-corpus
+make reproduce-christian-virtue-qwen2-5-1-5b-local
+make public-release-check
 make audit-christian-virtue-qwen2-5-1-5b-local-frontier
 make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
 make report-christian-virtue-qwen2-5-1-5b-citation-frontier
@@ -62,10 +67,11 @@ make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
 make report-christian-virtue-qwen2-5-1-5b-justice-guarded
 ```
 
-After the reproduction command completes, the most important outputs are:
+After the strongest repo-local run or the smaller published-package path completes, the most
+important outputs are:
 
-- `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md`
@@ -111,7 +117,7 @@ These wrapper scripts support the smaller remote-GPU research loop:
 - `run_christian_virtue_small_loop.sh`
 - `christian_virtue_small_common.sh`
 
-This path is useful for cheaper CUDA experiments, but it is not the public default baseline for
+This path is useful for cheaper CUDA experiments, but it is not the main public result surface for
 the repo.
 
 ## Corpus And Review Workflow Helpers

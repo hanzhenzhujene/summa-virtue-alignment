@@ -408,7 +408,9 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
         in readme_text
     )
     assert "docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
-    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg" in readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in readme_text
+    assert "Earlier small-data LoRA" in readme_text
     assert "docs/fine_tune_with_summa_moral_graph.md" in dataset_card_text
     assert "christian_virtue_qwen2_5_1_5b_local_baseline_report.md" in dataset_card_text
     assert "make setup-christian-virtue-local" in fine_tune_text
@@ -420,7 +422,8 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in report_index_text
     assert "make report-christian-virtue-qwen2-5-1-5b-full-corpus" in report_index_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in report_index_text
-    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in report_index_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg" in report_index_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in report_index_text
     assert "scripts/setup_christian_virtue_local.sh" in repo_map_text
     assert "scripts/audit_christian_virtue_frontier.py" in repo_map_text
     assert "scripts/build_christian_virtue_citation_frontier_report.py" in repo_map_text
@@ -429,7 +432,8 @@ def test_readme_and_gitignore_expose_public_fine_tune_surface() -> None:
     assert "make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop" in repo_map_text
     assert "requirements/local-mps-py312.lock.txt" in repo_map_text
     assert "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg" in assets_readme_text
-    assert "christian_virtue_qwen2_5_1_5b_full_corpus_before_after.svg" in assets_readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg" in assets_readme_text
+    assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in assets_readme_text
     assert (
         "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg"
         in assets_readme_text
