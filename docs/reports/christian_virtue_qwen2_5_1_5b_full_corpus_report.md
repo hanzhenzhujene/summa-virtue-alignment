@@ -74,14 +74,14 @@ the run stays stable on `mps` and reaches a clean final validation loss of `0.97
 
 | Tract | Full-corpus LoRA | Test rows |
 | --- | ---: | ---: |
-| Temperance (II-II qq.141-160) | `73.9%` | `46` |
+| Temperance (qq.141-160) | `73.9%` | `46` |
 | Theological virtues | `73.7%` | `19` |
-| Temperance closure (II-II qq.161-170) | `72.7%` | `11` |
-| Connected virtues (II-II qq.109-120) | `71.4%` | `7` |
+| Temperance (qq.161-170) | `72.7%` | `11` |
+| Connected virtues (qq.109-120) | `71.4%` | `7` |
 | Justice core | `71.4%` | `42` |
-| Fortitude closure (II-II qq.136-140) | `70.6%` | `17` |
+| Fortitude (qq.136-140) | `70.6%` | `17` |
 | Prudence | `70.0%` | `40` |
-| Fortitude parts (II-II qq.129-135) | `68.6%` | `51` |
+| Fortitude parts (qq.129-135) | `68.6%` | `51` |
 
 ## Why This Run Matters
 

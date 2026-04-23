@@ -2,6 +2,12 @@
 
 ## Progress
 
+- The flagship full-corpus visuals are being tightened again to make the LoRA improvement read
+  instantly:
+  - the main progress figure is now being upgraded with explicit arrowed progression from
+    untouched model to earlier small-data LoRA to full-corpus LoRA
+  - the tract-profile figure is also being cleaned so labels like `closure` disappear from the
+    first-read chart surface in favor of simpler range-based tract names
 - The release surface is getting one final visual-quality tightening pass aimed at first-open trust:
   - README now surfaces the flagship figures before the denser summary table, so the strongest
     result lands visually before the inventory
@@ -1246,6 +1252,14 @@
 
 ## Surprises & Discoveries
 
+- The strongest figure still had one avoidable first-read weakness even after the earlier visual
+  cleanup:
+  - the numeric ladder was clearer than before, but it still relied on readers inferring motion
+    from connected points rather than seeing an explicit directional cue
+  - the tract chart also still exposed internal naming like `closure`, which is precise enough for
+    maintainers but not ideal for a first-pass public figure
+  - adding visible arrows and simpler tract labels improves the same public claim without changing
+    any underlying data
 - The remaining visually weak follow-up surface also exposed a correctness bug:
   - the citation-frontier chart was still obviously from an older visual generation path even
     after the flagship figures had been unified
@@ -1854,6 +1868,15 @@
 
 ## Decision Log
 
+- Add explicit arrows to the flagship full-corpus progress chart and simplify the tract labels on
+  the public figure surface.
+  Reason:
+  - the user wanted the model's improvement to be unmistakable at first glance
+  - the remaining `closure` wording in the tract chart was technically faithful but visually
+    jargon-heavy for the main public surface
+  Consequence:
+  - the progress figure now communicates directional gain more directly
+  - the tract chart keeps the same data but uses cleaner range-based labels for public reading
 - Put the flagship README figures ahead of the summary table and replace the old `Method Overview`
   table with a staged bullet list.
   Reason:
@@ -2673,6 +2696,12 @@
 
 ## Outcomes & Retrospective
 
+- The flagship full-corpus visuals now communicate the main result more directly:
+  - the progress chart shows visible arrowed movement instead of making the reader infer the
+    directional story from plain connecting segments
+  - the tract figure no longer asks first-time readers to parse internal labels like `closure`
+  - the public result therefore reads faster without any change to the underlying experiment or
+    claims
 - The public-facing bundle now looks more internally coherent exactly where a reviewer first forms
   trust:
   - README reveals the flagship result through figures before the denser summary table

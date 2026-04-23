@@ -31,7 +31,7 @@
 <text x="843.0" y="128" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">90%</text>
 <line x1="890.0" y1="138" x2="890.0" y2="702" stroke="#e2e8f0" stroke-width="1"/>
 <text x="890.0" y="128" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">100%</text>
-<text x="72" y="170" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance (II-II qq.141-160)</text>
+<text x="72" y="170" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance (qq.141-160)</text>
 <text x="72" y="188" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=46</text>
 <rect x="420" y="174" width="470" height="18" rx="9" fill="#f1f5f9"/>
 <rect x="420" y="174" width="347.4" height="18" rx="9" fill="#0f766e"/>
@@ -43,13 +43,13 @@
 <rect x="420" y="238" width="346.3" height="18" rx="9" fill="#0f766e"/>
 <text x="930" y="251" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">73.7%</text>
 <text x="1036" y="251" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#475569">19</text>
-<text x="72" y="298" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance closure (II-II qq.161-170)</text>
+<text x="72" y="298" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance (qq.161-170)</text>
 <text x="72" y="316" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=11</text>
 <rect x="420" y="302" width="470" height="18" rx="9" fill="#f1f5f9"/>
 <rect x="420" y="302" width="341.8" height="18" rx="9" fill="#0f766e"/>
 <text x="930" y="315" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">72.7%</text>
 <text x="1036" y="315" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#475569">11</text>
-<text x="72" y="362" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Connected virtues (II-II qq.109-120)</text>
+<text x="72" y="362" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Connected virtues (qq.109-120)</text>
 <text x="72" y="380" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=7</text>
 <rect x="420" y="366" width="470" height="18" rx="9" fill="#f1f5f9"/>
 <rect x="420" y="366" width="335.7" height="18" rx="9" fill="#0f766e"/>
@@ -61,7 +61,7 @@
 <rect x="420" y="430" width="335.7" height="18" rx="9" fill="#0f766e"/>
 <text x="930" y="443" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">71.4%</text>
 <text x="1036" y="443" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#475569">42</text>
-<text x="72" y="490" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude closure (II-II qq.136-140)</text>
+<text x="72" y="490" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude (qq.136-140)</text>
 <text x="72" y="508" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=17</text>
 <rect x="420" y="494" width="470" height="18" rx="9" fill="#f1f5f9"/>
 <rect x="420" y="494" width="331.8" height="18" rx="9" fill="#0f766e"/>
@@ -73,7 +73,7 @@
 <rect x="420" y="558" width="329.0" height="18" rx="9" fill="#0f766e"/>
 <text x="930" y="571" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">70.0%</text>
 <text x="1036" y="571" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#475569">40</text>
-<text x="72" y="618" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude parts (II-II qq.129-135)</text>
+<text x="72" y="618" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude parts (qq.129-135)</text>
 <text x="72" y="636" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=51</text>
 <rect x="420" y="622" width="470" height="18" rx="9" fill="#f1f5f9"/>
 <rect x="420" y="622" width="322.5" height="18" rx="9" fill="#0f766e"/>
