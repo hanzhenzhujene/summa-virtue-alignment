@@ -84,6 +84,17 @@ def _tract_count(metrics: dict[str, Any], tract: str) -> int:
     return int(metrics["by_tract"][tract]["count"])
 
 
+def _chart_tract_label(tract_key: str) -> str:
+    custom_labels = {
+        "connected_virtues_109_120": "Connected virtues (qq.109-120)",
+        "fortitude_parts_129_135": "Fortitude parts (qq.129-135)",
+        "fortitude_closure_136_140": "Fortitude (qq.136-140)",
+        "temperance_141_160": "Temperance (qq.141-160)",
+        "temperance_closure_161_170": "Temperance (qq.161-170)",
+    }
+    return cast(str, custom_labels.get(tract_key, tract_display_name(tract_key)))
+
+
 def _write_progress_svg(
     rows: list[dict[str, Any]],
     output_path: Path,
@@ -113,7 +124,8 @@ def _write_progress_svg(
         return chart_left + (value * chart_width)
 
     overall_progress_label = (
-        f"{_pct(overall_base)} -> {_pct(overall_baseline)} -> {_pct(overall_candidate)}"
+        f"{_pct(overall_base)} &#8594; {_pct(overall_baseline)} &#8594; "
+        f"{_pct(overall_candidate)}"
     )
     overall_gain_vs_baseline = f"+{(overall_candidate - overall_baseline) * 100:.1f} pts"
 
@@ -122,6 +134,20 @@ def _write_progress_svg(
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
             f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">'
         ),
+        "<defs>",
+        (
+            '<marker id="baseline-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" '
+            'orient="auto" markerUnits="strokeWidth">'
+        ),
+        f'<path d="M0,0 L10,5 L0,10 z" fill="{BASELINE_COLOR}"/>',
+        "</marker>",
+        (
+            '<marker id="full-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" '
+            'orient="auto" markerUnits="strokeWidth">'
+        ),
+        f'<path d="M0,0 L10,5 L0,10 z" fill="{FULL_COLOR}"/>',
+        "</marker>",
+        "</defs>",
         (
             "<title id='title'>Christian virtue held-out progress from untuned model to "
             "small-data LoRA to full-corpus LoRA</title>"
@@ -152,7 +178,7 @@ def _write_progress_svg(
         ),
         (
             f'<text x="958" y="54" font-size="11" font-family="{SANS_STACK}" '
-            'font-weight="700" fill="#047857">Headline progression</text>'
+            'font-weight="700" fill="#047857">Strong LoRA gain</text>'
         ),
         (
             f'<text x="958" y="82" font-size="26" font-family="{SANS_STACK}" '
@@ -262,14 +288,18 @@ def _write_progress_svg(
         )
         svg_lines.append(
             (
-                f'<line x1="{start_x:.1f}" y1="{line_y}" x2="{baseline_x:.1f}" y2="{line_y}" '
-                f'stroke="{BASELINE_COLOR}" stroke-width="6" stroke-linecap="round"/>'
+                f'<line x1="{start_x + 10:.1f}" y1="{line_y}" '
+                f'x2="{max(start_x + 10, baseline_x - 12):.1f}" y2="{line_y}" '
+                f'stroke="{BASELINE_COLOR}" stroke-width="6" stroke-linecap="round" '
+                'marker-end="url(#baseline-arrow)"/>'
             )
         )
         svg_lines.append(
             (
-                f'<line x1="{baseline_x:.1f}" y1="{line_y}" x2="{full_x:.1f}" y2="{line_y}" '
-                f'stroke="{FULL_COLOR}" stroke-width="6" stroke-linecap="round"/>'
+                f'<line x1="{baseline_x + 10:.1f}" y1="{line_y}" '
+                f'x2="{max(baseline_x + 10, full_x - 12):.1f}" y2="{line_y}" '
+                f'stroke="{FULL_COLOR}" stroke-width="6" stroke-linecap="round" '
+                'marker-end="url(#full-arrow)"/>'
             )
         )
         svg_lines.append(
@@ -609,7 +639,7 @@ def main() -> None:
     for tract_key, tract_payload in cast(dict[str, Any], full_metrics["by_tract"]).items():
         tract_rows.append(
             {
-                "label": tract_display_name(str(tract_key)),
+                "label": _chart_tract_label(str(tract_key)),
                 "candidate": float(tract_payload["citation_exact_match"]),
                 "count": int(tract_payload["count"]),
             }
