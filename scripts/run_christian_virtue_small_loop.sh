@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Run the smaller remote-GPU Christian virtue train/eval loop with optional OOD evaluation.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

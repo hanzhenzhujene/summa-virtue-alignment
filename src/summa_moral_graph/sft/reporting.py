@@ -569,7 +569,16 @@ def _append_line_chart(
     lines.append("</g>")
 
 
-def write_training_curves_svg(train_log_history_path: Path, output_path: Path) -> Path:
+def write_training_curves_svg(
+    train_log_history_path: Path,
+    output_path: Path,
+    *,
+    title: str = "Canonical local-baseline training trace",
+    subtitle: str = (
+        "Twenty-step Apple Silicon MPS run for the minimal public 1.5B Thomist virtue demo"
+    ),
+    aria_label: str = "Christian virtue training curves",
+) -> Path:
     history_rows = _load_jsonl(train_log_history_path)
     train_loss = [
         (float(row["step"]), float(row["loss"]))
@@ -594,12 +603,12 @@ def write_training_curves_svg(train_log_history_path: Path, output_path: Path) -
 
     lines = [
         "<svg xmlns='http://www.w3.org/2000/svg' width='1040' height='510' "
-        "viewBox='0 0 1040 510' role='img' aria-label='Christian virtue training curves'>",
+        f"viewBox='0 0 1040 510' role='img' aria-label='{html.escape(aria_label)}'>",
         "<rect x='0' y='0' width='1040' height='510' fill='#f8fafc' />",
         "<text x='24' y='34' font-size='20' font-weight='700' fill='#111827'>"
-        "Canonical local-baseline training trace</text>",
+        f"{html.escape(title)}</text>",
         "<text x='24' y='54' font-size='12' fill='#4b5563'>"
-        "Twenty-step Apple Silicon MPS run for the minimal public 1.5B Thomist virtue demo</text>",
+        f"{html.escape(subtitle)}</text>",
     ]
     _append_line_chart(
         lines,

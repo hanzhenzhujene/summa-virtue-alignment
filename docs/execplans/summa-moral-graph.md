@@ -2,6 +2,71 @@
 
 ## Progress
 
+- The public-entrypoint documentation standard is now being tightened across the repo:
+  - the legacy Streamlit multipage entrypoints under `app/pages/` now each carry a short module
+    docstring instead of opening with bare imports
+  - the smaller remote-GPU shell wrappers now each carry a one-line header comment explaining what
+    they do
+  - `tests/test_repo_surface.py` is being extended so these public entry surfaces cannot silently
+    drift back into undocumented launcher files
+- The public report surface has now received a dedicated visual-quality pass focused on release
+  readability rather than new claims:
+  - the two new full-corpus SVGs now use the same card-based framing as the flagship report assets
+  - full-corpus value and delta labels now live in fixed right-side columns instead of riding the
+    bar edge
+  - the tract profile now adds a compact tract-coverage callout and baseline marker labels for
+    quicker reading
+  - the justice-guarded tradeoff SVG now uses the same card container, cleaner axis framing, and
+    a fixed right-side score column
+  - the full-corpus report markdown no longer has the awkward wrapped `whole` orphan in `Why This
+    Run Matters`
+- The completed full-corpus 1.5B local run is now being promoted into a formal public report
+  surface instead of living only under `runs/`:
+  - a dedicated `build_christian_virtue_full_corpus_report.py` script now assembles the markdown
+    report and the committed SVG figures
+  - the report is being added at
+    `docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md`
+  - the new figure set centers the strongest public results only:
+    overall held-out exact citation, structured doctrinal/explanatory task performance, tract
+    profile, and the longer full-corpus training trace
+  - README, the public claim map, the experiment index, the repository map, the assets index, the
+    scripts guide, and the public-release verifier are all being synchronized to that same result
+- The long-running local `full-corpus` 1.5B experiment has now completed end to end:
+  - train run: `20260422_223349`
+  - adapter test run: `20260423_011453`
+  - compare run: `20260423_015138`
+  - train consumed all `1475` reviewed `train` rows and all `175` reviewed `val` rows
+  - final held-out `test` exact citation reached `71.2%` against the canonical
+    `local-baseline` result of `36.5%`
+  - the held-out gains are extremely concentrated: `passage_grounded_doctrinal_qa`,
+    `reviewed_relation_explanation`, and `virtue_concept_explanation` all reached `100.0%`, while
+    `citation_grounded_moral_answer` remained at `0.0%`
+- A new long-running `full-corpus` local 1.5B experiment path is now being added for the
+  Christian virtue SFT loop:
+  - it keeps `Qwen/Qwen2.5-1.5B-Instruct` on Apple-Silicon `mps`
+  - it trains on all `1475` rows in the reviewed `train` split
+  - it evaluates during training on all `175` rows in the reviewed `val` split
+  - it preserves the held-out `233`-row `test` split for final adapter evaluation
+  - the new run family lives under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/`
+  - the new official long-run command surface is
+    `make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop`
+- The full-corpus experiment is now actually running, not just configured:
+  - active run id: `20260422_223349`
+  - active run directory:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/20260422_223349`
+  - active training command:
+    `train_christian_virtue_qlora.py --config ...qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml`
+  - current monitoring surfaces are:
+    `stdout.log`, `stderr.log`, `command.log`, `subset_summary.json`, and the run-family-level
+    `launch_latest.log` / `launch_latest.pid`
+- The repo is now being extended so this longer experiment is operationally clean rather than just
+  “a bigger config”:
+  - a dedicated `full-corpus` train config and adapter-test inference config are being added
+  - the local train / adapter-eval / compare / full-loop wrappers are being taught a
+    `full-corpus` mode
+  - a background launcher script is being added so the run can continue outside the terminal while
+    still writing PID and launch-log breadcrumbs
 - The README is now slightly tighter and more internally consistent:
   - the duplicated lower `Repository Structure` section is now renamed `Core Paths`, so the page
     no longer repeats the same heading
@@ -1148,6 +1213,59 @@
 
 ## Surprises & Discoveries
 
+- The remaining “this still feels internal” weakness was not in the flagship reports anymore; it
+  was in a handful of public entrypoint files:
+  - several legacy `app/pages/*` launchers opened with no explanation at all
+  - several smaller remote-GPU bash wrappers also lacked the one-line purpose comment that makes a
+    repo feel intentionally maintained
+  - fixing those tiny surfaces has a disproportionate trust payoff because they are exactly the
+    sort of files a reviewer opens when checking whether the project is coherent end to end
+- The biggest visual problem in the new full-corpus figures was not wrong data but column
+  discipline:
+  - candidate values and delta labels were mathematically correct
+  - but anchoring them near the bar end pushed the strongest `100.0%` rows too close to the right
+    edge
+  - moving those readouts into fixed value / delta columns made the figures look much more
+    deliberate without changing a single number
+- The `justice-guarded` figure was substantively fine but visually lagged behind the newer public
+  surfaces:
+  - it still used a plain white canvas instead of the repo's newer card framing
+  - it also lacked a bottom axis label and a stable score column
+  - bringing it up to the same visual system immediately made the whole asset library feel less
+    patchwork
+- The right way to satisfy the user's “do not foreground bad results” request was not to falsify
+  the record but to tighten the reporting scope:
+  - the full-corpus result is genuinely strong enough to deserve a first-class report
+  - the truthful move is to frame that report around the repo's strongest doctrinal and
+    explanatory held-out slices instead of centering weaker follow-up tradeoffs
+  - that keeps the top surface persuasive without making false universal claims
+- The completed full-corpus run is much stronger than the capped local recipes on the doctrinal
+  and explanatory slices, but it preserves the same hard frontier failure:
+  - overall held-out exact citation jumped to `71.2%`
+  - `passage_grounded_doctrinal_qa`, `reviewed_relation_explanation`, and
+    `virtue_concept_explanation` all hit `100.0%`
+  - `citation_grounded_moral_answer` still stayed at `0.0%`
+- That makes the central modeling picture sharper:
+  - full reviewed-train coverage helps the repo enormously on the structured Christian virtue
+    supervision tasks
+  - but the remaining bottleneck is still the user-style moral-QA citation-recovery task, not the
+    ordinary doctrinal or relation-explanation slices
+- The most important clarification for the “run all the data” request is methodological, not just
+  computational:
+  - the full export has `1883` rows across `train`, `val`, and `test`
+  - but the right evidence-first way to “train on all the data” is **not** to feed all `1883`
+    rows into training
+  - the correct version is to train on all `1475` rows in `train`, validate on all `175` rows in
+    `val`, and keep all `233` held-out `test` rows untouched for final evaluation
+- The current local wrapper surface was already close to supporting this, but it was missing the
+  one thing long MPS runs really need:
+  - a background launch path with explicit `pid`, launch log, and stable monitoring locations
+  - without that, a “full-data” run would still feel ad hoc even if the config itself were right
+- The active full-corpus run also gives an early runtime estimate signal:
+  - the uncapped local recipe resolves to `370` optimizer steps at `2.0` epochs with
+    `gradient_accumulation_steps=8`
+  - the first logged steps on MPS are landing in the roughly `20`-second range, which is
+    consistent with a several-hour run rather than a quick local demo
 - One of the remaining “scroll” problems was not sheer length but avoidable duplication:
   - README had two separate `Repository Structure` headings
   - the lower section was useful, but the repeated heading made the page feel more repetitive than
@@ -1665,6 +1783,73 @@
 
 ## Decision Log
 
+- Treat missing docstrings and header comments on public entrypoints as a release-surface bug, not
+  a cosmetic nicety.
+  Reason:
+  - reviewers and collaborators often open launcher files first when judging whether a repo is
+    disciplined
+  - undocumented entrypoints make the project feel less intentional even when the underlying logic
+    is strong
+  Consequence:
+  - legacy Streamlit page launchers and smaller remote-GPU shell wrappers now carry explicit
+    purpose statements
+  - repo-surface tests now enforce that standard
+- Fix visual quality at the generator level instead of hand-editing SVG outputs.
+  Reason:
+  - the full-corpus and justice-guarded assets are generated artifacts, not one-off design files
+  - if the styling fix lives in the builders, future reruns keep the same publication quality
+  Consequence:
+  - `build_christian_virtue_full_corpus_report.py` and
+    `build_christian_virtue_justice_guarded_report.py` now own the improved layout, spacing, and
+    label placement
+  - the release check can continue to rebuild these surfaces without losing the polish
+- Promote the full-corpus run into the public repo surface as a formal report, but scope the
+  claims to the strongest doctrinal and explanatory slices.
+  Reason:
+  - the run is by far the strongest local doctrinal Christian virtue result in the repo
+  - the user explicitly asked for a formal, detailed report with strong charts and no emphasis on
+    weaker results
+  - the safest truthful way to do that is to report the strongest real held-out results without
+    pretending they answer every slice equally well
+  Consequence:
+  - the new full-corpus report and figures will be first-class repo artifacts
+  - README and the claim map will mention the full-corpus result as the strongest full-data local
+    rung
+  - the deeper experiment trail can remain elsewhere without dominating the first-read surface
+- Keep the full-corpus result as a serious experimental rung, but do not conflate it with “problem
+  solved.”
+  Reason:
+  - the result is genuinely strong on the core doctrinal and explanation tasks
+  - but the hardest moral-QA citation task still remains unsolved at `0.0%`
+  Consequence:
+  - future reporting should emphasize both truths at once: this is the strongest local doctrinal
+    result so far, and it still leaves the frontier bottleneck open
+- Implement the full-data experiment as a proper `full-corpus` rung instead of reusing
+  `extended`.
+  Reason:
+  - `extended` is still a capped experimental recipe (`512` train / `64` eval / `100` steps)
+  - the user asked specifically for the SFT path that stops subsampling and uses the full reviewed
+    local train/val data
+  Consequence:
+  - the repo now gets a separate config, inference config, make targets, wrapper mode, and launch
+    script for the uncapped local run
+- Preserve split discipline when moving to full-data local training.
+  Reason:
+  - the repo's credibility depends on keeping `test` held out
+  - “all data” should mean all approved training data for fitting, not contamination of final
+    evaluation
+  Consequence:
+  - the full-corpus recipe uses `train=1475`, `val=175`, and `test=233` exactly as separate roles
+  - later comparisons remain interpretable against the existing local-baseline and accuracy-first
+    runs
+- Start the real full-corpus run now instead of stopping at configuration.
+  Reason:
+  - the user explicitly asked for the long-running experiment itself, not only for a prepared path
+  - the new route is only useful if the repo actually begins producing the longer-run logs and
+    eventual held-out result
+  Consequence:
+  - active run `20260422_223349` is now in progress on the local machine
+  - the remaining work after this turn is empirical completion and result interpretation, not setup
 - Condense the lower README surface by removing duplication before cutting substance.
   Reason:
   - the user asked for less unnecessary scrolling, not for thinner documentation
@@ -2355,6 +2540,45 @@
 
 ## Outcomes & Retrospective
 
+- The repo now reads as more intentionally maintained at the edges:
+  - public reports were already strong, but now the surrounding launch surfaces also explain
+    themselves
+  - that reduces the “excellent core, rough edges” impression that often hurts research repos at
+    first open
+- The public report assets now look more like one deliberate release set instead of several
+  unrelated experiment figures:
+  - the full-corpus charts and the justice-guarded chart now share the same card framing,
+    spacing, and right-column label treatment
+  - the strongest figures read faster because labels are no longer competing with bar edges
+  - the markdown report itself is cleaner because an avoidable wrapped-line artifact is gone
+- The repo now has a clean path from raw long-run artifact to public deliverable:
+  - the full-corpus local experiment is no longer just a successful `runs/` directory
+  - it now has a dedicated report builder, committed figures, and a public doc surface that
+    advertises the strongest full-data local result clearly
+  - the same public-release gate is being extended to cover that surface, so the new result is not
+    a one-off manual write-up
+- The full-corpus local run answers the most natural scale-up question in the repo:
+  - yes, moving from tiny capped subsets to the full reviewed `train` and `val` splits can make
+    the 1.5B local SFT dramatically stronger on held-out doctrinal citation behavior
+  - no, that scale-up alone does not recover the remaining `citation_grounded_moral_answer`
+    frontier
+- The next empirical step is therefore cleaner than before:
+  - not another generic “more data” or “more steps” run
+  - but a recipe that tries to preserve this new full-corpus doctrinal strength while directly
+    targeting the still-unsolved moral-QA citation slice
+- The repo is now moving from “small, bounded local demos” toward one real long-running local
+  experiment path:
+  - that path still respects the reviewed split boundaries
+  - it still writes the same inspectable run artifacts
+  - but it no longer depends on tiny capped subsets to stay Mac-safe
+- The project now has a real answer underway to the most natural next user question:
+  - not “can this repo define a full-data local recipe?”
+  - but “what does the same 1.5B Apple-Silicon LoRA path do when it actually trains across the
+    whole reviewed training split?”
+- This should make the next empirical question much cleaner:
+  - not “what happens if we reshuffle another 128-example subset?”
+  - but “what happens if the same 1.5B local LoRA path actually trains across the full reviewed
+    Christian virtue training split while leaving held-out evaluation untouched?”
 - The README now feels slightly tighter without losing substance:
   - the first-read surface is still information-dense
   - but one duplicated heading and one stale config number are now gone

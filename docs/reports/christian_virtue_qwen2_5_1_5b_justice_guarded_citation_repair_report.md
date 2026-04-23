@@ -70,9 +70,9 @@ This justice-guarded recipe is a meaningful same-budget follow-up, not just a sa
 variant. It demonstrates that the subset selector can be taught to protect doctrinally
 important justice/STI slices while still moving the overall held-out benchmark upward.
 But it also shows that the repo's hardest remaining problem is still user-style moral QA with
-stable passage-id recovery. That follow-up is now documented as the completed
-[accuracy-first report](./christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md), which
-keeps the justice guard while testing whether the overall held-out benchmark can move even higher.
+stable passage-id recovery. The next research step is therefore an accuracy-first hybrid recipe that keeps
+the justice guard while restoring at least some of the frontier's `citation_grounded_moral_answer` gain.
+That next follow-up is now documented in the [Accuracy-first hybrid report](./christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md).
 
 ## Reproduce
 

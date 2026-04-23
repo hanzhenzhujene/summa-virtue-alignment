@@ -79,6 +79,23 @@ def test_load_qwen2_5_local_mps_extended_training_config() -> None:
     assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_extended.yaml"
 
 
+def test_load_qwen2_5_local_mps_full_corpus_training_config() -> None:
+    config = load_training_config("configs/train/qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml")
+
+    assert config.model_name_or_path == "Qwen/Qwen2.5-1.5B-Instruct"
+    assert config.runtime_backend == "mps"
+    assert config.torch_dtype == "float16"
+    assert config.load_in_4bit is False
+    assert config.num_train_epochs == 2.0
+    assert config.max_steps == -1
+    assert config.max_train_examples is None
+    assert config.max_eval_examples is None
+    assert config.train_subset_strategy == "task_tract_round_robin"
+    assert config.eval_subset_strategy == "task_tract_round_robin"
+    assert config.config_path is not None
+    assert config.config_path.name == "qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml"
+
+
 def test_load_qwen2_5_local_mps_citation_frontier_training_config() -> None:
     config = load_training_config(
         "configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml"
@@ -238,6 +255,24 @@ def test_load_qwen2_5_citation_frontier_adapter_inference_config() -> None:
     assert config.config_path is not None
     assert (
         config.config_path.name == "qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml"
+    )
+
+
+def test_load_qwen2_5_full_corpus_adapter_inference_config() -> None:
+    config = load_inference_config(
+        "configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml"
+    )
+
+    assert config.model_name_or_path == "Qwen/Qwen2.5-1.5B-Instruct"
+    assert config.runtime_backend == "mps"
+    assert config.torch_dtype == "float16"
+    assert config.load_in_4bit is False
+    assert config.adapter_path is not None
+    assert config.adapter_path.parent.name == "full_corpus"
+    assert config.output_dir.name == "full_corpus_adapter_test"
+    assert config.config_path is not None
+    assert (
+        config.config_path.name == "qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml"
     )
 
 

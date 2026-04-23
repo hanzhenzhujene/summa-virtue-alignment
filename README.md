@@ -93,6 +93,31 @@ alignment rather than citation copying alone.*
 
 The full breakdown, qualitative panel, and method details live in the
 [flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md).
+
+### Strongest Full-Data Local Result
+
+The same `Qwen/Qwen2.5-1.5B-Instruct` backbone becomes much stronger when it sees the full
+reviewed `train` split (`1475` rows) and the full reviewed `val` split (`175` rows), while the
+held-out `233`-row `test` split remains untouched. That completed `full-corpus` local run is now
+the strongest local doctrinal-virtue result in the repo.
+
+| Full-data local highlight | Local baseline | Full-corpus | Delta |
+| --- | ---: | ---: | ---: |
+| Held-out benchmark exact citation | `36.5%` | `71.2%` | `+34.8 pts` |
+| Passage-grounded doctrinal QA | `32.8%` | `100.0%` | `+67.2 pts` |
+| Reviewed relation explanation | `62.7%` | `100.0%` | `+37.3 pts` |
+| Virtue concept explanation | `65.6%` | `100.0%` | `+34.4 pts` |
+| Justice core tract | `50.0%` | `71.4%` | `+21.4 pts` |
+
+![Full-corpus held-out gains](docs/reports/assets/christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg)
+
+*Figure 3. Full-data local result on held-out doctrinal virtue evaluation. The strongest public
+gain is not just a same-budget follow-up; it comes from letting the same 1.5B backbone learn from
+the whole reviewed Christian virtue training surface.*
+
+The full write-up lives in the
+[full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
+
 The completed citation-focused follow-up is documented in the
 [citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md).
 The original hard-slice diagnostic that motivated this line of work remains in the
@@ -133,6 +158,8 @@ Full slice-level tradeoffs remain documented in the linked follow-up reports.
 | --- | --- |
 | Reproduce the minimal public baseline | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
 | Inspect the strongest evidence | [Flagship report](./docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md) |
+| Inspect the strongest full-data local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Rerun the strongest full-data local result | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` |
 | Audit the remaining hard slice quickly | `make audit-christian-virtue-qwen2-5-1-5b-local-frontier` |
 | Audit the exact public claims and boundaries | [docs/public_claim_map.md](./docs/public_claim_map.md) |
 | Inspect the completed citation-focused follow-up | [Citation-frontier report](./docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md) · [Citation frontier audit](./docs/reports/christian_virtue_citation_frontier_audit.md) |

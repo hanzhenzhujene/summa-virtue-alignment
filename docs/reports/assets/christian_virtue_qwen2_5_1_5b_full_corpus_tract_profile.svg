@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="736" viewBox="0 0 1180 736" role="img" aria-labelledby="title desc">
+<title id='title'>Full-corpus held-out tract profile</title>
+<desc id='desc'>Held-out tract-level exact citation comparison between the canonical local baseline and the completed full-corpus local run.</desc>
+<rect width="100%" height="100%" fill="#f8fafc"/>
+<rect x="24" y="18" width="1132" height="700" rx="18" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>
+<text x="72" y="52" font-size="28" font-family="Georgia, serif" fill="#0f172a">Held-Out Tract Profile</text>
+<text x="72" y="76" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#475569">Every virtue tract improves under the full-data local recipe, with the strongest tracts now clustering around the low 70s.</text>
+<rect x="838" y="32" width="252" height="74" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+<text x="860" y="56" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#1d4ed8">Tract coverage</text>
+<text x="860" y="80" font-size="22" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#1d4ed8">8 / 8</text>
+<text x="932" y="80" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#334155">tracked virtue tracts improved</text>
+<circle cx="72" cy="124" r="6" fill="#2563eb"/>
+<text x="86" y="129" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#334155">Baseline marker</text>
+<circle cx="240" cy="124" r="6" fill="#0f766e"/>
+<text x="254" y="129" font-size="13" font-family="Helvetica, Arial, sans-serif" fill="#334155">Full-corpus bar</text>
+<text x="946" y="136" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">Full-corpus</text>
+<text x="1038" y="136" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#92400e">Gain</text>
+<line x1="928" y1="124" x2="928" y2="694" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="1020" y1="124" x2="1020" y2="694" stroke="#e2e8f0" stroke-width="1"/>
+<line x1="420.0" y1="146" x2="420.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="420.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">0%</text>
+<line x1="470.0" y1="146" x2="470.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="470.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">10%</text>
+<line x1="520.0" y1="146" x2="520.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="520.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">20%</text>
+<line x1="570.0" y1="146" x2="570.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="570.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">30%</text>
+<line x1="620.0" y1="146" x2="620.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="620.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">40%</text>
+<line x1="670.0" y1="146" x2="670.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="670.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">50%</text>
+<line x1="720.0" y1="146" x2="720.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="720.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">60%</text>
+<line x1="770.0" y1="146" x2="770.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="770.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">70%</text>
+<line x1="820.0" y1="146" x2="820.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="820.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">80%</text>
+<line x1="870.0" y1="146" x2="870.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="870.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">90%</text>
+<line x1="920.0" y1="146" x2="920.0" y2="698" stroke="#e2e8f0" stroke-width="1"/>
+<text x="920.0" y="136" text-anchor="middle" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">100%</text>
+<text x="72" y="180" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance (II-II qq.141-160)</text>
+<text x="72" y="198" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=46</text>
+<rect x="420" y="184" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="184" width="369.6" height="18" rx="9" fill="#0f766e"/>
+<text x="583.0" y="174" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">32.6%</text>
+<line x1="583.0" y1="179" x2="583.0" y2="207" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="197" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">73.9%</text>
+<text x="1038" y="197" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+41.3 pts</text>
+<text x="72" y="242" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Theological virtues</text>
+<text x="72" y="260" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=19</text>
+<rect x="420" y="246" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="246" width="368.4" height="18" rx="9" fill="#0f766e"/>
+<text x="656.8" y="236" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">47.4%</text>
+<line x1="656.8" y1="241" x2="656.8" y2="269" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="259" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">73.7%</text>
+<text x="1038" y="259" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+26.3 pts</text>
+<text x="72" y="304" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Temperance closure (II-II qq.161-170)</text>
+<text x="72" y="322" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=11</text>
+<rect x="420" y="308" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="308" width="363.6" height="18" rx="9" fill="#0f766e"/>
+<text x="601.8" y="298" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">36.4%</text>
+<line x1="601.8" y1="303" x2="601.8" y2="331" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="321" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">72.7%</text>
+<text x="1038" y="321" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+36.4 pts</text>
+<text x="72" y="366" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Connected virtues (II-II qq.109-120)</text>
+<text x="72" y="384" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=7</text>
+<rect x="420" y="370" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="370" width="357.1" height="18" rx="9" fill="#0f766e"/>
+<text x="634.3" y="360" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">42.9%</text>
+<line x1="634.3" y1="365" x2="634.3" y2="393" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="383" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">71.4%</text>
+<text x="1038" y="383" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+28.6 pts</text>
+<text x="72" y="428" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Justice core</text>
+<text x="72" y="446" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=42</text>
+<rect x="420" y="432" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="432" width="357.1" height="18" rx="9" fill="#0f766e"/>
+<text x="670.0" y="422" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">50.0%</text>
+<line x1="670.0" y1="427" x2="670.0" y2="455" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="445" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">71.4%</text>
+<text x="1038" y="445" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+21.4 pts</text>
+<text x="72" y="490" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude closure (II-II qq.136-140)</text>
+<text x="72" y="508" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=17</text>
+<rect x="420" y="494" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="494" width="352.9" height="18" rx="9" fill="#0f766e"/>
+<text x="567.1" y="484" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">29.4%</text>
+<line x1="567.1" y1="489" x2="567.1" y2="517" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="507" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">70.6%</text>
+<text x="1038" y="507" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+41.2 pts</text>
+<text x="72" y="552" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Prudence</text>
+<text x="72" y="570" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=40</text>
+<rect x="420" y="556" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="556" width="350.0" height="18" rx="9" fill="#0f766e"/>
+<text x="657.5" y="546" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">47.5%</text>
+<line x1="657.5" y1="551" x2="657.5" y2="579" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="569" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">70.0%</text>
+<text x="1038" y="569" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+22.5 pts</text>
+<text x="72" y="614" font-size="14" font-family="Helvetica, Arial, sans-serif" font-weight="600" fill="#0f172a">Fortitude parts (II-II qq.129-135)</text>
+<text x="72" y="632" font-size="11" font-family="Helvetica, Arial, sans-serif" fill="#64748b">n=51</text>
+<rect x="420" y="618" width="500" height="18" rx="9" fill="#f8fafc"/>
+<rect x="420" y="618" width="343.1" height="18" rx="9" fill="#0f766e"/>
+<text x="508.2" y="608" font-size="10" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#2563eb">17.6%</text>
+<line x1="508.2" y1="613" x2="508.2" y2="641" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+<text x="946" y="631" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#065f46">68.6%</text>
+<text x="1038" y="631" font-size="11" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#b45309">+51.0 pts</text>
+<text x="670.0" y="722" font-size="12" font-family="Helvetica, Arial, sans-serif" text-anchor="middle" fill="#475569">Held-out exact citation match</text>
+</svg>

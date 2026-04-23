@@ -20,6 +20,16 @@ case "${MODE}" in
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
     RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-local-baseline"
     ;;
+  full-corpus)
+    TRAIN_CONFIG="configs/train/qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus"
+    RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-full-corpus"
+    ENV_PREFIX=(
+      env
+      "PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}"
+      "PYTORCH_MPS_HIGH_WATERMARK_RATIO=${PYTORCH_MPS_HIGH_WATERMARK_RATIO:-0.0}"
+    )
+    ;;
   citation-frontier)
     TRAIN_CONFIG="configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml"
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier"
@@ -51,7 +61,7 @@ case "${MODE}" in
     RUN_STEM="christian-virtue-qwen2.5-1.5b-instruct-lora-mps-extended"
     ;;
   *)
-    echo "Unknown mode: ${MODE}. Expected 'smoke', 'local-baseline', 'citation-frontier', 'accuracy-first', 'justice-guarded', or 'extended'." >&2
+    echo "Unknown mode: ${MODE}. Expected 'smoke', 'local-baseline', 'full-corpus', 'citation-frontier', 'accuracy-first', 'justice-guarded', or 'extended'." >&2
     exit 1
     ;;
 esac
@@ -63,6 +73,11 @@ RUN_ID="$(basename "${RUN_DIR}")"
 RUN_NAME="${RUN_STEM}-${RUN_ID}"
 
 init_run_dir "${RUN_DIR}"
+link_latest_run "${RUN_ROOT}" "${RUN_DIR}"
+{
+  echo "Run directory: ${RUN_DIR}"
+  echo "Latest symlink: ${RUN_ROOT}/latest"
+} | tee -a "${RUN_DIR}/stdout.log"
 ensure_dataset "${DATASET_CONFIG}" "${DATASET_SENTINEL}" "${RUN_DIR}"
 
 run_logged \
@@ -76,5 +91,3 @@ run_logged \
   "${RUN_DIR}" \
   --run-name \
   "${RUN_NAME}"
-
-link_latest_run "${RUN_ROOT}" "${RUN_DIR}"

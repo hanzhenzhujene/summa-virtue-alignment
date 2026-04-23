@@ -1,3 +1,5 @@
+"""Legacy multipage entrypoint for reader stats and audit summaries."""
+
 from __future__ import annotations
 
 from summa_moral_graph.viewer.shell import render_dashboard

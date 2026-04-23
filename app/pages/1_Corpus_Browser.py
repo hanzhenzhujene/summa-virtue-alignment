@@ -1,3 +1,5 @@
+"""Legacy multipage entrypoint for the corpus-oriented audit and coverage view."""
+
 from __future__ import annotations
 
 from summa_moral_graph.viewer.shell import render_dashboard

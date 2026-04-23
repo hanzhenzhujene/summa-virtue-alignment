@@ -1,0 +1,12 @@
+run_name: christian-virtue-qwen2.5-1.5b-instruct-full-corpus-adapter-test
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
+dataset_dir: data/processed/sft/exports/christian_virtue_v1
+split_names:
+  - test
+output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test
+adapter_path: runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest
+trust_remote_code: false
+max_new_tokens: 256
+runtime_backend: mps
+torch_dtype: float16
+load_in_4bit: false

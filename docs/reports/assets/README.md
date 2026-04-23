@@ -1,7 +1,7 @@
 # Report Figures
 
-These figures are the committed publication assets for the Christian virtue local baseline and its
-citation-focused follow-up.
+These figures are the committed publication assets for the Christian virtue local baseline, the
+completed full-corpus local run, and the citation-focused follow-up series.
 
 - `christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg`
   - supports the claim that the canonical `local-baseline` run is a real, stable optimization trace
@@ -14,6 +14,19 @@ citation-focused follow-up.
   - supports the claim that the adapter improves held-out benchmark behavior over the untouched
     base model
   - used in the flagship local report as Figure 3
+- `christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg`
+  - supports the claim that the completed full-corpus local run more than doubles the canonical
+    held-out exact-citation result while saturating the repo's strongest doctrinal and explanatory
+    task families
+  - used in the full-corpus local report as Figure 1
+- `christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg`
+  - supports the claim that every virtue tract improves under the completed full-corpus local
+    recipe, with the strongest tract scores clustering around the low 70s
+  - used in the full-corpus local report as Figure 2
+- `christian_virtue_qwen2_5_1_5b_full_corpus_training_curves.svg`
+  - supports the claim that the longer full-corpus Apple-Silicon local run stays stable through
+    the larger two-epoch training budget
+  - used in the full-corpus local report as Figure 3
 - `christian_virtue_citation_frontier_modes.svg`
   - supports the claim that the completed citation-frontier follow-up improves citation-seeking
     behavior on the user-style moral QA frontier while leaving stable-id recovery unfinished
@@ -31,6 +44,7 @@ citation-focused follow-up.
 The canonical narrative for these assets lives in:
 
 - [Flagship report](../christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- [Full-corpus local report](../christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
 - [Citation-frontier follow-up report](../christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
 - [Justice-guarded follow-up report](../christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md)
 - [Citation frontier audit](../christian_virtue_citation_frontier_audit.md)

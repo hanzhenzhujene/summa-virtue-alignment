@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Shared shell helpers for the smaller remote-GPU Christian virtue wrapper scripts.
 
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 

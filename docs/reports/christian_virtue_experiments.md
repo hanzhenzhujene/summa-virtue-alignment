@@ -91,6 +91,46 @@ This is the public demo result, not the intended ceiling. The point of this run 
 small easy-to-reproduce model already exhibits the right movement, which makes the case for larger
 follow-on SFT runs even stronger.
 
+## Completed Full-Data Local Result
+
+The full-corpus local run is now complete. It keeps the same public `Qwen/Qwen2.5-1.5B-Instruct`
+backbone, but trains on the full reviewed `train` split (`1475` rows) and evaluates during
+training on the full reviewed `val` split (`175` rows), while preserving the held-out `233`-row
+`test` split for the final adapter benchmark.
+
+- Report:
+  [christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+
+Completed repo-local run ids:
+
+- full-corpus train: `20260422_223349`
+- full-corpus adapter test: `20260423_011453`
+- full-corpus compare test: `20260423_015138`
+
+What it demonstrates:
+
+- overall held-out exact citation rises from `36.5%` on the canonical baseline to `71.2%`
+- `passage_grounded_doctrinal_qa`, `reviewed_relation_explanation`, and
+  `virtue_concept_explanation` each reach `100.0%` exact citation on held-out prompts
+- `justice_core` rises to `71.4%`
+- `strong_textual_inference` rises to `71.4%`
+
+This is the strongest full-data local result in the repo and the clearest local demonstration that
+the reviewed Christian virtue dataset can drive very strong Thomist doctrinal behavior on held-out
+evaluation once the model sees the whole reviewed training surface.
+
+Canonical rerun command:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+```
+
+Curated report rebuild:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-full-corpus
+```
+
 ## Completed Follow-Up: Citation Frontier
 
 The citation-frontier follow-up is now complete. It keeps the same small local 1.5B budget as the

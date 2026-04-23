@@ -11,9 +11,10 @@ goal is a release-grade map from public claim to public evidence.
 1. [README.md](../README.md)
 2. [docs/public_claim_map.md](./public_claim_map.md)
 3. [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
-4. [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
-5. [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)
-6. [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
+4. [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+5. [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md)
+6. [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)
+7. [docs/fine_tune_with_summa_moral_graph.md](./fine_tune_with_summa_moral_graph.md)
 
 ## Claim-to-Artifact Map
 
@@ -21,6 +22,7 @@ goal is a release-grade map from public claim to public evidence.
 | --- | --- | --- | --- | --- |
 | The repo publishes a reviewed Christian virtue SFT dataset rather than a vague theology text dump. | `555` approved doctrinal source annotations become `1883` SFT examples with stable passage ids, citation labels, tract metadata, and grouped `question_id` splits. | [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md), [data/processed/sft/exports/christian_virtue_v1](../data/processed/sft/exports/christian_virtue_v1), [docs/christian_virtue_sft.md](./christian_virtue_sft.md) | `make build-christian-virtue-sft` | This is a virtue-centered v1 export. It does not claim that all moral-corpus supervision is in scope, and it does not treat candidate or structural-editorial layers as training truth. |
 | Reviewed Christian virtue supervision can move a small general model toward better Thomist virtue behavior on held-out prompts. | The canonical local `Qwen/Qwen2.5-1.5B-Instruct` LoRA baseline improves held-out exact citation from `0.0%` to `36.5%`, `Virtue concept explanation` from `0.0%` to `65.6%`, `Reviewed relation explanation` from `0.0%` to `62.7%`, and `Justice core` from `0.0%` to `50.0%`. | [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md), [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md), [artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md](../artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/README.md) | `make reproduce-christian-virtue-qwen2-5-1-5b-local` then `make public-release-check` | This is a minimal Apple-Silicon demonstration, not a claim about the strongest achievable final model. Citation exact match is one evaluation surface, not the whole theological goal. |
+| The same 1.5B local backbone becomes much stronger when it trains on the full reviewed Christian virtue split. | The completed `full-corpus` local run reaches `71.2%` held-out exact citation, `100.0%` on `Passage-grounded doctrinal QA`, `Reviewed relation explanation`, and `Virtue concept explanation`, and `71.4%` on `Justice core`. | [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md), [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md), [README.md](../README.md) | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` and `make report-christian-virtue-qwen2-5-1-5b-full-corpus` | This is the strongest full-data local result in the repo. It is a heavier local recipe than the minimal quickstart baseline, so it should be read as a scaling demonstration rather than the smallest public rung. |
 | The repo can diagnose and improve the hardest citation bottleneck without changing dataset scope. | The completed same-budget `citation-frontier` follow-up moves held-out exact citation from `36.5%` to `38.6%` and lifts `citation_grounded_moral_answer` exact stable-id recovery from `0.0%` to `3.0%`. | [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md), [docs/reports/christian_virtue_citation_frontier_audit.md](./reports/christian_virtue_citation_frontier_audit.md) | `make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop` and `make report-christian-virtue-qwen2-5-1-5b-citation-frontier` | The follow-up is a real result, but not a replacement public baseline: it improves the citation frontier while regressing `justice_core` and `strong_textual_inference`. |
 | The repo now exposes one highest-accuracy same-budget recipe instead of leaving follow-up tuning vague. | The completed `accuracy-first` hybrid reaches `41.2%` overall held-out exact citation, with `passage_grounded_doctrinal_qa` at `50.7%` and `reviewed_relation_explanation` at `64.2%`, making it the strongest same-budget local result so far. | [docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md](./reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md), [docs/reports/christian_virtue_experiments.md](./reports/christian_virtue_experiments.md), [README.md](../README.md) | `make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop` | This is the current best same-budget accuracy result, not yet the clean public baseline replacement: `citation_grounded_moral_answer` exact stable-id recovery remains `0.0%`, and `justice_core` / `strong_textual_inference` only partially recover. |
 | The public release is reproducible and internally checked, not just manually curated. | The repo provides a pinned local setup, a one-command canonical reproduction path, and a publication verifier that checks docs, package surfaces, internal links, and release identity. | [README.md](../README.md), [docs/repository_map.md](./repository_map.md), [scripts/README.md](../scripts/README.md), [`.github/workflows/public-release-check.yml`](../.github/workflows/public-release-check.yml) | `make setup-christian-virtue-local`, `make reproduce-christian-virtue-qwen2-5-1-5b-local`, `make public-release-check` | The local path is the canonical public baseline. Larger CUDA runs remain important future work, but they are not the current public contract for this repo. |
@@ -66,6 +68,13 @@ If you want the completed citation-focused follow-up as well:
 ```bash
 make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
 make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+```
+
+If you want the strongest full-data local result:
+
+```bash
+make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+make report-christian-virtue-qwen2-5-1-5b-full-corpus
 ```
 
 If you want the current best same-budget accuracy result:

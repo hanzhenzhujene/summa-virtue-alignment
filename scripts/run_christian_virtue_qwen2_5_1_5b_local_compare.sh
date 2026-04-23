@@ -10,6 +10,7 @@ resolve_python_bin
 MODE="${1:-local-baseline}"
 BASE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/base_test"
 ADAPTER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test"
+FULL_CORPUS_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test"
 CITATION_FRONTIER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier_adapter_test"
 ACCURACY_FIRST_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/accuracy_first_hybrid_adapter_test"
 JUSTICE_GUARDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/justice_guarded_citation_repair_adapter_test"
@@ -23,6 +24,15 @@ case "${MODE}" in
     CANDIDATE_LABEL="qwen2.5-1.5b-local-baseline-adapter-test"
     BASELINE_HINT="Run the base evaluation first."
     CANDIDATE_HINT="Run the adapter evaluation first."
+    ;;
+  full-corpus)
+    BASE_METRICS="${ADAPTER_ROOT}/latest/metrics.json"
+    CANDIDATE_METRICS="${FULL_CORPUS_ROOT}/latest/metrics.json"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_compare_test"
+    BASELINE_LABEL="qwen2.5-1.5b-local-baseline-adapter-test"
+    CANDIDATE_LABEL="qwen2.5-1.5b-full-corpus-adapter-test"
+    BASELINE_HINT="Run the canonical local-baseline adapter evaluation first."
+    CANDIDATE_HINT="Run the full-corpus adapter evaluation first."
     ;;
   citation-frontier)
     BASE_METRICS="${ADAPTER_ROOT}/latest/metrics.json"
@@ -52,7 +62,7 @@ case "${MODE}" in
     CANDIDATE_HINT="Run the justice-guarded adapter evaluation first."
     ;;
   *)
-    echo "Unknown mode: ${MODE}. Expected 'local-baseline', 'citation-frontier', 'accuracy-first', or 'justice-guarded'." >&2
+    echo "Unknown mode: ${MODE}. Expected 'local-baseline', 'full-corpus', 'citation-frontier', 'accuracy-first', or 'justice-guarded'." >&2
     exit 1
     ;;
 esac

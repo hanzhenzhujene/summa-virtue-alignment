@@ -202,8 +202,8 @@ Current repo note:
 
 - the live `smoke` and `local-baseline` configs now use `32` train-time eval examples so the
   round-robin validation slice covers all four task families
-- the already-published baseline report still reflects the earlier `16`-example monitoring slice,
-  which affected train-time diagnostics rather than the held-out benchmark comparison itself
+- the flagship local-baseline report is synchronized to the current `32`-example train-time eval
+  recipe, so the published train/eval diagnostics now match the live config surface
 
 One-command canonical reproduction:
 
@@ -299,6 +299,75 @@ The local adapter eval wrapper now looks for `local_baseline/latest` first and f
 
 The heavier full `extended` config remains in the repo as an experimental path, but it is no longer
 the public default because `local-baseline` is the reliable rung on the current 16 GB Mac.
+
+## Long-Run Full-Corpus Local Recipe
+
+If you want the 1.5B local path to train on the full reviewed training split rather than the
+smaller capped local recipes, use the dedicated `full-corpus` rung:
+
+```bash
+make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+```
+
+This path keeps the same evidence-first split discipline:
+
+- trains on all `1475` rows in `train.jsonl`
+- evaluates during training on all `175` rows in `val.jsonl`
+- leaves the held-out `233`-row `test.jsonl` untouched for final adapter evaluation
+
+Current full-corpus recipe:
+
+- `Qwen/Qwen2.5-1.5B-Instruct`
+- Apple-Silicon `mps`
+- `float16`
+- standard LoRA, not CUDA QLoRA
+- `num_train_epochs=2.0`
+- `max_train_examples=null`
+- `max_eval_examples=null`
+- `max_seq_length=768`
+- `learning_rate=1e-4`
+- `gradient_accumulation_steps=8`
+- `warmup_ratio=0.05`
+
+Why this path exists:
+
+- it is the cleanest way to answer “what happens if this repo stops subsampling and actually trains
+  on the full reviewed Christian virtue training split?”
+- it keeps test evaluation honest instead of leaking `val` or `test` rows into training
+- it writes the same run artifacts as the smaller local recipes, but is meant to run in the
+  background for much longer
+
+Background monitoring surfaces:
+
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.log`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.pid`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/`
+
+Once the loop finishes, compare the held-out adapter result with:
+
+```bash
+make compare-christian-virtue-qwen2-5-1-5b-full-corpus
+```
+
+Completed full-corpus result:
+
+- report:
+  [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+- train run id: `20260422_223349`
+- adapter eval run id: `20260423_011453`
+- compare run id: `20260423_015138`
+- overall held-out exact citation: `71.2%`
+- strongest public held-out slices:
+  - `Passage-grounded doctrinal QA`: `100.0%`
+  - `Reviewed relation explanation`: `100.0%`
+  - `Virtue concept explanation`: `100.0%`
+  - `Justice core`: `71.4%`
+
+Curated full-corpus report rebuild:
+
+```bash
+make report-christian-virtue-qwen2-5-1-5b-full-corpus
+```
 
 ## Publication Workflow
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from datetime import datetime
 from pathlib import Path
 from typing import Any, cast
@@ -75,21 +76,27 @@ def _write_triptych_svg(
     rows: list[tuple[str, float, float, float]],
     output_path: Path,
 ) -> None:
-    width = 1040
+    width = 1080
     row_height = 74
-    top = 140
-    left = 290
-    chart_width = 660
-    height = top + len(rows) * row_height + 60
+    top = 154
+    left = 322
+    chart_width = 540
+    value_x = 884
+    height = top + len(rows) * row_height + 72
+    card_x = 24
+    card_y = 18
+    card_width = width - (card_x * 2)
+    card_height = height - 36
     max_value = max(
         max(baseline, frontier, guarded)
         for _, baseline, frontier, guarded in rows
     )
     if max_value <= 0:
         max_value = 1.0
+    axis_max = max(0.8, math.ceil(max_value * 10) / 10)
 
     def bar_width(value: float) -> float:
-        return (value / max_value) * chart_width
+        return (value / axis_max) * chart_width
 
     def bar_y(row_index: int, offset: int) -> int:
         return top + row_index * row_height + offset * 18
@@ -109,19 +116,39 @@ def _write_triptych_svg(
             '<desc id="desc">Baseline, citation-frontier, and justice-guarded exact '
             "citation scores across key held-out Christian virtue slices.</desc>"
         ),
-        '<rect width="100%" height="100%" fill="#ffffff"/>',
+        '<rect width="100%" height="100%" fill="#f8fafc"/>',
         (
-            f'<text x="56" y="52" font-size="28" font-family="{SERIF_STACK}" '
+            f'<rect x="{card_x}" y="{card_y}" width="{card_width}" height="{card_height}" '
+            'rx="18" fill="#ffffff" stroke="#d4d4d8" stroke-width="1.5"/>'
+        ),
+        (
+            f'<text x="72" y="52" font-size="28" font-family="{SERIF_STACK}" '
             'fill="#0f172a">Justice-Guarded Same-Budget Follow-Up</text>'
         ),
         (
-            f'<text x="56" y="84" font-size="16" font-family="{SANS_STACK}" '
+            f'<text x="72" y="76" font-size="13" font-family="{SANS_STACK}" '
             f'fill="#475569">{subtitle}</text>'
+        ),
+        (
+            '<rect x="790" y="32" width="250" height="74" rx="16" fill="#ecfdf5" '
+            'stroke="#10b981" stroke-width="1.5"/>'
+        ),
+        (
+            f'<text x="812" y="56" font-size="11" font-family="{SANS_STACK}" '
+            'font-weight="700" fill="#047857">Best guarded outcome</text>'
+        ),
+        (
+            f'<text x="812" y="80" font-size="22" font-family="{SANS_STACK}" '
+            'font-weight="700" fill="#065f46">39.1%</text>'
+        ),
+        (
+            f'<text x="882" y="80" font-size="11" font-family="{SANS_STACK}" '
+            'fill="#334155">overall exact citation with justice/STI recovery</text>'
         ),
     ]
 
     legend_y = 108
-    legend_x = 56
+    legend_x = 72
     for label, color in BAR_COLORS.items():
         svg_lines.append(
             f'<circle cx="{legend_x}" cy="{legend_y}" r="6" fill="{color}"/>'
@@ -134,7 +161,14 @@ def _write_triptych_svg(
         )
         legend_x += 180
 
-    for tick in range(0, int(max_value * 100) + 10, 10):
+    svg_lines.append(
+        (
+            f'<text x="{value_x}" y="{top - 26}" font-size="11" font-family="{SANS_STACK}" '
+            'font-weight="700" fill="#334155">Series score</text>'
+        )
+    )
+
+    for tick in range(0, int(axis_max * 100) + 10, 10):
         tick_value = tick / 100
         x = left + bar_width(tick_value)
         svg_lines.append(
@@ -183,11 +217,19 @@ def _write_triptych_svg(
             )
             svg_lines.append(
                 (
-                    f'<text x="{left + width_value + 8:.1f}" y="{y + 10}" '
+                    f'<text x="{value_x}" y="{y + 10}" '
                     f'font-size="12" font-family="{SANS_STACK}" '
                     f'fill="#334155">{series_label} {_pct(value)}</text>'
                 )
             )
+
+    svg_lines.append(
+        (
+            f'<text x="{left + chart_width / 2:.1f}" y="{height - 16}" font-size="12" '
+            f'font-family="{SANS_STACK}" text-anchor="middle" fill="#475569">'
+            "Held-out exact citation match</text>"
+        )
+    )
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text("\n".join(svg_lines) + "\n</svg>\n", encoding="utf-8")
@@ -443,6 +485,11 @@ def main() -> None:
             (
                 "the justice guard while restoring at least some of the "
                 "frontier's `citation_grounded_moral_answer` gain."
+            ),
+            (
+                "That next follow-up is now documented in the "
+                "[Accuracy-first hybrid report]"
+                "(./christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md)."
             ),
             "",
             "## Reproduce",

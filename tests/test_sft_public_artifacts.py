@@ -167,6 +167,10 @@ def test_verify_publication_bundle_fixture(tmp_path) -> None:
     assert "release_notes.md" in summary["checked_package_surfaces"]
     assert "README.md" in summary["checked_path_leak_surfaces"]
     assert (
+        "docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md"
+        in summary["checked_docs"]
+    )
+    assert (
         "docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md"
         in summary["checked_docs"]
     )

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Run the smaller remote-GPU Christian virtue training rung for smoke or proto experiments.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

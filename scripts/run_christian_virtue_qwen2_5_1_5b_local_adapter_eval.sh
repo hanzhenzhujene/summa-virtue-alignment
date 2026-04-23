@@ -12,6 +12,7 @@ ENV_PREFIX=()
 LOCAL_BASELINE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline"
 EXTENDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/extended"
 SMOKE_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/smoke"
+FULL_CORPUS_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus"
 CITATION_FRONTIER_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/citation_frontier"
 ACCURACY_FIRST_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/accuracy_first_hybrid"
 JUSTICE_GUARDED_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/justice_guarded_citation_repair"
@@ -29,6 +30,21 @@ case "${MODE}" in
     fi
     INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml"
     RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test"
+    ;;
+  full-corpus)
+    if [[ ! -e "${FULL_CORPUS_ROOT}/latest" ]]; then
+      echo "Full-corpus adapter directory not found: ${FULL_CORPUS_ROOT}/latest" >&2
+      echo "Run the full-corpus training first." >&2
+      exit 1
+    fi
+    ADAPTER_DIR="${FULL_CORPUS_ROOT}/latest"
+    INFERENCE_CONFIG="configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml"
+    RUN_ROOT="${ROOT_DIR}/runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test"
+    ENV_PREFIX=(
+      env
+      "PYTORCH_ENABLE_MPS_FALLBACK=${PYTORCH_ENABLE_MPS_FALLBACK:-1}"
+      "PYTORCH_MPS_HIGH_WATERMARK_RATIO=${PYTORCH_MPS_HIGH_WATERMARK_RATIO:-0.0}"
+    )
     ;;
   citation-frontier)
     if [[ ! -e "${CITATION_FRONTIER_ROOT}/latest" ]]; then
@@ -71,7 +87,7 @@ case "${MODE}" in
     )
     ;;
   *)
-    echo "Unknown mode: ${MODE}. Expected 'local-baseline', 'citation-frontier', 'accuracy-first', or 'justice-guarded'." >&2
+    echo "Unknown mode: ${MODE}. Expected 'local-baseline', 'full-corpus', 'citation-frontier', 'accuracy-first', or 'justice-guarded'." >&2
     exit 1
     ;;
 esac

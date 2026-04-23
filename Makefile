@@ -3,6 +3,7 @@ VENV ?= .venv
 BIN := $(VENV)/bin
 LOCAL_15B_ROOT := runs/christian_virtue/qwen2_5_1_5b_instruct
 LOCAL_15B_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md
+LOCAL_15B_FULL_CORPUS_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md
 LOCAL_15B_CITATION_FRONTIER_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md
 LOCAL_15B_JUSTICE_GUARDED_REPORT := docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md
 LOCAL_15B_PACKAGE_DIR := artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter
@@ -19,6 +20,9 @@ LOCAL_15B_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/adapter_test/latest/predictio
 LOCAL_15B_CITATION_FRONTIER_TRAIN_METADATA := $(LOCAL_15B_ROOT)/citation_frontier/latest/train_metadata.json
 LOCAL_15B_CITATION_FRONTIER_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/metrics.json
 LOCAL_15B_CITATION_FRONTIER_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/citation_frontier_adapter_test/latest/predictions.jsonl
+LOCAL_15B_FULL_CORPUS_TRAIN_METADATA := $(LOCAL_15B_ROOT)/full_corpus/latest/train_metadata.json
+LOCAL_15B_FULL_CORPUS_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/full_corpus_adapter_test/latest/metrics.json
+LOCAL_15B_FULL_CORPUS_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/full_corpus_adapter_test/latest/predictions.jsonl
 LOCAL_15B_ACCURACY_FIRST_TRAIN_METADATA := $(LOCAL_15B_ROOT)/accuracy_first_hybrid/latest/train_metadata.json
 LOCAL_15B_ACCURACY_FIRST_ADAPTER_METRICS := $(LOCAL_15B_ROOT)/accuracy_first_hybrid_adapter_test/latest/metrics.json
 LOCAL_15B_ACCURACY_FIRST_ADAPTER_PREDICTIONS := $(LOCAL_15B_ROOT)/accuracy_first_hybrid_adapter_test/latest/predictions.jsonl
@@ -63,28 +67,34 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
+	train-christian-virtue-qwen2-5-1-5b-full-corpus \
 	train-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	train-christian-virtue-qwen2-5-1-5b-accuracy-first \
 	train-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	train-christian-virtue-qwen2-5-1-5b-local-extended \
 	eval-christian-virtue-qwen2-5-1-5b-local-base-test \
 	eval-christian-virtue-qwen2-5-1-5b-local-adapter-test \
+	eval-christian-virtue-qwen2-5-1-5b-full-corpus-test \
 	eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test \
 	eval-christian-virtue-qwen2-5-1-5b-accuracy-first-test \
 	eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
+	compare-christian-virtue-qwen2-5-1-5b-full-corpus \
 	compare-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	compare-christian-virtue-qwen2-5-1-5b-accuracy-first \
 	compare-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	audit-christian-virtue-qwen2-5-1-5b-local-frontier \
 	audit-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	report-christian-virtue-qwen2-5-1-5b-local-baseline \
+	report-christian-virtue-qwen2-5-1-5b-full-corpus \
 	report-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	report-christian-virtue-qwen2-5-1-5b-justice-guarded \
 	package-christian-virtue-qwen2-5-1-5b-local-adapter \
 	publish-christian-virtue-qwen2-5-1-5b-local-adapter \
 	verify-christian-virtue-qwen2-5-1-5b-local-publishable \
 	run-christian-virtue-qwen2-5-1-5b-local-loop \
+	run-christian-virtue-qwen2-5-1-5b-full-corpus-loop \
+	launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop \
 	run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop \
 	run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop \
 	run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop \
@@ -244,6 +254,9 @@ train-christian-virtue-qwen2-5-1-5b-local-smoke:
 train-christian-virtue-qwen2-5-1-5b-local-baseline:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh local-baseline
 
+train-christian-virtue-qwen2-5-1-5b-full-corpus:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh full-corpus
+
 train-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh citation-frontier
 
@@ -262,6 +275,9 @@ eval-christian-virtue-qwen2-5-1-5b-local-base-test:
 eval-christian-virtue-qwen2-5-1-5b-local-adapter-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh
 
+eval-christian-virtue-qwen2-5-1-5b-full-corpus-test:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh full-corpus
+
 eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh citation-frontier
 
@@ -273,6 +289,9 @@ eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test:
 
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
+
+compare-christian-virtue-qwen2-5-1-5b-full-corpus:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh full-corpus
 
 compare-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh citation-frontier
@@ -293,6 +312,10 @@ report-christian-virtue-qwen2-5-1-5b-local-baseline:
 	$(BIN)/python scripts/build_christian_virtue_local_report.py \
 		--published-model-url $(LOCAL_15B_HF_URL) \
 		--release-url $(LOCAL_15B_RELEASE_URL)
+
+report-christian-virtue-qwen2-5-1-5b-full-corpus:
+	$(BIN)/python scripts/build_christian_virtue_full_corpus_report.py \
+		--output $(LOCAL_15B_FULL_CORPUS_REPORT)
 
 report-christian-virtue-qwen2-5-1-5b-citation-frontier:
 	$(BIN)/python scripts/build_christian_virtue_citation_frontier_report.py \
@@ -319,6 +342,10 @@ verify-christian-virtue-qwen2-5-1-5b-local-publishable:
 		echo "Canonical local run artifacts found; rebuilding report and package."; \
 		$(MAKE) report-christian-virtue-qwen2-5-1-5b-local-baseline; \
 		$(MAKE) audit-christian-virtue-qwen2-5-1-5b-local-frontier; \
+		if [ -f "$(LOCAL_15B_FULL_CORPUS_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_FULL_CORPUS_ADAPTER_METRICS)" ] && [ -f "$(LOCAL_15B_FULL_CORPUS_ADAPTER_PREDICTIONS)" ]; then \
+			echo "Full-corpus local artifacts found; rebuilding full-corpus report."; \
+			$(MAKE) report-christian-virtue-qwen2-5-1-5b-full-corpus; \
+		fi; \
 		if [ -f "$(LOCAL_15B_CITATION_FRONTIER_TRAIN_METADATA)" ] && [ -f "$(LOCAL_15B_CITATION_FRONTIER_ADAPTER_METRICS)" ] && [ -f "$(LOCAL_15B_CITATION_FRONTIER_ADAPTER_PREDICTIONS)" ]; then \
 			echo "Citation-frontier follow-up artifacts found; rebuilding follow-up report."; \
 			$(MAKE) report-christian-virtue-qwen2-5-1-5b-citation-frontier; \
@@ -337,6 +364,12 @@ public-release-check:
 
 run-christian-virtue-qwen2-5-1-5b-local-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh
+
+run-christian-virtue-qwen2-5-1-5b-full-corpus-loop:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh full-corpus
+
+launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop:
+	bash scripts/launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh
 
 run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_loop.sh citation-frontier

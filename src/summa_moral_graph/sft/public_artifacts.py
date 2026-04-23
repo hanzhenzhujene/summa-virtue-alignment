@@ -26,6 +26,7 @@ FRONTIER_AUDIT_PATH = Path("docs/reports/christian_virtue_citation_frontier_audi
 FRONTIER_FOLLOWUP_REPORT_PATH = (
     Path("docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md")
 )
+FULL_CORPUS_REPORT_PATH = Path("docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md")
 JUSTICE_GUARDED_REPORT_PATH = (
     Path("docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md")
 )
@@ -123,10 +124,13 @@ def build_publication_doc_expectations(
             hf_url,
             release_url,
             str(report_path),
+            str(FULL_CORPUS_REPORT_PATH),
             release_tag,
             strongest_task_label,
             strongest_task_metric,
             strongest_tract_label,
+            "71.2%",
+            "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
         ],
         Path("docs/fine_tune_with_summa_moral_graph.md"): [
             hf_url,
@@ -139,10 +143,12 @@ def build_publication_doc_expectations(
         PUBLIC_CLAIM_MAP_PATH: [
             "# Public Claim Map",
             "36.5%",
+            "71.2%",
             "38.6%",
             "41.2%",
             "3.0%",
             "make public-release-check",
+            "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
             "make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop",
             "not a general theology chatbot",
             "not a replacement public baseline",
@@ -157,6 +163,9 @@ def build_publication_doc_expectations(
             hf_url,
             release_url,
             run_id,
+            "71.2%",
+            "100.0%",
+            "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
             strongest_task_label,
             strongest_task_metric,
             strongest_tract_label,
@@ -165,13 +174,27 @@ def build_publication_doc_expectations(
             "requirements/local-mps-py312.lock.txt",
             "scripts/setup_christian_virtue_local.sh",
             "make reproduce-christian-virtue-qwen2-5-1-5b-local",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_report.md",
+            "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
         ],
         REPORT_ASSETS_README_PATH: [
             "christian_virtue_qwen2_5_1_5b_local_baseline_training_curves.svg",
             "christian_virtue_qwen2_5_1_5b_local_recipe_timing_comparison.svg",
             "christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_vs_baseline.svg",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg",
+            "christian_virtue_qwen2_5_1_5b_full_corpus_training_curves.svg",
             "christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg",
             "Flagship report",
+        ],
+        FULL_CORPUS_REPORT_PATH: [
+            "# Full-Corpus Local Christian Virtue Report",
+            "71.2%",
+            "100.0%",
+            "71.4%",
+            "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
+            "make report-christian-virtue-qwen2-5-1-5b-full-corpus",
+            "strongest full-data local result",
         ],
         FRONTIER_AUDIT_PATH: [
             "# Christian Virtue Citation Frontier Audit",

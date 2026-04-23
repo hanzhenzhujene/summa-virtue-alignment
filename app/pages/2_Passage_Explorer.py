@@ -1,3 +1,5 @@
+"""Legacy multipage entrypoint for the passage-level reader and explorer view."""
+
 from __future__ import annotations
 
 from summa_moral_graph.viewer.shell import render_dashboard
