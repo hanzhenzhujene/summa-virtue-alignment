@@ -2,6 +2,24 @@
 
 ## Progress
 
+- The repo is now getting a lightweight qualitative chat smoke workflow so the improved assistant
+  behavior stops living only in ad hoc manual probing:
+  - the new target is a timestamped `full_corpus_chat_smoke` run family with a tiny prompt panel
+    covering definition, comparison, graph relation, and practical-moral questions
+  - the smoke workflow is intentionally fast and deterministic by default so it can be run often
+    during chat-layer iteration
+  - the Gradio and Streamlit example prompts are also being aligned to that same prompt panel, so
+    the public chat surface and the quality gate stop drifting apart
+  - the first-use docs are also being tightened so the path from setup -> smoke -> local chat is
+    obvious to a new reader without extra explanation
+- The chat layer is now being extended into richer practical-moral prompts without turning into
+  unsupported self-help:
+  - the immediate targets are first-person moral struggles such as anger, envy, overindulgence,
+    and fear/courage
+  - the implementation is not generic life coaching; it maps those prompts onto Aquinas's own
+    moral categories and returns only short practical direction supported by stable passages
+  - this gives the assistant a more recognizably virtuous teaching voice while keeping it inside
+    the repo's evidence-first constraints
 - The chat evidence store is now being widened to the full reviewed doctrinal surface actually
   present in the repo, not just the narrower published SFT export sources:
   - the immediate reason is that some reviewed relations needed for natural chat, such as justice
@@ -1326,6 +1344,24 @@
 
 ## Surprises & Discoveries
 
+- The main remaining quality risk in the chat surface is no longer just bad answers; it is silent
+  drift between manual demos and what the repo actually tests:
+  - once the deterministic teacher-style layer started getting better, the lack of a small
+    qualitative smoke harness became more of a release-surface gap than a research gap
+  - the most useful next check is not another heavyweight benchmark, but a tiny fixed panel that
+    fails loudly if the chat layer slides back into benchmark boilerplate or loses its strongest
+    Thomistic practical prompts
+- On the user-experience side, the remaining roughness was not missing capability but first-run
+  friction:
+  - a first-time reader should not have to infer that `setup -> smoke -> chat` is the right path
+  - wide one-row sample-prompt grids also look polished in code but feel cramped in the actual UI
+- The main risk in richer practical prompts was not lack of evidence, but stylistic drift:
+  - the repo already had enough textual material to answer about anger, envy, temperance, and
+    courage
+  - the real danger was that an open-ended "what should I do?" prompt would invite generic
+    modern therapeutic language that the user explicitly does not want
+  - the safe pattern is therefore to translate the struggle into a Thomistic virtue/vice frame
+    first, then offer one or two concrete directions that are directly supported by passage text
 - The chat evidence gap was not only about answer style; it was also about source coverage:
   - some reviewed doctrinal relations that are useful in conversation were present in the repo but
     absent from the narrower `christian_virtue_v1` source list used for chat retrieval
@@ -2017,6 +2053,33 @@
 
 ## Decision Log
 
+- Add a lightweight chat smoke workflow instead of treating qualitative chat evaluation as only a
+  manual ritual.
+  Reason:
+  - the smoke runner should use the same deterministic teacher-style answer layer as the live chat
+    path, so it validates the actual answer discipline rather than a separate mock evaluator
+  - it should stay fast by default and only load the full model when explicitly requested
+  Consequence:
+  - the repo now has a timestamped `full_corpus_chat_smoke` run family for quick qualitative checks
+  - the same prompt panel can also feed the chat UI examples, so public demos and release testing
+    stay aligned
+- Tighten the first-use chat path in the docs and UI instead of assuming readers will infer it.
+  Reason:
+  - the deliverable is stronger when setup, smoke, and chat are presented as one obvious sequence
+  - chat examples should be easy to click and broad enough to show the model's best current modes
+  Consequence:
+  - README and the scripts guide now spell out the first-use path more clearly
+  - the Streamlit and Gradio chat surfaces now present the example prompts more cleanly
+- Add a practical-moral answer mode for first-person struggle prompts, but keep it tightly
+  passage-grounded and category-first.
+  Reason:
+  - the user wants a more virtuous teacher, not a chatbot that parrots generic self-help slogans
+  - first-person prompts like anger, jealousy, pleasure, and fear are where that difference is
+    most visible
+  Consequence:
+  - the assistant now reframes those struggles through Aquinas's own categories before giving
+    practical direction
+  - this widens the assistant's usefulness without relaxing the repo's evidence discipline
 - Expand the chat evidence store with reviewed doctrinal pilot annotations, while leaving the SFT
   training export unchanged.
   Reason:
@@ -2948,6 +3011,20 @@
 
 ## Outcomes & Retrospective
 
+- The Christian virtue chat surface is moving from "feels better in manual probing" toward a more
+  durable release artifact:
+  - richer practical-moral prompts are now being paired with a small timestamped smoke panel
+    instead of relying only on memory or one-off examples
+  - this is the right scale of testing for the current phase: it is much cheaper than another
+    training run, but much more durable than hand-checking one or two questions
+  - the first-run operator path is also cleaner, because the docs and chat UIs now reinforce the
+    same setup -> smoke -> conversation sequence
+- The assistant now begins to sound more like a moral teacher in the user's own practical
+  situations:
+  - anger is answered through right reason, meekness, and the discipline of revenge
+  - jealousy is answered as envy, with charity and joy in another's good as the corrective frame
+  - overindulgence is answered through temperance as moderated desire under reason
+  - fear and courage are answered through fortitude as refusing to abandon reason in difficulty
 - The chat layer now sees more of what the repo already knows:
   - relation answers are not only more natural, but also less artificially constrained by the
     narrower SFT export source list

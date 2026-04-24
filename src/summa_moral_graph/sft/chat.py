@@ -212,6 +212,13 @@ class ChatCuratedGuidanceAnswer:
 
 
 @dataclass(frozen=True)
+class ChatCuratedPracticalAnswer:
+    passage_ids: tuple[str, ...]
+    body: tuple[str, ...]
+    required_snippets: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class ChatRelationQuery:
     subject_phrase: str
     object_phrase: str | None = None
@@ -369,6 +376,81 @@ CURATED_GUIDANCE_ANSWERS: dict[str | tuple[str, str], ChatCuratedGuidanceAnswer]
     ),
 }
 
+CURATED_PRACTICAL_ANSWERS: dict[str, ChatCuratedPracticalAnswer] = {
+    "anger": ChatCuratedPracticalAnswer(
+        passage_ids=("st.ii-ii.q158.a001.resp", "st.ii-ii.q157.a001.resp"),
+        body=(
+            (
+                "Aquinas would not tell you simply to suppress anger, but to bring "
+                "it under right reason."
+            ),
+            (
+                "Anger can be fitting when it follows reason, but meekness checks "
+                "the first onrush of anger so the desire for revenge does not outrun "
+                "what is just."
+            ),
+        ),
+        required_snippets=(
+            "if one is angry in accordance with right reason, one's anger is deserving of praise",
+            "meekness properly mitigates the passion of anger",
+        ),
+    ),
+    "envy": ChatCuratedPracticalAnswer(
+        passage_ids=("st.ii-ii.q036.a001.resp", "st.ii-ii.q028.a001.resp"),
+        body=(
+            (
+                "Aquinas would first tell you to name that movement honestly: if "
+                "another person's good feels like your own loss, that is envy."
+            ),
+            (
+                "The remedy is to reorder the heart by charity, because charity "
+                "rejoices in a neighbor's good, whereas envy sorrows over it."
+            ),
+        ),
+        required_snippets=(
+            "envy grieves for another's good",
+            "joy is caused by love",
+        ),
+    ),
+    "temperance": ChatCuratedPracticalAnswer(
+        passage_ids=("st.ii-ii.q141.a001.resp", "st.ii-ii.q141.a006.resp"),
+        body=(
+            (
+                "To practice temperance, let reason set the measure of pleasure "
+                "instead of letting pleasure rule you."
+            ),
+            (
+                "Aquinas treats temperance as moderated desire, so pleasurable "
+                "things should be used only as far as the needs of life rightly require."
+            ),
+        ),
+        required_snippets=(
+            "temperance evidently inclines man to this",
+            "uses them only for as much as the need of this life requires",
+        ),
+    ),
+    "fear_and_courage": ChatCuratedPracticalAnswer(
+        passage_ids=("st.ii-ii.q123.a001.resp", "st.ii-ii.q123.a012.resp"),
+        body=(
+            (
+                "Aquinas would not say courage means feeling no fear; he would say "
+                "fortitude keeps you from abandoning reason because of difficulty or danger."
+            ),
+            (
+                "So the question is not whether the situation feels hard, but "
+                "whether fear is pulling you away from the good that right reason requires."
+            ),
+        ),
+        required_snippets=(
+            "through the will being disinclined to follow that which is in accordance with reason",
+            (
+                "fear of dangers of death has the greatest power to make man "
+                "recede from the good of reason"
+            ),
+        ),
+    ),
+}
+
 
 def _chat_tokens(text: str) -> frozenset[str]:
     tokens = [
@@ -411,6 +493,13 @@ def _query_mode(query: str) -> str:
         return "definition"
     if " differ from " in normalized or "difference between" in normalized:
         return "comparison"
+    if (
+        normalized.startswith("i ")
+        or "what should i do" in normalized
+        or "how should i respond" in normalized
+        or "hard situation" in normalized
+    ):
+        return "practical"
     if normalized.startswith("why "):
         return "why"
     if normalized.startswith("how "):
@@ -457,6 +546,23 @@ def _extract_why_phrase(query: str) -> str | None:
         match = re.match(pattern, normalized)
         if match is not None:
             return match.group("value").strip(" ?.,")
+    return None
+
+
+def _extract_practical_key(query: str) -> str | None:
+    normalized = " ".join(query.lower().split())
+    if any(token in normalized for token in ("anger", "angry", "revenge")):
+        return "anger"
+    if any(token in normalized for token in ("jealous", "envy", "envious")):
+        return "envy"
+    if "temperance" in normalized or any(
+        token in normalized for token in ("overindulge", "indulge", "pleasure")
+    ):
+        return "temperance"
+    if "fear" in normalized and any(
+        token in normalized for token in ("courage", "fortitude", "hard situation", "hard")
+    ):
+        return "fear_and_courage"
     return None
 
 
@@ -1217,14 +1323,17 @@ def _annotation_passages(
 def _clean_rationale_sentence(text: str) -> str:
     cleaned = text.strip()
     replacements = (
-        (r"^Q\d+\s+explicitly\s+", "Aquinas explicitly "),
-        (r"^Question\s+\d+\s+explicitly\s+", "Aquinas explicitly "),
+        (r"^Q\d+\s+explicitly\s+", "Aquinas "),
+        (r"^Question\s+\d+\s+explicitly\s+", "Aquinas "),
         (r"^The passage explicitly concludes that\s+", "Aquinas concludes that "),
         (r"^The passage says\s+", "Aquinas says "),
         (r"^The Augustinian definition explicitly says\s+", "Aquinas says "),
+        (r"^Aquinas\s+(?:says|states|concludes)\s+that\s+", ""),
     )
     for pattern, replacement in replacements:
         cleaned = re.sub(pattern, replacement, cleaned, flags=re.IGNORECASE)
+    if cleaned and cleaned[0].islower():
+        cleaned = cleaned[0].upper() + cleaned[1:]
     if cleaned and cleaned[-1] not in ".!?":
         cleaned = f"{cleaned}."
     return cleaned
@@ -1502,6 +1611,24 @@ def _deterministic_guidance_answer(
         ):
             return _render_curated_answer(curated.body, curated_passages)
     return None
+
+
+def _deterministic_practical_answer(
+    query: str,
+    bundle: ChatEvidenceBundle,
+) -> str | None:
+    key = _extract_practical_key(query)
+    if key is None:
+        return None
+    curated = CURATED_PRACTICAL_ANSWERS.get(key)
+    if curated is None:
+        return None
+    curated_passages = _preferred_passages_by_id(curated.passage_ids)
+    if not curated_passages:
+        return None
+    if not _passages_cover_required_snippets(curated_passages, curated.required_snippets):
+        return None
+    return _render_curated_answer(curated.body, curated_passages)
 
 
 def _deterministic_relation_answer(
@@ -1875,28 +2002,12 @@ def generate_chat_reply(
     prepared_messages, evidence_bundle = _augment_chat_messages(messages)
     user_messages = [item for item in messages if item.get("role") == "user"]
     current_user_text = str(user_messages[-1]["content"]).strip() if user_messages else ""
-    query_mode = _query_mode(current_user_text)
-
-    if evidence_bundle is not None and query_mode == "definition":
-        deterministic = _deterministic_definition_answer(current_user_text, evidence_bundle)
-        if deterministic is not None:
-            return deterministic
-    if evidence_bundle is not None and query_mode == "comparison":
-        deterministic = _deterministic_comparison_answer(current_user_text, evidence_bundle)
-        if deterministic is not None:
-            return deterministic
-    if evidence_bundle is not None and query_mode == "relation":
-        deterministic = _deterministic_relation_answer(current_user_text, evidence_bundle)
-        if deterministic is not None:
-            return deterministic
-    if evidence_bundle is not None and query_mode == "why":
-        deterministic = _deterministic_why_answer(current_user_text, evidence_bundle)
-        if deterministic is not None:
-            return deterministic
-    if evidence_bundle is not None and query_mode == "guidance":
-        deterministic = _deterministic_guidance_answer(current_user_text, evidence_bundle)
-        if deterministic is not None:
-            return deterministic
+    deterministic = generate_deterministic_chat_reply(
+        current_user_text,
+        evidence_bundle=evidence_bundle,
+    )
+    if deterministic is not None:
+        return deterministic
 
     draft = _generate_chat_response(
         model=bundle.model,
@@ -1921,6 +2032,32 @@ def generate_chat_reply(
         assistant_text=final_text,
         evidence_bundle=evidence_bundle,
     )
+
+
+def generate_deterministic_chat_reply(
+    query: str,
+    *,
+    evidence_bundle: ChatEvidenceBundle | None = None,
+) -> str | None:
+    current_query = query.strip()
+    if not current_query:
+        return None
+    bundle = evidence_bundle or retrieve_chat_evidence(current_query)
+    query_mode = _query_mode(current_query)
+
+    if query_mode == "definition":
+        return _deterministic_definition_answer(current_query, bundle)
+    if query_mode == "comparison":
+        return _deterministic_comparison_answer(current_query, bundle)
+    if query_mode == "relation":
+        return _deterministic_relation_answer(current_query, bundle)
+    if query_mode == "practical":
+        return _deterministic_practical_answer(current_query, bundle)
+    if query_mode == "why":
+        return _deterministic_why_answer(current_query, bundle)
+    if query_mode == "guidance":
+        return _deterministic_guidance_answer(current_query, bundle)
+    return None
 
 
 def _chat_manifest(

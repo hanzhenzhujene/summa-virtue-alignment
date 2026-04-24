@@ -6,6 +6,7 @@ from functools import lru_cache
 from pathlib import Path
 
 from ..sft import (
+    DEFAULT_CHAT_EXAMPLE_PROMPTS,
     DEFAULT_CHAT_OUTPUT_ROOT,
     DEFAULT_CHAT_SYSTEM_PROMPT,
     ChatModelBundle,
@@ -25,14 +26,11 @@ DEFAULT_GRADIO_CHAT_CONFIG_PATH = (
 )
 DEFAULT_GRADIO_CHAT_TITLE = "Christian Virtue Chat"
 DEFAULT_GRADIO_CHAT_DESCRIPTION = (
-    "Talk directly to the strongest repo-local full-corpus LoRA adapter. Each browser session "
-    "writes a timestamped transcript and manifest under `runs/.../full_corpus_chat/`."
+    "Talk directly to the strongest repo-local full-corpus LoRA adapter. Use the example prompts "
+    "to probe definitions, doctrinal relations, and practical-moral questions. Each browser "
+    "session writes a timestamped transcript and manifest under `runs/.../full_corpus_chat/`."
 )
-DEFAULT_GRADIO_CHAT_EXAMPLES = [
-    "What is prudence according to Aquinas?",
-    "How does justice differ from mercy?",
-    "What virtue opposes acedia?",
-]
+DEFAULT_GRADIO_CHAT_EXAMPLES = list(DEFAULT_CHAT_EXAMPLE_PROMPTS)
 
 
 def gradio_session_status_markdown(
@@ -211,7 +209,7 @@ def build_gradio_chat_app(
                 )
                 prompt = gr.Textbox(
                     label="Ask about virtue, vice, acts, or doctrinal relation",
-                    placeholder="What is prudence according to Aquinas?",
+                    placeholder="I struggle with anger. How should I respond according to Aquinas?",
                     lines=2,
                     max_lines=6,
                     autofocus=True,
@@ -220,7 +218,7 @@ def build_gradio_chat_app(
                 gr.Examples(
                     examples=[[value] for value in DEFAULT_GRADIO_CHAT_EXAMPLES],
                     inputs=[prompt],
-                    label="Example prompts",
+                    label="Example prompts (definition, relation, practical)",
                 )
             with gr.Column(scale=4):
                 gr.Markdown(
@@ -228,6 +226,7 @@ def build_gradio_chat_app(
                     "- `Start New Logged Session` creates a fresh timestamped run directory.\n"
                     "- `Clear Conversation` resets the current transcript but keeps the same run.\n"
                     "- Replies are generated against the full-corpus LoRA adapter.\n"
+                    "- Try both doctrinal prompts and practical-moral prompts.\n"
                 )
                 max_new_tokens = gr.Slider(
                     minimum=96,

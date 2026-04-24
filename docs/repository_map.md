@@ -107,9 +107,13 @@ These committed exports are the public dataset entrypoint for model training and
 - `streamlit_app.py`: unified Streamlit entrypoint
 - `scripts/gradio_christian_virtue_chat.py`: recommended local Gradio chat entrypoint for the
   full-corpus adapter
+- `scripts/smoke_test_christian_virtue_chat.py`: lightweight qualitative smoke panel for the
+  current Christian virtue chat layer
 - `src/summa_moral_graph/app/gradio_chat.py`: Gradio chat surface and session logging controls
 - `app/pages/6_Chat.py`: user-friendly chat page for the full-corpus Christian virtue adapter
 - `src/summa_moral_graph/app/chat.py`: Streamlit chat surface, session logging, and controls
+- `src/summa_moral_graph/sft/chat_smoke.py`: shared prompt panel and report writer for qualitative
+  chat smoke checks
 - `src/summa_moral_graph/viewer/`: shared viewer shell, routing, and render helpers
 - `src/summa_moral_graph/graph/`: graph exports and tract synthesis helpers
 
@@ -164,6 +168,7 @@ and remote-model utilities.
 - `configs/inference/qwen2_5_1_5b_instruct_accuracy_first_adapter_test.yaml`
 - `configs/inference/qwen2_5_1_5b_instruct_justice_guarded_adapter_test.yaml`
 - `scripts/chat_christian_virtue_model.py`
+- `scripts/smoke_test_christian_virtue_chat.py`
 - `scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
 - `scripts/build_christian_virtue_full_corpus_report.py`
 - `scripts/build_christian_virtue_citation_frontier_report.py`

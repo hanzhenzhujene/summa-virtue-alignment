@@ -32,6 +32,10 @@ These are the scripts behind those public entrypoints:
   - launches the recommended local Gradio chat UI for the completed `full-corpus` LoRA adapter
   - reuses the same adapter/runtime path and writes timestamped transcripts under
     `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+- `smoke_test_christian_virtue_chat.py`
+  - runs a lightweight qualitative smoke panel over the local Christian virtue chat layer
+  - checks definitions, comparisons, graph-native relation questions, and practical-moral prompts
+  - writes timestamped reports under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_smoke/`
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
@@ -62,6 +66,7 @@ The preferred public commands are:
 
 ```bash
 make setup-christian-virtue-local
+make smoke-test-christian-virtue-chat
 make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
@@ -75,6 +80,19 @@ make report-christian-virtue-qwen2-5-1-5b-citation-frontier
 make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop
 make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
 make report-christian-virtue-qwen2-5-1-5b-justice-guarded
+```
+
+If you are new to the repo, use the first three commands in that order:
+
+1. `make setup-christian-virtue-local`
+2. `make smoke-test-christian-virtue-chat`
+3. `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus`
+
+The smoke command is deterministic by default, so it is fast enough to run often while you keep
+improving the chat layer. If you want the full live model path instead, run:
+
+```bash
+.venv/bin/python scripts/smoke_test_christian_virtue_chat.py --with-model
 ```
 
 After the strongest repo-local run or the smaller published-package path completes, the most
@@ -93,6 +111,7 @@ For the longer full-corpus local experiment, the main monitoring surfaces are:
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.log`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.pid`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_smoke/latest/`
 
 For training runs, inspect `subset_summary.json` inside the run directory if you want the exact
 deterministic task/tract mix that was selected for a capped local experiment.
@@ -115,6 +134,7 @@ your own model or adapt the method:
 - `verify_christian_virtue_publication.py`
 - `audit_christian_virtue_frontier.py`
 - `smoke_test_christian_virtue_sft.py`
+- `smoke_test_christian_virtue_chat.py`
 
 ## Remote Small-Model CUDA Loop
 

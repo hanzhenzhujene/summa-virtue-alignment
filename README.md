@@ -273,16 +273,34 @@ theological evaluation story.
 
 You can talk directly to the completed `full-corpus` adapter in a user-friendly local chat app.
 
-Recommended path:
+First local use:
 
 ```bash
+make setup-christian-virtue-local
+make smoke-test-christian-virtue-chat
 make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
 ```
 
-That launches a Gradio chat UI against `Qwen/Qwen2.5-1.5B-Instruct` plus the strongest repo-local
-LoRA adapter and writes each timestamped session under:
+That sequence:
+
+- builds the pinned local environment
+- runs a fast qualitative smoke panel over the current chat layer
+- opens a local Gradio chat UI against `Qwen/Qwen2.5-1.5B-Instruct` plus the strongest
+  repo-local LoRA adapter
+
+The chat and smoke artifacts are written under:
 
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_smoke/`
+
+The smoke command is a quick qualitative check for the current chat layer. It probes:
+
+- direct definitions
+- relation questions from the reviewed moral graph
+- practical-moral prompts such as anger, envy, temperance, and fear/courage
+
+The Gradio app is local to your machine. It does not require a separate account and does not rely
+on Streamlit Cloud-style idle behavior.
 
 If you prefer the terminal, the CLI fallback is still:
 

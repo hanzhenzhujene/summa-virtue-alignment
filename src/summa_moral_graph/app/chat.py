@@ -5,6 +5,7 @@ from __future__ import annotations
 import streamlit as st
 
 from ..sft import (
+    DEFAULT_CHAT_EXAMPLE_PROMPTS,
     DEFAULT_CHAT_OUTPUT_ROOT,
     DEFAULT_CHAT_SYSTEM_PROMPT,
     ChatModelBundle,
@@ -33,11 +34,7 @@ DEFAULT_CHAT_CONFIG_PATH = (
 )
 CHAT_SESSION_STATE_KEY = "smg_full_corpus_chat_session"
 CHAT_TOKENS_STATE_KEY = "smg_full_corpus_chat_max_new_tokens"
-CHAT_SAMPLE_PROMPTS = [
-    "What is prudence according to Aquinas?",
-    "How does justice differ from mercy?",
-    "What virtue opposes acedia?",
-]
+CHAT_SAMPLE_PROMPTS = list(DEFAULT_CHAT_EXAMPLE_PROMPTS)
 
 
 @st.cache_resource(show_spinner="Loading the full-corpus LoRA chat model...")
@@ -128,8 +125,9 @@ def render_chat_page() -> None:
         page_title="Christian Virtue Chat",
         title="Christian Virtue Chat",
         description=(
-            "Talk directly to the strongest repo-local full-corpus LoRA adapter and keep every "
-            "reply logged to a timestamped transcript."
+            "Talk directly to the strongest repo-local full-corpus LoRA adapter, using prompts "
+            "that cover definitions, doctrinal relations, and practical-moral questions. Every "
+            "reply is logged to a timestamped transcript."
         ),
         eyebrow="Full-Corpus LoRA",
     )
@@ -215,18 +213,21 @@ def render_chat_page() -> None:
     with conversation_col:
         render_section_header(
             "Conversation",
-            "Ask a normal question. The page reuses the same loaded model and appends each "
-            "turn to the active transcript.",
+            "Ask a normal question. The page reuses the same loaded model and appends each turn "
+            "to the active transcript. The example prompts are grouped to make first-use testing "
+            "faster.",
         )
 
-        sample_columns = st.columns(len(CHAT_SAMPLE_PROMPTS))
         selected_prompt: str | None = None
-        for index, sample_prompt in enumerate(CHAT_SAMPLE_PROMPTS):
-            if sample_columns[index].button(sample_prompt, use_container_width=True):
-                selected_prompt = sample_prompt
+        for row_start in range(0, len(CHAT_SAMPLE_PROMPTS), 3):
+            row_prompts = CHAT_SAMPLE_PROMPTS[row_start : row_start + 3]
+            sample_columns = st.columns(len(row_prompts))
+            for index, sample_prompt in enumerate(row_prompts):
+                if sample_columns[index].button(sample_prompt, use_container_width=True):
+                    selected_prompt = sample_prompt
 
         typed_prompt = st.chat_input(
-            "Ask about prudence, justice, temperance, vice, or a cited passage..."
+            "Ask a virtue, relation, or practical-moral question..."
         )
         user_prompt = typed_prompt or selected_prompt
 

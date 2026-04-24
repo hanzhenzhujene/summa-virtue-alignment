@@ -16,9 +16,11 @@ from summa_moral_graph.sft.chat import (
     _deterministic_comparison_answer,
     _deterministic_definition_answer,
     _deterministic_guidance_answer,
+    _deterministic_practical_answer,
     _deterministic_relation_answer,
     _deterministic_why_answer,
     _strip_template_boilerplate,
+    generate_deterministic_chat_reply,
     retrieve_chat_evidence,
 )
 
@@ -290,3 +292,59 @@ def test_deterministic_relation_answer_handles_justice_resides_in_question() -> 
     assert answer is not None
     assert "justice resides in will" in answer.lower()
     assert "st.ii-ii.q058.a004.resp" in answer
+
+
+def test_deterministic_practical_answer_handles_anger() -> None:
+    bundle = retrieve_chat_evidence(
+        "I struggle with anger. How should I respond according to Aquinas?"
+    )
+
+    answer = _deterministic_practical_answer(
+        "I struggle with anger. How should I respond according to Aquinas?",
+        bundle,
+    )
+
+    assert answer is not None
+    assert "bring it under right reason" in answer.lower()
+    assert "meekness checks the first onrush of anger" in answer.lower()
+    assert "st.ii-ii.q157.a001.resp" in answer
+
+
+def test_deterministic_practical_answer_handles_envy() -> None:
+    bundle = retrieve_chat_evidence("I am jealous of other people's success. What should I do?")
+
+    answer = _deterministic_practical_answer(
+        "I am jealous of other people's success. What should I do?",
+        bundle,
+    )
+
+    assert answer is not None
+    assert "that is envy" in answer.lower()
+    assert "charity rejoices in a neighbor's good" in answer.lower()
+    assert "st.ii-ii.q036.a001.resp" in answer
+
+
+def test_deterministic_practical_answer_handles_fear_and_courage() -> None:
+    bundle = retrieve_chat_evidence(
+        "How should I think about fear and courage in a hard situation?"
+    )
+
+    answer = _deterministic_practical_answer(
+        "How should I think about fear and courage in a hard situation?",
+        bundle,
+    )
+
+    assert answer is not None
+    assert "courage means feeling no fear" in answer.lower()
+    assert "abandoning reason because of difficulty or danger" in answer.lower()
+    assert "st.ii-ii.q123.a001.resp" in answer
+
+
+def test_generate_deterministic_chat_reply_handles_practical_prompt() -> None:
+    answer = generate_deterministic_chat_reply(
+        "I struggle with anger. How should I respond according to Aquinas?"
+    )
+
+    assert answer is not None
+    assert "bring it under right reason" in answer.lower()
+    assert "st.ii-ii.q158.a001.resp" in answer

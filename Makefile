@@ -64,6 +64,7 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	review-fortitude-closure-136-140 review-temperance-141-160 \
 	review-temperance-closure-161-170 build-christian-virtue-sft \
 	build-christian-virtue-sft-ood smoke-test-christian-virtue-sft \
+	smoke-test-christian-virtue-chat \
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
@@ -243,6 +244,12 @@ build-christian-virtue-sft-ood: $(SMALL_OOD_DATASET)
 
 smoke-test-christian-virtue-sft:
 	$(BIN)/python scripts/smoke_test_christian_virtue_sft.py
+
+smoke-test-christian-virtue-chat:
+	PYTORCH_ENABLE_MPS_FALLBACK=1 PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 \
+		$(BIN)/python scripts/smoke_test_christian_virtue_chat.py \
+		--config configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml \
+		--output-root $(LOCAL_15B_ROOT)/full_corpus_chat_smoke
 
 preflight-christian-virtue-gpu:
 	$(BIN)/python scripts/preflight_christian_virtue_gpu.py

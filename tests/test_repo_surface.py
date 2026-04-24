@@ -12,6 +12,7 @@ PUBLIC_DOC_PATHS = [
     REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md",
     REPO_ROOT / "docs" / "repository_map.md",
     REPO_ROOT / "scripts" / "README.md",
+    REPO_ROOT / "scripts" / "smoke_test_christian_virtue_chat.py",
 ]
 
 PUBLIC_WORKFLOW_PATHS = [
@@ -20,6 +21,7 @@ PUBLIC_WORKFLOW_PATHS = [
 
 DOCSTRING_PATHS = [
     REPO_ROOT / "streamlit_app.py",
+    REPO_ROOT / "scripts" / "smoke_test_christian_virtue_chat.py",
     REPO_ROOT / "scripts" / "gradio_christian_virtue_chat.py",
     REPO_ROOT / "app" / "Home.py",
     REPO_ROOT / "app" / "pages" / "1_Corpus_Browser.py",
@@ -38,6 +40,7 @@ DOCSTRING_PATHS = [
     REPO_ROOT / "src" / "summa_moral_graph" / "viewer" / "load.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "comparison.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "chat.py",
+    REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "chat_smoke.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "filters.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "loaders.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "preflight.py",
@@ -180,7 +183,9 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
     assert "chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
+    assert "smoke-test-christian-virtue-chat" in readme_text
     assert "full_corpus_chat" in readme_text
+    assert "full_corpus_chat_smoke" in readme_text
     assert "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in readme_text
     assert "71.2%" in readme_text
     assert "36.5%" in readme_text
@@ -208,6 +213,7 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "reproduce_christian_virtue_qwen2_5_1_5b_local.sh" in scripts_guide
     assert "gradio_christian_virtue_chat.py" in scripts_guide
     assert "chat_christian_virtue_model.py" in scripts_guide
+    assert "smoke_test_christian_virtue_chat.py" in scripts_guide
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
     assert "audit_christian_virtue_frontier.py" in scripts_guide
     assert "build_christian_virtue_full_corpus_report.py" in scripts_guide
@@ -218,6 +224,7 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "make audit-christian-virtue-qwen2-5-1-5b-local-frontier" in scripts_guide
     assert "make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in scripts_guide
     assert "make chat-christian-virtue-qwen2-5-1-5b-full-corpus" in scripts_guide
+    assert "make smoke-test-christian-virtue-chat" in scripts_guide
     assert "make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in scripts_guide
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in scripts_guide
     assert "make report-christian-virtue-qwen2-5-1-5b-full-corpus" in scripts_guide
@@ -244,9 +251,11 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml" in repository_map
     assert "qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml" in repository_map
     assert "scripts/gradio_christian_virtue_chat.py" in repository_map
+    assert "scripts/smoke_test_christian_virtue_chat.py" in repository_map
     assert "src/summa_moral_graph/app/gradio_chat.py" in repository_map
     assert "app/pages/6_Chat.py" in repository_map
     assert "src/summa_moral_graph/app/chat.py" in repository_map
+    assert "src/summa_moral_graph/sft/chat_smoke.py" in repository_map
     assert "build_christian_virtue_full_corpus_report.py" in repository_map
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in repository_map
     assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in repository_map
