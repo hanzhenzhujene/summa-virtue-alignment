@@ -28,6 +28,8 @@ These are the scripts behind those public entrypoints:
   - opens an interactive local chat session against a base model or adapter
   - the default path talks directly to the completed `full-corpus` LoRA adapter and writes
     timestamped transcripts under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+  - the same adapter is also available through the Streamlit `Chat Companion` page opened by
+    `make app`
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`

@@ -105,6 +105,8 @@ These committed exports are the public dataset entrypoint for model training and
 ### Viewer And Graph
 
 - `streamlit_app.py`: unified Streamlit entrypoint
+- `app/pages/6_Chat.py`: user-friendly chat page for the full-corpus Christian virtue adapter
+- `src/summa_moral_graph/app/chat.py`: Streamlit chat surface, session logging, and controls
 - `src/summa_moral_graph/viewer/`: shared viewer shell, routing, and render helpers
 - `src/summa_moral_graph/graph/`: graph exports and tract synthesis helpers
 

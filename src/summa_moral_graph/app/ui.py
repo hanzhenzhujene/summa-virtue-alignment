@@ -27,6 +27,11 @@ APP_PAGE_LINKS: list[dict[str, str]] = [
         "description": "Tract status, review queues, and exports.",
     },
     {
+        "label": "Chat Companion",
+        "path": "pages/6_Chat.py",
+        "description": "Talk directly to the full-corpus LoRA model.",
+    },
+    {
         "label": "Corpus Coverage",
         "path": "pages/1_Corpus_Browser.py",
         "description": "Question and article coverage.",

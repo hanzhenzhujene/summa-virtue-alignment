@@ -45,6 +45,26 @@ class ChatSessionPaths:
     transcript_markdown_path: Path
 
 
+@dataclass(frozen=True)
+class ChatModelBundle:
+    model: Any
+    tokenizer: Any
+    runtime: Any
+
+
+@dataclass
+class LiveChatSession:
+    run_dir: Path
+    config_snapshot_path: Path
+    environment: dict[str, Any]
+    session_paths: ChatSessionPaths
+    start_time: str
+    system_prompt: str | None
+    history: list[dict[str, str]]
+    transcript_entries: list[dict[str, Any]]
+    turn_count: int = 0
+
+
 def chat_session_paths(run_dir: Path) -> ChatSessionPaths:
     return ChatSessionPaths(
         run_dir=run_dir,
@@ -111,7 +131,7 @@ def _write_command_log(run_dir: Path, argv: list[str]) -> None:
     command_path.write_text(f"$ {shlex.join(argv)}\n", encoding="utf-8")
 
 
-def _load_chat_model_bundle(config: InferenceConfig) -> tuple[Any, Any, Any]:
+def load_chat_model_bundle(config: InferenceConfig) -> ChatModelBundle:
     ensure_inference_dependencies(config)
 
     import torch
@@ -145,7 +165,7 @@ def _load_chat_model_bundle(config: InferenceConfig) -> tuple[Any, Any, Any]:
         model = model.to(runtime.device_type)
     _align_generation_config(model, config)
     model.eval()
-    return model, tokenizer, runtime
+    return ChatModelBundle(model=model, tokenizer=tokenizer, runtime=runtime)
 
 
 def _generate_chat_response(
@@ -184,16 +204,84 @@ def _generate_chat_response(
     return _clean_assistant_text(tokenizer.decode(generated_ids, skip_special_tokens=True))
 
 
-def run_interactive_chat(
+def generate_chat_reply(
+    bundle: ChatModelBundle,
+    config: InferenceConfig,
+    *,
+    messages: list[dict[str, str]],
+) -> str:
+    return _generate_chat_response(
+        model=bundle.model,
+        tokenizer=bundle.tokenizer,
+        config=config,
+        messages=messages,
+    )
+
+
+def _chat_manifest(
+    session: LiveChatSession,
+    config: InferenceConfig,
+    *,
+    runtime: Any | None,
+    one_shot: str | None = None,
+) -> dict[str, Any]:
+    artifacts = run_artifacts_for_dir(session.run_dir)
+    package_versions = session.environment["versions"]
+    dataset_manifest = dataset_manifest_path(config.dataset_dir)
+    return {
+        "accelerate_version": package_versions["accelerate"],
+        "adapter_path": str(config.adapter_path) if config.adapter_path is not None else None,
+        "command_log_path": str(artifacts.command_log_path),
+        "config_snapshot_path": str(session.config_snapshot_path),
+        "dataset_dir": str(config.dataset_dir),
+        "dataset_manifest_path": str(dataset_manifest) if dataset_manifest is not None else None,
+        "end_time": iso_timestamp(),
+        "environment_path": str(artifacts.environment_path),
+        "git_commit": session.environment["git_commit"],
+        "model_name_or_path": config.model_name_or_path,
+        "one_shot": one_shot,
+        "peft_version": package_versions["peft"],
+        "python_version": session.environment["platform"]["python_version"],
+        "resolved_device": runtime.device_type if runtime is not None else None,
+        "run_dir": str(session.run_dir),
+        "run_id": session.run_dir.name,
+        "run_manifest_path": str(artifacts.run_manifest_path),
+        "run_name": config.run_name,
+        "runtime_warnings": list(runtime.warnings) if runtime is not None else [],
+        "start_time": session.start_time,
+        "system_prompt": session.system_prompt,
+        "torch_dtype": runtime.torch_dtype_name if runtime is not None else None,
+        "torch_version": package_versions["torch"],
+        "transcript_jsonl_path": str(session.session_paths.transcript_jsonl_path),
+        "transcript_markdown_path": str(session.session_paths.transcript_markdown_path),
+        "transformers_version": package_versions["transformers"],
+        "trl_version": package_versions["trl"],
+        "turn_count": session.turn_count,
+    }
+
+
+def persist_live_chat_session(
+    session: LiveChatSession,
+    config: InferenceConfig,
+    *,
+    runtime: Any | None,
+    one_shot: str | None = None,
+) -> dict[str, Any]:
+    _write_transcript(session.session_paths, session.transcript_entries)
+    manifest = _chat_manifest(session, config, runtime=runtime, one_shot=one_shot)
+    write_json(run_artifacts_for_dir(session.run_dir).run_manifest_path, manifest)
+    return manifest
+
+
+def create_live_chat_session(
     config: InferenceConfig,
     *,
     output_root: Path = DEFAULT_CHAT_OUTPUT_ROOT,
     system_prompt: str | None = DEFAULT_CHAT_SYSTEM_PROMPT,
-    one_shot: str | None = None,
     command_argv: list[str] | None = None,
-) -> dict[str, Any]:
+    runtime: Any | None = None,
+) -> LiveChatSession:
     output_root.mkdir(parents=True, exist_ok=True)
-    model, tokenizer, runtime = _load_chat_model_bundle(config)
     run_dir = create_timestamped_run_dir(output_root)
     artifacts = run_artifacts_for_dir(run_dir)
     session_paths = chat_session_paths(run_dir)
@@ -207,13 +295,12 @@ def run_interactive_chat(
     )
     environment = build_environment_snapshot(
         workspace_root=REPO_ROOT,
-        resolved_device=runtime.device_type,
-        torch_dtype=runtime.torch_dtype_name,
+        resolved_device=runtime.device_type if runtime is not None else None,
+        torch_dtype=runtime.torch_dtype_name if runtime is not None else None,
     )
     write_json(artifacts.environment_path, environment)
 
     start_time = iso_timestamp()
-    history: list[dict[str, str]] = []
     transcript_entries: list[dict[str, Any]] = []
     if system_prompt:
         transcript_entries.append(
@@ -223,15 +310,97 @@ def run_interactive_chat(
                 "timestamp": start_time,
             }
         )
-    _write_transcript(session_paths, transcript_entries)
 
-    print(f"Chat session: {run_dir}")
+    session = LiveChatSession(
+        run_dir=run_dir,
+        config_snapshot_path=config_snapshot_path,
+        environment=environment,
+        session_paths=session_paths,
+        start_time=start_time,
+        system_prompt=system_prompt,
+        history=[],
+        transcript_entries=transcript_entries,
+    )
+    persist_live_chat_session(session, config, runtime=runtime)
+    return session
+
+
+def record_chat_reset(
+    session: LiveChatSession,
+    config: InferenceConfig,
+    *,
+    runtime: Any | None,
+    one_shot: str | None = None,
+) -> dict[str, Any]:
+    session.history.clear()
+    session.transcript_entries.append(
+        {
+            "content": "/reset",
+            "role": "command",
+            "timestamp": iso_timestamp(),
+        }
+    )
+    return persist_live_chat_session(session, config, runtime=runtime, one_shot=one_shot)
+
+
+def record_chat_exchange(
+    session: LiveChatSession,
+    config: InferenceConfig,
+    *,
+    runtime: Any | None,
+    user_text: str,
+    assistant_text: str,
+    one_shot: str | None = None,
+) -> dict[str, Any]:
+    session.turn_count += 1
+    session.transcript_entries.extend(
+        [
+            {
+                "content": user_text,
+                "role": "user",
+                "timestamp": iso_timestamp(),
+                "turn_index": session.turn_count,
+            },
+            {
+                "content": assistant_text,
+                "role": "assistant",
+                "timestamp": iso_timestamp(),
+                "turn_index": session.turn_count,
+            },
+        ]
+    )
+    session.history.extend(
+        [
+            {"role": "user", "content": user_text},
+            {"role": "assistant", "content": assistant_text},
+        ]
+    )
+    return persist_live_chat_session(session, config, runtime=runtime, one_shot=one_shot)
+
+
+def run_interactive_chat(
+    config: InferenceConfig,
+    *,
+    output_root: Path = DEFAULT_CHAT_OUTPUT_ROOT,
+    system_prompt: str | None = DEFAULT_CHAT_SYSTEM_PROMPT,
+    one_shot: str | None = None,
+    command_argv: list[str] | None = None,
+) -> dict[str, Any]:
+    bundle = load_chat_model_bundle(config)
+    session = create_live_chat_session(
+        config,
+        output_root=output_root,
+        system_prompt=system_prompt,
+        command_argv=command_argv,
+        runtime=bundle.runtime,
+    )
+
+    print(f"Chat session: {session.run_dir}")
     print(f"Model: {config.model_name_or_path}")
     if config.adapter_path is not None:
         print(f"Adapter: {config.adapter_path}")
     print("Commands: /reset, /exit")
 
-    turn_count = 0
     pending_one_shot = one_shot
 
     while True:
@@ -251,89 +420,30 @@ def run_interactive_chat(
         if user_text in {"/exit", "/quit"}:
             break
         if user_text == "/reset":
-            history = []
-            transcript_entries.append(
-                {
-                    "content": "/reset",
-                    "role": "command",
-                    "timestamp": iso_timestamp(),
-                }
-            )
-            _write_transcript(session_paths, transcript_entries)
+            record_chat_reset(session, config, runtime=bundle.runtime, one_shot=one_shot)
             print("Conversation history cleared.")
             continue
 
-        turn_count += 1
-        transcript_entries.append(
-            {
-                "content": user_text,
-                "role": "user",
-                "timestamp": iso_timestamp(),
-                "turn_index": turn_count,
-            }
-        )
         prompt_messages: list[dict[str, str]] = []
         if system_prompt:
             prompt_messages.append({"role": "system", "content": system_prompt})
-        prompt_messages.extend(history)
+        prompt_messages.extend(session.history)
         prompt_messages.append({"role": "user", "content": user_text})
-        assistant_text = _generate_chat_response(
-            model=model,
-            tokenizer=tokenizer,
+        assistant_text = generate_chat_reply(
+            bundle,
             config=config,
             messages=prompt_messages,
         )
         print(f"\nAssistant> {assistant_text}")
-        transcript_entries.append(
-            {
-                "content": assistant_text,
-                "role": "assistant",
-                "timestamp": iso_timestamp(),
-                "turn_index": turn_count,
-            }
-        )
-        _write_transcript(session_paths, transcript_entries)
-        history.extend(
-            [
-                {"role": "user", "content": user_text},
-                {"role": "assistant", "content": assistant_text},
-            ]
+        record_chat_exchange(
+            session,
+            config,
+            runtime=bundle.runtime,
+            user_text=user_text,
+            assistant_text=assistant_text,
+            one_shot=one_shot,
         )
         if one_shot is not None:
             break
 
-    end_time = iso_timestamp()
-    package_versions = environment["versions"]
-    dataset_manifest = dataset_manifest_path(config.dataset_dir)
-    manifest = {
-        "adapter_path": str(config.adapter_path) if config.adapter_path is not None else None,
-        "command_log_path": str(artifacts.command_log_path),
-        "config_snapshot_path": str(config_snapshot_path),
-        "dataset_dir": str(config.dataset_dir),
-        "dataset_manifest_path": str(dataset_manifest) if dataset_manifest is not None else None,
-        "end_time": end_time,
-        "environment_path": str(artifacts.environment_path),
-        "git_commit": environment["git_commit"],
-        "model_name_or_path": config.model_name_or_path,
-        "one_shot": one_shot,
-        "peft_version": package_versions["peft"],
-        "python_version": environment["platform"]["python_version"],
-        "resolved_device": runtime.device_type,
-        "run_dir": str(run_dir),
-        "run_id": run_dir.name,
-        "run_manifest_path": str(artifacts.run_manifest_path),
-        "run_name": config.run_name,
-        "start_time": start_time,
-        "system_prompt": system_prompt,
-        "torch_dtype": runtime.torch_dtype_name,
-        "torch_version": package_versions["torch"],
-        "transcript_jsonl_path": str(session_paths.transcript_jsonl_path),
-        "transcript_markdown_path": str(session_paths.transcript_markdown_path),
-        "transformers_version": package_versions["transformers"],
-        "trl_version": package_versions["trl"],
-        "accelerate_version": package_versions["accelerate"],
-        "turn_count": turn_count,
-        "runtime_warnings": list(runtime.warnings),
-    }
-    write_json(artifacts.run_manifest_path, manifest)
-    return manifest
+    return persist_live_chat_session(session, config, runtime=bundle.runtime, one_shot=one_shot)

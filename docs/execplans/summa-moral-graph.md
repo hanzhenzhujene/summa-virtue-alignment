@@ -2,6 +2,15 @@
 
 ## Progress
 
+- The repo now has a user-friendly Streamlit chat box for the strongest local adapter instead of
+  only a terminal chat command:
+  - a new `Chat Companion` page is being added under `app/pages/6_Chat.py`
+  - the page reuses the same full-corpus LoRA adapter and generation backend as the CLI chat
+  - model loading is being cached so the app does not reload weights on every page rerun
+  - the page is also preserving the evidence-first session logging discipline by writing each new
+    conversation to `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+  - README, the scripts guide, the repository map, and repo-surface tests are all being updated so
+    this new page is visible as a first-class public entrypoint
 - The current push blocker has been worked around without losing the validated release state:
   - direct pushes from this workstation to `main` started failing with a remote authentication
     error even though SSH login to GitHub still succeeded
@@ -1271,6 +1280,12 @@
 
 ## Surprises & Discoveries
 
+- The right “friendly chat UI” fix was smaller than a separate serving stack:
+  - the repo already had a solid CLI chat backend for the full-corpus adapter
+  - the real missing piece was a Streamlit page that could cache the loaded model and reuse the
+    same transcript/manifest logging path
+  - once the backend was split into reusable pieces, the Streamlit page could stay thin and the
+    repo avoided inventing a second inference implementation
 - The push failure was narrower than it first looked:
   - SSH authentication to `git@github.com` still succeeded
   - pushing the exact same commit to a fresh branch over HTTPS also succeeded
@@ -1904,6 +1919,15 @@
 
 ## Decision Log
 
+- Build the user-friendly chat box as a Streamlit page on top of the existing full-corpus chat
+  backend instead of introducing a new serving layer.
+  Reason:
+  - the repo already had a verified CLI chat path with the right adapter, runtime, and log layout
+  - the user asked for a direct friendly chat box, not a different deployment stack
+  Consequence:
+  - the new page stays aligned with the same inference behavior as the CLI path
+  - every Streamlit conversation is still logged to the same timestamped `full_corpus_chat` run
+    family
 - Work around the `main` push failure by publishing the validated commit to a temporary branch and
   merging it back through GitHub instead of continuing to hammer the broken direct-push path.
   Reason:
@@ -2771,6 +2795,12 @@
 
 ## Outcomes & Retrospective
 
+- The strongest full-corpus adapter is now available through a genuinely user-friendly surface:
+  - a reader can open `make app`, click `Chat Companion`, and talk to the model directly
+  - the page keeps the repo's evidence-first discipline by logging timestamped transcripts and
+    manifests instead of acting like an untracked toy demo
+  - the repo therefore closes the last big usability gap between “strong benchmark artifact” and
+    “research deliverable a reviewer can actually interact with”
 - The push problem is now resolved in practice:
   - the validated visual/report commit is on GitHub `main`
   - the local checkout is synchronized to the merged remote state
