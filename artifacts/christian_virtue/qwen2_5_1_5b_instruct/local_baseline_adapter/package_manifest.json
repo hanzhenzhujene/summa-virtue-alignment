@@ -45,7 +45,7 @@
   "hf_repo_id": "JennyZhu0822/summa-virtue-qwen2.5-1.5b",
   "hf_repo_url": "https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b",
   "local_train_run_id": "20260421_134712",
-  "publication_git_commit": "8bda377af910e1e9d358fc963632488d0a1dd7de",
+  "publication_git_commit": "27308af607ea2162b22cb455382e9633186e8f7a",
   "published_report_assets": {
     "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg": "docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
   },
