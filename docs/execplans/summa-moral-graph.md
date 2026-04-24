@@ -2,6 +2,52 @@
 
 ## Progress
 
+- The chat evidence store is now being widened to the full reviewed doctrinal surface actually
+  present in the repo, not just the narrower published SFT export sources:
+  - the immediate reason is that some reviewed relations needed for natural chat, such as justice
+    residing in the will, exist in the repo's pilot doctrinal annotations but were absent from the
+    narrower `christian_virtue_v1` source list
+  - the training dataset is not being changed here; this is a chat-time evidence expansion only
+  - the chat store is also deduping annotation ids so this broader evidence pool does not create
+    repeated answer candidates
+- The chat layer is now being taught to answer graph-native virtue questions in natural prose
+  rather than wasting the repo's strongest structured asset:
+  - the immediate target is virtue/vice relation questions such as opposition, annexation,
+    classification, and location
+  - `src/summa_moral_graph/sft/chat.py` is now gaining a relation-aware answer mode that turns
+    reviewed doctrinal annotations into short teacher-like answers with citations
+  - this keeps the answers close to the actual moral graph, instead of forcing the model to guess
+    from free generation even when a reviewed relation is already available
+- The local Christian virtue chat layer is now being extended beyond definitions into the kinds of
+  "why" and "how should I live?" questions that matter for a genuinely virtuous assistant:
+  - the next concrete target is to stop generic open-ended questions from collapsing back into
+    nonsense or benchmarky fragments after the earlier definition/comparison fixes
+  - `src/summa_moral_graph/sft/chat.py` is now gaining a second teacher-style answer layer for
+    high-value open-ended questions such as why prudence matters, how justice and mercy belong
+    together, and how temperance should be practiced
+  - these answers are still being anchored to stable respondeo passages rather than free-form
+    advisory text, so the chat quality improves without weakening the evidence model
+- The local Christian virtue chat layer is now being reworked so the model answers like a careful
+  teacher instead of echoing benchmark templates:
+  - the immediate target is to stop answers like "According to the reviewed passage..." and
+    replace them with direct first-sentence answers plus one brief Aquinas-grounded explanation
+  - `src/summa_moral_graph/sft/chat.py` is being upgraded with a chat-specific answer-shaping
+    layer for common definition and comparison questions
+  - those direct answers are being tied to stable passage ids rather than free-floating prose, so
+    the improved tone does not weaken the evidence model
+  - the three live smoke questions the user flagged first are `What is prudence?`, `What is
+    sin?`, and `How does justice differ from mercy?`
+- The repo is now gaining a Gradio-based local chat surface so users do not have to rely on
+  Streamlit for model conversation:
+  - a new `scripts/gradio_christian_virtue_chat.py` entrypoint is being added as the recommended
+    local chat path
+  - the Gradio app lives in `src/summa_moral_graph/app/gradio_chat.py` and reuses the same
+    full-corpus adapter loading, generation, and transcript logging backend as the CLI chat
+  - `Makefile`, README, the scripts guide, the repository map, and repo-surface tests are being
+    updated so the recommended local chat command is now
+    `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus`
+  - the local pinned environment is also being refreshed to include `gradio`, so the alternative
+    chat path is reproducible after `make setup-christian-virtue-local`
 - The repo now has a user-friendly Streamlit chat box for the strongest local adapter instead of
   only a terminal chat command:
   - a new `Chat Companion` page is being added under `app/pages/6_Chat.py`
@@ -1280,6 +1326,58 @@
 
 ## Surprises & Discoveries
 
+- The chat evidence gap was not only about answer style; it was also about source coverage:
+  - some reviewed doctrinal relations that are useful in conversation were present in the repo but
+    absent from the narrower `christian_virtue_v1` source list used for chat retrieval
+  - this created a misleading failure mode: the repo knew the relation, but the chat layer could
+    not see it
+  - broadening chat-time evidence to all reviewed doctrinal sources is therefore more faithful to
+    the project goal than forcing the assistant to act as if the missing edge never existed
+- The repo's most distinctive asset was still underused in chat:
+  - the project already has reviewed doctrinal relations like `subjective_part_of`,
+    `annexed_to`, `opposed_by`, `resides_in`, and `directed_to`
+  - yet the chat layer was still treating many relation questions as if it only had raw passages
+    and a generative model
+  - that meant the assistant was failing exactly where a Summa moral graph ought to shine: it
+    could store relations better than it could answer them
+- Relation questions are a natural bridge between "benchmark artifact" and "virtuous assistant":
+  - users often ask things like what opposes a vice, how a virtue is classified, or how two
+    concepts are related
+  - these are not edge cases; they are one of the clearest public demonstrations that the graph
+    is doing real intellectual work
+- The biggest remaining chat weakness appeared exactly where the real project goal begins:
+  - once definitions and simple comparisons improved, the next failures showed up on questions
+    like "Why is prudence necessary?" or "How should a Christian think about mercy and justice
+    together?"
+  - on those prompts the small model could still drift into incoherent or circular answers even
+    when citations were present
+  - that means the real gap was not only "make it less robotic," but "make it capable of brief
+    Aquinas-grounded moral explanation"
+- The best next fix was not broader sampling but a new answer mode:
+  - the evidence base already contains the relevant Thomistic material for prudence, mercy,
+    justice, temperance, and envy
+  - the missing piece was a chat layer that turns those passages into short teacher-like answers
+    for open-ended pedagogical questions
+- The "robotic" chat failure turned out to be a data-and-interface problem, not just a model-size
+  problem:
+  - the benchmark supervision itself often uses stock phrases such as "According to the reviewed
+    passage" and "The passage states this directly"
+  - once the adapter is exposed through free chat, it naturally replays that benchmark register
+    unless the chat layer actively reshapes the answer
+  - the right fix is therefore not only more SFT, but also a chat-time layer that prefers direct
+    answer sentences, concise explanation, and stable citations
+- The strongest small-model chat answers came from a hybrid strategy:
+  - free generation alone was still too likely to sound robotic or miss the actual point of the
+    user's question
+  - pure extraction also sounded stiff when it simply copied one sentence from a respondeo
+  - the better pattern is: retrieve reviewed evidence, answer with a short curated Thomistic
+    synthesis for common question types, and fall back to constrained generation for the rest
+- The user-friendly chat problem was not really “Streamlit or nothing”:
+  - Streamlit is still the right fit for the evidence browser and audit dashboard
+  - the friction was specifically the chat interaction model, where a dedicated Gradio chat UI is
+    a better product fit than embedding conversation into the dashboard shell
+  - because the repo already had a reusable chat backend, switching the recommended local chat UI
+    did not require a new model-serving stack
 - The right “friendly chat UI” fix was smaller than a separate serving stack:
   - the repo already had a solid CLI chat backend for the full-corpus adapter
   - the real missing piece was a Streamlit page that could cache the loaded model and reuse the
@@ -1919,6 +2017,61 @@
 
 ## Decision Log
 
+- Expand the chat evidence store with reviewed doctrinal pilot annotations, while leaving the SFT
+  training export unchanged.
+  Reason:
+  - the assistant should answer from the full reviewed doctrinal knowledge available in the repo,
+    not from an artificially narrower subset when no training reproducibility concern requires that
+  - this closes a real quality bug on questions like where justice resides
+  Consequence:
+  - relation answers can now draw on reviewed pilot annotations at chat time
+  - the canonical training dataset and benchmark story remain untouched
+- Add a deterministic relation-answer mode that verbalizes reviewed doctrinal annotations.
+  Reason:
+  - the repo already has reviewed relation data, so relation questions should not depend on the
+    small model improvising from scratch
+  - relation questions are one of the clearest places where the Summa moral graph should outperform
+    a generic chatbot
+  Consequence:
+  - questions about opposition, annexation, classification, direction, and residence can now be
+    answered directly from reviewed graph edges with stable citations
+  - the chat surface better reflects the actual research contribution of the repo
+- Add a second deterministic chat mode for open-ended "why" and "how" questions.
+  Reason:
+  - after fixing definition/comparison prompts, the next most damaging failures were open-ended
+    moral questions, which are closer to the repo's real goal than bare glossary prompts
+  - these questions need a short explanatory synthesis, not just a label plus citation
+  Consequence:
+  - the chat layer now has explicit support for why-questions and practical/integrative guidance
+    questions
+  - common virtue-teaching prompts can now be answered in a more Thomistic and human way before
+    falling back to free generation
+- Add a chat-specific direct-answer layer for common definition and comparison questions.
+  Reason:
+  - the user's complaint was not mainly about missing citations, but about the model failing to
+    answer the question in living prose
+  - frequent questions such as `What is prudence?` or `How does justice differ from mercy?` are
+    important enough to deserve a stronger evidence-shaped answer path than unconstrained sampling
+  Consequence:
+  - the chat system now prefers short, teacher-like answers for these common forms
+  - those answers are still anchored to stable passage ids, so the repo remains evidence-first
+- Treat benchmark-template language as a chat bug, not as acceptable model style.
+  Reason:
+  - phrases like "According to the reviewed passage" are useful in evaluation artifacts but sound
+    evasive and mechanical in a real conversation
+  Consequence:
+  - the chat rewrite layer now strips those phrases aggressively
+  - the system prompt and deterministic answer path both prioritize direct human-readable prose
+- Keep Streamlit for the evidence browser, but move the recommended local chat surface to Gradio.
+  Reason:
+  - the user explicitly said Streamlit was not pleasant for direct conversation
+  - Gradio is a better fit for a focused local chat app while the existing Streamlit viewer still
+    serves the repo's audit and graph-navigation purpose
+  Consequence:
+  - the repo now has separate best-fit surfaces: Streamlit for evidence browsing, Gradio for
+    talking to the full-corpus model
+  - the same full-corpus adapter, runtime detection, and transcript logging remain shared across
+    CLI and Gradio paths
 - Build the user-friendly chat box as a Streamlit page on top of the existing full-corpus chat
   backend instead of introducing a new serving layer.
   Reason:
@@ -2795,6 +2948,41 @@
 
 ## Outcomes & Retrospective
 
+- The chat layer now sees more of what the repo already knows:
+  - relation answers are not only more natural, but also less artificially constrained by the
+    narrower SFT export source list
+  - this lets the assistant answer some concept-location questions from reviewed evidence that was
+    genuinely present in the project, but previously invisible to chat retrieval
+- The chat layer now uses more of the repo's actual intellectual machinery:
+  - it can answer virtue/vice relation questions from reviewed edges instead of acting as though it
+    only had a pile of passages and a small generator
+  - this moves the assistant closer to being a real Summa moral graph companion rather than only a
+    citation-aware explanatory bot
+- The local chat surface is now moving from "can define terms" toward "can briefly teach":
+  - prudence can now be explained as necessary for the moral life, not merely defined
+  - justice and mercy can now be presented as mutually ordered rather than merely contrasted
+  - temperance can now be answered as a practical matter of moderated desire under reason
+  - this is closer to the repo's actual aim of an Aquinas-grounded virtuous assistant than a
+    benchmark-shaped glossary bot
+- The local model now answers core virtue questions much more like a teacher than a benchmark
+  harness:
+  - `What is prudence?` now resolves to a direct definition centered on right reason and action
+    instead of a meta comment about a reviewed passage
+  - `What is sin?` now answers with a real Thomistic definition instead of a wooden citation stub
+  - `How does justice differ from mercy?` now gives an actual contrast between what is due and
+    compassionate response to distress
+- The right lesson was that "virtuous AI" required a chat presentation layer, not just a stronger
+  leaderboard number:
+  - the benchmark pipeline can reward terse citation-shaped outputs that are acceptable for
+    scoring but poor for real conversation
+  - adding an evidence-grounded chat rewrite/synthesis layer let the repo move closer to its real
+    goal without changing the underlying reviewed data model
+- The repo now offers a friendlier non-Streamlit conversation path without losing the broader
+  audit surface:
+  - users can keep using Streamlit for corpus and evidence exploration
+  - users can now launch a dedicated Gradio chat app for direct model conversation
+  - because the Gradio app reuses the same transcript/manifest logging discipline, the friendlier
+    chat surface still behaves like a serious research artifact rather than a detached demo
 - The strongest full-corpus adapter is now available through a genuinely user-friendly surface:
   - a reader can open `make app`, click `Chat Companion`, and talk to the model directly
   - the page keeps the repo's evidence-first discipline by logging timestamped transcripts and

@@ -271,20 +271,20 @@ theological evaluation story.
 
 ## Chat With The Model
 
-You can talk directly to the completed `full-corpus` adapter in a user-friendly chat box.
+You can talk directly to the completed `full-corpus` adapter in a user-friendly local chat app.
 
-Open the local Streamlit app:
+Recommended path:
 
 ```bash
-make app
+make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
 ```
 
-Then open the `Chat Companion` page from the sidebar. It loads `Qwen/Qwen2.5-1.5B-Instruct`
-plus the strongest repo-local LoRA adapter and writes each timestamped session under:
+That launches a Gradio chat UI against `Qwen/Qwen2.5-1.5B-Instruct` plus the strongest repo-local
+LoRA adapter and writes each timestamped session under:
 
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
 
-If you prefer the terminal, the CLI fallback is:
+If you prefer the terminal, the CLI fallback is still:
 
 ```bash
 make chat-christian-virtue-qwen2-5-1-5b-full-corpus
@@ -309,8 +309,8 @@ Run it locally with:
 make app
 ```
 
-The entrypoint is [streamlit_app.py](./streamlit_app.py), and the app now includes a `Chat Companion`
-page for direct full-corpus LoRA conversation alongside the evidence browser surfaces.
+The entrypoint is [streamlit_app.py](./streamlit_app.py). For direct model conversation, the
+recommended local path is the Gradio chat app above.
 
 ## Core Paths
 

@@ -68,6 +68,7 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
 	train-christian-virtue-qwen2-5-1-5b-full-corpus \
+	gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus \
 	chat-christian-virtue-qwen2-5-1-5b-full-corpus \
 	train-christian-virtue-qwen2-5-1-5b-citation-frontier \
 	train-christian-virtue-qwen2-5-1-5b-accuracy-first \
@@ -257,6 +258,12 @@ train-christian-virtue-qwen2-5-1-5b-local-baseline:
 
 train-christian-virtue-qwen2-5-1-5b-full-corpus:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_train.sh full-corpus
+
+gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus:
+	PYTORCH_ENABLE_MPS_FALLBACK=1 PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 \
+		$(BIN)/python scripts/gradio_christian_virtue_chat.py \
+		--config configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml \
+		--output-root $(LOCAL_15B_ROOT)/full_corpus_chat
 
 chat-christian-virtue-qwen2-5-1-5b-full-corpus:
 	PYTORCH_ENABLE_MPS_FALLBACK=1 PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 \

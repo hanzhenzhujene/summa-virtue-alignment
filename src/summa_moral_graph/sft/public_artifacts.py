@@ -113,6 +113,7 @@ def build_publication_doc_expectations(
             "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg",
             "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg",
             "71.2%",
+            "gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus",
             "run-christian-virtue-qwen2-5-1-5b-full-corpus-loop",
         ],
         Path("docs/fine_tune_with_summa_moral_graph.md"): [

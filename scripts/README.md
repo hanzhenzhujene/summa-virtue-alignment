@@ -28,8 +28,10 @@ These are the scripts behind those public entrypoints:
   - opens an interactive local chat session against a base model or adapter
   - the default path talks directly to the completed `full-corpus` LoRA adapter and writes
     timestamped transcripts under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
-  - the same adapter is also available through the Streamlit `Chat Companion` page opened by
-    `make app`
+- `gradio_christian_virtue_chat.py`
+  - launches the recommended local Gradio chat UI for the completed `full-corpus` LoRA adapter
+  - reuses the same adapter/runtime path and writes timestamped transcripts under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
@@ -60,6 +62,7 @@ The preferred public commands are:
 
 ```bash
 make setup-christian-virtue-local
+make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop

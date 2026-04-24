@@ -105,6 +105,9 @@ These committed exports are the public dataset entrypoint for model training and
 ### Viewer And Graph
 
 - `streamlit_app.py`: unified Streamlit entrypoint
+- `scripts/gradio_christian_virtue_chat.py`: recommended local Gradio chat entrypoint for the
+  full-corpus adapter
+- `src/summa_moral_graph/app/gradio_chat.py`: Gradio chat surface and session logging controls
 - `app/pages/6_Chat.py`: user-friendly chat page for the full-corpus Christian virtue adapter
 - `src/summa_moral_graph/app/chat.py`: Streamlit chat surface, session logging, and controls
 - `src/summa_moral_graph/viewer/`: shared viewer shell, routing, and render helpers
