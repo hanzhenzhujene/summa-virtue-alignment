@@ -14,6 +14,8 @@ model trainer.
 - [docs/christian_virtue_sft.md](./christian_virtue_sft.md): maintainer and research workflow
 - [docs/christian_virtue_dataset_card.md](./christian_virtue_dataset_card.md): dataset scope,
   intended use, and limits
+- [Hugging Face Space chat](https://jennyzhu0822-summa-virtue-chat.hf.space): public online chat
+  surface for the full-corpus Christian virtue assistant
 - [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md):
   flagship repo-local report for the full reviewed Christian virtue split
 - [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
@@ -107,6 +109,8 @@ These committed exports are the public dataset entrypoint for model training and
 - `streamlit_app.py`: unified Streamlit entrypoint
 - `scripts/gradio_christian_virtue_chat.py`: recommended local Gradio chat entrypoint for the
   full-corpus adapter
+- `scripts/deploy_christian_virtue_chat_space.py`: uploads the public online Gradio chat bundle
+  to Hugging Face Spaces
 - `scripts/smoke_test_christian_virtue_chat.py`: lightweight qualitative smoke panel for the
   current Christian virtue chat layer
 - `src/summa_moral_graph/app/gradio_chat.py`: Gradio chat surface and session logging controls

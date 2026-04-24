@@ -11,6 +11,7 @@ generic religion chat, and its main merit is that the supervision stays reviewed
 relational, and auditable end to end.
 
 [![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
+[![Use the online chat](https://img.shields.io/badge/Live%20chat-summa--virtue--chat.hf.space-1f6feb?style=for-the-badge&logo=huggingface&logoColor=white)](https://jennyzhu0822-summa-virtue-chat.hf.space)
 [![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
 [![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
 [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
@@ -54,6 +55,7 @@ beating an untuned starting point. The full write-up, run metadata, and training
 | Model | `Qwen/Qwen2.5-1.5B-Instruct` with local Apple-Silicon LoRA |
 | Strongest repo-local result | `71.2%` held-out exact citation on the untouched `233`-row test split |
 | Strongest held-out slices | `100.0%` on doctrinal QA, `100.0%` on reviewed relation explanation, `100.0%` on virtue concept explanation |
+| Online chat | [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space) |
 | Main report | [Full-Corpus Christian Virtue LoRA Report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
 
 ## What This Repo Is For
@@ -124,6 +126,7 @@ through the pipeline:
 | --- | --- |
 | Inspect the strongest repo-local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
 | Rerun the strongest full-data local result | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` |
+| Try the model online | [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space) |
 | Run the smallest release-grade local check | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
 | Audit the exact public claims and boundaries | [docs/public_claim_map.md](./docs/public_claim_map.md) |
 | Fine-tune my own model on the same dataset | [docs/fine_tune_with_summa_moral_graph.md](./docs/fine_tune_with_summa_moral_graph.md) |
@@ -271,7 +274,10 @@ theological evaluation story.
 
 ## Chat With The Model
 
-You can talk directly to the completed `full-corpus` adapter in a user-friendly local chat app.
+You can talk directly to the completed `full-corpus` adapter in either:
+
+- the online Gradio chat: [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- the same local Gradio app backed by your own machine
 
 First local use:
 
@@ -281,12 +287,22 @@ make smoke-test-christian-virtue-chat
 make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
 ```
 
+Publish or refresh the public online chat from this repo:
+
+```bash
+make deploy-christian-virtue-chat-space
+```
+
 That sequence:
 
 - builds the pinned local environment
 - runs a fast qualitative smoke panel over the current chat layer
 - opens a local Gradio chat UI against `Qwen/Qwen2.5-1.5B-Instruct` plus the strongest
   repo-local LoRA adapter
+
+This chat surface is intentionally a small-model demo: it uses
+`Qwen/Qwen2.5-1.5B-Instruct` plus the full-corpus Christian virtue LoRA adapter, not a larger
+hosted frontier model.
 
 The chat and smoke artifacts are written under:
 
@@ -299,8 +315,22 @@ The smoke command is a quick qualitative check for the current chat layer. It pr
 - relation questions from the reviewed moral graph
 - practical-moral prompts such as anger, envy, temperance, and fear/courage
 
-The Gradio app is local to your machine. It does not require a separate account and does not rely
-on Streamlit Cloud-style idle behavior.
+Recommended public split:
+
+- **Chat:** [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- **Graph and evidence browser:** [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
+
+Why this split exists:
+
+- Streamlit Community Cloud's official docs say apps without traffic for 12 hours go to sleep:
+  [Manage your app](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app)
+- Hugging Face's official docs say free `cpu-basic` Spaces sleep after 48 hours of inactivity,
+  while upgraded hardware can stay awake indefinitely:
+  [Spaces overview](https://huggingface.co/docs/hub/en/spaces-overview),
+  [Space runtime sleep time](https://huggingface.co/docs/huggingface_hub/main/package_reference/space_runtime)
+
+So the repo now treats Hugging Face Space as the recommended public chat host, while Streamlit
+stays focused on the evidence browser.
 
 If you prefer the terminal, the CLI fallback is still:
 
@@ -328,7 +358,7 @@ make app
 ```
 
 The entrypoint is [streamlit_app.py](./streamlit_app.py). For direct model conversation, the
-recommended local path is the Gradio chat app above.
+recommended chat surfaces are the Hugging Face Space above and the local Gradio app above.
 
 ## Core Paths
 

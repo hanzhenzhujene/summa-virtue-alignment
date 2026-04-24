@@ -32,6 +32,11 @@ These are the scripts behind those public entrypoints:
   - launches the recommended local Gradio chat UI for the completed `full-corpus` LoRA adapter
   - reuses the same adapter/runtime path and writes timestamped transcripts under
     `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+- `deploy_christian_virtue_chat_space.py`
+  - builds and uploads the online Gradio chat bundle to
+    `JennyZhu0822/summa-virtue-chat` on Hugging Face Spaces
+  - keeps the public online chat on the same small-model `Qwen/Qwen2.5-1.5B-Instruct` plus
+    full-corpus LoRA path rather than drifting to a different hosted backend
 - `smoke_test_christian_virtue_chat.py`
   - runs a lightweight qualitative smoke panel over the local Christian virtue chat layer
   - checks definitions, comparisons, graph-native relation questions, and practical-moral prompts
@@ -68,6 +73,7 @@ The preferred public commands are:
 make setup-christian-virtue-local
 make smoke-test-christian-virtue-chat
 make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
+make deploy-christian-virtue-chat-space
 make chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
@@ -87,6 +93,10 @@ If you are new to the repo, use the first three commands in that order:
 1. `make setup-christian-virtue-local`
 2. `make smoke-test-christian-virtue-chat`
 3. `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus`
+
+If you want the public online chat surface instead of only the local one, run:
+
+4. `make deploy-christian-virtue-chat-space`
 
 The smoke command is deterministic by default, so it is fast enough to run often while you keep
 improving the chat layer. If you want the full live model path instead, run:

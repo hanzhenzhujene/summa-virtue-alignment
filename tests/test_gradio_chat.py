@@ -3,7 +3,12 @@ from __future__ import annotations
 from pathlib import Path
 
 from summa_moral_graph.app.gradio_chat import (
+    DEFAULT_GRADIO_CHAT_GITHUB_URL,
+    DEFAULT_GRADIO_CHAT_HF_URL,
+    DEFAULT_GRADIO_CHAT_SPACE_URL,
+    DEFAULT_GRADIO_CHAT_VIEWER_URL,
     gradio_chatbot_messages,
+    gradio_header_html,
     gradio_session_status_markdown,
 )
 from summa_moral_graph.sft import InferenceConfig, LiveChatSession, chat_session_paths
@@ -84,3 +89,14 @@ def test_gradio_chatbot_messages_skip_system_and_command_entries() -> None:
         {"role": "user", "content": "What is prudence?"},
         {"role": "assistant", "content": "Prudence perfects practical reason."},
     ]
+
+
+def test_gradio_header_html_surfaces_links_and_small_model_note() -> None:
+    html = gradio_header_html()
+
+    assert "Christian Virtue Chat" in html
+    assert "Qwen/Qwen2.5-1.5B-Instruct" in html
+    assert DEFAULT_GRADIO_CHAT_GITHUB_URL in html
+    assert DEFAULT_GRADIO_CHAT_HF_URL in html
+    assert DEFAULT_GRADIO_CHAT_SPACE_URL in html
+    assert DEFAULT_GRADIO_CHAT_VIEWER_URL in html

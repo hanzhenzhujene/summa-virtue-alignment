@@ -22,6 +22,7 @@ PUBLIC_WORKFLOW_PATHS = [
 DOCSTRING_PATHS = [
     REPO_ROOT / "streamlit_app.py",
     REPO_ROOT / "scripts" / "smoke_test_christian_virtue_chat.py",
+    REPO_ROOT / "scripts" / "deploy_christian_virtue_chat_space.py",
     REPO_ROOT / "scripts" / "gradio_christian_virtue_chat.py",
     REPO_ROOT / "app" / "Home.py",
     REPO_ROOT / "app" / "pages" / "1_Corpus_Browser.py",
@@ -182,6 +183,8 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
+    assert "summa-virtue-chat.hf.space" in readme_text
+    assert "deploy-christian-virtue-chat-space" in readme_text
     assert "chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
     assert "smoke-test-christian-virtue-chat" in readme_text
     assert "full_corpus_chat" in readme_text
@@ -212,6 +215,7 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "setup_christian_virtue_local.sh" in scripts_guide
     assert "reproduce_christian_virtue_qwen2_5_1_5b_local.sh" in scripts_guide
     assert "gradio_christian_virtue_chat.py" in scripts_guide
+    assert "deploy_christian_virtue_chat_space.py" in scripts_guide
     assert "chat_christian_virtue_model.py" in scripts_guide
     assert "smoke_test_christian_virtue_chat.py" in scripts_guide
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
@@ -223,6 +227,7 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh" in scripts_guide
     assert "make audit-christian-virtue-qwen2-5-1-5b-local-frontier" in scripts_guide
     assert "make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in scripts_guide
+    assert "make deploy-christian-virtue-chat-space" in scripts_guide
     assert "make chat-christian-virtue-qwen2-5-1-5b-full-corpus" in scripts_guide
     assert "make smoke-test-christian-virtue-chat" in scripts_guide
     assert "make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in scripts_guide
@@ -251,6 +256,7 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "qwen2_5_1_5b_instruct_lora_mps_full_corpus.yaml" in repository_map
     assert "qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml" in repository_map
     assert "scripts/gradio_christian_virtue_chat.py" in repository_map
+    assert "scripts/deploy_christian_virtue_chat_space.py" in repository_map
     assert "scripts/smoke_test_christian_virtue_chat.py" in repository_map
     assert "src/summa_moral_graph/app/gradio_chat.py" in repository_map
     assert "app/pages/6_Chat.py" in repository_map

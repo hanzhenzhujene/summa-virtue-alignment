@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The Christian virtue chat surface is now being packaged for real online use instead of staying
+  local-only:
+  - the Gradio header is being upgraded so a first-time user immediately sees that the assistant
+    is a small-model `Qwen/Qwen2.5-1.5B-Instruct` demo plus a full-corpus LoRA adapter
+  - the same chat header is also gaining top-right links to the GitHub repo, the Hugging Face
+    model page, the live graph viewer, and the online chat deployment itself
+  - a dedicated Hugging Face Space deployment script is being added so the public chat surface can
+    be updated from the repo instead of drifting into a one-off manual demo
+  - README and the script/repository guides are also being tightened so the online path is now
+    explicit: Hugging Face Space for chat, Streamlit for graph/evidence browsing
 - The repo is now getting a lightweight qualitative chat smoke workflow so the improved assistant
   behavior stops living only in ad hoc manual probing:
   - the new target is a timestamped `full_corpus_chat_smoke` run family with a tiny prompt panel
@@ -1344,6 +1354,13 @@
 
 ## Surprises & Discoveries
 
+- The hosting decision is now much clearer once the official docs are compared directly:
+  - Streamlit Community Cloud officially hibernates apps after 12 hours without traffic, which is
+    exactly the behavior the user dislikes for a public chat entrypoint
+  - Hugging Face Spaces is a better fit for this repo's chat surface because free `cpu-basic`
+    Spaces sleep on a longer inactivity window, and upgraded hardware can stay awake indefinitely
+  - this means the best split is no longer ambiguous: Gradio + Space for chat, Streamlit for the
+    evidence browser
 - The main remaining quality risk in the chat surface is no longer just bad answers; it is silent
   drift between manual demos and what the repo actually tests:
   - once the deterministic teacher-style layer started getting better, the lack of a small
@@ -2053,6 +2070,25 @@
 
 ## Decision Log
 
+- Prefer Hugging Face Space over Streamlit Community Cloud for the public online chat surface.
+  Reason:
+  - the user explicitly wants to avoid the short Streamlit sleep cycle on the public chat
+  - the repo already has a stronger Gradio chat surface than Streamlit for conversation, and HF
+    Spaces fits Gradio naturally
+  - official docs make the tradeoff clear: Streamlit sleeps after 12 hours of inactivity, while
+    free HF Spaces sleep later and upgraded hardware can stay awake
+  Consequence:
+  - online chat is now a first-class Gradio deployment target instead of an afterthought
+  - Streamlit stays the evidence browser and graph-view surface rather than being stretched into
+    the main public chat host
+- Add explicit small-model labeling and top-level external links to the Gradio chat header.
+  Reason:
+  - the user wants first-glance honesty that this is a `Qwen/Qwen2.5-1.5B-Instruct` demo rather
+    than an unlabeled frontier deployment
+  - GitHub, Hugging Face, and viewer links should be visible from inside the chat product itself
+  Consequence:
+  - the UI now tells the truth faster and gives users obvious exits to the repo, model page, and
+    evidence browser
 - Add a lightweight chat smoke workflow instead of treating qualitative chat evaluation as only a
   manual ritual.
   Reason:
@@ -3011,6 +3047,12 @@
 
 ## Outcomes & Retrospective
 
+- The Christian virtue chat deliverable now has a coherent public shape instead of two partially
+  disconnected local surfaces:
+  - a user can keep using Streamlit to inspect passages and graph structure
+  - a user can now use the dedicated Gradio chat both locally and through a Hugging Face Space
+  - the chat UI itself now says clearly that the assistant is a small `Qwen/Qwen2.5-1.5B`
+    full-corpus LoRA demo, which makes the presentation more honest and more legible
 - The Christian virtue chat surface is moving from "feels better in manual probing" toward a more
   durable release artifact:
   - richer practical-moral prompts are now being paired with a small timestamped smoke panel

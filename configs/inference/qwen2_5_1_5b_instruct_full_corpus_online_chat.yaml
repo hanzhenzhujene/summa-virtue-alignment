@@ -1,0 +1,12 @@
+run_name: christian-virtue-qwen2.5-1.5b-instruct-full-corpus-online-chat
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
+dataset_dir: data/processed/sft/exports/christian_virtue_v1
+split_names:
+  - test
+output_dir: runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_online
+adapter_path: runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/20260422_223349
+trust_remote_code: false
+max_new_tokens: 256
+runtime_backend: auto
+torch_dtype: auto
+load_in_4bit: false

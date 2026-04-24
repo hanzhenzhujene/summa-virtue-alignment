@@ -19,6 +19,13 @@ from ..sft import (
     record_chat_reset,
 )
 from ..utils.paths import REPO_ROOT, repo_relative_path_str
+from .gradio_chat import (
+    DEFAULT_GRADIO_CHAT_GITHUB_URL,
+    DEFAULT_GRADIO_CHAT_HF_URL,
+    DEFAULT_GRADIO_CHAT_MODEL_NOTE,
+    DEFAULT_GRADIO_CHAT_SPACE_URL,
+    DEFAULT_GRADIO_CHAT_VIEWER_URL,
+)
 from .ui import (
     MetricCard,
     configure_page,
@@ -159,6 +166,15 @@ def render_chat_page() -> None:
             MetricCard("Chat logs", "Timestamped", "Saved under full_corpus_chat"),
         ],
         columns=4,
+    )
+    st.markdown(
+        (
+            f"{DEFAULT_GRADIO_CHAT_MODEL_NOTE}  \n"
+            f"[GitHub]({DEFAULT_GRADIO_CHAT_GITHUB_URL}) · "
+            f"[Hugging Face]({DEFAULT_GRADIO_CHAT_HF_URL}) · "
+            f"[Online chat]({DEFAULT_GRADIO_CHAT_SPACE_URL}) · "
+            f"[Graph viewer]({DEFAULT_GRADIO_CHAT_VIEWER_URL})"
+        )
     )
 
     render_surface_card(

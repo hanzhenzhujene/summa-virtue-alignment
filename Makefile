@@ -65,6 +65,7 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	review-temperance-closure-161-170 build-christian-virtue-sft \
 	build-christian-virtue-sft-ood smoke-test-christian-virtue-sft \
 	smoke-test-christian-virtue-chat \
+	deploy-christian-virtue-chat-space \
 	preflight-christian-virtue-gpu train-christian-virtue-proto \
 	train-christian-virtue-qwen2-5-1-5b-local-smoke \
 	train-christian-virtue-qwen2-5-1-5b-local-baseline \
@@ -271,6 +272,9 @@ gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus:
 		$(BIN)/python scripts/gradio_christian_virtue_chat.py \
 		--config configs/inference/qwen2_5_1_5b_instruct_full_corpus_adapter_test.yaml \
 		--output-root $(LOCAL_15B_ROOT)/full_corpus_chat
+
+deploy-christian-virtue-chat-space:
+	$(BIN)/python scripts/deploy_christian_virtue_chat_space.py
 
 chat-christian-virtue-qwen2-5-1-5b-full-corpus:
 	PYTORCH_ENABLE_MPS_FALLBACK=1 PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 \
