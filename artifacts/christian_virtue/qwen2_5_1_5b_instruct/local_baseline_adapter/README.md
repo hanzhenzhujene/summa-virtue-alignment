@@ -78,10 +78,12 @@ The purpose of this model is not to produce generic theological chat or to memor
 
 - Training export: `data/processed/sft/exports/christian_virtue_v1`
 - Dataset manifest: `data/processed/sft/exports/christian_virtue_v1/manifest.json`
-- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/27308af607ea2162b22cb455382e9633186e8f7a/docs/christian_virtue_dataset_card.md)
-- Full report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/27308af607ea2162b22cb455382e9633186e8f7a/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/29921f1a625c73c5a221bcb170c666efb6cba923/docs/christian_virtue_dataset_card.md)
+- Full report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/29921f1a625c73c5a221bcb170c666efb6cba923/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
 - GitHub release: https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
+- Online chat: https://jennyzhu0822-summa-virtue-chat.hf.space
+- Graph viewer: https://summa-moral-graph.streamlit.app/
 - Supervision source: approved reviewed doctrinal annotations only
 - Excluded from default training truth: structural-editorial review, candidate material, and processed edge exports
 - Leakage-safe grouping key: `question_id`
@@ -122,10 +124,12 @@ Recommended use pattern:
 ## Reproduce This Exact Artifact
 
 - Hugging Face adapter: https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b
+- Online chat: https://jennyzhu0822-summa-virtue-chat.hf.space
+- Graph viewer: https://summa-moral-graph.streamlit.app/
 - GitHub repo: https://github.com/hanzhenzhujene/summa-virtue-alignment
 - Matching GitHub release: https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038
-- Curated experiment report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/27308af607ea2162b22cb455382e9633186e8f7a/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
-- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/27308af607ea2162b22cb455382e9633186e8f7a/docs/christian_virtue_dataset_card.md)
+- Curated experiment report: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/29921f1a625c73c5a221bcb170c666efb6cba923/docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md)
+- Dataset card: [GitHub link](https://github.com/hanzhenzhujene/summa-virtue-alignment/blob/29921f1a625c73c5a221bcb170c666efb6cba923/docs/christian_virtue_dataset_card.md)
 
 The shortest canonical reproduction path is:
 
