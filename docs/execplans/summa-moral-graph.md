@@ -16,6 +16,8 @@
     and repo-relative chat paths without local username fixtures
   - the final revision generalizes the Desktop-path leak guard so the verifier catches that class
     of local checkout leak without keeping the old checkout name in source code
+  - GitHub Actions `public-release-check` passed on the release-hardened code head
+    `4da208d` (`Finalize path leak guard`), and the current handoff update is log-only
 - A visual-quality pass is now tightening the public report surface without changing benchmark
   data:
   - README's opening link surface has been simplified from a row of large badges into a compact
@@ -1489,6 +1491,8 @@
     easy to review, discuss, or merge
   - the correct next increment was therefore a draft PR plus an execplan entry, not another model
     run
+  - once the latest path-leak and mypy fixes passed GitHub Actions, the draft marker became stale:
+    the branch still needs human review, but it no longer needs draft status to signal incomplete CI
 - External benchmark transfer is positive in the rows now promoted for publication:
   - the readout is intentionally positive-only, so the public table shows only the external slices
     where the final LoRA beats base
@@ -2285,6 +2289,16 @@
   - PR `#4` is the canonical handoff for the positive benchmark readout branch
   - future edits to this branch should keep the README and committed report surfaces positive-only,
     while leaving raw run logs available under ignored `runs/` paths for auditability
+- Mark the positive benchmark readout PR ready for review after the release gate passes.
+  Reason:
+  - the draft state was useful while the branch still needed visual polish, path-leak hardening,
+    and CI confirmation
+  - release-hardened head `4da208d` has a passing GitHub Actions `public-release-check`, and the
+    current continuation adds only the handoff log, so keeping the PR in draft would now
+    understate the branch's readiness
+  Consequence:
+  - PR `#4` remains reviewable before merge, but the GitHub surface now correctly signals that
+    the publication package is ready for reviewer attention
 - Keep external benchmark runs auditable but publish only LoRA-positive slices.
   Reason:
   - the user explicitly wants robust logs, but also wants the public/repo-facing result surface to
@@ -3329,6 +3343,8 @@
     the release verifier now guards against this class of leak in scripts
   - the final polish removes the last exact old checkout name from source while keeping a
     regression test for desktop-local checkout leaks
+  - GitHub Actions confirms the same public-release contract on the release-hardened code head,
+    closing the CI/handoff gap that remained after local verification
 - The visual pass improved the public-facing report surfaces while preserving the original data:
   - updated charts:
     `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,
