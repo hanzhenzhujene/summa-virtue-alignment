@@ -380,37 +380,73 @@ def write_examples(path: Path) -> Path:
 
 def write_delta_svg(path: Path, rows: list[ReadoutRow]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    width = 1120
-    row_height = 46
-    top = 92
-    left = 330
-    plot_width = 620
-    height = top + len(rows) * row_height + 78
+    width = 1240
+    row_height = 58
+    top = 154
+    left = 366
+    plot_width = 560
+    delta_x = 960
+    levels_x = 1062
+    height = top + len(rows) * row_height + 86
     max_delta = max(row.delta for row in rows)
     parts = [
-        svg_open(width, height),
-        rect(0, 0, width, height, "#ffffff", stroke="#d4d4d8", rx=18),
-        text(34, 42, "Positive Benchmark Deltas", 26, "#0f172a", weight=700),
+        svg_open(
+            width,
+            height,
+            aria_label="Positive benchmark deltas for the final full-corpus LoRA",
+        ),
+        rect(0, 0, width, height, "#f8fafc"),
+        rect(24, 18, width - 48, height - 36, "#ffffff", stroke="#d4d4d8", rx=18),
+        text(64, 58, "Positive Benchmark Deltas", 28, "#0f172a", weight=700),
         text(
-            34,
-            68,
+            64,
+            84,
             "Every row is LoRA minus base; only positive rows are included.",
             14,
             "#475569",
         ),
+        rect(64, 106, 248, 34, "#ecfdf5", stroke="#a7f3d0", rx=10),
+        text(80, 128, f"{len(rows)} LoRA-positive benchmark rows", 13, "#047857", weight=700),
+        text(left, top - 42, "LoRA gain over base", 12, "#334155", weight=700),
+        text(delta_x, top - 42, "Delta", 12, "#334155", weight=700),
+        text(levels_x, top - 42, "Base -> LoRA", 12, "#334155", weight=700),
     ]
+    for tick_ratio in [0.0, 0.25, 0.5, 0.75, 1.0]:
+        tick_x = left + plot_width * tick_ratio
+        tick_value = max_delta * tick_ratio
+        parts.extend(
+            [
+                line(tick_x, top - 26, tick_x, height - 58, "#eef2f7"),
+                text(
+                    int(tick_x),
+                    top - 34,
+                    signed_pp(tick_value),
+                    10,
+                    "#64748b",
+                    anchor="middle",
+                ),
+            ]
+        )
+    parts.extend(
+        [
+            line(delta_x - 18, top - 52, delta_x - 18, height - 52, "#e2e8f0"),
+            line(levels_x - 18, top - 52, levels_x - 18, height - 52, "#e2e8f0"),
+        ]
+    )
     for index, row in enumerate(rows):
         y = top + index * row_height
         bar_width = int((row.delta / max_delta) * plot_width)
+        if index % 2:
+            parts.append(rect(48, y - 14, width - 96, row_height - 4, "#fbfdff", rx=10))
         parts.extend(
             [
-                text(34, y + 18, row.display_name, 13, "#0f172a", weight=700),
-                text(34, y + 35, row.category, 11, "#64748b"),
-                rect(left, y + 2, plot_width, 18, "#f8fafc", stroke="#e2e8f0", rx=4),
-                rect(left, y + 2, bar_width, 18, "#0f766e", rx=4),
-                text(left + plot_width + 18, y + 17, signed_pp(row.delta), 13, "#0f172a"),
+                text(64, y + 12, row.display_name, 13, "#0f172a", weight=700),
+                text(64, y + 30, row.category, 11, "#64748b"),
+                rect(left, y + 2, plot_width, 20, "#f8fafc", stroke="#e2e8f0", rx=5),
+                rect(left, y + 2, bar_width, 20, "#0f766e", rx=5),
+                text(delta_x, y + 17, signed_pp(row.delta), 13, "#0f172a", weight=700),
                 text(
-                    left + plot_width + 108,
+                    levels_x,
                     y + 17,
                     f"{pct(row.base)} -> {pct(row.lora)}",
                     12,
@@ -425,46 +461,80 @@ def write_delta_svg(path: Path, rows: list[ReadoutRow]) -> Path:
 
 def write_level_svg(path: Path, rows: list[ReadoutRow]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
-    width = 1120
-    row_height = 50
-    top = 96
-    left = 330
+    width = 1240
+    row_height = 62
+    top = 154
+    left = 366
     plot_width = 560
-    height = top + len(rows) * row_height + 82
+    value_x = 960
+    height = top + len(rows) * row_height + 88
     parts = [
-        svg_open(width, height),
-        rect(0, 0, width, height, "#ffffff", stroke="#d4d4d8", rx=18),
-        text(34, 42, "Base vs LoRA on Positive Rows", 26, "#0f172a", weight=700),
+        svg_open(
+            width,
+            height,
+            aria_label="Base versus final LoRA scores on positive benchmark rows",
+        ),
+        rect(0, 0, width, height, "#f8fafc"),
+        rect(24, 18, width - 48, height - 36, "#ffffff", stroke="#d4d4d8", rx=18),
+        text(64, 58, "Base vs LoRA on Positive Rows", 28, "#0f172a", weight=700),
         text(
-            34,
-            68,
+            64,
+            84,
             "Blue is the untouched base model; green is the final full-corpus LoRA.",
             14,
             "#475569",
         ),
+        rect(64, 106, 12, 12, "#2563eb", rx=2),
+        text(84, 116, "Base", 12, "#475569"),
+        rect(148, 106, 12, 12, "#0f766e", rx=2),
+        text(168, 116, "Final full-corpus LoRA", 12, "#475569"),
+        text(left, top - 42, "Absolute score", 12, "#334155", weight=700),
+        text(value_x, top - 42, "Reported values", 12, "#334155", weight=700),
     ]
+    for tick_ratio in [0.0, 0.25, 0.5, 0.75, 1.0]:
+        tick_x = left + plot_width * tick_ratio
+        parts.extend(
+            [
+                line(tick_x, top - 26, tick_x, height - 58, "#eef2f7"),
+                text(
+                    int(tick_x),
+                    top - 34,
+                    f"{tick_ratio * 100:.0f}%",
+                    10,
+                    "#64748b",
+                    anchor="middle",
+                ),
+            ]
+        )
+    parts.append(line(value_x - 18, top - 52, value_x - 18, height - 52, "#e2e8f0"))
     for index, row in enumerate(rows):
         y = top + index * row_height
         base_width = int(row.base * plot_width)
         lora_width = int(row.lora * plot_width)
+        if index % 2:
+            parts.append(rect(48, y - 14, width - 96, row_height - 4, "#fbfdff", rx=10))
         parts.extend(
             [
-                text(34, y + 19, row.display_name, 13, "#0f172a", weight=700),
-                rect(left, y + 2, plot_width, 14, "#f8fafc", stroke="#e2e8f0", rx=3),
-                rect(left, y + 2, base_width, 14, "#2563eb", rx=3),
-                rect(left, y + 24, plot_width, 14, "#f8fafc", stroke="#e2e8f0", rx=3),
-                rect(left, y + 24, lora_width, 14, "#0f766e", rx=3),
-                text(left + plot_width + 18, y + 14, f"Base {pct(row.base)}", 12, "#2563eb"),
-                text(left + plot_width + 18, y + 36, f"LoRA {pct(row.lora)}", 12, "#0f766e"),
+                text(64, y + 13, row.display_name, 13, "#0f172a", weight=700),
+                text(64, y + 31, row.category, 11, "#64748b"),
+                rect(left, y, plot_width, 15, "#f8fafc", stroke="#e2e8f0", rx=4),
+                rect(left, y, base_width, 15, "#2563eb", rx=4),
+                rect(left, y + 25, plot_width, 15, "#f8fafc", stroke="#e2e8f0", rx=4),
+                rect(left, y + 25, lora_width, 15, "#0f766e", rx=4),
+                text(value_x, y + 13, f"Base {pct(row.base)}", 12, "#2563eb", weight=700),
+                text(value_x, y + 38, f"LoRA {pct(row.lora)}", 12, "#0f766e", weight=700),
             ]
         )
-    legend_y = height - 34
     parts.extend(
         [
-            rect(34, legend_y - 10, 12, 12, "#2563eb", rx=2),
-            text(54, legend_y, "Base", 12, "#475569"),
-            rect(114, legend_y - 10, 12, 12, "#0f766e", rx=2),
-            text(134, legend_y, "Final full-corpus LoRA", 12, "#475569"),
+            text(
+                left + (plot_width // 2),
+                height - 24,
+                "Benchmark score",
+                12,
+                "#475569",
+                anchor="middle",
+            ),
             "</svg>",
         ]
     )
@@ -472,10 +542,10 @@ def write_level_svg(path: Path, rows: list[ReadoutRow]) -> Path:
     return path
 
 
-def svg_open(width: int, height: int) -> str:
+def svg_open(width: int, height: int, *, aria_label: str) -> str:
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-        f'viewBox="0 0 {width} {height}">'
+        f'viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(aria_label)}">'
     )
 
 
@@ -504,11 +574,21 @@ def text(
     color: str,
     *,
     weight: int | None = None,
+    anchor: str | None = None,
 ) -> str:
     weight_attr = f' font-weight="{weight}"' if weight else ""
+    anchor_attr = f' text-anchor="{anchor}"' if anchor else ""
     return (
         f'<text x="{x}" y="{y}" font-family="Helvetica, Arial, sans-serif" '
-        f'font-size="{size}" fill="{color}"{weight_attr}>{html.escape(str(value))}</text>'
+        f'font-size="{size}" fill="{color}"{weight_attr}{anchor_attr}>'
+        f"{html.escape(str(value))}</text>"
+    )
+
+
+def line(x1: float, y1: float, x2: float, y2: float, stroke: str, *, width: float = 1.0) -> str:
+    return (
+        f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
+        f'stroke="{stroke}" stroke-width="{width:.1f}"/>'
     )
 
 

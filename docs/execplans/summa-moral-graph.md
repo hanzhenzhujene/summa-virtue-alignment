@@ -2,6 +2,15 @@
 
 ## Progress
 
+- A visual-quality pass is now tightening the public report surface without changing benchmark
+  data:
+  - README's opening link surface has been simplified from a row of large badges into a compact
+    quick-link table while preserving the release-check badge
+  - the positive benchmark delta and level SVGs now use the same carded report style, clearer axis
+    ticks, zebra row guides, and fixed value columns
+  - the citation-frontier SVG template now gives the summary and headline shift separate cards and
+    adds vertical spacing so the legend no longer crowds the right-side metric columns
+  - affected SVGs were regenerated from their builders rather than hand-edited
 - The positive benchmark readout now has a reviewable GitHub handoff:
   - branch: `codex/positive-benchmark-readout`
   - draft PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
@@ -1443,6 +1452,13 @@
 
 ## Surprises & Discoveries
 
+- The most visible quality issues were not wrong charts, but hierarchy and crowding:
+  - the positive benchmark charts had correct data but read as a plainer one-off visual style next
+    to the polished full-corpus figures
+  - the citation-frontier charts compressed summary copy, legend, and right-side metric headers
+    into the same vertical band, which made the figures feel cluttered in report thumbnails
+  - rebuilding the frontier assets from another local worktree required care because resolving
+    symlinked ignored run artifacts can leak machine-specific absolute paths into generated docs
 - After the benchmark packet was committed and pushed, the remaining gap was not another score or
   chart but the project handoff surface itself:
   - no GitHub PR existed for the pushed branch, so the result was reproducible locally but not yet
@@ -2207,6 +2223,19 @@
 
 ## Decision Log
 
+- Make visual fixes in generators first, then regenerate committed figures.
+  Reason:
+  - the repo treats public charts as reproducible report artifacts, so hand-tuning SVG output would
+    make future report rebuilds visually regress
+  - the user's visual request is presentation-focused, not a request to reinterpret or change the
+    benchmark data
+  Consequence:
+  - `scripts/build_christian_virtue_positive_readout.py` now owns the improved positive benchmark
+    chart layout
+  - `src/summa_moral_graph/sft/frontier.py` now owns the less crowded citation-frontier figure
+    template
+  - `scripts/audit_christian_virtue_frontier.py` now preserves repo-relative run artifact paths
+    when reading symlinked ignored runs for report regeneration
 - Open the positive benchmark readout as a draft PR before any merge.
   Reason:
   - the work is already committed, pushed, and verified, but the repo still needed a concrete
@@ -3252,6 +3281,15 @@
 
 ## Outcomes & Retrospective
 
+- The visual pass improved the public-facing report surfaces while preserving the original data:
+  - updated charts:
+    `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,
+    `docs/reports/assets/christian_virtue_positive_benchmark_levels.svg`,
+    `docs/reports/assets/christian_virtue_citation_frontier_modes.svg`, and
+    `docs/reports/assets/christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg`
+  - README now opens with a compact quick-link table rather than several large first-screen badges
+  - a rendered contact-sheet preview and focused four-chart preview were inspected locally before
+    validation
 - The positive benchmark readout is now ready for review as a draft PR:
   - PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
   - base: `main`

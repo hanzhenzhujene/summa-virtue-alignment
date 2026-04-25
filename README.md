@@ -10,11 +10,9 @@ The dataset exists to train models toward Aquinas-grounded Christian virtue reas
 generic religion chat, and its main merit is that the supervision stays reviewed, passage-grounded,
 relational, and auditable end to end.
 
-[![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
-[![Use the online chat](https://img.shields.io/badge/Live%20chat-summa--virtue--chat.hf.space-1f6feb?style=for-the-badge&logo=huggingface&logoColor=white)](https://jennyzhu0822-summa-virtue-chat.hf.space)
-[![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
-[![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
-[![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
+| Start | Try | Inspect | Browse | Release gate |
+| --- | --- | --- | --- | --- |
+| [SFT guide](./docs/fine_tune_with_summa_moral_graph.md) | [Online chat](https://jennyzhu0822-summa-virtue-chat.hf.space) | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) | [Live viewer](https://summa-moral-graph.streamlit.app/) | [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml) |
 
 > The published Hugging Face adapter is the smallest public release artifact in the repo. The
 > strongest repo-local result is the completed `full-corpus` LoRA run shown below.

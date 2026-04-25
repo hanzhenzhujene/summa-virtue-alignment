@@ -12,6 +12,13 @@ from summa_moral_graph.sft.frontier import (
 )
 
 
+def _artifact_input_path(value: str) -> Path:
+    path = Path(value).expanduser()
+    if path.is_absolute():
+        return path
+    return Path.cwd() / path
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description=(
@@ -67,9 +74,9 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     analysis = analyze_citation_frontier(
-        dataset_dir=Path(args.dataset_dir).resolve(),
-        base_predictions_path=Path(args.base_predictions).resolve(),
-        adapter_predictions_path=Path(args.adapter_predictions).resolve(),
+        dataset_dir=_artifact_input_path(args.dataset_dir),
+        base_predictions_path=_artifact_input_path(args.base_predictions),
+        adapter_predictions_path=_artifact_input_path(args.adapter_predictions),
         split_name=args.split,
         task_type=args.task_type,
     )
