@@ -11,6 +11,8 @@ PUBLIC_DOC_PATHS = [
     REPO_ROOT / "docs" / "public_claim_map.md",
     REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md",
     REPO_ROOT / "docs" / "repository_map.md",
+    REPO_ROOT / "docs" / "reports" / "christian_virtue_positive_benchmark_readout.md",
+    REPO_ROOT / "docs" / "reports" / "christian_virtue_positive_benchmark_examples.md",
     REPO_ROOT / "scripts" / "README.md",
     REPO_ROOT / "scripts" / "smoke_test_christian_virtue_chat.py",
 ]
@@ -50,6 +52,7 @@ DOCSTRING_PATHS = [
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "splitters.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "templates.py",
     REPO_ROOT / "src" / "summa_moral_graph" / "sft" / "utils.py",
+    REPO_ROOT / "scripts" / "build_christian_virtue_positive_readout.py",
 ]
 
 SHELL_COMMENT_PATHS = [
@@ -62,6 +65,7 @@ SHELL_COMMENT_PATHS = [
     REPO_ROOT / "scripts" / "run_christian_virtue_qwen2_5_1_5b_local_compare.sh",
     REPO_ROOT / "scripts" / "run_christian_virtue_qwen2_5_1_5b_local_loop.sh",
     REPO_ROOT / "scripts" / "run_christian_virtue_qwen2_5_1_5b_local_train.sh",
+    REPO_ROOT / "scripts" / "run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh",
     REPO_ROOT / "scripts" / "christian_virtue_small_common.sh",
     REPO_ROOT / "scripts" / "run_christian_virtue_small_train.sh",
     REPO_ROOT / "scripts" / "run_christian_virtue_small_base_eval.sh",
@@ -181,6 +185,10 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "full-corpus training run" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_progress.svg" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_tract_profile.svg" in readme_text
+    assert "christian_virtue_positive_benchmark_deltas.svg" in readme_text
+    assert "christian_virtue_positive_benchmark_levels.svg" in readme_text
+    assert "christian_virtue_positive_benchmark_readout.md" in readme_text
+    assert "christian_virtue_positive_benchmark_examples.md" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
     assert "summa-virtue-chat.hf.space" in readme_text
@@ -221,6 +229,7 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "build_christian_virtue_sft_dataset.py" in scripts_guide
     assert "audit_christian_virtue_frontier.py" in scripts_guide
     assert "build_christian_virtue_full_corpus_report.py" in scripts_guide
+    assert "build_christian_virtue_positive_readout.py" in scripts_guide
     assert "build_christian_virtue_citation_frontier_report.py" in scripts_guide
     assert "build_christian_virtue_justice_guarded_report.py" in scripts_guide
     assert "launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh" in scripts_guide
@@ -263,6 +272,9 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "src/summa_moral_graph/app/chat.py" in repository_map
     assert "src/summa_moral_graph/sft/chat_smoke.py" in repository_map
     assert "build_christian_virtue_full_corpus_report.py" in repository_map
+    assert "christian_virtue_positive_benchmark_readout.md" in repository_map
+    assert "christian_virtue_positive_benchmark_examples.md" in repository_map
+    assert "build_christian_virtue_positive_readout.py" in repository_map
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in repository_map
     assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in repository_map
     assert "qwen2_5_1_5b_instruct_lora_mps_accuracy_first_hybrid.yaml" in repository_map
