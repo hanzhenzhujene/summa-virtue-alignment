@@ -8,6 +8,15 @@ Raw `runs/` artifacts stay out of the committed repo by default. The entries her
 reader-facing checkpoints that explain the current dataset, method, strongest result, and release
 surface without forcing a reviewer to reconstruct the story from terminal logs.
 
+Public first-use links:
+
+- online chat:
+  [jennyzhu0822-summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- Hugging Face adapter:
+  [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
+- companion graph viewer:
+  [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
+
 ## Current Flagship Result
 
 ### Qwen2.5 1.5B Full-Corpus LoRA

@@ -272,6 +272,33 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "local_baseline_adapter/README.md" in repository_map
 
 
+def test_public_claim_map_mentions_online_chat_surface() -> None:
+    claim_map = (REPO_ROOT / "docs" / "public_claim_map.md").read_text(encoding="utf-8")
+    assert "jennyzhu0822-summa-virtue-chat.hf.space" in claim_map
+    assert "make deploy-christian-virtue-chat-space" in claim_map
+    assert "public online chat surface" in claim_map.lower()
+
+
+def test_secondary_public_docs_name_online_chat_surface() -> None:
+    dataset_card = (REPO_ROOT / "docs" / "christian_virtue_dataset_card.md").read_text(
+        encoding="utf-8"
+    )
+    sft_guide = (REPO_ROOT / "docs" / "christian_virtue_sft.md").read_text(encoding="utf-8")
+    fine_tune_guide = (
+        REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md"
+    ).read_text(encoding="utf-8")
+    experiments = (
+        REPO_ROOT / "docs" / "reports" / "christian_virtue_experiments.md"
+    ).read_text(encoding="utf-8")
+
+    for text in (dataset_card, sft_guide, fine_tune_guide, experiments):
+        assert "jennyzhu0822-summa-virtue-chat.hf.space" in text
+        assert "summa-moral-graph.streamlit.app" in text
+
+    assert "small-model `qwen/qwen2.5-1.5b-instruct`" in dataset_card.lower()
+    assert "public interaction" in sft_guide.lower()
+
+
 def test_fine_tune_guide_names_completed_justice_guarded_follow_up() -> None:
     guide_text = (
         REPO_ROOT / "docs" / "fine_tune_with_summa_moral_graph.md"

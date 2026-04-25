@@ -104,6 +104,12 @@ held-out prompts without shipping the gold assistant answer in the generation in
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
+- Public online chat:
+  [jennyzhu0822-summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- Hugging Face Space page:
+  [JennyZhu0822/summa-virtue-chat](https://huggingface.co/spaces/JennyZhu0822/summa-virtue-chat)
+- Companion graph viewer:
+  [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Curated report:
@@ -117,6 +123,8 @@ The current report reflects the canonical local rerun (`20260421_134712` train,
 packaged evaluation surface for that result, while the public GitHub release keeps its original tag
 slug for continuity. The current canonical held-out benchmark reaches `0.365` exact citation
 overall, with strongest gains on `Virtue concept explanation` and `Reviewed relation explanation`.
+The online chat uses the same small-model `Qwen/Qwen2.5-1.5B-Instruct` Christian virtue assistant,
+while the Streamlit viewer remains the evidence browser and graph surface.
 
 ## Out of Scope
 

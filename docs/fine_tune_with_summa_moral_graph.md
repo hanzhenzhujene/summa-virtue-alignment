@@ -347,6 +347,12 @@ endpoints:
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
+- Public online chat:
+  [jennyzhu0822-summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- Hugging Face Space page:
+  [JennyZhu0822/summa-virtue-chat](https://huggingface.co/spaces/JennyZhu0822/summa-virtue-chat)
+- Companion graph viewer:
+  [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Local adapter package:
@@ -377,6 +383,8 @@ pipeline is meant to scale to larger models and longer GPU runs afterward.
 The Hugging Face repo and GitHub release remain the public distribution endpoints. The GitHub
 release keeps its original tag slug `20260418_193038` for continuity, while the curated report and
 local adapter package are the authoritative evaluation surfaces for the canonical `0.365` result.
+The online chat keeps the same small-model `Qwen/Qwen2.5-1.5B-Instruct` surface available for
+first-use interaction, and the Streamlit viewer remains the audit browser.
 
 ## What The Local Run Writes
 

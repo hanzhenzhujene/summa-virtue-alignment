@@ -2,6 +2,15 @@
 
 ## Progress
 
+- The public Christian virtue release surface is now being synchronized one layer deeper than the
+  README:
+  - the dataset card, SFT workflow guide, fine-tune guide, and experiment index are now being
+    updated so they all point to the same online chat, Hugging Face adapter, and graph viewer
+    endpoints
+  - the publication generator is also being updated so the Hugging Face model card and GitHub
+    release notes stop lagging behind the repo-level online chat story
+  - repo-surface tests are being extended so these secondary public docs cannot silently drift back
+    to older publication endpoints
 - The Christian virtue chat surface is now being packaged for real online use instead of staying
   local-only:
   - the Gradio header is being upgraded so a first-time user immediately sees that the assistant
@@ -12,6 +21,9 @@
     be updated from the repo instead of drifting into a one-off manual demo
   - README and the script/repository guides are also being tightened so the online path is now
     explicit: Hugging Face Space for chat, Streamlit for graph/evidence browsing
+  - the last remaining publication gap is also being closed: the Hugging Face model card and the
+    public claim map are now being updated so they point to the same online chat surface instead
+    of leaving that new public endpoint visible only from the repo README
 - The repo is now getting a lightweight qualitative chat smoke workflow so the improved assistant
   behavior stops living only in ad hoc manual probing:
   - the new target is a timestamped `full_corpus_chat_smoke` run family with a tiny prompt panel
@@ -1354,6 +1366,12 @@
 
 ## Surprises & Discoveries
 
+- The last real publication drift was hiding in the "second click" docs rather than the landing
+  page:
+  - README and the Space could already look current while the dataset card, SFT guide, and model
+    card still told an older story with no public chat entrypoint
+  - that means a polished research deliverable needs synchronization tests for the secondary public
+    docs too, not only the flagship README
 - The hosting decision is now much clearer once the official docs are compared directly:
   - Streamlit Community Cloud officially hibernates apps after 12 hours without traffic, which is
     exactly the behavior the user dislikes for a public chat entrypoint
@@ -1361,6 +1379,12 @@
     Spaces sleep on a longer inactivity window, and upgraded hardware can stay awake indefinitely
   - this means the best split is no longer ambiguous: Gradio + Space for chat, Streamlit for the
     evidence browser
+- The repo's hardest remaining polish problem is no longer capability, but publication-surface
+  drift:
+  - once the README and Space were updated, the Hugging Face model card still lagged behind unless
+    the publication generator itself learned about the online chat surface
+  - that meant "perfect" release polish required not only editing docs, but updating the model-card
+    generator and republishing the adapter page
 - The main remaining quality risk in the chat surface is no longer just bad answers; it is silent
   drift between manual demos and what the repo actually tests:
   - once the deterministic teacher-style layer started getting better, the lack of a small
@@ -2070,6 +2094,15 @@
 
 ## Decision Log
 
+- Treat the dataset card, SFT guide, fine-tune guide, experiment index, Hugging Face model card,
+  and GitHub release notes as one linked publication surface.
+  Reason:
+  - readers do not all enter through the README, especially once the project has public model and
+    chat endpoints
+  - the user's quality bar is "everywhere looks updated," not only "the landing page looks good"
+  Consequence:
+  - online chat and graph viewer links now need to live in every major public artifact
+  - repo-surface tests should enforce this so the publication story cannot split again
 - Prefer Hugging Face Space over Streamlit Community Cloud for the public online chat surface.
   Reason:
   - the user explicitly wants to avoid the short Streamlit sleep cycle on the public chat
@@ -2089,6 +2122,14 @@
   Consequence:
   - the UI now tells the truth faster and gives users obvious exits to the repo, model page, and
     evidence browser
+- Update the Hugging Face model-card generator and the public claim map so the online chat surface
+  becomes part of the official publication story.
+  Reason:
+  - otherwise the repo README would mention the online chat, but the HF model page and claim map
+    would still look one version behind
+  Consequence:
+  - the public story is now the same whether a reader starts from GitHub, the HF model page, the
+    Space page, or the public claim map
 - Add a lightweight chat smoke workflow instead of treating qualitative chat evaluation as only a
   manual ritual.
   Reason:
@@ -3047,12 +3088,24 @@
 
 ## Outcomes & Retrospective
 
+- The public Christian virtue deliverable now reads more like one finished product than a set of
+  adjacent artifacts:
+  - the same small-model online chat and companion viewer are now visible from README, the dataset
+    card, the SFT guide, the fine-tune guide, the experiment index, the public claim map, and the
+    generated publication surfaces
+  - this matters because the repo now feels intentionally cross-linked rather than only partially
+    updated around the newest feature
 - The Christian virtue chat deliverable now has a coherent public shape instead of two partially
   disconnected local surfaces:
   - a user can keep using Streamlit to inspect passages and graph structure
   - a user can now use the dedicated Gradio chat both locally and through a Hugging Face Space
   - the chat UI itself now says clearly that the assistant is a small `Qwen/Qwen2.5-1.5B`
     full-corpus LoRA demo, which makes the presentation more honest and more legible
+- The public release surfaces are now much closer to fully synchronized:
+  - GitHub README, repo guides, the Space page, the HF model-card generator, and the public claim
+    map now all recognize the online chat as an official public endpoint
+  - that makes the deliverable feel less like a cluster of related artifacts and more like one
+    coherent research product
 - The Christian virtue chat surface is moving from "feels better in manual probing" toward a more
   durable release artifact:
   - richer practical-moral prompts are now being paired with a small timestamped smoke panel

@@ -32,6 +32,8 @@ PACKAGE_REPORT_ASSETS = {
         "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
     ),
 }
+PUBLIC_CHAT_SPACE_URL = "https://jennyzhu0822-summa-virtue-chat.hf.space"
+PUBLIC_VIEWER_URL = "https://summa-moral-graph.streamlit.app/"
 
 TASK_DISPLAY_NAMES = {
     "citation_grounded_moral_answer": "Citation-grounded moral answer",
@@ -538,6 +540,8 @@ def build_model_card_text(
             f"- Full report: [GitHub link]({report_url})",
             f"- GitHub release: {release_url}",
             f"- Hugging Face adapter: {hf_url}",
+            f"- Online chat: {PUBLIC_CHAT_SPACE_URL}",
+            f"- Graph viewer: {PUBLIC_VIEWER_URL}",
             "- Supervision source: approved reviewed doctrinal annotations only",
             "- Excluded from default training truth: structural-editorial review, "
             "candidate material, and processed edge exports",
@@ -594,6 +598,8 @@ def build_model_card_text(
             "## Reproduce This Exact Artifact",
             "",
             f"- Hugging Face adapter: {hf_url}",
+            f"- Online chat: {PUBLIC_CHAT_SPACE_URL}",
+            f"- Graph viewer: {PUBLIC_VIEWER_URL}",
             f"- GitHub repo: {repo_url}",
             f"- Matching GitHub release: {release_url}",
             f"- Curated experiment report: [GitHub link]({report_url})",
@@ -664,6 +670,8 @@ def build_release_notes_text(
         "## Included here",
         "",
         f"- Hugging Face adapter: {package_manifest['hf_repo_url']}",
+        f"- Online chat: {PUBLIC_CHAT_SPACE_URL}",
+        f"- Graph viewer: {PUBLIC_VIEWER_URL}",
         f"- Curated experiment report: {report_url}",
         f"- Dataset card: {dataset_card_url}",
         "- Training export: `data/processed/sft/exports/christian_virtue_v1`",

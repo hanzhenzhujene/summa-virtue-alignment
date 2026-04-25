@@ -391,6 +391,12 @@ Current public distribution endpoints:
 
 - Hugging Face adapter:
   [JennyZhu0822/summa-virtue-qwen2.5-1.5b](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
+- Public online chat:
+  [jennyzhu0822-summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space)
+- Hugging Face Space page:
+  [JennyZhu0822/summa-virtue-chat](https://huggingface.co/spaces/JennyZhu0822/summa-virtue-chat)
+- Companion graph viewer:
+  [summa-moral-graph.streamlit.app](https://summa-moral-graph.streamlit.app/)
 - Matching GitHub release:
   [christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038](https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038)
 - Local adapter package:
@@ -405,8 +411,9 @@ Current canonical repo-local rerun used by the flagship report:
 
 Treat the flagship report and the local adapter package as the canonical evaluation surfaces for
 the current benchmark numbers. The Hugging Face repo and GitHub release remain the public
-distribution endpoints, and the GitHub release keeps its original tag slug `20260418_193038` for
-continuity.
+distribution endpoints, while the online chat and graph viewer are the main public interaction
+surfaces for first-use readers. The GitHub release keeps its original tag slug `20260418_193038`
+for continuity.
 
 ## Remote CUDA Path
 
