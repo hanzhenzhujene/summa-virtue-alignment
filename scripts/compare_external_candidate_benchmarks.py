@@ -7,7 +7,7 @@ import csv
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from summa_moral_graph.sft.run_layout import current_git_commit, generate_run_id, iso_timestamp
 from summa_moral_graph.utils.paths import REPO_ROOT
@@ -416,13 +416,13 @@ def _load_adapter_verification(stdout_path: Path) -> dict[str, Any] | None:
             payload = json.loads(line)
         except json.JSONDecodeError:
             continue
-        if payload.get("event") == "adapter_artifact_verified":
-            return payload
+        if isinstance(payload, dict) and payload.get("event") == "adapter_artifact_verified":
+            return cast(dict[str, Any], payload)
     return None
 
 
 def _load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
 
 
 def _pct(value: float) -> str:

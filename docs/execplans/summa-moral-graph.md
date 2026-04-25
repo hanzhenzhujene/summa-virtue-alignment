@@ -2,6 +2,18 @@
 
 ## Progress
 
+- A publication-readiness audit is tightening the benchmark/reproduction surface:
+  - `scripts/build_christian_virtue_benchmark_packet.py` no longer embeds a workstation-specific
+    fallback path for cross-worktree metrics or the final adapter
+  - the packet builder now accepts `--metrics-run-root` /
+    `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `--adapter-run-root` /
+    `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT`, while still defaulting to repo-local `runs/`
+  - `scripts/README.md`, `README.md`, `docs/public_claim_map.md`, and `docs/repository_map.md`
+    now document that cross-worktree handoff explicitly
+  - publication leak scanning now covers script entrypoints and the public Makefile/workflow
+    surfaces, not only Markdown/docs/data artifacts
+  - focused tests now verify explicit metric-root preference, cross-worktree adapter resolution,
+    and repo-relative chat paths without local username fixtures
 - A visual-quality pass is now tightening the public report surface without changing benchmark
   data:
   - README's opening link surface has been simplified from a row of large badges into a compact
@@ -1452,6 +1464,14 @@
 
 ## Surprises & Discoveries
 
+- The weakest release-readiness issue was not a chart or README paragraph, but a hidden local-path
+  assumption in the benchmark packet builder:
+  - ignored `runs/` artifacts can legitimately live in another worktree during long local
+    experiments, but a public script should make that dependency explicit rather than guessing a
+    specific workstation directory
+  - the dry run confirmed that an explicit `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` is enough to
+    rebuild the full positive packet from the final adapter and mixed current/cross-worktree run
+    artifacts
 - The most visible quality issues were not wrong charts, but hierarchy and crowding:
   - the positive benchmark charts had correct data but read as a plainer one-off visual style next
     to the polished full-corpus figures
@@ -2223,6 +2243,19 @@
 
 ## Decision Log
 
+- Make cross-worktree benchmark packet inputs explicit and testable.
+  Reason:
+  - the final full-corpus LoRA is a primary artifact, so the builder must resolve it deliberately
+    and fail with an actionable message when the run root is missing
+  - a hardcoded local fallback would make the public repo look less reproducible and could silently
+    point future readers at the wrong workstation artifact
+  Consequence:
+  - `scripts/build_christian_virtue_benchmark_packet.py` now searches ordered metric roots and
+    adapter roots supplied by CLI flags or environment variables
+  - docs explain the cross-worktree variables instead of implying that the repo knows the user's
+    local checkout layout
+  - the publication verifier's path-leak scan now includes script entrypoints, the Makefile, and
+    the public workflow
 - Make visual fixes in generators first, then regenerate committed figures.
   Reason:
   - the repo treats public charts as reproducible report artifacts, so hand-tuning SVG output would
@@ -3281,6 +3314,13 @@
 
 ## Outcomes & Retrospective
 
+- The release surface is now less fragile for reviewers and collaborators:
+  - benchmark packet regeneration works from an explicit cross-worktree run root and was dry-run
+    verified to produce the same `10` positive rows and final adapter SHA
+  - the public docs now tell a reviewer how to rebuild the packet when ignored run artifacts live
+    outside the current checkout
+  - local username/workstation paths were removed from executable code and test fixtures, while
+    the release verifier now guards against this class of leak in scripts
 - The visual pass improved the public-facing report surfaces while preserving the original data:
   - updated charts:
     `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,

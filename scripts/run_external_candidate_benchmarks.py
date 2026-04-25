@@ -10,7 +10,7 @@ import re
 import urllib.parse
 import urllib.request
 from collections import defaultdict
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from pathlib import Path
 from typing import Any
 
@@ -132,7 +132,7 @@ def build_samples(
     max_examples_per_benchmark: int,
     seed: int,
 ) -> list[dict[str, Any]]:
-    loaders = {
+    loaders: dict[str, Callable[..., list[dict[str, Any]]]] = {
         "bible_biblical_literacy": load_bible_biblical_literacy,
         "cbbq_christian_religion": load_cbbq_christian_religion,
         "ceval_ideological_moral": load_ceval_ideological_moral,

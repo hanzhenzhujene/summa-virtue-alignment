@@ -37,6 +37,7 @@ MACHINE_PATH_PATTERNS = (
     re.compile(r"/Users/[^\s)\]\"']+"),
     re.compile(r"/home/[^\s)\]\"']+"),
     re.compile(r"[A-Za-z]:\\\\Users\\\\[^\s)\]\"']+"),
+    re.compile(r"Desktop/summa-moral-graph-fork"),
 )
 
 
@@ -64,6 +65,23 @@ def iter_public_surface_paths(repo_root: Path) -> list[Path]:
     docs_root = repo_root / "docs"
     if docs_root.exists():
         paths.extend(sorted(docs_root.rglob("*.md")))
+
+    scripts_root = repo_root / "scripts"
+    if scripts_root.exists():
+        paths.extend(sorted(scripts_root.glob("*.py")))
+        paths.extend(sorted(scripts_root.glob("*.sh")))
+        readme_path = scripts_root / "README.md"
+        if readme_path.exists():
+            paths.append(readme_path)
+
+    for relative_path in [
+        "Makefile",
+        "pyproject.toml",
+        ".github/workflows/public-release-check.yml",
+    ]:
+        path = repo_root / relative_path
+        if path.exists():
+            paths.append(path)
 
     processed_root = repo_root / "data" / "processed"
     if processed_root.exists():

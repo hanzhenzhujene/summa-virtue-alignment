@@ -194,9 +194,16 @@ These are the main post-baseline experiment surfaces:
 ### Reporting And Publication
 
 - `scripts/build_christian_virtue_local_report.py`
+- `scripts/build_christian_virtue_benchmark_packet.py`
+- `scripts/build_christian_virtue_positive_readout.py`
 - `scripts/audit_christian_virtue_frontier.py`
 - `scripts/publish_christian_virtue_adapter.py`
 - `scripts/verify_christian_virtue_publication.py`
+
+The benchmark packet builder searches the repo-local `runs/` tree by default. If the final
+full-corpus adapter or canonical held-out metrics live in another worktree, set
+`CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT` rather
+than editing the script.
 
 ## Reproducibility Contract
 

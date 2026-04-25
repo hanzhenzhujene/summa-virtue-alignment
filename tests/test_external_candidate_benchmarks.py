@@ -2,7 +2,13 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from scripts.build_christian_virtue_benchmark_packet import external_benchmark_rows
+from scripts.build_christian_virtue_benchmark_packet import (
+    EXPECTED_ADAPTER_RUN_ID,
+    build_metric_roots,
+    external_benchmark_rows,
+    resolve_adapter_run_dir,
+    resolve_existing_metric_path,
+)
 from scripts.compare_external_candidate_benchmarks import (
     CandidateRun,
     build_comparison_payload,
@@ -148,3 +154,27 @@ def test_benchmark_packet_imports_only_promoted_external_rows() -> None:
     assert rows[0].benchmark == "External mmlu_world_religions"
     assert round(rows[0].delta, 2) == 0.10
     assert rows[0].coverage == "10/10; parse 100.0%"
+
+
+def test_benchmark_packet_prefers_explicit_metric_roots(tmp_path: Path) -> None:
+    explicit_root = tmp_path / "other_worktree" / "runs"
+    repo_root = tmp_path / "current_worktree" / "runs"
+    metric_path = explicit_root / "base_test/latest/metrics.json"
+    metric_path.parent.mkdir(parents=True)
+    metric_path.write_text('{"overall": {"count": 1}}\n', encoding="utf-8")
+
+    roots = build_metric_roots(str(explicit_root), default_root=repo_root)
+
+    assert roots == (explicit_root.resolve(), repo_root.resolve())
+    assert resolve_existing_metric_path("base_test/latest/metrics.json", roots) == metric_path
+
+
+def test_benchmark_packet_resolves_cross_worktree_adapter_run(tmp_path: Path) -> None:
+    run_family_root = tmp_path / "other_worktree" / "qwen2_5_1_5b_instruct"
+    adapter_dir = run_family_root / "full_corpus" / EXPECTED_ADAPTER_RUN_ID
+    adapter_dir.mkdir(parents=True)
+    (adapter_dir / "train_metadata.json").write_text('{"run_id": "demo"}\n', encoding="utf-8")
+
+    resolved = resolve_adapter_run_dir(run_family_root, (tmp_path / "repo_runs",))
+
+    assert resolved == adapter_dir.resolve()

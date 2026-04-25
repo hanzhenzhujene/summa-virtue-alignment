@@ -72,6 +72,9 @@ The curated packet is documented in the
 [positive benchmark readout](./docs/reports/christian_virtue_positive_benchmark_readout.md), with
 representative prompt shapes in
 [positive benchmark examples](./docs/reports/christian_virtue_positive_benchmark_examples.md).
+If the final adapter or run metrics live in another worktree, rebuild the packet with
+`CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT`; the
+public builder does not assume a local workstation path.
 
 ## At A Glance
 

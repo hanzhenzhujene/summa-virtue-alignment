@@ -5,9 +5,10 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import os
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 from summa_moral_graph.sft.run_layout import (
     create_timestamped_run_dir,
@@ -17,10 +18,8 @@ from summa_moral_graph.sft.run_layout import (
 from summa_moral_graph.utils.paths import REPO_ROOT
 
 RUN_ROOT = REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct"
-DESKTOP_RUN_ROOT = (
-    Path.home()
-    / "Desktop/summa-moral-graph-fork/runs/christian_virtue/qwen2_5_1_5b_instruct"
-)
+METRICS_RUN_ROOT_ENV = "CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT"
+ADAPTER_RUN_ROOT_ENV = "CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT"
 EXPECTED_ADAPTER_SHA256 = "0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb"
 EXPECTED_ADAPTER_RUN_ID = "20260422_223349"
 
@@ -49,31 +48,68 @@ def parse_args() -> argparse.Namespace:
         default=str(RUN_ROOT / "benchmark_packet"),
         help="Root directory for the timestamped packet.",
     )
+    parser.add_argument(
+        "--metrics-run-root",
+        default=os.environ.get(METRICS_RUN_ROOT_ENV),
+        help=(
+            "Optional qwen2_5_1_5b_instruct run-family root to search before the "
+            "repo-local runs directory. Multiple roots may be separated with os.pathsep."
+        ),
+    )
+    parser.add_argument(
+        "--adapter-run-root",
+        default=os.environ.get(ADAPTER_RUN_ROOT_ENV),
+        help=(
+            "Optional final adapter run directory, full_corpus family, or "
+            "qwen2_5_1_5b_instruct run-family root. Defaults to searching metrics roots."
+        ),
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     output_dir = create_timestamped_run_dir(Path(args.output_root).resolve())
-    packet = build_packet(output_dir)
+    metric_roots = build_metric_roots(args.metrics_run_root)
+    adapter_run_dir = resolve_adapter_run_dir(args.adapter_run_root, metric_roots)
+    packet = build_packet(
+        output_dir,
+        metric_roots=metric_roots,
+        adapter_run_dir=adapter_run_dir,
+    )
     print(json.dumps(packet, indent=2, sort_keys=True))
 
 
-def build_packet(output_dir: Path) -> dict[str, Any]:
-    rows = build_benchmark_rows()
+def build_packet(
+    output_dir: Path,
+    *,
+    metric_roots: tuple[Path, ...] | None = None,
+    adapter_run_dir: Path | None = None,
+) -> dict[str, Any]:
+    metric_roots = metric_roots or build_metric_roots(None)
+    adapter_run_dir = adapter_run_dir or resolve_adapter_run_dir(None, metric_roots)
+    adapter = adapter_provenance(adapter_run_dir)
+    rows = build_benchmark_rows(metric_roots)
     output_dir.mkdir(parents=True, exist_ok=True)
     summary_csv = write_summary_csv(output_dir / "summary_table.csv", rows)
     metrics_path = write_json(
         output_dir / "metrics.json",
         {
-            "adapter": adapter_provenance(),
+            "adapter": adapter,
             "generated_at": iso_timestamp(),
             "rows": [row_to_dict(row) for row in rows],
-            "source_paths": source_paths(),
+            "source_paths": source_paths(metric_roots),
         },
     )
     svg_path = write_delta_svg(output_dir / "benchmark_delta.svg", rows)
-    report_path = write_report(output_dir / "report.md", rows, metrics_path, summary_csv, svg_path)
+    report_path = write_report(
+        output_dir / "report.md",
+        rows,
+        metrics_path,
+        summary_csv,
+        svg_path,
+        adapter=adapter,
+    )
     manifest = {
         "adapter_run_id": EXPECTED_ADAPTER_RUN_ID,
         "adapter_sha256": EXPECTED_ADAPTER_SHA256,
@@ -88,18 +124,37 @@ def build_packet(output_dir: Path) -> dict[str, Any]:
     return manifest
 
 
-def build_benchmark_rows() -> list[BenchmarkRow]:
-    heldout_base = load_json(resolve_existing_metric_path("base_test/latest/metrics.json"))
+def build_benchmark_rows(metric_roots: tuple[Path, ...]) -> list[BenchmarkRow]:
+    heldout_base = load_json(
+        resolve_existing_metric_path("base_test/latest/metrics.json", metric_roots)
+    )
     heldout_lora = load_json(
-        resolve_existing_metric_path("full_corpus_adapter_test/latest/metrics.json")
+        resolve_existing_metric_path(
+            "full_corpus_adapter_test/latest/metrics.json",
+            metric_roots,
+        )
     )
-    aquinas_base = load_json(RUN_ROOT / "aquinas_grounding_probe_base/latest/metrics.json")
-    aquinas_lora = load_json(RUN_ROOT / "aquinas_grounding_probe_full_corpus/latest/metrics.json")
+    aquinas_base = load_json(
+        resolve_existing_metric_path(
+            "aquinas_grounding_probe_base/latest/metrics.json",
+            metric_roots,
+        )
+    )
+    aquinas_lora = load_json(
+        resolve_existing_metric_path(
+            "aquinas_grounding_probe_full_corpus/latest/metrics.json",
+            metric_roots,
+        )
+    )
     virtuebench = load_json(
-        RUN_ROOT / "virtuebench_v2_diagnostic_report/latest/comparison_metrics.json"
+        resolve_existing_metric_path(
+            "virtuebench_v2_diagnostic_report/latest/comparison_metrics.json",
+            metric_roots,
+        )
     )
-    external_compare_path = (
-        RUN_ROOT / "external_candidate_benchmark_compare/latest/comparison_metrics.json"
+    external_compare_path = find_existing_metric_path(
+        "external_candidate_benchmark_compare/latest/comparison_metrics.json",
+        metric_roots,
     )
 
     rows = [
@@ -152,7 +207,7 @@ def build_benchmark_rows() -> list[BenchmarkRow]:
         )
         if row.delta > 0:
             rows.append(row)
-    if external_compare_path.exists():
+    if external_compare_path is not None:
         rows.extend(external_benchmark_rows(load_json(external_compare_path)))
     return [row for row in rows if row.delta > 0]
 
@@ -247,8 +302,9 @@ def write_report(
     metrics_path: Path,
     summary_csv: Path,
     svg_path: Path,
+    *,
+    adapter: dict[str, Any],
 ) -> Path:
-    adapter = adapter_provenance()
     lines = [
         "# Christian Virtue Benchmark Packet",
         "",
@@ -378,14 +434,11 @@ def row_to_dict(row: BenchmarkRow) -> dict[str, Any]:
     }
 
 
-def adapter_provenance() -> dict[str, Any]:
-    train_metadata_path = (
-        DESKTOP_RUN_ROOT / f"full_corpus/{EXPECTED_ADAPTER_RUN_ID}/train_metadata.json"
-    )
+def adapter_provenance(adapter_run_dir: Path) -> dict[str, Any]:
+    train_metadata_path = adapter_run_dir / "train_metadata.json"
     metadata = load_json(train_metadata_path)
-    adapter_path = DESKTOP_RUN_ROOT / f"full_corpus/{EXPECTED_ADAPTER_RUN_ID}"
     return {
-        "adapter_path": str(adapter_path),
+        "adapter_path": str(adapter_run_dir),
         "adapter_sha256": EXPECTED_ADAPTER_SHA256,
         "eval_examples": metadata.get("eval_examples"),
         "git_commit": metadata.get("git_commit"),
@@ -394,33 +447,118 @@ def adapter_provenance() -> dict[str, Any]:
     }
 
 
-def source_paths() -> dict[str, str]:
-    return {
-        "aquinas_base": str(RUN_ROOT / "aquinas_grounding_probe_base/latest/metrics.json"),
-        "aquinas_lora": str(RUN_ROOT / "aquinas_grounding_probe_full_corpus/latest/metrics.json"),
-        "heldout_base": str(resolve_existing_metric_path("base_test/latest/metrics.json")),
-        "heldout_lora": str(
-            resolve_existing_metric_path("full_corpus_adapter_test/latest/metrics.json")
-        ),
-        "external_candidate_compare": str(
-            RUN_ROOT / "external_candidate_benchmark_compare/latest/comparison_metrics.json"
-        ),
-        "virtuebench": str(
-            RUN_ROOT / "virtuebench_v2_diagnostic_report/latest/comparison_metrics.json"
-        ),
+def source_paths(metric_roots: tuple[Path, ...]) -> dict[str, str]:
+    required_paths = {
+        "aquinas_base": "aquinas_grounding_probe_base/latest/metrics.json",
+        "aquinas_lora": "aquinas_grounding_probe_full_corpus/latest/metrics.json",
+        "heldout_base": "base_test/latest/metrics.json",
+        "heldout_lora": "full_corpus_adapter_test/latest/metrics.json",
+        "virtuebench": "virtuebench_v2_diagnostic_report/latest/comparison_metrics.json",
     }
+    paths = {
+        label: str(resolve_existing_metric_path(relative_path, metric_roots))
+        for label, relative_path in required_paths.items()
+    }
+    external_path = find_existing_metric_path(
+        "external_candidate_benchmark_compare/latest/comparison_metrics.json",
+        metric_roots,
+    )
+    if external_path is not None:
+        paths["external_candidate_compare"] = str(external_path)
+    return paths
 
 
-def resolve_existing_metric_path(relative_path: str) -> Path:
-    candidates = [RUN_ROOT / relative_path, DESKTOP_RUN_ROOT / relative_path]
+def build_metric_roots(
+    value: str | None,
+    *,
+    default_root: Path = RUN_ROOT,
+) -> tuple[Path, ...]:
+    """Return ordered metric search roots without embedding machine-specific fallbacks."""
+
+    roots: list[Path] = []
+    if value:
+        roots.extend(
+            normalize_path(raw_path)
+            for raw_path in value.split(os.pathsep)
+            if raw_path.strip()
+        )
+    roots.append(normalize_path(default_root))
+    return dedupe_paths(roots)
+
+
+def resolve_adapter_run_dir(
+    adapter_run_root: str | Path | None,
+    metric_roots: tuple[Path, ...],
+) -> Path:
+    """Resolve the final full-corpus adapter from explicit paths or metric roots."""
+
+    candidates: list[Path] = []
+    if adapter_run_root:
+        root = normalize_path(adapter_run_root)
+        candidates.extend(
+            [
+                root,
+                root / EXPECTED_ADAPTER_RUN_ID,
+                root / "full_corpus" / EXPECTED_ADAPTER_RUN_ID,
+            ]
+        )
+    candidates.extend(
+        root / "full_corpus" / EXPECTED_ADAPTER_RUN_ID for root in metric_roots
+    )
+    for candidate in dedupe_paths(candidates):
+        if (candidate / "train_metadata.json").exists():
+            return candidate
+    searched = ", ".join(str(path) for path in dedupe_paths(candidates))
+    raise FileNotFoundError(
+        "Could not find the final full-corpus adapter train_metadata.json. "
+        f"Searched: {searched}. Set {ADAPTER_RUN_ROOT_ENV}=<adapter run dir> or "
+        f"{METRICS_RUN_ROOT_ENV}=<qwen2_5_1_5b_instruct run root> when the run lives in "
+        "another worktree."
+    )
+
+
+def find_existing_metric_path(
+    relative_path: str,
+    metric_roots: tuple[Path, ...],
+) -> Path | None:
+    candidates = [root / relative_path for root in metric_roots]
     for candidate in candidates:
         if candidate.exists():
             return candidate
-    raise FileNotFoundError(f"Could not find metric path for {relative_path}")
+    return None
+
+
+def resolve_existing_metric_path(relative_path: str, metric_roots: tuple[Path, ...]) -> Path:
+    candidate = find_existing_metric_path(relative_path, metric_roots)
+    if candidate is not None:
+        return candidate
+    searched = ", ".join(str(root / relative_path) for root in metric_roots)
+    raise FileNotFoundError(
+        f"Could not find metric path for {relative_path}. Searched: {searched}. "
+        f"Set {METRICS_RUN_ROOT_ENV}=<qwen2_5_1_5b_instruct run root> when metrics live in "
+        "another worktree."
+    )
+
+
+def normalize_path(path: str | Path) -> Path:
+    return Path(path).expanduser().resolve(strict=False)
+
+
+def dedupe_paths(paths: list[Path]) -> tuple[Path, ...]:
+    deduped: list[Path] = []
+    seen: set[str] = set()
+    for path in paths:
+        normalized = normalize_path(path)
+        key = str(normalized)
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(normalized)
+    return tuple(deduped)
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
 
 
 def format_metric(value: float) -> str:

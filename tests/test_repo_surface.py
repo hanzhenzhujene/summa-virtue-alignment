@@ -189,6 +189,8 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "christian_virtue_positive_benchmark_levels.svg" in readme_text
     assert "christian_virtue_positive_benchmark_readout.md" in readme_text
     assert "christian_virtue_positive_benchmark_examples.md" in readme_text
+    assert "christian_virtue_benchmark_metrics_root" in readme_text
+    assert "christian_virtue_final_adapter_run_root" in readme_text
     assert "christian_virtue_qwen2_5_1_5b_full_corpus_report.md" in readme_text
     assert "gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus" in readme_text
     assert "summa-virtue-chat.hf.space" in readme_text
@@ -230,6 +232,8 @@ def test_scripts_guide_names_canonical_local_entrypoints() -> None:
     assert "audit_christian_virtue_frontier.py" in scripts_guide
     assert "build_christian_virtue_full_corpus_report.py" in scripts_guide
     assert "build_christian_virtue_positive_readout.py" in scripts_guide
+    assert "CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT" in scripts_guide
+    assert "CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT" in scripts_guide
     assert "build_christian_virtue_citation_frontier_report.py" in scripts_guide
     assert "build_christian_virtue_justice_guarded_report.py" in scripts_guide
     assert "launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh" in scripts_guide
@@ -272,9 +276,12 @@ def test_repository_map_names_canonical_public_bundle() -> None:
     assert "src/summa_moral_graph/app/chat.py" in repository_map
     assert "src/summa_moral_graph/sft/chat_smoke.py" in repository_map
     assert "build_christian_virtue_full_corpus_report.py" in repository_map
+    assert "build_christian_virtue_benchmark_packet.py" in repository_map
     assert "christian_virtue_positive_benchmark_readout.md" in repository_map
     assert "christian_virtue_positive_benchmark_examples.md" in repository_map
     assert "build_christian_virtue_positive_readout.py" in repository_map
+    assert "CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT" in repository_map
+    assert "CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT" in repository_map
     assert "make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop" in repository_map
     assert "christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md" in repository_map
     assert "qwen2_5_1_5b_instruct_lora_mps_accuracy_first_hybrid.yaml" in repository_map
