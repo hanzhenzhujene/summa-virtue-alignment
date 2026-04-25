@@ -11,8 +11,8 @@ This audit is intentionally fast. It reuses the canonical base and adapter predi
 - Split: `test`
 - Target task family: `citation_grounded_moral_answer`
 - Dataset: `data/processed/sft/exports/christian_virtue_v1`
-- Base predictions: `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/20260420_162346/predictions.jsonl`
-- Adapter predictions: `runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/20260421_141053/predictions.jsonl`
+- Base predictions: `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/predictions.jsonl`
+- Adapter predictions: `runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest/predictions.jsonl`
 
 ## Core Readout
 

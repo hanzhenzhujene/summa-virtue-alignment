@@ -1,6 +1,6 @@
 {
-  "adapter_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/20260421_141053/predictions.jsonl",
-  "base_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/20260420_162346/predictions.jsonl",
+  "adapter_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest/predictions.jsonl",
+  "base_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/predictions.jsonl",
   "by_relation_type": {
     "adapter": {
       "annexed_to": {

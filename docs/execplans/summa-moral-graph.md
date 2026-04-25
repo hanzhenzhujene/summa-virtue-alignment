@@ -2,6 +2,16 @@
 
 ## Progress
 
+- After PR `#4` merged, the desktop `main` worktree was fast-forwarded to merge commit
+  `9a2371a` and verified with the canonical `make public-release-check` target:
+  - unlike clean GitHub Actions, this local worktree has canonical run artifacts present, so the
+    check rebuilt the tracked local-baseline package surfaces and citation-frontier audit report
+  - the generated package links now point at the merged public surface commit instead of an older
+    pre-readout commit
+  - the citation-frontier audit now reports repo-relative `latest` prediction paths rather than
+    stale timestamped paths from the older local-baseline run
+  - the generated sync is being committed separately on `main` so the verified worktree stays
+    clean after the full local release check
 - A publication-readiness audit is tightening the benchmark/reproduction surface:
   - `scripts/build_christian_virtue_benchmark_packet.py` no longer embeds a workstation-specific
     fallback path for cross-worktree metrics or the final adapter
@@ -2251,6 +2261,18 @@
 
 ## Decision Log
 
+- Commit the post-merge generated publication sync on `main`.
+  Reason:
+  - `make public-release-check` intentionally has two modes: CI verifies committed public surfaces
+    when local run artifacts are absent, while the full local worktree also regenerates package and
+    report surfaces from canonical local artifacts
+  - after PR `#4` merged, the full local mode found only small deterministic publication-surface
+    deltas: GitHub commit links and repo-relative frontier audit input paths
+  - leaving those generated changes dirty would make the verified desktop `main` worktree less
+    trustworthy than the branch that was just merged
+  Consequence:
+  - the merge remains intact, and the follow-up commit records only generated public-surface sync
+    from the canonical local release check
 - Make cross-worktree benchmark packet inputs explicit and testable.
   Reason:
   - the final full-corpus LoRA is a primary artifact, so the builder must resolve it deliberately
@@ -3334,6 +3356,11 @@
 
 ## Outcomes & Retrospective
 
+- PR `#4` is merged and the local `main` worktree has been verified in full-artifact mode:
+  - GitHub merge commit: `9a2371a` (`Merge positive benchmark readout`)
+  - the desktop `main` worktree fast-forwarded cleanly from `48a59fd` to `9a2371a`
+  - local `make public-release-check` passed with canonical run artifacts present, rebuilding the
+    tracked package/report surfaces before verification
 - The release surface is now less fragile for reviewers and collaborators:
   - benchmark packet regeneration works from an explicit cross-worktree run root and was dry-run
     verified to produce the same `10` positive rows and final adapter SHA
