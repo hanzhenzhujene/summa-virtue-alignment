@@ -2,6 +2,12 @@
 
 ## Progress
 
+- The positive benchmark readout now has a reviewable GitHub handoff:
+  - branch: `codex/positive-benchmark-readout`
+  - draft PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
+  - head commit at PR creation: `1758f5e` (`Add positive benchmark readout`)
+  - this closes the delivery gap between a verified pushed branch and a reviewer-facing merge
+    surface, while keeping the public README positive-only
 - The positive-only benchmark packet is now promoted into committed public readout assets:
   - README includes only positive benchmark rows and two committed SVG charts:
     `christian_virtue_positive_benchmark_deltas.svg` and
@@ -1437,6 +1443,12 @@
 
 ## Surprises & Discoveries
 
+- After the benchmark packet was committed and pushed, the remaining gap was not another score or
+  chart but the project handoff surface itself:
+  - no GitHub PR existed for the pushed branch, so the result was reproducible locally but not yet
+    easy to review, discuss, or merge
+  - the correct next increment was therefore a draft PR plus an execplan entry, not another model
+    run
 - External benchmark transfer is positive in the rows now promoted for publication:
   - the readout is intentionally positive-only, so the public table shows only the external slices
     where the final LoRA beats base
@@ -2195,6 +2207,16 @@
 
 ## Decision Log
 
+- Open the positive benchmark readout as a draft PR before any merge.
+  Reason:
+  - the work is already committed, pushed, and verified, but the repo still needed a concrete
+    review surface tied to the positive-only benchmark claim
+  - a draft PR preserves review/CI visibility without implying that the branch should be merged
+    before a human checks the benchmark framing and public-facing wording
+  Consequence:
+  - PR `#4` is the canonical handoff for the positive benchmark readout branch
+  - future edits to this branch should keep the README and committed report surfaces positive-only,
+    while leaving raw run logs available under ignored `runs/` paths for auditability
 - Keep external benchmark runs auditable but publish only LoRA-positive slices.
   Reason:
   - the user explicitly wants robust logs, but also wants the public/repo-facing result surface to
@@ -3230,6 +3252,12 @@
 
 ## Outcomes & Retrospective
 
+- The positive benchmark readout is now ready for review as a draft PR:
+  - PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
+  - base: `main`
+  - head: `codex/positive-benchmark-readout`
+  - the PR body records the summary, rationale, and verification commands for the already pushed
+    benchmark packet
 - The repo now has a robust external benchmark harness and a positive-only external readout:
   - base expanded external run:
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_base/20260425_090412`
