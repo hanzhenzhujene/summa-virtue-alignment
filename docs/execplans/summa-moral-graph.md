@@ -14,6 +14,8 @@
     surfaces, not only Markdown/docs/data artifacts
   - focused tests now verify explicit metric-root preference, cross-worktree adapter resolution,
     and repo-relative chat paths without local username fixtures
+  - the final revision generalizes the Desktop-path leak guard so the verifier catches that class
+    of local checkout leak without keeping the old checkout name in source code
 - A visual-quality pass is now tightening the public report surface without changing benchmark
   data:
   - README's opening link surface has been simplified from a row of large badges into a compact
@@ -1472,6 +1474,8 @@
   - the dry run confirmed that an explicit `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` is enough to
     rebuild the full positive packet from the final adapter and mixed current/cross-worktree run
     artifacts
+  - a literal blocked checkout name inside the leak detector is itself a small presentation smell,
+    so the final guard now detects generic desktop-local checkout paths instead
 - The most visible quality issues were not wrong charts, but hierarchy and crowding:
   - the positive benchmark charts had correct data but read as a plainer one-off visual style next
     to the polished full-corpus figures
@@ -2256,6 +2260,8 @@
     local checkout layout
   - the publication verifier's path-leak scan now includes script entrypoints, the Makefile, and
     the public workflow
+  - the Desktop-path leak rule is intentionally generic, so future local checkout names are caught
+    without embedding a stale workstation-specific string
 - Make visual fixes in generators first, then regenerate committed figures.
   Reason:
   - the repo treats public charts as reproducible report artifacts, so hand-tuning SVG output would
@@ -3321,6 +3327,8 @@
     outside the current checkout
   - local username/workstation paths were removed from executable code and test fixtures, while
     the release verifier now guards against this class of leak in scripts
+  - the final polish removes the last exact old checkout name from source while keeping a
+    regression test for desktop-local checkout leaks
 - The visual pass improved the public-facing report surfaces while preserving the original data:
   - updated charts:
     `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,

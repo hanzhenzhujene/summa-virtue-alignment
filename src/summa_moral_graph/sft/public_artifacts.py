@@ -37,7 +37,7 @@ MACHINE_PATH_PATTERNS = (
     re.compile(r"/Users/[^\s)\]\"']+"),
     re.compile(r"/home/[^\s)\]\"']+"),
     re.compile(r"[A-Za-z]:\\\\Users\\\\[^\s)\]\"']+"),
-    re.compile(r"Desktop/summa-moral-graph-fork"),
+    re.compile(r"\bDesktop/[^\s)\]\"']+"),
 )
 
 
