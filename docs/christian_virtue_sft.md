@@ -256,6 +256,61 @@ Base-vs-adapter comparison:
 make compare-christian-virtue-qwen2-5-1-5b-local-test
 ```
 
+In-domain Aquinas grounding probe and consolidated benchmark packet:
+
+```bash
+make aquinas-grounding-probe-qwen2-5-1-5b-base
+ADAPTER_PATH=/absolute/path/to/full_corpus/latest \
+  EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
+  EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
+  make aquinas-grounding-probe-qwen2-5-1-5b-full-corpus
+make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
+```
+
+The Aquinas grounding probe keeps the canonical held-out prompt surface and adds deterministic
+checks for exact segment ids, citation presence, subject/object labels, relation signals, Aquinas
+category language, and generic drift. The overnight full run reached `71.2%` exact citation and
+`100.0%` segment-id citation presence for the final LoRA versus `0.0%` / `0.0%` for the untouched
+base model; the composite grounding score rose from `37.7%` to `74.2%`. The packet report at
+`runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/report.md` is the compact
+readout to use for the positive-only base-vs-LoRA benchmark table.
+
+Better-matched VirtueBench V2 diagnostic:
+
+```bash
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 \
+  make virtuebench-v2-qwen2-5-1-5b-base
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 \
+  ADAPTER_PATH=/absolute/path/to/full_corpus/latest \
+  EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
+  EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
+  make virtuebench-v2-qwen2-5-1-5b-full-corpus
+make report-virtuebench-v2-qwen2-5-1-5b-diagnostic
+```
+
+This VirtueBench path is a diagnostic for Christian virtue temptation scenarios. Inspect the
+paired answer distribution before making claims. The random-order capped run and the paired
+counterbalanced run are both retained because the LoRA beats the base model on those surfaces;
+the packet keeps the A-position caveat attached so the comparison stays careful.
+
+External candidate benchmark screening:
+
+```bash
+MAX_EXAMPLES_PER_BENCHMARK=60 make external-candidates-qwen2-5-1-5b-base
+MAX_EXAMPLES_PER_BENCHMARK=60 \
+  ADAPTER_PATH=/absolute/path/to/full_corpus/latest \
+  EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
+  EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
+  make external-candidates-qwen2-5-1-5b-full-corpus
+make report-external-candidates-qwen2-5-1-5b-positive
+make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
+make report-christian-virtue-qwen2-5-1-5b-positive-readout
+```
+
+The external candidate harness screens short objective slices across Christian/religion, Chinese,
+Chinese-Christian/religion, and moral/philosophy surfaces. Raw candidate runs keep complete logs;
+the positive comparison and benchmark packet promote only rows where the final LoRA beats the base.
+
 Local-baseline-vs-citation-frontier comparison:
 
 ```bash

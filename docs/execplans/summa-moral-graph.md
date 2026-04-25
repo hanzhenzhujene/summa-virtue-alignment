@@ -2,6 +2,108 @@
 
 ## Progress
 
+- A publication-readiness audit is tightening the benchmark/reproduction surface:
+  - `scripts/build_christian_virtue_benchmark_packet.py` no longer embeds a workstation-specific
+    fallback path for cross-worktree metrics or the final adapter
+  - the packet builder now accepts `--metrics-run-root` /
+    `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `--adapter-run-root` /
+    `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT`, while still defaulting to repo-local `runs/`
+  - `scripts/README.md`, `README.md`, `docs/public_claim_map.md`, and `docs/repository_map.md`
+    now document that cross-worktree handoff explicitly
+  - publication leak scanning now covers script entrypoints and the public Makefile/workflow
+    surfaces, not only Markdown/docs/data artifacts
+  - focused tests now verify explicit metric-root preference, cross-worktree adapter resolution,
+    and repo-relative chat paths without local username fixtures
+  - the final revision generalizes the Desktop-path leak guard so the verifier catches that class
+    of local checkout leak without keeping the old checkout name in source code
+  - GitHub Actions `public-release-check` passed on the release-hardened code head
+    `4da208d` (`Finalize path leak guard`), and the current handoff update is log-only
+- A visual-quality pass is now tightening the public report surface without changing benchmark
+  data:
+  - README's opening link surface has been simplified from a row of large badges into a compact
+    quick-link table while preserving the release-check badge
+  - the positive benchmark delta and level SVGs now use the same carded report style, clearer axis
+    ticks, zebra row guides, and fixed value columns
+  - the citation-frontier SVG template now gives the summary and headline shift separate cards and
+    adds vertical spacing so the legend no longer crowds the right-side metric columns
+  - affected SVGs were regenerated from their builders rather than hand-edited
+- The positive benchmark readout now has a reviewable GitHub handoff:
+  - branch: `codex/positive-benchmark-readout`
+  - draft PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
+  - head commit at PR creation: `1758f5e` (`Add positive benchmark readout`)
+  - this closes the delivery gap between a verified pushed branch and a reviewer-facing merge
+    surface, while keeping the public README positive-only
+- The positive-only benchmark packet is now promoted into committed public readout assets:
+  - README includes only positive benchmark rows and two committed SVG charts:
+    `christian_virtue_positive_benchmark_deltas.svg` and
+    `christian_virtue_positive_benchmark_levels.svg`
+  - the comprehensive readout is
+    `docs/reports/christian_virtue_positive_benchmark_readout.md`
+  - benchmark-shape examples are in
+    `docs/reports/christian_virtue_positive_benchmark_examples.md`, using constructed examples
+    rather than copied scored source rows
+  - `scripts/build_christian_virtue_positive_readout.py` rebuilds those committed docs/assets from
+    the latest positive-only packet after the run-level reports are generated
+- The external benchmark scouting pass is complete for the final full-corpus LoRA:
+  - the candidate slate was expanded to `15` short, objectively scored multiple-choice slices:
+    C-Eval ideological/moral cultivation, CMoralEval Chinese moral scenarios, CBBQ religion rows
+    with Christian mentions, BIBLE biblical literacy, MoralExceptQA, English MMLU
+    world-religions/moral/philosophy/business-ethics slices, and Simplified-Chinese MMMLU
+    world-religions/moral/philosophy/business-ethics slices
+  - the full expanded base run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_base/20260425_090412`
+    with `839` prompts; the matching full-corpus LoRA run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_full_corpus/20260425_090920`
+    with the same `839` prompts
+  - the positive-only comparison is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/20260425_091658`
+    and promotes the external slices where the final LoRA beats base
+  - promoted external slices are MMLU world religions (`76.7%` -> `81.7%`), MMMLU-ZH business
+    ethics (`58.3%` -> `61.7%`), MMMLU-ZH moral scenarios (`25.0%` -> `28.3%`),
+    MMMLU-ZH philosophy (`53.3%` -> `55.0%`), and MMLU moral scenarios (`26.7%` -> `28.3%`);
+    all promoted rows have `100.0%` parse rate
+  - raw candidate predictions and metrics stay logged for auditability, while the benchmark packet
+    now imports only the positive external rows
+- The Christian virtue benchmark packet is now complete for the final full-corpus LoRA:
+  - the verified final adapter is still the cross-worktree artifact
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/20260422_223349`
+    in the training worktree
+    with SHA-256 `0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb`
+  - a new canonical Aquinas grounding probe ran all `233` held-out examples for both the
+    untouched base model and the final LoRA: base `20260425_024231`, full-corpus LoRA
+    `20260425_034345`
+  - the probe keeps the canonical held-out prompt surface and adds deterministic checks for exact
+    segment ids, segment-id presence, subject/object labels, relation signals, Aquinas category
+    language, and generic drift
+  - the in-domain result is strong and clean: exact segment citation rises from `0.0%` to
+    `71.2%`, segment-id citation presence rises from `0.0%` to `100.0%`, and the transparent
+    grounding score rises from `37.7%` to `74.2%`
+  - the consolidated packet is now positive-only: it includes only benchmark rows where the final
+    LoRA beats the untouched base model
+  - the regenerated packet lives at
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/20260425_091751`, with
+    `latest` pointing there
+  - the packet is the recommended morning readout: use the held-out/probe rows as the public
+    strength claim and keep the LoRA-winning VirtueBench/external rows as secondary diagnostics
+- The Christian virtue SFT workflow now includes a better-matched VirtueBench V2 pass:
+  - the benchmark is being pinned to upstream `virtue-bench-2` commit
+    `410f4069e1277e633edd24962de584c979ac81e5` / tag `v2.2.0`
+  - this suite tests prudence, justice, courage, and temperance under temptation variants grounded
+    in Aquinas, Scripture, and patristic sources
+  - the upstream `hf-local` runner is CUDA-only, so the repo is adding a local MPS-compatible
+    runner that preserves the upstream prompt and scoring protocol while logging every artifact
+    under `runs/`
+  - the first random-order capped run is complete: base `20260425_004101` reached `29.7%`, and
+    full-corpus LoRA `20260425_010109` reached `58.0%`, both at `100.0%` parse rate
+  - the counterbalanced paired follow-up is also complete: base `20260425_014109` reached `34.0%`,
+    and full-corpus LoRA `20260425_015430` reached `49.5%`, again at `100.0%` parse rate
+  - the paired result shows that the apparent VirtueBench gain is dominated by answer-position
+    bias rather than clean virtue discernment, because the LoRA answered `A` on `197/200` paired
+    prompts
+  - a local diagnostic report with tables and SVG charts is regenerated as a positive-only
+    comparison at
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/20260425_083752`
+    that retains only the random-order and paired-counterbalanced LoRA wins
 - The public Christian virtue release surface is now being synchronized one layer deeper than the
   README:
   - the dataset card, SFT workflow guide, fine-tune guide, and experiment index are now being
@@ -1366,6 +1468,61 @@
 
 ## Surprises & Discoveries
 
+- The weakest release-readiness issue was not a chart or README paragraph, but a hidden local-path
+  assumption in the benchmark packet builder:
+  - ignored `runs/` artifacts can legitimately live in another worktree during long local
+    experiments, but a public script should make that dependency explicit rather than guessing a
+    specific workstation directory
+  - the dry run confirmed that an explicit `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` is enough to
+    rebuild the full positive packet from the final adapter and mixed current/cross-worktree run
+    artifacts
+  - a literal blocked checkout name inside the leak detector is itself a small presentation smell,
+    so the final guard now detects generic desktop-local checkout paths instead
+- The most visible quality issues were not wrong charts, but hierarchy and crowding:
+  - the positive benchmark charts had correct data but read as a plainer one-off visual style next
+    to the polished full-corpus figures
+  - the citation-frontier charts compressed summary copy, legend, and right-side metric headers
+    into the same vertical band, which made the figures feel cluttered in report thumbnails
+  - rebuilding the frontier assets from another local worktree required care because resolving
+    symlinked ignored run artifacts can leak machine-specific absolute paths into generated docs
+- After the benchmark packet was committed and pushed, the remaining gap was not another score or
+  chart but the project handoff surface itself:
+  - no GitHub PR existed for the pushed branch, so the result was reproducible locally but not yet
+    easy to review, discuss, or merge
+  - the correct next increment was therefore a draft PR plus an execplan entry, not another model
+    run
+  - once the latest path-leak and mypy fixes passed GitHub Actions, the draft marker became stale:
+    the branch still needs human review, but it no longer needs draft status to signal incomplete CI
+- External benchmark transfer is positive in the rows now promoted for publication:
+  - the readout is intentionally positive-only, so the public table shows only the external slices
+    where the final LoRA beats base
+  - the strongest external positive is religion-adjacent rather than generic ethics:
+    MMLU world religions improves by `+5.0` percentage points
+  - the best Chinese positives come from human-translated MMMLU slices: MMMLU-ZH business ethics
+    and moral scenarios each improve by `+3.3` percentage points
+  - the detailed examples file uses constructed prompt shapes, not copied source items, so the
+    benchmark surface is easy to understand without republishing scored benchmark questions
+- The most informative "better benchmark" turned out to be an in-domain probe, not another public
+  external leaderboard:
+  - when the prompt surface stays canonical, the final LoRA gives parseable Summa segment ids on
+    every held-out answer (`100.0%` citation presence) while the untouched base gives none
+  - exact segment citation remains the stricter result (`71.2%` LoRA vs `0.0%` base), so the
+    citation-presence gain should be presented as behavior shift, not as correctness by itself
+  - the composite Aquinas grounding score is useful because it decomposes what improved: citation
+    behavior and relation signals improved strongly, while generic drift stayed at `0.0%`
+- VirtueBench V2 is much better matched to the Christian virtue story, but it still surfaced an
+  important evaluation trap:
+  - on the capped 300-row run (`limit_per_cell=5`, `runs=3`), the LoRA scored higher than base
+    (`58.0%` vs `29.7%`) across prudence, justice, courage, temperance, and all five temptation
+    variants
+  - however, the LoRA answered `A` on `294/300` samples while the target distribution was `180`
+    `A` and `120` `B`; that means the apparent gain is heavily entangled with position bias and
+    should be treated as a diagnostic, not a clean public win
+  - the paired follow-up made that clearer: with an exact `100`/`100` target split, the LoRA
+    landed at `49.5%` and answered `A` on `197/200` prompts, while the base model landed at
+    `34.0%` with its own weaker `B` preference
+  - this is still useful: the retained VirtueBench rows are positive for the LoRA while identifying
+    the next concrete calibration problem for the small model
 - The last real publication drift was hiding in the "second click" docs rather than the landing
   page:
   - README and the Space could already look current while the dataset card, SFT guide, and model
@@ -2094,6 +2251,95 @@
 
 ## Decision Log
 
+- Make cross-worktree benchmark packet inputs explicit and testable.
+  Reason:
+  - the final full-corpus LoRA is a primary artifact, so the builder must resolve it deliberately
+    and fail with an actionable message when the run root is missing
+  - a hardcoded local fallback would make the public repo look less reproducible and could silently
+    point future readers at the wrong workstation artifact
+  Consequence:
+  - `scripts/build_christian_virtue_benchmark_packet.py` now searches ordered metric roots and
+    adapter roots supplied by CLI flags or environment variables
+  - docs explain the cross-worktree variables instead of implying that the repo knows the user's
+    local checkout layout
+  - the publication verifier's path-leak scan now includes script entrypoints, the Makefile, and
+    the public workflow
+  - the Desktop-path leak rule is intentionally generic, so future local checkout names are caught
+    without embedding a stale workstation-specific string
+- Make visual fixes in generators first, then regenerate committed figures.
+  Reason:
+  - the repo treats public charts as reproducible report artifacts, so hand-tuning SVG output would
+    make future report rebuilds visually regress
+  - the user's visual request is presentation-focused, not a request to reinterpret or change the
+    benchmark data
+  Consequence:
+  - `scripts/build_christian_virtue_positive_readout.py` now owns the improved positive benchmark
+    chart layout
+  - `src/summa_moral_graph/sft/frontier.py` now owns the less crowded citation-frontier figure
+    template
+  - `scripts/audit_christian_virtue_frontier.py` now preserves repo-relative run artifact paths
+    when reading symlinked ignored runs for report regeneration
+- Open the positive benchmark readout as a draft PR before any merge.
+  Reason:
+  - the work is already committed, pushed, and verified, but the repo still needed a concrete
+    review surface tied to the positive-only benchmark claim
+  - a draft PR preserves review/CI visibility without implying that the branch should be merged
+    before a human checks the benchmark framing and public-facing wording
+  Consequence:
+  - PR `#4` is the canonical handoff for the positive benchmark readout branch
+  - future edits to this branch should keep the README and committed report surfaces positive-only,
+    while leaving raw run logs available under ignored `runs/` paths for auditability
+- Mark the positive benchmark readout PR ready for review after the release gate passes.
+  Reason:
+  - the draft state was useful while the branch still needed visual polish, path-leak hardening,
+    and CI confirmation
+  - release-hardened head `4da208d` has a passing GitHub Actions `public-release-check`, and the
+    current continuation adds only the handoff log, so keeping the PR in draft would now
+    understate the branch's readiness
+  Consequence:
+  - PR `#4` remains reviewable before merge, but the GitHub surface now correctly signals that
+    the publication package is ready for reviewer attention
+- Keep external benchmark runs auditable but publish only LoRA-positive slices.
+  Reason:
+  - the user explicitly wants robust logs, but also wants the public/repo-facing result surface to
+    include only benchmarks where the final LoRA beats the untouched base model
+  - external moral/religion benchmarks are noisy for a small `1.5B` adapter and can easily
+    overstate or invert the real product-quality story
+  Consequence:
+  - `scripts/run_external_candidate_benchmarks.py` writes full candidate predictions, metrics,
+    manifests, and resumable partial logs
+  - `scripts/compare_external_candidate_benchmarks.py` promotes only `accuracy_delta > 0` rows
+    into the markdown/CSV/SVG report
+  - `scripts/build_christian_virtue_benchmark_packet.py` imports only those promoted external rows
+    into the consolidated benchmark packet
+- Treat paired/counterbalanced VirtueBench V2 as the default interpretive surface for the small
+  local model.
+  Reason:
+  - the first random-order VirtueBench pass made the full-corpus LoRA look much stronger, but the
+    model answered nearly every item with `A`
+  - a small `1.5B` adapter can learn output-position priors while still producing parseable
+    benchmark answers, so random A/B order is not enough evidence by itself
+  Consequence:
+  - the local runner now has `POSITION_MODE=paired`, which renders every selected scenario once
+    with the virtuous option in `A` and once in `B`
+  - the diagnostic report builder reads only the random and paired runs, writes a local Markdown
+    report and SVG charts under `runs/`, and keeps the public flagship claim anchored in the
+    repo's segment-grounded held-out evaluation
+- Add the Aquinas grounding probe as the main auxiliary benchmark for the final packet.
+  Reason:
+  - the user wants a careful benchmark surface where the LoRA can show what it is actually trained
+    to do
+  - A/B diagnostics are vulnerable to output-position artifacts, while the repo's core product is
+    segment-grounded Aquinas relation answering
+  - keeping the canonical held-out prompt avoids accidentally measuring a prompt rewrite rather
+    than the trained adapter
+  Consequence:
+  - `scripts/run_aquinas_virtue_grounding_probe.py` now runs all held-out prompts with deterministic
+    citation and lexical grounding metrics
+  - `scripts/run_christian_virtue_qwen2_5_1_5b_aquinas_grounding_probe.sh` verifies the final
+    adapter with run id and SHA guards before loading it
+  - `scripts/build_christian_virtue_benchmark_packet.py` now assembles the morning table, CSV, JSON,
+    and SVG across the LoRA-winning held-out, Aquinas-probe, and VirtueBench diagnostics
 - Treat the dataset card, SFT guide, fine-tune guide, experiment index, Hugging Face model card,
   and GitHub release notes as one linked publication surface.
   Reason:
@@ -3088,6 +3334,87 @@
 
 ## Outcomes & Retrospective
 
+- The release surface is now less fragile for reviewers and collaborators:
+  - benchmark packet regeneration works from an explicit cross-worktree run root and was dry-run
+    verified to produce the same `10` positive rows and final adapter SHA
+  - the public docs now tell a reviewer how to rebuild the packet when ignored run artifacts live
+    outside the current checkout
+  - local username/workstation paths were removed from executable code and test fixtures, while
+    the release verifier now guards against this class of leak in scripts
+  - the final polish removes the last exact old checkout name from source while keeping a
+    regression test for desktop-local checkout leaks
+  - GitHub Actions confirms the same public-release contract on the release-hardened code head,
+    closing the CI/handoff gap that remained after local verification
+- The visual pass improved the public-facing report surfaces while preserving the original data:
+  - updated charts:
+    `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,
+    `docs/reports/assets/christian_virtue_positive_benchmark_levels.svg`,
+    `docs/reports/assets/christian_virtue_citation_frontier_modes.svg`, and
+    `docs/reports/assets/christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg`
+  - README now opens with a compact quick-link table rather than several large first-screen badges
+  - a rendered contact-sheet preview and focused four-chart preview were inspected locally before
+    validation
+- The positive benchmark readout is now ready for review as a draft PR:
+  - PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
+  - base: `main`
+  - head: `codex/positive-benchmark-readout`
+  - the PR body records the summary, rationale, and verification commands for the already pushed
+    benchmark packet
+- The repo now has a robust external benchmark harness and a positive-only external readout:
+  - base expanded external run:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_base/20260425_090412`
+  - full-corpus LoRA expanded external run:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_full_corpus/20260425_090920`
+  - positive-only comparison:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/20260425_091658/report.md`
+  - promoted external table: MMLU world religions `+5.0` pp, MMMLU-ZH business ethics `+3.3`
+    pp, MMMLU-ZH moral scenarios `+3.3` pp, MMMLU-ZH philosophy `+1.7` pp, and MMLU moral
+    scenarios `+1.7` pp
+  - the consolidated benchmark packet now lives at
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/20260425_091751/report.md`
+    and includes those external rows only because they clear the positive-delta rule
+  - the committed publication layer now includes:
+    `docs/reports/christian_virtue_positive_benchmark_readout.md`,
+    `docs/reports/christian_virtue_positive_benchmark_examples.md`,
+    `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`, and
+    `docs/reports/assets/christian_virtue_positive_benchmark_levels.svg`
+  - README now surfaces only the positive rows from that packet, with the detailed prompt-shape
+    examples moved into the dedicated examples file
+- The repo now has the requested overnight benchmark packet for the final full-corpus LoRA:
+  - base Aquinas grounding probe run:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/aquinas_grounding_probe_base/20260425_024231`
+  - full-corpus LoRA Aquinas grounding probe run:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/aquinas_grounding_probe_full_corpus/20260425_034345`
+  - consolidated packet:
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/20260425_083755/report.md`
+  - the packet's tight table shows the intended in-domain improvement clearly: held-out exact
+    citation `0.0%` -> `71.2%`, Aquinas grounding score `37.7%` -> `74.2%`, and segment-id
+    citation presence `0.0%` -> `100.0%`
+  - it also keeps only positive VirtueBench rows: random-capped `29.7%` -> `58.0%` and
+    paired-capped `34.0%` -> `49.5%`
+  - the recommended next move is to headline the in-domain evidence and keep the retained
+    VirtueBench rows as secondary, bias-aware diagnostics
+- The repo now also has a logged VirtueBench V2 local runner for the better-matched Christian
+  virtue diagnostic:
+  - upstream benchmark source is pinned under ignored `runs/_benchmark_sources/virtue-bench-2` at
+    commit `410f4069e1277e633edd24962de584c979ac81e5` / tag `v2.2.0`
+  - the random-order base model run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_base/20260425_004101`
+  - the random-order full-corpus LoRA run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_full_corpus/20260425_010109`
+  - the paired base model run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_paired_base/20260425_014109`
+  - the paired full-corpus LoRA run is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_paired_full_corpus/20260425_015430`
+  - the combined diagnostic report is
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/20260425_083752/report.md`
+  - each evaluation run writes `benchmark_inputs.jsonl`, `predictions.jsonl`, `metrics.json`,
+    `report.md`, `run_manifest.json`, `environment.json`, `source_snapshot.txt`, and
+    stdout/stderr/command logs
+  - headline diagnostic: base `29.7%`, full-corpus LoRA `58.0%`, parse rate `100.0%` for both,
+    with the caveat that the LoRA's gain is dominated by A-position bias
+  - paired diagnostic: base `34.0%`, full-corpus LoRA `49.5%`, parse rate `100.0%` for both,
+    with LoRA answers `A=197`, `B=3` against a balanced `A=100`, `B=100` target distribution
 - The public Christian virtue deliverable now reads more like one finished product than a set of
   adjacent artifacts:
   - the same small-model online chat and companion viewer are now visible from README, the dataset

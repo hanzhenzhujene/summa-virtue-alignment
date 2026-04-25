@@ -10,11 +10,9 @@ The dataset exists to train models toward Aquinas-grounded Christian virtue reas
 generic religion chat, and its main merit is that the supervision stays reviewed, passage-grounded,
 relational, and auditable end to end.
 
-[![Read the SFT guide](https://img.shields.io/badge/Start%20here-SFT%20guide-1f4d3b?style=for-the-badge)](./docs/fine_tune_with_summa_moral_graph.md)
-[![Use the online chat](https://img.shields.io/badge/Live%20chat-summa--virtue--chat.hf.space-1f6feb?style=for-the-badge&logo=huggingface&logoColor=white)](https://jennyzhu0822-summa-virtue-chat.hf.space)
-[![View the published adapter](https://img.shields.io/badge/Hugging%20Face-published%20adapter-c97d20?style=for-the-badge&logo=huggingface&logoColor=white)](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b)
-[![Open the live viewer](https://img.shields.io/badge/Open%20the%20live%20viewer-summa--moral--graph.streamlit.app-183b56?style=for-the-badge&logo=streamlit&logoColor=white)](https://summa-moral-graph.streamlit.app/)
-[![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml)
+| Start | Try | Inspect | Browse | Release gate |
+| --- | --- | --- | --- | --- |
+| [SFT guide](./docs/fine_tune_with_summa_moral_graph.md) | [Online chat](https://jennyzhu0822-summa-virtue-chat.hf.space) | [Hugging Face adapter](https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b) | [Live viewer](https://summa-moral-graph.streamlit.app/) | [![Public Release Check](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml/badge.svg)](https://github.com/hanzhenzhujene/summa-virtue-alignment/actions/workflows/public-release-check.yml) |
 
 > The published Hugging Face adapter is the smallest public release artifact in the repo. The
 > strongest repo-local result is the completed `full-corpus` LoRA run shown below.
@@ -45,6 +43,38 @@ Christian virtue training split, it becomes a strong doctrinal and explanatory m
 virtue evaluation, and it clearly surpasses the earlier small-data LoRA rung rather than merely
 beating an untuned starting point. The full write-up, run metadata, and training trace live in the
 [full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
+
+## Positive Benchmark Packet
+
+![Positive benchmark deltas](docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg)
+
+*Figure 3. Positive-only benchmark deltas for the final full-corpus LoRA over the untouched
+`Qwen/Qwen2.5-1.5B-Instruct` base model.*
+
+![Base vs LoRA on positive rows](docs/reports/assets/christian_virtue_positive_benchmark_levels.svg)
+
+*Figure 4. Absolute base and LoRA scores on the same positive-only rows.*
+
+| Positive benchmark | Surface | n | Base | LoRA | Delta |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Held-out Summa citation exact | in-domain held-out | `233` | `0.0%` | `71.2%` | `+71.2 pp` |
+| Aquinas grounding probe score | in-domain grounding | `233` | `37.7%` | `74.2%` | `+36.5 pp` |
+| Aquinas segment-id citation presence | in-domain grounding | `233` | `0.0%` | `100.0%` | `+100.0 pp` |
+| VirtueBench V2 random | Christian virtue diagnostic | `300` | `29.7%` | `58.0%` | `+28.3 pp` |
+| VirtueBench V2 paired | Christian virtue diagnostic | `200` | `34.0%` | `49.5%` | `+15.5 pp` |
+| MMLU world religions | external English transfer | `60` | `76.7%` | `81.7%` | `+5.0 pp` |
+| MMMLU-ZH business ethics | external Chinese transfer | `60` | `58.3%` | `61.7%` | `+3.3 pp` |
+| MMMLU-ZH moral scenarios | external Chinese transfer | `60` | `25.0%` | `28.3%` | `+3.3 pp` |
+| MMMLU-ZH philosophy | external Chinese transfer | `60` | `53.3%` | `55.0%` | `+1.7 pp` |
+| MMLU moral scenarios | external English transfer | `60` | `26.7%` | `28.3%` | `+1.7 pp` |
+
+The curated packet is documented in the
+[positive benchmark readout](./docs/reports/christian_virtue_positive_benchmark_readout.md), with
+representative prompt shapes in
+[positive benchmark examples](./docs/reports/christian_virtue_positive_benchmark_examples.md).
+If the final adapter or run metrics live in another worktree, rebuild the packet with
+`CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT`; the
+public builder does not assume a local workstation path.
 
 ## At A Glance
 
@@ -125,6 +155,7 @@ through the pipeline:
 | I want to... | Start here |
 | --- | --- |
 | Inspect the strongest repo-local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Inspect the positive benchmark packet | [Positive benchmark readout](./docs/reports/christian_virtue_positive_benchmark_readout.md) |
 | Rerun the strongest full-data local result | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` |
 | Try the model online | [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space) |
 | Run the smallest release-grade local check | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
@@ -152,6 +183,7 @@ Expected outputs from a successful canonical run:
 | Output | Path |
 | --- | --- |
 | Full-corpus report | [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
+| Positive benchmark readout | [docs/reports/christian_virtue_positive_benchmark_readout.md](./docs/reports/christian_virtue_positive_benchmark_readout.md) |
 | Full-corpus training run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/` |
 | Full-corpus adapter test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test/latest/` |
 | Untuned-model test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/` |

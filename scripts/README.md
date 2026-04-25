@@ -22,8 +22,8 @@ These are the scripts behind those public entrypoints:
 - `run_christian_virtue_qwen2_5_1_5b_local_train.sh`
   - launches `smoke`, `local-baseline`, `full-corpus`, `citation-frontier`, `accuracy-first`,
     `justice-guarded`, or the heavier experimental `extended` local training
-  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes automatically export the MPS safety env overrides that were
-    required for the successful rerun
+  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes automatically export the
+    MPS safety env overrides that were required for the successful rerun
 - `chat_christian_virtue_model.py`
   - opens an interactive local chat session against a base model or adapter
   - the default path talks directly to the completed `full-corpus` LoRA adapter and writes
@@ -44,11 +44,61 @@ These are the scripts behind those public entrypoints:
 - `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
   - generates and evaluates held-out base-model predictions
 - `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
-  - generates and evaluates held-out adapter predictions for the canonical baseline, the long-running full-corpus experiment, the citation-frontier experiment, the accuracy-first hybrid, or the justice-guarded follow-up
-  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes also reuse those MPS safety env overrides during generation and
-    evaluation
+  - generates and evaluates held-out adapter predictions for the canonical baseline, the
+    long-running full-corpus experiment, the citation-frontier experiment, the accuracy-first
+    hybrid, or the justice-guarded follow-up
+  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes also reuse those MPS safety
+    env overrides during generation and evaluation
 - `run_christian_virtue_qwen2_5_1_5b_local_compare.sh`
   - compares the canonical local base and adapter runs, or compares local-baseline against the full-corpus, citation-frontier, accuracy-first, or justice-guarded adapters
+- `run_aquinas_virtue_grounding_probe.py`
+  - runs the position-neutral held-out Aquinas grounding probe with deterministic citation,
+    subject/object, relation, category-language, and generic-drift scoring
+- `run_christian_virtue_qwen2_5_1_5b_aquinas_grounding_probe.sh`
+  - wraps that probe for the untouched base model or the final full-corpus LoRA
+  - preserves the canonical held-out prompt by default and verifies cross-worktree adapter
+    provenance with `ADAPTER_PATH`, `EXPECTED_ADAPTER_RUN_ID`, and `EXPECTED_ADAPTER_SHA256`
+- `run_virtuebench_v2_local.py`
+  - runs VirtueBench V2 with the repo's local MPS-compatible Hugging Face + optional LoRA loader
+  - writes benchmark inputs, predictions, metrics, reports, manifests, environment snapshots, and resumable partial predictions
+- `run_christian_virtue_qwen2_5_1_5b_virtuebench_v2.sh`
+  - wraps the VirtueBench V2 local runner for the untouched `Qwen/Qwen2.5-1.5B-Instruct` model
+    or the final full-corpus LoRA adapter
+  - pins the upstream VirtueBench source checkout and verifies cross-worktree adapter provenance
+  - accepts `POSITION_MODE=paired` for counterbalanced A/B evaluation
+- `build_christian_virtue_virtuebench_v2_diagnostic_report.py`
+  - compares the latest random-order and paired-counterbalanced VirtueBench V2 runs
+  - writes a local diagnostic markdown report, comparison metrics JSON, and SVG charts under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/`
+  - treats paired counterbalancing as the safer interpretation whenever answer-position bias is
+    visible
+- `run_external_candidate_benchmarks.py`
+  - runs a compact, objectively scored external benchmark slate selected for Christian,
+    Chinese, Chinese-Christian/religion, and moral-reasoning relevance
+  - writes full candidate inputs, predictions, metrics, reports, and resumable partial
+    predictions under timestamped `runs/` directories
+- `run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh`
+  - wraps that slate for the untouched base model or the final full-corpus LoRA
+  - verifies the cross-worktree adapter with `EXPECTED_ADAPTER_RUN_ID` and
+    `EXPECTED_ADAPTER_SHA256` before any LoRA run
+- `compare_external_candidate_benchmarks.py`
+  - compares the latest base and LoRA external candidate runs
+  - writes a positive-only promoted markdown report, CSV table, comparison JSON, and SVG delta
+    chart under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/`
+- `build_christian_virtue_benchmark_packet.py`
+  - assembles the tight positive-only benchmark packet from held-out citation metrics, Aquinas
+    grounding probe metrics, and LoRA-winning VirtueBench diagnostics
+  - writes a timestamped report, CSV table, JSON metrics packet, and delta SVG under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/`
+  - if canonical metrics or the final adapter live in another worktree, set
+    `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and
+    `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT` rather than editing the script
+- `build_christian_virtue_positive_readout.py`
+  - turns the latest positive-only benchmark packet into committed Markdown and SVG assets for
+    README/public-report use
+  - writes the positive benchmark readout, benchmark-shape examples, and the two bar charts under
+    `docs/reports/`
 - `launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh`
   - launches the full-corpus train → held-out adapter eval → comparison loop in the background
   - records a launch log, PID file, and the active run-family root so long MPS runs can continue outside the terminal session
@@ -67,7 +117,19 @@ These are the scripts behind those public entrypoints:
   - assembles the curated markdown report for the justice-guarded follow-up
   - captures the recovery in `justice_core` / `strong_textual_inference` together with the remaining moral-QA gap
 
-The preferred public commands are:
+## Reviewer Command Path
+
+| Goal | Command | Expected output |
+|---|---|---|
+| Verify the public release surface | `make public-release-check` | lint, type checks, publication-surface coherence, and link checks |
+| Try the public chat layer quickly | `make smoke-test-christian-virtue-chat` | timestamped smoke report under `runs/.../full_corpus_chat_smoke/` |
+| Inspect the full-corpus assistant locally | `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus` | Gradio UI using the full-corpus LoRA config |
+| Rebuild the positive benchmark readout | `make report-christian-virtue-qwen2-5-1-5b-positive-readout` | committed Markdown/SVG readout assets under `docs/reports/` |
+| Rerun the strongest local experiment | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` | timestamped train/eval/compare artifacts under `runs/` |
+
+## Command Reference
+
+Use these entrypoints instead of calling lower-level modules directly:
 
 ```bash
 make setup-christian-virtue-local
@@ -78,6 +140,22 @@ make chat-christian-virtue-qwen2-5-1-5b-full-corpus
 make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
 make report-christian-virtue-qwen2-5-1-5b-full-corpus
+make aquinas-grounding-probe-qwen2-5-1-5b-base
+make aquinas-grounding-probe-qwen2-5-1-5b-full-corpus
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 make virtuebench-v2-qwen2-5-1-5b-base
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 make virtuebench-v2-qwen2-5-1-5b-full-corpus
+make report-virtuebench-v2-qwen2-5-1-5b-diagnostic
+MAX_EXAMPLES_PER_BENCHMARK=60 make external-candidates-qwen2-5-1-5b-base
+MAX_EXAMPLES_PER_BENCHMARK=60 \
+  ADAPTER_PATH=/absolute/path/to/full_corpus/latest \
+  EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
+  EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
+  make external-candidates-qwen2-5-1-5b-full-corpus
+make report-external-candidates-qwen2-5-1-5b-positive
+CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT=/absolute/path/to/qwen2_5_1_5b_instruct \
+  CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT=/absolute/path/to/full_corpus/20260422_223349 \
+  make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
+make report-christian-virtue-qwen2-5-1-5b-positive-readout
 make reproduce-christian-virtue-qwen2-5-1-5b-local
 make public-release-check
 make audit-christian-virtue-qwen2-5-1-5b-local-frontier
@@ -113,6 +191,9 @@ important outputs are:
 - `docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md`
 - `docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md`
+- `docs/reports/christian_virtue_benchmark_packet_summary.md`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/report.md`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/latest/report.md`
 - `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
 - `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest`
 

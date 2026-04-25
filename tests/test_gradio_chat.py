@@ -12,6 +12,7 @@ from summa_moral_graph.app.gradio_chat import (
     gradio_session_status_markdown,
 )
 from summa_moral_graph.sft import InferenceConfig, LiveChatSession, chat_session_paths
+from summa_moral_graph.utils.paths import REPO_ROOT
 
 
 def _demo_config() -> InferenceConfig:
@@ -38,9 +39,9 @@ def test_gradio_session_status_markdown_without_session_is_readable() -> None:
 
 
 def test_gradio_session_status_markdown_with_session_uses_relative_paths() -> None:
-    run_dir = Path(
-        "/Users/hanzhenzhu/Desktop/summa-moral-graph-fork/"
-        "runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/20260423_170000"
+    run_dir = (
+        REPO_ROOT
+        / "runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/20260423_170000"
     )
     session = LiveChatSession(
         run_dir=run_dir,
@@ -57,10 +58,10 @@ def test_gradio_session_status_markdown_with_session_uses_relative_paths() -> No
     markdown = gradio_session_status_markdown(_demo_config(), session)
 
     assert "20260423_170000" in markdown
-    assert (
+    expected_run_dir = (
         "runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/20260423_170000"
-        in markdown
     )
+    assert f"- **Run dir:** `{expected_run_dir}`" in markdown
     assert "Turns logged" in markdown
 
 

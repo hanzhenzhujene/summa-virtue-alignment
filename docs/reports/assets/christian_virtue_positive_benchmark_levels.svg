@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="862" viewBox="0 0 1240 862" role="img" aria-label="Base versus final LoRA scores on positive benchmark rows">
+<rect x="0" y="0" width="1240" height="862" rx="0" fill="#f8fafc"/>
+<rect x="24" y="18" width="1192" height="826" rx="18" fill="#ffffff" stroke="#d4d4d8"/>
+<text x="64" y="58" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#0f172a" font-weight="700">Base vs LoRA on Positive Rows</text>
+<text x="64" y="84" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#475569">Blue is the untouched base model; green is the final full-corpus LoRA.</text>
+<rect x="64" y="106" width="12" height="12" rx="2" fill="#2563eb"/>
+<text x="84" y="116" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Base</text>
+<rect x="148" y="106" width="12" height="12" rx="2" fill="#0f766e"/>
+<text x="168" y="116" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569">Final full-corpus LoRA</text>
+<text x="366" y="112" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#334155" font-weight="700">Absolute score</text>
+<text x="960" y="112" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#334155" font-weight="700">Reported values</text>
+<line x1="366.0" y1="128.0" x2="366.0" y2="804.0" stroke="#eef2f7" stroke-width="1.0"/>
+<text x="366" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">0%</text>
+<line x1="506.0" y1="128.0" x2="506.0" y2="804.0" stroke="#eef2f7" stroke-width="1.0"/>
+<text x="506" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">25%</text>
+<line x1="646.0" y1="128.0" x2="646.0" y2="804.0" stroke="#eef2f7" stroke-width="1.0"/>
+<text x="646" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">50%</text>
+<line x1="786.0" y1="128.0" x2="786.0" y2="804.0" stroke="#eef2f7" stroke-width="1.0"/>
+<text x="786" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">75%</text>
+<line x1="926.0" y1="128.0" x2="926.0" y2="804.0" stroke="#eef2f7" stroke-width="1.0"/>
+<text x="926" y="120" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">100%</text>
+<line x1="942.0" y1="102.0" x2="942.0" y2="810.0" stroke="#e2e8f0" stroke-width="1.0"/>
+<text x="64" y="167" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">Held-out Summa citation exact</text>
+<text x="64" y="185" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">In-domain held-out</text>
+<rect x="366" y="154" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="154" width="0" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="179" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="179" width="398" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="167" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 0.0%</text>
+<text x="960" y="192" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 71.2%</text>
+<rect x="48" y="202" width="1144" height="58" rx="10" fill="#fbfdff"/>
+<text x="64" y="229" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">Aquinas grounding probe score</text>
+<text x="64" y="247" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">In-domain grounding</text>
+<rect x="366" y="216" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="216" width="211" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="241" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="241" width="415" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="229" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 37.7%</text>
+<text x="960" y="254" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 74.2%</text>
+<text x="64" y="291" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">Aquinas segment-id citation presence</text>
+<text x="64" y="309" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">In-domain grounding</text>
+<rect x="366" y="278" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="278" width="0" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="303" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="303" width="560" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="291" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 0.0%</text>
+<text x="960" y="316" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 100.0%</text>
+<rect x="48" y="326" width="1144" height="58" rx="10" fill="#fbfdff"/>
+<text x="64" y="353" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">VirtueBench V2 random</text>
+<text x="64" y="371" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">Virtue diagnostic</text>
+<rect x="366" y="340" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="340" width="166" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="365" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="365" width="324" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="353" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 29.7%</text>
+<text x="960" y="378" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 58.0%</text>
+<text x="64" y="415" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">VirtueBench V2 paired</text>
+<text x="64" y="433" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">Virtue diagnostic</text>
+<rect x="366" y="402" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="402" width="190" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="427" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="427" width="277" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="415" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 34.0%</text>
+<text x="960" y="440" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 49.5%</text>
+<rect x="48" y="450" width="1144" height="58" rx="10" fill="#fbfdff"/>
+<text x="64" y="477" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">MMLU world religions</text>
+<text x="64" y="495" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">External English transfer</text>
+<rect x="366" y="464" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="464" width="429" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="489" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="489" width="457" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="477" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 76.7%</text>
+<text x="960" y="502" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 81.7%</text>
+<text x="64" y="539" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">MMMLU-ZH business ethics</text>
+<text x="64" y="557" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">External Chinese transfer</text>
+<rect x="366" y="526" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="526" width="326" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="551" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="551" width="345" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="539" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 58.3%</text>
+<text x="960" y="564" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 61.7%</text>
+<rect x="48" y="574" width="1144" height="58" rx="10" fill="#fbfdff"/>
+<text x="64" y="601" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">MMMLU-ZH moral scenarios</text>
+<text x="64" y="619" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">External Chinese transfer</text>
+<rect x="366" y="588" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="588" width="140" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="613" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="613" width="158" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="601" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 25.0%</text>
+<text x="960" y="626" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 28.3%</text>
+<text x="64" y="663" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">MMMLU-ZH philosophy</text>
+<text x="64" y="681" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">External Chinese transfer</text>
+<rect x="366" y="650" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="650" width="298" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="675" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="675" width="308" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="663" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 53.3%</text>
+<text x="960" y="688" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 55.0%</text>
+<rect x="48" y="698" width="1144" height="58" rx="10" fill="#fbfdff"/>
+<text x="64" y="725" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0f172a" font-weight="700">MMLU moral scenarios</text>
+<text x="64" y="743" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#64748b">External English transfer</text>
+<rect x="366" y="712" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="712" width="149" height="15" rx="4" fill="#2563eb"/>
+<rect x="366" y="737" width="560" height="15" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+<rect x="366" y="737" width="158" height="15" rx="4" fill="#0f766e"/>
+<text x="960" y="725" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#2563eb" font-weight="700">Base 26.7%</text>
+<text x="960" y="750" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#0f766e" font-weight="700">LoRA 28.3%</text>
+<text x="646" y="838" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#475569" text-anchor="middle">Benchmark score</text>
+</svg>

@@ -501,6 +501,20 @@ def test_public_repo_surfaces_do_not_embed_machine_absolute_paths() -> None:
     assert not find_machine_path_leaks(repo_root)
 
 
+def test_machine_path_leak_detector_flags_desktop_paths(tmp_path) -> None:
+    repo_root = tmp_path / "repo"
+    script_path = repo_root / "scripts" / "demo.py"
+    script_path.parent.mkdir(parents=True)
+    script_path.write_text(
+        'RUN_ROOT = "Desktop/research-checkout/runs/christian_virtue"\n',
+        encoding="utf-8",
+    )
+
+    assert find_machine_path_leaks(repo_root) == {
+        "scripts/demo.py": ["Desktop/research-checkout/runs/christian_virtue"]
+    }
+
+
 def test_repo_publication_bundle_is_coherent() -> None:
     repo_root = Path(__file__).resolve().parents[1]
     package_manifest_path = (

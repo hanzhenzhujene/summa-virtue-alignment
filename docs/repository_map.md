@@ -18,6 +18,10 @@ model trainer.
   surface for the full-corpus Christian virtue assistant
 - [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md):
   flagship repo-local report for the full reviewed Christian virtue split
+- [docs/reports/christian_virtue_positive_benchmark_readout.md](./reports/christian_virtue_positive_benchmark_readout.md):
+  positive-only benchmark packet with committed tables, bar charts, and readout guidance
+- [docs/reports/christian_virtue_positive_benchmark_examples.md](./reports/christian_virtue_positive_benchmark_examples.md):
+  representative prompt shapes for the promoted positive benchmark surfaces
 - [docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md](./reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md):
   smaller published local package report mirrored to the release artifact
 - [docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md](./reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md):
@@ -34,6 +38,8 @@ If you want the smallest set of files that define the public release, start here
 - dataset export: `data/processed/sft/exports/christian_virtue_v1/`
 - full-corpus report:
   [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
+- positive benchmark readout:
+  [docs/reports/christian_virtue_positive_benchmark_readout.md](./reports/christian_virtue_positive_benchmark_readout.md)
 - public claim map:
   [docs/public_claim_map.md](./public_claim_map.md)
 - smaller published package report:
@@ -175,6 +181,7 @@ and remote-model utilities.
 - `scripts/smoke_test_christian_virtue_chat.py`
 - `scripts/run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
 - `scripts/build_christian_virtue_full_corpus_report.py`
+- `scripts/build_christian_virtue_positive_readout.py`
 - `scripts/build_christian_virtue_citation_frontier_report.py`
 - `scripts/build_christian_virtue_justice_guarded_report.py`
 
@@ -187,9 +194,16 @@ These are the main post-baseline experiment surfaces:
 ### Reporting And Publication
 
 - `scripts/build_christian_virtue_local_report.py`
+- `scripts/build_christian_virtue_benchmark_packet.py`
+- `scripts/build_christian_virtue_positive_readout.py`
 - `scripts/audit_christian_virtue_frontier.py`
 - `scripts/publish_christian_virtue_adapter.py`
 - `scripts/verify_christian_virtue_publication.py`
+
+The benchmark packet builder searches the repo-local `runs/` tree by default. If the final
+full-corpus adapter or canonical held-out metrics live in another worktree, set
+`CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT` rather
+than editing the script.
 
 ## Reproducibility Contract
 

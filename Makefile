@@ -82,6 +82,16 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test \
 	eval-christian-virtue-qwen2-5-1-5b-accuracy-first-test \
 	eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test \
+	aquinas-grounding-probe-qwen2-5-1-5b-base \
+	aquinas-grounding-probe-qwen2-5-1-5b-full-corpus \
+	virtuebench-v2-qwen2-5-1-5b-base \
+	virtuebench-v2-qwen2-5-1-5b-full-corpus \
+	report-virtuebench-v2-qwen2-5-1-5b-diagnostic \
+	external-candidates-qwen2-5-1-5b-base \
+	external-candidates-qwen2-5-1-5b-full-corpus \
+	report-external-candidates-qwen2-5-1-5b-positive \
+	report-christian-virtue-qwen2-5-1-5b-benchmark-packet \
+	report-christian-virtue-qwen2-5-1-5b-positive-readout \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
 	compare-christian-virtue-qwen2-5-1-5b-full-corpus \
 	compare-christian-virtue-qwen2-5-1-5b-citation-frontier \
@@ -311,6 +321,36 @@ eval-christian-virtue-qwen2-5-1-5b-accuracy-first-test:
 
 eval-christian-virtue-qwen2-5-1-5b-justice-guarded-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh justice-guarded
+
+aquinas-grounding-probe-qwen2-5-1-5b-base:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_aquinas_grounding_probe.sh base
+
+aquinas-grounding-probe-qwen2-5-1-5b-full-corpus:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_aquinas_grounding_probe.sh full-corpus
+
+virtuebench-v2-qwen2-5-1-5b-base:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_virtuebench_v2.sh base
+
+virtuebench-v2-qwen2-5-1-5b-full-corpus:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_virtuebench_v2.sh full-corpus
+
+report-virtuebench-v2-qwen2-5-1-5b-diagnostic:
+	$(BIN)/python scripts/build_christian_virtue_virtuebench_v2_diagnostic_report.py
+
+external-candidates-qwen2-5-1-5b-base:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh base
+
+external-candidates-qwen2-5-1-5b-full-corpus:
+	bash scripts/run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh full-corpus
+
+report-external-candidates-qwen2-5-1-5b-positive:
+	$(BIN)/python scripts/compare_external_candidate_benchmarks.py
+
+report-christian-virtue-qwen2-5-1-5b-benchmark-packet:
+	$(BIN)/python scripts/build_christian_virtue_benchmark_packet.py
+
+report-christian-virtue-qwen2-5-1-5b-positive-readout:
+	$(BIN)/python scripts/build_christian_virtue_positive_readout.py
 
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh
