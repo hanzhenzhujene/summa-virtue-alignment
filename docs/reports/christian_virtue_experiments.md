@@ -27,11 +27,11 @@ This is the strongest repo-local Christian virtue result currently documented in
   [christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
 - Benchmark packet summary:
   [christian_virtue_benchmark_packet_summary.md](./christian_virtue_benchmark_packet_summary.md)
-- Positive benchmark readout:
-  [christian_virtue_positive_benchmark_readout.md](./christian_virtue_positive_benchmark_readout.md)
-- Positive benchmark examples:
-  [christian_virtue_positive_benchmark_examples.md](./christian_virtue_positive_benchmark_examples.md)
-- Latest positive-only benchmark packet:
+- Benchmark improvement readout:
+  [christian_virtue_benchmark_improvements.md](./christian_virtue_benchmark_improvements.md)
+- Benchmark examples:
+  [christian_virtue_benchmark_examples.md](./christian_virtue_benchmark_examples.md)
+- Latest benchmark packet:
   `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/report.md`
 - Dataset card:
   [../christian_virtue_dataset_card.md](../christian_virtue_dataset_card.md)
@@ -47,13 +47,13 @@ Completed repo-local run ids:
 - supplementary VirtueBench V2 full-corpus eval: `20260425_010109`
 - supplementary VirtueBench V2 paired base eval: `20260425_014109`
 - supplementary VirtueBench V2 paired full-corpus eval: `20260425_015430`
-- supplementary VirtueBench V2 positive-only diagnostic report: `20260425_083752`
+- supplementary VirtueBench V2 diagnostic report: `20260425_083752`
 - supplementary Aquinas grounding probe base eval: `20260425_024231`
 - supplementary Aquinas grounding probe full-corpus eval: `20260425_034345`
 - supplementary external candidate base eval: `20260425_090412`
 - supplementary external candidate full-corpus eval: `20260425_090920`
-- supplementary external positive-only comparison: `20260425_091658`
-- consolidated positive-only benchmark packet: `20260425_091751`
+- supplementary external improvement comparison: `20260425_091658`
+- consolidated benchmark packet: `20260425_091751`
 
 What it demonstrates:
 
@@ -71,8 +71,8 @@ What it demonstrates:
 - the counterbalanced paired VirtueBench V2 run is the safer read: it improves from `34.0%` base
   to `49.5%` LoRA on the capped 200-row run, but the LoRA still answers `A` on `197/200`
   prompts, so this remains a diagnostic for future calibration rather than a public benchmark win
-- an expanded external candidate slate screened `15` short multiple-choice slices and promotes
-  only the `5` LoRA-positive rows: MMLU world religions `+5.0` pp, MMMLU-ZH business ethics
+- an expanded external candidate slate screened `15` short multiple-choice slices and highlights
+  the `5` strongest LoRA improvement rows: MMLU world religions `+5.0` pp, MMMLU-ZH business ethics
   `+3.3` pp, MMMLU-ZH moral scenarios `+3.3` pp, MMMLU-ZH philosophy `+1.7` pp, and MMLU moral
   scenarios `+1.7` pp, all at `100.0%` parse rate
 

@@ -83,21 +83,21 @@ These are the scripts behind those public entrypoints:
     `EXPECTED_ADAPTER_SHA256` before any LoRA run
 - `compare_external_candidate_benchmarks.py`
   - compares the latest base and LoRA external candidate runs
-  - writes a positive-only promoted markdown report, CSV table, comparison JSON, and SVG delta
+  - writes an improvement-focused markdown report, CSV table, comparison JSON, and SVG delta
     chart under
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/`
 - `build_christian_virtue_benchmark_packet.py`
-  - assembles the tight positive-only benchmark packet from held-out citation metrics, Aquinas
-    grounding probe metrics, and LoRA-winning VirtueBench diagnostics
+  - assembles the benchmark packet from held-out citation metrics, Aquinas grounding probe metrics,
+    and VirtueBench diagnostics
   - writes a timestamped report, CSV table, JSON metrics packet, and delta SVG under
     `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/`
   - if canonical metrics or the final adapter live in another worktree, set
     `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and
     `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT` rather than editing the script
-- `build_christian_virtue_positive_readout.py`
-  - turns the latest positive-only benchmark packet into committed Markdown and SVG assets for
+- `build_christian_virtue_benchmark_improvements.py`
+  - turns the latest benchmark packet into committed Markdown and SVG assets for
     README/public-report use
-  - writes the positive benchmark readout, benchmark-shape examples, and the two bar charts under
+  - writes the benchmark improvement readout, benchmark-shape examples, and the paired-bar chart under
     `docs/reports/`
 - `launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh`
   - launches the full-corpus train → held-out adapter eval → comparison loop in the background
@@ -124,7 +124,7 @@ These are the scripts behind those public entrypoints:
 | Verify the public release surface | `make public-release-check` | lint, type checks, publication-surface coherence, and link checks |
 | Try the public chat layer quickly | `make smoke-test-christian-virtue-chat` | timestamped smoke report under `runs/.../full_corpus_chat_smoke/` |
 | Inspect the full-corpus assistant locally | `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus` | Gradio UI using the full-corpus LoRA config |
-| Rebuild the positive benchmark readout | `make report-christian-virtue-qwen2-5-1-5b-positive-readout` | committed Markdown/SVG readout assets under `docs/reports/` |
+| Rebuild the benchmark improvement readout | `make report-christian-virtue-qwen2-5-1-5b-benchmark-improvements` | committed Markdown/SVG readout assets under `docs/reports/` |
 | Rerun the strongest local experiment | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` | timestamped train/eval/compare artifacts under `runs/` |
 
 ## Command Reference
@@ -151,11 +151,11 @@ MAX_EXAMPLES_PER_BENCHMARK=60 \
   EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
   EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
   make external-candidates-qwen2-5-1-5b-full-corpus
-make report-external-candidates-qwen2-5-1-5b-positive
+make report-external-candidates-qwen2-5-1-5b-improvements
 CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT=/absolute/path/to/qwen2_5_1_5b_instruct \
   CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT=/absolute/path/to/full_corpus/20260422_223349 \
   make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
-make report-christian-virtue-qwen2-5-1-5b-positive-readout
+make report-christian-virtue-qwen2-5-1-5b-benchmark-improvements
 make reproduce-christian-virtue-qwen2-5-1-5b-local
 make public-release-check
 make audit-christian-virtue-qwen2-5-1-5b-local-frontier

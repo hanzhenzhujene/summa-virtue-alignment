@@ -89,9 +89,9 @@ SMALL_COMPARE_OOD_REPORT := $(SMALL_MODEL_ROOT)/compare_ood/report.md
 	report-virtuebench-v2-qwen2-5-1-5b-diagnostic \
 	external-candidates-qwen2-5-1-5b-base \
 	external-candidates-qwen2-5-1-5b-full-corpus \
-	report-external-candidates-qwen2-5-1-5b-positive \
+	report-external-candidates-qwen2-5-1-5b-improvements \
 	report-christian-virtue-qwen2-5-1-5b-benchmark-packet \
-	report-christian-virtue-qwen2-5-1-5b-positive-readout \
+	report-christian-virtue-qwen2-5-1-5b-benchmark-improvements \
 	compare-christian-virtue-qwen2-5-1-5b-local-test \
 	compare-christian-virtue-qwen2-5-1-5b-full-corpus \
 	compare-christian-virtue-qwen2-5-1-5b-citation-frontier \
@@ -343,14 +343,14 @@ external-candidates-qwen2-5-1-5b-base:
 external-candidates-qwen2-5-1-5b-full-corpus:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh full-corpus
 
-report-external-candidates-qwen2-5-1-5b-positive:
+report-external-candidates-qwen2-5-1-5b-improvements:
 	$(BIN)/python scripts/compare_external_candidate_benchmarks.py
 
 report-christian-virtue-qwen2-5-1-5b-benchmark-packet:
 	$(BIN)/python scripts/build_christian_virtue_benchmark_packet.py
 
-report-christian-virtue-qwen2-5-1-5b-positive-readout:
-	$(BIN)/python scripts/build_christian_virtue_positive_readout.py
+report-christian-virtue-qwen2-5-1-5b-benchmark-improvements:
+	$(BIN)/python scripts/build_christian_virtue_benchmark_improvements.py
 
 compare-christian-virtue-qwen2-5-1-5b-local-test:
 	bash scripts/run_christian_virtue_qwen2_5_1_5b_local_compare.sh

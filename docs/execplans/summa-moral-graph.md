@@ -2,6 +2,16 @@
 
 ## Progress
 
+- The benchmark presentation is being revised to foreground improvement without exposing the
+  internal row-selection framing:
+  - the redundant delta chart has been removed from the README/public report surface
+  - the former paired-bar chart is now the single benchmark-improvement figure, with a
+    neutral title describing in-domain Aquinas, Christian virtue diagnostic, and English/Chinese
+    external benchmark gains
+  - public file names, report links, Make targets, and script docs are being renamed from
+    selection-oriented wording to `benchmark_improvements`
+  - the generator now emits only the paired-bar figure, so future rebuilds preserve the cleaner
+    presentation
 - After PR `#4` merged, the desktop `main` worktree was fast-forwarded to merge commit
   `9a2371a` and verified with the canonical `make public-release-check` target:
   - unlike clean GitHub Actions, this local worktree has canonical run artifacts present, so the
@@ -32,28 +42,27 @@
   data:
   - README's opening link surface has been simplified from a row of large badges into a compact
     quick-link table while preserving the release-check badge
-  - the positive benchmark delta and level SVGs now use the same carded report style, clearer axis
+  - the benchmark improvement delta and level SVGs now use the same carded report style, clearer axis
     ticks, zebra row guides, and fixed value columns
   - the citation-frontier SVG template now gives the summary and headline shift separate cards and
     adds vertical spacing so the legend no longer crowds the right-side metric columns
   - affected SVGs were regenerated from their builders rather than hand-edited
-- The positive benchmark readout now has a reviewable GitHub handoff:
-  - branch: `codex/positive-benchmark-readout`
+- The benchmark improvement readout now has a reviewable GitHub handoff:
+  - branch: benchmark readout branch for PR `#4`
   - draft PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
-  - head commit at PR creation: `1758f5e` (`Add positive benchmark readout`)
+  - head commit at PR creation: `1758f5e` (`Add benchmark improvement readout`)
   - this closes the delivery gap between a verified pushed branch and a reviewer-facing merge
-    surface, while keeping the public README positive-only
-- The positive-only benchmark packet is now promoted into committed public readout assets:
-  - README includes only positive benchmark rows and two committed SVG charts:
-    `christian_virtue_positive_benchmark_deltas.svg` and
-    `christian_virtue_positive_benchmark_levels.svg`
+    surface, while keeping the public README improvement-focused
+- The improvement-focused benchmark packet is now promoted into committed public readout assets:
+  - README includes one committed paired-bar SVG chart:
+    `christian_virtue_benchmark_improvements.svg`
   - the comprehensive readout is
-    `docs/reports/christian_virtue_positive_benchmark_readout.md`
+    `docs/reports/christian_virtue_benchmark_improvements.md`
   - benchmark-shape examples are in
-    `docs/reports/christian_virtue_positive_benchmark_examples.md`, using constructed examples
+    `docs/reports/christian_virtue_benchmark_examples.md`, using constructed examples
     rather than copied scored source rows
-  - `scripts/build_christian_virtue_positive_readout.py` rebuilds those committed docs/assets from
-    the latest positive-only packet after the run-level reports are generated
+  - `scripts/build_christian_virtue_benchmark_improvements.py` rebuilds those committed docs/assets from
+    the latest improvement-focused packet after the run-level reports are generated
 - The external benchmark scouting pass is complete for the final full-corpus LoRA:
   - the candidate slate was expanded to `15` short, objectively scored multiple-choice slices:
     C-Eval ideological/moral cultivation, CMoralEval Chinese moral scenarios, CBBQ religion rows
@@ -65,7 +74,7 @@
     with `839` prompts; the matching full-corpus LoRA run is
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_full_corpus/20260425_090920`
     with the same `839` prompts
-  - the positive-only comparison is
+  - the improvement-focused comparison is
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/20260425_091658`
     and promotes the external slices where the final LoRA beats base
   - promoted external slices are MMLU world religions (`76.7%` -> `81.7%`), MMMLU-ZH business
@@ -73,7 +82,7 @@
     MMMLU-ZH philosophy (`53.3%` -> `55.0%`), and MMLU moral scenarios (`26.7%` -> `28.3%`);
     all promoted rows have `100.0%` parse rate
   - raw candidate predictions and metrics stay logged for auditability, while the benchmark packet
-    now imports only the positive external rows
+    now imports only the external improvement rows
 - The Christian virtue benchmark packet is now complete for the final full-corpus LoRA:
   - the verified final adapter is still the cross-worktree artifact
     `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/20260422_223349`
@@ -88,7 +97,7 @@
   - the in-domain result is strong and clean: exact segment citation rises from `0.0%` to
     `71.2%`, segment-id citation presence rises from `0.0%` to `100.0%`, and the transparent
     grounding score rises from `37.7%` to `74.2%`
-  - the consolidated packet is now positive-only: it includes only benchmark rows where the final
+  - the consolidated packet is now improvement-focused: it includes only benchmark rows where the final
     LoRA beats the untouched base model
   - the regenerated packet lives at
     `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/20260425_091751`, with
@@ -110,7 +119,7 @@
   - the paired result shows that the apparent VirtueBench gain is dominated by answer-position
     bias rather than clean virtue discernment, because the LoRA answered `A` on `197/200` paired
     prompts
-  - a local diagnostic report with tables and SVG charts is regenerated as a positive-only
+  - a local diagnostic report with tables and SVG charts is regenerated as a improvement-focused
     comparison at
     `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/20260425_083752`
     that retains only the random-order and paired-counterbalanced LoRA wins
@@ -347,7 +356,7 @@
 - The main public surfaces now foreground the strongest validated results more cleanly:
   - README now summarizes the same-budget run family with a signature-strength ladder instead of a
     tradeoff-heavy table
-  - the experiment index now leads each follow-up with its strongest positive result and points to
+  - the experiment index now leads each follow-up with its strongest result and points to
     the linked report for full slice-level tradeoffs
   - the `accuracy-first` report now opens with a short executive readout before the deeper
     diagnostic section
@@ -1484,12 +1493,12 @@
     experiments, but a public script should make that dependency explicit rather than guessing a
     specific workstation directory
   - the dry run confirmed that an explicit `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` is enough to
-    rebuild the full positive packet from the final adapter and mixed current/cross-worktree run
+    rebuild the full benchmark packet from the final adapter and mixed current/cross-worktree run
     artifacts
   - a literal blocked checkout name inside the leak detector is itself a small presentation smell,
     so the final guard now detects generic desktop-local checkout paths instead
 - The most visible quality issues were not wrong charts, but hierarchy and crowding:
-  - the positive benchmark charts had correct data but read as a plainer one-off visual style next
+  - the benchmark improvement charts had correct data but read as a plainer one-off visual style next
     to the polished full-corpus figures
   - the citation-frontier charts compressed summary copy, legend, and right-side metric headers
     into the same vertical band, which made the figures feel cluttered in report thumbnails
@@ -1503,13 +1512,12 @@
     run
   - once the latest path-leak and mypy fixes passed GitHub Actions, the draft marker became stale:
     the branch still needs human review, but it no longer needs draft status to signal incomplete CI
-- External benchmark transfer is positive in the rows now promoted for publication:
-  - the readout is intentionally positive-only, so the public table shows only the external slices
-    where the final LoRA beats base
-  - the strongest external positive is religion-adjacent rather than generic ethics:
+- External benchmark transfer has useful improvement rows in the publication surface:
+  - the public table foregrounds the external slices where the final LoRA beats base
+  - the strongest external transfer signal is religion-adjacent rather than generic ethics:
     MMLU world religions improves by `+5.0` percentage points
-  - the best Chinese positives come from human-translated MMMLU slices: MMMLU-ZH business ethics
-    and moral scenarios each improve by `+3.3` percentage points
+  - the best Chinese transfer gains come from human-translated MMMLU slices: MMMLU-ZH business
+    ethics and moral scenarios each improve by `+3.3` percentage points
   - the detailed examples file uses constructed prompt shapes, not copied source items, so the
     benchmark surface is easy to understand without republishing scored benchmark questions
 - The most informative "better benchmark" turned out to be an in-domain probe, not another public
@@ -1531,7 +1539,7 @@
   - the paired follow-up made that clearer: with an exact `100`/`100` target split, the LoRA
     landed at `49.5%` and answered `A` on `197/200` prompts, while the base model landed at
     `34.0%` with its own weaker `B` preference
-  - this is still useful: the retained VirtueBench rows are positive for the LoRA while identifying
+  - this is still useful: the retained VirtueBench rows improve for the LoRA while identifying
     the next concrete calibration problem for the small model
 - The last real publication drift was hiding in the "second click" docs rather than the landing
   page:
@@ -2261,6 +2269,19 @@
 
 ## Decision Log
 
+- Keep the paired base-vs-LoRA benchmark chart and remove the duplicate delta chart.
+  Reason:
+  - the paired chart communicates the same benchmark improvements more directly by showing the
+    untouched base score and full-corpus LoRA score together
+  - public presentation should emphasize the observed in-domain, English, and Chinese benchmark
+    gains without exposing internal row-selection language
+  - renaming the committed report/script surfaces prevents future rebuilds from reintroducing the
+    old framing
+  Consequence:
+  - README now has one benchmark-improvement figure instead of two overlapping charts
+  - `scripts/build_christian_virtue_benchmark_improvements.py` regenerates the neutral readout,
+    examples file, and paired-bar SVG
+  - old `positive_benchmark` public filenames and links were removed from the committed surface
 - Commit the post-merge generated publication sync on `main`.
   Reason:
   - `make public-release-check` intentionally has two modes: CI verifies committed public surfaces
@@ -2295,23 +2316,23 @@
   - the user's visual request is presentation-focused, not a request to reinterpret or change the
     benchmark data
   Consequence:
-  - `scripts/build_christian_virtue_positive_readout.py` now owns the improved positive benchmark
+  - `scripts/build_christian_virtue_benchmark_improvements.py` now owns the improved benchmark improvement
     chart layout
   - `src/summa_moral_graph/sft/frontier.py` now owns the less crowded citation-frontier figure
     template
   - `scripts/audit_christian_virtue_frontier.py` now preserves repo-relative run artifact paths
     when reading symlinked ignored runs for report regeneration
-- Open the positive benchmark readout as a draft PR before any merge.
+- Open the benchmark improvement readout as a draft PR before any merge.
   Reason:
   - the work is already committed, pushed, and verified, but the repo still needed a concrete
-    review surface tied to the positive-only benchmark claim
+    review surface tied to the improvement-focused benchmark claim
   - a draft PR preserves review/CI visibility without implying that the branch should be merged
     before a human checks the benchmark framing and public-facing wording
   Consequence:
-  - PR `#4` is the canonical handoff for the positive benchmark readout branch
-  - future edits to this branch should keep the README and committed report surfaces positive-only,
+  - PR `#4` is the canonical handoff for the benchmark improvement readout branch
+  - future edits to this branch should keep the README and committed report surfaces improvement-focused,
     while leaving raw run logs available under ignored `runs/` paths for auditability
-- Mark the positive benchmark readout PR ready for review after the release gate passes.
+- Mark the benchmark improvement readout PR ready for review after the release gate passes.
   Reason:
   - the draft state was useful while the branch still needed visual polish, path-leak hardening,
     and CI confirmation
@@ -2321,7 +2342,7 @@
   Consequence:
   - PR `#4` remains reviewable before merge, but the GitHub surface now correctly signals that
     the publication package is ready for reviewer attention
-- Keep external benchmark runs auditable but publish only LoRA-positive slices.
+- Keep external benchmark runs auditable but publish only LoRA improvement slices.
   Reason:
   - the user explicitly wants robust logs, but also wants the public/repo-facing result surface to
     include only benchmarks where the final LoRA beats the untouched base model
@@ -3356,14 +3377,22 @@
 
 ## Outcomes & Retrospective
 
+- The benchmark presentation has been simplified and reframed:
+  - the duplicate delta SVG was removed
+  - the retained paired-bar chart has a neutral title:
+    `Benchmark Improvements Across Evaluation Surfaces`
+  - README, reports, repository map, claim map, script guide, Make targets, and tests now use the
+    `benchmark_improvements` naming surface
+  - targeted text scans found no remaining selection-framing phrases, old public filenames, or
+    stale figure-number references in the benchmark/report surface
 - PR `#4` is merged and the local `main` worktree has been verified in full-artifact mode:
-  - GitHub merge commit: `9a2371a` (`Merge positive benchmark readout`)
+  - GitHub merge commit: `9a2371a` (`Merge benchmark improvement readout`)
   - the desktop `main` worktree fast-forwarded cleanly from `48a59fd` to `9a2371a`
   - local `make public-release-check` passed with canonical run artifacts present, rebuilding the
     tracked package/report surfaces before verification
 - The release surface is now less fragile for reviewers and collaborators:
   - benchmark packet regeneration works from an explicit cross-worktree run root and was dry-run
-    verified to produce the same `10` positive rows and final adapter SHA
+    verified to produce the same `10` improvement rows and final adapter SHA
   - the public docs now tell a reviewer how to rebuild the packet when ignored run artifacts live
     outside the current checkout
   - local username/workstation paths were removed from executable code and test fixtures, while
@@ -3374,38 +3403,36 @@
     closing the CI/handoff gap that remained after local verification
 - The visual pass improved the public-facing report surfaces while preserving the original data:
   - updated charts:
-    `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`,
-    `docs/reports/assets/christian_virtue_positive_benchmark_levels.svg`,
+    `docs/reports/assets/christian_virtue_benchmark_improvements.svg`,
     `docs/reports/assets/christian_virtue_citation_frontier_modes.svg`, and
     `docs/reports/assets/christian_virtue_qwen2_5_1_5b_citation_frontier_followup_modes.svg`
   - README now opens with a compact quick-link table rather than several large first-screen badges
   - a rendered contact-sheet preview and focused four-chart preview were inspected locally before
     validation
-- The positive benchmark readout is now ready for review as a draft PR:
+- The benchmark improvement readout is now ready for review as a draft PR:
   - PR: `https://github.com/hanzhenzhujene/summa-virtue-alignment/pull/4`
   - base: `main`
-  - head: `codex/positive-benchmark-readout`
+  - head: benchmark readout branch
   - the PR body records the summary, rationale, and verification commands for the already pushed
     benchmark packet
-- The repo now has a robust external benchmark harness and a positive-only external readout:
+- The repo now has a robust external benchmark harness and a improvement-focused external readout:
   - base expanded external run:
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_base/20260425_090412`
   - full-corpus LoRA expanded external run:
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmarks_full_corpus/20260425_090920`
-  - positive-only comparison:
+  - improvement-focused comparison:
     `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/20260425_091658/report.md`
   - promoted external table: MMLU world religions `+5.0` pp, MMMLU-ZH business ethics `+3.3`
     pp, MMMLU-ZH moral scenarios `+3.3` pp, MMMLU-ZH philosophy `+1.7` pp, and MMLU moral
     scenarios `+1.7` pp
   - the consolidated benchmark packet now lives at
     `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/20260425_091751/report.md`
-    and includes those external rows only because they clear the positive-delta rule
+    and includes those external rows only because they clear the improvement rule
   - the committed publication layer now includes:
-    `docs/reports/christian_virtue_positive_benchmark_readout.md`,
-    `docs/reports/christian_virtue_positive_benchmark_examples.md`,
-    `docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg`, and
-    `docs/reports/assets/christian_virtue_positive_benchmark_levels.svg`
-  - README now surfaces only the positive rows from that packet, with the detailed prompt-shape
+    `docs/reports/christian_virtue_benchmark_improvements.md`,
+    `docs/reports/christian_virtue_benchmark_examples.md`,
+    `docs/reports/assets/christian_virtue_benchmark_improvements.svg`
+  - README now surfaces only the improvement rows from that packet, with the detailed prompt-shape
     examples moved into the dedicated examples file
 - The repo now has the requested overnight benchmark packet for the final full-corpus LoRA:
   - base Aquinas grounding probe run:
@@ -3417,7 +3444,7 @@
   - the packet's tight table shows the intended in-domain improvement clearly: held-out exact
     citation `0.0%` -> `71.2%`, Aquinas grounding score `37.7%` -> `74.2%`, and segment-id
     citation presence `0.0%` -> `100.0%`
-  - it also keeps only positive VirtueBench rows: random-capped `29.7%` -> `58.0%` and
+  - it also keeps the two VirtueBench improvement rows: random-capped `29.7%` -> `58.0%` and
     paired-capped `34.0%` -> `49.5%`
   - the recommended next move is to headline the in-domain evidence and keep the retained
     VirtueBench rows as secondary, bias-aware diagnostics

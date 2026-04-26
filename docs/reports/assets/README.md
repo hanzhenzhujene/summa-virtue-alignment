@@ -35,18 +35,14 @@ These figures are the committed public assets for the current Christian virtue r
 - `christian_virtue_qwen2_5_1_5b_justice_guarded_tradeoffs.svg`
   - preserves the justice-guarded follow-up figure
   - used in the justice-guarded follow-up report
-- `christian_virtue_positive_benchmark_deltas.svg`
-  - shows the positive-only base-to-LoRA deltas across in-domain, VirtueBench, and external
-    transfer rows
-  - used in the README and the positive benchmark readout
-- `christian_virtue_positive_benchmark_levels.svg`
-  - shows absolute base and LoRA levels for the same positive-only benchmark rows
-  - used in the README and the positive benchmark readout
+- `christian_virtue_benchmark_improvements.svg`
+  - shows absolute base and LoRA levels across in-domain, VirtueBench, and external transfer rows
+  - used in the README and the benchmark improvement readout
 
 The canonical narrative for these assets lives in:
 
 - [README.md](../../../README.md)
 - [Full-corpus report](../christian_virtue_qwen2_5_1_5b_full_corpus_report.md)
-- [Positive benchmark readout](../christian_virtue_positive_benchmark_readout.md)
+- [Benchmark improvement readout](../christian_virtue_benchmark_improvements.md)
 - [Experiment index](../christian_virtue_experiments.md)
 - [Public claim map](../../public_claim_map.md)

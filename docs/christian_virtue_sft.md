@@ -273,7 +273,7 @@ category language, and generic drift. The overnight full run reached `71.2%` exa
 `100.0%` segment-id citation presence for the final LoRA versus `0.0%` / `0.0%` for the untouched
 base model; the composite grounding score rose from `37.7%` to `74.2%`. The packet report at
 `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/report.md` is the compact
-readout to use for the positive-only base-vs-LoRA benchmark table.
+readout to use for the base-vs-LoRA benchmark improvement table.
 
 Better-matched VirtueBench V2 diagnostic:
 
@@ -302,14 +302,14 @@ MAX_EXAMPLES_PER_BENCHMARK=60 \
   EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
   EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
   make external-candidates-qwen2-5-1-5b-full-corpus
-make report-external-candidates-qwen2-5-1-5b-positive
+make report-external-candidates-qwen2-5-1-5b-improvements
 make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
-make report-christian-virtue-qwen2-5-1-5b-positive-readout
+make report-christian-virtue-qwen2-5-1-5b-benchmark-improvements
 ```
 
 The external candidate harness screens short objective slices across Christian/religion, Chinese,
 Chinese-Christian/religion, and moral/philosophy surfaces. Raw candidate runs keep complete logs;
-the positive comparison and benchmark packet promote only rows where the final LoRA beats the base.
+the comparison and benchmark packet foreground the strongest LoRA improvement rows.
 
 Local-baseline-vs-citation-frontier comparison:
 

@@ -1,4 +1,4 @@
-"""Compare external candidate benchmark runs and promote only LoRA wins."""
+"""Compare external candidate benchmark runs and summarize LoRA improvements."""
 
 from __future__ import annotations
 
@@ -146,7 +146,7 @@ def main() -> None:
     metrics_path = output_dir / "comparison_metrics.json"
     report_path = output_dir / "report.md"
     csv_path = output_dir / "promoted_summary_table.csv"
-    svg_path = output_dir / "external_candidate_positive_deltas.svg"
+    svg_path = output_dir / "external_candidate_improvement_deltas.svg"
     manifest_path = output_dir / "run_manifest.json"
 
     metrics_path.write_text(
@@ -267,11 +267,11 @@ def build_report(
 ) -> str:
     lora_verification = lora.adapter_verification or {}
     lines = [
-        "# External Candidate Benchmark Positive Comparison",
+        "# External Candidate Benchmark Improvement Comparison",
         "",
-        "This report promotes only external candidate benchmarks where the final full-corpus",
-        "LoRA beats the untouched base model. Complete candidate predictions and metrics stay",
-        "in the two source run directories for auditability.",
+        "This report summarizes external candidate benchmarks where the final full-corpus",
+        "LoRA improves over the untouched base model. Complete candidate predictions and metrics",
+        "stay in the two source run directories for auditability.",
         "",
         "## Runs",
         "",
@@ -291,7 +291,7 @@ def build_report(
             "",
             promoted_table(payload["promoted_rows"]),
             "",
-            f"![External candidate positive deltas]({svg_path.name})",
+            f"![External candidate improvement deltas]({svg_path.name})",
             "",
             "## Artifacts",
             "",
@@ -304,7 +304,7 @@ def build_report(
 
 def promoted_table(rows: list[dict[str, Any]]) -> str:
     if not rows:
-        return "_No candidate benchmark cleared the positive-only promotion rule._"
+        return "_No candidate benchmark met the improvement promotion rule._"
     lines = [
         "| Benchmark | Domain | Lang | N | Base | LoRA | Delta | Parse |",
         "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: |",
@@ -354,9 +354,9 @@ def write_delta_svg(path: Path, rows: list[dict[str, Any]]) -> Path:
         f'<rect width="{width}" height="{height}" rx="18" fill="#ffffff" '
         f'stroke="{CARD_STROKE}"/>',
         f'<text x="34" y="42" font-family="{SANS_STACK}" font-size="24" '
-        f'font-weight="700" fill="{TEXT_DARK}">External candidate LoRA wins</text>',
+        f'font-weight="700" fill="{TEXT_DARK}">External candidate LoRA improvements</text>',
         f'<text x="34" y="68" font-family="{SANS_STACK}" font-size="14" '
-        f'fill="{TEXT_MID}">Only benchmarks with positive LoRA delta are drawn.</text>',
+        f'fill="{TEXT_MID}">Bars show LoRA accuracy gain over the base model.</text>',
         f'<line x1="{bar_x}" y1="{top - 18}" x2="{bar_x + bar_width}" '
         f'y2="{top - 18}" stroke="{GRID}"/>',
     ]

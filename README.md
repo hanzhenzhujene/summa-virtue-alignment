@@ -44,18 +44,15 @@ virtue evaluation, and it clearly surpasses the earlier small-data LoRA rung rat
 beating an untuned starting point. The full write-up, run metadata, and training trace live in the
 [full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md).
 
-## Positive Benchmark Packet
+## Benchmark Improvements
 
-![Positive benchmark deltas](docs/reports/assets/christian_virtue_positive_benchmark_deltas.svg)
+![Base and LoRA benchmark improvements](docs/reports/assets/christian_virtue_benchmark_improvements.svg)
 
-*Figure 3. Positive-only benchmark deltas for the final full-corpus LoRA over the untouched
-`Qwen/Qwen2.5-1.5B-Instruct` base model.*
+*Figure 3. Base and full-corpus LoRA scores across in-domain Aquinas evaluation, Christian virtue
+diagnostics, and English/Chinese external benchmark surfaces. The paired bars make the base-to-LoRA
+improvement visible directly on each benchmark surface.*
 
-![Base vs LoRA on positive rows](docs/reports/assets/christian_virtue_positive_benchmark_levels.svg)
-
-*Figure 4. Absolute base and LoRA scores on the same positive-only rows.*
-
-| Positive benchmark | Surface | n | Base | LoRA | Delta |
+| Benchmark | Surface | n | Base | LoRA | Delta |
 | --- | --- | ---: | ---: | ---: | ---: |
 | Held-out Summa citation exact | in-domain held-out | `233` | `0.0%` | `71.2%` | `+71.2 pp` |
 | Aquinas grounding probe score | in-domain grounding | `233` | `37.7%` | `74.2%` | `+36.5 pp` |
@@ -68,10 +65,10 @@ beating an untuned starting point. The full write-up, run metadata, and training
 | MMMLU-ZH philosophy | external Chinese transfer | `60` | `53.3%` | `55.0%` | `+1.7 pp` |
 | MMLU moral scenarios | external English transfer | `60` | `26.7%` | `28.3%` | `+1.7 pp` |
 
-The curated packet is documented in the
-[positive benchmark readout](./docs/reports/christian_virtue_positive_benchmark_readout.md), with
+The benchmark packet is documented in the
+[benchmark improvement readout](./docs/reports/christian_virtue_benchmark_improvements.md), with
 representative prompt shapes in
-[positive benchmark examples](./docs/reports/christian_virtue_positive_benchmark_examples.md).
+[benchmark examples](./docs/reports/christian_virtue_benchmark_examples.md).
 If the final adapter or run metrics live in another worktree, rebuild the packet with
 `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT`; the
 public builder does not assume a local workstation path.
@@ -155,7 +152,7 @@ through the pipeline:
 | I want to... | Start here |
 | --- | --- |
 | Inspect the strongest repo-local result | [Full-corpus report](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
-| Inspect the positive benchmark packet | [Positive benchmark readout](./docs/reports/christian_virtue_positive_benchmark_readout.md) |
+| Inspect the benchmark improvement packet | [Benchmark improvement readout](./docs/reports/christian_virtue_benchmark_improvements.md) |
 | Rerun the strongest full-data local result | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` |
 | Try the model online | [summa-virtue-chat.hf.space](https://jennyzhu0822-summa-virtue-chat.hf.space) |
 | Run the smallest release-grade local check | `make setup-christian-virtue-local` then `make reproduce-christian-virtue-qwen2-5-1-5b-local` |
@@ -183,7 +180,7 @@ Expected outputs from a successful canonical run:
 | Output | Path |
 | --- | --- |
 | Full-corpus report | [docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md](./docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md) |
-| Positive benchmark readout | [docs/reports/christian_virtue_positive_benchmark_readout.md](./docs/reports/christian_virtue_positive_benchmark_readout.md) |
+| Benchmark improvement readout | [docs/reports/christian_virtue_benchmark_improvements.md](./docs/reports/christian_virtue_benchmark_improvements.md) |
 | Full-corpus training run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/` |
 | Full-corpus adapter test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_adapter_test/latest/` |
 | Untuned-model test run | `runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/` |

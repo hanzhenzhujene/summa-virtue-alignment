@@ -1,7 +1,7 @@
-# Positive Benchmark Examples
+# Benchmark Examples
 
-These are representative benchmark shapes for the positive-only readout. External
-examples below are constructed from the local harness templates, not copied from
+These are representative benchmark shapes for the improvement readout.
+External examples below are constructed from the local harness templates, not copied from
 scored source rows, so the repo explains the evaluation surface without leaking or
 republishing benchmark items.
 

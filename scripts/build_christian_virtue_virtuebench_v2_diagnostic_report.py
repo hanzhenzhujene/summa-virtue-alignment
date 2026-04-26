@@ -250,7 +250,7 @@ def build_report(pairs: list[DiagnosticPair], *, overview_svg_path: Path) -> str
             f"answered A on `{paired_pair.lora.model_answer_a}` of "
             f"`{paired_pair.lora.count}` prompts."
         ),
-        "- Interpretation: positive diagnostic signal, with the paired-position caveat attached.",
+        "- Interpretation: diagnostic signal, with the paired-position caveat attached.",
         "",
         f"![VirtueBench V2 overview]({overview_svg_path.name})",
         "",
@@ -306,7 +306,7 @@ def build_report(pairs: list[DiagnosticPair], *, overview_svg_path: Path) -> str
                 "flagship. Use this"
             ),
             (
-                "VirtueBench report as a positive secondary diagnostic: keep paired "
+                "VirtueBench report as a secondary diagnostic: keep paired "
                 "evaluation on by default,"
             ),
             "and keep the A-position caveat attached when reporting the result.",
@@ -383,7 +383,7 @@ def write_overview_svg(path: Path, pairs: list[DiagnosticPair]) -> None:
         _text(
             58,
             94,
-            "Positive base-vs-LoRA Christian virtue A/B diagnostic runs.",
+            "Base-vs-LoRA Christian virtue A/B diagnostic runs.",
             15,
             TEXT_MID,
         ),

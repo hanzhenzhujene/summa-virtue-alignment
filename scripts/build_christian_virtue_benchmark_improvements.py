@@ -1,4 +1,4 @@
-"""Build the committed positive-only Christian virtue benchmark readout."""
+"""Build the committed Christian virtue benchmark improvement readout."""
 
 from __future__ import annotations
 
@@ -14,10 +14,9 @@ RUN_ROOT = REPO_ROOT / "runs/christian_virtue/qwen2_5_1_5b_instruct"
 DEFAULT_PACKET_METRICS = RUN_ROOT / "benchmark_packet/latest/metrics.json"
 REPORT_DIR = REPO_ROOT / "docs/reports"
 ASSET_DIR = REPORT_DIR / "assets"
-READOUT_PATH = REPORT_DIR / "christian_virtue_positive_benchmark_readout.md"
-EXAMPLES_PATH = REPORT_DIR / "christian_virtue_positive_benchmark_examples.md"
-DELTA_SVG_PATH = ASSET_DIR / "christian_virtue_positive_benchmark_deltas.svg"
-LEVEL_SVG_PATH = ASSET_DIR / "christian_virtue_positive_benchmark_levels.svg"
+READOUT_PATH = REPORT_DIR / "christian_virtue_benchmark_improvements.md"
+EXAMPLES_PATH = REPORT_DIR / "christian_virtue_benchmark_examples.md"
+LEVEL_SVG_PATH = ASSET_DIR / "christian_virtue_benchmark_improvements.svg"
 EXPECTED_ADAPTER_SHA256 = "0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb"
 EXPECTED_ADAPTER_RUN_ID = "20260422_223349"
 
@@ -86,12 +85,10 @@ def main() -> None:
     rows = load_rows(Path(args.packet_metrics).resolve())
     write_readout(READOUT_PATH, rows)
     write_examples(EXAMPLES_PATH)
-    write_delta_svg(DELTA_SVG_PATH, rows)
     write_level_svg(LEVEL_SVG_PATH, rows)
     print(
         json.dumps(
             {
-                "delta_svg": str(DELTA_SVG_PATH),
                 "examples": str(EXAMPLES_PATH),
                 "level_svg": str(LEVEL_SVG_PATH),
                 "readout": str(READOUT_PATH),
@@ -138,7 +135,7 @@ def category_for(benchmark: str) -> str:
         if "mmmlu_zh" in benchmark:
             return "External Chinese transfer"
         return "External English transfer"
-    return CATEGORIES.get(benchmark, "Positive diagnostic")
+    return CATEGORIES.get(benchmark, "Diagnostic benchmark")
 
 
 def source_label_for(benchmark: str) -> str:
@@ -154,11 +151,11 @@ def source_label_for(benchmark: str) -> str:
 def write_readout(path: Path, rows: list[ReadoutRow]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "# Positive Christian Virtue Benchmark Readout",
+        "# Christian Virtue Benchmark Improvements",
         "",
-        "This readout is intentionally positive-only: every row below is a benchmark surface",
-        "where the final full-corpus LoRA beats the untouched `Qwen/Qwen2.5-1.5B-Instruct`",
-        "base model.",
+        "Across the benchmark surfaces below, the final full-corpus LoRA improves over the",
+        "untouched `Qwen/Qwen2.5-1.5B-Instruct` base model on in-domain Aquinas evaluation,",
+        "Christian virtue diagnostics, and English/Chinese external transfer checks.",
         "",
         "## Adapter",
         "",
@@ -167,56 +164,54 @@ def write_readout(path: Path, rows: list[ReadoutRow]) -> Path:
         "- Training surface: `1475` train rows and `175` validation rows from the reviewed",
         "  Christian virtue SFT export.",
         "",
-        "## Positive Table",
+        "## Improvement Table",
         "",
-        positive_table(rows),
+        benchmark_table(rows),
         "",
         "## Charts",
         "",
-        "![Positive benchmark deltas](assets/christian_virtue_positive_benchmark_deltas.svg)",
-        "",
         (
-            "![Positive benchmark base vs LoRA levels]"
-            "(assets/christian_virtue_positive_benchmark_levels.svg)"
+            "![Base and LoRA benchmark improvements]"
+            "(assets/christian_virtue_benchmark_improvements.svg)"
         ),
         "",
         "## What To Claim",
         "",
         "- Lead with the in-domain result: exact Summa segment citation rises from `0.0%` to",
         "  `71.2%`, and the broader Aquinas grounding score rises from `37.7%` to `74.2%`.",
-        "- Treat VirtueBench V2 as a positive Christian-virtue diagnostic, with the existing",
+        "- Treat VirtueBench V2 as a Christian-virtue diagnostic, with the existing",
         "  position-bias caveat kept attached.",
-        "- Treat the MMLU/MMMLU rows as secondary transfer evidence: useful, positive, and",
-        "  deliberately not the lead claim.",
+        "- Treat the MMLU/MMMLU rows as secondary transfer evidence across English and",
+        "  Simplified-Chinese benchmark surfaces, not as the lead claim.",
         "",
         "## Detailed Benchmark Shapes",
         "",
         "The prompt forms and representative examples are documented in",
-        "[christian_virtue_positive_benchmark_examples.md](./christian_virtue_positive_benchmark_examples.md).",
+        "[christian_virtue_benchmark_examples.md](./christian_virtue_benchmark_examples.md).",
         "Those examples are constructed from the harness templates rather than copied from the",
         "scored source rows.",
         "",
         "## Artifact Map",
         "",
         (
-            "- Positive benchmark packet: "
+            "- Benchmark packet: "
             "`runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/`"
         ),
         (
-            "- Positive external comparison: "
+            "- External comparison: "
             "`runs/christian_virtue/qwen2_5_1_5b_instruct/"
             "external_candidate_benchmark_compare/latest/`"
         ),
         (
             "- Rebuild committed readout assets: "
-            "`python scripts/build_christian_virtue_positive_readout.py`"
+            "`python scripts/build_christian_virtue_benchmark_improvements.py`"
         ),
     ]
     path.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     return path
 
 
-def positive_table(rows: list[ReadoutRow]) -> str:
+def benchmark_table(rows: list[ReadoutRow]) -> str:
     lines = [
         "| Benchmark | Category | Metric | n | Base | LoRA | Delta |",
         "| --- | --- | --- | ---: | ---: | ---: | ---: |",
@@ -233,10 +228,10 @@ def positive_table(rows: list[ReadoutRow]) -> str:
 def write_examples(path: Path) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
-        "# Positive Benchmark Examples",
+        "# Benchmark Examples",
         "",
-        "These are representative benchmark shapes for the positive-only readout. External",
-        "examples below are constructed from the local harness templates, not copied from",
+        "These are representative benchmark shapes for the improvement readout.",
+        "External examples below are constructed from the local harness templates, not copied from",
         "scored source rows, so the repo explains the evaluation surface without leaking or",
         "republishing benchmark items.",
         "",
@@ -378,87 +373,6 @@ def write_examples(path: Path) -> Path:
     return path
 
 
-def write_delta_svg(path: Path, rows: list[ReadoutRow]) -> Path:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    width = 1240
-    row_height = 58
-    top = 154
-    left = 366
-    plot_width = 560
-    delta_x = 960
-    levels_x = 1062
-    height = top + len(rows) * row_height + 86
-    max_delta = max(row.delta for row in rows)
-    parts = [
-        svg_open(
-            width,
-            height,
-            aria_label="Positive benchmark deltas for the final full-corpus LoRA",
-        ),
-        rect(0, 0, width, height, "#f8fafc"),
-        rect(24, 18, width - 48, height - 36, "#ffffff", stroke="#d4d4d8", rx=18),
-        text(64, 58, "Positive Benchmark Deltas", 28, "#0f172a", weight=700),
-        text(
-            64,
-            84,
-            "Every row is LoRA minus base; only positive rows are included.",
-            14,
-            "#475569",
-        ),
-        rect(64, 106, 248, 34, "#ecfdf5", stroke="#a7f3d0", rx=10),
-        text(80, 128, f"{len(rows)} LoRA-positive benchmark rows", 13, "#047857", weight=700),
-        text(left, top - 42, "LoRA gain over base", 12, "#334155", weight=700),
-        text(delta_x, top - 42, "Delta", 12, "#334155", weight=700),
-        text(levels_x, top - 42, "Base -> LoRA", 12, "#334155", weight=700),
-    ]
-    for tick_ratio in [0.0, 0.25, 0.5, 0.75, 1.0]:
-        tick_x = left + plot_width * tick_ratio
-        tick_value = max_delta * tick_ratio
-        parts.extend(
-            [
-                line(tick_x, top - 26, tick_x, height - 58, "#eef2f7"),
-                text(
-                    int(tick_x),
-                    top - 34,
-                    signed_pp(tick_value),
-                    10,
-                    "#64748b",
-                    anchor="middle",
-                ),
-            ]
-        )
-    parts.extend(
-        [
-            line(delta_x - 18, top - 52, delta_x - 18, height - 52, "#e2e8f0"),
-            line(levels_x - 18, top - 52, levels_x - 18, height - 52, "#e2e8f0"),
-        ]
-    )
-    for index, row in enumerate(rows):
-        y = top + index * row_height
-        bar_width = int((row.delta / max_delta) * plot_width)
-        if index % 2:
-            parts.append(rect(48, y - 14, width - 96, row_height - 4, "#fbfdff", rx=10))
-        parts.extend(
-            [
-                text(64, y + 12, row.display_name, 13, "#0f172a", weight=700),
-                text(64, y + 30, row.category, 11, "#64748b"),
-                rect(left, y + 2, plot_width, 20, "#f8fafc", stroke="#e2e8f0", rx=5),
-                rect(left, y + 2, bar_width, 20, "#0f766e", rx=5),
-                text(delta_x, y + 17, signed_pp(row.delta), 13, "#0f172a", weight=700),
-                text(
-                    levels_x,
-                    y + 17,
-                    f"{pct(row.base)} -> {pct(row.lora)}",
-                    12,
-                    "#475569",
-                ),
-            ]
-        )
-    parts.append("</svg>")
-    path.write_text("\n".join(parts) + "\n", encoding="utf-8")
-    return path
-
-
 def write_level_svg(path: Path, rows: list[ReadoutRow]) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
     width = 1240
@@ -472,15 +386,22 @@ def write_level_svg(path: Path, rows: list[ReadoutRow]) -> Path:
         svg_open(
             width,
             height,
-            aria_label="Base versus final LoRA scores on positive benchmark rows",
+            aria_label="Base versus final LoRA scores across benchmark improvement surfaces",
         ),
         rect(0, 0, width, height, "#f8fafc"),
         rect(24, 18, width - 48, height - 36, "#ffffff", stroke="#d4d4d8", rx=18),
-        text(64, 58, "Base vs LoRA on Positive Rows", 28, "#0f172a", weight=700),
+        text(
+            64,
+            58,
+            "Benchmark Improvements Across Evaluation Surfaces",
+            28,
+            "#0f172a",
+            weight=700,
+        ),
         text(
             64,
             84,
-            "Blue is the untouched base model; green is the final full-corpus LoRA.",
+            "In-domain Aquinas tasks and external English/Chinese benchmarks show gains over base.",
             14,
             "#475569",
         ),

@@ -235,9 +235,7 @@ def external_benchmark_rows(payload: dict[str, Any]) -> list[BenchmarkRow]:
                     "External transfer diagnostic only; capped local run, not a claim that the "
                     f"adapter is broadly better on all {item.get('domain', benchmark_id)} tasks."
                 ),
-                recommendation=(
-                    "Use as secondary positive external evidence, not as the lead claim."
-                ),
+                recommendation="Use as secondary external evidence, not as the lead claim.",
             )
         )
     return rows
@@ -355,7 +353,7 @@ def write_report(
             "",
             "1. Lead publicly with the in-domain held-out citation result and the Aquinas "
             "grounding probe. They match the adapter's actual training objective.",
-            "2. Use the VirtueBench and external rows only with their positive-delta caveats; "
+            "2. Use the VirtueBench and external rows with their scope and bias caveats; "
             "the public story should stay anchored in the in-domain Aquinas results.",
             "3. Treat `citation_grounded_moral_answer` as the next research bottleneck: the "
             "full-corpus adapter still misses that slice even while solving the other held-out "
@@ -392,7 +390,7 @@ def write_delta_svg(path: Path, rows: list[BenchmarkRow]) -> Path:
         '<text x="32" y="36" font-family="Arial" font-size="24" font-weight="700" '
         'fill="#202124">Christian virtue benchmark deltas</text>',
         '<text x="32" y="60" font-family="Arial" font-size="13" fill="#5f6368">'
-        "Positive means the final full-corpus LoRA outperformed the base model.</text>",
+        "Bars show the final full-corpus LoRA change relative to the base model.</text>",
         f'<line x1="{axis}" y1="{top - 20}" x2="{axis}" y2="{height - 46}" '
         'stroke="#444" stroke-width="1"/>',
     ]

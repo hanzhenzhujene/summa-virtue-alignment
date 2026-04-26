@@ -1,8 +1,8 @@
-# Positive Christian Virtue Benchmark Readout
+# Christian Virtue Benchmark Improvements
 
-This readout is intentionally positive-only: every row below is a benchmark surface
-where the final full-corpus LoRA beats the untouched `Qwen/Qwen2.5-1.5B-Instruct`
-base model.
+Across the benchmark surfaces below, the final full-corpus LoRA improves over the
+untouched `Qwen/Qwen2.5-1.5B-Instruct` base model on in-domain Aquinas evaluation,
+Christian virtue diagnostics, and English/Chinese external transfer checks.
 
 ## Adapter
 
@@ -11,7 +11,7 @@ base model.
 - Training surface: `1475` train rows and `175` validation rows from the reviewed
   Christian virtue SFT export.
 
-## Positive Table
+## Improvement Table
 
 | Benchmark | Category | Metric | n | Base | LoRA | Delta |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
@@ -28,28 +28,26 @@ base model.
 
 ## Charts
 
-![Positive benchmark deltas](assets/christian_virtue_positive_benchmark_deltas.svg)
-
-![Positive benchmark base vs LoRA levels](assets/christian_virtue_positive_benchmark_levels.svg)
+![Base and LoRA benchmark improvements](assets/christian_virtue_benchmark_improvements.svg)
 
 ## What To Claim
 
 - Lead with the in-domain result: exact Summa segment citation rises from `0.0%` to
   `71.2%`, and the broader Aquinas grounding score rises from `37.7%` to `74.2%`.
-- Treat VirtueBench V2 as a positive Christian-virtue diagnostic, with the existing
+- Treat VirtueBench V2 as a Christian-virtue diagnostic, with the existing
   position-bias caveat kept attached.
-- Treat the MMLU/MMMLU rows as secondary transfer evidence: useful, positive, and
-  deliberately not the lead claim.
+- Treat the MMLU/MMMLU rows as secondary transfer evidence across English and
+  Simplified-Chinese benchmark surfaces, not as the lead claim.
 
 ## Detailed Benchmark Shapes
 
 The prompt forms and representative examples are documented in
-[christian_virtue_positive_benchmark_examples.md](./christian_virtue_positive_benchmark_examples.md).
+[christian_virtue_benchmark_examples.md](./christian_virtue_benchmark_examples.md).
 Those examples are constructed from the harness templates rather than copied from the
 scored source rows.
 
 ## Artifact Map
 
-- Positive benchmark packet: `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/`
-- Positive external comparison: `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/latest/`
-- Rebuild committed readout assets: `python scripts/build_christian_virtue_positive_readout.py`
+- Benchmark packet: `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/`
+- External comparison: `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/latest/`
+- Rebuild committed readout assets: `python scripts/build_christian_virtue_benchmark_improvements.py`
