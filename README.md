@@ -137,15 +137,19 @@ through the pipeline:
 | [docs/public_claim_map.md](./docs/public_claim_map.md) | Explicit map from public claim to artifact, command, and claim boundary |
 | [docs/repository_map.md](./docs/repository_map.md) | Shortest full orientation guide for reviewers and collaborators |
 
-## Why This Dataset Is Unusual
+## What Makes This Dataset Different
 
-| # | Core strength | Why it is distinctive |
+Most theology or religion fine-tuning data is difficult to audit below the document level. This
+dataset is built around claim-level traceability: each example keeps the reviewed relation, the
+Aquinas passage id, and the doctrinal context that produced it.
+
+| # | Design choice | Why it matters |
 | ---: | --- | --- |
-| 1 | Teaches structure, not just vocabulary | The model does not only see words like `charity`, `justice`, or `temperance`; it sees reviewed relations such as `species_of`, `opposed_by`, `act_of`, `subjective_part_of`, and `precept_of`. |
-| 2 | Preserves Aquinas's moral ontology | Virtue, vice, act, object, part, gift, precept, and domain stay distinct instead of being flattened into generic religious themes. |
-| 3 | Uses evidence-first supervision | Every training target is tied back to stable `resp` / `ad` passage ids, so the supervision comes from Aquinas's own answer rather than loose paraphrase. |
-| 4 | Makes alignment inspectable | Each example keeps doctrinal metadata, citation labels, source passage ids, relation type, and tract context, so you can audit what the model was actually taught. |
-| 5 | Keeps the training truth unusually clean | Reviewed doctrinal supervision is kept separate from candidate material, structural links, and editorial synthesis, which makes this much more disciplined than a typical scraped religion dataset. |
+| 1 | Structure, not just vocabulary | The model sees reviewed relations such as `species_of`, `opposed_by`, `act_of`, `subjective_part_of`, and `precept_of`, not only words like `charity`, `justice`, or `temperance`. |
+| 2 | Aquinas's categories stay distinct | Virtue, vice, act, object, part, gift, precept, and domain are preserved instead of being flattened into generic religious themes. |
+| 3 | Passage-grounded supervision | Every training target is tied back to stable `resp` / `ad` passage ids, so the supervision remains anchored in Aquinas's text. |
+| 4 | Inspectable alignment data | Each example carries doctrinal metadata, citation labels, source passage ids, relation type, and tract context, making the training signal auditable. |
+| 5 | Reviewed truth, not scraped text | Approved doctrinal supervision stays separate from candidate material, structural links, and editorial synthesis, which keeps the release cleaner than a typical scraped religion dataset. |
 
 ## Start Here
 

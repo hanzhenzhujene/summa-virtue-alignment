@@ -166,7 +166,7 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     assert "## repository structure" in readme_text
     assert "## reproducibility contract" in readme_text
     assert "docs/public_claim_map.md" in readme_text
-    assert "## why this dataset is unusual" in readme_text
+    assert "## what makes this dataset different" in readme_text
     assert "## theological grounding" in readme_text
     assert (
         "the dataset exists to train models toward aquinas-grounded christian virtue reasoning"
@@ -174,8 +174,9 @@ def test_readme_states_thomist_goal_and_full_corpus_result() -> None:
     )
     assert "reviewed, passage-grounded" in readme_text
     assert "relational, and auditable" in readme_text
-    assert "teaches structure, not just vocabulary" in readme_text
-    assert "keeps the training truth unusually clean" in readme_text
+    assert "structure, not just vocabulary" in readme_text
+    assert "claim-level traceability" in readme_text
+    assert "reviewed truth, not scraped text" in readme_text
     assert "thomist moral virtue" in readme_text
     assert "generic theology chatbot" in readme_text
     assert "strongest repo-local result" in readme_text
