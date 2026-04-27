@@ -1,0 +1,141 @@
+{
+  "annotation_counts_by_relation_type": {
+    "abuses_role": 12,
+    "act_of": 1,
+    "annexed_to": 3,
+    "case_of": 1,
+    "caused_by": 21,
+    "commands_act_of": 2,
+    "concerns_anger": 3,
+    "concerns_drink": 3,
+    "concerns_external_behavior": 2,
+    "concerns_external_goods": 3,
+    "concerns_food": 4,
+    "concerns_great_expenditure": 6,
+    "concerns_great_work": 8,
+    "concerns_honor": 7,
+    "concerns_ordered_inquiry": 2,
+    "concerns_outward_attire": 2,
+    "concerns_outward_moderation": 1,
+    "concerns_self_presentation": 5,
+    "concerns_sexual_pleasure": 3,
+    "concerns_social_interaction": 3,
+    "concerns_worthiness": 2,
+    "contrary_to": 30,
+    "corrects_legal_letter": 1,
+    "corresponding_gift_of": 2,
+    "corresponds_to": 7,
+    "corrupts_process": 10,
+    "deficiency_opposed_to": 7,
+    "directed_to": 32,
+    "excess_opposed_to": 12,
+    "forbids_opposed_vice_of": 4,
+    "harms_domain": 28,
+    "has_act": 15,
+    "has_object": 12,
+    "integral_part_of": 11,
+    "opposed_by": 33,
+    "part_of": 2,
+    "part_of_fortitude": 3,
+    "perfected_by": 5,
+    "potential_part_of": 12,
+    "precept_of": 7,
+    "preserves_intent_of_law": 1,
+    "regulated_by": 8,
+    "related_to_fortitude": 2,
+    "requires": 9,
+    "requires_restitution": 9,
+    "resides_in": 4,
+    "results_in_punishment": 4,
+    "species_of": 66,
+    "subjective_part_of": 15,
+    "tempted_by": 1,
+    "treated_in": 109
+  },
+  "annotation_counts_by_support_type": {
+    "explicit_textual": 445,
+    "strong_textual_inference": 110
+  },
+  "annotation_counts_by_tract": {
+    "connected_virtues_109_120": 44,
+    "fortitude_closure_136_140": 31,
+    "fortitude_parts_129_135": 53,
+    "justice_core": 109,
+    "prudence": 156,
+    "temperance_141_160": 68,
+    "temperance_closure_161_170": 41,
+    "theological_virtues": 53
+  },
+  "config_path": "configs/sft/christian_virtue_v1_ood.yaml",
+  "dataset_name": "christian_virtue_v1_ood",
+  "description": "Virtue-centered instruction-tuning dataset with an out-of-domain temperance-closure holdout for harder evaluation.",
+  "dropped_rows": {},
+  "grouping_key": "question_id",
+  "ood_holdout_tracts": [
+    "temperance_closure_161_170"
+  ],
+  "source_annotation_count": 555,
+  "source_annotations_used": 555,
+  "split_question_group_counts": {
+    "ood_test": 10,
+    "test": 12,
+    "train": 90,
+    "val": 12
+  },
+  "split_sizes": {
+    "ood_test": 139,
+    "test": 222,
+    "train": 1360,
+    "val": 162
+  },
+  "split_tract_counts": {
+    "ood_test": {
+      "temperance_closure_161_170": 139
+    },
+    "test": {
+      "connected_virtues_109_120": 7,
+      "fortitude_closure_136_140": 17,
+      "fortitude_parts_129_135": 51,
+      "justice_core": 42,
+      "prudence": 40,
+      "temperance_141_160": 46,
+      "theological_virtues": 19
+    },
+    "train": {
+      "connected_virtues_109_120": 137,
+      "fortitude_closure_136_140": 67,
+      "fortitude_parts_129_135": 112,
+      "justice_core": 302,
+      "prudence": 413,
+      "temperance_141_160": 165,
+      "theological_virtues": 164
+    },
+    "val": {
+      "connected_virtues_109_120": 11,
+      "fortitude_closure_136_140": 20,
+      "fortitude_parts_129_135": 7,
+      "justice_core": 26,
+      "prudence": 48,
+      "temperance_141_160": 30,
+      "theological_virtues": 20
+    }
+  },
+  "task_generation_details": {
+    "annotation_tasks": {
+      "citation_grounded_moral_answer": 555,
+      "passage_grounded_doctrinal_qa": 555,
+      "reviewed_relation_explanation": 555
+    },
+    "concept_tasks": {
+      "skipped.disallowed_subject_type": 18,
+      "skipped.no_substantive_relations": 25,
+      "virtue_concept_explanation": 218
+    }
+  },
+  "task_template_counts": {
+    "citation_grounded_moral_answer": 555,
+    "passage_grounded_doctrinal_qa": 555,
+    "reviewed_relation_explanation": 555,
+    "virtue_concept_explanation": 218
+  }
+}

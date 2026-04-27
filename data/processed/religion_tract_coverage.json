@@ -1,0 +1,621 @@
+{
+  "normalization_risk_questions": [
+    80,
+    81,
+    82,
+    83,
+    85,
+    86,
+    87,
+    88,
+    89,
+    92,
+    93,
+    94,
+    95,
+    97,
+    98,
+    99,
+    100
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 51,
+      "candidate_relation_count": 11,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Justice",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 6,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q080",
+      "question_number": 80,
+      "question_title": "The potential parts of Justice",
+      "reviewed_annotation_count": 5,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 4,
+      "sacred_object_usage": {},
+      "unresolved_ambiguity_count": 10
+    },
+    {
+      "candidate_mention_count": 150,
+      "candidate_relation_count": 52,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Adoration",
+        "Divine Worship",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 34,
+      "positive_act_usage": {
+        "Adoration": 1
+      },
+      "question_id": "st.ii-ii.q081",
+      "question_number": 81,
+      "question_title": "Religion",
+      "reviewed_annotation_count": 13,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 9,
+      "sacred_object_usage": {
+        "Divine Worship": 3
+      },
+      "unresolved_ambiguity_count": 23
+    },
+    {
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 21,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Devotion",
+        "Divine Worship",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "positive_act_usage": {
+        "Devotion": 2
+      },
+      "question_id": "st.ii-ii.q082",
+      "question_number": 82,
+      "question_title": "Devotion",
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 285,
+      "candidate_relation_count": 106,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "Prayer",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 74,
+      "positive_act_usage": {
+        "Prayer": 2
+      },
+      "question_id": "st.ii-ii.q083",
+      "question_number": 83,
+      "question_title": "Prayer",
+      "reviewed_annotation_count": 20,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 18,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 11
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 7,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Adoration",
+        "Divine Worship",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 12,
+      "positive_act_usage": {
+        "Adoration": 2
+      },
+      "question_id": "st.ii-ii.q084",
+      "question_number": 84,
+      "question_title": "Adoration",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 4,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 66,
+      "candidate_relation_count": 24,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "Religion",
+        "Sacrifice"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "positive_act_usage": {
+        "Sacrifice": 4
+      },
+      "question_id": "st.ii-ii.q085",
+      "question_number": 85,
+      "question_title": "Sacrifice",
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {
+        "Divine Worship": 3
+      },
+      "unresolved_ambiguity_count": 12
+    },
+    {
+      "candidate_mention_count": 41,
+      "candidate_relation_count": 13,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "First-Fruits",
+        "Oblation",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "positive_act_usage": {
+        "First-Fruits": 1,
+        "Oblation": 2
+      },
+      "question_id": "st.ii-ii.q086",
+      "question_number": 86,
+      "question_title": "Oblations and first-fruits",
+      "reviewed_annotation_count": 10,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 6,
+      "sacred_object_usage": {
+        "Divine Worship": 2
+      },
+      "unresolved_ambiguity_count": 13
+    },
+    {
+      "candidate_mention_count": 55,
+      "candidate_relation_count": 11,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "Religion",
+        "Tithes"
+      ],
+      "parse_status": "ok",
+      "passage_count": 18,
+      "positive_act_usage": {
+        "Tithes": 2
+      },
+      "question_id": "st.ii-ii.q087",
+      "question_number": 87,
+      "question_title": "Tithes",
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 26
+    },
+    {
+      "candidate_mention_count": 122,
+      "candidate_relation_count": 44,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "Promise to God",
+        "Religion",
+        "Vow"
+      ],
+      "parse_status": "ok",
+      "passage_count": 50,
+      "positive_act_usage": {
+        "Vow": 4
+      },
+      "question_id": "st.ii-ii.q088",
+      "question_number": 88,
+      "question_title": "Vows",
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 14,
+      "sacred_object_usage": {
+        "Divine Worship": 1,
+        "Promise to God": 2
+      },
+      "unresolved_ambiguity_count": 23
+    },
+    {
+      "candidate_mention_count": 108,
+      "candidate_relation_count": 40,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Name",
+        "Divine Worship",
+        "Oath",
+        "Religion",
+        "Sworn Assertion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 41,
+      "positive_act_usage": {
+        "Oath": 5
+      },
+      "question_id": "st.ii-ii.q089",
+      "question_number": 89,
+      "question_title": "Oaths",
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 13,
+      "sacred_object_usage": {
+        "Divine Name": 2,
+        "Divine Worship": 1,
+        "Sworn Assertion": 1
+      },
+      "unresolved_ambiguity_count": 6
+    },
+    {
+      "candidate_mention_count": 11,
+      "candidate_relation_count": 5,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Adjuration",
+        "Divine Name",
+        "Religion",
+        "Sacred Thing"
+      ],
+      "parse_status": "partial",
+      "passage_count": 9,
+      "positive_act_usage": {
+        "Adjuration": 3
+      },
+      "question_id": "st.ii-ii.q090",
+      "question_number": 90,
+      "question_title": "The taking of God's name by way of adjuration",
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 6,
+      "sacred_object_usage": {
+        "Divine Name": 1,
+        "Sacred Thing": 1
+      },
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 19,
+      "candidate_relation_count": 6,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Worship",
+        "Praise of God",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 10,
+      "positive_act_usage": {
+        "Praise of God": 2
+      },
+      "question_id": "st.ii-ii.q091",
+      "question_number": 91,
+      "question_title": "Taking the divine name for the purpose of invoking it by means of praise",
+      "reviewed_annotation_count": 5,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 3,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 23,
+      "candidate_relation_count": 8,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {
+        "Superstition": 1
+      },
+      "major_concepts": [
+        "Divination",
+        "Idolatry",
+        "Religion",
+        "Superstition",
+        "Superstitious Observance",
+        "Undue Worship of the True God"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q092",
+      "question_number": 92,
+      "question_title": "Superstition",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 3,
+      "sacred_object_usage": {},
+      "unresolved_ambiguity_count": 11
+    },
+    {
+      "candidate_mention_count": 31,
+      "candidate_relation_count": 8,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {
+        "Undue Worship of the True God": 1
+      },
+      "major_concepts": [
+        "Divine Worship",
+        "Religion",
+        "Undue Worship of the True God"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q093",
+      "question_number": 93,
+      "question_title": "Superstition consisting in undue worship of the true God",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 3,
+      "sacred_object_usage": {
+        "Divine Worship": 2
+      },
+      "unresolved_ambiguity_count": 4
+    },
+    {
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 21,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {
+        "Idolatry": 1
+      },
+      "major_concepts": [
+        "Divine Worship",
+        "Idolatry",
+        "Religion",
+        "Superstition"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q094",
+      "question_number": 94,
+      "question_title": "Idolatry",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {
+        "Divine Worship": 1
+      },
+      "unresolved_ambiguity_count": 6
+    },
+    {
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 31,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {
+        "Divination": 1
+      },
+      "major_concepts": [
+        "Astrological Divination",
+        "Augury",
+        "Divination",
+        "Divination by Demons",
+        "Divination by Dreams",
+        "Religion",
+        "Sortilege",
+        "Superstition"
+      ],
+      "parse_status": "partial",
+      "passage_count": 25,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q095",
+      "question_number": 95,
+      "question_title": "Superstition in divinations",
+      "reviewed_annotation_count": 21,
+      "reviewed_doctrinal_edge_count": 7,
+      "reviewed_structural_editorial_count": 14,
+      "sacred_object_usage": {},
+      "unresolved_ambiguity_count": 4
+    },
+    {
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 11,
+      "deficiency_opposition_usage": {},
+      "excess_opposition_usage": {
+        "Superstitious Observance": 1
+      },
+      "major_concepts": [
+        "Fortune-Telling Observance",
+        "Magical Observance",
+        "Religion",
+        "Superstition",
+        "Superstitious Healing Observance",
+        "Superstitious Observance",
+        "Written-Charm Observance"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q096",
+      "question_number": 96,
+      "question_title": "Superstition in observances",
+      "reviewed_annotation_count": 15,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 9,
+      "sacred_object_usage": {},
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 90,
+      "candidate_relation_count": 25,
+      "deficiency_opposition_usage": {
+        "Temptation of God": 1
+      },
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Religion",
+        "Temptation of God"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q097",
+      "question_number": 97,
+      "question_title": "The temptation of God",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {},
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 8,
+      "deficiency_opposition_usage": {
+        "Perjury": 2
+      },
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Divine Name",
+        "Oath",
+        "Perjury",
+        "Religion"
+      ],
+      "parse_status": "ok",
+      "passage_count": 18,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q098",
+      "question_number": 98,
+      "question_title": "Perjury",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 5,
+      "sacred_object_usage": {
+        "Divine Name": 1
+      },
+      "unresolved_ambiguity_count": 6
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 10,
+      "deficiency_opposition_usage": {
+        "Sacrilege": 1
+      },
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Religion",
+        "Sacrament",
+        "Sacred Person",
+        "Sacred Place",
+        "Sacred Thing",
+        "Sacrilege"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q099",
+      "question_number": 99,
+      "question_title": "Sacrilege",
+      "reviewed_annotation_count": 14,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 9,
+      "sacred_object_usage": {
+        "Sacrament": 1,
+        "Sacred Person": 1,
+        "Sacred Place": 1,
+        "Sacred Thing": 1
+      },
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 78,
+      "candidate_relation_count": 20,
+      "deficiency_opposition_usage": {
+        "Simony": 1
+      },
+      "excess_opposition_usage": {},
+      "major_concepts": [
+        "Religion",
+        "Sacrament",
+        "Simony",
+        "Spiritual Action",
+        "Spiritual Office",
+        "Spiritual Thing"
+      ],
+      "parse_status": "ok",
+      "passage_count": 37,
+      "positive_act_usage": {},
+      "question_id": "st.ii-ii.q100",
+      "question_number": 100,
+      "question_title": "Simony",
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 12,
+      "sacred_object_usage": {
+        "Sacrament": 1,
+        "Spiritual Action": 1,
+        "Spiritual Office": 1,
+        "Spiritual Thing": 2
+      },
+      "unresolved_ambiguity_count": 24
+    }
+  ],
+  "questions_with_act_taxonomy_risk": [],
+  "questions_with_sacred_object_modeling_risk": [
+    92,
+    95,
+    96,
+    97
+  ],
+  "summary": {
+    "candidate_mention_count": 1400,
+    "candidate_relation_count": 482,
+    "deficiency_opposition_relation_count": 5,
+    "excess_opposition_relation_count": 5,
+    "passage_count": 464,
+    "positive_act_relation_count": 25,
+    "question_count": 21,
+    "registered_concepts_used": 42,
+    "reviewed_annotation_count": 231,
+    "reviewed_doctrinal_edge_count": 63,
+    "reviewed_structural_editorial_count": 157,
+    "sacred_object_relation_count": 28
+  },
+  "under_annotated_questions": [
+    81,
+    82,
+    83,
+    87,
+    88,
+    89,
+    97
+  ]
+}

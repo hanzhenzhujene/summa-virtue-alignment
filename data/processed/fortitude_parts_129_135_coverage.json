@@ -1,0 +1,248 @@
+{
+  "normalization_risk_questions": [
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 151,
+      "candidate_relation_count": 42,
+      "distinction_usage": {
+        "fortitude_related": 1,
+        "honor_related": 1
+      },
+      "major_concepts": [
+        "Confidence",
+        "Fortitude",
+        "Goods of Fortune",
+        "Honor as Recognition",
+        "Magnanimity",
+        "Security / Assurance",
+        "Virtue",
+        "Worthiness"
+      ],
+      "opposition_mode_usage": {},
+      "parse_status": "ok",
+      "passage_count": 34,
+      "question_id": "st.ii-ii.q129",
+      "question_number": 129,
+      "question_title": "Magnanimity",
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 28,
+      "schema_extension_usage": {
+        "concerns_honor": 1,
+        "related_to_fortitude": 1
+      },
+      "subcluster": "honor_worthiness",
+      "unresolved_ambiguity_count": 40
+    },
+    {
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 10,
+      "distinction_usage": {},
+      "major_concepts": [
+        "Magnanimity",
+        "Presumption (Against Magnanimity)",
+        "Sin"
+      ],
+      "opposition_mode_usage": {
+        "excess": 1
+      },
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q130",
+      "question_number": 130,
+      "question_title": "Presumption",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {},
+      "subcluster": "honor_worthiness",
+      "unresolved_ambiguity_count": 7
+    },
+    {
+      "candidate_mention_count": 18,
+      "candidate_relation_count": 6,
+      "distinction_usage": {
+        "honor_related": 2
+      },
+      "major_concepts": [
+        "Ambition",
+        "Honor as Recognition",
+        "Magnanimity",
+        "Sin"
+      ],
+      "opposition_mode_usage": {
+        "excess": 1
+      },
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q131",
+      "question_number": 131,
+      "question_title": "Ambition",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_honor": 1
+      },
+      "subcluster": "honor_worthiness",
+      "unresolved_ambiguity_count": 4
+    },
+    {
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 36,
+      "distinction_usage": {
+        "honor_related": 3
+      },
+      "major_concepts": [
+        "Glory",
+        "Honor as Recognition",
+        "Magnanimity",
+        "Sin",
+        "Vainglory",
+        "Vice"
+      ],
+      "opposition_mode_usage": {
+        "excess": 1
+      },
+      "parse_status": "ok",
+      "passage_count": 20,
+      "question_id": "st.ii-ii.q132",
+      "question_number": 132,
+      "question_title": "Vainglory",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 16,
+      "schema_extension_usage": {
+        "concerns_honor": 1
+      },
+      "subcluster": "honor_worthiness",
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 23,
+      "candidate_relation_count": 9,
+      "distinction_usage": {
+        "honor_related": 2
+      },
+      "major_concepts": [
+        "Magnanimity",
+        "Pusillanimity",
+        "Sin",
+        "Worthiness"
+      ],
+      "opposition_mode_usage": {
+        "deficiency": 1
+      },
+      "parse_status": "ok",
+      "passage_count": 10,
+      "question_id": "st.ii-ii.q133",
+      "question_number": 133,
+      "question_title": "Pusillanimity",
+      "reviewed_annotation_count": 5,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_worthiness": 2
+      },
+      "subcluster": "honor_worthiness",
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 10,
+      "distinction_usage": {
+        "expenditure_related": 2,
+        "fortitude_related": 1
+      },
+      "major_concepts": [
+        "Fortitude",
+        "Great Expenditure",
+        "Great Work",
+        "Magnificence",
+        "Virtue"
+      ],
+      "opposition_mode_usage": {},
+      "parse_status": "ok",
+      "passage_count": 18,
+      "question_id": "st.ii-ii.q134",
+      "question_number": 134,
+      "question_title": "Magnificence",
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 15,
+      "schema_extension_usage": {
+        "concerns_great_expenditure": 1,
+        "concerns_great_work": 1,
+        "related_to_fortitude": 1
+      },
+      "subcluster": "expenditure_work",
+      "unresolved_ambiguity_count": 24
+    },
+    {
+      "candidate_mention_count": 4,
+      "candidate_relation_count": 1,
+      "distinction_usage": {
+        "expenditure_related": 6
+      },
+      "major_concepts": [
+        "Great Expenditure",
+        "Great Work",
+        "Magnificence",
+        "Meanness",
+        "Vice",
+        "Waste (Banausia / Consumptio)"
+      ],
+      "opposition_mode_usage": {
+        "deficiency": 1,
+        "excess": 1
+      },
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q135",
+      "question_number": 135,
+      "question_title": "Meanness",
+      "reviewed_annotation_count": 16,
+      "reviewed_doctrinal_edge_count": 11,
+      "reviewed_structural_editorial_count": 16,
+      "schema_extension_usage": {
+        "concerns_great_expenditure": 3,
+        "concerns_great_work": 3
+      },
+      "subcluster": "expenditure_work",
+      "unresolved_ambiguity_count": 2
+    }
+  ],
+  "questions_with_honor_expenditure_modeling_risk": [
+    130
+  ],
+  "questions_with_opposition_mode_risk": [
+    129,
+    134
+  ],
+  "summary": {
+    "candidate_mention_count": 346,
+    "candidate_relation_count": 114,
+    "deficiency_opposition_relation_count": 2,
+    "excess_opposition_relation_count": 4,
+    "expenditure_related_relation_count": 13,
+    "honor_related_relation_count": 20,
+    "passage_count": 106,
+    "question_count": 7,
+    "registered_concepts_used": 20,
+    "reviewed_annotation_count": 150,
+    "reviewed_doctrinal_edge_count": 33,
+    "reviewed_structural_editorial_count": 97
+  },
+  "under_annotated_questions": [
+    129,
+    130
+  ]
+}

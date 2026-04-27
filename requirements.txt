@@ -1,0 +1,4 @@
+# Minimal editable install for lightweight local development.
+# For the canonical local Christian virtue SFT baseline, use
+# `requirements/local-mps-py312.lock.txt` via `make setup-christian-virtue-local`.
+-e .

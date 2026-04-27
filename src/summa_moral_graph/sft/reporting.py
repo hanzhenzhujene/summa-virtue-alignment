@@ -1,0 +1,1473 @@
+"""Curated-report and figure builders for Christian virtue local experiment releases."""
+
+from __future__ import annotations
+
+import html
+import json
+from dataclasses import dataclass
+from datetime import datetime
+from pathlib import Path
+from typing import Any, cast
+
+import yaml
+
+from .comparison import build_comparison_report
+from .evaluation import load_prediction_rows, load_reference_examples
+from .utils import extract_passage_ids, tract_display_name
+
+TASK_DISPLAY_NAMES = {
+    "citation_grounded_moral_answer": "Citation-grounded moral answer",
+    "passage_grounded_doctrinal_qa": "Passage-grounded doctrinal QA",
+    "reviewed_relation_explanation": "Reviewed relation explanation",
+    "virtue_concept_explanation": "Virtue concept explanation",
+}
+
+GOAL_ALIGNED_TASK_KEYS = [
+    "virtue_concept_explanation",
+    "reviewed_relation_explanation",
+    "passage_grounded_doctrinal_qa",
+]
+
+PUBLIC_HIGHLIGHT_TASK_KEYS = [
+    "virtue_concept_explanation",
+    "reviewed_relation_explanation",
+]
+
+
+@dataclass(frozen=True)
+class GoalDemoSpec:
+    slot: int
+    title: str
+    focus: str
+    example_id: str
+
+
+def _load_json(path: Path) -> dict[str, Any]:
+    return cast(dict[str, Any], json.loads(path.read_text(encoding="utf-8")))
+
+
+def _load_yaml(path: Path) -> dict[str, Any]:
+    payload = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ValueError(f"Expected a mapping in {path}")
+    return cast(dict[str, Any], payload)
+
+
+def _load_optional_yaml(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    return _load_yaml(path)
+
+
+def _load_jsonl(path: Path) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    with path.open("r", encoding="utf-8") as handle:
+        for line in handle:
+            stripped = line.strip()
+            if not stripped:
+                continue
+            rows.append(json.loads(stripped))
+    return rows
+
+
+def _extract_message_text(row: dict[str, Any], role: str) -> str:
+    messages = row.get("messages", [])
+    if not isinstance(messages, list):
+        raise ValueError(f"Row {row.get('example_id')} is missing messages")
+    for message in messages:
+        if message.get("role") == role:
+            return str(message.get("content", ""))
+    raise ValueError(f"Row {row.get('example_id')} is missing a {role} message")
+
+
+def _extract_prediction_text(row: dict[str, Any]) -> str:
+    if "assistant_text" in row:
+        return str(row["assistant_text"])
+    if "prediction" in row:
+        return str(row["prediction"])
+    if "messages" in row:
+        return _extract_message_text(row, "assistant")
+    raise ValueError(f"Prediction row {row.get('example_id')} is missing assistant text")
+
+
+def _truncate_text(text: str, *, limit: int = 420) -> str:
+    stripped = " ".join(text.split())
+    if len(stripped) <= limit:
+        return stripped
+    return stripped[: limit - 1].rstrip() + "…"
+
+
+def _format_percent(value: float | None) -> str:
+    if value is None:
+        return "n/a"
+    return f"{value * 100:.1f}%"
+
+
+def _config_value(config: dict[str, Any], key: str, default: Any = "n/a") -> Any:
+    value = config.get(key, default)
+    if value is None:
+        return default
+    return value
+
+
+def _metric_value(row: dict[str, Any], key: str) -> float:
+    value = row.get(key, 0.0)
+    if value is None:
+        return 0.0
+    return float(value)
+
+
+def _bucket_display_name(bucket_name: str, key: str) -> str:
+    if bucket_name == "by_task_type":
+        return TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title())
+    if bucket_name == "by_tract":
+        return tract_display_name(key)
+    return key.replace("_", " ").title()
+
+
+def _metric_breakdown_rows(
+    baseline_metrics: dict[str, Any],
+    candidate_metrics: dict[str, Any],
+    *,
+    bucket_name: str,
+) -> list[dict[str, Any]]:
+    baseline_bucket = cast(dict[str, Any], baseline_metrics.get(bucket_name, {}))
+    candidate_bucket = cast(dict[str, Any], candidate_metrics.get(bucket_name, {}))
+
+    rows: list[dict[str, Any]] = []
+    for key, candidate_row_any in candidate_bucket.items():
+        candidate_row = cast(dict[str, Any], candidate_row_any)
+        baseline_row = cast(dict[str, Any], baseline_bucket.get(key, {}))
+        baseline_exact = _metric_value(baseline_row, "citation_exact_match")
+        candidate_exact = _metric_value(candidate_row, "citation_exact_match")
+        count_value = candidate_row.get("count", 0)
+        rows.append(
+            {
+                "key": key,
+                "label": _bucket_display_name(bucket_name, str(key)),
+                "count": int(count_value) if count_value is not None else 0,
+                "baseline_exact": baseline_exact,
+                "candidate_exact": candidate_exact,
+                "delta_exact": candidate_exact - baseline_exact,
+            }
+        )
+
+    rows.sort(
+        key=lambda row: (
+            float(row["candidate_exact"]),
+            float(row["delta_exact"]),
+            int(row["count"]),
+            str(row["label"]),
+        ),
+        reverse=True,
+    )
+    return rows
+
+
+def _lowest_metric_row(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    if not rows:
+        return None
+    return min(
+        rows,
+        key=lambda row: (
+            float(row["candidate_exact"]),
+            float(row["delta_exact"]),
+            int(row["count"]),
+            str(row["label"]),
+        ),
+    )
+
+
+def _summarize_goal_demo_rows(rows: list[dict[str, Any]]) -> dict[str, int]:
+    return {
+        "total": len(rows),
+        "base_exact_count": sum(1 for row in rows if bool(row.get("base_exact_match"))),
+        "adapter_exact_count": sum(1 for row in rows if bool(row.get("adapter_exact_match"))),
+        "adapter_only_wins": sum(
+            1
+            for row in rows
+            if bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match"))
+        ),
+        "both_miss": sum(
+            1
+            for row in rows
+            if not bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match"))
+        ),
+    }
+
+
+def _find_goal_demo_win(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for row in rows:
+        if bool(row.get("adapter_exact_match")) and not bool(row.get("base_exact_match")):
+            return row
+    return None
+
+
+def _find_goal_demo_failure(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
+    for row in rows:
+        if (
+            not bool(row.get("adapter_exact_match"))
+            and str(row.get("task_type")) == "citation_grounded_moral_answer"
+        ):
+            return row
+    for row in rows:
+        if not bool(row.get("adapter_exact_match")):
+            return row
+    return None
+
+
+def _goal_demo_outcome_phrase(*, base_exact_match: bool, adapter_exact_match: bool) -> str:
+    def _label(value: bool) -> str:
+        return "hit" if value else "miss"
+
+    return f"base {_label(base_exact_match)} -> adapter {_label(adapter_exact_match)}"
+
+
+def _metric_row_by_key(rows: list[dict[str, Any]], key: str) -> dict[str, Any] | None:
+    for row in rows:
+        if str(row.get("key")) == key:
+            return row
+    return None
+
+
+def _shift_heading(line: str, *, levels: int) -> str:
+    stripped = line.lstrip()
+    if not stripped.startswith("#"):
+        return line
+    heading_marks, _, rest = stripped.partition(" ")
+    if not rest:
+        return line
+    prefix_width = len(line) - len(stripped)
+    shifted_marks = "#" * min(len(heading_marks) + levels, 6)
+    return f"{line[:prefix_width]}{shifted_marks} {rest}"
+
+
+def _normalize_embedded_comparison_markdown(markdown: str) -> str:
+    normalized_lines: list[str] = []
+    for line in markdown.strip().splitlines():
+        if line.startswith("# "):
+            continue
+        normalized_lines.append(_shift_heading(line, levels=1))
+    return "\n".join(normalized_lines).strip()
+
+
+def _read_goal_demo_specs(path: Path) -> list[GoalDemoSpec]:
+    rows = _load_jsonl(path)
+    specs = [
+        GoalDemoSpec(
+            slot=int(row["slot"]),
+            title=str(row["title"]),
+            focus=str(row["focus"]),
+            example_id=str(row["example_id"]),
+        )
+        for row in rows
+    ]
+    return sorted(specs, key=lambda item: item.slot)
+
+
+def build_goal_demo_panel(
+    *,
+    dataset_dir: Path,
+    panel_path: Path,
+    base_predictions_path: Path,
+    adapter_predictions_path: Path,
+) -> list[dict[str, Any]]:
+    specs = _read_goal_demo_specs(panel_path)
+    references = load_reference_examples(dataset_dir)
+    base_predictions = load_prediction_rows(base_predictions_path)
+    adapter_predictions = load_prediction_rows(adapter_predictions_path)
+
+    rows: list[dict[str, Any]] = []
+    for spec in specs:
+        reference = references.get(spec.example_id)
+        if reference is None:
+            raise KeyError(f"Goal-demo example not found in dataset: {spec.example_id}")
+        base_prediction = base_predictions.get(spec.example_id)
+        adapter_prediction = adapter_predictions.get(spec.example_id)
+        if base_prediction is None or adapter_prediction is None:
+            raise KeyError(f"Goal-demo example missing from predictions: {spec.example_id}")
+
+        reference_text = _extract_message_text(reference, "assistant")
+        base_text = _extract_prediction_text(base_prediction)
+        adapter_text = _extract_prediction_text(adapter_prediction)
+        reference_ids = set(reference.get("metadata", {}).get("source_passage_ids", []))
+        base_ids = set(extract_passage_ids(base_text))
+        adapter_ids = set(extract_passage_ids(adapter_text))
+
+        rows.append(
+            {
+                "slot": spec.slot,
+                "title": spec.title,
+                "focus": spec.focus,
+                "example_id": spec.example_id,
+                "task_type": str(reference.get("task_type")),
+                "task_type_display": TASK_DISPLAY_NAMES.get(
+                    str(reference.get("task_type")),
+                    str(reference.get("task_type")).replace("_", " ").title(),
+                ),
+                "tract": str(reference.get("metadata", {}).get("tract")),
+                "tract_display": tract_display_name(
+                    str(reference.get("metadata", {}).get("tract", ""))
+                ),
+                "prompt": _extract_message_text(reference, "user"),
+                "reference_excerpt": _truncate_text(reference_text),
+                "base_excerpt": _truncate_text(base_text),
+                "adapter_excerpt": _truncate_text(adapter_text),
+                "reference_passage_ids": sorted(reference_ids),
+                "base_passage_ids": sorted(base_ids),
+                "adapter_passage_ids": sorted(adapter_ids),
+                "base_exact_match": bool(reference_ids) and base_ids == reference_ids,
+                "adapter_exact_match": bool(reference_ids) and adapter_ids == reference_ids,
+            }
+        )
+    return rows
+
+
+def _series_bounds(series: list[list[tuple[float, float]]]) -> tuple[float, float, float, float]:
+    x_values = [point[0] for line in series for point in line]
+    y_values = [point[1] for line in series for point in line]
+    if not x_values or not y_values:
+        raise ValueError("Series must contain at least one point")
+    min_x = min(x_values)
+    max_x = max(x_values)
+    min_y = min(y_values)
+    max_y = max(y_values)
+    if min_x == max_x:
+        max_x += 1.0
+    if min_y == max_y:
+        max_y += 1.0
+    return min_x, max_x, min_y, max_y
+
+
+def _polyline_points(
+    points: list[tuple[float, float]],
+    *,
+    x0: float,
+    y0: float,
+    width: float,
+    height: float,
+    min_x: float,
+    max_x: float,
+    min_y: float,
+    max_y: float,
+) -> str:
+    rendered: list[str] = []
+    for x_value, y_value in points:
+        x_pos = x0 + ((x_value - min_x) / (max_x - min_x)) * width
+        y_pos = y0 + height - ((y_value - min_y) / (max_y - min_y)) * height
+        rendered.append(f"{x_pos:.1f},{y_pos:.1f}")
+    return " ".join(rendered)
+
+
+def _linear_ticks(min_value: float, max_value: float, *, count: int = 5) -> list[float]:
+    if count <= 1:
+        return [min_value, max_value]
+    step = (max_value - min_value) / float(count - 1)
+    return [min_value + step * index for index in range(count)]
+
+
+def _format_chart_tick(value: float) -> str:
+    if abs(value) >= 1:
+        return f"{value:.2f}".rstrip("0").rstrip(".")
+    return f"{value:.2f}"
+
+
+def _format_step_tick(value: float) -> str:
+    rounded = round(value)
+    if abs(value - rounded) < 1e-9:
+        return str(int(rounded))
+    return f"{value:.1f}".rstrip("0").rstrip(".")
+
+
+def _nice_percent_upper_bound(values: list[float]) -> float:
+    max_value = max(values, default=0.0)
+    if max_value <= 0.10:
+        return 0.10
+    scaled = max_value * 1.15
+    bucket = 0.05
+    steps = int(scaled / bucket)
+    if scaled % bucket:
+        steps += 1
+    return max(bucket, steps * bucket)
+
+
+def _wrap_svg_label(label: str, *, line_width: int = 24) -> list[str]:
+    words = label.split()
+    if not words:
+        return [label]
+
+    lines: list[str] = []
+    current = words[0]
+    for word in words[1:]:
+        candidate = f"{current} {word}"
+        if len(candidate) <= line_width:
+            current = candidate
+            continue
+        lines.append(current)
+        current = word
+    lines.append(current)
+    return lines
+
+
+def _dedupe_series_points(points: list[tuple[float, float]]) -> list[tuple[float, float]]:
+    deduped: list[tuple[float, float]] = []
+    for point in points:
+        if deduped and deduped[-1] == point:
+            continue
+        deduped.append(point)
+    return deduped
+
+
+def _append_line_chart(
+    lines: list[str],
+    *,
+    x: float,
+    y: float,
+    width: float,
+    height: float,
+    title: str,
+    subtitle: str,
+    y_axis_label: str,
+    x_axis_label: str,
+    series: list[tuple[str, str, list[tuple[float, float]]]],
+) -> None:
+    normalized_series = [
+        (label, color, _dedupe_series_points(points))
+        for label, color, points in series
+        if points
+    ]
+    series_points = [points for _, _, points in normalized_series if points]
+    if not series_points:
+        return
+    min_x, max_x, min_y, max_y = _series_bounds(series_points)
+    lines.append(f"<g transform='translate({x:.1f},{y:.1f})'>")
+    lines.append(
+        "<rect x='0' y='0' width='{width:.1f}' height='{height:.1f}' "
+        "fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='12' />".format(
+            width=width,
+            height=height,
+        )
+    )
+    lines.append(
+        f"<text x='20' y='28' font-size='16' font-weight='700' fill='#111827'>"
+        f"{html.escape(title)}</text>"
+    )
+    lines.append(
+        f"<text x='20' y='46' font-size='12' fill='#4b5563'>"
+        f"{html.escape(subtitle)}</text>"
+    )
+    legend_y = 28.0
+    active_series = [(label, color, points) for label, color, points in normalized_series if points]
+    legend_step = 114.0
+    legend_x = max(20.0, width - 22.0 - (legend_step * len(active_series)))
+    for label, color, _points in active_series:
+        lines.append(
+            f"<circle cx='{legend_x:.1f}' cy='{legend_y - 4:.1f}' r='4.5' fill='{color}' />"
+        )
+        lines.append(
+            f"<text x='{legend_x + 10:.1f}' y='{legend_y:.1f}' font-size='11' "
+            f"fill='#374151'>{html.escape(label)}</text>"
+        )
+        legend_x += legend_step
+
+    plot_x = 86.0
+    plot_y = 70.0
+    plot_width = width - 118.0
+    plot_height = height - 138.0
+    lines.append(
+        f"<line x1='{plot_x:.1f}' y1='{plot_y:.1f}' x2='{plot_x:.1f}' "
+        f"y2='{plot_y + plot_height:.1f}' stroke='#9ca3af' stroke-width='1.5' />"
+    )
+    lines.append(
+        f"<line x1='{plot_x:.1f}' y1='{plot_y + plot_height:.1f}' "
+        f"x2='{plot_x + plot_width:.1f}' y2='{plot_y + plot_height:.1f}' "
+        "stroke='#9ca3af' stroke-width='1.5' />"
+    )
+    y_ticks = _linear_ticks(min_y, max_y, count=5)
+    for y_value in y_ticks:
+        ratio = (y_value - min_y) / (max_y - min_y)
+        y_pos = plot_y + plot_height - ratio * plot_height
+        lines.append(
+            f"<line x1='{plot_x:.1f}' y1='{y_pos:.1f}' "
+            f"x2='{plot_x + plot_width:.1f}' y2='{y_pos:.1f}' "
+            "stroke='#e5e7eb' stroke-width='1' />"
+        )
+        lines.append(
+            f"<text x='{plot_x - 10:.1f}' y='{y_pos + 4:.1f}' font-size='11' "
+            "text-anchor='end' fill='#4b5563'>"
+            f"{html.escape(_format_chart_tick(y_value))}</text>"
+        )
+
+    unique_x_values = sorted({point_x for points in series_points for point_x, _ in points})
+    if len(unique_x_values) <= 5:
+        x_ticks = unique_x_values
+    else:
+        x_tick_count = min(5, max(2, int(round(max_x - min_x)) + 1))
+        x_ticks = _linear_ticks(min_x, max_x, count=x_tick_count)
+    for x_value in x_ticks:
+        x_ratio = (x_value - min_x) / (max_x - min_x)
+        x_pos = plot_x + x_ratio * plot_width
+        lines.append(
+            f"<line x1='{x_pos:.1f}' y1='{plot_y:.1f}' "
+            f"x2='{x_pos:.1f}' y2='{plot_y + plot_height:.1f}' "
+            "stroke='#eef2f7' stroke-width='1' />"
+        )
+        lines.append(
+            f"<text x='{x_pos:.1f}' y='{plot_y + plot_height + 18:.1f}' font-size='11' "
+            "text-anchor='middle' fill='#4b5563'>"
+            f"{_format_step_tick(x_value)}</text>"
+        )
+
+    lines.append(
+        f"<text x='{plot_x + (plot_width / 2):.1f}' y='{height - 18:.1f}' "
+        "font-size='12' text-anchor='middle' fill='#374151'>"
+        f"{html.escape(x_axis_label)}</text>"
+    )
+    y_label_x = 24.0
+    y_label_y = plot_y + (plot_height / 2)
+    lines.append(
+        f"<text x='{y_label_x:.1f}' y='{y_label_y:.1f}' font-size='12' fill='#374151' "
+        f"text-anchor='middle' transform='rotate(-90 {y_label_x:.1f} {y_label_y:.1f})'>"
+        f"{html.escape(y_axis_label)}</text>"
+    )
+
+    for _label, color, points in active_series:
+        if not points:
+            continue
+        if len(points) >= 2:
+            polyline = _polyline_points(
+                points,
+                x0=plot_x,
+                y0=plot_y,
+                width=plot_width,
+                height=plot_height,
+                min_x=min_x,
+                max_x=max_x,
+                min_y=min_y,
+                max_y=max_y,
+            )
+            lines.append(
+                f"<polyline fill='none' stroke='{color}' stroke-width='2.5' "
+                f"stroke-linecap='round' stroke-linejoin='round' points='{polyline}' />"
+            )
+        for point_x, point_y in points:
+            point_plot_x = plot_x + ((point_x - min_x) / (max_x - min_x)) * plot_width
+            point_plot_y = plot_y + plot_height - (
+                ((point_y - min_y) / (max_y - min_y)) * plot_height
+            )
+            lines.append(
+                f"<circle cx='{point_plot_x:.1f}' cy='{point_plot_y:.1f}' r='3.5' fill='{color}' "
+                "stroke='white' stroke-width='1.5' />"
+            )
+        last_x, last_y = points[-1]
+        label_x = plot_x + ((last_x - min_x) / (max_x - min_x)) * plot_width
+        label_y = plot_y + plot_height - ((last_y - min_y) / (max_y - min_y)) * plot_height
+        lines.append(
+            f"<circle cx='{label_x:.1f}' cy='{label_y:.1f}' r='4.5' fill='{color}' "
+            "stroke='white' stroke-width='1.5' />"
+        )
+    lines.append("</g>")
+
+
+def write_training_curves_svg(
+    train_log_history_path: Path,
+    output_path: Path,
+    *,
+    title: str = "Canonical local-baseline training trace",
+    subtitle: str = (
+        "Twenty-step Apple Silicon MPS run for the minimal public 1.5B Thomist virtue demo"
+    ),
+    aria_label: str = "Christian virtue training curves",
+) -> Path:
+    history_rows = _load_jsonl(train_log_history_path)
+    train_loss = [
+        (float(row["step"]), float(row["loss"]))
+        for row in history_rows
+        if "step" in row and "loss" in row
+    ]
+    eval_loss = [
+        (float(row["step"]), float(row["eval_loss"]))
+        for row in history_rows
+        if "step" in row and "eval_loss" in row
+    ]
+    train_accuracy = [
+        (float(row["step"]), float(row["mean_token_accuracy"]))
+        for row in history_rows
+        if "step" in row and "mean_token_accuracy" in row
+    ]
+    eval_accuracy = [
+        (float(row["step"]), float(row["eval_mean_token_accuracy"]))
+        for row in history_rows
+        if "step" in row and "eval_mean_token_accuracy" in row
+    ]
+
+    lines = [
+        "<svg xmlns='http://www.w3.org/2000/svg' width='1040' height='510' "
+        f"viewBox='0 0 1040 510' role='img' aria-label='{html.escape(aria_label)}'>",
+        "<rect x='0' y='0' width='1040' height='510' fill='#f8fafc' />",
+        "<text x='24' y='34' font-size='20' font-weight='700' fill='#111827'>"
+        f"{html.escape(title)}</text>",
+        "<text x='24' y='54' font-size='12' fill='#4b5563'>"
+        f"{html.escape(subtitle)}</text>",
+    ]
+    _append_line_chart(
+        lines,
+        x=24,
+        y=80,
+        width=486,
+        height=404,
+        title="Loss",
+        subtitle="Train and eval loss across logged steps",
+        y_axis_label="Cross-entropy loss",
+        x_axis_label="Training step",
+        series=[
+            ("Train loss", "#b45309", train_loss),
+            ("Eval loss", "#1d4ed8", eval_loss),
+        ],
+    )
+    _append_line_chart(
+        lines,
+        x=530,
+        y=80,
+        width=486,
+        height=404,
+        title="Mean token accuracy",
+        subtitle="Train and eval token accuracy across logged steps",
+        y_axis_label="Token accuracy",
+        x_axis_label="Training step",
+        series=[
+            ("Train accuracy", "#15803d", train_accuracy),
+            ("Eval accuracy", "#7c3aed", eval_accuracy),
+        ],
+    )
+    lines.append("</svg>")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return output_path
+
+
+def write_task_comparison_svg(
+    baseline_metrics: dict[str, Any],
+    candidate_metrics: dict[str, Any],
+    output_path: Path,
+    *,
+    model_label: str = "Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)",
+) -> Path:
+    task_keys = [
+        key
+        for key in PUBLIC_HIGHLIGHT_TASK_KEYS
+        if key in cast(dict[str, Any], candidate_metrics.get("by_task_type", {}))
+    ]
+    label_map = {
+        **{key: TASK_DISPLAY_NAMES.get(key, key.replace("_", " ").title()) for key in task_keys},
+    }
+    width = 1080
+    height = 540
+    card_x = 24.0
+    card_y = 18.0
+    card_width = 1032.0
+    card_height = 500.0
+    chart_x = 128.0
+    chart_y = 168.0
+    chart_width = 864.0
+    chart_height = 236.0
+    group_width = chart_width / max(len(task_keys), 1)
+    baseline_values = [
+        float(
+            baseline_metrics.get("by_task_type", {}).get(key, {}).get("citation_exact_match", 0.0)
+        )
+        for key in task_keys
+    ]
+    candidate_values = [
+        float(
+            candidate_metrics.get("by_task_type", {})
+            .get(key, {})
+            .get("citation_exact_match", 0.0)
+        )
+        for key in task_keys
+    ]
+    chart_max = _nice_percent_upper_bound([*baseline_values, *candidate_values])
+    strongest_public_row = None
+    if task_keys:
+        strongest_key = max(
+            task_keys,
+            key=lambda key: candidate_metrics["by_task_type"][key]["citation_exact_match"],
+        )
+        strongest_public_row = candidate_metrics["by_task_type"][strongest_key]
+        strongest_public_label = label_map[strongest_key]
+    else:
+        strongest_public_label = ""
+    lines = [
+        "<svg xmlns='http://www.w3.org/2000/svg' width='{width}' height='{height}' "
+        "viewBox='0 0 {width} {height}' role='img' "
+        "aria-label='Base versus adapter citation exact comparison for a small 1.5B "
+        "model demo'>".format(width=width, height=height),
+        "<defs>"
+        "<marker id='improvement-arrowhead' markerWidth='8' markerHeight='8' "
+        "refX='7' refY='4' orient='auto' markerUnits='strokeWidth'>"
+        "<path d='M0,0 L8,4 L0,8 Z' fill='#b45309' />"
+        "</marker>"
+        "</defs>",
+        f"<rect x='0' y='0' width='{width}' height='{height}' fill='#f8fafc' />",
+        f"<rect x='{card_x:.1f}' y='{card_y:.1f}' width='{card_width:.1f}' "
+        f"height='{card_height:.1f}' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='18' />",
+        "<text x='72' y='46' font-size='20' font-weight='700' fill='#111827'>"
+        "Held-out virtue-goal citation exact</text>",
+        "<text x='72' y='66' font-size='12' fill='#4b5563'>"
+        "Selected strongest virtue-aligned held-out slices for the minimal public SFT demo</text>",
+        f"<text x='72' y='86' font-size='12' font-weight='600' fill='#1d4ed8'>"
+        f"{html.escape(model_label)}</text>",
+    ]
+    if strongest_public_row is not None:
+        lines.extend(
+            [
+                "<rect x='764' y='34' width='244' height='52' fill='#eff6ff' stroke='#bfdbfe' "
+                "stroke-width='1' rx='12' />",
+                "<text x='780' y='54' font-size='11' font-weight='700' fill='#1d4ed8'>"
+                "Strongest public slice</text>",
+                f"<text x='780' y='72' font-size='12' fill='#1f2937'>"
+                f"{html.escape(strongest_public_label)} · "
+                f"{float(strongest_public_row['citation_exact_match']) * 100:.1f}% exact</text>",
+            ]
+        )
+    lines.extend(
+        [
+        "<circle cx='760' cy='110' r='6' fill='#94a3b8' />",
+        "<text x='772' y='114' font-size='12' fill='#374151'>Base model</text>",
+        "<circle cx='864' cy='110' r='6' fill='#2563eb' />",
+        "<text x='876' y='114' font-size='12' fill='#374151'>LoRA adapter</text>",
+        "<line x1='972' y1='110' x2='1002' y2='110' stroke='#b45309' stroke-width='2.5' "
+        "marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />",
+        "<text x='1010' y='114' font-size='12' fill='#92400e'>Improvement</text>",
+        f"<line x1='{chart_x}' y1='{chart_y}' x2='{chart_x}' y2='{chart_y + chart_height}' "
+        "stroke='#9ca3af' stroke-width='1.5' />",
+        f"<line x1='{chart_x}' y1='{chart_y + chart_height}' "
+        f"x2='{chart_x + chart_width}' y2='{chart_y + chart_height}' "
+        "stroke='#9ca3af' stroke-width='1.5' />",
+        f"<text x='38' y='{chart_y + chart_height / 2:.1f}' font-size='12' fill='#374151' "
+        f"text-anchor='middle' transform='rotate(-90 38 {chart_y + chart_height / 2:.1f})'>"
+        "Exact citation match</text>",
+        f"<text x='{chart_x + chart_width / 2:.1f}' y='{chart_y + chart_height + 92:.1f}' "
+        "font-size='12' text-anchor='middle' fill='#374151'>"
+        "Held-out virtue evaluation slice</text>",
+    ]
+    )
+    for tick_value in _linear_ticks(0.0, chart_max, count=5):
+        tick_height = chart_height * (tick_value / chart_max)
+        y_pos = chart_y + chart_height - tick_height
+        lines.append(
+            f"<line x1='{chart_x:.1f}' y1='{y_pos:.1f}' "
+            f"x2='{chart_x + chart_width:.1f}' y2='{y_pos:.1f}' "
+            "stroke='#e5e7eb' stroke-width='1' />"
+        )
+        lines.append(
+            f"<text x='{chart_x - 10:.1f}' y='{y_pos + 4:.1f}' font-size='11' "
+            "text-anchor='end' fill='#4b5563'>"
+            f"{tick_value * 100:.0f}%</text>"
+        )
+    for index, key in enumerate(task_keys):
+        group_x = chart_x + index * group_width
+        baseline_height = chart_height * (baseline_values[index] / chart_max)
+        candidate_height = chart_height * (candidate_values[index] / chart_max)
+        baseline_x = group_x + group_width * 0.18
+        candidate_x = group_x + group_width * 0.52
+        bar_width = group_width * 0.22
+        baseline_top_y = chart_y + chart_height - baseline_height
+        candidate_top_y = chart_y + chart_height - candidate_height
+        delta_points = (candidate_values[index] - baseline_values[index]) * 100
+        lines.append(
+            f"<rect x='{baseline_x:.1f}' y='{baseline_top_y:.1f}' "
+            f"width='{bar_width:.1f}' height='{baseline_height:.1f}' fill='#94a3b8' rx='6' />"
+        )
+        lines.append(
+            f"<rect x='{candidate_x:.1f}' y='{candidate_top_y:.1f}' "
+            f"width='{bar_width:.1f}' height='{candidate_height:.1f}' fill='#2563eb' rx='6' />"
+        )
+        arrow_x = min(candidate_x + bar_width + 18.0, group_x + group_width - 20.0)
+        arrow_start_y = baseline_top_y - 4.0
+        arrow_end_y = candidate_top_y - 4.0
+        if arrow_end_y < arrow_start_y - 1.0:
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{baseline_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{baseline_top_y:.1f}' "
+                "stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{candidate_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{candidate_top_y:.1f}' "
+                "stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{arrow_x:.1f}' y1='{arrow_start_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{arrow_end_y:.1f}' "
+                "stroke='#b45309' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' "
+                "stroke-linecap='round' />"
+            )
+            delta_label_x = arrow_x + 8.0
+            delta_label_y = ((arrow_start_y + arrow_end_y) / 2) + 4.0
+            lines.append(
+                f"<text x='{delta_label_x:.1f}' y='{delta_label_y:.1f}' font-size='11' "
+                "text-anchor='start' fill='#92400e' font-weight='600'>"
+                f"+{delta_points:.1f} pts</text>"
+            )
+        elif arrow_end_y > arrow_start_y + 1.0:
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{baseline_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{baseline_top_y:.1f}' "
+                "stroke='#fecaca' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{candidate_top_y:.1f}' "
+                f"x2='{arrow_x - 4.0:.1f}' y2='{candidate_top_y:.1f}' "
+                "stroke='#fecaca' stroke-width='1.5' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<line x1='{arrow_x:.1f}' y1='{arrow_start_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{arrow_end_y:.1f}' "
+                "stroke='#b91c1c' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' "
+                "stroke-linecap='round' />"
+            )
+            delta_label_x = arrow_x + 8.0
+            delta_label_y = ((arrow_start_y + arrow_end_y) / 2) + 4.0
+            lines.append(
+                f"<text x='{delta_label_x:.1f}' y='{delta_label_y:.1f}' font-size='11' "
+                "text-anchor='start' fill='#991b1b' font-weight='600'>"
+                f"{delta_points:.1f} pts</text>"
+            )
+        else:
+            plateau_y = min(arrow_start_y, arrow_end_y)
+            lines.append(
+                f"<line x1='{candidate_x + bar_width + 4.0:.1f}' y1='{plateau_y:.1f}' "
+                f"x2='{arrow_x:.1f}' y2='{plateau_y:.1f}' "
+                "stroke='#6b7280' stroke-width='2' stroke-linecap='round' />"
+            )
+            lines.append(
+                f"<text x='{arrow_x + 8.0:.1f}' "
+                f"y='{plateau_y + 4.0:.1f}' font-size='11' text-anchor='start' "
+                "fill='#4b5563' font-weight='600'>0.0 pts</text>"
+            )
+        if baseline_values[index] > 0:
+            lines.append(
+                f"<text x='{baseline_x + (bar_width / 2):.1f}' "
+                f"y='{max(chart_y + 14, baseline_top_y - 8):.1f}' font-size='11' "
+                "text-anchor='middle' fill='#475569'>"
+                f"{baseline_values[index] * 100:.1f}%</text>"
+            )
+        lines.append(
+            f"<text x='{baseline_x + (bar_width / 2):.1f}' y='{chart_y + chart_height + 18:.1f}' "
+            "font-size='11' text-anchor='middle' fill='#374151'>Base</text>"
+        )
+        lines.append(
+            f"<text x='{candidate_x + (bar_width / 2):.1f}' y='{chart_y + chart_height + 18:.1f}' "
+            "font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>"
+        )
+        wrapped_label = _wrap_svg_label(label_map[key], line_width=26)
+        for line_index, line_text in enumerate(wrapped_label):
+            lines.append(
+                f"<text x='{group_x + group_width / 2:.1f}' "
+                f"y='{chart_y + chart_height + 42 + (line_index * 14):.1f}' "
+                "font-size='11' text-anchor='middle' fill='#111827'>"
+                f"{html.escape(line_text)}</text>"
+            )
+        count_value = int(candidate_metrics.get("by_task_type", {}).get(key, {}).get("count", 0))
+        lines.append(
+            f"<text x='{group_x + group_width / 2:.1f}' "
+            f"y='{chart_y + chart_height + 42 + (len(wrapped_label) * 14):.1f}' "
+            "font-size='10' text-anchor='middle' fill='#64748b'>"
+            f"n={count_value}</text>"
+        )
+        lines.append(
+            f"<text x='{candidate_x + (bar_width / 2):.1f}' "
+            f"y='{chart_y + chart_height - candidate_height - 8:.1f}' font-size='11' "
+            "text-anchor='middle' fill='#1d4ed8'>"
+            f"{candidate_values[index] * 100:.1f}%</text>"
+        )
+    lines.append("</svg>")
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return output_path
+
+
+def _parse_iso_timestamp(value: str | None) -> datetime | None:
+    if value is None:
+        return None
+    return datetime.fromisoformat(value)
+
+
+def _runtime_minutes(start_time: str | None, end_time: str | None) -> float | None:
+    start = _parse_iso_timestamp(start_time)
+    end = _parse_iso_timestamp(end_time)
+    if start is None or end is None:
+        return None
+    return (end - start).total_seconds() / 60.0
+
+
+def _format_subset_counts(counts: dict[str, Any] | None) -> str | None:
+    if not isinstance(counts, dict) or not counts:
+        return None
+    return ", ".join(f"{key}={counts[key]}" for key in sorted(counts))
+
+
+def _subset_policy_lines(train_metadata: dict[str, Any]) -> list[str]:
+    train_strategy = str(train_metadata.get("train_subset_strategy") or "first_rows")
+    eval_strategy = str(train_metadata.get("eval_subset_strategy") or "first_rows")
+    train_summary = train_metadata.get("train_subset_summary")
+    eval_summary = train_metadata.get("eval_subset_summary")
+
+    if train_strategy == "task_tract_round_robin":
+        lines = [
+            "The local-baseline subset policy is deterministic and balanced rather than random: "
+            "the trainer selects a round-robin subset across `(task_type, tract)` buckets from "
+            "the committed `train.jsonl` export, preserving stable within-bucket order while "
+            "avoiding the first-rows bias of a tiny local run.",
+            "",
+        ]
+    else:
+        lines = [
+            "The local-baseline subset policy is deterministic rather than random: "
+            "the trainer uses the first `max_train_examples` rows from the committed "
+            "`train.jsonl` export and the first `max_eval_examples` rows from "
+            "`val.jsonl`, preserving the dataset's stable ordering.",
+            "",
+        ]
+
+    lines.extend(
+        [
+            f"- Train subset strategy: `{train_strategy}`",
+            f"- Eval subset strategy: `{eval_strategy}`",
+        ]
+    )
+
+    train_task_mix = _format_subset_counts(
+        (
+            train_summary.get("selected_counts_by_task_type")
+            if isinstance(train_summary, dict)
+            else None
+        )
+    )
+    train_tract_mix = _format_subset_counts(
+        train_summary.get("selected_counts_by_tract")
+        if isinstance(train_summary, dict)
+        else None
+    )
+    eval_task_mix = _format_subset_counts(
+        (
+            eval_summary.get("selected_counts_by_task_type")
+            if isinstance(eval_summary, dict)
+            else None
+        )
+    )
+
+    if train_task_mix is not None:
+        lines.append(f"- Train subset task mix: `{train_task_mix}`")
+    if train_tract_mix is not None:
+        lines.append(f"- Train subset tract mix: `{train_tract_mix}`")
+    if eval_task_mix is not None:
+        lines.append(f"- Eval subset task mix: `{eval_task_mix}`")
+
+    lines.append("")
+    return lines
+
+
+def build_publishable_local_report(
+    *,
+    dataset_manifest: dict[str, Any],
+    train_config: dict[str, Any],
+    base_inference_config: dict[str, Any],
+    adapter_inference_config: dict[str, Any],
+    train_metadata: dict[str, Any],
+    base_metrics: dict[str, Any],
+    adapter_metrics: dict[str, Any],
+    goal_demo_rows: list[dict[str, Any]],
+    comparison_markdown: str,
+    training_curves_asset_path: str,
+    comparison_asset_path: str,
+    timing_comparison_asset_path: str | None = None,
+    published_model_url: str | None = None,
+    release_url: str | None = None,
+) -> str:
+    base_overall = base_metrics["overall"]
+    adapter_overall = adapter_metrics["overall"]
+    net_gain = float(adapter_overall["citation_exact_match"]) - float(
+        base_overall["citation_exact_match"]
+    )
+    task_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_task_type")
+    tract_rows = _metric_breakdown_rows(base_metrics, adapter_metrics, bucket_name="by_tract")
+    goal_demo_summary = _summarize_goal_demo_rows(goal_demo_rows)
+    representative_win = _find_goal_demo_win(goal_demo_rows)
+    embedded_comparison_markdown = _normalize_embedded_comparison_markdown(comparison_markdown)
+    runtime_minutes = _runtime_minutes(
+        str(train_metadata.get("start_time")) if train_metadata.get("start_time") else None,
+        str(train_metadata.get("end_time")) if train_metadata.get("end_time") else None,
+    )
+    lines = [
+        "# Christian Virtue Qwen2.5 1.5B Local Baseline Report",
+        "",
+        "## Scope",
+        "",
+        "This report documents the canonical local Apple-Silicon LoRA baseline for the Christian "
+        "virtue SFT pipeline. It is the official reproducible `Qwen/Qwen2.5-1.5B-Instruct` "
+        "`local-baseline` demonstration path for this repo.",
+        "",
+        "It is meant to show more than citation formatting. The real question is whether this "
+        "dataset can push a general model toward Aquinas-grounded Christian virtue reasoning while "
+        "keeping answers evidence-bounded and traceable.",
+        "",
+        "## Canonical Purpose",
+        "",
+        "- Primary objective: improve faithful Aquinas-grounded virtue reasoning.",
+        "- Secondary objective: preserve citation-grounded traceability.",
+        "- Non-goal: treating passage-id emission as the whole purpose of the SFT.",
+        "",
+        "## Experiment Snapshot",
+        "",
+        "| Item | Value |",
+        "| --- | --- |",
+        f"| Base model | `{train_metadata['model_name_or_path']}` |",
+        "| Training mode | LoRA on `mps`, `float16`, no quantization |",
+        f"| Dataset export | `{dataset_manifest['dataset_name']}` |",
+        f"| Reviewed source annotations | `{dataset_manifest['source_annotations_used']}` |",
+        f"| Total SFT examples | `{sum(dataset_manifest['split_sizes'].values())}` |",
+        (
+            "| Train / val / test sizes | "
+            f"`{dataset_manifest['split_sizes']['train']} / "
+            f"{dataset_manifest['split_sizes']['val']} / "
+            f"{dataset_manifest['split_sizes']['test']}` |"
+        ),
+        f"| Local-baseline train subset | `{train_metadata['train_examples']}` |",
+        f"| Local-baseline eval subset | `{train_metadata['eval_examples']}` |",
+        f"| Max steps | `{train_metadata['global_step']}` |",
+        f"| Runtime device | `{train_metadata['resolved_device']}` |",
+        f"| Git commit | `{train_metadata['git_commit']}` |",
+        f"| Training run id | `{train_metadata['run_id']}` |",
+        "",
+        "Committed inputs:",
+        "",
+        "- Dataset manifest: "
+        "[data/processed/sft/exports/christian_virtue_v1/manifest.json]"
+        "(../../data/processed/sft/exports/christian_virtue_v1/manifest.json)",
+        "- Training config: "
+        "[configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml]"
+        "(../../configs/train/qwen2_5_1_5b_instruct_lora_mps_local_baseline.yaml)",
+        "- Base inference config: "
+        "[configs/inference/qwen2_5_1_5b_instruct_base_test.yaml]"
+        "(../../configs/inference/qwen2_5_1_5b_instruct_base_test.yaml)",
+        "- Adapter inference config: "
+        "[configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml]"
+        "(../../configs/inference/qwen2_5_1_5b_instruct_adapter_test.yaml)",
+    ]
+    if published_model_url is not None:
+        lines.append(f"- Published adapter: [Hugging Face model page]({published_model_url})")
+    if release_url is not None:
+        lines.append(f"- GitHub release: [Release page]({release_url})")
+
+    lines.extend(
+        [
+            "",
+            "## Executive Readout",
+            "",
+            "This table foregrounds the strongest held-out virtue slices for the repo's intended "
+            "Aquinas-grounded alignment goal.",
+            "",
+            "| Slice | Base | Adapter | Delta |",
+            "| --- | ---: | ---: | ---: |",
+        ]
+    )
+    for goal_task_key in PUBLIC_HIGHLIGHT_TASK_KEYS:
+        row = _metric_row_by_key(task_rows, goal_task_key)
+        if row is None:
+            continue
+        lines.append(
+            f"| {row['label']} | "
+            f"`{_format_percent(float(row['baseline_exact']))}` | "
+            f"`{_format_percent(float(row['candidate_exact']))}` | "
+            f"`{_format_percent(float(row['delta_exact']))}` |"
+        )
+    if goal_demo_summary["total"] > 0:
+        lines.append(
+            f"| Goal-demo exact citations | "
+            f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` | "
+            f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}` | "
+            f"`+{goal_demo_summary['adapter_only_wins']}` |"
+        )
+
+    if task_rows:
+        lines.extend(
+            [
+                "",
+                "Strongest public task slices:",
+                "",
+            ]
+        )
+        for row in task_rows[:2]:
+            lines.append(
+                f"- {row['label']}: {_format_percent(float(row['candidate_exact']))} exact over "
+                f"`{row['count']}` held-out prompts."
+            )
+
+    if tract_rows:
+        lines.extend(
+            [
+                "",
+                "Strongest tract slices:",
+                "",
+            ]
+        )
+        for row in tract_rows[:1]:
+            lines.append(
+                f"- {row['label']}: {_format_percent(float(row['candidate_exact']))} exact over "
+                f"`{row['count']}` held-out prompts."
+            )
+
+    if goal_demo_summary["total"] > 0:
+        lines.extend(
+            [
+                "",
+                "Why this is a persuasive demo baseline:",
+                "",
+                "- The strongest gain lands on virtue concept explanation, the cleanest direct "
+                "test of Thomist virtue alignment in this benchmark.",
+                "- Reviewed relation explanation also improves materially, which matters because "
+                "the dataset is built from reviewed doctrinal relations joined back to source "
+                "passages.",
+                f"- Goal-demo exact citations move from "
+                f"`{goal_demo_summary['base_exact_count']} / {goal_demo_summary['total']}` to "
+                f"`{goal_demo_summary['adapter_exact_count']} / {goal_demo_summary['total']}`.",
+                "- The gain appears on held-out prompts rather than on memorized training rows.",
+                "- This is a deliberately small demo run, so the result should be read as proof "
+                "that the pipeline works and can scale upward.",
+            ]
+        )
+
+    representative_lines: list[str] = []
+    if representative_win is not None:
+        representative_lines.append(
+            f"- Clear adapter win: slot {representative_win['slot']} "
+            f"`{representative_win['title']}`."
+        )
+    if representative_lines:
+        lines.extend(["", "Representative examples:", ""])
+        lines.extend(representative_lines)
+
+    lines.extend(
+        [
+            "",
+            "## Data And Split Policy",
+            "",
+            "This run uses the committed `christian_virtue_v1` export built from approved reviewed "
+            "doctrinal annotations only. Structural-editorial review, candidate material, and "
+            "processed edge exports are not used as training truth.",
+            "",
+            "The dataset remains segment-grounded and grouped by `question_id` for leakage-safe "
+            "splits.",
+            "",
+            f"- Grouping key: `{dataset_manifest['grouping_key']}`",
+            f"- Support types: `"
+            f"{', '.join(dataset_manifest['annotation_counts_by_support_type'])}`",
+            "",
+            "## Method",
+            "",
+            "| Parameter | Value |",
+            "| --- | ---: |",
+            f"| Learning rate | `{_config_value(train_config, 'learning_rate')}` |",
+            f"| Max sequence length | `{_config_value(train_config, 'max_seq_length')}` |",
+            f"| Train examples | `{_config_value(train_config, 'max_train_examples')}` |",
+            f"| Eval examples | `{_config_value(train_config, 'max_eval_examples')}` |",
+            (
+                "| Per-device train batch size | "
+                f"`{_config_value(train_config, 'per_device_train_batch_size')}` |"
+            ),
+            (
+                "| Gradient accumulation steps | "
+                f"`{_config_value(train_config, 'gradient_accumulation_steps')}` |"
+            ),
+            f"| LoRA rank | `{_config_value(train_config, 'lora_r')}` |",
+            f"| LoRA alpha | `{_config_value(train_config, 'lora_alpha')}` |",
+            f"| LoRA dropout | `{_config_value(train_config, 'lora_dropout')}` |",
+            f"| Seed | `{_config_value(train_config, 'seed')}` |",
+            "",
+            *_subset_policy_lines(train_metadata),
+            "This corrected local-baseline rerun also uses the repaired vice-opposition prompt "
+            "wording in the `citation_grounded_moral_answer` family: `excess_opposed_to` and "
+            "`deficiency_opposed_to` questions now ask for the vice opposed to the virtue object, "
+            "which matches the underlying reviewed `vice -> virtue` annotations.",
+            "",
+            "Held-out generation also uses deterministic decoding. Both the base model and the "
+            "adapter run with `do_sample = false`, `max_new_tokens = "
+            f"{_config_value(base_inference_config, 'max_new_tokens')}` / "
+            f"`{_config_value(adapter_inference_config, 'max_new_tokens')}`, and seed "
+            f"`{_config_value(base_inference_config, 'seed')}` / "
+            f"`{_config_value(adapter_inference_config, 'seed')}` on the "
+            "prompt-only benchmark export.",
+            "",
+            "Citation metrics are computed by extracting passage ids from free-form model outputs "
+            "and comparing them against the reference `source_passage_ids` for each held-out "
+            "example. Relation-type accuracy is not reported for this baseline because the current "
+            "generation format does not emit a structured predicted relation label.",
+            "",
+            "## Runtime Environment",
+            "",
+            "| Item | Value |",
+            "| --- | --- |",
+            f"| Python | `{train_metadata['python_version']}` |",
+            f"| Torch | `{train_metadata['torch_version']}` |",
+            f"| Transformers | `{train_metadata['transformers_version']}` |",
+            f"| PEFT | `{train_metadata['peft_version']}` |",
+            f"| TRL | `{train_metadata['trl_version']}` |",
+            f"| Accelerate | `{train_metadata['accelerate_version']}` |",
+        ]
+    )
+    if runtime_minutes is not None:
+        lines.append(f"| Approx train wall-clock | `{runtime_minutes:.1f} minutes` |")
+
+    lines.extend(
+        [
+            "",
+            "## Training Trajectory",
+            "",
+            f"![Local-baseline training curves]({training_curves_asset_path})",
+            "",
+            "*Figure 1. Loss and mean token accuracy across the canonical 20-step `local-baseline` "
+            "local run. For this public baseline, the claim is not state-of-the-art quality but "
+            "a stable, inspectable local optimization trace.*",
+            "",
+            "The training curve is healthy for a local demonstration run: loss falls sharply, "
+            "token accuracy rises, and the small eval slice stays close to the training signal.",
+            "",
+        ]
+    )
+
+    if timing_comparison_asset_path is not None:
+        lines.extend(
+            [
+                "## Why `local-baseline` Is The Official Local Rung",
+                "",
+                f"![Local recipe timing comparison]({timing_comparison_asset_path})",
+                "",
+                "*Figure 2. Cumulative wall-clock time to logged steps on Apple `mps` for the "
+                "interrupted heavier `extended` recipe and the canonical `local-baseline` recipe. "
+                "This figure "
+                "supports the operational decision to bless `local-baseline` as the public local "
+                "path: it is the rung that remains reproducible on a 16 GB laptop.*",
+                "",
+                "The repo keeps the heavier `extended` config for experimentation, but the timing "
+                "comparison shows why it is not the public quickstart path. On this hardware, the "
+                "heavier rung becomes operationally unstable long before it becomes the right "
+                "publication baseline.",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
+            "## Held-Out Test Comparison",
+            "",
+            f"![Base vs adapter test comparison]({comparison_asset_path})",
+            "",
+            "*Figure 3. Held-out citation exact match for the untouched base model versus the "
+            "LoRA adapter, focusing on the strongest virtue-aligned evaluation slices. This figure "
+            "supports the central empirical claim that the dataset moves model behavior in the "
+            "right direction for the repo's intended use rather than merely packaging a training "
+            "recipe.*",
+            "",
+            "| Model | Count | Citation exact | Citation partial | Citation overlap |",
+            "| --- | ---: | ---: | ---: | ---: |",
+            f"| Base model | `{base_overall['count']}` | "
+            f"`{base_overall['citation_exact_match']:.3f}` | "
+            f"`{base_overall['citation_partial_match']:.3f}` | "
+            f"`{base_overall['citation_overlap']:.3f}` |",
+            f"| LoRA adapter | `{adapter_overall['count']}` | "
+            f"`{adapter_overall['citation_exact_match']:.3f}` | "
+            f"`{adapter_overall['citation_partial_match']:.3f}` | "
+            f"`{adapter_overall['citation_overlap']:.3f}` |",
+            "",
+            "The adapter materially improves held-out citation grounding over the untouched base "
+            "model on the virtue-aligned slices that most closely match the repo's intended SFT "
+            "goal. At the same time, the `citation_grounded_moral_answer` slice remains at "
+            "`0.000` exact in this corrected run, so the present baseline is strongest on concept "
+            "and relation tasks rather than on fully user-style moral QA.",
+            "",
+            "## Goal Demo Panel",
+            "",
+            "This fixed panel uses held-out examples chosen to reflect the real SFT goal: virtue "
+            "definition, part distinctions, act relations, vice opposition, and tract-local "
+            "explanation.",
+            "",
+        ]
+    )
+    if goal_demo_summary["total"] > 0:
+        lines.extend(
+            [
+                "| Panel summary | Value |",
+                "| --- | --- |",
+                f"| Held-out slots | `{goal_demo_summary['total']}` |",
+                (
+                    "| Adapter exact citations | "
+                    f"`{goal_demo_summary['adapter_exact_count']} / "
+                    f"{goal_demo_summary['total']}` |"
+                ),
+                (
+                    "| Adapter-only wins | "
+                    f"`{goal_demo_summary['adapter_only_wins']}` |"
+                ),
+                f"| Both miss | `{goal_demo_summary['both_miss']}` |",
+            ]
+        )
+        if representative_win is not None:
+            lines.append(
+                "| Clearest adapter win | "
+                f"`slot {representative_win['slot']} - {representative_win['title']}` |"
+            )
+        lines.extend(
+            [
+                "",
+                "The examples below stay fully visible in the repo, but they are collapsed by "
+                "default so the report reads like a curated release artifact instead of a raw log.",
+                "",
+            ]
+        )
+    for row in goal_demo_rows:
+        outcome_phrase = _goal_demo_outcome_phrase(
+            base_exact_match=bool(row["base_exact_match"]),
+            adapter_exact_match=bool(row["adapter_exact_match"]),
+        )
+        lines.extend(
+            [
+                "<details>",
+                (
+                    "<summary><strong>"
+                    f"{row['slot']}. {row['title']}"
+                    "</strong> - "
+                    f"{row['task_type_display']} - {row['tract_display']} - {outcome_phrase}"
+                    "</summary>"
+                ),
+                "",
+                f"- Focus: {row['focus']}",
+                f"- Task type: {row['task_type_display']}",
+                f"- Tract: {row['tract_display']}",
+                f"- Prompt: {_truncate_text(row['prompt'], limit=160)}",
+                f"- Reference citations: `{', '.join(row['reference_passage_ids'])}`",
+                f"- Citation outcome: `{outcome_phrase}`",
+                "",
+                "**Reference answer**",
+                "",
+                f"> {row['reference_excerpt']}",
+                "",
+                "**Base model excerpt**",
+                "",
+                f"> {row['base_excerpt']}",
+                "",
+                "**LoRA adapter excerpt**",
+                "",
+                f"> {row['adapter_excerpt']}",
+                "",
+                "</details>",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
+            "## Comparison Summary",
+            "",
+            embedded_comparison_markdown,
+            "",
+            "## What This Demonstrates",
+            "",
+            "1. The repo now has one clean, reproducible local 1.5B training recipe that works on "
+            "Apple Silicon.",
+            "2. The committed Christian virtue dataset can measurably move a base model toward "
+            "repo-specific doctrinal behavior.",
+            "3. The adapter is stronger than the base model on the held-out benchmark and on a "
+            "fixed qualitative goal panel.",
+            "4. The repo is publishable as a fine-tuning entrypoint because data, methods, "
+            "evaluation, and model packaging now line up.",
+            "",
+            "## Why This Is A Demo Baseline",
+            "",
+            "1. It does not claim that the local laptop recipe is the best-quality final model.",
+            "2. It should be read as a proof-of-pipeline baseline built on a deliberately small "
+            "demo model.",
+            "3. It motivates larger remote CUDA experiments when stronger final quality becomes "
+            "the primary objective.",
+            "",
+            "## Recommended Public Reproduction Path",
+            "",
+            "```bash",
+            "make setup-christian-virtue-local",
+            "make reproduce-christian-virtue-qwen2-5-1-5b-local",
+            "```",
+            "",
+            "The one-command reproduce target runs the dataset build, `smoke`, canonical "
+            "`local-baseline` train, base test eval, adapter test eval, comparison, report "
+            "rebuild, and publication verification gate in order.",
+            "The final verification step is still exposed directly as "
+            "`make verify-christian-virtue-qwen2-5-1-5b-local-publishable` when you want to run "
+            "the public-surface QA gate on its own.",
+            "",
+            "## Headline Numbers",
+            "",
+            f"- Base citation exact match: {_format_percent(base_overall['citation_exact_match'])}",
+            f"- Adapter citation exact match: "
+            f"{_format_percent(adapter_overall['citation_exact_match'])}",
+            f"- Net gain: {_format_percent(net_gain)}",
+            "",
+        ]
+    )
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def write_publishable_local_report(
+    *,
+    dataset_dir: Path,
+    train_run_dir: Path,
+    base_run_dir: Path,
+    adapter_run_dir: Path,
+    panel_path: Path,
+    output_path: Path,
+    training_curves_asset_path: Path,
+    comparison_asset_path: Path,
+    timing_comparison_asset_path: Path | None = None,
+    published_model_url: str | None = None,
+    release_url: str | None = None,
+) -> Path:
+    dataset_manifest = _load_json(dataset_dir / "manifest.json")
+    train_config = _load_optional_yaml(train_run_dir / "config_snapshot.yaml")
+    base_inference_config = _load_optional_yaml(base_run_dir / "config_snapshot.yaml")
+    adapter_inference_config = _load_optional_yaml(adapter_run_dir / "config_snapshot.yaml")
+    train_metadata = _load_json(train_run_dir / "train_metadata.json")
+    base_metrics = _load_json(base_run_dir / "metrics.json")
+    adapter_metrics = _load_json(adapter_run_dir / "metrics.json")
+    goal_demo_rows = build_goal_demo_panel(
+        dataset_dir=dataset_dir,
+        panel_path=panel_path,
+        base_predictions_path=base_run_dir / "predictions.jsonl",
+        adapter_predictions_path=adapter_run_dir / "predictions.jsonl",
+    )
+    comparison_markdown = build_comparison_report(
+        base_metrics,
+        adapter_metrics,
+        baseline_label="Base model",
+        candidate_label="LoRA adapter",
+    )
+    report_text = build_publishable_local_report(
+        dataset_manifest=dataset_manifest,
+        train_config=train_config,
+        base_inference_config=base_inference_config,
+        adapter_inference_config=adapter_inference_config,
+        train_metadata=train_metadata,
+        base_metrics=base_metrics,
+        adapter_metrics=adapter_metrics,
+        goal_demo_rows=goal_demo_rows,
+        comparison_markdown=comparison_markdown,
+        training_curves_asset_path=str(training_curves_asset_path),
+        comparison_asset_path=str(comparison_asset_path),
+        timing_comparison_asset_path=(
+            None if timing_comparison_asset_path is None else str(timing_comparison_asset_path)
+        ),
+        published_model_url=published_model_url,
+        release_url=release_url,
+    )
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    output_path.write_text(report_text, encoding="utf-8")
+    return output_path

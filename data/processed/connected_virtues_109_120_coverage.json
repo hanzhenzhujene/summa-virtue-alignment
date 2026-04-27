@@ -1,0 +1,353 @@
+{
+  "normalization_risk_questions": [
+    109,
+    110,
+    111,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 72,
+      "candidate_relation_count": 10,
+      "cluster_usage": {
+        "self-presentation": 2
+      },
+      "major_concepts": [
+        "Boasting",
+        "Irony",
+        "Justice",
+        "Self-Presentation",
+        "Truth"
+      ],
+      "parse_status": "partial",
+      "passage_count": 14,
+      "question_id": "st.ii-ii.q109",
+      "question_number": 109,
+      "question_title": "Truth",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 12,
+      "schema_extension_usage": {
+        "concerns_self_presentation": 1
+      },
+      "subcluster": "self_presentation",
+      "unresolved_ambiguity_count": 36
+    },
+    {
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 38,
+      "cluster_usage": {
+        "self-presentation": 4
+      },
+      "major_concepts": [
+        "Boasting",
+        "Irony",
+        "Lying",
+        "Self-Presentation",
+        "Truth"
+      ],
+      "parse_status": "partial",
+      "passage_count": 18,
+      "question_id": "st.ii-ii.q110",
+      "question_number": 110,
+      "question_title": "The vices opposed to truth, and first of lying",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 14,
+      "schema_extension_usage": {},
+      "subcluster": "self_presentation",
+      "unresolved_ambiguity_count": 9
+    },
+    {
+      "candidate_mention_count": 27,
+      "candidate_relation_count": 12,
+      "cluster_usage": {
+        "self-presentation": 8
+      },
+      "major_concepts": [
+        "Dissimulation",
+        "Hypocrisy",
+        "Lying",
+        "Self-Presentation",
+        "Truth"
+      ],
+      "parse_status": "partial",
+      "passage_count": 14,
+      "question_id": "st.ii-ii.q111",
+      "question_number": 111,
+      "question_title": "Dissimulation and hypocrisy",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 8,
+      "reviewed_structural_editorial_count": 13,
+      "schema_extension_usage": {
+        "concerns_self_presentation": 2
+      },
+      "subcluster": "self_presentation",
+      "unresolved_ambiguity_count": 10
+    },
+    {
+      "candidate_mention_count": 16,
+      "candidate_relation_count": 8,
+      "cluster_usage": {
+        "self-presentation": 3
+      },
+      "major_concepts": [
+        "Boasting",
+        "Lying",
+        "Self-Presentation",
+        "Truth"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q112",
+      "question_number": 112,
+      "question_title": "Boasting",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_self_presentation": 1
+      },
+      "subcluster": "self_presentation",
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 7,
+      "candidate_relation_count": 3,
+      "cluster_usage": {
+        "self-presentation": 4
+      },
+      "major_concepts": [
+        "Boasting",
+        "Irony",
+        "Lying",
+        "Self-Presentation",
+        "Truth"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q113",
+      "question_number": 113,
+      "question_title": "Irony",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 10,
+      "schema_extension_usage": {
+        "concerns_self_presentation": 1
+      },
+      "subcluster": "self_presentation",
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 19,
+      "candidate_relation_count": 2,
+      "cluster_usage": {
+        "social interaction": 2
+      },
+      "major_concepts": [
+        "Friendliness / Affability",
+        "Justice",
+        "Social Interaction"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q114",
+      "question_number": 114,
+      "question_title": "The friendliness which is called affability",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_social_interaction": 1
+      },
+      "subcluster": "social_interaction",
+      "unresolved_ambiguity_count": 10
+    },
+    {
+      "candidate_mention_count": 18,
+      "candidate_relation_count": 13,
+      "cluster_usage": {
+        "social interaction": 3
+      },
+      "major_concepts": [
+        "Flattery",
+        "Friendliness / Affability",
+        "Social Interaction"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q115",
+      "question_number": 115,
+      "question_title": "Flattery",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 7,
+      "schema_extension_usage": {
+        "concerns_social_interaction": 1
+      },
+      "subcluster": "social_interaction",
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 18,
+      "candidate_relation_count": 8,
+      "cluster_usage": {
+        "social interaction": 3
+      },
+      "major_concepts": [
+        "Flattery",
+        "Friendliness / Affability",
+        "Quarreling",
+        "Social Interaction"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q116",
+      "question_number": 116,
+      "question_title": "Quarreling",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 9,
+      "schema_extension_usage": {
+        "concerns_social_interaction": 1
+      },
+      "subcluster": "social_interaction",
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 73,
+      "candidate_relation_count": 26,
+      "cluster_usage": {
+        "external goods": 3
+      },
+      "major_concepts": [
+        "External Goods",
+        "Giving",
+        "Justice",
+        "Liberality"
+      ],
+      "parse_status": "ok",
+      "passage_count": 25,
+      "question_id": "st.ii-ii.q117",
+      "question_number": 117,
+      "question_title": "Liberality",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 17,
+      "schema_extension_usage": {
+        "concerns_external_goods": 1
+      },
+      "subcluster": "external_goods",
+      "unresolved_ambiguity_count": 18
+    },
+    {
+      "candidate_mention_count": 74,
+      "candidate_relation_count": 40,
+      "cluster_usage": {
+        "external goods": 4
+      },
+      "major_concepts": [
+        "Covetousness",
+        "External Goods",
+        "Liberality",
+        "Retaining"
+      ],
+      "parse_status": "ok",
+      "passage_count": 34,
+      "question_id": "st.ii-ii.q118",
+      "question_number": 118,
+      "question_title": "The vices opposed to liberality, and in the first place, of covetousness",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 16,
+      "schema_extension_usage": {
+        "concerns_external_goods": 1
+      },
+      "subcluster": "external_goods",
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 5,
+      "cluster_usage": {
+        "external goods": 4
+      },
+      "major_concepts": [
+        "Covetousness",
+        "External Goods",
+        "Giving",
+        "Liberality",
+        "Prodigality"
+      ],
+      "parse_status": "ok",
+      "passage_count": 12,
+      "question_id": "st.ii-ii.q119",
+      "question_number": 119,
+      "question_title": "Prodigality",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 13,
+      "schema_extension_usage": {
+        "concerns_external_goods": 1
+      },
+      "subcluster": "external_goods",
+      "unresolved_ambiguity_count": 6
+    },
+    {
+      "candidate_mention_count": 46,
+      "candidate_relation_count": 9,
+      "cluster_usage": {
+        "legal-equity / epikeia": 4
+      },
+      "major_concepts": [
+        "Common Good",
+        "Epikeia / Equity",
+        "Intent of Law",
+        "Justice",
+        "Law",
+        "Letter of the Law"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q120",
+      "question_number": 120,
+      "question_title": "\"Epikeia\" or equity",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 11,
+      "schema_extension_usage": {
+        "corrects_legal_letter": 1,
+        "preserves_intent_of_law": 1
+      },
+      "subcluster": "legal_equity",
+      "unresolved_ambiguity_count": 23
+    }
+  ],
+  "questions_with_subcluster_semantics_risk": [],
+  "summary": {
+    "candidate_mention_count": 466,
+    "candidate_relation_count": 174,
+    "external_goods_relation_count": 11,
+    "legal_equity_relation_count": 4,
+    "passage_count": 165,
+    "question_count": 12,
+    "registered_concepts_used": 23,
+    "reviewed_annotation_count": 182,
+    "reviewed_doctrinal_edge_count": 44,
+    "reviewed_structural_editorial_count": 138,
+    "self_presentation_relation_count": 21,
+    "social_interaction_relation_count": 8
+  },
+  "under_annotated_questions": [
+    109,
+    110,
+    117,
+    118
+  ]
+}

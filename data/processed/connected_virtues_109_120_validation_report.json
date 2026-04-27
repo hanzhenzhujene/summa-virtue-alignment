@@ -1,0 +1,16 @@
+{
+  "candidate_mention_count": 466,
+  "candidate_relation_count": 174,
+  "duplicate_annotation_flags": [],
+  "external_goods_relation_count": 11,
+  "legal_equity_relation_count": 4,
+  "passage_count": 165,
+  "question_count": 12,
+  "reviewed_annotation_count": 182,
+  "reviewed_doctrinal_edge_count": 44,
+  "reviewed_structural_editorial_count": 138,
+  "self_presentation_relation_count": 21,
+  "social_interaction_relation_count": 8,
+  "status": "ok",
+  "unresolved_warnings": []
+}

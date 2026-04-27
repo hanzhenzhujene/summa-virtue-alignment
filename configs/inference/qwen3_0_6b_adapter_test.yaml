@@ -1,0 +1,17 @@
+run_name: christian-virtue-qwen3-0.6b-adapter-test
+model_name_or_path: Qwen/Qwen3-0.6B
+dataset_dir: data/processed/sft/exports/christian_virtue_v1
+split_names:
+  - test
+output_dir: runs/christian_virtue/qwen3_0_6b/adapter_test
+adapter_path: runs/christian_virtue/qwen3_0_6b/proto
+trust_remote_code: false
+load_in_4bit: true
+bnb_4bit_quant_type: nf4
+bnb_4bit_use_double_quant: true
+max_new_tokens: 256
+temperature: 0.0
+top_p: 1.0
+repetition_penalty: 1.0
+do_sample: false
+seed: 17

@@ -1,0 +1,635 @@
+{
+  "normalization_risk_questions": [
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 175,
+      "candidate_relation_count": 60,
+      "major_concepts": [
+        "Cardinal Virtue",
+        "Drink",
+        "Food",
+        "Gift of Fear of the Lord",
+        "Pleasures of Touch",
+        "Reason",
+        "Temperance",
+        "Venereal / Sexual Pleasure",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "drink": 1,
+        "food": 1,
+        "sex": 1
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 34,
+      "question_id": "st.ii-ii.q141",
+      "question_number": 141,
+      "question_title": "Temperance",
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 8,
+      "reviewed_structural_editorial_count": 15,
+      "schema_extension_usage": {
+        "concerns_drink": 1,
+        "concerns_food": 1,
+        "concerns_sexual_pleasure": 1
+      },
+      "subcluster": "temperance_proper",
+      "unresolved_ambiguity_count": 26
+    },
+    {
+      "candidate_mention_count": 77,
+      "candidate_relation_count": 31,
+      "major_concepts": [
+        "Insensibility (Against Temperance)",
+        "Intemperance",
+        "Temperance"
+      ],
+      "matter_domain_usage": {},
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q142",
+      "question_number": 142,
+      "question_title": "The vices opposed to temperance",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {},
+      "subcluster": "temperance_proper",
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 34,
+      "candidate_relation_count": 13,
+      "major_concepts": [
+        "Abstinence",
+        "Chastity",
+        "Continence",
+        "Honesty (Temperance Tract)",
+        "Meekness",
+        "Modesty (General)",
+        "Parts of Temperance (General Taxonomy)",
+        "Purity (Temperance Tract)",
+        "Shamefacedness",
+        "Sobriety",
+        "Temperance"
+      ],
+      "matter_domain_usage": {
+        "continence_incontinence": 1,
+        "drink": 1,
+        "food": 1,
+        "meekness_anger": 1,
+        "modesty_general": 1,
+        "sex": 2
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "integral": 2,
+        "potential": 3,
+        "subjective": 4
+      },
+      "passage_count": 5,
+      "question_id": "st.ii-ii.q143",
+      "question_number": 143,
+      "question_title": "The parts of temperance, in general",
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 9,
+      "reviewed_structural_editorial_count": 11,
+      "schema_extension_usage": {
+        "integral_part_of": 2,
+        "potential_part_of": 3,
+        "subjective_part_of": 4
+      },
+      "subcluster": "general_integral",
+      "unresolved_ambiguity_count": 11
+    },
+    {
+      "candidate_mention_count": 72,
+      "candidate_relation_count": 27,
+      "major_concepts": [
+        "Disgrace",
+        "Shamefacedness"
+      ],
+      "matter_domain_usage": {},
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 21,
+      "question_id": "st.ii-ii.q144",
+      "question_number": 144,
+      "question_title": "Shamefacedness",
+      "reviewed_annotation_count": 1,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {},
+      "subcluster": "general_integral",
+      "unresolved_ambiguity_count": 22
+    },
+    {
+      "candidate_mention_count": 43,
+      "candidate_relation_count": 11,
+      "major_concepts": [
+        "Beauty / Comeliness of Virtue",
+        "Honesty (Temperance Tract)",
+        "Temperance"
+      ],
+      "matter_domain_usage": {},
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "integral": 1
+      },
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q145",
+      "question_number": 145,
+      "question_title": "Honesty",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {
+        "integral_part_of": 1
+      },
+      "subcluster": "general_integral",
+      "unresolved_ambiguity_count": 18
+    },
+    {
+      "candidate_mention_count": 30,
+      "candidate_relation_count": 7,
+      "major_concepts": [
+        "Abstinence",
+        "Food",
+        "Temperance",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "food": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "subjective": 1
+      },
+      "passage_count": 9,
+      "question_id": "st.ii-ii.q146",
+      "question_number": 146,
+      "question_title": "Abstinence",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 4,
+      "schema_extension_usage": {
+        "concerns_food": 1,
+        "subjective_part_of": 1
+      },
+      "subcluster": "food_drink",
+      "unresolved_ambiguity_count": 10
+    },
+    {
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 20,
+      "major_concepts": [
+        "Abstinence",
+        "Fasting",
+        "Food"
+      ],
+      "matter_domain_usage": {
+        "food": 2
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 34,
+      "question_id": "st.ii-ii.q147",
+      "question_number": 147,
+      "question_title": "Fasting",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 11,
+      "schema_extension_usage": {
+        "act_of": 1,
+        "concerns_food": 1
+      },
+      "subcluster": "food_drink",
+      "unresolved_ambiguity_count": 14
+    },
+    {
+      "candidate_mention_count": 53,
+      "candidate_relation_count": 26,
+      "major_concepts": [
+        "Abstinence",
+        "Food",
+        "Gluttony",
+        "Vice"
+      ],
+      "matter_domain_usage": {
+        "food": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 25,
+      "question_id": "st.ii-ii.q148",
+      "question_number": 148,
+      "question_title": "Gluttony",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_food": 1
+      },
+      "subcluster": "food_drink",
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 4,
+      "major_concepts": [
+        "Drink",
+        "Sobriety",
+        "Temperance",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "drink": 3
+      },
+      "parse_status": "partial",
+      "part_taxonomy_usage": {
+        "subjective": 1
+      },
+      "passage_count": 13,
+      "question_id": "st.ii-ii.q149",
+      "question_number": 149,
+      "question_title": "Sobriety",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {
+        "concerns_drink": 1,
+        "subjective_part_of": 1
+      },
+      "subcluster": "food_drink",
+      "unresolved_ambiguity_count": 14
+    },
+    {
+      "candidate_mention_count": 20,
+      "candidate_relation_count": 14,
+      "major_concepts": [
+        "Drink",
+        "Drunkenness",
+        "Sobriety",
+        "Vice"
+      ],
+      "matter_domain_usage": {
+        "drink": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q150",
+      "question_number": 150,
+      "question_title": "Drunkenness",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {
+        "concerns_drink": 1
+      },
+      "subcluster": "food_drink",
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 36,
+      "candidate_relation_count": 11,
+      "major_concepts": [
+        "Chastity",
+        "Purity (Temperance Tract)",
+        "Temperance",
+        "Venereal / Sexual Pleasure",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "sex": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "subjective": 1
+      },
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q151",
+      "question_number": 151,
+      "question_title": "Chastity",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 6,
+      "schema_extension_usage": {
+        "concerns_sexual_pleasure": 1,
+        "subjective_part_of": 1
+      },
+      "subcluster": "sexual",
+      "unresolved_ambiguity_count": 13
+    },
+    {
+      "candidate_mention_count": 45,
+      "candidate_relation_count": 13,
+      "major_concepts": [
+        "Chastity",
+        "Venereal / Sexual Pleasure",
+        "Virginity",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "sex": 1
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 23,
+      "question_id": "st.ii-ii.q152",
+      "question_number": 152,
+      "question_title": "Virginity",
+      "reviewed_annotation_count": 1,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {},
+      "subcluster": "sexual",
+      "unresolved_ambiguity_count": 14
+    },
+    {
+      "candidate_mention_count": 49,
+      "candidate_relation_count": 24,
+      "major_concepts": [
+        "Chastity",
+        "Lust",
+        "Venereal / Sexual Pleasure",
+        "Vice"
+      ],
+      "matter_domain_usage": {
+        "sex": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 21,
+      "question_id": "st.ii-ii.q153",
+      "question_number": 153,
+      "question_title": "Lust",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 7,
+      "schema_extension_usage": {
+        "concerns_sexual_pleasure": 1
+      },
+      "subcluster": "sexual",
+      "unresolved_ambiguity_count": 13
+    },
+    {
+      "candidate_mention_count": 96,
+      "candidate_relation_count": 47,
+      "major_concepts": [
+        "Adultery",
+        "Incest",
+        "Lust",
+        "Nocturnal Pollution",
+        "Parts / Species of Lust",
+        "Rape",
+        "Sacrilege (Lust Tract)",
+        "Seduction",
+        "Simple Fornication",
+        "Venereal Touches / Kisses",
+        "Vice Against Nature"
+      ],
+      "matter_domain_usage": {
+        "sex": 7
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 56,
+      "question_id": "st.ii-ii.q154",
+      "question_number": 154,
+      "question_title": "The parts of Lust",
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 7,
+      "reviewed_structural_editorial_count": 21,
+      "schema_extension_usage": {},
+      "subcluster": "sexual",
+      "unresolved_ambiguity_count": 18
+    },
+    {
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 17,
+      "major_concepts": [
+        "Continence",
+        "Incontinence",
+        "Temperance",
+        "Venereal / Sexual Pleasure"
+      ],
+      "matter_domain_usage": {
+        "continence_incontinence": 2
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "potential": 1
+      },
+      "passage_count": 18,
+      "question_id": "st.ii-ii.q155",
+      "question_number": 155,
+      "question_title": "Continence",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 7,
+      "schema_extension_usage": {
+        "potential_part_of": 1
+      },
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 14
+    },
+    {
+      "candidate_mention_count": 58,
+      "candidate_relation_count": 19,
+      "major_concepts": [
+        "Anger",
+        "Continence",
+        "Incontinence",
+        "Sin"
+      ],
+      "matter_domain_usage": {
+        "continence_incontinence": 3,
+        "meekness_anger": 1
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q156",
+      "question_number": 156,
+      "question_title": "Incontinence",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 7,
+      "schema_extension_usage": {
+        "concerns_anger": 1
+      },
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 4
+    },
+    {
+      "candidate_mention_count": 90,
+      "candidate_relation_count": 37,
+      "major_concepts": [
+        "Anger",
+        "Clemency",
+        "Meekness",
+        "Punishment",
+        "Temperance",
+        "Virtue"
+      ],
+      "matter_domain_usage": {
+        "clemency_cruelty": 3,
+        "meekness_anger": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "potential": 2
+      },
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q157",
+      "question_number": 157,
+      "question_title": "Clemency and meekness",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 10,
+      "schema_extension_usage": {
+        "concerns_anger": 1,
+        "potential_part_of": 2
+      },
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 14
+    },
+    {
+      "candidate_mention_count": 216,
+      "candidate_relation_count": 70,
+      "major_concepts": [
+        "Anger",
+        "Anger (Vice-Level)",
+        "Meekness",
+        "Vice"
+      ],
+      "matter_domain_usage": {
+        "meekness_anger": 3
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 34,
+      "question_id": "st.ii-ii.q158",
+      "question_number": 158,
+      "question_title": "Anger",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 11,
+      "schema_extension_usage": {
+        "concerns_anger": 1
+      },
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 11,
+      "candidate_relation_count": 3,
+      "major_concepts": [
+        "Clemency",
+        "Cruelty",
+        "Savagery / Brutality",
+        "Vice"
+      ],
+      "matter_domain_usage": {
+        "clemency_cruelty": 2
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {},
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q159",
+      "question_number": 159,
+      "question_title": "Cruelty",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "schema_extension_usage": {},
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 27,
+      "candidate_relation_count": 14,
+      "major_concepts": [
+        "Modesty (General)",
+        "Outward Moderation",
+        "Temperance"
+      ],
+      "matter_domain_usage": {
+        "modesty_general": 2
+      },
+      "parse_status": "ok",
+      "part_taxonomy_usage": {
+        "potential": 1
+      },
+      "passage_count": 7,
+      "question_id": "st.ii-ii.q160",
+      "question_number": 160,
+      "question_title": "Modesty",
+      "reviewed_annotation_count": 2,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "schema_extension_usage": {
+        "concerns_outward_moderation": 1,
+        "potential_part_of": 1
+      },
+      "subcluster": "potential_parts",
+      "unresolved_ambiguity_count": 6
+    }
+  ],
+  "questions_with_matter_domain_risk": [],
+  "questions_with_part_taxonomy_risk": [],
+  "summary": {
+    "candidate_mention_count": 1258,
+    "candidate_relation_count": 468,
+    "clemency_cruelty_relation_count": 5,
+    "continence_incontinence_relation_count": 6,
+    "drink_related_relation_count": 8,
+    "food_related_relation_count": 10,
+    "integral_part_relation_count": 2,
+    "meekness_anger_relation_count": 8,
+    "modesty_general_relation_count": 3,
+    "passage_count": 407,
+    "potential_part_relation_count": 7,
+    "question_count": 20,
+    "registered_concepts_used": 48,
+    "reviewed_annotation_count": 234,
+    "reviewed_doctrinal_edge_count": 67,
+    "reviewed_structural_editorial_count": 166,
+    "sex_related_relation_count": 17,
+    "subjective_part_relation_count": 7,
+    "temperance_phase1_synthesis_edge_count": 67,
+    "temperance_phase1_synthesis_node_count": 163
+  },
+  "under_annotated_questions": [
+    144,
+    145,
+    147,
+    152,
+    155,
+    158
+  ]
+}

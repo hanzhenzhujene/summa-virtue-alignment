@@ -1,0 +1,254 @@
+# Scripts Guide
+
+This directory contains both public reproduction entrypoints and maintainer-oriented corpus
+workflow helpers. If you are new to the repo, start from `Makefile` and this page rather than
+calling random scripts directly.
+
+## Public Quickstart Surface
+
+This repo exposes two public script surfaces:
+
+- the strongest repo-local result: the completed `full-corpus` Christian virtue run
+- the smallest published package: the lighter `local-baseline` release artifact
+
+These are the scripts behind those public entrypoints:
+
+- `setup_christian_virtue_local.sh`
+  - creates the pinned Apple-Silicon virtual environment from
+    `requirements/local-mps-py312.lock.txt`
+- `reproduce_christian_virtue_qwen2_5_1_5b_local.sh`
+  - runs the full canonical local loop from dataset build through verification
+  - prints the key output paths for the curated report, local adapter package, and latest run dirs
+- `run_christian_virtue_qwen2_5_1_5b_local_train.sh`
+  - launches `smoke`, `local-baseline`, `full-corpus`, `citation-frontier`, `accuracy-first`,
+    `justice-guarded`, or the heavier experimental `extended` local training
+  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes automatically export the
+    MPS safety env overrides that were required for the successful rerun
+- `chat_christian_virtue_model.py`
+  - opens an interactive local chat session against a base model or adapter
+  - the default path talks directly to the completed `full-corpus` LoRA adapter and writes
+    timestamped transcripts under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+- `gradio_christian_virtue_chat.py`
+  - launches the recommended local Gradio chat UI for the completed `full-corpus` LoRA adapter
+  - reuses the same adapter/runtime path and writes timestamped transcripts under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat/`
+- `deploy_christian_virtue_chat_space.py`
+  - builds and uploads the online Gradio chat bundle to
+    `JennyZhu0822/summa-virtue-chat` on Hugging Face Spaces
+  - keeps the public online chat on the same small-model `Qwen/Qwen2.5-1.5B-Instruct` plus
+    full-corpus LoRA path rather than drifting to a different hosted backend
+- `smoke_test_christian_virtue_chat.py`
+  - runs a lightweight qualitative smoke panel over the local Christian virtue chat layer
+  - checks definitions, comparisons, graph-native relation questions, and practical-moral prompts
+  - writes timestamped reports under `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_smoke/`
+- `run_christian_virtue_qwen2_5_1_5b_local_base_eval.sh`
+  - generates and evaluates held-out base-model predictions
+- `run_christian_virtue_qwen2_5_1_5b_local_adapter_eval.sh`
+  - generates and evaluates held-out adapter predictions for the canonical baseline, the
+    long-running full-corpus experiment, the citation-frontier experiment, the accuracy-first
+    hybrid, or the justice-guarded follow-up
+  - the `full-corpus`, `accuracy-first`, and `justice-guarded` modes also reuse those MPS safety
+    env overrides during generation and evaluation
+- `run_christian_virtue_qwen2_5_1_5b_local_compare.sh`
+  - compares the canonical local base and adapter runs, or compares local-baseline against the full-corpus, citation-frontier, accuracy-first, or justice-guarded adapters
+- `run_aquinas_virtue_grounding_probe.py`
+  - runs the position-neutral held-out Aquinas grounding probe with deterministic citation,
+    subject/object, relation, category-language, and generic-drift scoring
+- `run_christian_virtue_qwen2_5_1_5b_aquinas_grounding_probe.sh`
+  - wraps that probe for the untouched base model or the final full-corpus LoRA
+  - preserves the canonical held-out prompt by default and verifies cross-worktree adapter
+    provenance with `ADAPTER_PATH`, `EXPECTED_ADAPTER_RUN_ID`, and `EXPECTED_ADAPTER_SHA256`
+- `run_virtuebench_v2_local.py`
+  - runs VirtueBench V2 with the repo's local MPS-compatible Hugging Face + optional LoRA loader
+  - writes benchmark inputs, predictions, metrics, reports, manifests, environment snapshots, and resumable partial predictions
+- `run_christian_virtue_qwen2_5_1_5b_virtuebench_v2.sh`
+  - wraps the VirtueBench V2 local runner for the untouched `Qwen/Qwen2.5-1.5B-Instruct` model
+    or the final full-corpus LoRA adapter
+  - pins the upstream VirtueBench source checkout and verifies cross-worktree adapter provenance
+  - accepts `POSITION_MODE=paired` for counterbalanced A/B evaluation
+- `build_christian_virtue_virtuebench_v2_diagnostic_report.py`
+  - compares the latest random-order and paired-counterbalanced VirtueBench V2 runs
+  - writes a local diagnostic markdown report, comparison metrics JSON, and SVG charts under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/`
+  - treats paired counterbalancing as the safer interpretation whenever answer-position bias is
+    visible
+- `run_external_candidate_benchmarks.py`
+  - runs a compact, objectively scored external benchmark slate selected for Christian,
+    Chinese, Chinese-Christian/religion, and moral-reasoning relevance
+  - writes full candidate inputs, predictions, metrics, reports, and resumable partial
+    predictions under timestamped `runs/` directories
+- `run_christian_virtue_qwen2_5_1_5b_external_candidate_benchmarks.sh`
+  - wraps that slate for the untouched base model or the final full-corpus LoRA
+  - verifies the cross-worktree adapter with `EXPECTED_ADAPTER_RUN_ID` and
+    `EXPECTED_ADAPTER_SHA256` before any LoRA run
+- `compare_external_candidate_benchmarks.py`
+  - compares the latest base and LoRA external candidate runs
+  - writes an improvement-focused markdown report, CSV table, comparison JSON, and SVG delta
+    chart under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/external_candidate_benchmark_compare/`
+- `build_christian_virtue_benchmark_packet.py`
+  - assembles the benchmark packet from held-out citation metrics, Aquinas grounding probe metrics,
+    and VirtueBench diagnostics
+  - writes a timestamped report, CSV table, JSON metrics packet, and delta SVG under
+    `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/`
+  - if canonical metrics or the final adapter live in another worktree, set
+    `CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT` and
+    `CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT` rather than editing the script
+- `build_christian_virtue_benchmark_improvements.py`
+  - turns the latest benchmark packet into committed Markdown and SVG assets for
+    README/public-report use
+  - writes the benchmark improvement readout, benchmark-shape examples, and the paired-bar chart under
+    `docs/reports/`
+- `launch_christian_virtue_qwen2_5_1_5b_full_corpus_loop.sh`
+  - launches the full-corpus train → held-out adapter eval → comparison loop in the background
+  - records a launch log, PID file, and the active run-family root so long MPS runs can continue outside the terminal session
+- `run_christian_virtue_qwen2_5_1_5b_citation_frontier_audit.sh`
+  - audits the hardest `citation_grounded_moral_answer` slice for the latest citation-frontier adapter
+- `audit_christian_virtue_frontier.py`
+  - runs a fast frontier audit on the remaining hard slice, `citation_grounded_moral_answer`
+  - writes a compact markdown report and SVG figure that explain the next logical research step
+- `build_christian_virtue_citation_frontier_report.py`
+  - assembles the curated markdown report for the completed citation-frontier follow-up
+  - summarizes both the real gain and the remaining doctrinal tradeoffs from that run
+- `build_christian_virtue_full_corpus_report.py`
+  - assembles the curated markdown report for the completed full-corpus local run
+  - summarizes the strongest held-out doctrinal and explanatory gains from the full reviewed split
+- `build_christian_virtue_justice_guarded_report.py`
+  - assembles the curated markdown report for the justice-guarded follow-up
+  - captures the recovery in `justice_core` / `strong_textual_inference` together with the remaining moral-QA gap
+
+## Reviewer Command Path
+
+| Goal | Command | Expected output |
+|---|---|---|
+| Verify the public release surface | `make public-release-check` | lint, type checks, publication-surface coherence, and link checks |
+| Try the public chat layer quickly | `make smoke-test-christian-virtue-chat` | timestamped smoke report under `runs/.../full_corpus_chat_smoke/` |
+| Inspect the full-corpus assistant locally | `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus` | Gradio UI using the full-corpus LoRA config |
+| Rebuild the benchmark improvement readout | `make report-christian-virtue-qwen2-5-1-5b-benchmark-improvements` | committed Markdown/SVG readout assets under `docs/reports/` |
+| Rerun the strongest local experiment | `make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop` | timestamped train/eval/compare artifacts under `runs/` |
+
+## Command Reference
+
+Use these entrypoints instead of calling lower-level modules directly:
+
+```bash
+make setup-christian-virtue-local
+make smoke-test-christian-virtue-chat
+make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus
+make deploy-christian-virtue-chat-space
+make chat-christian-virtue-qwen2-5-1-5b-full-corpus
+make launch-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+make run-christian-virtue-qwen2-5-1-5b-full-corpus-loop
+make report-christian-virtue-qwen2-5-1-5b-full-corpus
+make aquinas-grounding-probe-qwen2-5-1-5b-base
+make aquinas-grounding-probe-qwen2-5-1-5b-full-corpus
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 make virtuebench-v2-qwen2-5-1-5b-base
+POSITION_MODE=paired LIMIT_PER_CELL=5 VIRTUEBENCH_RUNS=1 make virtuebench-v2-qwen2-5-1-5b-full-corpus
+make report-virtuebench-v2-qwen2-5-1-5b-diagnostic
+MAX_EXAMPLES_PER_BENCHMARK=60 make external-candidates-qwen2-5-1-5b-base
+MAX_EXAMPLES_PER_BENCHMARK=60 \
+  ADAPTER_PATH=/absolute/path/to/full_corpus/latest \
+  EXPECTED_ADAPTER_RUN_ID=20260422_223349 \
+  EXPECTED_ADAPTER_SHA256=0d627a8ebbdd1a281b7423c2ab11a52d5204e8e2e6a374452e04787730283ecb \
+  make external-candidates-qwen2-5-1-5b-full-corpus
+make report-external-candidates-qwen2-5-1-5b-improvements
+CHRISTIAN_VIRTUE_BENCHMARK_METRICS_ROOT=/absolute/path/to/qwen2_5_1_5b_instruct \
+  CHRISTIAN_VIRTUE_FINAL_ADAPTER_RUN_ROOT=/absolute/path/to/full_corpus/20260422_223349 \
+  make report-christian-virtue-qwen2-5-1-5b-benchmark-packet
+make report-christian-virtue-qwen2-5-1-5b-benchmark-improvements
+make reproduce-christian-virtue-qwen2-5-1-5b-local
+make public-release-check
+make audit-christian-virtue-qwen2-5-1-5b-local-frontier
+make run-christian-virtue-qwen2-5-1-5b-citation-frontier-loop
+make report-christian-virtue-qwen2-5-1-5b-citation-frontier
+make run-christian-virtue-qwen2-5-1-5b-accuracy-first-loop
+make run-christian-virtue-qwen2-5-1-5b-justice-guarded-loop
+make report-christian-virtue-qwen2-5-1-5b-justice-guarded
+```
+
+If you are new to the repo, use the first three commands in that order:
+
+1. `make setup-christian-virtue-local`
+2. `make smoke-test-christian-virtue-chat`
+3. `make gradio-chat-christian-virtue-qwen2-5-1-5b-full-corpus`
+
+If you want the public online chat surface instead of only the local one, run:
+
+4. `make deploy-christian-virtue-chat-space`
+
+The smoke command is deterministic by default, so it is fast enough to run often while you keep
+improving the chat layer. If you want the full live model path instead, run:
+
+```bash
+.venv/bin/python scripts/smoke_test_christian_virtue_chat.py --with-model
+```
+
+After the strongest repo-local run or the smaller published-package path completes, the most
+important outputs are:
+
+- `docs/reports/christian_virtue_qwen2_5_1_5b_full_corpus_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_citation_frontier_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_justice_guarded_citation_repair_report.md`
+- `docs/reports/christian_virtue_qwen2_5_1_5b_accuracy_first_hybrid_report.md`
+- `docs/reports/christian_virtue_benchmark_packet_summary.md`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/benchmark_packet/latest/report.md`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/virtuebench_v2_diagnostic_report/latest/report.md`
+- `artifacts/christian_virtue/qwen2_5_1_5b_instruct/local_baseline_adapter/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest`
+
+For the longer full-corpus local experiment, the main monitoring surfaces are:
+
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.log`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/launch_latest.pid`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus/latest/`
+- `runs/christian_virtue/qwen2_5_1_5b_instruct/full_corpus_chat_smoke/latest/`
+
+For training runs, inspect `subset_summary.json` inside the run directory if you want the exact
+deterministic task/tract mix that was selected for a capped local experiment.
+
+## Dataset, Eval, Report, And Publication
+
+These scripts define the public SFT workflow and are the main ones to read if you want to swap in
+your own model or adapt the method:
+
+- `build_christian_virtue_sft_dataset.py`
+- `train_christian_virtue_qlora.py`
+- `generate_christian_virtue_predictions.py`
+- `eval_christian_virtue_sft.py`
+- `compare_christian_virtue_runs.py`
+- `build_christian_virtue_local_report.py`
+- `build_christian_virtue_full_corpus_report.py`
+- `build_christian_virtue_citation_frontier_report.py`
+- `build_christian_virtue_justice_guarded_report.py`
+- `publish_christian_virtue_adapter.py`
+- `verify_christian_virtue_publication.py`
+- `audit_christian_virtue_frontier.py`
+- `smoke_test_christian_virtue_sft.py`
+- `smoke_test_christian_virtue_chat.py`
+
+## Remote Small-Model CUDA Loop
+
+These wrapper scripts support the smaller remote-GPU research loop:
+
+- `preflight_christian_virtue_gpu.py`
+- `run_christian_virtue_small_train.sh`
+- `run_christian_virtue_small_base_eval.sh`
+- `run_christian_virtue_small_adapter_eval.sh`
+- `run_christian_virtue_small_loop.sh`
+- `christian_virtue_small_common.sh`
+
+This path is useful for cheaper CUDA experiments, but it is not the main public result surface for
+the repo.
+
+## Corpus And Review Workflow Helpers
+
+The remaining `build_*_block.py` and `build_*_review_queue.py` scripts are tract-maintenance
+utilities for the evidence and review workflow. They are important to the repo, but they are not
+the first scripts an outsider should start with when evaluating the SFT deliverable.
+
+If you need orientation for those surfaces, read:
+
+- [docs/repository_map.md](../docs/repository_map.md)
+- [docs/full_corpus_workflow.md](../docs/full_corpus_workflow.md)
+- [docs/review_queue_guide.md](../docs/review_queue_guide.md)

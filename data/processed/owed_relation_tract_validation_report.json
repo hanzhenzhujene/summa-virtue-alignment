@@ -1,0 +1,17 @@
+{
+  "authority_related_due_relation_count": 8,
+  "benefaction_related_due_relation_count": 9,
+  "candidate_mention_count": 475,
+  "candidate_relation_count": 166,
+  "duplicate_annotation_flags": [],
+  "excellence_related_due_relation_count": 10,
+  "origin_related_due_relation_count": 6,
+  "passage_count": 140,
+  "question_count": 8,
+  "rectificatory_relation_count": 5,
+  "reviewed_annotation_count": 169,
+  "reviewed_doctrinal_edge_count": 38,
+  "reviewed_structural_editorial_count": 110,
+  "status": "ok",
+  "unresolved_warnings": []
+}

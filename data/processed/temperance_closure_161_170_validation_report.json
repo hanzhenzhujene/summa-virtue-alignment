@@ -1,0 +1,19 @@
+{
+  "adams_first_sin_case_relation_count": 10,
+  "candidate_mention_count": 563,
+  "candidate_relation_count": 223,
+  "duplicate_annotation_flags": [],
+  "external_modesty_relation_count": 10,
+  "humility_pride_relation_count": 8,
+  "passage_count": 161,
+  "precept_linkage_relation_count": 6,
+  "question_count": 10,
+  "reviewed_annotation_count": 148,
+  "reviewed_doctrinal_edge_count": 41,
+  "reviewed_structural_editorial_count": 107,
+  "status": "ok",
+  "studiousness_curiosity_relation_count": 7,
+  "temperance_full_synthesis_edge_count": 108,
+  "temperance_full_synthesis_node_count": 237,
+  "unresolved_warnings": []
+}

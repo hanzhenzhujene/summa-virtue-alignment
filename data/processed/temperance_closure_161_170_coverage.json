@@ -1,0 +1,365 @@
+{
+  "normalization_risk_questions": [
+    161,
+    162,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 133,
+      "candidate_relation_count": 48,
+      "focus_usage": {
+        "humility_pride": 5
+      },
+      "major_concepts": [
+        "God",
+        "Humility",
+        "Modesty (General)",
+        "Temperance",
+        "Truth About Oneself",
+        "Virtue"
+      ],
+      "parse_status": "ok",
+      "passage_count": 30,
+      "question_id": "st.ii-ii.q161",
+      "question_number": 161,
+      "question_title": "Humility",
+      "reviewed_annotation_count": 5,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 13,
+      "schema_extension_usage": {},
+      "subcluster": "humility_pride",
+      "unresolved_ambiguity_count": 23
+    },
+    {
+      "candidate_mention_count": 149,
+      "candidate_relation_count": 62,
+      "focus_usage": {
+        "humility_pride": 3
+      },
+      "major_concepts": [
+        "God",
+        "Humility",
+        "One's Own Excellence",
+        "Pride",
+        "Vice"
+      ],
+      "parse_status": "ok",
+      "passage_count": 36,
+      "question_id": "st.ii-ii.q162",
+      "question_number": 162,
+      "question_title": "Pride",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 13,
+      "schema_extension_usage": {},
+      "subcluster": "humility_pride",
+      "unresolved_ambiguity_count": 16
+    },
+    {
+      "candidate_mention_count": 49,
+      "candidate_relation_count": 14,
+      "focus_usage": {
+        "adam_case": 3,
+        "adams_first_sin": 3
+      },
+      "major_concepts": [
+        "Adam's First Sin",
+        "Divine Likeness",
+        "Knowledge of Good and Evil",
+        "Pride"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q163",
+      "question_number": 163,
+      "question_title": "The first man's sin",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 11,
+      "schema_extension_usage": {
+        "case_of": 1
+      },
+      "subcluster": "adams_first_sin",
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 6,
+      "focus_usage": {
+        "adam_case": 4,
+        "adams_first_sin": 4
+      },
+      "major_concepts": [
+        "Adam's First Sin",
+        "Bodily Defects (Punishments of the First Sin)",
+        "Death (Punishment of the First Sin)",
+        "Loss of Paradise",
+        "Rebellion of the Carnal Appetite"
+      ],
+      "parse_status": "ok",
+      "passage_count": 19,
+      "question_id": "st.ii-ii.q164",
+      "question_number": 164,
+      "question_title": "The punishments of the first man's sin",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 10,
+      "schema_extension_usage": {
+        "results_in_punishment": 4
+      },
+      "subcluster": "adams_first_sin",
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 11,
+      "candidate_relation_count": 5,
+      "focus_usage": {
+        "adam_case": 3,
+        "adams_first_sin": 3
+      },
+      "major_concepts": [
+        "Adam's First Sin",
+        "Divine Likeness",
+        "Knowledge of Good and Evil",
+        "Temptation of the First Parents"
+      ],
+      "parse_status": "ok",
+      "passage_count": 9,
+      "question_id": "st.ii-ii.q165",
+      "question_number": 165,
+      "question_title": "Our first parents' temptation",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "tempted_by": 1
+      },
+      "subcluster": "adams_first_sin",
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 53,
+      "candidate_relation_count": 24,
+      "focus_usage": {
+        "study_curiosity": 4
+      },
+      "major_concepts": [
+        "Knowledge",
+        "Modesty (General)",
+        "Ordered Inquiry",
+        "Studiousness",
+        "Temperance",
+        "Virtue"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q166",
+      "question_number": 166,
+      "question_title": "Studiousness",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 9,
+      "schema_extension_usage": {
+        "concerns_ordered_inquiry": 1
+      },
+      "subcluster": "study_curiosity",
+      "unresolved_ambiguity_count": 7
+    },
+    {
+      "candidate_mention_count": 54,
+      "candidate_relation_count": 14,
+      "focus_usage": {
+        "study_curiosity": 3
+      },
+      "major_concepts": [
+        "Curiosity",
+        "Disordered Inquiry",
+        "Knowledge",
+        "Studiousness",
+        "Vice"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q167",
+      "question_number": 167,
+      "question_title": "Curiosity",
+      "reviewed_annotation_count": 3,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 8,
+      "schema_extension_usage": {
+        "concerns_ordered_inquiry": 1
+      },
+      "subcluster": "study_curiosity",
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 31,
+      "candidate_relation_count": 12,
+      "focus_usage": {
+        "external_behavior": 6,
+        "external_modesty": 6
+      },
+      "major_concepts": [
+        "Boorishness / Rudeness",
+        "Excessive Play",
+        "Modesty (General)",
+        "Modesty in Outward Movements",
+        "Outward Behavior",
+        "Playful Actions",
+        "Wittiness / Eutrapelia"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q168",
+      "question_number": 168,
+      "question_title": "Modesty as consisting in the outward movements of the body",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 12,
+      "schema_extension_usage": {
+        "concerns_external_behavior": 2
+      },
+      "subcluster": "external_modesty",
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 15,
+      "candidate_relation_count": 8,
+      "focus_usage": {
+        "external_attire": 4,
+        "external_modesty": 4
+      },
+      "major_concepts": [
+        "Excessive Adornment",
+        "Modesty (General)",
+        "Modesty in Outward Apparel",
+        "Outward Apparel"
+      ],
+      "parse_status": "ok",
+      "passage_count": 9,
+      "question_id": "st.ii-ii.q169",
+      "question_number": 169,
+      "question_title": "Modesty in the outward apparel",
+      "reviewed_annotation_count": 4,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 7,
+      "schema_extension_usage": {
+        "concerns_outward_attire": 2
+      },
+      "subcluster": "external_modesty",
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 30,
+      "focus_usage": {
+        "precept": 6,
+        "precept_linkage": 6
+      },
+      "major_concepts": [
+        "Adultery",
+        "Anger (Vice-Level)",
+        "Decalogue",
+        "Humility",
+        "Meekness",
+        "Precepts of Temperance",
+        "Precepts of the Parts of Temperance",
+        "Pride",
+        "Temperance"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q170",
+      "question_number": 170,
+      "question_title": "The precepts of temperance",
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 16,
+      "schema_extension_usage": {
+        "forbids_opposed_vice_of": 3,
+        "precept_of": 3
+      },
+      "subcluster": "precept",
+      "unresolved_ambiguity_count": 3
+    }
+  ],
+  "questions_with_case_modeling_risk": [
+    164,
+    165
+  ],
+  "questions_with_external_modesty_risk": [],
+  "summary": {
+    "adams_first_sin_case_relation_count": 10,
+    "candidate_mention_count": 563,
+    "candidate_relation_count": 223,
+    "external_modesty_relation_count": 10,
+    "humility_pride_relation_count": 8,
+    "passage_count": 161,
+    "precept_linkage_relation_count": 6,
+    "question_count": 10,
+    "registered_concepts_used": 37,
+    "reviewed_annotation_count": 148,
+    "reviewed_doctrinal_edge_count": 41,
+    "reviewed_structural_editorial_count": 107,
+    "studiousness_curiosity_relation_count": 7,
+    "temperance_full_synthesis_edge_count": 108,
+    "temperance_full_synthesis_node_count": 237
+  },
+  "temperance_tract_summary": {
+    "adams_first_sin_case_relations": 10,
+    "concepts_linked_to_humility_pride": 9,
+    "concepts_linked_to_precepts": 6,
+    "external_modesty_relations": 10,
+    "humility_pride_relations": 8,
+    "integral_part_relations_total": 2,
+    "potential_part_relations_total": 7,
+    "precept_linkage_relations": 6,
+    "reviewed_annotations_total": 382,
+    "reviewed_doctrinal_edges_total": 108,
+    "studiousness_curiosity_relations": 7,
+    "subjective_part_relations_total": 7,
+    "unresolved_normalization_hotspots": [
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162,
+      164,
+      165,
+      166,
+      167,
+      168,
+      169,
+      170
+    ]
+  },
+  "under_annotated_questions": [
+    161,
+    162,
+    163
+  ]
+}

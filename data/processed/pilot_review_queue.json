@@ -1,0 +1,274 @@
+{
+  "concepts_with_many_aliases": [
+    {
+      "alias_count": 3,
+      "concept_id": "concept.beatitude",
+      "label": "Beatitude"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.general_justice",
+      "label": "General Justice"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.involuntary_act",
+      "label": "Involuntary Act"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.passion",
+      "label": "Passion"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.perseverance",
+      "label": "Perseverance"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.prophecy",
+      "label": "Prophecy"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.rendering_due",
+      "label": "Rendering Due"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.symbol_of_faith",
+      "label": "Symbol of Faith"
+    },
+    {
+      "alias_count": 3,
+      "concept_id": "concept.voluntary_act",
+      "label": "Voluntary Act"
+    }
+  ],
+  "low_confidence_annotations": [
+    {
+      "annotation_id": "ann.concept-prudence-of-flesh-opposed-by-concept-prudence-st-ii-ii-q047-a013-resp",
+      "confidence": 0.88,
+      "connected_virtues_cluster": null,
+      "due_mode": null,
+      "edge_layer": "doctrinal",
+      "evidence_rationale": "Prudence of the flesh is named as the prudence placing ultimate end in bodily pleasure.",
+      "evidence_text": "There is a false prudence , which takes its name from its likeness to true prudence",
+      "object_id": "concept.prudence",
+      "object_label": "Prudence",
+      "object_type": "virtue",
+      "relation_type": "opposed_by",
+      "review_status": "approved",
+      "source_passage_id": "st.ii-ii.q047.a013.resp",
+      "subject_id": "concept.prudence_of_flesh",
+      "subject_label": "Prudence of the Flesh",
+      "subject_type": "vice",
+      "support_type": "strong_textual_inference"
+    }
+  ],
+  "packet_path": "data/processed/review_packets/st_ii-ii_q171_review_packet.md",
+  "suggested_question_packet": "st.ii-ii.q171",
+  "under_annotated_passages": [
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.1 ad.1",
+      "passage_id": "st.i-ii.q001.a001.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.1 ad.2",
+      "passage_id": "st.i-ii.q001.a001.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.1 ad.3",
+      "passage_id": "st.i-ii.q001.a001.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.2 ad.1",
+      "passage_id": "st.i-ii.q001.a002.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.2 ad.2",
+      "passage_id": "st.i-ii.q001.a002.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.2 ad.3",
+      "passage_id": "st.i-ii.q001.a002.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.3 ad.1",
+      "passage_id": "st.i-ii.q001.a003.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.3 ad.2",
+      "passage_id": "st.i-ii.q001.a003.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.3 ad.3",
+      "passage_id": "st.i-ii.q001.a003.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.4 ad.1",
+      "passage_id": "st.i-ii.q001.a004.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.4 ad.2",
+      "passage_id": "st.i-ii.q001.a004.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.4 ad.3",
+      "passage_id": "st.i-ii.q001.a004.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.5 ad.1",
+      "passage_id": "st.i-ii.q001.a005.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.5 ad.2",
+      "passage_id": "st.i-ii.q001.a005.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.5 ad.3",
+      "passage_id": "st.i-ii.q001.a005.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.6 ad.1",
+      "passage_id": "st.i-ii.q001.a006.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.6 ad.2",
+      "passage_id": "st.i-ii.q001.a006.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.6 ad.3",
+      "passage_id": "st.i-ii.q001.a006.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.7 ad.1",
+      "passage_id": "st.i-ii.q001.a007.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.7 ad.2",
+      "passage_id": "st.i-ii.q001.a007.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.1 a.7 ad.3",
+      "passage_id": "st.i-ii.q001.a007.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.1 ad.1",
+      "passage_id": "st.i-ii.q006.a001.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.1 ad.2",
+      "passage_id": "st.i-ii.q006.a001.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.1 ad.3",
+      "passage_id": "st.i-ii.q006.a001.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.2 ad.1",
+      "passage_id": "st.i-ii.q006.a002.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.2 ad.2",
+      "passage_id": "st.i-ii.q006.a002.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.2 ad.3",
+      "passage_id": "st.i-ii.q006.a002.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.3 ad.1",
+      "passage_id": "st.i-ii.q006.a003.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.3 ad.2",
+      "passage_id": "st.i-ii.q006.a003.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.3 ad.3",
+      "passage_id": "st.i-ii.q006.a003.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.4 ad.1",
+      "passage_id": "st.i-ii.q006.a004.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.4 ad.2",
+      "passage_id": "st.i-ii.q006.a004.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.4 ad.3",
+      "passage_id": "st.i-ii.q006.a004.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.5 ad.1",
+      "passage_id": "st.i-ii.q006.a005.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.5 ad.2",
+      "passage_id": "st.i-ii.q006.a005.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.5 ad.3",
+      "passage_id": "st.i-ii.q006.a005.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.6 ad.1",
+      "passage_id": "st.i-ii.q006.a006.ad1"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.6 ad.2",
+      "passage_id": "st.i-ii.q006.a006.ad2"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.6 ad.3",
+      "passage_id": "st.i-ii.q006.a006.ad3"
+    },
+    {
+      "annotation_count": 0,
+      "citation_label": "I-II q.6 a.7 ad.1",
+      "passage_id": "st.i-ii.q006.a007.ad1"
+    }
+  ]
+}

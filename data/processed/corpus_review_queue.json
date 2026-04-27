@@ -1,0 +1,2742 @@
+{
+  "ambiguous_mentions": [
+    "candidate.mention.st.i-ii.q001.a003.ad3.m03",
+    "candidate.mention.st.i-ii.q001.a006.ad3.m02",
+    "candidate.mention.st.i-ii.q002.a002.ad1.m01",
+    "candidate.mention.st.i-ii.q002.a002.ad1.m02",
+    "candidate.mention.st.i-ii.q002.a002.ad1.m04",
+    "candidate.mention.st.i-ii.q002.a004.resp.m06",
+    "candidate.mention.st.i-ii.q004.a006.resp.m03",
+    "candidate.mention.st.i-ii.q004.a006.resp.m04",
+    "candidate.mention.st.i-ii.q004.a007.resp.m04",
+    "candidate.mention.st.i-ii.q004.a007.resp.m05",
+    "candidate.mention.st.i-ii.q004.a007.resp.m06",
+    "candidate.mention.st.i-ii.q004.a008.resp.m02",
+    "candidate.mention.st.i-ii.q005.a004.resp.m05",
+    "candidate.mention.st.i-ii.q005.a004.resp.m07",
+    "candidate.mention.st.i-ii.q005.a004.resp.m09",
+    "candidate.mention.st.i-ii.q005.a004.resp.m10",
+    "candidate.mention.st.i-ii.q005.a005.resp.m02",
+    "candidate.mention.st.i-ii.q005.a006.resp.m06",
+    "candidate.mention.st.i-ii.q005.a007.ad3.m03",
+    "candidate.mention.st.i-ii.q005.a007.ad3.m04",
+    "candidate.mention.st.i-ii.q005.a007.resp.m12",
+    "candidate.mention.st.i-ii.q006.a008.resp.m16",
+    "candidate.mention.st.i-ii.q007.a002.ad3.m01",
+    "candidate.mention.st.i-ii.q007.a003.ad3.m01",
+    "candidate.mention.st.i-ii.q009.a004.resp.m01",
+    "candidate.mention.st.i-ii.q009.a006.ad3.m03",
+    "candidate.mention.st.i-ii.q014.a003.ad2.m01",
+    "candidate.mention.st.i-ii.q014.a003.ad2.m02",
+    "candidate.mention.st.i-ii.q017.a001.resp.m04",
+    "candidate.mention.st.i-ii.q017.a001.resp.m06",
+    "candidate.mention.st.i-ii.q017.a004.resp.m02",
+    "candidate.mention.st.i-ii.q017.a006.resp.m01",
+    "candidate.mention.st.i-ii.q017.a007.ad1.m03",
+    "candidate.mention.st.i-ii.q017.a007.ad1.m04",
+    "candidate.mention.st.i-ii.q017.a008.ad3.m01",
+    "candidate.mention.st.i-ii.q017.a009.ad3.m08",
+    "candidate.mention.st.i-ii.q018.a001.ad1.m01",
+    "candidate.mention.st.i-ii.q018.a009.ad3.m01",
+    "candidate.mention.st.i-ii.q018.a009.ad3.m02",
+    "candidate.mention.st.i-ii.q018.a009.ad3.m03",
+    "candidate.mention.st.i-ii.q019.a004.resp.m01",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m01",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m02",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m03",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m06",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m07",
+    "candidate.mention.st.i-ii.q020.a003.ad2.m08",
+    "candidate.mention.st.i-ii.q020.a005.ad1.m01",
+    "candidate.mention.st.i-ii.q024.a002.ad2.m02",
+    "candidate.mention.st.i-ii.q024.a003.resp.m08",
+    "candidate.mention.st.i-ii.q031.a007.resp.m01",
+    "candidate.mention.st.i-ii.q031.a008.ad1.m02",
+    "candidate.mention.st.i-ii.q031.a008.ad1.m03",
+    "candidate.mention.st.i-ii.q031.a008.ad1.m04",
+    "candidate.mention.st.i-ii.q031.a008.ad1.m05",
+    "candidate.mention.st.i-ii.q034.a001.ad3.m03",
+    "candidate.mention.st.i-ii.q034.a001.resp.m01",
+    "candidate.mention.st.i-ii.q034.a001.resp.m04",
+    "candidate.mention.st.i-ii.q034.a003.ad2.m01",
+    "candidate.mention.st.i-ii.q034.a004.resp.m01",
+    "candidate.mention.st.i-ii.q035.a004.resp.m01",
+    "candidate.mention.st.i-ii.q035.a004.resp.m07",
+    "candidate.mention.st.i-ii.q040.a005.ad1.m02",
+    "candidate.mention.st.i-ii.q041.a001.ad1.m01",
+    "candidate.mention.st.i-ii.q041.a001.ad1.m04",
+    "candidate.mention.st.i-ii.q042.a003.ad3.m03",
+    "candidate.mention.st.i-ii.q045.a004.resp.m04",
+    "candidate.mention.st.i-ii.q046.a004.ad2.m01",
+    "candidate.mention.st.i-ii.q046.a006.resp.m08",
+    "candidate.mention.st.i-ii.q049.a001.ad3.m01",
+    "candidate.mention.st.i-ii.q049.a001.ad3.m03",
+    "candidate.mention.st.i-ii.q049.a002.resp.m01",
+    "candidate.mention.st.i-ii.q050.a001.resp.m06",
+    "candidate.mention.st.i-ii.q050.a002.resp.m01",
+    "candidate.mention.st.i-ii.q051.a001.resp.m06",
+    "candidate.mention.st.i-ii.q051.a001.resp.m07",
+    "candidate.mention.st.i-ii.q051.a002.ad3.m01",
+    "candidate.mention.st.i-ii.q051.a002.resp.m05",
+    "candidate.mention.st.i-ii.q051.a003.resp.m04",
+    "candidate.mention.st.i-ii.q051.a003.resp.m05"
+  ],
+  "confidence_buckets": {
+    "high": {
+      "mentions": 904,
+      "relations": 660
+    },
+    "low": {
+      "mentions": 3807,
+      "relations": 2408
+    },
+    "medium": {
+      "mentions": 21044,
+      "relations": 5909
+    }
+  },
+  "node_type_counts": {
+    "act_type": 2033,
+    "beatitude": 661,
+    "charism": 282,
+    "doctrine": 1446,
+    "end": 532,
+    "faculty": 376,
+    "gift_holy_spirit": 114,
+    "grace_type": 10,
+    "habit": 244,
+    "law_type": 432,
+    "object": 3757,
+    "passion": 4131,
+    "precept": 1025,
+    "sin_type": 1118,
+    "unresolved": 1850,
+    "vice": 213,
+    "virtue": 7531
+  },
+  "packet_path": "data/processed/review_packets/st_i-ii_q100_corpus_review_packet.md",
+  "questions": [
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 96,
+      "candidate_relations": 32,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q001",
+      "reviewed_annotations": 12
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 134,
+      "candidate_relations": 35,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q002",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 160,
+      "candidate_relations": 49,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q003",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 128,
+      "candidate_relations": 46,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q004",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 159,
+      "candidate_relations": 49,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q005",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 161,
+      "candidate_relations": 52,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q006",
+      "reviewed_annotations": 13
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 25,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q007",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 6,
+      "candidate_relations": 4,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q008",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 38,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q009",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 37,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q010",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 75,
+      "candidate_relations": 27,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q011",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 42,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q012",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 63,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q013",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 28,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q014",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 23,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q015",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 24,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q016",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 96,
+      "candidate_relations": 35,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q017",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 16,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q018",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 117,
+      "candidate_relations": 42,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q019",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 22,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q020",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 51,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q021",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 47,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q022",
+      "reviewed_annotations": 7
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 80,
+      "candidate_relations": 34,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q023",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 75,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q024",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 148,
+      "candidate_relations": 49,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q025",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 81,
+      "candidate_relations": 27,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q026",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 63,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q027",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 124,
+      "candidate_relations": 46,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q028",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 80,
+      "candidate_relations": 27,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q029",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 28,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q030",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 54,
+      "candidate_relations": 17,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q031",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 60,
+      "candidate_relations": 29,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q032",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 24,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q033",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 25,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q034",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 44,
+      "candidate_relations": 23,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q035",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 24,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q036",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 32,
+      "candidate_relations": 16,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q037",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 8,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q038",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 9,
+      "candidate_relations": 3,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q039",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 125,
+      "candidate_relations": 42,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q040",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 89,
+      "candidate_relations": 29,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q041",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 81,
+      "candidate_relations": 26,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q042",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 34,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q043",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 41,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q044",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 71,
+      "candidate_relations": 35,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q045",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 194,
+      "candidate_relations": 64,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q046",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 44,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q047",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 59,
+      "candidate_relations": 23,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q048",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 30,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q049",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 72,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q050",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 38,
+      "candidate_relations": 19,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q051",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 19,
+      "candidate_relations": 12,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q052",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 36,
+      "candidate_relations": 18,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q053",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 39,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q054",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 60,
+      "candidate_mentions": 98,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q055",
+      "reviewed_annotations": 9
+    },
+    {
+      "ambiguity_count": 44,
+      "candidate_mentions": 116,
+      "candidate_relations": 38,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q056",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 37,
+      "candidate_mentions": 122,
+      "candidate_relations": 38,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q057",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 40,
+      "candidate_mentions": 116,
+      "candidate_relations": 49,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q058",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 38,
+      "candidate_mentions": 130,
+      "candidate_relations": 36,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q059",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 38,
+      "candidate_mentions": 172,
+      "candidate_relations": 60,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q060",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 36,
+      "candidate_mentions": 191,
+      "candidate_relations": 53,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q061",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 120,
+      "candidate_relations": 48,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q062",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 80,
+      "candidate_relations": 32,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q063",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 31,
+      "candidate_mentions": 83,
+      "candidate_relations": 22,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q064",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 39,
+      "candidate_mentions": 244,
+      "candidate_relations": 73,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q065",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 51,
+      "candidate_mentions": 216,
+      "candidate_relations": 70,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q066",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 158,
+      "candidate_relations": 58,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q067",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 17,
+      "candidate_mentions": 285,
+      "candidate_relations": 119,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q068",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 175,
+      "candidate_relations": 73,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q069",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 82,
+      "candidate_relations": 36,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q070",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 40,
+      "candidate_mentions": 101,
+      "candidate_relations": 32,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q071",
+      "reviewed_annotations": 12
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 129,
+      "candidate_relations": 71,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q072",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 31,
+      "candidate_mentions": 165,
+      "candidate_relations": 62,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q073",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 88,
+      "candidate_relations": 44,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q074",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 24,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q075",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 76,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q076",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 141,
+      "candidate_relations": 55,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q077",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 79,
+      "candidate_relations": 34,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q078",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 51,
+      "candidate_relations": 16,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q079",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 32,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q080",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 35,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q081",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 28,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q082",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 12,
+      "candidate_relations": 4,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q083",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 77,
+      "candidate_relations": 30,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q084",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 16,
+      "candidate_mentions": 53,
+      "candidate_relations": 27,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q085",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 12,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q086",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 94,
+      "candidate_relations": 45,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q087",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 75,
+      "candidate_relations": 47,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q088",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 63,
+      "candidate_relations": 28,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q089",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 42,
+      "candidate_mentions": 84,
+      "candidate_relations": 21,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q090",
+      "reviewed_annotations": 11
+    },
+    {
+      "ambiguity_count": 68,
+      "candidate_mentions": 157,
+      "candidate_relations": 57,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q091",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 46,
+      "candidate_mentions": 67,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q092",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 35,
+      "candidate_mentions": 164,
+      "candidate_relations": 46,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q093",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 19,
+      "candidate_mentions": 121,
+      "candidate_relations": 41,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q094",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 44,
+      "candidate_mentions": 85,
+      "candidate_relations": 19,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q095",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 81,
+      "candidate_mentions": 144,
+      "candidate_relations": 30,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q096",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 35,
+      "candidate_mentions": 70,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q097",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 91,
+      "candidate_mentions": 170,
+      "candidate_relations": 34,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q098",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 43,
+      "candidate_mentions": 201,
+      "candidate_relations": 59,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q099",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 57,
+      "candidate_mentions": 549,
+      "candidate_relations": 150,
+      "parse_status": "partial",
+      "question_id": "st.i-ii.q100",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 22,
+      "candidate_mentions": 82,
+      "candidate_relations": 23,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q101",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 80,
+      "candidate_mentions": 376,
+      "candidate_relations": 77,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q102",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 39,
+      "candidate_mentions": 111,
+      "candidate_relations": 28,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q103",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 16,
+      "candidate_mentions": 92,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q104",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 62,
+      "candidate_mentions": 132,
+      "candidate_relations": 29,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q105",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 85,
+      "candidate_mentions": 131,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q106",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 106,
+      "candidate_mentions": 181,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q107",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 75,
+      "candidate_mentions": 175,
+      "candidate_relations": 44,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q108",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 70,
+      "candidate_mentions": 248,
+      "candidate_relations": 63,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q109",
+      "reviewed_annotations": 18
+    },
+    {
+      "ambiguity_count": 53,
+      "candidate_mentions": 119,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q110",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 59,
+      "candidate_mentions": 145,
+      "candidate_relations": 28,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q111",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 57,
+      "candidate_mentions": 128,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q112",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 43,
+      "candidate_mentions": 188,
+      "candidate_relations": 65,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q113",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 62,
+      "candidate_mentions": 261,
+      "candidate_relations": 71,
+      "parse_status": "ok",
+      "question_id": "st.i-ii.q114",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 255,
+      "candidate_relations": 101,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q001",
+      "reviewed_annotations": 24
+    },
+    {
+      "ambiguity_count": 22,
+      "candidate_mentions": 232,
+      "candidate_relations": 76,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q002",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 54,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q003",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 24,
+      "candidate_mentions": 289,
+      "candidate_relations": 104,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q004",
+      "reviewed_annotations": 1
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 108,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q005",
+      "reviewed_annotations": 1
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 59,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q006",
+      "reviewed_annotations": 2
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 49,
+      "candidate_relations": 18,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q007",
+      "reviewed_annotations": 1
+    },
+    {
+      "ambiguity_count": 15,
+      "candidate_mentions": 160,
+      "candidate_relations": 59,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q008",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 100,
+      "candidate_relations": 46,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q009",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 30,
+      "candidate_mentions": 238,
+      "candidate_relations": 82,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q010",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 76,
+      "candidate_relations": 34,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q011",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 65,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q012",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 92,
+      "candidate_relations": 47,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q013",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 100,
+      "candidate_relations": 39,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q014",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 19,
+      "candidate_relations": 17,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q015",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 27,
+      "candidate_mentions": 100,
+      "candidate_relations": 23,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q016",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 17,
+      "candidate_mentions": 228,
+      "candidate_relations": 79,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q017",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 95,
+      "candidate_relations": 39,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q018",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 418,
+      "candidate_relations": 141,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q019",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 98,
+      "candidate_relations": 42,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q020",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 106,
+      "candidate_relations": 51,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q021",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 27,
+      "candidate_mentions": 119,
+      "candidate_relations": 33,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q022",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 38,
+      "candidate_mentions": 270,
+      "candidate_relations": 103,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q023",
+      "reviewed_annotations": 15
+    },
+    {
+      "ambiguity_count": 18,
+      "candidate_mentions": 347,
+      "candidate_relations": 100,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q024",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 293,
+      "candidate_relations": 98,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q025",
+      "reviewed_annotations": 6
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 291,
+      "candidate_relations": 92,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q026",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 221,
+      "candidate_relations": 64,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q027",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 108,
+      "candidate_relations": 43,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q028",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 52,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q029",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 56,
+      "candidate_relations": 23,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q030",
+      "reviewed_annotations": 2
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 60,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q031",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 20,
+      "candidate_mentions": 108,
+      "candidate_relations": 42,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q032",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 15,
+      "candidate_mentions": 143,
+      "candidate_relations": 62,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q033",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 156,
+      "candidate_relations": 62,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q034",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 45,
+      "candidate_relations": 19,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q035",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 31,
+      "candidate_relations": 18,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q036",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 49,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q037",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 12,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q038",
+      "reviewed_annotations": 1
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 91,
+      "candidate_relations": 44,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q039",
+      "reviewed_annotations": 5
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 20,
+      "candidate_relations": 15,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q040",
+      "reviewed_annotations": 2
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 33,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q041",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 47,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q042",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 46,
+      "candidate_relations": 25,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q043",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 15,
+      "candidate_mentions": 200,
+      "candidate_relations": 77,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q044",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 79,
+      "candidate_relations": 40,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q045",
+      "reviewed_annotations": 6
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 14,
+      "candidate_relations": 6,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q046",
+      "reviewed_annotations": 3
+    },
+    {
+      "ambiguity_count": 38,
+      "candidate_mentions": 296,
+      "candidate_relations": 108,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q047",
+      "reviewed_annotations": 63
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 40,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q048",
+      "reviewed_annotations": 34
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 74,
+      "candidate_relations": 22,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q049",
+      "reviewed_annotations": 17
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 57,
+      "candidate_relations": 27,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q050",
+      "reviewed_annotations": 13
+    },
+    {
+      "ambiguity_count": 33,
+      "candidate_mentions": 62,
+      "candidate_relations": 16,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q051",
+      "reviewed_annotations": 9
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 66,
+      "candidate_relations": 29,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q052",
+      "reviewed_annotations": 10
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 95,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q053",
+      "reviewed_annotations": 19
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 51,
+      "candidate_relations": 22,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q054",
+      "reviewed_annotations": 8
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 102,
+      "candidate_relations": 41,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q055",
+      "reviewed_annotations": 25
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 47,
+      "candidate_relations": 16,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q056",
+      "reviewed_annotations": 4
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 39,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q057",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 41,
+      "candidate_mentions": 287,
+      "candidate_relations": 108,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q058",
+      "reviewed_annotations": 23
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 82,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q059",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 22,
+      "candidate_mentions": 71,
+      "candidate_relations": 21,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q060",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 67,
+      "candidate_relations": 20,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q061",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 47,
+      "candidate_relations": 25,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q062",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 41,
+      "candidate_relations": 13,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q063",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 71,
+      "candidate_relations": 34,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q064",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 15,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q065",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 56,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q066",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 24,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q067",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 21,
+      "candidate_relations": 9,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q068",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 40,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q069",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 26,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q070",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 17,
+      "candidate_relations": 9,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q071",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 26,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q072",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 35,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q073",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 9,
+      "candidate_relations": 3,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q074",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 12,
+      "candidate_relations": 4,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q075",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 29,
+      "candidate_relations": 25,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q076",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 27,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q077",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 25,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q078",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 74,
+      "candidate_relations": 30,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q079",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 51,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q080",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 150,
+      "candidate_relations": 52,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q081",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 58,
+      "candidate_relations": 21,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q082",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 285,
+      "candidate_relations": 106,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q083",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 21,
+      "candidate_relations": 7,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q084",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 12,
+      "candidate_mentions": 66,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q085",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 13,
+      "candidate_mentions": 41,
+      "candidate_relations": 13,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q086",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 26,
+      "candidate_mentions": 55,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q087",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 122,
+      "candidate_relations": 44,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q088",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 108,
+      "candidate_relations": 40,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q089",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 11,
+      "candidate_relations": 5,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q090",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 19,
+      "candidate_relations": 6,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q091",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 23,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q092",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 31,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q093",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 54,
+      "candidate_relations": 21,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q094",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 58,
+      "candidate_relations": 31,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q095",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 29,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q096",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 90,
+      "candidate_relations": 25,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q097",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 29,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q098",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 21,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q099",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 24,
+      "candidate_mentions": 78,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q100",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 46,
+      "candidate_relations": 16,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q101",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 21,
+      "candidate_relations": 7,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q102",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 45,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q103",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 36,
+      "candidate_mentions": 174,
+      "candidate_relations": 53,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q104",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 60,
+      "candidate_relations": 27,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q105",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 43,
+      "candidate_relations": 15,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q106",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 16,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q107",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 70,
+      "candidate_relations": 32,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q108",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 36,
+      "candidate_mentions": 72,
+      "candidate_relations": 10,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q109",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 71,
+      "candidate_relations": 38,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q110",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 27,
+      "candidate_relations": 12,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q111",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 16,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q112",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 7,
+      "candidate_relations": 3,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q113",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 19,
+      "candidate_relations": 2,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q114",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 18,
+      "candidate_relations": 13,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q115",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 18,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q116",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 18,
+      "candidate_mentions": 73,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q117",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 74,
+      "candidate_relations": 40,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q118",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 25,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q119",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 46,
+      "candidate_relations": 9,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q120",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 34,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q121",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 22,
+      "candidate_mentions": 176,
+      "candidate_relations": 53,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q122",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 54,
+      "candidate_mentions": 238,
+      "candidate_relations": 75,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q123",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 16,
+      "candidate_mentions": 96,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q124",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 75,
+      "candidate_relations": 28,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q125",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 43,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q126",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 31,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q127",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 62,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q128",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 40,
+      "candidate_mentions": 151,
+      "candidate_relations": 42,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q129",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 25,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q130",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 18,
+      "candidate_relations": 6,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q131",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 71,
+      "candidate_relations": 36,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q132",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 23,
+      "candidate_relations": 9,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q133",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 24,
+      "candidate_mentions": 54,
+      "candidate_relations": 10,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q134",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 4,
+      "candidate_relations": 1,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q135",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 90,
+      "candidate_relations": 36,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q136",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 39,
+      "candidate_mentions": 114,
+      "candidate_relations": 35,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q137",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 11,
+      "candidate_relations": 7,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q138",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 37,
+      "candidate_relations": 16,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q139",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 55,
+      "candidate_relations": 21,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q140",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 26,
+      "candidate_mentions": 175,
+      "candidate_relations": 60,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q141",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 77,
+      "candidate_relations": 31,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q142",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 11,
+      "candidate_mentions": 34,
+      "candidate_relations": 13,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q143",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 22,
+      "candidate_mentions": 72,
+      "candidate_relations": 27,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q144",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 18,
+      "candidate_mentions": 43,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q145",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 30,
+      "candidate_relations": 7,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q146",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 14,
+      "candidate_mentions": 58,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q147",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 53,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q148",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 14,
+      "candidate_mentions": 21,
+      "candidate_relations": 4,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q149",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 20,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q150",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 13,
+      "candidate_mentions": 36,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q151",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 14,
+      "candidate_mentions": 45,
+      "candidate_relations": 13,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q152",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 13,
+      "candidate_mentions": 49,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q153",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 18,
+      "candidate_mentions": 96,
+      "candidate_relations": 47,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q154",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 14,
+      "candidate_mentions": 47,
+      "candidate_relations": 17,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q155",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 58,
+      "candidate_relations": 19,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q156",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 14,
+      "candidate_mentions": 90,
+      "candidate_relations": 37,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q157",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 216,
+      "candidate_relations": 70,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q158",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 2,
+      "candidate_mentions": 11,
+      "candidate_relations": 3,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q159",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 6,
+      "candidate_mentions": 27,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q160",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 23,
+      "candidate_mentions": 133,
+      "candidate_relations": 48,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q161",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 16,
+      "candidate_mentions": 149,
+      "candidate_relations": 62,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q162",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 49,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q163",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 21,
+      "candidate_relations": 6,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q164",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 11,
+      "candidate_relations": 5,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q165",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 7,
+      "candidate_mentions": 53,
+      "candidate_relations": 24,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q166",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 54,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q167",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 8,
+      "candidate_mentions": 31,
+      "candidate_relations": 12,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q168",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 15,
+      "candidate_relations": 8,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q169",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 3,
+      "candidate_mentions": 47,
+      "candidate_relations": 30,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q170",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 5,
+      "candidate_mentions": 136,
+      "candidate_relations": 44,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q171",
+      "reviewed_annotations": 9
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 128,
+      "candidate_relations": 37,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q172",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 90,
+      "candidate_relations": 25,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q173",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 9,
+      "candidate_mentions": 158,
+      "candidate_relations": 47,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q174",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 70,
+      "candidate_relations": 26,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q175",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 34,
+      "candidate_relations": 14,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q176",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 12,
+      "candidate_mentions": 38,
+      "candidate_relations": 11,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q177",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 10,
+      "candidate_mentions": 52,
+      "candidate_relations": 15,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q178",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 2,
+      "candidate_relations": 1,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q179",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 1,
+      "candidate_mentions": 121,
+      "candidate_relations": 53,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q180",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 4,
+      "candidate_mentions": 53,
+      "candidate_relations": 20,
+      "parse_status": "ok",
+      "question_id": "st.ii-ii.q181",
+      "reviewed_annotations": 0
+    },
+    {
+      "ambiguity_count": 0,
+      "candidate_mentions": 57,
+      "candidate_relations": 16,
+      "parse_status": "partial",
+      "question_id": "st.ii-ii.q182",
+      "reviewed_annotations": 0
+    }
+  ],
+  "relation_type_counts": {
+    "contrary_to": 148,
+    "corresponds_to": 15,
+    "directed_to": 155,
+    "opposed_by": 104,
+    "part_of": 157,
+    "perfected_by": 24,
+    "regulated_by": 6,
+    "species_of": 51,
+    "treated_in": 8317
+  },
+  "suggested_question_packet": "st.i-ii.q100",
+  "under_annotated_questions": [
+    {
+      "candidate_mentions": 134,
+      "candidate_relations": 35,
+      "question_id": "st.i-ii.q002",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 160,
+      "candidate_relations": 49,
+      "question_id": "st.i-ii.q003",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 128,
+      "candidate_relations": 46,
+      "question_id": "st.i-ii.q004",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 159,
+      "candidate_relations": 49,
+      "question_id": "st.i-ii.q005",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 25,
+      "candidate_relations": 15,
+      "question_id": "st.i-ii.q007",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 6,
+      "candidate_relations": 4,
+      "question_id": "st.i-ii.q008",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 38,
+      "candidate_relations": 20,
+      "question_id": "st.i-ii.q009",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 37,
+      "candidate_relations": 15,
+      "question_id": "st.i-ii.q010",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 75,
+      "candidate_relations": 27,
+      "question_id": "st.i-ii.q011",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 42,
+      "candidate_relations": 19,
+      "question_id": "st.i-ii.q012",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 63,
+      "candidate_relations": 26,
+      "question_id": "st.i-ii.q013",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 28,
+      "candidate_relations": 14,
+      "question_id": "st.i-ii.q014",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 23,
+      "candidate_relations": 11,
+      "question_id": "st.i-ii.q015",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 24,
+      "candidate_relations": 11,
+      "question_id": "st.i-ii.q016",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 96,
+      "candidate_relations": 35,
+      "question_id": "st.i-ii.q017",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 16,
+      "candidate_relations": 10,
+      "question_id": "st.i-ii.q018",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 117,
+      "candidate_relations": 42,
+      "question_id": "st.i-ii.q019",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 22,
+      "candidate_relations": 5,
+      "question_id": "st.i-ii.q020",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 51,
+      "candidate_relations": 22,
+      "question_id": "st.i-ii.q021",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 80,
+      "candidate_relations": 34,
+      "question_id": "st.i-ii.q023",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 75,
+      "candidate_relations": 26,
+      "question_id": "st.i-ii.q024",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 148,
+      "candidate_relations": 49,
+      "question_id": "st.i-ii.q025",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 81,
+      "candidate_relations": 27,
+      "question_id": "st.i-ii.q026",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 63,
+      "candidate_relations": 19,
+      "question_id": "st.i-ii.q027",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 124,
+      "candidate_relations": 46,
+      "question_id": "st.i-ii.q028",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 80,
+      "candidate_relations": 27,
+      "question_id": "st.i-ii.q029",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 28,
+      "candidate_relations": 11,
+      "question_id": "st.i-ii.q030",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 54,
+      "candidate_relations": 17,
+      "question_id": "st.i-ii.q031",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 60,
+      "candidate_relations": 29,
+      "question_id": "st.i-ii.q032",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 24,
+      "candidate_relations": 11,
+      "question_id": "st.i-ii.q033",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 25,
+      "candidate_relations": 10,
+      "question_id": "st.i-ii.q034",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 44,
+      "candidate_relations": 23,
+      "question_id": "st.i-ii.q035",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 24,
+      "candidate_relations": 12,
+      "question_id": "st.i-ii.q036",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 32,
+      "candidate_relations": 16,
+      "question_id": "st.i-ii.q037",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 8,
+      "candidate_relations": 5,
+      "question_id": "st.i-ii.q038",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 9,
+      "candidate_relations": 3,
+      "question_id": "st.i-ii.q039",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 125,
+      "candidate_relations": 42,
+      "question_id": "st.i-ii.q040",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 89,
+      "candidate_relations": 29,
+      "question_id": "st.i-ii.q041",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 81,
+      "candidate_relations": 26,
+      "question_id": "st.i-ii.q042",
+      "reviewed_annotations": 0
+    },
+    {
+      "candidate_mentions": 34,
+      "candidate_relations": 11,
+      "question_id": "st.i-ii.q043",
+      "reviewed_annotations": 0
+    }
+  ]
+}

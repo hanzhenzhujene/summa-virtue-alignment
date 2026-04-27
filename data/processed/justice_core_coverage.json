@@ -1,0 +1,678 @@
+{
+  "normalization_risk_questions": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    74,
+    75,
+    77,
+    78,
+    79
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 39,
+      "candidate_relation_count": 12,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {
+        "Right": 5
+      },
+      "major_concepts": [
+        "Justice",
+        "Natural Right",
+        "Paternal Right",
+        "Positive Right",
+        "Right",
+        "Right of Dominion",
+        "Right of Nations"
+      ],
+      "parse_status": "ok",
+      "passage_count": 15,
+      "question_id": "st.ii-ii.q057",
+      "question_number": 57,
+      "question_title": "Right",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 16,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 10,
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 287,
+      "candidate_relation_count": 108,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {
+        "Justice": 2
+      },
+      "major_concepts": [
+        "Common Good",
+        "General Justice",
+        "Justice",
+        "Particular Justice",
+        "Rendering Due",
+        "Virtue",
+        "Will"
+      ],
+      "parse_status": "ok",
+      "passage_count": 49,
+      "question_id": "st.ii-ii.q058",
+      "question_number": 58,
+      "question_title": "Justice",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 27,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 19,
+      "unresolved_ambiguity_count": 41
+    },
+    {
+      "candidate_mention_count": 82,
+      "candidate_relation_count": 37,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Charity",
+        "Injustice",
+        "Justice"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q059",
+      "question_number": 59,
+      "question_title": "Injustice",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 7,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 5,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 21,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {
+        "Judge": 2,
+        "Judicial Process": 2
+      },
+      "justice_species_usage": {
+        "Unjust Judgment": 2
+      },
+      "major_concepts": [
+        "Judge",
+        "Judgment",
+        "Judicial Process",
+        "Justice",
+        "Law",
+        "Rash Judgment",
+        "Right",
+        "Unjust Judgment",
+        "Usurped Judgment"
+      ],
+      "parse_status": "ok",
+      "passage_count": 25,
+      "question_id": "st.ii-ii.q060",
+      "question_number": 60,
+      "question_title": "Judgment",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 20,
+      "reviewed_doctrinal_edge_count": 10,
+      "reviewed_structural_editorial_count": 10,
+      "unresolved_ambiguity_count": 22
+    },
+    {
+      "candidate_mention_count": 67,
+      "candidate_relation_count": 20,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {
+        "Particular Justice": 2
+      },
+      "major_concepts": [
+        "Commutative Justice",
+        "Distributive Justice",
+        "Fairness in Distribution",
+        "Fairness in Exchange",
+        "Particular Justice"
+      ],
+      "parse_status": "partial",
+      "passage_count": 15,
+      "question_id": "st.ii-ii.q061",
+      "question_number": 61,
+      "question_title": "The parts of Justice",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 11,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 4
+    },
+    {
+      "candidate_mention_count": 47,
+      "candidate_relation_count": 25,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Commutative Justice",
+        "Fairness in Exchange",
+        "Restitution",
+        "Robbery",
+        "Theft",
+        "Unjust Detention"
+      ],
+      "parse_status": "ok",
+      "passage_count": 32,
+      "question_id": "st.ii-ii.q062",
+      "question_number": 62,
+      "question_title": "Restitution",
+      "restitution_usage": {
+        "Fairness in Exchange": 2,
+        "Restitution": 6
+      },
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 10,
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 41,
+      "candidate_relation_count": 13,
+      "injury_domain_usage": {
+        "Fairness in Distribution": 1
+      },
+      "judicial_process_usage": {
+        "Judicial Process": 1
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Distributive Justice",
+        "Fairness in Distribution",
+        "Judgment",
+        "Judicial Process",
+        "Respect of Persons"
+      ],
+      "parse_status": "partial",
+      "passage_count": 14,
+      "question_id": "st.ii-ii.q063",
+      "question_number": 63,
+      "question_title": "Respect of persons",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 11,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 71,
+      "candidate_relation_count": 34,
+      "injury_domain_usage": {
+        "Life": 2
+      },
+      "judicial_process_usage": {
+        "Judge": 2,
+        "Judicial Process": 1
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Common Good",
+        "Judge",
+        "Judicial Process",
+        "Life",
+        "Private Execution",
+        "Public Execution of Evildoers",
+        "Suicide",
+        "Unjust Killing"
+      ],
+      "parse_status": "ok",
+      "passage_count": 35,
+      "question_id": "st.ii-ii.q064",
+      "question_number": 64,
+      "question_title": "Murder",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 20,
+      "reviewed_doctrinal_edge_count": 7,
+      "reviewed_structural_editorial_count": 13,
+      "unresolved_ambiguity_count": 5
+    },
+    {
+      "candidate_mention_count": 15,
+      "candidate_relation_count": 5,
+      "injury_domain_usage": {
+        "Bodily Integrity": 2,
+        "Personal Liberty": 1
+      },
+      "judicial_process_usage": {
+        "Judge": 3
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Assault or Blows",
+        "Bodily Integrity",
+        "Judge",
+        "Maiming",
+        "Personal Liberty",
+        "Unjust Detention"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q065",
+      "question_number": 65,
+      "question_title": "Other injuries committed on the person",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 15,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 9,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 56,
+      "candidate_relation_count": 26,
+      "injury_domain_usage": {
+        "Property": 2
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Charity",
+        "Justice",
+        "Property",
+        "Restitution",
+        "Robbery",
+        "Theft"
+      ],
+      "parse_status": "ok",
+      "passage_count": 35,
+      "question_id": "st.ii-ii.q066",
+      "question_number": 66,
+      "question_title": "Theft and robbery",
+      "restitution_usage": {
+        "Restitution": 2
+      },
+      "reviewed_annotation_count": 21,
+      "reviewed_doctrinal_edge_count": 7,
+      "reviewed_structural_editorial_count": 14,
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 24,
+      "candidate_relation_count": 8,
+      "injury_domain_usage": {
+        "Truth in Legal Proceedings": 1
+      },
+      "judicial_process_usage": {
+        "Accuser": 1,
+        "Judge": 3,
+        "Judicial Process": 3
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Accuser",
+        "Judge",
+        "Judicial Process",
+        "Justice",
+        "Truth in Legal Proceedings",
+        "Unjust Judgment"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q067",
+      "question_number": 67,
+      "question_title": "The injustice of a judge, in judging",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 13,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 6
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 9,
+      "injury_domain_usage": {
+        "Reputation": 1,
+        "Truth in Legal Proceedings": 1
+      },
+      "judicial_process_usage": {
+        "Accuser": 2,
+        "Judicial Process": 1
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Accuser",
+        "Common Good",
+        "False Accusation",
+        "Judicial Process",
+        "Reputation",
+        "Truth in Legal Proceedings"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q068",
+      "question_number": 68,
+      "question_title": "Matters concerning unjust accusation",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 12,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 40,
+      "candidate_relation_count": 14,
+      "injury_domain_usage": {
+        "Truth in Legal Proceedings": 1
+      },
+      "judicial_process_usage": {
+        "Defendant": 3,
+        "Judicial Process": 2
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Calumnious Defense",
+        "Defendant",
+        "Judicial Process",
+        "Truth in Legal Proceedings",
+        "Unjust Appeal"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q069",
+      "question_number": 69,
+      "question_title": "Sins committed against justice: of the part of the defendant",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 13,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 10
+    },
+    {
+      "candidate_mention_count": 26,
+      "candidate_relation_count": 12,
+      "injury_domain_usage": {
+        "Truth in Legal Proceedings": 1
+      },
+      "judicial_process_usage": {
+        "Judicial Process": 2,
+        "Witness": 3
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "False Witness",
+        "Judicial Process",
+        "Justice",
+        "Truth in Legal Proceedings",
+        "Witness"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q070",
+      "question_number": 70,
+      "question_title": "Injustice with regard to the person of the witness",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 13,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 17,
+      "candidate_relation_count": 9,
+      "injury_domain_usage": {
+        "Fairness in Exchange": 1
+      },
+      "judicial_process_usage": {
+        "Advocate": 2,
+        "Judicial Process": 1
+      },
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Advocate",
+        "Dishonest Advocacy",
+        "Extortionate Advocacy",
+        "Fairness in Exchange",
+        "Judicial Process",
+        "Restitution"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q071",
+      "question_number": 71,
+      "question_title": "Injustice in judgment: the part of counsel",
+      "restitution_usage": {
+        "Restitution": 1
+      },
+      "reviewed_annotation_count": 12,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 2
+    },
+    {
+      "candidate_mention_count": 26,
+      "candidate_relation_count": 11,
+      "injury_domain_usage": {
+        "Honor": 2
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Anger",
+        "Honor",
+        "Reviling"
+      ],
+      "parse_status": "ok",
+      "passage_count": 16,
+      "question_id": "st.ii-ii.q072",
+      "question_number": 72,
+      "question_title": "Reviling",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 6,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 35,
+      "candidate_relation_count": 12,
+      "injury_domain_usage": {
+        "Reputation": 3
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Backbiting",
+        "Reputation"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q073",
+      "question_number": 73,
+      "question_title": "Backbiting",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 9,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 6,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 9,
+      "candidate_relation_count": 3,
+      "injury_domain_usage": {
+        "Friendship": 2
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Friendship",
+        "Tale-Bearing"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q074",
+      "question_number": 74,
+      "question_title": "Tale-bearing",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 4,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 12,
+      "candidate_relation_count": 4,
+      "injury_domain_usage": {
+        "Honor": 2
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Derision",
+        "Honor"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q075",
+      "question_number": 75,
+      "question_title": "Derision",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 6,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 4,
+      "unresolved_ambiguity_count": 1
+    },
+    {
+      "candidate_mention_count": 29,
+      "candidate_relation_count": 25,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Charity",
+        "Cursing"
+      ],
+      "parse_status": "partial",
+      "passage_count": 11,
+      "question_id": "st.ii-ii.q076",
+      "question_number": 76,
+      "question_title": "Cursing",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 1,
+      "reviewed_structural_editorial_count": 6,
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 27,
+      "candidate_relation_count": 11,
+      "injury_domain_usage": {
+        "Fairness in Exchange": 2,
+        "Property": 1
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Cheating in Exchange",
+        "Fairness in Exchange",
+        "Just Price",
+        "Justice",
+        "Property"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q077",
+      "question_number": 77,
+      "question_title": "Cheating, which is committed in buying and selling",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 13,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 8,
+      "unresolved_ambiguity_count": 7
+    },
+    {
+      "candidate_mention_count": 25,
+      "candidate_relation_count": 10,
+      "injury_domain_usage": {
+        "Fairness in Exchange": 2
+      },
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Fairness in Exchange",
+        "Justice",
+        "Restitution",
+        "Usury"
+      ],
+      "parse_status": "ok",
+      "passage_count": 24,
+      "question_id": "st.ii-ii.q078",
+      "question_number": 78,
+      "question_title": "The sin of usury",
+      "restitution_usage": {
+        "Restitution": 1
+      },
+      "reviewed_annotation_count": 11,
+      "reviewed_doctrinal_edge_count": 3,
+      "reviewed_structural_editorial_count": 7,
+      "unresolved_ambiguity_count": 3
+    },
+    {
+      "candidate_mention_count": 74,
+      "candidate_relation_count": 30,
+      "injury_domain_usage": {},
+      "judicial_process_usage": {},
+      "justice_species_usage": {},
+      "major_concepts": [
+        "Justice",
+        "Omission",
+        "Transgression"
+      ],
+      "parse_status": "ok",
+      "passage_count": 18,
+      "question_id": "st.ii-ii.q079",
+      "question_number": 79,
+      "question_title": "The quasi-integral parts of Justice",
+      "restitution_usage": {},
+      "reviewed_annotation_count": 8,
+      "reviewed_doctrinal_edge_count": 2,
+      "reviewed_structural_editorial_count": 6,
+      "unresolved_ambiguity_count": 11
+    }
+  ],
+  "questions_with_domain_process_modeling_risk": [
+    76
+  ],
+  "summary": {
+    "candidate_mention_count": 1141,
+    "candidate_relation_count": 459,
+    "harmed_domain_relation_count": 21,
+    "judicial_process_relation_count": 31,
+    "justice_species_relation_count": 11,
+    "passage_count": 452,
+    "question_count": 23,
+    "registered_concepts_used": 66,
+    "restitution_related_relation_count": 7,
+    "reviewed_annotation_count": 299,
+    "reviewed_doctrinal_edge_count": 98,
+    "reviewed_structural_editorial_count": 186
+  },
+  "under_annotated_questions": [
+    58,
+    59,
+    62,
+    72,
+    73,
+    78,
+    79
+  ]
+}

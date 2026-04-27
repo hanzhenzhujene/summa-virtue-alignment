@@ -1,0 +1,76 @@
+# Theological Virtues Coverage
+
+## Summary
+- Questions covered: `46`
+- Passages: `999`
+- Registered concepts used: `58`
+- Reviewed annotations: `185`
+- Reviewed doctrinal edges: `54`
+- Reviewed structural-editorial correspondences: `126`
+- Candidate mentions: `5832`
+- Candidate relation proposals: `2161`
+
+## Under-Annotated Questions
+- `II-II q.2`
+- `II-II q.4`
+- `II-II q.5`
+- `II-II q.7`
+- `II-II q.8`
+- `II-II q.10`
+- `II-II q.19`
+- `II-II q.24`
+- `II-II q.26`
+- `II-II q.27`
+- `II-II q.30`
+- `II-II q.32`
+- `II-II q.33`
+- `II-II q.38`
+- `II-II q.43`
+
+## Question Detail
+- `II-II q.1` `ok` | passages=49 | reviewed=24 | doctrinal_edges=3 | candidate_mentions=255 | candidate_relations=101 | ambiguities=6
+- `II-II q.2` `ok` | passages=40 | reviewed=4 | doctrinal_edges=1 | candidate_mentions=232 | candidate_relations=76 | ambiguities=22
+- `II-II q.3` `ok` | passages=8 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=54 | candidate_relations=19 | ambiguities=5
+- `II-II q.4` `ok` | passages=37 | reviewed=1 | doctrinal_edges=0 | candidate_mentions=289 | candidate_relations=104 | ambiguities=24
+- `II-II q.5` `ok` | passages=16 | reviewed=1 | doctrinal_edges=0 | candidate_mentions=108 | candidate_relations=37 | ambiguities=9
+- `II-II q.6` `ok` | passages=8 | reviewed=2 | doctrinal_edges=1 | candidate_mentions=59 | candidate_relations=17 | ambiguities=3
+- `II-II q.7` `ok` | passages=8 | reviewed=1 | doctrinal_edges=0 | candidate_mentions=49 | candidate_relations=18 | ambiguities=0
+- `II-II q.8` `partial` | passages=26 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=160 | candidate_relations=59 | ambiguities=15
+- `II-II q.9` `ok` | passages=15 | reviewed=5 | doctrinal_edges=3 | candidate_mentions=100 | candidate_relations=46 | ambiguities=3
+- `II-II q.10` `partial` | passages=42 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=238 | candidate_relations=82 | ambiguities=30
+- `II-II q.11` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=76 | candidate_relations=34 | ambiguities=1
+- `II-II q.12` `ok` | passages=8 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=65 | candidate_relations=20 | ambiguities=1
+- `II-II q.13` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=92 | candidate_relations=47 | ambiguities=0
+- `II-II q.14` `ok` | passages=17 | reviewed=4 | doctrinal_edges=2 | candidate_mentions=100 | candidate_relations=39 | ambiguities=3
+- `II-II q.15` `partial` | passages=9 | reviewed=3 | doctrinal_edges=0 | candidate_mentions=19 | candidate_relations=17 | ambiguities=1
+- `II-II q.16` `ok` | passages=11 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=100 | candidate_relations=23 | ambiguities=27
+- `II-II q.17` `partial` | passages=26 | reviewed=4 | doctrinal_edges=2 | candidate_mentions=228 | candidate_relations=79 | ambiguities=17
+- `II-II q.18` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=95 | candidate_relations=39 | ambiguities=11
+- `II-II q.19` `ok` | passages=50 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=418 | candidate_relations=141 | ambiguities=10
+- `II-II q.20` `partial` | passages=11 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=98 | candidate_relations=42 | ambiguities=6
+- `II-II q.21` `partial` | passages=13 | reviewed=4 | doctrinal_edges=2 | candidate_mentions=106 | candidate_relations=51 | ambiguities=4
+- `II-II q.22` `ok` | passages=8 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=119 | candidate_relations=33 | ambiguities=27
+- `II-II q.23` `ok` | passages=32 | reviewed=15 | doctrinal_edges=3 | candidate_mentions=270 | candidate_relations=103 | ambiguities=38
+- `II-II q.24` `ok` | passages=50 | reviewed=5 | doctrinal_edges=2 | candidate_mentions=347 | candidate_relations=100 | ambiguities=18
+- `II-II q.25` `partial` | passages=44 | reviewed=6 | doctrinal_edges=2 | candidate_mentions=293 | candidate_relations=98 | ambiguities=5
+- `II-II q.26` `ok` | passages=51 | reviewed=4 | doctrinal_edges=1 | candidate_mentions=291 | candidate_relations=92 | ambiguities=11
+- `II-II q.27` `partial` | passages=27 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=221 | candidate_relations=64 | ambiguities=8
+- `II-II q.28` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=108 | candidate_relations=43 | ambiguities=11
+- `II-II q.29` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=52 | candidate_relations=22 | ambiguities=7
+- `II-II q.30` `ok` | passages=17 | reviewed=2 | doctrinal_edges=0 | candidate_mentions=56 | candidate_relations=23 | ambiguities=9
+- `II-II q.31` `ok` | passages=16 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=60 | candidate_relations=24 | ambiguities=6
+- `II-II q.32` `partial` | passages=39 | reviewed=5 | doctrinal_edges=2 | candidate_mentions=108 | candidate_relations=42 | ambiguities=20
+- `II-II q.33` `partial` | passages=33 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=143 | candidate_relations=62 | ambiguities=15
+- `II-II q.34` `partial` | passages=21 | reviewed=4 | doctrinal_edges=1 | candidate_mentions=156 | candidate_relations=62 | ambiguities=4
+- `II-II q.35` `partial` | passages=14 | reviewed=5 | doctrinal_edges=2 | candidate_mentions=45 | candidate_relations=19 | ambiguities=6
+- `II-II q.36` `ok` | passages=17 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=31 | candidate_relations=18 | ambiguities=2
+- `II-II q.37` `ok` | passages=8 | reviewed=5 | doctrinal_edges=2 | candidate_mentions=49 | candidate_relations=19 | ambiguities=0
+- `II-II q.38` `ok` | passages=9 | reviewed=1 | doctrinal_edges=0 | candidate_mentions=12 | candidate_relations=5 | ambiguities=0
+- `II-II q.39` `partial` | passages=13 | reviewed=5 | doctrinal_edges=2 | candidate_mentions=91 | candidate_relations=44 | ambiguities=1
+- `II-II q.40` `partial` | passages=12 | reviewed=2 | doctrinal_edges=0 | candidate_mentions=20 | candidate_relations=15 | ambiguities=1
+- `II-II q.41` `ok` | passages=10 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=33 | candidate_relations=15 | ambiguities=1
+- `II-II q.42` `ok` | passages=8 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=47 | candidate_relations=19 | ambiguities=2
+- `II-II q.43` `partial` | passages=34 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=46 | candidate_relations=25 | ambiguities=4
+- `II-II q.44` `partial` | passages=27 | reviewed=4 | doctrinal_edges=1 | candidate_mentions=200 | candidate_relations=77 | ambiguities=15
+- `II-II q.45` `ok` | passages=23 | reviewed=6 | doctrinal_edges=3 | candidate_mentions=79 | candidate_relations=40 | ambiguities=7
+- `II-II q.46` `ok` | passages=12 | reviewed=3 | doctrinal_edges=1 | candidate_mentions=14 | candidate_relations=6 | ambiguities=0

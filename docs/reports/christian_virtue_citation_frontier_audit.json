@@ -1,0 +1,1506 @@
+{
+  "adapter_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest/predictions.jsonl",
+  "base_predictions_path": "runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest/predictions.jsonl",
+  "by_relation_type": {
+    "adapter": {
+      "annexed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_great_expenditure": {
+        "any_citation_signal_rate": 0.6,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.4,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.6
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.4,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.6
+      },
+      "concerns_great_work": {
+        "any_citation_signal_rate": 0.4,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 3,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 2
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.6,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.4
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.6,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.4
+      },
+      "concerns_self_presentation": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_sexual_pleasure": {
+        "any_citation_signal_rate": 1.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 0,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 1.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 1.0
+      },
+      "contrary_to": {
+        "any_citation_signal_rate": 0.5,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5
+      },
+      "deficiency_opposed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "directed_to": {
+        "any_citation_signal_rate": 0.6,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.4,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.6
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.4,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.6
+      },
+      "excess_opposed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "harms_domain": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "has_act": {
+        "any_citation_signal_rate": 0.2,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 4,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.8,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.2
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.8,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.2
+      },
+      "integral_part_of": {
+        "any_citation_signal_rate": 0.5,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5
+      },
+      "part_of_fortitude": {
+        "any_citation_signal_rate": 0.5,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5
+      },
+      "potential_part_of": {
+        "any_citation_signal_rate": 1.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 0,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 1.0
+        },
+        "count": 3,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 1.0
+      },
+      "regulated_by": {
+        "any_citation_signal_rate": 1.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 0,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 1.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 1.0
+      },
+      "requires": {
+        "any_citation_signal_rate": 1.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 0,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 1
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 1.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 1.0
+      },
+      "requires_restitution": {
+        "any_citation_signal_rate": 0.5,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 3,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5
+        },
+        "count": 6,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5
+      },
+      "species_of": {
+        "any_citation_signal_rate": 0.5,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 2
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5
+        },
+        "count": 4,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5
+      },
+      "subjective_part_of": {
+        "any_citation_signal_rate": 0.75,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 6
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.25,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.75
+        },
+        "count": 8,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.25,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.75
+      },
+      "tempted_by": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "treated_in": {
+        "any_citation_signal_rate": 0.375,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.625,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.375
+        },
+        "count": 8,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.625,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.375
+      }
+    },
+    "base": {
+      "annexed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_great_expenditure": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_great_work": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_self_presentation": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "concerns_sexual_pleasure": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "contrary_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "deficiency_opposed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "directed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "excess_opposed_to": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "harms_domain": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "has_act": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "integral_part_of": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "part_of_fortitude": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "potential_part_of": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 3,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 3,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "regulated_by": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "requires": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "requires_restitution": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 6,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 6,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "species_of": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 4,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 4,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "subjective_part_of": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 8,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 8,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "tempted_by": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 1,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "treated_in": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 8,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 8,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      }
+    }
+  },
+  "by_tract": {
+    "adapter": {
+      "connected_virtues_109_120": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "fortitude_closure_136_140": {
+        "any_citation_signal_rate": 0.8,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 4
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.2,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.8
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.2,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.8
+      },
+      "fortitude_parts_129_135": {
+        "any_citation_signal_rate": 0.4375,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 9,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 7
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.5625,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.4375
+        },
+        "count": 16,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.5625,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.4375
+      },
+      "justice_core": {
+        "any_citation_signal_rate": 0.25,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 9,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 3
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.75,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.25
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.75,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.25
+      },
+      "prudence": {
+        "any_citation_signal_rate": 0.5833333333333334,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 7
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.4166666666666667,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5833333333333334
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.4166666666666667,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5833333333333334
+      },
+      "temperance_141_160": {
+        "any_citation_signal_rate": 0.5833333333333334,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 7
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.4166666666666667,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.5833333333333334
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.4166666666666667,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.5833333333333334
+      },
+      "temperance_closure_161_170": {
+        "any_citation_signal_rate": 0.6666666666666666,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 1,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 2
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.3333333333333333,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.6666666666666666
+        },
+        "count": 3,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.3333333333333333,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.6666666666666666
+      },
+      "theological_virtues": {
+        "any_citation_signal_rate": 0.4,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 3,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 2
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 0.6,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.4
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 0.6,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.4
+      }
+    },
+    "base": {
+      "connected_virtues_109_120": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 2,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 2,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "fortitude_closure_136_140": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "fortitude_parts_129_135": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 16,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 16,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "justice_core": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 12,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "prudence": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 12,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "temperance_141_160": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 12,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 12,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "temperance_closure_161_170": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 3,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 3,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      },
+      "theological_virtues": {
+        "any_citation_signal_rate": 0.0,
+        "category_counts": {
+          "exact_stable_id_match": 0,
+          "label_only_citation": 0,
+          "no_citation_signal": 5,
+          "partial_stable_id_match": 0,
+          "wrong_stable_id": 0
+        },
+        "category_rates": {
+          "exact_stable_id_match": 0.0,
+          "label_only_citation": 0.0,
+          "no_citation_signal": 1.0,
+          "partial_stable_id_match": 0.0,
+          "wrong_stable_id": 0.0
+        },
+        "count": 5,
+        "exact_stable_id_match_rate": 0.0,
+        "label_only_citation_rate": 0.0,
+        "no_citation_signal_rate": 1.0,
+        "partial_stable_id_match_rate": 0.0,
+        "wrong_stable_id_rate": 0.0
+      }
+    }
+  },
+  "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
+  "overall": {
+    "adapter": {
+      "any_citation_signal_rate": 0.47761194029850745,
+      "category_counts": {
+        "exact_stable_id_match": 0,
+        "label_only_citation": 0,
+        "no_citation_signal": 35,
+        "partial_stable_id_match": 0,
+        "wrong_stable_id": 32
+      },
+      "category_rates": {
+        "exact_stable_id_match": 0.0,
+        "label_only_citation": 0.0,
+        "no_citation_signal": 0.5223880597014925,
+        "partial_stable_id_match": 0.0,
+        "wrong_stable_id": 0.47761194029850745
+      },
+      "count": 67,
+      "exact_stable_id_match_rate": 0.0,
+      "label_only_citation_rate": 0.0,
+      "no_citation_signal_rate": 0.5223880597014925,
+      "partial_stable_id_match_rate": 0.0,
+      "wrong_stable_id_rate": 0.47761194029850745
+    },
+    "base": {
+      "any_citation_signal_rate": 0.0,
+      "category_counts": {
+        "exact_stable_id_match": 0,
+        "label_only_citation": 0,
+        "no_citation_signal": 67,
+        "partial_stable_id_match": 0,
+        "wrong_stable_id": 0
+      },
+      "category_rates": {
+        "exact_stable_id_match": 0.0,
+        "label_only_citation": 0.0,
+        "no_citation_signal": 1.0,
+        "partial_stable_id_match": 0.0,
+        "wrong_stable_id": 0.0
+      },
+      "count": 67,
+      "exact_stable_id_match_rate": 0.0,
+      "label_only_citation_rate": 0.0,
+      "no_citation_signal_rate": 1.0,
+      "partial_stable_id_match_rate": 0.0,
+      "wrong_stable_id_rate": 0.0
+    }
+  },
+  "recommendation": {
+    "citation_frontier_recipe": {
+      "commands": [
+        "make train-christian-virtue-qwen2-5-1-5b-citation-frontier",
+        "make eval-christian-virtue-qwen2-5-1-5b-citation-frontier-test",
+        "make compare-christian-virtue-qwen2-5-1-5b-citation-frontier",
+        "make audit-christian-virtue-qwen2-5-1-5b-citation-frontier"
+      ],
+      "config_path": "configs/train/qwen2_5_1_5b_instruct_lora_mps_citation_frontier.yaml",
+      "eval_task_type_quotas": {
+        "citation_grounded_moral_answer": 16,
+        "passage_grounded_doctrinal_qa": 4,
+        "reviewed_relation_explanation": 8,
+        "virtue_concept_explanation": 4
+      },
+      "inference_config_path": "configs/inference/qwen2_5_1_5b_instruct_citation_frontier_adapter_test.yaml",
+      "max_eval_examples": 32,
+      "max_steps": 20,
+      "max_train_examples": 128,
+      "train_task_type_quotas": {
+        "citation_grounded_moral_answer": 64,
+        "passage_grounded_doctrinal_qa": 16,
+        "reviewed_relation_explanation": 24,
+        "virtue_concept_explanation": 24
+      }
+    },
+    "next_frontier": "citation_grounded_moral_answer",
+    "thesis": "The next expansion should target citation-grounded moral answers rather than widening doctrinal scope, because the current local baseline already shows strong virtue-concept and reviewed-relation gains while this user-style task remains the main unresolved traceability bottleneck.",
+    "under_five_hour_experiment": [
+      "keep the current local-baseline as the public virtue-reasoning demo",
+      "rerun this frontier audit after any focused mixture change",
+      "treat stable-id recovery on citation_grounded_moral_answer as the next local success criterion"
+    ]
+  },
+  "representative_examples": {
+    "label_only_citation": [],
+    "no_citation_signal": [
+      {
+        "adapter_category": "no_citation_signal",
+        "adapter_prediction_text": "According to the cited passage, Adam's First Sin is the original sin, which is the sin of the first parents. This is explicitly stated in ST I-II qq.001.a001.resp. Aquinas then goes on to explain that this original sin is the sin of Adam, not Eve, as Eve was deceived by the serpent. The passage states this directly in ST I-II qq.001.a001.resp. The passage does not discuss the Temptation of the First Parents in detai\u2026",
+        "base_category": "no_citation_signal",
+        "base_prediction_text": "According to Thomas Aquinas, the relation between Adam's First Sin and the Temptation of the First Parents is a central theme in his moral philosophy. Aquinas distinguishes between the original sin of Adam and the subsequent temptation of Eve and Adam by the serpent. He argues that the original sin of Adam was a breach of the first commandment, which prohibits idolatry and the worship of created things. This origina\u2026",
+        "example_id": "christian_virtue_v1.citation_grounded_moral_answer.ann.concept-adams-first-sin-tempted-by-concept-first-parents-temptation-st-ii-ii-q165-a002-resp",
+        "question": "What does Aquinas teach about the relation between Adam's First Sin and Temptation of the First Parents?",
+        "reference_ids": [
+          "st.ii-ii.q165.a002.resp"
+        ],
+        "reference_labels": [
+          "II-II q.165 a.2 resp"
+        ],
+        "relation_type": "tempted_by",
+        "tract": "temperance_closure_161_170"
+      },
+      {
+        "adapter_category": "no_citation_signal",
+        "adapter_prediction_text": "According to Aquinas, the act of Commutative Justice is giving to another what is due to him. This is stated in ST I-II qq.100-101 resp. st.100-101.htm#100. According to ST I-II qq.100-101 resp. st.100-101.htm#100.1 The passage cited explicitly states this as the act of Commutative Justice.",
+        "base_category": "no_citation_signal",
+        "base_prediction_text": "According to Aquinas, the act of giving is one that belongs to Commutative Justice. This principle is articulated in his moral philosophy, particularly in his Summa Theologica, where he discusses the natural law and the duties of justice. Aquinas argues that the act of giving is a form of exchange or reciprocity, which is central to the concept of Commutative Justice. This act is considered just because it involves\u2026",
+        "example_id": "christian_virtue_v1.citation_grounded_moral_answer.ann.concept-commutative-justice-has-act-concept-restitution-st-ii-ii-q062-a001-resp",
+        "question": "According to Aquinas, what act belongs to Commutative Justice?",
+        "reference_ids": [
+          "st.ii-ii.q062.a001.resp"
+        ],
+        "reference_labels": [
+          "II-II q.62 a.1 resp"
+        ],
+        "relation_type": "has_act",
+        "tract": "justice_core"
+      }
+    ],
+    "wrong_stable_id": [
+      {
+        "adapter_category": "wrong_stable_id",
+        "adapter_prediction_text": "According to Aquinas, Abstinence is classified as a moral virtue under Temperance. The passage that supports this classification is ST I-II qq.112-113.1. This passage states that Abstinence is a moral virtue of temperance, specifically under the category of self-control. The passage directly states this classification without any qualification. Citations: - st.ii-ii.q112.a001.resp (I-II q.112 a.1 resp)",
+        "base_category": "no_citation_signal",
+        "base_prediction_text": "According to Thomas Aquinas, abstinence is a form of temperance. Aquinas classifies abstinence under the broader category of \"moderation\" (moderatio) within his moral philosophy. He defines temperance as the \"moderation of the appetites\" (Summa Theologica, I, q. 100, a. 1). Abstinence, as a form of temperance, involves the restraint of one's desires or appetites in order to maintain a balanced state of life. Aquinas\u2026",
+        "example_id": "christian_virtue_v1.citation_grounded_moral_answer.ann.concept-abstinence-subjective-part-of-concept-temperance-st-ii-ii-q143-a001-resp",
+        "question": "How does Aquinas classify Abstinence within Temperance?",
+        "reference_ids": [
+          "st.ii-ii.q143.a001.resp"
+        ],
+        "reference_labels": [
+          "II-II q.143 a.1 resp"
+        ],
+        "relation_type": "subjective_part_of",
+        "tract": "temperance_141_160"
+      },
+      {
+        "adapter_category": "wrong_stable_id",
+        "adapter_prediction_text": "According to Aquinas, Charity is the act of giving oneself to another. This is stated directly in ST I-II q.100 a.1 c.1. The passage states this explicitly. Citations: - st.ii-ii.q100.a001.resp (II-II q.100 a.1 resp)",
+        "base_category": "no_citation_signal",
+        "base_prediction_text": "According to Aquinas, the act of Charity, which is one of the theological virtues, is the act of loving God with one's whole self. This love is not merely intellectual but also involves the will and the whole person. Aquinas describes this love as \"the most perfect form of love\" and emphasizes its centrality in Christian life. The passage that discusses this is found in his Summa Theologica, specifically in the Seco\u2026",
+        "example_id": "christian_virtue_v1.citation_grounded_moral_answer.ann.concept-charity-has-act-concept-fraternal-correction-st-ii-ii-q033-a001-resp",
+        "question": "According to Aquinas, what act belongs to Charity?",
+        "reference_ids": [
+          "st.ii-ii.q033.a001.resp"
+        ],
+        "reference_labels": [
+          "II-II q.33 a.1 resp"
+        ],
+        "relation_type": "has_act",
+        "tract": "theological_virtues"
+      }
+    ]
+  },
+  "split_name": "test",
+  "task_type": "citation_grounded_moral_answer"
+}

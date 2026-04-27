@@ -1,0 +1,3719 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d18" for="edge" attr.name="review_layer" attr.type="string"/>
+<key id="d17" for="edge" attr.name="evidence_snippets" attr.type="string"/>
+<key id="d16" for="edge" attr.name="support_types" attr.type="string"/>
+<key id="d15" for="edge" attr.name="source_passage_ids" attr.type="string"/>
+<key id="d14" for="edge" attr.name="support_annotation_ids" attr.type="string"/>
+<key id="d13" for="edge" attr.name="object_type" attr.type="string"/>
+<key id="d12" for="edge" attr.name="object_label" attr.type="string"/>
+<key id="d11" for="edge" attr.name="object_id" attr.type="string"/>
+<key id="d10" for="edge" attr.name="relation_type" attr.type="string"/>
+<key id="d9" for="edge" attr.name="subject_type" attr.type="string"/>
+<key id="d8" for="edge" attr.name="subject_label" attr.type="string"/>
+<key id="d7" for="edge" attr.name="subject_id" attr.type="string"/>
+<key id="d6" for="edge" attr.name="edge_id" attr.type="string"/>
+<key id="d5" for="node" attr.name="notes" attr.type="string"/>
+<key id="d4" for="node" attr.name="description" attr.type="string"/>
+<key id="d3" for="node" attr.name="registry_status" attr.type="string"/>
+<key id="d2" for="node" attr.name="node_type" attr.type="string"/>
+<key id="d1" for="node" attr.name="label" attr.type="string"/>
+<key id="d0" for="node" attr.name="node_id" attr.type="string"/>
+<graph edgedefault="directed"><node id="concept.act_of_faith">
+  <data key="d0">concept.act_of_faith</data>
+  <data key="d1">Act of Faith</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">The inward believing act by which the intellect assents to divine truth.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.almsgiving">
+  <data key="d0">concept.almsgiving</data>
+  <data key="d1">Almsgiving</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Giving to the needy as an act of mercy and, through mercy, of charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.apostasy">
+  <data key="d0">concept.apostasy</data>
+  <data key="d1">Apostasy</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Backsliding from God, and absolutely speaking, withdrawal from the faith.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.article_of_faith">
+  <data key="d0">concept.article_of_faith</data>
+  <data key="d1">Article of Faith</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Distinct doctrinal articulation within the content of faith.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beatitude_clean_of_heart">
+  <data key="d0">concept.beatitude_clean_of_heart</data>
+  <data key="d1">Beatitude of the Clean of Heart</data>
+  <data key="d2">beatitude</data>
+  <data key="d3">seed</data>
+  <data key="d4">Beatitude pronounced on the clean of heart.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beatitude_mourn">
+  <data key="d0">concept.beatitude_mourn</data>
+  <data key="d1">Beatitude of Those Who Mourn</data>
+  <data key="d2">beatitude</data>
+  <data key="d3">seed</data>
+  <data key="d4">Beatitude pronounced on those who mourn.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beatitude_peacemakers">
+  <data key="d0">concept.beatitude_peacemakers</data>
+  <data key="d1">Beatitude of the Peacemakers</data>
+  <data key="d2">beatitude</data>
+  <data key="d3">seed</data>
+  <data key="d4">Beatitude pronounced on the peacemakers.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beatitude_poor_in_spirit">
+  <data key="d0">concept.beatitude_poor_in_spirit</data>
+  <data key="d1">Beatitude of the Poor in Spirit</data>
+  <data key="d2">beatitude</data>
+  <data key="d3">seed</data>
+  <data key="d4">Beatitude pronounced on the poor in spirit.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.beneficence">
+  <data key="d0">concept.beneficence</data>
+  <data key="d1">Beneficence</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Doing good to another as an act of friendship and charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.blasphemy">
+  <data key="d0">concept.blasphemy</data>
+  <data key="d1">Blasphemy</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Disparagement of divine goodness by denying what befits God or affirming what does not.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.blasphemy_against_holy_spirit">
+  <data key="d0">concept.blasphemy_against_holy_spirit</data>
+  <data key="d1">Sin Against the Holy Spirit</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">The special sin against the Holy Spirit as treated in questions 14-15.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.blindness_of_mind">
+  <data key="d0">concept.blindness_of_mind</data>
+  <data key="d1">Blindness of Mind</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Privation of intellectual sight by willful turning away from intelligible principle.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.charity">
+  <data key="d0">concept.charity</data>
+  <data key="d1">Charity</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Theological virtue of friendship with God.</data>
+  <data key="d5">Do not auto-normalize bare 'love' to charity outside clearly theological context.</data>
+</node>
+<node id="concept.common_good">
+  <data key="d0">concept.common_good</data>
+  <data key="d1">Common Good</data>
+  <data key="d2">end</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Good of the whole community rather than of a private individual alone.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.concord">
+  <data key="d0">concept.concord</data>
+  <data key="d1">Concord</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Agreement of hearts directed together by charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.confession_of_faith">
+  <data key="d0">concept.confession_of_faith</data>
+  <data key="d1">Confession of Faith</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">The outward verbal confession of what is held by faith.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.contention">
+  <data key="d0">concept.contention</data>
+  <data key="d1">Contention</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Contrariety of speech in a disordered or truth-disclaiming manner.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.despair_sin">
+  <data key="d0">concept.despair_sin</data>
+  <data key="d1">Despair (Sin)</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Sinful movement contrary to hope by judging pardon or salvation unavailable from God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.discord">
+  <data key="d0">concept.discord</data>
+  <data key="d1">Discord</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Dissent of wills contrary to the concord produced by charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.dullness_of_sense">
+  <data key="d0">concept.dullness_of_sense</data>
+  <data key="d1">Dullness of Sense</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Obtuseness of intellectual penetration in spiritual matters.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.ecclesial_unity">
+  <data key="d0">concept.ecclesial_unity</data>
+  <data key="d1">Ecclesial Unity</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">seed</data>
+  <data key="d4">The unity of the Church and its members described as an effect of charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.envy">
+  <data key="d0">concept.envy</data>
+  <data key="d1">Envy</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Grief over a neighbor's good in a way contrary to charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.eternal_life">
+  <data key="d0">concept.eternal_life</data>
+  <data key="d1">Eternal Life</data>
+  <data key="d2">end</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Supernatural end exceeding the proportion of human nature.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.faith">
+  <data key="d0">concept.faith</data>
+  <data key="d1">Faith</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Theological virtue assenting to divine truth on God's authority.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fear_of_lord_gift">
+  <data key="d0">concept.fear_of_lord_gift</data>
+  <data key="d1">Gift of Fear of the Lord</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit producing reverential fear before God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.first_truth">
+  <data key="d0">concept.first_truth</data>
+  <data key="d1">First Truth</data>
+  <data key="d2">object</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Formal object of faith considered under divine revelation.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.folly">
+  <data key="d0">concept.folly</data>
+  <data key="d1">Folly</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Dulled judgment in divine things, treated as contrary to wisdom.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.form_of_virtues">
+  <data key="d0">concept.form_of_virtues</data>
+  <data key="d1">Form of the Virtues</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The ordering role by which charity informs the acts of the virtues.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.fraternal_correction">
+  <data key="d0">concept.fraternal_correction</data>
+  <data key="d1">Fraternal Correction</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Correction of a brother's sin as an act of charity ordered to amendment.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.friendship_with_god">
+  <data key="d0">concept.friendship_with_god</data>
+  <data key="d1">Friendship with God</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The definitional friendship Aquinas attributes to charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.god">
+  <data key="d0">concept.god</data>
+  <data key="d1">God</data>
+  <data key="d2">object</data>
+  <data key="d3">seed</data>
+  <data key="d4">God as the object or term of theological virtue and charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.hatred_sin">
+  <data key="d0">concept.hatred_sin</data>
+  <data key="d1">Hatred (Sin)</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Sinful hatred opposed to the love due to God or neighbor.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.heresy">
+  <data key="d0">concept.heresy</data>
+  <data key="d1">Heresy</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Species of unbelief choosing private judgment against Christian doctrine.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.holy_spirit">
+  <data key="d0">concept.holy_spirit</data>
+  <data key="d1">Holy Spirit</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">seed</data>
+  <data key="d4">The Holy Spirit in relation to infused charity and the named gifts.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.hope">
+  <data key="d0">concept.hope</data>
+  <data key="d1">Hope</data>
+  <data key="d2">virtue</data>
+  <data key="d3">seed</data>
+  <data key="d4">The theological virtue by which eternal beatitude is expected from God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.joy">
+  <data key="d0">concept.joy</data>
+  <data key="d1">Joy</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Spiritual joy in God proceeding from charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.knowledge_gift">
+  <data key="d0">concept.knowledge_gift</data>
+  <data key="d1">Gift of Knowledge</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit for judging created things in relation to God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.love_act">
+  <data key="d0">concept.love_act</data>
+  <data key="d1">Love (Act)</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">The principal act belonging to charity inasmuch as charity loves.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.mercy">
+  <data key="d0">concept.mercy</data>
+  <data key="d1">Mercy</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Merciful movement or act as treated in the charity tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.neighbor">
+  <data key="d0">concept.neighbor</data>
+  <data key="d1">Neighbor</data>
+  <data key="d2">object</data>
+  <data key="d3">seed</data>
+  <data key="d4">Neighbor as the human object loved out of charity in God.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.object_of_faith">
+  <data key="d0">concept.object_of_faith</data>
+  <data key="d1">Object of Faith</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Formal and material object considered in the tract on faith.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.peace">
+  <data key="d0">concept.peace</data>
+  <data key="d1">Peace</data>
+  <data key="d2">act_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">The ordered tranquility and union effected by charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_charity">
+  <data key="d0">concept.precepts_of_charity</data>
+  <data key="d1">Precepts of Charity</data>
+  <data key="d2">precept</data>
+  <data key="d3">seed</data>
+  <data key="d4">Precepts whose end and ordering belong to charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_faith_knowledge_and_understanding">
+  <data key="d0">concept.precepts_of_faith_knowledge_and_understanding</data>
+  <data key="d1">Precepts of Faith, Knowledge, and Understanding</data>
+  <data key="d2">precept</data>
+  <data key="d3">seed</data>
+  <data key="d4">Precept material governing faith together with the connected gifts of knowledge and understanding.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.precepts_of_hope_and_fear">
+  <data key="d0">concept.precepts_of_hope_and_fear</data>
+  <data key="d1">Precepts of Hope and Fear</data>
+  <data key="d2">precept</data>
+  <data key="d3">seed</data>
+  <data key="d4">Precepts or legal preambles ordering the acts of hope and fear.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.presumption">
+  <data key="d0">concept.presumption</data>
+  <data key="d1">Presumption</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Immoderate hope relying on God or self in a disordered way.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.scandal">
+  <data key="d0">concept.scandal</data>
+  <data key="d1">Scandal</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Something less rightly done or said that occasions another's spiritual downfall.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.schism">
+  <data key="d0">concept.schism</data>
+  <data key="d1">Schism</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Scission from ecclesial unity, directly opposed to the unity effected by charity.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sedition">
+  <data key="d0">concept.sedition</data>
+  <data key="d1">Sedition</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Tumult or antagonism between parts of one people, opposed to civic unity and peace.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.sloth">
+  <data key="d0">concept.sloth</data>
+  <data key="d1">Sloth</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Oppressive sorrow about spiritual good, contrary to charity's joy.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.strife">
+  <data key="d0">concept.strife</data>
+  <data key="d1">Strife</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Private war or contradiction of deeds between persons.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.symbol_of_faith">
+  <data key="d0">concept.symbol_of_faith</data>
+  <data key="d1">Symbol of Faith</data>
+  <data key="d2">doctrine</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Collected formula by which the truths of faith are proposed.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.unbelief">
+  <data key="d0">concept.unbelief</data>
+  <data key="d1">Unbelief</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">Sin opposed to faith by refusing or despising what faith proposes.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.understanding_gift">
+  <data key="d0">concept.understanding_gift</data>
+  <data key="d1">Gift of Understanding</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit granting penetration into divine truth.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.virtue">
+  <data key="d0">concept.virtue</data>
+  <data key="d1">Virtue</data>
+  <data key="d2">virtue</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">Generic virtue as good operative perfection.</data>
+  <data key="d5">Do not collapse generic virtue into a specific virtue without explicit passage support.</data>
+</node>
+<node id="concept.war">
+  <data key="d0">concept.war</data>
+  <data key="d1">War</data>
+  <data key="d2">sin_type</data>
+  <data key="d3">seed</data>
+  <data key="d4">War as treated in the charity tract under the conditions of justice and peace.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.will">
+  <data key="d0">concept.will</data>
+  <data key="d1">Will</data>
+  <data key="d2">faculty</data>
+  <data key="d3">reviewed_seed</data>
+  <data key="d4">The rational appetite and proximate principle of commanded human action.</data>
+  <data key="d5"></data>
+</node>
+<node id="concept.wisdom_gift">
+  <data key="d0">concept.wisdom_gift</data>
+  <data key="d1">Gift of Wisdom</data>
+  <data key="d2">gift_holy_spirit</data>
+  <data key="d3">seed</data>
+  <data key="d4">Gift of the Holy Spirit perfecting higher judgment by divine things.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001">
+  <data key="d0">st.ii-ii.q001</data>
+  <data key="d1">II-II q.1 — Faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002">
+  <data key="d0">st.ii-ii.q002</data>
+  <data key="d1">II-II q.2 — The act of faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q003">
+  <data key="d0">st.ii-ii.q003</data>
+  <data key="d1">II-II q.3 — The outward act of faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004">
+  <data key="d0">st.ii-ii.q004</data>
+  <data key="d1">II-II q.4 — The virtue itself of faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q005">
+  <data key="d0">st.ii-ii.q005</data>
+  <data key="d1">II-II q.5 — Those who have faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q006">
+  <data key="d0">st.ii-ii.q006</data>
+  <data key="d1">II-II q.6 — The cause of faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q007">
+  <data key="d0">st.ii-ii.q007</data>
+  <data key="d1">II-II q.7 — The effects of faith</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008">
+  <data key="d0">st.ii-ii.q008</data>
+  <data key="d1">II-II q.8 — The gift of understanding</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q009">
+  <data key="d0">st.ii-ii.q009</data>
+  <data key="d1">II-II q.9 — The gift of knowledge</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010">
+  <data key="d0">st.ii-ii.q010</data>
+  <data key="d1">II-II q.10 — Unbelief in general</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q011">
+  <data key="d0">st.ii-ii.q011</data>
+  <data key="d1">II-II q.11 — Heresy</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q012">
+  <data key="d0">st.ii-ii.q012</data>
+  <data key="d1">II-II q.12 — Apostasy</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q013">
+  <data key="d0">st.ii-ii.q013</data>
+  <data key="d1">II-II q.13 — The sin of blasphemy, in general</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q014">
+  <data key="d0">st.ii-ii.q014</data>
+  <data key="d1">II-II q.14 — Blasphemy against the Holy Ghost</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q015">
+  <data key="d0">st.ii-ii.q015</data>
+  <data key="d1">II-II q.15 — The vices opposed to knowledge and understanding</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q016">
+  <data key="d0">st.ii-ii.q016</data>
+  <data key="d1">II-II q.16 — The precepts of faith, knowledge and understanding</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017">
+  <data key="d0">st.ii-ii.q017</data>
+  <data key="d1">II-II q.17 — Hope, considered in itself</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q018">
+  <data key="d0">st.ii-ii.q018</data>
+  <data key="d1">II-II q.18 — The subject of hope</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019">
+  <data key="d0">st.ii-ii.q019</data>
+  <data key="d1">II-II q.19 — The gift of fear</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q020">
+  <data key="d0">st.ii-ii.q020</data>
+  <data key="d1">II-II q.20 — Despair</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q021">
+  <data key="d0">st.ii-ii.q021</data>
+  <data key="d1">II-II q.21 — Presumption</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q022">
+  <data key="d0">st.ii-ii.q022</data>
+  <data key="d1">II-II q.22 — The precepts relating to hope and fear</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023">
+  <data key="d0">st.ii-ii.q023</data>
+  <data key="d1">II-II q.23 — Charity, considered in itself</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024">
+  <data key="d0">st.ii-ii.q024</data>
+  <data key="d1">II-II q.24 — The subject of charity</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025">
+  <data key="d0">st.ii-ii.q025</data>
+  <data key="d1">II-II q.25 — The object of charity</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026">
+  <data key="d0">st.ii-ii.q026</data>
+  <data key="d1">II-II q.26 — The order of charity</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027">
+  <data key="d0">st.ii-ii.q027</data>
+  <data key="d1">II-II q.27 — The principle act of charity, which is to love</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q028">
+  <data key="d0">st.ii-ii.q028</data>
+  <data key="d1">II-II q.28 — Joy</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q029">
+  <data key="d0">st.ii-ii.q029</data>
+  <data key="d1">II-II q.29 — Peace</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q030">
+  <data key="d0">st.ii-ii.q030</data>
+  <data key="d1">II-II q.30 — Mercy</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q031">
+  <data key="d0">st.ii-ii.q031</data>
+  <data key="d1">II-II q.31 — Beneficence</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032">
+  <data key="d0">st.ii-ii.q032</data>
+  <data key="d1">II-II q.32 — Almsdeeds</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033">
+  <data key="d0">st.ii-ii.q033</data>
+  <data key="d1">II-II q.33 — Fraternal correction</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034">
+  <data key="d0">st.ii-ii.q034</data>
+  <data key="d1">II-II q.34 — Hatred</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q035">
+  <data key="d0">st.ii-ii.q035</data>
+  <data key="d1">II-II q.35 — Sloth</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q036">
+  <data key="d0">st.ii-ii.q036</data>
+  <data key="d1">II-II q.36 — Envy</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q037">
+  <data key="d0">st.ii-ii.q037</data>
+  <data key="d1">II-II q.37 — Discord, which is contrary to peace</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q038">
+  <data key="d0">st.ii-ii.q038</data>
+  <data key="d1">II-II q.38 — Contention</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q039">
+  <data key="d0">st.ii-ii.q039</data>
+  <data key="d1">II-II q.39 — Schism</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q040">
+  <data key="d0">st.ii-ii.q040</data>
+  <data key="d1">II-II q.40 — War</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q041">
+  <data key="d0">st.ii-ii.q041</data>
+  <data key="d1">II-II q.41 — Strife</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q042">
+  <data key="d0">st.ii-ii.q042</data>
+  <data key="d1">II-II q.42 — Sedition</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043">
+  <data key="d0">st.ii-ii.q043</data>
+  <data key="d1">II-II q.43 — Scandal</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044">
+  <data key="d0">st.ii-ii.q044</data>
+  <data key="d1">II-II q.44 — The precepts of charity</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045">
+  <data key="d0">st.ii-ii.q045</data>
+  <data key="d1">II-II q.45 — The gift of wisdom</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q046">
+  <data key="d0">st.ii-ii.q046</data>
+  <data key="d1">II-II q.46 — Folly which is opposed to wisdom</data>
+  <data key="d2">question</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural question node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a001">
+  <data key="d0">st.ii-ii.q001.a001</data>
+  <data key="d1">II-II q.1 a.1 — Is the object of faith the First Truth?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a002">
+  <data key="d0">st.ii-ii.q001.a002</data>
+  <data key="d1">II-II q.1 a.2 — Is the object of faith something complex or incomplex, i.e. is it a thing or a proposition?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a003">
+  <data key="d0">st.ii-ii.q001.a003</data>
+  <data key="d1">II-II q.1 a.3 — Can anything false come under faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a004">
+  <data key="d0">st.ii-ii.q001.a004</data>
+  <data key="d1">II-II q.1 a.4 — Can the object of faith be anything seen?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a005">
+  <data key="d0">st.ii-ii.q001.a005</data>
+  <data key="d1">II-II q.1 a.5 — Can it be anything known?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a006">
+  <data key="d0">st.ii-ii.q001.a006</data>
+  <data key="d1">II-II q.1 a.6 — Should the things to be believed be divided into a certain number of articles?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a007">
+  <data key="d0">st.ii-ii.q001.a007</data>
+  <data key="d1">II-II q.1 a.7 — These articles: are they of faith for all times?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a008">
+  <data key="d0">st.ii-ii.q001.a008</data>
+  <data key="d1">II-II q.1 a.8 — The number of articles</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a009">
+  <data key="d0">st.ii-ii.q001.a009</data>
+  <data key="d1">II-II q.1 a.9 — The manner of embodying the articles in a symbol</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q001.a010">
+  <data key="d0">st.ii-ii.q001.a010</data>
+  <data key="d1">II-II q.1 a.10 — Who has the right to propose a symbol of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a001">
+  <data key="d0">st.ii-ii.q002.a001</data>
+  <data key="d1">II-II q.2 a.1 — What is "to believe," which is the internal act of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a002">
+  <data key="d0">st.ii-ii.q002.a002</data>
+  <data key="d1">II-II q.2 a.2 — In how many ways is it expressed?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a003">
+  <data key="d0">st.ii-ii.q002.a003</data>
+  <data key="d1">II-II q.2 a.3 — Is it necessary for salvation to believe in anything above natural reason?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a004">
+  <data key="d0">st.ii-ii.q002.a004</data>
+  <data key="d1">II-II q.2 a.4 — Is it necessary to believe those things that are attainable by natural reason?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a005">
+  <data key="d0">st.ii-ii.q002.a005</data>
+  <data key="d1">II-II q.2 a.5 — Is it necessary for salvation to believe certain things explicitly?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a006">
+  <data key="d0">st.ii-ii.q002.a006</data>
+  <data key="d1">II-II q.2 a.6 — Are all equally bound to explicit faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a007">
+  <data key="d0">st.ii-ii.q002.a007</data>
+  <data key="d1">II-II q.2 a.7 — Is explicit faith in Christ always necessary for salvation?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a008">
+  <data key="d0">st.ii-ii.q002.a008</data>
+  <data key="d1">II-II q.2 a.8 — Is it necessary for salvation to believe in the Trinity explicitly?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a009">
+  <data key="d0">st.ii-ii.q002.a009</data>
+  <data key="d1">II-II q.2 a.9 — Is the act of faith meritorious?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q002.a010">
+  <data key="d0">st.ii-ii.q002.a010</data>
+  <data key="d1">II-II q.2 a.10 — Does human reason diminish the merit of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q003.a001">
+  <data key="d0">st.ii-ii.q003.a001</data>
+  <data key="d1">II-II q.3 a.1 — Is confession an act of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q003.a002">
+  <data key="d0">st.ii-ii.q003.a002</data>
+  <data key="d1">II-II q.3 a.2 — Is confession of faith necessary for salvation?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a001">
+  <data key="d0">st.ii-ii.q004.a001</data>
+  <data key="d1">II-II q.4 a.1 — What is faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a002">
+  <data key="d0">st.ii-ii.q004.a002</data>
+  <data key="d1">II-II q.4 a.2 — In what power of the soul does it reside?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a003">
+  <data key="d0">st.ii-ii.q004.a003</data>
+  <data key="d1">II-II q.4 a.3 — Is its form charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a004">
+  <data key="d0">st.ii-ii.q004.a004</data>
+  <data key="d1">II-II q.4 a.4 — Are living formata faith and lifeless informis faith one identically?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a005">
+  <data key="d0">st.ii-ii.q004.a005</data>
+  <data key="d1">II-II q.4 a.5 — Is faith a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a006">
+  <data key="d0">st.ii-ii.q004.a006</data>
+  <data key="d1">II-II q.4 a.6 — Is it one virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a007">
+  <data key="d0">st.ii-ii.q004.a007</data>
+  <data key="d1">II-II q.4 a.7 — Its relation to the other virtues</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q004.a008">
+  <data key="d0">st.ii-ii.q004.a008</data>
+  <data key="d1">II-II q.4 a.8 — Its certitude as compared with the certitude of the intellectual virtues</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q005.a001">
+  <data key="d0">st.ii-ii.q005.a001</data>
+  <data key="d1">II-II q.5 a.1 — Was there faith in the angels, or in man, in their original state?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q005.a002">
+  <data key="d0">st.ii-ii.q005.a002</data>
+  <data key="d1">II-II q.5 a.2 — Do the demons have faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q005.a003">
+  <data key="d0">st.ii-ii.q005.a003</data>
+  <data key="d1">II-II q.5 a.3 — Do those heretics who err in one article, have faith in others?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q005.a004">
+  <data key="d0">st.ii-ii.q005.a004</data>
+  <data key="d1">II-II q.5 a.4 — Among those who have faith, does one have it more than another?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q006.a001">
+  <data key="d0">st.ii-ii.q006.a001</data>
+  <data key="d1">II-II q.6 a.1 — Is faith infused into man by God?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q006.a002">
+  <data key="d0">st.ii-ii.q006.a002</data>
+  <data key="d1">II-II q.6 a.2 — Is lifeless faith a gift of God?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q007.a001">
+  <data key="d0">st.ii-ii.q007.a001</data>
+  <data key="d1">II-II q.7 a.1 — Is fear an effect of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q007.a002">
+  <data key="d0">st.ii-ii.q007.a002</data>
+  <data key="d1">II-II q.7 a.2 — Is the heart purified by faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a001">
+  <data key="d0">st.ii-ii.q008.a001</data>
+  <data key="d1">II-II q.8 a.1 — Is understanding a gift of the Holy Ghost?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a002">
+  <data key="d0">st.ii-ii.q008.a002</data>
+  <data key="d1">II-II q.8 a.2 — Can it be together with faith in the same person?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a003">
+  <data key="d0">st.ii-ii.q008.a003</data>
+  <data key="d1">II-II q.8 a.3 — Is the understanding which is a gift of the Holy Ghost, only speculative, or practical also?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a004">
+  <data key="d0">st.ii-ii.q008.a004</data>
+  <data key="d1">II-II q.8 a.4 — Do all who are in a state of grace have the gift of understanding?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a005">
+  <data key="d0">st.ii-ii.q008.a005</data>
+  <data key="d1">II-II q.8 a.5 — Is this gift to be found in those who are without grace?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a006">
+  <data key="d0">st.ii-ii.q008.a006</data>
+  <data key="d1">II-II q.8 a.6 — The relationship of the gift of understanding to the other gifts</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a007">
+  <data key="d0">st.ii-ii.q008.a007</data>
+  <data key="d1">II-II q.8 a.7 — Which of the beatitudes corresponds to this gift?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q008.a008">
+  <data key="d0">st.ii-ii.q008.a008</data>
+  <data key="d1">II-II q.8 a.8 — Which of the fruits?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q009.a001">
+  <data key="d0">st.ii-ii.q009.a001</data>
+  <data key="d1">II-II q.9 a.1 — Is knowledge a gift?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q009.a002">
+  <data key="d0">st.ii-ii.q009.a002</data>
+  <data key="d1">II-II q.9 a.2 — Is it about Divine things?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q009.a003">
+  <data key="d0">st.ii-ii.q009.a003</data>
+  <data key="d1">II-II q.9 a.3 — Is it speculative or practical?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q009.a004">
+  <data key="d0">st.ii-ii.q009.a004</data>
+  <data key="d1">II-II q.9 a.4 — Which beatitude corresponds to it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a001">
+  <data key="d0">st.ii-ii.q010.a001</data>
+  <data key="d1">II-II q.10 a.1 — Is unbelief a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a002">
+  <data key="d0">st.ii-ii.q010.a002</data>
+  <data key="d1">II-II q.10 a.2 — What is its subject?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a003">
+  <data key="d0">st.ii-ii.q010.a003</data>
+  <data key="d1">II-II q.10 a.3 — Is it the greatest of sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a004">
+  <data key="d0">st.ii-ii.q010.a004</data>
+  <data key="d1">II-II q.10 a.4 — Is every action of unbelievers a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a005">
+  <data key="d0">st.ii-ii.q010.a005</data>
+  <data key="d1">II-II q.10 a.5 — The species of unbelief</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a006">
+  <data key="d0">st.ii-ii.q010.a006</data>
+  <data key="d1">II-II q.10 a.6 — Their comparison, one with another</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a007">
+  <data key="d0">st.ii-ii.q010.a007</data>
+  <data key="d1">II-II q.10 a.7 — Should we dispute about faith with unbelievers?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a008">
+  <data key="d0">st.ii-ii.q010.a008</data>
+  <data key="d1">II-II q.10 a.8 — Should they be compelled to the faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a009">
+  <data key="d0">st.ii-ii.q010.a009</data>
+  <data key="d1">II-II q.10 a.9 — Should we have communications with them?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a010">
+  <data key="d0">st.ii-ii.q010.a010</data>
+  <data key="d1">II-II q.10 a.10 — Can unbelievers have authority over Christians?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a011">
+  <data key="d0">st.ii-ii.q010.a011</data>
+  <data key="d1">II-II q.10 a.11 — Should the rites of unbelievers be tolerated?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q010.a012">
+  <data key="d0">st.ii-ii.q010.a012</data>
+  <data key="d1">II-II q.10 a.12 — Are the children of unbelievers to be baptized against their parents' will?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q011.a001">
+  <data key="d0">st.ii-ii.q011.a001</data>
+  <data key="d1">II-II q.11 a.1 — Is heresy a kind of unbelief?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q011.a002">
+  <data key="d0">st.ii-ii.q011.a002</data>
+  <data key="d1">II-II q.11 a.2 — The matter about which it is</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q011.a003">
+  <data key="d0">st.ii-ii.q011.a003</data>
+  <data key="d1">II-II q.11 a.3 — Should heretics be tolerated?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q011.a004">
+  <data key="d0">st.ii-ii.q011.a004</data>
+  <data key="d1">II-II q.11 a.4 — Should converts be received?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q012.a001">
+  <data key="d0">st.ii-ii.q012.a001</data>
+  <data key="d1">II-II q.12 a.1 — Does apostasy pertain to unbelief?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q012.a002">
+  <data key="d0">st.ii-ii.q012.a002</data>
+  <data key="d1">II-II q.12 a.2 — On account of apostasy from the faith, are subjects absolved from allegiance to an apostate prince?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q013.a001">
+  <data key="d0">st.ii-ii.q013.a001</data>
+  <data key="d1">II-II q.13 a.1 — Is blasphemy opposed to the confession of faith?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q013.a002">
+  <data key="d0">st.ii-ii.q013.a002</data>
+  <data key="d1">II-II q.13 a.2 — Is blasphemy always a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q013.a003">
+  <data key="d0">st.ii-ii.q013.a003</data>
+  <data key="d1">II-II q.13 a.3 — Is blasphemy the most grievous sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q013.a004">
+  <data key="d0">st.ii-ii.q013.a004</data>
+  <data key="d1">II-II q.13 a.4 — Is blasphemy in the damned?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q014.a001">
+  <data key="d0">st.ii-ii.q014.a001</data>
+  <data key="d1">II-II q.14 a.1 — Is blasphemy or the sin against the Holy Ghost the same as the sin committed through certain malice?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q014.a002">
+  <data key="d0">st.ii-ii.q014.a002</data>
+  <data key="d1">II-II q.14 a.2 — The species of this sin</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q014.a003">
+  <data key="d0">st.ii-ii.q014.a003</data>
+  <data key="d1">II-II q.14 a.3 — Can it be forgiven?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q014.a004">
+  <data key="d0">st.ii-ii.q014.a004</data>
+  <data key="d1">II-II q.14 a.4 — Is it possible to begin by sinning against the Holy Ghost before committing other sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q015.a001">
+  <data key="d0">st.ii-ii.q015.a001</data>
+  <data key="d1">II-II q.15 a.1 — Is blindness of mind a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q015.a002">
+  <data key="d0">st.ii-ii.q015.a002</data>
+  <data key="d1">II-II q.15 a.2 — Is dullness of sense a sin distinct from blindness of mind?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q015.a003">
+  <data key="d0">st.ii-ii.q015.a003</data>
+  <data key="d1">II-II q.15 a.3 — Do these vices arise from sins of the flesh?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q016.a001">
+  <data key="d0">st.ii-ii.q016.a001</data>
+  <data key="d1">II-II q.16 a.1 — The precepts concerning faith</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q016.a002">
+  <data key="d0">st.ii-ii.q016.a002</data>
+  <data key="d1">II-II q.16 a.2 — The precepts concerning the gifts of knowledge and understanding</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a001">
+  <data key="d0">st.ii-ii.q017.a001</data>
+  <data key="d1">II-II q.17 a.1 — Is hope a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a002">
+  <data key="d0">st.ii-ii.q017.a002</data>
+  <data key="d1">II-II q.17 a.2 — Is its object eternal happiness?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a003">
+  <data key="d0">st.ii-ii.q017.a003</data>
+  <data key="d1">II-II q.17 a.3 — May one man, by the virtue of hope, hope for another's happiness?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a004">
+  <data key="d0">st.ii-ii.q017.a004</data>
+  <data key="d1">II-II q.17 a.4 — May a man lawfully hope in man?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a005">
+  <data key="d0">st.ii-ii.q017.a005</data>
+  <data key="d1">II-II q.17 a.5 — Is hope a theological virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a006">
+  <data key="d0">st.ii-ii.q017.a006</data>
+  <data key="d1">II-II q.17 a.6 — Its distinction from the other theological virtues</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a007">
+  <data key="d0">st.ii-ii.q017.a007</data>
+  <data key="d1">II-II q.17 a.7 — Its relation to faith</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q017.a008">
+  <data key="d0">st.ii-ii.q017.a008</data>
+  <data key="d1">II-II q.17 a.8 — Its relation to charity</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q018.a001">
+  <data key="d0">st.ii-ii.q018.a001</data>
+  <data key="d1">II-II q.18 a.1 — Is the virtue of hope in the will as its subject?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q018.a002">
+  <data key="d0">st.ii-ii.q018.a002</data>
+  <data key="d1">II-II q.18 a.2 — Is it in the blessed?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q018.a003">
+  <data key="d0">st.ii-ii.q018.a003</data>
+  <data key="d1">II-II q.18 a.3 — Is it in the damned?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q018.a004">
+  <data key="d0">st.ii-ii.q018.a004</data>
+  <data key="d1">II-II q.18 a.4 — Is there certainty in the hope of the wayfarer?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a001">
+  <data key="d0">st.ii-ii.q019.a001</data>
+  <data key="d1">II-II q.19 a.1 — Is God to be feared?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a002">
+  <data key="d0">st.ii-ii.q019.a002</data>
+  <data key="d1">II-II q.19 a.2 — The division of fear into filial, initial, servile and worldly</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a003">
+  <data key="d0">st.ii-ii.q019.a003</data>
+  <data key="d1">II-II q.19 a.3 — Is worldly fear always evil?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a004">
+  <data key="d0">st.ii-ii.q019.a004</data>
+  <data key="d1">II-II q.19 a.4 — Is servile fear good?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a005">
+  <data key="d0">st.ii-ii.q019.a005</data>
+  <data key="d1">II-II q.19 a.5 — Is it substantially the same as filial fear?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a006">
+  <data key="d0">st.ii-ii.q019.a006</data>
+  <data key="d1">II-II q.19 a.6 — Does servile fear depart when charity comes?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a007">
+  <data key="d0">st.ii-ii.q019.a007</data>
+  <data key="d1">II-II q.19 a.7 — Is fear the beginning of wisdom?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a008">
+  <data key="d0">st.ii-ii.q019.a008</data>
+  <data key="d1">II-II q.19 a.8 — Is initial fear substantially the same as filial fear?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a009">
+  <data key="d0">st.ii-ii.q019.a009</data>
+  <data key="d1">II-II q.19 a.9 — Is fear a gift of the Holy Ghost?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a010">
+  <data key="d0">st.ii-ii.q019.a010</data>
+  <data key="d1">II-II q.19 a.10 — Does it grow when charity grows?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a011">
+  <data key="d0">st.ii-ii.q019.a011</data>
+  <data key="d1">II-II q.19 a.11 — Does it remain in heaven?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q019.a012">
+  <data key="d0">st.ii-ii.q019.a012</data>
+  <data key="d1">II-II q.19 a.12 — Which of the beatitudes and fruits correspond to it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q020.a001">
+  <data key="d0">st.ii-ii.q020.a001</data>
+  <data key="d1">II-II q.20 a.1 — Is despair a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q020.a002">
+  <data key="d0">st.ii-ii.q020.a002</data>
+  <data key="d1">II-II q.20 a.2 — Can it be without unbelief?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q020.a003">
+  <data key="d0">st.ii-ii.q020.a003</data>
+  <data key="d1">II-II q.20 a.3 — Is it the greatest of sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q020.a004">
+  <data key="d0">st.ii-ii.q020.a004</data>
+  <data key="d1">II-II q.20 a.4 — Does it arise from sloth?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q021.a001">
+  <data key="d0">st.ii-ii.q021.a001</data>
+  <data key="d1">II-II q.21 a.1 — What is the object in which presumption trusts?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q021.a002">
+  <data key="d0">st.ii-ii.q021.a002</data>
+  <data key="d1">II-II q.21 a.2 — Is presumption a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q021.a003">
+  <data key="d0">st.ii-ii.q021.a003</data>
+  <data key="d1">II-II q.21 a.3 — To what is it opposed?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q021.a004">
+  <data key="d0">st.ii-ii.q021.a004</data>
+  <data key="d1">II-II q.21 a.4 — From what vice does it arise?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q022.a001">
+  <data key="d0">st.ii-ii.q022.a001</data>
+  <data key="d1">II-II q.22 a.1 — The precepts relating to hope</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q022.a002">
+  <data key="d0">st.ii-ii.q022.a002</data>
+  <data key="d1">II-II q.22 a.2 — The precepts relating to fear</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a001">
+  <data key="d0">st.ii-ii.q023.a001</data>
+  <data key="d1">II-II q.23 a.1 — Is charity friendship?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a002">
+  <data key="d0">st.ii-ii.q023.a002</data>
+  <data key="d1">II-II q.23 a.2 — Is it something created in the soul?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a003">
+  <data key="d0">st.ii-ii.q023.a003</data>
+  <data key="d1">II-II q.23 a.3 — Is it a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a004">
+  <data key="d0">st.ii-ii.q023.a004</data>
+  <data key="d1">II-II q.23 a.4 — Is it a special virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a005">
+  <data key="d0">st.ii-ii.q023.a005</data>
+  <data key="d1">II-II q.23 a.5 — Is it one virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a006">
+  <data key="d0">st.ii-ii.q023.a006</data>
+  <data key="d1">II-II q.23 a.6 — Is it the greatest of the virtues?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a007">
+  <data key="d0">st.ii-ii.q023.a007</data>
+  <data key="d1">II-II q.23 a.7 — Is any true virtue possible without it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q023.a008">
+  <data key="d0">st.ii-ii.q023.a008</data>
+  <data key="d1">II-II q.23 a.8 — Is it the form of the virtues?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a001">
+  <data key="d0">st.ii-ii.q024.a001</data>
+  <data key="d1">II-II q.24 a.1 — Is charity in the will as its subject?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a002">
+  <data key="d0">st.ii-ii.q024.a002</data>
+  <data key="d1">II-II q.24 a.2 — Is charity caused in man by preceding acts or by a Divine infusion?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a003">
+  <data key="d0">st.ii-ii.q024.a003</data>
+  <data key="d1">II-II q.24 a.3 — Is it infused according to the capacity of our natural gifts?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a004">
+  <data key="d0">st.ii-ii.q024.a004</data>
+  <data key="d1">II-II q.24 a.4 — Does it increase in the person who has it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a005">
+  <data key="d0">st.ii-ii.q024.a005</data>
+  <data key="d1">II-II q.24 a.5 — Does it increase by addition?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a006">
+  <data key="d0">st.ii-ii.q024.a006</data>
+  <data key="d1">II-II q.24 a.6 — Does it increase by every act?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a007">
+  <data key="d0">st.ii-ii.q024.a007</data>
+  <data key="d1">II-II q.24 a.7 — Does it increase indefinitely?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a008">
+  <data key="d0">st.ii-ii.q024.a008</data>
+  <data key="d1">II-II q.24 a.8 — Can the charity of a wayfarer be perfect?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a009">
+  <data key="d0">st.ii-ii.q024.a009</data>
+  <data key="d1">II-II q.24 a.9 — The various degrees of charity</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a010">
+  <data key="d0">st.ii-ii.q024.a010</data>
+  <data key="d1">II-II q.24 a.10 — Can charity diminish?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a011">
+  <data key="d0">st.ii-ii.q024.a011</data>
+  <data key="d1">II-II q.24 a.11 — Can charity be lost after it has been possessed?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q024.a012">
+  <data key="d0">st.ii-ii.q024.a012</data>
+  <data key="d1">II-II q.24 a.12 — Is it lost through one mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a001">
+  <data key="d0">st.ii-ii.q025.a001</data>
+  <data key="d1">II-II q.25 a.1 — Should we love God alone, out of charity, or should we love our neighbor also?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a002">
+  <data key="d0">st.ii-ii.q025.a002</data>
+  <data key="d1">II-II q.25 a.2 — Should charity be loved out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a003">
+  <data key="d0">st.ii-ii.q025.a003</data>
+  <data key="d1">II-II q.25 a.3 — Should irrational creatures be loved out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a004">
+  <data key="d0">st.ii-ii.q025.a004</data>
+  <data key="d1">II-II q.25 a.4 — May one love oneself out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a005">
+  <data key="d0">st.ii-ii.q025.a005</data>
+  <data key="d1">II-II q.25 a.5 — One's own body?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a006">
+  <data key="d0">st.ii-ii.q025.a006</data>
+  <data key="d1">II-II q.25 a.6 — Should sinners be loved out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a007">
+  <data key="d0">st.ii-ii.q025.a007</data>
+  <data key="d1">II-II q.25 a.7 — Do sinners love themselves?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a008">
+  <data key="d0">st.ii-ii.q025.a008</data>
+  <data key="d1">II-II q.25 a.8 — Should we love our enemies out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a009">
+  <data key="d0">st.ii-ii.q025.a009</data>
+  <data key="d1">II-II q.25 a.9 — Are we bound to show them tokens of friendship?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a010">
+  <data key="d0">st.ii-ii.q025.a010</data>
+  <data key="d1">II-II q.25 a.10 — Should we love the angels out of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a011">
+  <data key="d0">st.ii-ii.q025.a011</data>
+  <data key="d1">II-II q.25 a.11 — Should we love the demons?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q025.a012">
+  <data key="d0">st.ii-ii.q025.a012</data>
+  <data key="d1">II-II q.25 a.12 — How to enumerate the things we are bound to love out of charity</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a001">
+  <data key="d0">st.ii-ii.q026.a001</data>
+  <data key="d1">II-II q.26 a.1 — Is there an order in charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a002">
+  <data key="d0">st.ii-ii.q026.a002</data>
+  <data key="d1">II-II q.26 a.2 — Should man love God more than his neighbor?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a003">
+  <data key="d0">st.ii-ii.q026.a003</data>
+  <data key="d1">II-II q.26 a.3 — More than himself?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a004">
+  <data key="d0">st.ii-ii.q026.a004</data>
+  <data key="d1">II-II q.26 a.4 — Should he love himself more than his neighbor?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a005">
+  <data key="d0">st.ii-ii.q026.a005</data>
+  <data key="d1">II-II q.26 a.5 — Should man love his neighbor more than his own body?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a006">
+  <data key="d0">st.ii-ii.q026.a006</data>
+  <data key="d1">II-II q.26 a.6 — Should he love one neighbor more than another?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a007">
+  <data key="d0">st.ii-ii.q026.a007</data>
+  <data key="d1">II-II q.26 a.7 — Should he love more, a neighbor who is better, or one who is more closely united to him?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a008">
+  <data key="d0">st.ii-ii.q026.a008</data>
+  <data key="d1">II-II q.26 a.8 — Should he love more, one who is akin to him by blood, or one who is united to him by other ties?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a009">
+  <data key="d0">st.ii-ii.q026.a009</data>
+  <data key="d1">II-II q.26 a.9 — Should a man, out of charity, love his son more than his father?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a010">
+  <data key="d0">st.ii-ii.q026.a010</data>
+  <data key="d1">II-II q.26 a.10 — Should he love his mother more than his father?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a011">
+  <data key="d0">st.ii-ii.q026.a011</data>
+  <data key="d1">II-II q.26 a.11 — Should he love his wife more than his father or mother?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a012">
+  <data key="d0">st.ii-ii.q026.a012</data>
+  <data key="d1">II-II q.26 a.12 — Should we love those who are kind to us more than those whom we are kind to?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q026.a013">
+  <data key="d0">st.ii-ii.q026.a013</data>
+  <data key="d1">II-II q.26 a.13 — Does the order of charity endure in heaven?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a001">
+  <data key="d0">st.ii-ii.q027.a001</data>
+  <data key="d1">II-II q.27 a.1 — Which is the more proper to charity, to love or to be loved?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a002">
+  <data key="d0">st.ii-ii.q027.a002</data>
+  <data key="d1">II-II q.27 a.2 — Is to love considered as an act of charity the same as goodwill?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a003">
+  <data key="d0">st.ii-ii.q027.a003</data>
+  <data key="d1">II-II q.27 a.3 — Should God be loved for His own sake?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a004">
+  <data key="d0">st.ii-ii.q027.a004</data>
+  <data key="d1">II-II q.27 a.4 — Can God be loved immediately in this life?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a005">
+  <data key="d0">st.ii-ii.q027.a005</data>
+  <data key="d1">II-II q.27 a.5 — Can God be loved wholly?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a006">
+  <data key="d0">st.ii-ii.q027.a006</data>
+  <data key="d1">II-II q.27 a.6 — Is the love of God according to measure?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a007">
+  <data key="d0">st.ii-ii.q027.a007</data>
+  <data key="d1">II-II q.27 a.7 — Which is the better, to love one's friend, or one's enemy?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q027.a008">
+  <data key="d0">st.ii-ii.q027.a008</data>
+  <data key="d1">II-II q.27 a.8 — Which is the better, to love God, or one's neighbor?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q028.a001">
+  <data key="d0">st.ii-ii.q028.a001</data>
+  <data key="d1">II-II q.28 a.1 — Is joy an effect of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q028.a002">
+  <data key="d0">st.ii-ii.q028.a002</data>
+  <data key="d1">II-II q.28 a.2 — Is this kind of joy compatible with sorrow?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q028.a003">
+  <data key="d0">st.ii-ii.q028.a003</data>
+  <data key="d1">II-II q.28 a.3 — Can this joy be full?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q028.a004">
+  <data key="d0">st.ii-ii.q028.a004</data>
+  <data key="d1">II-II q.28 a.4 — Is it a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q029.a001">
+  <data key="d0">st.ii-ii.q029.a001</data>
+  <data key="d1">II-II q.29 a.1 — Is peace the same as concord?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q029.a002">
+  <data key="d0">st.ii-ii.q029.a002</data>
+  <data key="d1">II-II q.29 a.2 — Do all things desire peace?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q029.a003">
+  <data key="d0">st.ii-ii.q029.a003</data>
+  <data key="d1">II-II q.29 a.3 — Is peace an effect of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q029.a004">
+  <data key="d0">st.ii-ii.q029.a004</data>
+  <data key="d1">II-II q.29 a.4 — Is peace a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q030.a001">
+  <data key="d0">st.ii-ii.q030.a001</data>
+  <data key="d1">II-II q.30 a.1 — Is evil the cause of mercy on the part of the person pitied?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q030.a002">
+  <data key="d0">st.ii-ii.q030.a002</data>
+  <data key="d1">II-II q.30 a.2 — To whom does it belong to pity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q030.a003">
+  <data key="d0">st.ii-ii.q030.a003</data>
+  <data key="d1">II-II q.30 a.3 — Is mercy a virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q030.a004">
+  <data key="d0">st.ii-ii.q030.a004</data>
+  <data key="d1">II-II q.30 a.4 — Is it the greatest of virtues?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q031.a001">
+  <data key="d0">st.ii-ii.q031.a001</data>
+  <data key="d1">II-II q.31 a.1 — Is beneficence an act of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q031.a002">
+  <data key="d0">st.ii-ii.q031.a002</data>
+  <data key="d1">II-II q.31 a.2 — Should we be beneficent to all?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q031.a003">
+  <data key="d0">st.ii-ii.q031.a003</data>
+  <data key="d1">II-II q.31 a.3 — Should we be more beneficent to those who are more closely united to us?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q031.a004">
+  <data key="d0">st.ii-ii.q031.a004</data>
+  <data key="d1">II-II q.31 a.4 — Is beneficence a special virtue?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a001">
+  <data key="d0">st.ii-ii.q032.a001</data>
+  <data key="d1">II-II q.32 a.1 — Is almsgiving an act of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a002">
+  <data key="d0">st.ii-ii.q032.a002</data>
+  <data key="d1">II-II q.32 a.2 — The different kinds of alms</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a003">
+  <data key="d0">st.ii-ii.q032.a003</data>
+  <data key="d1">II-II q.32 a.3 — Which alms are of greater account, spiritual or corporal?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a004">
+  <data key="d0">st.ii-ii.q032.a004</data>
+  <data key="d1">II-II q.32 a.4 — Do corporal alms have a spiritual effect?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a005">
+  <data key="d0">st.ii-ii.q032.a005</data>
+  <data key="d1">II-II q.32 a.5 — Is the giving of alms a matter of precept?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a006">
+  <data key="d0">st.ii-ii.q032.a006</data>
+  <data key="d1">II-II q.32 a.6 — Should corporal alms be given out of the things we need?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a007">
+  <data key="d0">st.ii-ii.q032.a007</data>
+  <data key="d1">II-II q.32 a.7 — Should corporal alms be given out of ill-gotten goods?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a008">
+  <data key="d0">st.ii-ii.q032.a008</data>
+  <data key="d1">II-II q.32 a.8 — Who can give alms?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a009">
+  <data key="d0">st.ii-ii.q032.a009</data>
+  <data key="d1">II-II q.32 a.9 — To whom should we give alms?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q032.a010">
+  <data key="d0">st.ii-ii.q032.a010</data>
+  <data key="d1">II-II q.32 a.10 — How should alms be given?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a001">
+  <data key="d0">st.ii-ii.q033.a001</data>
+  <data key="d1">II-II q.33 a.1 — Is fraternal correction an act of charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a002">
+  <data key="d0">st.ii-ii.q033.a002</data>
+  <data key="d1">II-II q.33 a.2 — Is it a matter of precept?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a003">
+  <data key="d0">st.ii-ii.q033.a003</data>
+  <data key="d1">II-II q.33 a.3 — Does this precept bind all, or only superiors?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a004">
+  <data key="d0">st.ii-ii.q033.a004</data>
+  <data key="d1">II-II q.33 a.4 — Does this precept bind the subject to correct his superior?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a005">
+  <data key="d0">st.ii-ii.q033.a005</data>
+  <data key="d1">II-II q.33 a.5 — May a sinner correct anyone?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a006">
+  <data key="d0">st.ii-ii.q033.a006</data>
+  <data key="d1">II-II q.33 a.6 — Should one correct a person who becomes worse through being corrected?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a007">
+  <data key="d0">st.ii-ii.q033.a007</data>
+  <data key="d1">II-II q.33 a.7 — Should secret correction precede denouncement?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q033.a008">
+  <data key="d0">st.ii-ii.q033.a008</data>
+  <data key="d1">II-II q.33 a.8 — Should witnesses be called before denouncement?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a001">
+  <data key="d0">st.ii-ii.q034.a001</data>
+  <data key="d1">II-II q.34 a.1 — Is it possible to hate God?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a002">
+  <data key="d0">st.ii-ii.q034.a002</data>
+  <data key="d1">II-II q.34 a.2 — Is hatred of God the greatest of sins?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a003">
+  <data key="d0">st.ii-ii.q034.a003</data>
+  <data key="d1">II-II q.34 a.3 — Is hatred of one's neighbor always a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a004">
+  <data key="d0">st.ii-ii.q034.a004</data>
+  <data key="d1">II-II q.34 a.4 — Is it the greatest of all sins against our neighbor?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a005">
+  <data key="d0">st.ii-ii.q034.a005</data>
+  <data key="d1">II-II q.34 a.5 — Is it a capital sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q034.a006">
+  <data key="d0">st.ii-ii.q034.a006</data>
+  <data key="d1">II-II q.34 a.6 — From what capital sin does it arise?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q035.a001">
+  <data key="d0">st.ii-ii.q035.a001</data>
+  <data key="d1">II-II q.35 a.1 — Is sloth a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q035.a002">
+  <data key="d0">st.ii-ii.q035.a002</data>
+  <data key="d1">II-II q.35 a.2 — Is it a special vice?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q035.a003">
+  <data key="d0">st.ii-ii.q035.a003</data>
+  <data key="d1">II-II q.35 a.3 — Is it a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q035.a004">
+  <data key="d0">st.ii-ii.q035.a004</data>
+  <data key="d1">II-II q.35 a.4 — Is it a capital sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q036.a001">
+  <data key="d0">st.ii-ii.q036.a001</data>
+  <data key="d1">II-II q.36 a.1 — What is envy?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q036.a002">
+  <data key="d0">st.ii-ii.q036.a002</data>
+  <data key="d1">II-II q.36 a.2 — Is it a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q036.a003">
+  <data key="d0">st.ii-ii.q036.a003</data>
+  <data key="d1">II-II q.36 a.3 — Is it a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q036.a004">
+  <data key="d0">st.ii-ii.q036.a004</data>
+  <data key="d1">II-II q.36 a.4 — Is it a capital sin, and which are its daughters?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q037.a001">
+  <data key="d0">st.ii-ii.q037.a001</data>
+  <data key="d1">II-II q.37 a.1 — Is discord a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q037.a002">
+  <data key="d0">st.ii-ii.q037.a002</data>
+  <data key="d1">II-II q.37 a.2 — Is it a daughter of vainglory?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q038.a001">
+  <data key="d0">st.ii-ii.q038.a001</data>
+  <data key="d1">II-II q.38 a.1 — Is contention a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q038.a002">
+  <data key="d0">st.ii-ii.q038.a002</data>
+  <data key="d1">II-II q.38 a.2 — Is it a daughter of vainglory?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q039.a001">
+  <data key="d0">st.ii-ii.q039.a001</data>
+  <data key="d1">II-II q.39 a.1 — Is schism a special sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q039.a002">
+  <data key="d0">st.ii-ii.q039.a002</data>
+  <data key="d1">II-II q.39 a.2 — Is it graver than unbelief?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q039.a003">
+  <data key="d0">st.ii-ii.q039.a003</data>
+  <data key="d1">II-II q.39 a.3 — The power exercised by schismatics</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q039.a004">
+  <data key="d0">st.ii-ii.q039.a004</data>
+  <data key="d1">II-II q.39 a.4 — The punishment inflicted on them</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q040.a001">
+  <data key="d0">st.ii-ii.q040.a001</data>
+  <data key="d1">II-II q.40 a.1 — Is some kind of war lawful?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q040.a002">
+  <data key="d0">st.ii-ii.q040.a002</data>
+  <data key="d1">II-II q.40 a.2 — Is it lawful for clerics to fight?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q040.a003">
+  <data key="d0">st.ii-ii.q040.a003</data>
+  <data key="d1">II-II q.40 a.3 — Is it lawful for belligerents to lay ambushes?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q040.a004">
+  <data key="d0">st.ii-ii.q040.a004</data>
+  <data key="d1">II-II q.40 a.4 — Is it lawful to fight on holy days?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q041.a001">
+  <data key="d0">st.ii-ii.q041.a001</data>
+  <data key="d1">II-II q.41 a.1 — Is strife a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q041.a002">
+  <data key="d0">st.ii-ii.q041.a002</data>
+  <data key="d1">II-II q.41 a.2 — Is it a daughter of anger?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q042.a001">
+  <data key="d0">st.ii-ii.q042.a001</data>
+  <data key="d1">II-II q.42 a.1 — Is it a special sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q042.a002">
+  <data key="d0">st.ii-ii.q042.a002</data>
+  <data key="d1">II-II q.42 a.2 — Is it a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a001">
+  <data key="d0">st.ii-ii.q043.a001</data>
+  <data key="d1">II-II q.43 a.1 — What is scandal?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a002">
+  <data key="d0">st.ii-ii.q043.a002</data>
+  <data key="d1">II-II q.43 a.2 — Is scandal a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a003">
+  <data key="d0">st.ii-ii.q043.a003</data>
+  <data key="d1">II-II q.43 a.3 — Is it a special sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a004">
+  <data key="d0">st.ii-ii.q043.a004</data>
+  <data key="d1">II-II q.43 a.4 — Is it a mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a005">
+  <data key="d0">st.ii-ii.q043.a005</data>
+  <data key="d1">II-II q.43 a.5 — Can the perfect be scandalized?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a006">
+  <data key="d0">st.ii-ii.q043.a006</data>
+  <data key="d1">II-II q.43 a.6 — Can they give scandal?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a007">
+  <data key="d0">st.ii-ii.q043.a007</data>
+  <data key="d1">II-II q.43 a.7 — Are spiritual goods to be foregone on account of scandal?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q043.a008">
+  <data key="d0">st.ii-ii.q043.a008</data>
+  <data key="d1">II-II q.43 a.8 — Are temporal things to be foregone on account of scandal?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a001">
+  <data key="d0">st.ii-ii.q044.a001</data>
+  <data key="d1">II-II q.44 a.1 — Should precepts be given about charity?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a002">
+  <data key="d0">st.ii-ii.q044.a002</data>
+  <data key="d1">II-II q.44 a.2 — Should there be one or two?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a003">
+  <data key="d0">st.ii-ii.q044.a003</data>
+  <data key="d1">II-II q.44 a.3 — Do two suffice?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a004">
+  <data key="d0">st.ii-ii.q044.a004</data>
+  <data key="d1">II-II q.44 a.4 — Is it fittingly prescribed that we should love God, "with thy whole heart"?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a005">
+  <data key="d0">st.ii-ii.q044.a005</data>
+  <data key="d1">II-II q.44 a.5 — Is it fittingly added: "With thy whole mind," etc.?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a006">
+  <data key="d0">st.ii-ii.q044.a006</data>
+  <data key="d1">II-II q.44 a.6 — Is it possible to fulfil this precept in this life?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a007">
+  <data key="d0">st.ii-ii.q044.a007</data>
+  <data key="d1">II-II q.44 a.7 — The precept: "Thou shalt love thy neighbor as thyself"</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q044.a008">
+  <data key="d0">st.ii-ii.q044.a008</data>
+  <data key="d1">II-II q.44 a.8 — Is the order of charity included in the precept?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a001">
+  <data key="d0">st.ii-ii.q045.a001</data>
+  <data key="d1">II-II q.45 a.1 — Should wisdom be reckoned among the gifts of the Holy Ghost?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a002">
+  <data key="d0">st.ii-ii.q045.a002</data>
+  <data key="d1">II-II q.45 a.2 — What is its subject?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a003">
+  <data key="d0">st.ii-ii.q045.a003</data>
+  <data key="d1">II-II q.45 a.3 — Is wisdom only speculative or also practical?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a004">
+  <data key="d0">st.ii-ii.q045.a004</data>
+  <data key="d1">II-II q.45 a.4 — Is the wisdom that is a gift compatible with mortal sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a005">
+  <data key="d0">st.ii-ii.q045.a005</data>
+  <data key="d1">II-II q.45 a.5 — Is it in all those who have sanctifying grace?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q045.a006">
+  <data key="d0">st.ii-ii.q045.a006</data>
+  <data key="d1">II-II q.45 a.6 — Which beatitude corresponds to it?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q046.a001">
+  <data key="d0">st.ii-ii.q046.a001</data>
+  <data key="d1">II-II q.46 a.1 — Is folly contrary to wisdom?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q046.a002">
+  <data key="d0">st.ii-ii.q046.a002</data>
+  <data key="d1">II-II q.46 a.2 — Is folly a sin?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<node id="st.ii-ii.q046.a003">
+  <data key="d0">st.ii-ii.q046.a003</data>
+  <data key="d1">II-II q.46 a.3 — To which capital sin is it reducible?</data>
+  <data key="d2">article</data>
+  <data key="d3">structural</data>
+  <data key="d4">Structural article node for the theological virtues tract.</data>
+  <data key="d5"></data>
+</node>
+<edge source="concept.apostasy" target="concept.unbelief" id="edge.concept.apostasy.species_of.concept.unbelief">
+  <data key="d6">edge.concept.apostasy.species_of.concept.unbelief</data>
+  <data key="d7">concept.apostasy</data>
+  <data key="d8">Apostasy</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.unbelief</data>
+  <data key="d12">Unbelief</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-apostasy-species-of-concept-unbelief-st-ii-ii-q012-a001-resp</data>
+  <data key="d15">st.ii-ii.q012.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">t whereby a man withdraws from the faith , and is called "apostasy of perfidy." On this way apostasy, simply so called, pertains to unbelief.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.article_of_faith" target="concept.faith" id="edge.concept.article_of_faith.part_of.concept.faith">
+  <data key="d6">edge.concept.article_of_faith.part_of.concept.faith</data>
+  <data key="d7">concept.article_of_faith</data>
+  <data key="d8">Article of Faith</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">part_of</data>
+  <data key="d11">concept.faith</data>
+  <data key="d12">Faith</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-article-of-faith-part-of-concept-faith-st-ii-ii-q001-a006-resp</data>
+  <data key="d15">st.ii-ii.q001.a006.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">iv) that an article is composed of words each pronounced singly and separately, thus: "Your passion, your voice, your look, have struck terror into your foes." Hence matters of Christian faith are said to contain distinct articles, in so far as they are divided into parts, and fit together</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.blasphemy" target="concept.confession_of_faith" id="edge.concept.blasphemy.opposed_by.concept.confession_of_faith">
+  <data key="d6">edge.concept.blasphemy.opposed_by.concept.confession_of_faith</data>
+  <data key="d7">concept.blasphemy</data>
+  <data key="d8">Blasphemy</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.confession_of_faith</data>
+  <data key="d12">Confession of Faith</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-blasphemy-opposed-by-concept-confession-of-faith-st-ii-ii-q013-a001-resp</data>
+  <data key="d15">st.ii-ii.q013.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">t is in thought only, it is blasphemy of the heart, whereas if it betrays itself outwardly in speech it is blasphemy is opposed to confession of faith .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.holy_spirit" id="edge.concept.charity.caused_by.concept.holy_spirit">
+  <data key="d6">edge.concept.charity.caused_by.concept.holy_spirit</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.holy_spirit</data>
+  <data key="d12">Holy Spirit</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-charity-caused-by-concept-holy-spirit-st-ii-ii-q024-a002-resp</data>
+  <data key="d15">st.ii-ii.q024.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ts cause . Therefore charity can be in us neither naturally , nor through acquisition by the natural powers, but by the infusion of the Holy Ghost , Who is the love of the Father and the Son, and the participation of Whom in us is created charity , as stated above ( II-II:23:2 ).</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.friendship_with_god" id="edge.concept.charity.defined_as.concept.friendship_with_god">
+  <data key="d6">edge.concept.charity.defined_as.concept.friendship_with_god</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">defined_as</data>
+  <data key="d11">concept.friendship_with_god</data>
+  <data key="d12">Friendship with God</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-charity-defined-as-concept-friendship-with-god-st-ii-ii-q023-a001-resp</data>
+  <data key="d15">st.ii-ii.q023.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Accordingly, since there is a communication between man and God , inasmuch as He communicates His happiness to us, some kind of friendship must needs be based on this same communication, of which it is written ( 1 Corinthians 1:9 ): " God is faithful: by Whom you are called unto the fellowship of His Son." The love which is based on this communication, is charity : wherefore it is evident that charity is the friendship of man for God .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.almsgiving" id="edge.concept.charity.has_act.concept.almsgiving">
+  <data key="d6">edge.concept.charity.has_act.concept.almsgiving</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.almsgiving</data>
+  <data key="d12">Almsgiving</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-charity-has-act-concept-almsgiving-st-ii-ii-q032-a001-resp</data>
+  <data key="d15">st.ii-ii.q032.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">tin "miseratio" is. And since mercy is an effect of charity , as shown above ( 30, 2, 3, Objection 3 ), it follows that almsgiving is an act of charity through the medium of mercy.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.beneficence" id="edge.concept.charity.has_act.concept.beneficence">
+  <data key="d6">edge.concept.charity.has_act.concept.beneficence</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.beneficence</data>
+  <data key="d12">Beneficence</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-charity-has-act-concept-beneficence-st-ii-ii-q031-a001-resp</data>
+  <data key="d15">st.ii-ii.q031.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">considered in two ways, first under the general aspect of good , and this belongs to beneficence in general, and is an act of friendship, and, consequently, of charity : because the act of love includes goodwill whereby a man wishes his friend well, as stated above ( II-II:23:1 ; II-II:27:2 ). N</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.fraternal_correction" id="edge.concept.charity.has_act.concept.fraternal_correction">
+  <data key="d6">edge.concept.charity.has_act.concept.fraternal_correction</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.fraternal_correction</data>
+  <data key="d12">Fraternal Correction</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-charity-has-act-concept-fraternal-correction-st-ii-ii-q033-a001-resp</data>
+  <data key="d15">st.ii-ii.q033.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">much as the contrary good of virtue is more akin to charity than the good of the body or of external things. Therefore fraternal correction is an act of charity rather than the healing of a bodily infirmity, or the relieving of an external bodily need. There is another correction which applies a remedy to the sin of th</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.love_act" id="edge.concept.charity.has_act.concept.love_act">
+  <data key="d6">edge.concept.charity.has_act.concept.love_act</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.love_act</data>
+  <data key="d12">Love (Act)</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-charity-has-act-concept-love-act-st-ii-ii-q027-a001-resp</data>
+  <data key="d15">st.ii-ii.q027.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">To love belongs to charity as charity . For, since charity is a virtue , by its very essence it has an inclination to its proper act. Now to be loved is not the act of the charity of the</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.god" id="edge.concept.charity.has_object.concept.god">
+  <data key="d6">edge.concept.charity.has_object.concept.god</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_object</data>
+  <data key="d11">concept.god</data>
+  <data key="d12">God</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-charity-has-object-concept-god-st-ii-ii-q025-a001-resp | ann.concept-charity-has-object-concept-god-st-ii-ii-q026-a002-resp</data>
+  <data key="d15">st.ii-ii.q025.a001.resp | st.ii-ii.q026.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">, since what we ought to love in our neighbor is that he may be in God . Hence it is clear that it is specifically the same act whereby we love God , and whereby we love our neighbor. Consequently the habit of charity extends not only to the love of God , but also to the love of our neighbor. | h consists essentially in God , as the First Principle, whence it flows to all who are capable of happiness . Therefore God ought to be loved chiefly and before all out of charity : for He is loved as the cause of happiness , whereas our neighbor is loved as receiving together with us a share of happiness from Him.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.neighbor" id="edge.concept.charity.has_object.concept.neighbor">
+  <data key="d6">edge.concept.charity.has_object.concept.neighbor</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_object</data>
+  <data key="d11">concept.neighbor</data>
+  <data key="d12">Neighbor</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-charity-has-object-concept-neighbor-st-ii-ii-q025-a001-resp | ann.concept-charity-has-object-concept-neighbor-st-ii-ii-q025-a008-resp</data>
+  <data key="d15">st.ii-ii.q025.a001.resp | st.ii-ii.q025.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">is that he may be in God . Hence it is clear that it is specifically the same act whereby we love God , and whereby we love our neighbor. Consequently the habit of charity extends not only to the love of God , but also to the love of our neighbor. | hat we should love our enemies, namely, that in loving God and our neighbor, we should not exclude our enemies from the love given to our neighbor in general. Thirdly, love of one's enemies may be considered as specially directed to them, namely, that we should have a special movement of love towards our enemies. Ch</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.wisdom_gift" id="edge.concept.charity.perfected_by.concept.wisdom_gift">
+  <data key="d6">edge.concept.charity.perfected_by.concept.wisdom_gift</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">perfected_by</data>
+  <data key="d11">concept.wisdom_gift</data>
+  <data key="d12">Gift of Wisdom</data>
+  <data key="d13">gift_holy_spirit</data>
+  <data key="d14">ann.concept-charity-perfected-by-concept-wisdom-gift-st-ii-ii-q045-a002-resp</data>
+  <data key="d15">st.ii-ii.q045.a002.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">for he not only learns, but is patient of, Divine things." Now this sympathy or connaturality for Divine things is the result of charity , which unites us to God , according to 1 Corinthians 6:17 : "He who is joined to the Lord, is one spirit." Consequently wisdom which is a gift , has its cause</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.precepts_of_charity" id="edge.concept.charity.regulated_by.concept.precepts_of_charity">
+  <data key="d6">edge.concept.charity.regulated_by.concept.precepts_of_charity</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">regulated_by</data>
+  <data key="d11">concept.precepts_of_charity</data>
+  <data key="d12">Precepts of Charity</data>
+  <data key="d13">precept</data>
+  <data key="d14">ann.concept-charity-regulated-by-concept-precepts-of-charity-st-ii-ii-q044-a001-resp | ann.concept-charity-regulated-by-concept-precepts-of-charity-st-ii-ii-q044-a008-resp</data>
+  <data key="d15">st.ii-ii.q044.a001.resp | st.ii-ii.q044.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ertaining to the spiritual life are ordained to this union, as to their end. Hence the Apostle says ( 1 Timothy 1:5 ): "The end of the commandment is charity from a pure heart, and a good conscience , and an unfeigned faith ." For all the virtues , about whose acts the precepts are given, are directed either to the | love to the thing beloved, as shown above ( II-II:25:12 ; II-II:26:1 and II-II:26:2 ). It is therefore evident that the order of charity must come under the precept.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.will" id="edge.concept.charity.resides_in.concept.will">
+  <data key="d6">edge.concept.charity.resides_in.concept.will</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">resides_in</data>
+  <data key="d11">concept.will</data>
+  <data key="d12">Will</data>
+  <data key="d13">faculty</data>
+  <data key="d14">ann.concept-charity-resides-in-concept-will-st-ii-ii-q024-a001-resp</data>
+  <data key="d15">st.ii-ii.q024.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the object of charity is not a sensible good , but the Divine good which is known by the intellect alone. Therefore the subject of charity is not the sensitive, but the intellective appetite , i.e. the will .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.charity" target="concept.virtue" id="edge.concept.charity.species_of.concept.virtue">
+  <data key="d6">edge.concept.charity.species_of.concept.virtue</data>
+  <data key="d7">concept.charity</data>
+  <data key="d8">Charity</data>
+  <data key="d9">virtue</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.virtue</data>
+  <data key="d12">Virtue</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-charity-species-of-concept-virtue-st-ii-ii-q023-a003-resp</data>
+  <data key="d15">st.ii-ii.q023.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Wherefore, it follows that charity is a virtue , for, since charity attains God , it unites us to God , as evidenced by the authority of Augustine quoted above.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.concord" target="concept.charity" id="edge.concept.concord.caused_by.concept.charity">
+  <data key="d6">edge.concept.concord.caused_by.concept.charity</data>
+  <data key="d7">concept.concord</data>
+  <data key="d8">Concord</data>
+  <data key="d9">act_type</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-concord-caused-by-concept-charity-st-ii-ii-q037-a001-resp</data>
+  <data key="d15">st.ii-ii.q037.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Discord is opposed to concord. Now, as stated above ( II-II:29:3 ) concord results from charity , in as much as charity directs many hearts together to one thing, which is chiefly the Divine good , secondarily, the good of our neighbor. Wherefore discord</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.despair_sin" target="concept.blasphemy_against_holy_spirit" id="edge.concept.despair_sin.species_of.concept.blasphemy_against_holy_spirit">
+  <data key="d6">edge.concept.despair_sin.species_of.concept.blasphemy_against_holy_spirit</data>
+  <data key="d7">concept.despair_sin</data>
+  <data key="d8">Despair (Sin)</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.blasphemy_against_holy_spirit</data>
+  <data key="d12">Sin Against the Holy Spirit</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-despair-sin-species-of-concept-blasphemy-against-holy-spirit-st-ii-ii-q014-a002-resp</data>
+  <data key="d15">st.ii-ii.q014.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">hope, arising from the consideration of the mercy that pardons sins and rewards good deeds , which hope is removed by " despair "; and by fear, arising from the consideration of the Divine justice that punishes sins , which fear is removed by "presumption," when, namely, a man presumes</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.discord" target="concept.concord" id="edge.concept.discord.opposed_by.concept.concord">
+  <data key="d6">edge.concept.discord.opposed_by.concept.concord</data>
+  <data key="d7">concept.discord</data>
+  <data key="d8">Discord</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.concord</data>
+  <data key="d12">Concord</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-discord-opposed-by-concept-concord-st-ii-ii-q037-a001-resp</data>
+  <data key="d15">st.ii-ii.q037.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Discord is opposed to concord. Now, as stated above ( II-II:29:3 ) concord results from charity , in as much as charity directs many hearts together to one thing, which is chiefly the Divin</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.ecclesial_unity" target="concept.charity" id="edge.concept.ecclesial_unity.caused_by.concept.charity">
+  <data key="d6">edge.concept.ecclesial_unity.caused_by.concept.charity</data>
+  <data key="d7">concept.ecclesial_unity</data>
+  <data key="d8">Ecclesial Unity</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-ecclesial-unity-caused-by-concept-charity-st-ii-ii-q039-a001-resp</data>
+  <data key="d15">st.ii-ii.q039.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">of schism is, properly speaking, a special sin , for the reason that the schismatic intends to sever himself from that unity which is the effect of charity : because charity unites not only one person to another with the bond of spiritual love, but also the whole Church in unity of spirit. Accordingly schismatics</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.envy" target="concept.charity" id="edge.concept.envy.opposed_by.concept.charity">
+  <data key="d6">edge.concept.envy.opposed_by.concept.charity</data>
+  <data key="d7">concept.envy</data>
+  <data key="d8">Envy</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-envy-opposed-by-concept-charity-st-ii-ii-q036-a003-resp</data>
+  <data key="d15">st.ii-ii.q036.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">espect of its genus. For the genus of a sin is taken from its object; and envy according to the aspect of its object is contrary to charity , whence the soul derives its spiritual life, according to 1 John 3:14 : "We know that we have passed from death to life, because we love the brethren." Now th</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.god" id="edge.concept.faith.caused_by.concept.god">
+  <data key="d6">edge.concept.faith.caused_by.concept.god</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.god</data>
+  <data key="d12">God</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-faith-caused-by-concept-god-st-ii-ii-q006-a001-resp</data>
+  <data key="d15">st.ii-ii.q006.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">aith is the assent of the believer to the things which are proposed to him. Accordingly, as regards the first of these, faith must needs be from God . Because those things which are of faith surpass human reason , hence they do not come to man's knowledge , unless God reveal them. To some, indeed, they are</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.act_of_faith" id="edge.concept.faith.has_act.concept.act_of_faith">
+  <data key="d6">edge.concept.faith.has_act.concept.act_of_faith</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.act_of_faith</data>
+  <data key="d12">Act of Faith</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-faith-has-act-concept-act-of-faith-st-ii-ii-q002-a002-resp | ann.concept-faith-has-act-concept-act-of-faith-st-ii-ii-q002-a009-resp</data>
+  <data key="d15">st.ii-ii.q002.a002.resp | st.ii-ii.q002.a009.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">the object of faith , as stated above ( II-II:1:1 ). One of these is the material object of faith , and in this way an act of faith is "to believe in a God "; because, as stated above ( II-II:1:1 ) nothing is proposed to our belief , except in as much as it is referred to God . The other is | f the will moved by the grace of God , so that it is subject to the free-will in relation to God ; and consequently the act of faith can be meritorious .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.confession_of_faith" id="edge.concept.faith.has_act.concept.confession_of_faith">
+  <data key="d6">edge.concept.faith.has_act.concept.confession_of_faith</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_act</data>
+  <data key="d11">concept.confession_of_faith</data>
+  <data key="d12">Confession of Faith</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-faith-has-act-concept-confession-of-faith-st-ii-ii-q003-a001-resp</data>
+  <data key="d15">st.ii-ii.q003.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">e inward thought. Wherefore, just as the inward thought of matters of faith is properly an act of faith , so too is the outward confession of them.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.first_truth" id="edge.concept.faith.has_object.concept.first_truth">
+  <data key="d6">edge.concept.faith.has_object.concept.first_truth</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">has_object</data>
+  <data key="d11">concept.first_truth</data>
+  <data key="d12">First Truth</data>
+  <data key="d13">object</data>
+  <data key="d14">ann.concept-faith-has-object-concept-first-truth-st-ii-ii-q001-a001-resp</data>
+  <data key="d15">st.ii-ii.q001.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Accordingly if we consider, in faith , the formal aspect of the object, it is nothing else than the First Truth</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.knowledge_gift" id="edge.concept.faith.perfected_by.concept.knowledge_gift">
+  <data key="d6">edge.concept.faith.perfected_by.concept.knowledge_gift</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">perfected_by</data>
+  <data key="d11">concept.knowledge_gift</data>
+  <data key="d12">Gift of Knowledge</data>
+  <data key="d13">gift_holy_spirit</data>
+  <data key="d14">ann.concept-faith-perfected-by-concept-knowledge-gift-st-ii-ii-q009-a001-resp</data>
+  <data key="d15">st.ii-ii.q009.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">nd right judgment on them, so as to discern what is to be believed , from what is not to be believed , and for this the gift of knowledge is required.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.understanding_gift" id="edge.concept.faith.perfected_by.concept.understanding_gift">
+  <data key="d6">edge.concept.faith.perfected_by.concept.understanding_gift</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">perfected_by</data>
+  <data key="d11">concept.understanding_gift</data>
+  <data key="d12">Gift of Understanding</data>
+  <data key="d13">gift_holy_spirit</data>
+  <data key="d14">ann.concept-faith-perfected-by-concept-understanding-gift-st-ii-ii-q009-a001-resp</data>
+  <data key="d15">st.ii-ii.q009.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">of these is that he should have a sound grasp of the things that are proposed to be believed , and this pertains to the gift of understanding, as stated above ( II-II:8:6 ): while the other is that he should have a sure and right judgment on them, so as to discern what is to be believed , from what i</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.faith" target="concept.precepts_of_faith_knowledge_and_understanding" id="edge.concept.faith.regulated_by.concept.precepts_of_faith_knowledge_and_understanding">
+  <data key="d6">edge.concept.faith.regulated_by.concept.precepts_of_faith_knowledge_and_understanding</data>
+  <data key="d7">concept.faith</data>
+  <data key="d8">Faith</data>
+  <data key="d9">virtue</data>
+  <data key="d10">regulated_by</data>
+  <data key="d11">concept.precepts_of_faith_knowledge_and_understanding</data>
+  <data key="d12">Precepts of Faith, Knowledge, and Understanding</data>
+  <data key="d13">precept</data>
+  <data key="d14">ann.concept-faith-regulated-by-concept-precepts-of-faith-knowledge-and-understanding-st-ii-ii-q016-a001-resp</data>
+  <data key="d15">st.ii-ii.q016.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">expounding the words: "This is My commandment" ( John 15:12 ) says (Tract. lxxxiii in Joan.) that we have received many precepts of faith . In the Old Law , however, the secret things of faith were not to be set before the people, wherefore, presupposing their faith in one God , no other precepts</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.fear_of_lord_gift" target="concept.beatitude_poor_in_spirit" id="edge.concept.fear_of_lord_gift.corresponds_to.concept.beatitude_poor_in_spirit">
+  <data key="d6">edge.concept.fear_of_lord_gift.corresponds_to.concept.beatitude_poor_in_spirit</data>
+  <data key="d7">concept.fear_of_lord_gift</data>
+  <data key="d8">Gift of Fear of the Lord</data>
+  <data key="d9">gift_holy_spirit</data>
+  <data key="d10">corresponds_to</data>
+  <data key="d11">concept.beatitude_poor_in_spirit</data>
+  <data key="d12">Beatitude of the Poor in Spirit</data>
+  <data key="d13">beatitude</data>
+  <data key="d14">ann.concept-fear-of-lord-gift-corresponds-to-concept-beatitude-poor-in-spirit-st-ii-ii-q019-a012-resp</data>
+  <data key="d15">st.ii-ii.q019.a012.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Poverty of spirit properly corresponds to fear. Because, since it belongs to filial fear to show reverence and submission to God , whatever results from this submission belongs to the gift of fear. Now from</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.folly" target="concept.wisdom_gift" id="edge.concept.folly.opposed_by.concept.wisdom_gift">
+  <data key="d6">edge.concept.folly.opposed_by.concept.wisdom_gift</data>
+  <data key="d7">concept.folly</data>
+  <data key="d8">Folly</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.wisdom_gift</data>
+  <data key="d12">Gift of Wisdom</data>
+  <data key="d13">gift_holy_spirit</data>
+  <data key="d14">ann.concept-folly-opposed-by-concept-wisdom-gift-st-ii-ii-q046-a001-resp</data>
+  <data key="d15">st.ii-ii.q046.a001.resp</data>
+  <data key="d16">strong_textual_inference</data>
+  <data key="d17">pathy in the heart and dullness in the senses, while fatuity denotes entire privation of the spiritual sense. Therefore folly is fittingly opposed to wisdom. For "sapiens" [wise] as Isidore says (Etym. x) "is so named from sapor [savor], because just as the taste is quick to distinguish between savors of meats, so</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hatred_sin" target="concept.love_act" id="edge.concept.hatred_sin.opposed_by.concept.love_act">
+  <data key="d6">edge.concept.hatred_sin.opposed_by.concept.love_act</data>
+  <data key="d7">concept.hatred_sin</data>
+  <data key="d8">Hatred (Sin)</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.love_act</data>
+  <data key="d12">Love (Act)</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-hatred-sin-opposed-by-concept-love-act-st-ii-ii-q034-a003-resp</data>
+  <data key="d15">st.ii-ii.q034.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Hatred is opposed to love, as stated above ( I-II:29:2 ); so that hatred of a thing is evil according as the love of that thing is good . Now love is due to our neighbor in respect of w</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.heresy" target="concept.unbelief" id="edge.concept.heresy.species_of.concept.unbelief">
+  <data key="d6">edge.concept.heresy.species_of.concept.unbelief</data>
+  <data key="d7">concept.heresy</data>
+  <data key="d8">Heresy</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.unbelief</data>
+  <data key="d12">Unbelief</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-heresy-species-of-concept-unbelief-st-ii-ii-q011-a001-resp</data>
+  <data key="d15">st.ii-ii.q011.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">lling to assent to Christ : and such a man has an evil will, so to say, in respect of the very end. This belongs to the species of unbelief in pagans and Jews . Secondly, because, though he intends to assent to Christ , yet he fails in his choice of those things wherein he assents to Christ , becau</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.eternal_life" id="edge.concept.hope.directed_to.concept.eternal_life">
+  <data key="d6">edge.concept.hope.directed_to.concept.eternal_life</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.eternal_life</data>
+  <data key="d12">Eternal Life</data>
+  <data key="d13">end</data>
+  <data key="d14">ann.concept-hope-directed-to-concept-eternal-life-st-ii-ii-q017-a004-resp</data>
+  <data key="d15">st.ii-ii.q017.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">cause is the first agent, while the secondary efficient cause is the secondary and instrumental agent. Now hope regards eternal happiness as its last end, and the Divine assistance as the first cause leading to happiness . Accordingly, just as it is not lawful to hope for any good save happiness</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.despair_sin" id="edge.concept.hope.opposed_by.concept.despair_sin">
+  <data key="d6">edge.concept.hope.opposed_by.concept.despair_sin</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.despair_sin</data>
+  <data key="d12">Despair (Sin)</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-hope-opposed-by-concept-despair-sin-st-ii-ii-q020-a001-resp</data>
+  <data key="d15">st.ii-ii.q020.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">fore, just as the movement of hope, which is in conformity with the true opinion, is praiseworthy and virtuous , so the contrary movement of despair , which is in conformity with the false opinion about God , is vicious and sinful .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.presumption" id="edge.concept.hope.opposed_by.concept.presumption">
+  <data key="d6">edge.concept.hope.opposed_by.concept.presumption</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.presumption</data>
+  <data key="d12">Presumption</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-hope-opposed-by-concept-presumption-st-ii-ii-q021-a003-resp</data>
+  <data key="d15">st.ii-ii.q021.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">y opposed when they belong to the same genus, than when they belong to different genera, it follows that presumption is more directly opposed to hope than to fear. For they both regard and rely on the same object, hope ordinately, presumption inordinately.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.precepts_of_hope_and_fear" id="edge.concept.hope.regulated_by.concept.precepts_of_hope_and_fear">
+  <data key="d6">edge.concept.hope.regulated_by.concept.precepts_of_hope_and_fear</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">regulated_by</data>
+  <data key="d11">concept.precepts_of_hope_and_fear</data>
+  <data key="d12">Precepts of Hope and Fear</data>
+  <data key="d13">precept</data>
+  <data key="d14">ann.concept-hope-regulated-by-concept-precepts-of-hope-and-fear-st-ii-ii-q022-a001-resp</data>
+  <data key="d15">st.ii-ii.q022.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ept of faith had to be given under the form of an announcement or reminder, as stated above ( II-II:16:1 ), so too, the precept of hope, in the first promulgation of the Law , had to be given under the form of a promise. For he who promises rewards to them that obey him, by that very fact, urge</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.faith" id="edge.concept.hope.requires.concept.faith">
+  <data key="d6">edge.concept.hope.requires.concept.faith</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">requires</data>
+  <data key="d11">concept.faith</data>
+  <data key="d12">Faith</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-hope-requires-concept-faith-st-ii-ii-q017-a007-resp</data>
+  <data key="d15">st.ii-ii.q017.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Absolutely speaking, faith precedes hope. For the object of hope is a future good , arduous but possible to obtain. In order, therefore, that we may hope, it is necessary for the object of hope to be</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.hope" target="concept.will" id="edge.concept.hope.resides_in.concept.will">
+  <data key="d6">edge.concept.hope.resides_in.concept.will</data>
+  <data key="d7">concept.hope</data>
+  <data key="d8">Hope</data>
+  <data key="d9">virtue</data>
+  <data key="d10">resides_in</data>
+  <data key="d11">concept.will</data>
+  <data key="d12">Will</data>
+  <data key="d13">faculty</data>
+  <data key="d14">ann.concept-hope-resides-in-concept-will-st-ii-ii-q018-a001-resp</data>
+  <data key="d15">st.ii-ii.q018.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ppetite , since the good which is the principal object of this virtue , is not a sensible but a Divine good . Therefore hope resides in the higher appetite called the will , and not in the lower appetite , of which the irascible is a part.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.joy" target="concept.charity" id="edge.concept.joy.caused_by.concept.charity">
+  <data key="d6">edge.concept.joy.caused_by.concept.charity</data>
+  <data key="d7">concept.joy</data>
+  <data key="d8">Joy</data>
+  <data key="d9">act_type</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-joy-caused-by-concept-charity-st-ii-ii-q028-a001-resp</data>
+  <data key="d15">st.ii-ii.q028.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">excellent effect, according to 1 John 4:16 : "He that abideth in charity , abideth in God , and God in him." Therefore spiritual joy , which is about God , is caused by charity .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.knowledge_gift" target="concept.beatitude_mourn" id="edge.concept.knowledge_gift.corresponds_to.concept.beatitude_mourn">
+  <data key="d6">edge.concept.knowledge_gift.corresponds_to.concept.beatitude_mourn</data>
+  <data key="d7">concept.knowledge_gift</data>
+  <data key="d8">Gift of Knowledge</data>
+  <data key="d9">gift_holy_spirit</data>
+  <data key="d10">corresponds_to</data>
+  <data key="d11">concept.beatitude_mourn</data>
+  <data key="d12">Beatitude of Those Who Mourn</data>
+  <data key="d13">beatitude</data>
+  <data key="d14">ann.concept-knowledge-gift-corresponds-to-concept-beatitude-mourn-st-ii-ii-q009-a004-resp</data>
+  <data key="d15">st.ii-ii.q009.a004.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">of the loss (of which they may be the occasion), which judgment he exercises through the gift of knowledge . Hence the beatitude of sorrow is said to correspond to the gift of knowledge .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.mercy" target="concept.charity" id="edge.concept.mercy.caused_by.concept.charity">
+  <data key="d6">edge.concept.mercy.caused_by.concept.charity</data>
+  <data key="d7">concept.mercy</data>
+  <data key="d8">Mercy</data>
+  <data key="d9">act_type</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-mercy-caused-by-concept-charity-st-ii-ii-q032-a001-resp</data>
+  <data key="d15">st.ii-ii.q032.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">s very name, for in Greek eleemosyne it is derived from having mercy eleein even as the Latin "miseratio" is. And since mercy is an effect of charity , as shown above ( 30, 2, 3, Objection 3 ), it follows that almsgiving is an act of charity through the medium of mercy.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.peace" target="concept.charity" id="edge.concept.peace.caused_by.concept.charity">
+  <data key="d6">edge.concept.peace.caused_by.concept.charity</data>
+  <data key="d7">concept.peace</data>
+  <data key="d8">Peace</data>
+  <data key="d9">act_type</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-peace-caused-by-concept-charity-st-ii-ii-q029-a003-resp</data>
+  <data key="d15">st.ii-ii.q029.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">while the other results from one's own appetite being united with the appetite of another: and each of these unions is effected by charity —the first, in so far as man loves God with his whole heart, by referring all things to Him, so that all his desires tend to one object—the second, in so far a</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.presumption" target="concept.blasphemy_against_holy_spirit" id="edge.concept.presumption.species_of.concept.blasphemy_against_holy_spirit">
+  <data key="d6">edge.concept.presumption.species_of.concept.blasphemy_against_holy_spirit</data>
+  <data key="d7">concept.presumption</data>
+  <data key="d8">Presumption</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.blasphemy_against_holy_spirit</data>
+  <data key="d12">Sin Against the Holy Spirit</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-presumption-species-of-concept-blasphemy-against-holy-spirit-st-ii-ii-q014-a002-resp | ann.concept-presumption-species-of-concept-blasphemy-against-holy-spirit-st-ii-ii-q021-a001-resp</data>
+  <data key="d15">st.ii-ii.q014.a002.resp | st.ii-ii.q021.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">air "; and by fear, arising from the consideration of the Divine justice that punishes sins , which fear is removed by "presumption," when, namely, a man presumes that he can obtain glory without merits , or pardon without repentance. God's gifts whereby we are withdrawn from sin , are two: | nstance, if a man hope to obtain pardon without repenting, or glory without merits . This presumption is, properly, the sin against the Holy Ghost , because, to wit, by presuming thus a man removes or despises the assistance of the Holy Spirit , whereby he is withdrawn from sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.scandal" target="concept.charity" id="edge.concept.scandal.opposed_by.concept.charity">
+  <data key="d6">edge.concept.scandal.opposed_by.concept.charity</data>
+  <data key="d7">concept.scandal</data>
+  <data key="d8">Scandal</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-scandal-opposed-by-concept-charity-st-ii-ii-q043-a002-resp</data>
+  <data key="d15">st.ii-ii.q043.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">ighbor which binds each one to be solicitous for his neighbor's spiritual welfare; so that if he persist in doing it he acts against charity . Yet there can be active scandal without sin on the part of the person scandalized , as stated above ( Article 1, Reply to Objection 4 ).</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.schism" target="concept.ecclesial_unity" id="edge.concept.schism.opposed_by.concept.ecclesial_unity">
+  <data key="d6">edge.concept.schism.opposed_by.concept.ecclesial_unity</data>
+  <data key="d7">concept.schism</data>
+  <data key="d8">Schism</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.ecclesial_unity</data>
+  <data key="d12">Ecclesial Unity</data>
+  <data key="d13">doctrine</data>
+  <data key="d14">ann.concept-schism-opposed-by-concept-ecclesial-unity-st-ii-ii-q039-a001-resp</data>
+  <data key="d15">st.ii-ii.q039.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">its name "from being a scission of minds," and scission is opposed to unity. Wherefore the sin of schism is one that is directly and essentially opposed to unity. For in the moral, as in the physical order, the species is not constituted by that which is accidental . Now, in the moral order, the essential is that which</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sedition" target="concept.peace" id="edge.concept.sedition.opposed_by.concept.peace">
+  <data key="d6">edge.concept.sedition.opposed_by.concept.peace</data>
+  <data key="d7">concept.sedition</data>
+  <data key="d8">Sedition</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.peace</data>
+  <data key="d12">Peace</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-sedition-opposed-by-concept-peace-st-ii-ii-q042-a001-resp</data>
+  <data key="d15">st.ii-ii.q042.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">t parts of one people, as when one part of the state rises in tumult against another part. Wherefore, since sedition is opposed to a special kind of good , namely the unity and peace of a people, it is a special kind of sin .</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sloth" target="concept.charity" id="edge.concept.sloth.opposed_by.concept.charity">
+  <data key="d6">edge.concept.sloth.opposed_by.concept.charity</data>
+  <data key="d7">concept.sloth</data>
+  <data key="d8">Sloth</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-sloth-opposed-by-concept-charity-st-ii-ii-q035-a003-resp</data>
+  <data key="d15">st.ii-ii.q035.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">spiritual life which is the effect of charity , whereby God dwells in us. Wherefore any sin which by its very nature is contrary to charity is a mortal sin by reason of its genus. And such is sloth, because the proper effect of charity is joy in God , as stated above ( II-II:28:1 ), while sloth is</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.sloth" target="concept.joy" id="edge.concept.sloth.opposed_by.concept.joy">
+  <data key="d6">edge.concept.sloth.opposed_by.concept.joy</data>
+  <data key="d7">concept.sloth</data>
+  <data key="d8">Sloth</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.joy</data>
+  <data key="d12">Joy</data>
+  <data key="d13">act_type</data>
+  <data key="d14">ann.concept-sloth-opposed-by-concept-joy-st-ii-ii-q035-a003-resp</data>
+  <data key="d15">st.ii-ii.q035.a003.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">which by its very nature is contrary to charity is a mortal sin by reason of its genus. And such is sloth, because the proper effect of charity is joy in God , as stated above ( II-II:28:1 ), while sloth is sorrow about spiritual good in as much as it is a Divine good . Therefore sloth is a mortal sin in respect of</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.strife" target="concept.war" id="edge.concept.strife.species_of.concept.war">
+  <data key="d6">edge.concept.strife.species_of.concept.war</data>
+  <data key="d7">concept.strife</data>
+  <data key="d8">Strife</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">species_of</data>
+  <data key="d11">concept.war</data>
+  <data key="d12">War</data>
+  <data key="d13">sin_type</data>
+  <data key="d14">ann.concept-strife-species-of-concept-war-st-ii-ii-q041-a001-resp</data>
+  <data key="d15">st.ii-ii.q041.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">efore a gloss on Galatians 5:20 says that "strifes are when persons strike one another through anger ." Hence strife is a kind of private war , because it takes place between private persons , being declared not by public authority, but rather by an inordinate will. Therefore strife is always sinful</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.symbol_of_faith" target="concept.faith" id="edge.concept.symbol_of_faith.directed_to.concept.faith">
+  <data key="d6">edge.concept.symbol_of_faith.directed_to.concept.faith</data>
+  <data key="d7">concept.symbol_of_faith</data>
+  <data key="d8">Symbol of Faith</data>
+  <data key="d9">doctrine</data>
+  <data key="d10">directed_to</data>
+  <data key="d11">concept.faith</data>
+  <data key="d12">Faith</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-symbol-of-faith-directed-to-concept-faith-st-ii-ii-q001-a009-resp</data>
+  <data key="d15">st.ii-ii.q001.a009.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">It is from its being a collection of maxims of faith that the symbol [The Greek symballein ] takes its name.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.unbelief" target="concept.faith" id="edge.concept.unbelief.opposed_by.concept.faith">
+  <data key="d6">edge.concept.unbelief.opposed_by.concept.faith</data>
+  <data key="d7">concept.unbelief</data>
+  <data key="d8">Unbelief</data>
+  <data key="d9">sin_type</data>
+  <data key="d10">opposed_by</data>
+  <data key="d11">concept.faith</data>
+  <data key="d12">Faith</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-unbelief-opposed-by-concept-faith-st-ii-ii-q010-a001-resp</data>
+  <data key="d15">st.ii-ii.q010.a001.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">so that a man be called an unbeliever, merely because he has not the faith . Secondly, unbelief may be taken by way of opposition to the faith ; in which sense a man refuses to hear the faith , or despises it, according to Isaiah 53:1 : "Who hath believed our report?" It is this that completes the not</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.understanding_gift" target="concept.beatitude_clean_of_heart" id="edge.concept.understanding_gift.corresponds_to.concept.beatitude_clean_of_heart">
+  <data key="d6">edge.concept.understanding_gift.corresponds_to.concept.beatitude_clean_of_heart</data>
+  <data key="d7">concept.understanding_gift</data>
+  <data key="d8">Gift of Understanding</data>
+  <data key="d9">gift_holy_spirit</data>
+  <data key="d10">corresponds_to</data>
+  <data key="d11">concept.beatitude_clean_of_heart</data>
+  <data key="d12">Beatitude of the Clean of Heart</data>
+  <data key="d13">beatitude</data>
+  <data key="d14">ann.concept-understanding-gift-corresponds-to-concept-beatitude-clean-of-heart-st-ii-ii-q008-a007-resp</data>
+  <data key="d15">st.ii-ii.q008.a007.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Two things are contained in the sixth beatitude, as also in the others, one by way of merit , viz. cleanness of heart; the other by way of reward, viz. the sight of God , as stated above ( I-II:69:2 ; I-II:6</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.virtue" target="concept.charity" id="edge.concept.virtue.perfected_by.concept.charity">
+  <data key="d6">edge.concept.virtue.perfected_by.concept.charity</data>
+  <data key="d7">concept.virtue</data>
+  <data key="d8">Virtue</data>
+  <data key="d9">virtue</data>
+  <data key="d10">perfected_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-virtue-perfected-by-concept-charity-st-ii-ii-q023-a008-resp</data>
+  <data key="d15">st.ii-ii.q023.a008.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">Now it is evident, in accordance with what has been said ( Article 7 ), that it is charity which directs the acts of all other virtues to the last end, and which, consequently, also gives the form to all other acts of virtue : and it is precisely in this sense that charity is called the form of the virtues , for these are called virtues in relation to "informed" acts.</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.wisdom_gift" target="concept.charity" id="edge.concept.wisdom_gift.caused_by.concept.charity">
+  <data key="d6">edge.concept.wisdom_gift.caused_by.concept.charity</data>
+  <data key="d7">concept.wisdom_gift</data>
+  <data key="d8">Gift of Wisdom</data>
+  <data key="d9">gift_holy_spirit</data>
+  <data key="d10">caused_by</data>
+  <data key="d11">concept.charity</data>
+  <data key="d12">Charity</data>
+  <data key="d13">virtue</data>
+  <data key="d14">ann.concept-wisdom-gift-caused-by-concept-charity-st-ii-ii-q045-a002-resp</data>
+  <data key="d15">st.ii-ii.q045.a002.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">which unites us to God , according to 1 Corinthians 6:17 : "He who is joined to the Lord, is one spirit." Consequently wisdom which is a gift , has its cause in the will , which cause is charity , but it has its essence in the intellect , whose act is to judge aright, as stated above ( I-II:14:1 ).</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+<edge source="concept.wisdom_gift" target="concept.beatitude_peacemakers" id="edge.concept.wisdom_gift.corresponds_to.concept.beatitude_peacemakers">
+  <data key="d6">edge.concept.wisdom_gift.corresponds_to.concept.beatitude_peacemakers</data>
+  <data key="d7">concept.wisdom_gift</data>
+  <data key="d8">Gift of Wisdom</data>
+  <data key="d9">gift_holy_spirit</data>
+  <data key="d10">corresponds_to</data>
+  <data key="d11">concept.beatitude_peacemakers</data>
+  <data key="d12">Beatitude of the Peacemakers</data>
+  <data key="d13">beatitude</data>
+  <data key="d14">ann.concept-wisdom-gift-corresponds-to-concept-beatitude-peacemakers-st-ii-ii-q045-a006-resp</data>
+  <data key="d15">st.ii-ii.q045.a006.resp</data>
+  <data key="d16">explicit_textual</data>
+  <data key="d17">d to the gift of wisdom, both as to the merit and as to the reward. The merit is denoted in the words, "Blessed are the peacemakers." Now a peacemaker is one who makes peace, either in himself, or in others: and in both cases this is the result of setting in due order those things in which</data>
+  <data key="d18">reviewed_doctrinal</data>
+</edge>
+</graph></graphml>

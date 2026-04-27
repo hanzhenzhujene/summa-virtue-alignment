@@ -1,0 +1,58 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='560' viewBox='0 0 1280 560' role='img' aria-label='Citation frontier failure-mode breakdown for base and adapter'>
+<rect x='0' y='0' width='1280' height='560' fill='#f8fafc' />
+<rect x='24.0' y='18.0' width='1232.0' height='524.0' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='18' />
+<text x='56' y='52' font-size='28' font-family='Georgia, serif' fill='#0f172a'>Citation frontier on user-style moral QA</text>
+<text x='56' y='78' font-size='13' font-family='Helvetica, Arial, sans-serif' fill='#475569'>Fast next-step audit for `citation_grounded_moral_answer` on the held-out test split</text>
+<text x='56' y='100' font-size='12' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#1d4ed8'>Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)</text>
+<rect x='56' y='120' width='672' height='78' fill='#f8fafc' stroke='#e2e8f0' stroke-width='1' rx='12' />
+<text x='74' y='142' font-size='11' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#334155'>What this figure isolates</text>
+<rect x='760' y='120' width='448' height='78' rx='14' fill='#ecfdf5' stroke='#10b981' stroke-width='1.5' />
+<text x='784' y='144' font-size='11' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#047857'>Headline shift</text>
+<text x='784' y='168' font-size='26' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#065f46'>0.0% -> 47.8%</text>
+<text x='784' y='186' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#334155'>Any citation signal; exact stable-id recovery remains 0.0%.</text>
+<text x='56' y='228' font-size='13' font-family='Helvetica, Arial, sans-serif' fill='#475569'>Failure-mode legend:</text>
+<text x='74' y='162' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#334155'>Adapter citation signal rises from 0.0% to 47.8% on the hardest held-out moral QA</text>
+<text x='74' y='178' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#334155'>slice, while exact stable-id recovery remains 0.0%.</text>
+<rect x='176.0' y='213.0' width='16' height='16' fill='#2563eb' rx='4' />
+<text x='200.0' y='226.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#374151'>Exact stable-id match</text>
+<rect x='366.0' y='213.0' width='16' height='16' fill='#0f766e' rx='4' />
+<text x='390.0' y='226.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#374151'>Partial stable-id match</text>
+<rect x='556.0' y='213.0' width='16' height='16' fill='#d97706' rx='4' />
+<text x='580.0' y='226.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#374151'>Label-only citation</text>
+<rect x='746.0' y='213.0' width='16' height='16' fill='#b91c1c' rx='4' />
+<text x='770.0' y='226.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#374151'>Wrong stable id</text>
+<rect x='936.0' y='213.0' width='16' height='16' fill='#94a3b8' rx='4' />
+<text x='960.0' y='226.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#374151'>No citation signal</text>
+<text x='1030.0' y='252.0' font-size='11' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#334155'>exact stable id</text>
+<text x='1140.0' y='252.0' font-size='11' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#334155'>Any citation signal</text>
+<line x1='1012.0' y1='240.0' x2='1012.0' y2='506.0' stroke='#e2e8f0' stroke-width='1' />
+<line x1='1122.0' y1='240.0' x2='1122.0' y2='506.0' stroke='#e2e8f0' stroke-width='1' />
+<line x1='330.0' y1='264.0' x2='970.0' y2='264.0' stroke='#cbd5e1' stroke-width='1.5' />
+<line x1='330.0' y1='264.0' x2='330.0' y2='454.0' stroke='#eef2f7' stroke-width='1' />
+<text x='330.0' y='474.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>0%</text>
+<line x1='490.0' y1='264.0' x2='490.0' y2='454.0' stroke='#eef2f7' stroke-width='1' />
+<text x='490.0' y='474.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>25%</text>
+<line x1='650.0' y1='264.0' x2='650.0' y2='454.0' stroke='#eef2f7' stroke-width='1' />
+<text x='650.0' y='474.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>50%</text>
+<line x1='810.0' y1='264.0' x2='810.0' y2='454.0' stroke='#eef2f7' stroke-width='1' />
+<text x='810.0' y='474.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>75%</text>
+<line x1='970.0' y1='264.0' x2='970.0' y2='454.0' stroke='#eef2f7' stroke-width='1' />
+<text x='970.0' y='474.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#64748b'>100%</text>
+<text x='56' y='292.0' font-size='15' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#111827'>Untuned model</text>
+<text x='56' y='312.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#64748b'>n=67 held-out moral-QA prompts</text>
+<rect x='330.0' y='286.0' width='640.0' height='28.0' fill='#e5e7eb' rx='14' />
+<rect x='330.0' y='286.0' width='640.0' height='28.0' fill='#94a3b8' rx='0' />
+<text x='650.0' y='304.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='white' font-weight='700'>100.0%</text>
+<text x='1030.0' y='304.0' font-size='12' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#2563eb'>0.0%</text>
+<text x='1140.0' y='304.0' font-size='12' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#0f766e'>0.0%</text>
+<text x='56' y='400.0' font-size='15' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#111827'>Citation-frontier adapter</text>
+<text x='56' y='420.0' font-size='12' font-family='Helvetica, Arial, sans-serif' fill='#64748b'>n=67 held-out moral-QA prompts</text>
+<rect x='330.0' y='394.0' width='640.0' height='28.0' fill='#e5e7eb' rx='14' />
+<rect x='330.0' y='394.0' width='305.7' height='28.0' fill='#b91c1c' rx='0' />
+<text x='482.8' y='412.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='white' font-weight='700'>47.8%</text>
+<rect x='635.7' y='394.0' width='334.3' height='28.0' fill='#94a3b8' rx='0' />
+<text x='802.8' y='412.0' font-size='11' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='white' font-weight='700'>52.2%</text>
+<text x='1030.0' y='412.0' font-size='12' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#2563eb'>0.0%</text>
+<text x='1140.0' y='412.0' font-size='12' font-family='Helvetica, Arial, sans-serif' font-weight='700' fill='#0f766e'>47.8%</text>
+<text x='650.0' y='534.0' font-size='12' font-family='Helvetica, Arial, sans-serif' text-anchor='middle' fill='#475569'>Share of held-out `citation_grounded_moral_answer` prompts</text>
+</svg>

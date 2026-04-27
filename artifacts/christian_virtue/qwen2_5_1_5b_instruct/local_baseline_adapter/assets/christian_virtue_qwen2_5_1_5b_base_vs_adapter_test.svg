@@ -1,0 +1,54 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1080' height='540' viewBox='0 0 1080 540' role='img' aria-label='Base versus adapter citation exact comparison for a small 1.5B model demo'>
+<defs><marker id='improvement-arrowhead' markerWidth='8' markerHeight='8' refX='7' refY='4' orient='auto' markerUnits='strokeWidth'><path d='M0,0 L8,4 L0,8 Z' fill='#b45309' /></marker></defs>
+<rect x='0' y='0' width='1080' height='540' fill='#f8fafc' />
+<rect x='24.0' y='18.0' width='1032.0' height='500.0' fill='white' stroke='#d4d4d8' stroke-width='1.5' rx='18' />
+<text x='72' y='46' font-size='20' font-weight='700' fill='#111827'>Held-out virtue-goal citation exact</text>
+<text x='72' y='66' font-size='12' fill='#4b5563'>Selected strongest virtue-aligned held-out slices for the minimal public SFT demo</text>
+<text x='72' y='86' font-size='12' font-weight='600' fill='#1d4ed8'>Small-model demo: Qwen/Qwen2.5-1.5B-Instruct (1.5B)</text>
+<rect x='764' y='34' width='244' height='52' fill='#eff6ff' stroke='#bfdbfe' stroke-width='1' rx='12' />
+<text x='780' y='54' font-size='11' font-weight='700' fill='#1d4ed8'>Strongest public slice</text>
+<text x='780' y='72' font-size='12' fill='#1f2937'>Virtue concept explanation · 65.6% exact</text>
+<circle cx='760' cy='110' r='6' fill='#94a3b8' />
+<text x='772' y='114' font-size='12' fill='#374151'>Base model</text>
+<circle cx='864' cy='110' r='6' fill='#2563eb' />
+<text x='876' y='114' font-size='12' fill='#374151'>LoRA adapter</text>
+<line x1='972' y1='110' x2='1002' y2='110' stroke='#b45309' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />
+<text x='1010' y='114' font-size='12' fill='#92400e'>Improvement</text>
+<line x1='128.0' y1='168.0' x2='128.0' y2='404.0' stroke='#9ca3af' stroke-width='1.5' />
+<line x1='128.0' y1='404.0' x2='992.0' y2='404.0' stroke='#9ca3af' stroke-width='1.5' />
+<text x='38' y='286.0' font-size='12' fill='#374151' text-anchor='middle' transform='rotate(-90 38 286.0)'>Exact citation match</text>
+<text x='560.0' y='496.0' font-size='12' text-anchor='middle' fill='#374151'>Held-out virtue evaluation slice</text>
+<line x1='128.0' y1='404.0' x2='992.0' y2='404.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='118.0' y='408.0' font-size='11' text-anchor='end' fill='#4b5563'>0%</text>
+<line x1='128.0' y1='345.0' x2='992.0' y2='345.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='118.0' y='349.0' font-size='11' text-anchor='end' fill='#4b5563'>20%</text>
+<line x1='128.0' y1='286.0' x2='992.0' y2='286.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='118.0' y='290.0' font-size='11' text-anchor='end' fill='#4b5563'>40%</text>
+<line x1='128.0' y1='227.0' x2='992.0' y2='227.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='118.0' y='231.0' font-size='11' text-anchor='end' fill='#4b5563'>60%</text>
+<line x1='128.0' y1='168.0' x2='992.0' y2='168.0' stroke='#e5e7eb' stroke-width='1' />
+<text x='118.0' y='172.0' font-size='11' text-anchor='end' fill='#4b5563'>80%</text>
+<rect x='205.8' y='404.0' width='95.0' height='0.0' fill='#94a3b8' rx='6' />
+<rect x='352.6' y='210.4' width='95.0' height='193.6' fill='#2563eb' rx='6' />
+<line x1='451.7' y1='404.0' x2='461.7' y2='404.0' stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />
+<line x1='451.7' y1='210.4' x2='461.7' y2='210.4' stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />
+<line x1='465.7' y1='400.0' x2='465.7' y2='206.4' stroke='#b45309' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />
+<text x='473.7' y='307.2' font-size='11' text-anchor='start' fill='#92400e' font-weight='600'>+65.6 pts</text>
+<text x='253.3' y='422.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
+<text x='400.2' y='422.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
+<text x='344.0' y='446.0' font-size='11' text-anchor='middle' fill='#111827'>Virtue concept explanation</text>
+<text x='344.0' y='460.0' font-size='10' text-anchor='middle' fill='#64748b'>n=32</text>
+<text x='400.2' y='202.4' font-size='11' text-anchor='middle' fill='#1d4ed8'>65.6%</text>
+<rect x='637.8' y='404.0' width='95.0' height='0.0' fill='#94a3b8' rx='6' />
+<rect x='784.6' y='219.1' width='95.0' height='184.9' fill='#2563eb' rx='6' />
+<line x1='883.7' y1='404.0' x2='893.7' y2='404.0' stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />
+<line x1='883.7' y1='219.1' x2='893.7' y2='219.1' stroke='#cbd5e1' stroke-width='1.5' stroke-linecap='round' />
+<line x1='897.7' y1='400.0' x2='897.7' y2='215.1' stroke='#b45309' stroke-width='2.5' marker-end='url(#improvement-arrowhead)' stroke-linecap='round' />
+<text x='905.7' y='311.5' font-size='11' text-anchor='start' fill='#92400e' font-weight='600'>+62.7 pts</text>
+<text x='685.3' y='422.0' font-size='11' text-anchor='middle' fill='#374151'>Base</text>
+<text x='832.2' y='422.0' font-size='11' text-anchor='middle' fill='#374151'>Adapter</text>
+<text x='776.0' y='446.0' font-size='11' text-anchor='middle' fill='#111827'>Reviewed relation</text>
+<text x='776.0' y='460.0' font-size='11' text-anchor='middle' fill='#111827'>explanation</text>
+<text x='776.0' y='474.0' font-size='10' text-anchor='middle' fill='#64748b'>n=67</text>
+<text x='832.2' y='211.1' font-size='11' text-anchor='middle' fill='#1d4ed8'>62.7%</text>
+</svg>

@@ -1,0 +1,90 @@
+{
+  "adapter_eval_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/adapter_test/latest",
+  "adapter_metrics": {
+    "citation_exact_match": 0.3648068669527897,
+    "citation_overlap": 0.3648068669527897,
+    "citation_partial_match": 0.3648068669527897,
+    "count": 233,
+    "relation_type_accuracy": null
+  },
+  "base_eval_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/base_test/latest",
+  "base_metrics": {
+    "citation_exact_match": 0.0,
+    "citation_overlap": 0.0,
+    "citation_partial_match": 0.0,
+    "count": 233,
+    "relation_type_accuracy": null
+  },
+  "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "dataset_dir": "data/processed/sft/exports/christian_virtue_v1",
+  "dataset_manifest_path": "data/processed/sft/exports/christian_virtue_v1/manifest.json",
+  "dataset_summary": {
+    "annotation_counts_by_support_type": {
+      "explicit_textual": 445,
+      "strong_textual_inference": 110
+    },
+    "dataset_name": "christian_virtue_v1",
+    "grouping_key": "question_id",
+    "source_annotations_used": 555,
+    "split_sizes": {
+      "test": 233,
+      "train": 1475,
+      "val": 175
+    },
+    "task_template_counts": {
+      "citation_grounded_moral_answer": 555,
+      "passage_grounded_doctrinal_qa": 555,
+      "reviewed_relation_explanation": 555,
+      "virtue_concept_explanation": 218
+    },
+    "total_examples": 1883
+  },
+  "git_commit": "40c724d0aaab5cdedc25110a1b4545157e9dcea3",
+  "github_release_url": "https://github.com/hanzhenzhujene/summa-virtue-alignment/releases/tag/christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038",
+  "github_repo_url": "https://github.com/hanzhenzhujene/summa-virtue-alignment",
+  "hf_repo_id": "JennyZhu0822/summa-virtue-qwen2.5-1.5b",
+  "hf_repo_url": "https://huggingface.co/JennyZhu0822/summa-virtue-qwen2.5-1.5b",
+  "local_train_run_id": "20260421_134712",
+  "publication_git_commit": "9a2371a1fb016b930de1bbf2fa2734cde5ca39d9",
+  "published_report_assets": {
+    "assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg": "docs/reports/assets/christian_virtue_qwen2_5_1_5b_base_vs_adapter_test.svg"
+  },
+  "published_report_path": "docs/reports/christian_virtue_qwen2_5_1_5b_local_baseline_report.md",
+  "release_tag": "christian-virtue-qwen2.5-1.5b-local-baseline-20260418_193038",
+  "summary": {
+    "second_strongest_task": {
+      "baseline_exact": 0.0,
+      "candidate_exact": 0.6268656716417911,
+      "count": 67,
+      "delta_exact": 0.6268656716417911,
+      "key": "reviewed_relation_explanation",
+      "label": "Reviewed relation explanation"
+    },
+    "strongest_task": {
+      "baseline_exact": 0.0,
+      "candidate_exact": 0.65625,
+      "count": 32,
+      "delta_exact": 0.65625,
+      "key": "virtue_concept_explanation",
+      "label": "Virtue concept explanation"
+    },
+    "strongest_tract": {
+      "baseline_exact": 0.0,
+      "candidate_exact": 0.5,
+      "count": 42,
+      "delta_exact": 0.5,
+      "key": "justice_core",
+      "label": "Justice core"
+    },
+    "weakest_task": {
+      "baseline_exact": 0.0,
+      "candidate_exact": 0.0,
+      "count": 67,
+      "delta_exact": 0.0,
+      "key": "citation_grounded_moral_answer",
+      "label": "Citation-grounded moral answer"
+    },
+    "zero_gain_tracts": []
+  },
+  "train_run_dir": "runs/christian_virtue/qwen2_5_1_5b_instruct/local_baseline/latest"
+}

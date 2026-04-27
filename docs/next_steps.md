@@ -1,0 +1,174 @@
+# Next Steps
+
+## Immediate Review Priorities
+
+- review the generated temperance packet for `II-II q.144`, which is now the clearest under-annotated question inside `qq. 141–160`
+- review `II-II q.145` next, because honesty / beauty-of-virtue support is doctrinally central to the integral-part layer but still light in reviewed coverage
+- review `II-II q.147` after that, because fasting must remain clearly distinct from abstinence and should not inherit subjective-part placement by convenience
+- review `II-II q.152` next, because virginity still carries the sharpest local risk of collapsing into chastity
+- review `II-II q.155` and `q.158` alongside the closure block, because continence / incontinence and anger / meekness still shape how `q.170` precept linkages should be read across the full temperance tract
+- review the generated temperance-closure packet for `II-II q.162`, which is now the clearest under-annotated question inside `qq. 161–170`
+- review `II-II q.161` next, because humility still carries the sharpest local risk of drifting back into `modesty_general`
+- review `II-II qq. 163–165` after that, because Adam’s-first-sin case modeling, punishments, and temptation structure remain the most doctrine-dense closure questions
+- review `II-II qq. 168–169` before widening external-modesty links further, because `modesty_general` must stay clearly distinct from the outward-behavior and attire species
+- review `II-II q.170` conservatively whenever precept linkages expand, because the full temperance synthesis should not auto-link every temperance concept to the tract’s precepts
+- review the generated fortitude-closure packet for `II-II q.137`, which is now the clearest under-annotated question inside `qq. 136–140`
+- review `II-II q.136` next, because patience / longanimity / constancy remain the sharpest tract-local normalization pressure
+- review `II-II q.139` after that, because gift-of-fortitude links need continued scrutiny against virtue-level fortitude and against any broader fortitude synthesis
+- review `II-II q.140` before moving deeper into later fortitude work, because precept-linkage edges can easily become too broad if they drift beyond what the question itself supports
+- treat `qq. 123–128` as the next fortitude priority only after the current closure block is stress-tested; the synthesis layer is now live for `qq. 123–140`, but doctrinally populated only for the reviewed `qq. 129–140` material
+- review the generated fortitude-parts packet for `II-II q.130`, which is now the clearest under-annotated high-risk question inside `qq. 129–135`
+- review `II-II q.129` next, because magnanimity still concentrates honor, worthiness, confidence, assurance, and goods-of-fortune structure in one dense question
+- review `II-II q.132` after that, because glory / vainglory / honor normalization remains the sharpest local ambiguity
+- review `II-II q.135` before moving to later fortitude parts, because magnificence’s opposed excess and deficiency should stay clearly distinct from prodigality and generic stinginess
+- review the generated connected-virtues packet for `II-II q.109`, which is now the clearest under-annotated high-density question inside `qq. 109–120`
+- review `II-II q.110` next, because lying and false self-presentation remain partially parsed and candidate-heavy
+- review `II-II qq. 117–118` after that, because liberality and covetousness still carry the highest external-goods normalization pressure
+- review `II-II q.120` after the lighter social-interaction questions, because epikeia remains structurally clear but conceptually easy to flatten into generic justice or fairness language
+- keep the later connected-virtue material in `qq. 121–122` out of the reviewed layer for now; the next expansion should come only after the `qq. 109–120` cluster filters and validation rules are stress-tested
+
+## Ontology And Normalization
+
+- sharpen broad labels that still generate many ambiguous mentions:
+  - `law`
+  - `virtue`
+  - `grace`
+  - `love`
+- decide whether `right_of_nations` should stay a conservative `species_of right` mapping or receive a narrower reviewed alignment later
+- revisit whether `prudence_part -> virtue` is the best app-level compatibility mapping for prudence overlay concepts, or whether the app should display a dedicated tract-local node subtype
+- decide whether `God`, `neighbor`, `peace`, and `mercy` should stay candidate-suppressed in full-corpus extraction or receive narrower detection rules later
+- keep passion/sin homonyms explicit:
+  - `despair`
+  - `hatred`
+- keep religion-tract act distinctions explicit:
+  - `oath`
+  - `vow`
+  - `adjuration`
+- keep owed-relation due modes explicit:
+  - `origin`
+  - `excellence`
+  - `authority`
+  - `benefaction`
+  - `rectificatory`
+- keep role-level abstractions explicit:
+  - `parent_role`
+  - `person_in_dignity_role`
+  - `human_lord_role`
+  - `superior_role`
+  - `benefactor_role`
+- keep connected-virtues tract distinctions explicit:
+  - `truth_self_presentation` vs `first_truth`
+  - `dissimulation` vs `hypocrisy`
+  - `friendliness_affability` vs `charity`
+  - `liberality` vs `almsgiving` / `mercy`
+  - `epikeia` vs generic fairness
+- keep fortitude-parts tract distinctions explicit:
+  - `magnanimity` vs `magnificence`
+  - `presumption_magnanimity` vs hope-tract `presumption`
+  - `honor_recognition` vs broader `honor`
+  - `waste_magnificence` vs `prodigality`
+- keep fortitude-closure tract distinctions explicit:
+  - `patience` vs `perseverance_virtue`
+  - act-level `perseverance` vs virtue-level `perseverance_virtue`
+  - `fortitude` vs `fortitude_gift`
+  - `longanimity_fortitude` vs `patience`
+  - `constancy_fortitude` vs `perseverance_virtue`
+- keep temperance tract distinctions explicit:
+  - `abstinence` vs `fasting`
+  - `sobriety` vs `abstinence`
+  - `gluttony` vs `drunkenness`
+  - `chastity` vs `virginity`
+  - `lust` vs tract-local parts of lust
+  - `continence` vs `temperance`
+  - `meekness` vs `clemency`
+  - `anger` vs `anger_vice`
+  - `modesty_general` vs later humility / studiousness / exterior-modesty material
+- keep temperance-closure distinctions explicit:
+  - `humility` vs `modesty_general`
+  - `pride` vs `adams_first_sin`
+  - `studiousness` vs `curiosity`
+  - `external_behavior_modesty` vs `outward_attire_modesty`
+  - precept nodes vs precept-target concepts
+- keep temperance part-taxonomy explicit:
+  - `integral_part_of`
+  - `subjective_part_of`
+  - `potential_part_of`
+- keep temperance matter domains explicit:
+  - `food`
+  - `drink`
+  - `sexual_pleasure`
+  - `meekness_anger`
+  - `clemency_cruelty`
+  - `modesty_general`
+- keep sacred-object distinctions explicit:
+  - `divine_name`
+  - `sacred_thing`
+  - `sacred_person`
+  - `sacred_place`
+  - `spiritual_thing`
+- keep justice-domain distinctions explicit:
+  - `property`
+  - `honor`
+  - `reputation`
+  - `truth_in_legal_proceedings`
+- decide where new corpus registry concepts are genuinely needed for precepts, beatitudes, and vice groupings
+- keep using hand-authored alias overrides instead of fuzzy normalization
+
+## Review Workflow
+
+- use `data/processed/corpus_review_queue.json` to choose under-reviewed questions by density and ambiguity burden
+- use `data/processed/owed_relation_tract_review_queue.json` for the current `II-II qq. 101–108` review pass
+- use `data/processed/connected_virtues_109_120_review_queue.json` for the current `II-II qq. 109–120` review pass
+- use `data/processed/fortitude_parts_129_135_review_queue.json` for the current `II-II qq. 129–135` review pass
+- use `data/processed/fortitude_closure_136_140_review_queue.json` for the current `II-II qq. 136–140` review pass
+- use `data/processed/temperance_141_160_review_queue.json` for the current `II-II qq. 141–160` review pass
+- use `data/processed/temperance_closure_161_170_review_queue.json` for the current `II-II qq. 161–170` review pass
+- use `data/processed/religion_tract_review_queue.json` for the current `II-II qq. 80–100` review pass
+- use `data/processed/justice_core_review_queue.json` for the current `II-II qq. 57–79` review pass
+- generate focused packets with `python scripts/build_corpus_review_queue.py` before promoting any new reviewed layer
+- generate the owed-relation packet with `python scripts/build_owed_relation_tract_review_queue.py` when tract coverage shifts
+- generate the connected-virtues packet with `python scripts/build_connected_virtues_109_120_review_queue.py` when tract coverage shifts
+- generate the fortitude-parts packet with `python scripts/build_fortitude_parts_129_135_review_queue.py` when tract coverage shifts
+- generate the fortitude-closure packet with `python scripts/build_fortitude_closure_136_140_review_queue.py` when tract coverage shifts
+- generate the temperance packet with `python scripts/build_temperance_141_160_review_queue.py` when tract coverage shifts
+- generate the temperance-closure packet with `python scripts/build_temperance_closure_161_170_review_queue.py` when tract coverage shifts
+- generate the religion packet with `python scripts/build_religion_tract_review_queue.py` when tract coverage shifts
+- generate the justice packet with `python scripts/build_justice_core_review_queue.py` when the tract coverage shifts
+- keep candidate relation proposals visible as prompts, but never as approved graph facts
+- preserve the separation between pilot reviewed overlays, prudence reviewed overlays, theological-virtues overlays, justice-core overlays, religion-tract overlays, owed-relation overlays, connected-virtues overlays, and corpus-scale candidate files
+- preserve the separation between fortitude-parts overlays and every earlier reviewed tract overlay; do not let magnanimity/magnificence candidate suggestions leak into reviewed exports
+- preserve the separation between fortitude-closure overlays and every earlier reviewed tract overlay; do not let patience/perseverance or gift/precept candidate suggestions leak into reviewed exports
+- preserve the separation between temperance overlays and every earlier reviewed tract overlay; do not let temperance-part or matter-domain candidate suggestions leak into reviewed exports
+- preserve the separation between temperance-closure overlays and every earlier reviewed tract overlay; do not let humility/pride, Adam-case, curiosity, external-modesty, or precept candidate suggestions leak into reviewed exports
+
+## App And QA
+
+- keep testing the new owed-relation presets and due-mode filters before copying them into later annexed-virtue tracts
+- keep testing the connected-virtues presets and sub-cluster filters before copying them into later annexed-virtue tracts
+- keep testing the fortitude-parts presets and opposition-mode filters before copying them into later fortitude tracts
+- keep testing the fortitude-closure presets, gift/precept filters, and synthesis views before copying them into later fortitude work
+- keep testing the temperance presets, part-taxonomy filters, and matter-domain filters before copying them into later temperance closure work
+- keep testing the temperance-closure presets, distinction displays, and precept filters before extending reviewed work beyond `qq. 161–170`
+- verify that due-mode filters never flatten benefaction, authority, origin, excellence, and rectificatory relations back into one vague respect schema
+- verify that reviewed-only graph views exclude `structural_editorial` and candidate overlays by default even when the UI is scoped to `qq. 80–100`
+- verify that reviewed-only graph views exclude `structural_editorial` and candidate overlays by default even when the UI is scoped to `qq. 101–108`
+- verify that reviewed-only graph views exclude `structural_editorial` and candidate overlays by default even when the UI is scoped to `qq. 109–120`
+- verify that reviewed-only graph views exclude `structural_editorial` and candidate overlays by default even when the UI is scoped to `qq. 141–160`
+- verify that self-presentation, social-interaction, external-goods, and legal-equity filters do not bleed into one another when merged doctrinal edges are trimmed to range
+- verify that honor-related and expenditure-related fortitude filters do not bleed into one another when merged doctrinal edges are trimmed to range
+- verify that integral, subjective, and potential temperance filters do not bleed into one another when merged doctrinal edges are trimmed to range
+- verify that food, drink, sex, meekness/anger, clemency/cruelty, and modesty-general filters stay visibly separate in concept and graph views
+- verify that humility/pride, Adam’s-first-sin case, studiousness/curiosity, and external-modesty filters stay visibly separate in the completed temperance synthesis
+- verify that reviewed-only graph views exclude `structural_editorial` and candidate overlays by default even when the UI is scoped to `qq. 161–170` or the full temperance range `qq. 141–170`
+- add a dedicated review view for domain/process modeling disagreements if judicial questions keep producing many candidate items
+- add a dedicated review view for sacred-object and opposition-mode disagreements if the religion tract keeps producing many candidate items
+- add a dedicated review view for self-presentation and epikeia normalization disagreements if `qq. 109–120` keep generating high-ambiguity candidates
+- keep corpus browser, concept explorer, and graph view tuned for reviewed-first interpretation
+- treat parse-partial questions as audit targets, not as silent failures
+
+## Guardrails
+
+- do not claim doctrinal completeness for the full corpus
+- do not auto-promote candidate mentions or candidate relations
+- do not merge excluded `II-II qq. 183–189` into structural or review exports
+- do not flatten difficult Thomistic distinctions for search convenience

@@ -1,0 +1,246 @@
+{
+  "normalization_risk_questions": [
+    101,
+    102,
+    103,
+    104,
+    106,
+    107,
+    108
+  ],
+  "questions": [
+    {
+      "candidate_mention_count": 46,
+      "candidate_relation_count": 16,
+      "due_mode_usage": {
+        "origin-related due": 8
+      },
+      "major_concepts": [
+        "Country",
+        "Honor",
+        "Justice",
+        "Origin-Related Due",
+        "Parent Role",
+        "Piety",
+        "Service"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q101",
+      "question_number": 101,
+      "question_title": "Piety",
+      "reviewed_annotation_count": 21,
+      "reviewed_doctrinal_edge_count": 6,
+      "reviewed_structural_editorial_count": 13,
+      "role_usage": {
+        "Parent Role": 2
+      },
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 21,
+      "candidate_relation_count": 7,
+      "due_mode_usage": {
+        "excellence-related due": 6
+      },
+      "major_concepts": [
+        "Excellence-Related Due",
+        "Honor",
+        "Justice",
+        "Observance",
+        "Person in Dignity",
+        "Piety",
+        "Service"
+      ],
+      "parse_status": "ok",
+      "passage_count": 12,
+      "question_id": "st.ii-ii.q102",
+      "question_number": 102,
+      "question_title": "Observance, considered in itself, and its parts",
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 12,
+      "role_usage": {
+        "Person in Dignity": 1
+      },
+      "unresolved_ambiguity_count": 7
+    },
+    {
+      "candidate_mention_count": 45,
+      "candidate_relation_count": 11,
+      "due_mode_usage": {
+        "excellence-related due": 8
+      },
+      "major_concepts": [
+        "Dulia",
+        "Excellence-Related Due",
+        "Honor",
+        "Human Lord Role",
+        "Observance",
+        "Service"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q103",
+      "question_number": 103,
+      "question_title": "Dulia",
+      "reviewed_annotation_count": 22,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 14,
+      "role_usage": {
+        "Human Lord Role": 2
+      },
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 174,
+      "candidate_relation_count": 53,
+      "due_mode_usage": {
+        "authority-related due": 7
+      },
+      "major_concepts": [
+        "Authority-Related Due",
+        "Command",
+        "Justice",
+        "Obedience",
+        "Superior Role"
+      ],
+      "parse_status": "ok",
+      "passage_count": 25,
+      "question_id": "st.ii-ii.q104",
+      "question_number": 104,
+      "question_title": "Obedience",
+      "reviewed_annotation_count": 24,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 17,
+      "role_usage": {
+        "Superior Role": 2
+      },
+      "unresolved_ambiguity_count": 36
+    },
+    {
+      "candidate_mention_count": 60,
+      "candidate_relation_count": 27,
+      "due_mode_usage": {
+        "authority-related due": 5
+      },
+      "major_concepts": [
+        "Authority-Related Due",
+        "Command",
+        "Disobedience",
+        "Obedience",
+        "Superior Role"
+      ],
+      "parse_status": "ok",
+      "passage_count": 8,
+      "question_id": "st.ii-ii.q105",
+      "question_number": 105,
+      "question_title": "Disobedience",
+      "reviewed_annotation_count": 14,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 9,
+      "role_usage": {
+        "Superior Role": 1
+      },
+      "unresolved_ambiguity_count": 0
+    },
+    {
+      "candidate_mention_count": 43,
+      "candidate_relation_count": 15,
+      "due_mode_usage": {
+        "benefaction-related due": 9
+      },
+      "major_concepts": [
+        "Benefaction",
+        "Benefaction-Related Due",
+        "Benefactor Role",
+        "Gratitude",
+        "Honor",
+        "Justice"
+      ],
+      "parse_status": "partial",
+      "passage_count": 24,
+      "question_id": "st.ii-ii.q106",
+      "question_number": 106,
+      "question_title": "Thankfulness or gratitude",
+      "reviewed_annotation_count": 26,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 17,
+      "role_usage": {
+        "Benefactor Role": 2
+      },
+      "unresolved_ambiguity_count": 11
+    },
+    {
+      "candidate_mention_count": 16,
+      "candidate_relation_count": 5,
+      "due_mode_usage": {
+        "benefaction-related due": 6
+      },
+      "major_concepts": [
+        "Benefaction",
+        "Benefaction-Related Due",
+        "Benefactor Role",
+        "Gratitude",
+        "Ingratitude"
+      ],
+      "parse_status": "ok",
+      "passage_count": 17,
+      "question_id": "st.ii-ii.q107",
+      "question_number": 107,
+      "question_title": "Ingratitude",
+      "reviewed_annotation_count": 18,
+      "reviewed_doctrinal_edge_count": 4,
+      "reviewed_structural_editorial_count": 12,
+      "role_usage": {
+        "Benefactor Role": 1
+      },
+      "unresolved_ambiguity_count": 8
+    },
+    {
+      "candidate_mention_count": 70,
+      "candidate_relation_count": 32,
+      "due_mode_usage": {
+        "rectificatory due": 10
+      },
+      "major_concepts": [
+        "Justice",
+        "Prior Wrong",
+        "Punishment",
+        "Rectification",
+        "Rectificatory Due",
+        "Vengeance"
+      ],
+      "parse_status": "ok",
+      "passage_count": 20,
+      "question_id": "st.ii-ii.q108",
+      "question_number": 108,
+      "question_title": "Vengeance",
+      "reviewed_annotation_count": 26,
+      "reviewed_doctrinal_edge_count": 5,
+      "reviewed_structural_editorial_count": 16,
+      "role_usage": {},
+      "unresolved_ambiguity_count": 11
+    }
+  ],
+  "questions_with_due_mode_modeling_risk": [],
+  "summary": {
+    "authority_related_due_relation_count": 8,
+    "benefaction_related_due_relation_count": 9,
+    "candidate_mention_count": 475,
+    "candidate_relation_count": 166,
+    "excellence_related_due_relation_count": 10,
+    "origin_related_due_relation_count": 6,
+    "passage_count": 140,
+    "question_count": 8,
+    "rectificatory_relation_count": 5,
+    "registered_concepts_used": 27,
+    "reviewed_annotation_count": 169,
+    "reviewed_doctrinal_edge_count": 38,
+    "reviewed_structural_editorial_count": 110
+  },
+  "under_annotated_questions": [
+    104,
+    107
+  ]
+}
